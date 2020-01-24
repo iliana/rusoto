@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGroupInput {
     /// <p>The description of the resource group. Descriptions can have a maximum of 511 characters, including letters, numbers, hyphens, underscores, punctuation, and spaces.</p>
     #[serde(rename = "Description")]
@@ -44,7 +46,7 @@ pub struct CreateGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGroupOutput {
     /// <p>A full description of the resource group after it is created.</p>
     #[serde(rename = "Group")]
@@ -61,6 +63,7 @@ pub struct CreateGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGroupInput {
     /// <p>The name of the resource group to delete.</p>
     #[serde(rename = "GroupName")]
@@ -68,7 +71,7 @@ pub struct DeleteGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteGroupOutput {
     /// <p>A full description of the deleted resource group.</p>
     #[serde(rename = "Group")]
@@ -77,6 +80,7 @@ pub struct DeleteGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupInput {
     /// <p>The name of the resource group.</p>
     #[serde(rename = "GroupName")]
@@ -84,7 +88,7 @@ pub struct GetGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupOutput {
     /// <p>A full description of the resource group.</p>
     #[serde(rename = "Group")]
@@ -93,6 +97,7 @@ pub struct GetGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupQueryInput {
     /// <p>The name of the resource group.</p>
     #[serde(rename = "GroupName")]
@@ -100,7 +105,7 @@ pub struct GetGroupQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupQueryOutput {
     /// <p>The resource query associated with the specified group.</p>
     #[serde(rename = "GroupQuery")]
@@ -109,6 +114,7 @@ pub struct GetGroupQueryOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTagsInput {
     /// <p>The ARN of the resource group for which you want a list of tags. The resource must exist within the account you are using.</p>
     #[serde(rename = "Arn")]
@@ -116,7 +122,7 @@ pub struct GetTagsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTagsOutput {
     /// <p>The ARN of the tagged resource group.</p>
     #[serde(rename = "Arn")]
@@ -130,7 +136,7 @@ pub struct GetTagsOutput {
 
 /// <p>A resource group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Group {
     /// <p>The description of the resource group.</p>
     #[serde(rename = "Description")]
@@ -146,6 +152,7 @@ pub struct Group {
 
 /// <p>A filter name and value pair that is used to obtain more specific results from a list of groups.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GroupFilter {
     /// <p>The name of the filter. Filter names are case-sensitive.</p>
     #[serde(rename = "Name")]
@@ -157,7 +164,7 @@ pub struct GroupFilter {
 
 /// <p>The ARN and group name of a group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GroupIdentifier {
     /// <p>The ARN of a resource group.</p>
     #[serde(rename = "GroupArn")]
@@ -171,7 +178,7 @@ pub struct GroupIdentifier {
 
 /// <p>The underlying resource query of a resource group. Resources that match query results are part of the group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GroupQuery {
     /// <p>The name of a resource group that is associated with a specific resource query.</p>
     #[serde(rename = "GroupName")]
@@ -182,6 +189,7 @@ pub struct GroupQuery {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGroupResourcesInput {
     /// <p><p>Filters, formatted as ResourceFilter objects, that you want to apply to a ListGroupResources operation.</p> <ul> <li> <p> <code>resource-type</code> - Filter resources by their type. Specify up to five resource types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance, or AWS::S3::Bucket.</p> </li> </ul></p>
     #[serde(rename = "Filters")]
@@ -201,7 +209,7 @@ pub struct ListGroupResourcesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGroupResourcesOutput {
     /// <p>The NextToken value to include in a subsequent <code>ListGroupResources</code> request, to get more results.</p>
     #[serde(rename = "NextToken")]
@@ -218,6 +226,7 @@ pub struct ListGroupResourcesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGroupsInput {
     /// <p><p>Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups operation.</p> <ul> <li> <p> <code>resource-type</code> - Filter groups by resource type. Specify up to five resource types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance, or AWS::S3::Bucket.</p> </li> </ul></p>
     #[serde(rename = "Filters")]
@@ -234,7 +243,7 @@ pub struct ListGroupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGroupsOutput {
     /// <p>A list of GroupIdentifier objects. Each identifier is an object that contains both the GroupName and the GroupArn.</p>
     #[serde(rename = "GroupIdentifiers")]
@@ -248,7 +257,7 @@ pub struct ListGroupsOutput {
 
 /// <p>A two-part error structure that can occur in <code>ListGroupResources</code> or <code>SearchResources</code> operations on CloudFormation stack-based queries. The error occurs if the CloudFormation stack on which the query is based either does not exist, or has a status that renders the stack inactive. A <code>QueryError</code> occurrence does not necessarily mean that AWS Resource Groups could not complete the operation, but the resulting group might have no member resources.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryError {
     /// <p>Possible values are <code>CLOUDFORMATION_STACK_INACTIVE</code> and <code>CLOUDFORMATION_STACK_NOT_EXISTING</code>.</p>
     #[serde(rename = "ErrorCode")]
@@ -262,6 +271,7 @@ pub struct QueryError {
 
 /// <p>A filter name and value pair that is used to obtain more specific results from a list of resources.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResourceFilter {
     /// <p>The name of the filter. Filter names are case-sensitive.</p>
     #[serde(rename = "Name")]
@@ -273,7 +283,7 @@ pub struct ResourceFilter {
 
 /// <p>The ARN of a resource, and its resource type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceIdentifier {
     /// <p>The ARN of a resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -297,6 +307,7 @@ pub struct ResourceQuery {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchResourcesInput {
     /// <p>The maximum number of group member ARNs returned by <code>SearchResources</code> in paginated output. By default, this number is 50.</p>
     #[serde(rename = "MaxResults")]
@@ -312,7 +323,7 @@ pub struct SearchResourcesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchResourcesOutput {
     /// <p>The NextToken value to include in a subsequent <code>SearchResources</code> request, to get more results.</p>
     #[serde(rename = "NextToken")]
@@ -329,6 +340,7 @@ pub struct SearchResourcesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagInput {
     /// <p>The ARN of the resource to which to add tags.</p>
     #[serde(rename = "Arn")]
@@ -339,7 +351,7 @@ pub struct TagInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagOutput {
     /// <p>The ARN of the tagged resource.</p>
     #[serde(rename = "Arn")]
@@ -352,6 +364,7 @@ pub struct TagOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagInput {
     /// <p>The ARN of the resource from which to remove tags.</p>
     #[serde(rename = "Arn")]
@@ -362,7 +375,7 @@ pub struct UntagInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagOutput {
     /// <p>The ARN of the resource from which tags have been removed.</p>
     #[serde(rename = "Arn")]
@@ -375,6 +388,7 @@ pub struct UntagOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGroupInput {
     /// <p>The description of the resource group. Descriptions can have a maximum of 511 characters, including letters, numbers, hyphens, underscores, punctuation, and spaces.</p>
     #[serde(rename = "Description")]
@@ -386,7 +400,7 @@ pub struct UpdateGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGroupOutput {
     /// <p>The full description of the resource group after it has been updated.</p>
     #[serde(rename = "Group")]
@@ -395,6 +409,7 @@ pub struct UpdateGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGroupQueryInput {
     /// <p>The name of the resource group for which you want to edit the query.</p>
     #[serde(rename = "GroupName")]
@@ -405,7 +420,7 @@ pub struct UpdateGroupQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGroupQueryOutput {
     /// <p>The resource query associated with the resource group after the update.</p>
     #[serde(rename = "GroupQuery")]
@@ -455,21 +470,18 @@ impl CreateGroupError {
     }
 }
 impl fmt::Display for CreateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGroupError::BadRequest(ref cause) => cause,
-            CreateGroupError::Forbidden(ref cause) => cause,
-            CreateGroupError::InternalServerError(ref cause) => cause,
-            CreateGroupError::MethodNotAllowed(ref cause) => cause,
-            CreateGroupError::TooManyRequests(ref cause) => cause,
+            CreateGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateGroupError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            CreateGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGroupError {}
 /// Errors returned by DeleteGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteGroupError {
@@ -517,22 +529,19 @@ impl DeleteGroupError {
     }
 }
 impl fmt::Display for DeleteGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteGroupError::BadRequest(ref cause) => cause,
-            DeleteGroupError::Forbidden(ref cause) => cause,
-            DeleteGroupError::InternalServerError(ref cause) => cause,
-            DeleteGroupError::MethodNotAllowed(ref cause) => cause,
-            DeleteGroupError::NotFound(ref cause) => cause,
-            DeleteGroupError::TooManyRequests(ref cause) => cause,
+            DeleteGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteGroupError {}
 /// Errors returned by GetGroup
 #[derive(Debug, PartialEq)]
 pub enum GetGroupError {
@@ -580,22 +589,19 @@ impl GetGroupError {
     }
 }
 impl fmt::Display for GetGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupError::BadRequest(ref cause) => cause,
-            GetGroupError::Forbidden(ref cause) => cause,
-            GetGroupError::InternalServerError(ref cause) => cause,
-            GetGroupError::MethodNotAllowed(ref cause) => cause,
-            GetGroupError::NotFound(ref cause) => cause,
-            GetGroupError::TooManyRequests(ref cause) => cause,
+            GetGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetGroupError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            GetGroupError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupError {}
 /// Errors returned by GetGroupQuery
 #[derive(Debug, PartialEq)]
 pub enum GetGroupQueryError {
@@ -643,22 +649,19 @@ impl GetGroupQueryError {
     }
 }
 impl fmt::Display for GetGroupQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupQueryError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupQueryError::BadRequest(ref cause) => cause,
-            GetGroupQueryError::Forbidden(ref cause) => cause,
-            GetGroupQueryError::InternalServerError(ref cause) => cause,
-            GetGroupQueryError::MethodNotAllowed(ref cause) => cause,
-            GetGroupQueryError::NotFound(ref cause) => cause,
-            GetGroupQueryError::TooManyRequests(ref cause) => cause,
+            GetGroupQueryError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupQueryError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetGroupQueryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetGroupQueryError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            GetGroupQueryError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetGroupQueryError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupQueryError {}
 /// Errors returned by GetTags
 #[derive(Debug, PartialEq)]
 pub enum GetTagsError {
@@ -706,22 +709,19 @@ impl GetTagsError {
     }
 }
 impl fmt::Display for GetTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTagsError {
-    fn description(&self) -> &str {
         match *self {
-            GetTagsError::BadRequest(ref cause) => cause,
-            GetTagsError::Forbidden(ref cause) => cause,
-            GetTagsError::InternalServerError(ref cause) => cause,
-            GetTagsError::MethodNotAllowed(ref cause) => cause,
-            GetTagsError::NotFound(ref cause) => cause,
-            GetTagsError::TooManyRequests(ref cause) => cause,
+            GetTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetTagsError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            GetTagsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetTagsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTagsError {}
 /// Errors returned by ListGroupResources
 #[derive(Debug, PartialEq)]
 pub enum ListGroupResourcesError {
@@ -776,23 +776,20 @@ impl ListGroupResourcesError {
     }
 }
 impl fmt::Display for ListGroupResourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGroupResourcesError {
-    fn description(&self) -> &str {
         match *self {
-            ListGroupResourcesError::BadRequest(ref cause) => cause,
-            ListGroupResourcesError::Forbidden(ref cause) => cause,
-            ListGroupResourcesError::InternalServerError(ref cause) => cause,
-            ListGroupResourcesError::MethodNotAllowed(ref cause) => cause,
-            ListGroupResourcesError::NotFound(ref cause) => cause,
-            ListGroupResourcesError::TooManyRequests(ref cause) => cause,
-            ListGroupResourcesError::Unauthorized(ref cause) => cause,
+            ListGroupResourcesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListGroupResourcesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListGroupResourcesError {}
 /// Errors returned by ListGroups
 #[derive(Debug, PartialEq)]
 pub enum ListGroupsError {
@@ -835,21 +832,18 @@ impl ListGroupsError {
     }
 }
 impl fmt::Display for ListGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListGroupsError::BadRequest(ref cause) => cause,
-            ListGroupsError::Forbidden(ref cause) => cause,
-            ListGroupsError::InternalServerError(ref cause) => cause,
-            ListGroupsError::MethodNotAllowed(ref cause) => cause,
-            ListGroupsError::TooManyRequests(ref cause) => cause,
+            ListGroupsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListGroupsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListGroupsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListGroupsError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            ListGroupsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListGroupsError {}
 /// Errors returned by SearchResources
 #[derive(Debug, PartialEq)]
 pub enum SearchResourcesError {
@@ -897,22 +891,19 @@ impl SearchResourcesError {
     }
 }
 impl fmt::Display for SearchResourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchResourcesError {
-    fn description(&self) -> &str {
         match *self {
-            SearchResourcesError::BadRequest(ref cause) => cause,
-            SearchResourcesError::Forbidden(ref cause) => cause,
-            SearchResourcesError::InternalServerError(ref cause) => cause,
-            SearchResourcesError::MethodNotAllowed(ref cause) => cause,
-            SearchResourcesError::TooManyRequests(ref cause) => cause,
-            SearchResourcesError::Unauthorized(ref cause) => cause,
+            SearchResourcesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            SearchResourcesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            SearchResourcesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            SearchResourcesError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            SearchResourcesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            SearchResourcesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchResourcesError {}
 /// Errors returned by Tag
 #[derive(Debug, PartialEq)]
 pub enum TagError {
@@ -956,22 +947,19 @@ impl TagError {
     }
 }
 impl fmt::Display for TagError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagError {
-    fn description(&self) -> &str {
         match *self {
-            TagError::BadRequest(ref cause) => cause,
-            TagError::Forbidden(ref cause) => cause,
-            TagError::InternalServerError(ref cause) => cause,
-            TagError::MethodNotAllowed(ref cause) => cause,
-            TagError::NotFound(ref cause) => cause,
-            TagError::TooManyRequests(ref cause) => cause,
+            TagError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagError::Forbidden(ref cause) => write!(f, "{}", cause),
+            TagError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TagError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            TagError::NotFound(ref cause) => write!(f, "{}", cause),
+            TagError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagError {}
 /// Errors returned by Untag
 #[derive(Debug, PartialEq)]
 pub enum UntagError {
@@ -1017,22 +1005,19 @@ impl UntagError {
     }
 }
 impl fmt::Display for UntagError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagError {
-    fn description(&self) -> &str {
         match *self {
-            UntagError::BadRequest(ref cause) => cause,
-            UntagError::Forbidden(ref cause) => cause,
-            UntagError::InternalServerError(ref cause) => cause,
-            UntagError::MethodNotAllowed(ref cause) => cause,
-            UntagError::NotFound(ref cause) => cause,
-            UntagError::TooManyRequests(ref cause) => cause,
+            UntagError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UntagError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UntagError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            UntagError::NotFound(ref cause) => write!(f, "{}", cause),
+            UntagError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagError {}
 /// Errors returned by UpdateGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateGroupError {
@@ -1080,22 +1065,19 @@ impl UpdateGroupError {
     }
 }
 impl fmt::Display for UpdateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGroupError::BadRequest(ref cause) => cause,
-            UpdateGroupError::Forbidden(ref cause) => cause,
-            UpdateGroupError::InternalServerError(ref cause) => cause,
-            UpdateGroupError::MethodNotAllowed(ref cause) => cause,
-            UpdateGroupError::NotFound(ref cause) => cause,
-            UpdateGroupError::TooManyRequests(ref cause) => cause,
+            UpdateGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGroupError {}
 /// Errors returned by UpdateGroupQuery
 #[derive(Debug, PartialEq)]
 pub enum UpdateGroupQueryError {
@@ -1145,22 +1127,19 @@ impl UpdateGroupQueryError {
     }
 }
 impl fmt::Display for UpdateGroupQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGroupQueryError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGroupQueryError::BadRequest(ref cause) => cause,
-            UpdateGroupQueryError::Forbidden(ref cause) => cause,
-            UpdateGroupQueryError::InternalServerError(ref cause) => cause,
-            UpdateGroupQueryError::MethodNotAllowed(ref cause) => cause,
-            UpdateGroupQueryError::NotFound(ref cause) => cause,
-            UpdateGroupQueryError::TooManyRequests(ref cause) => cause,
+            UpdateGroupQueryError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateGroupQueryError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateGroupQueryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateGroupQueryError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            UpdateGroupQueryError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGroupQueryError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGroupQueryError {}
 /// Trait representing the capabilities of the Resource Groups API. Resource Groups clients implement this trait.
 #[async_trait]
 pub trait ResourceGroups {

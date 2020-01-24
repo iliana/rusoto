@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Stores account attributes. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccountAttribute {
     /// <p> The maximum allowed value. </p>
     #[serde(rename = "Maximum")]
@@ -43,6 +44,7 @@ pub struct AccountAttribute {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateNodeRequest {
     /// <p><p>Engine attributes used for associating the node. </p> <p class="title"> <b>Attributes accepted in a AssociateNode request for Chef</b> </p> <ul> <li> <p> <code>CHEF<em>ORGANIZATION</code>: The Chef organization with which the node is associated. By default only one organization named <code>default</code> can exist. </p> </li> <li> <p> <code>CHEF</em>NODE<em>PUBLIC</em>KEY</code>: A PEM-formatted public key. This key is required for the <code>chef-client</code> agent to access the Chef API. </p> </li> </ul> <p class="title"> <b>Attributes accepted in a AssociateNode request for Puppet</b> </p> <ul> <li> <p> <code>PUPPET<em>NODE</em>CSR</code>: A PEM-formatted certificate-signing request (CSR) that is created by the node. </p> </li> </ul></p>
     #[serde(rename = "EngineAttributes")]
@@ -56,7 +58,7 @@ pub struct AssociateNodeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateNodeResponse {
     /// <p>Contains a token which can be passed to the <code>DescribeNodeAssociationStatus</code> API call to get the status of the association request. </p>
     #[serde(rename = "NodeAssociationStatusToken")]
@@ -66,7 +68,7 @@ pub struct AssociateNodeResponse {
 
 /// <p>Describes a single backup. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Backup {
     /// <p>The ARN of the backup. </p>
     #[serde(rename = "BackupArn")]
@@ -159,6 +161,7 @@ pub struct Backup {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBackupRequest {
     /// <p> A user-defined description of the backup. </p>
     #[serde(rename = "Description")]
@@ -174,7 +177,7 @@ pub struct CreateBackupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBackupResponse {
     /// <p>Backup created by request.</p>
     #[serde(rename = "Backup")]
@@ -183,6 +186,7 @@ pub struct CreateBackupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateServerRequest {
     /// <p> Associate a public IP address with a server that you are launching. Valid values are <code>true</code> or <code>false</code>. The default value is <code>true</code>. </p>
     #[serde(rename = "AssociatePublicIpAddress")]
@@ -267,7 +271,7 @@ pub struct CreateServerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateServerResponse {
     /// <p>The server that is created by the request. </p>
     #[serde(rename = "Server")]
@@ -276,6 +280,7 @@ pub struct CreateServerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupRequest {
     /// <p>The ID of the backup to delete. Run the DescribeBackups command to get a list of backup IDs. Backup IDs are in the format <code>ServerName-yyyyMMddHHmmssSSS</code>. </p>
     #[serde(rename = "BackupId")]
@@ -283,10 +288,11 @@ pub struct DeleteBackupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteBackupResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteServerRequest {
     /// <p>The ID of the server to delete.</p>
     #[serde(rename = "ServerName")]
@@ -294,14 +300,15 @@ pub struct DeleteServerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteServerResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAccountAttributesRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAccountAttributesResponse {
     /// <p> The attributes that are currently set for the account. </p>
     #[serde(rename = "Attributes")]
@@ -310,6 +317,7 @@ pub struct DescribeAccountAttributesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBackupsRequest {
     /// <p>Describes a single backup. </p>
     #[serde(rename = "BackupId")]
@@ -330,7 +338,7 @@ pub struct DescribeBackupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBackupsResponse {
     /// <p>Contains the response to a <code>DescribeBackups</code> request. </p>
     #[serde(rename = "Backups")]
@@ -343,6 +351,7 @@ pub struct DescribeBackupsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsRequest {
     /// <p>To receive a paginated response, use this parameter to specify the maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results. </p>
     #[serde(rename = "MaxResults")]
@@ -358,7 +367,7 @@ pub struct DescribeEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventsResponse {
     /// <p>NextToken is a string that is returned in some command responses. It indicates that not all entries have been returned, and that you must run at least one more request to get remaining items. To get remaining results, call <code>DescribeEvents</code> again, and assign the token from the previous results as the value of the <code>nextToken</code> parameter. If there are no more results, the response object's <code>nextToken</code> parameter value is <code>null</code>. Setting a <code>nextToken</code> value that was not returned in your previous results causes an <code>InvalidNextTokenException</code> to occur. </p>
     #[serde(rename = "NextToken")]
@@ -371,6 +380,7 @@ pub struct DescribeEventsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeNodeAssociationStatusRequest {
     /// <p>The token returned in either the AssociateNodeResponse or the DisassociateNodeResponse. </p>
     #[serde(rename = "NodeAssociationStatusToken")]
@@ -381,7 +391,7 @@ pub struct DescribeNodeAssociationStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeNodeAssociationStatusResponse {
     /// <p>Attributes specific to the node association. In Puppet, the attibute PUPPET_NODE_CERT contains the signed certificate (the result of the CSR). </p>
     #[serde(rename = "EngineAttributes")]
@@ -394,6 +404,7 @@ pub struct DescribeNodeAssociationStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServersRequest {
     /// <p>This is not currently implemented for <code>DescribeServers</code> requests. </p>
     #[serde(rename = "MaxResults")]
@@ -410,7 +421,7 @@ pub struct DescribeServersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServersResponse {
     /// <p>This is not currently implemented for <code>DescribeServers</code> requests. </p>
     #[serde(rename = "NextToken")]
@@ -423,6 +434,7 @@ pub struct DescribeServersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateNodeRequest {
     /// <p><p>Engine attributes that are used for disassociating the node. No attributes are required for Puppet. </p> <p class="title"> <b>Attributes required in a DisassociateNode request for Chef</b> </p> <ul> <li> <p> <code>CHEF_ORGANIZATION</code>: The Chef organization with which the node was associated. By default only one organization named <code>default</code> can exist. </p> </li> </ul></p>
     #[serde(rename = "EngineAttributes")]
@@ -437,7 +449,7 @@ pub struct DisassociateNodeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateNodeResponse {
     /// <p>Contains a token which can be passed to the <code>DescribeNodeAssociationStatus</code> API call to get the status of the disassociation request. </p>
     #[serde(rename = "NodeAssociationStatusToken")]
@@ -459,6 +471,7 @@ pub struct EngineAttribute {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportServerEngineAttributeRequest {
     /// <p>The name of the export attribute. Currently, the supported export attribute is <code>Userdata</code>. This exports a user data script that includes parameters and values provided in the <code>InputAttributes</code> list.</p>
     #[serde(rename = "ExportAttributeName")]
@@ -473,7 +486,7 @@ pub struct ExportServerEngineAttributeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportServerEngineAttributeResponse {
     /// <p>The requested engine attribute pair with attribute name and value.</p>
     #[serde(rename = "EngineAttribute")]
@@ -486,6 +499,7 @@ pub struct ExportServerEngineAttributeResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>To receive a paginated response, use this parameter to specify the maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -501,7 +515,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>A token that you can use as the value of <code>NextToken</code> in subsequent calls to the API to show more results.</p>
     #[serde(rename = "NextToken")]
@@ -514,6 +528,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreServerRequest {
     /// <p> The ID of the backup that you want to use to restore a server. </p>
     #[serde(rename = "BackupId")]
@@ -532,12 +547,12 @@ pub struct RestoreServerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreServerResponse {}
 
 /// <p>Describes a configuration management server. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Server {
     /// <p>Associate a public IP address with a server that you are launching. </p>
     #[serde(rename = "AssociatePublicIpAddress")]
@@ -639,7 +654,7 @@ pub struct Server {
 
 /// <p>An event that is related to the server, such as the start of maintenance or backup. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServerEvent {
     /// <p>The time when the event occurred. </p>
     #[serde(rename = "CreatedAt")]
@@ -660,6 +675,7 @@ pub struct ServerEvent {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMaintenanceRequest {
     /// <p>Engine attributes that are specific to the server on which you want to run maintenance.</p>
     #[serde(rename = "EngineAttributes")]
@@ -671,7 +687,7 @@ pub struct StartMaintenanceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMaintenanceResponse {
     /// <p>Contains the response to a <code>StartMaintenance</code> request. </p>
     #[serde(rename = "Server")]
@@ -691,6 +707,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Number (ARN) of a resource to which you want to apply tags. For example, <code>arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE</code>.</p>
     #[serde(rename = "ResourceArn")]
@@ -701,10 +718,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Number (ARN) of a resource from which you want to remove tags. For example, <code>arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE</code>.</p>
     #[serde(rename = "ResourceArn")]
@@ -715,10 +733,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateServerEngineAttributesRequest {
     /// <p>The name of the engine attribute to update. </p>
     #[serde(rename = "AttributeName")]
@@ -733,7 +752,7 @@ pub struct UpdateServerEngineAttributesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateServerEngineAttributesResponse {
     /// <p>Contains the response to an <code>UpdateServerEngineAttributes</code> request. </p>
     #[serde(rename = "Server")]
@@ -742,6 +761,7 @@ pub struct UpdateServerEngineAttributesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateServerRequest {
     /// <p>Sets the number of automated backups that you want to keep. </p>
     #[serde(rename = "BackupRetentionCount")]
@@ -763,7 +783,7 @@ pub struct UpdateServerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateServerResponse {
     /// <p>Contains the response to a <code>UpdateServer</code> request. </p>
     #[serde(rename = "Server")]
@@ -798,18 +818,15 @@ impl AssociateNodeError {
     }
 }
 impl fmt::Display for AssociateNodeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateNodeError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateNodeError::InvalidState(ref cause) => cause,
-            AssociateNodeError::ResourceNotFound(ref cause) => cause,
+            AssociateNodeError::InvalidState(ref cause) => write!(f, "{}", cause),
+            AssociateNodeError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateNodeError {}
 /// Errors returned by CreateBackup
 #[derive(Debug, PartialEq)]
 pub enum CreateBackupError {
@@ -842,19 +859,16 @@ impl CreateBackupError {
     }
 }
 impl fmt::Display for CreateBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateBackupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateBackupError::InvalidState(ref cause) => cause,
-            CreateBackupError::LimitExceeded(ref cause) => cause,
-            CreateBackupError::ResourceNotFound(ref cause) => cause,
+            CreateBackupError::InvalidState(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateBackupError {}
 /// Errors returned by CreateServer
 #[derive(Debug, PartialEq)]
 pub enum CreateServerError {
@@ -887,19 +901,16 @@ impl CreateServerError {
     }
 }
 impl fmt::Display for CreateServerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateServerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateServerError::LimitExceeded(ref cause) => cause,
-            CreateServerError::ResourceAlreadyExists(ref cause) => cause,
-            CreateServerError::ResourceNotFound(ref cause) => cause,
+            CreateServerError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateServerError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateServerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateServerError {}
 /// Errors returned by DeleteBackup
 #[derive(Debug, PartialEq)]
 pub enum DeleteBackupError {
@@ -927,18 +938,15 @@ impl DeleteBackupError {
     }
 }
 impl fmt::Display for DeleteBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBackupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBackupError::InvalidState(ref cause) => cause,
-            DeleteBackupError::ResourceNotFound(ref cause) => cause,
+            DeleteBackupError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBackupError {}
 /// Errors returned by DeleteServer
 #[derive(Debug, PartialEq)]
 pub enum DeleteServerError {
@@ -966,18 +974,15 @@ impl DeleteServerError {
     }
 }
 impl fmt::Display for DeleteServerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteServerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteServerError::InvalidState(ref cause) => cause,
-            DeleteServerError::ResourceNotFound(ref cause) => cause,
+            DeleteServerError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeleteServerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteServerError {}
 /// Errors returned by DescribeAccountAttributes
 #[derive(Debug, PartialEq)]
 pub enum DescribeAccountAttributesError {}
@@ -994,15 +999,12 @@ impl DescribeAccountAttributesError {
     }
 }
 impl fmt::Display for DescribeAccountAttributesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAccountAttributesError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for DescribeAccountAttributesError {}
 /// Errors returned by DescribeBackups
 #[derive(Debug, PartialEq)]
 pub enum DescribeBackupsError {
@@ -1030,18 +1032,15 @@ impl DescribeBackupsError {
     }
 }
 impl fmt::Display for DescribeBackupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBackupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBackupsError::InvalidNextToken(ref cause) => cause,
-            DescribeBackupsError::ResourceNotFound(ref cause) => cause,
+            DescribeBackupsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeBackupsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBackupsError {}
 /// Errors returned by DescribeEvents
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventsError {
@@ -1069,18 +1068,15 @@ impl DescribeEventsError {
     }
 }
 impl fmt::Display for DescribeEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventsError::InvalidNextToken(ref cause) => cause,
-            DescribeEventsError::ResourceNotFound(ref cause) => cause,
+            DescribeEventsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventsError {}
 /// Errors returned by DescribeNodeAssociationStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribeNodeAssociationStatusError {
@@ -1107,17 +1103,16 @@ impl DescribeNodeAssociationStatusError {
     }
 }
 impl fmt::Display for DescribeNodeAssociationStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeNodeAssociationStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeNodeAssociationStatusError::ResourceNotFound(ref cause) => cause,
+            DescribeNodeAssociationStatusError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeNodeAssociationStatusError {}
 /// Errors returned by DescribeServers
 #[derive(Debug, PartialEq)]
 pub enum DescribeServersError {
@@ -1145,18 +1140,15 @@ impl DescribeServersError {
     }
 }
 impl fmt::Display for DescribeServersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeServersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeServersError::InvalidNextToken(ref cause) => cause,
-            DescribeServersError::ResourceNotFound(ref cause) => cause,
+            DescribeServersError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeServersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeServersError {}
 /// Errors returned by DisassociateNode
 #[derive(Debug, PartialEq)]
 pub enum DisassociateNodeError {
@@ -1184,18 +1176,15 @@ impl DisassociateNodeError {
     }
 }
 impl fmt::Display for DisassociateNodeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateNodeError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateNodeError::InvalidState(ref cause) => cause,
-            DisassociateNodeError::ResourceNotFound(ref cause) => cause,
+            DisassociateNodeError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DisassociateNodeError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateNodeError {}
 /// Errors returned by ExportServerEngineAttribute
 #[derive(Debug, PartialEq)]
 pub enum ExportServerEngineAttributeError {
@@ -1229,18 +1218,15 @@ impl ExportServerEngineAttributeError {
     }
 }
 impl fmt::Display for ExportServerEngineAttributeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExportServerEngineAttributeError {
-    fn description(&self) -> &str {
         match *self {
-            ExportServerEngineAttributeError::InvalidState(ref cause) => cause,
-            ExportServerEngineAttributeError::ResourceNotFound(ref cause) => cause,
+            ExportServerEngineAttributeError::InvalidState(ref cause) => write!(f, "{}", cause),
+            ExportServerEngineAttributeError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExportServerEngineAttributeError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1265,17 +1251,14 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by RestoreServer
 #[derive(Debug, PartialEq)]
 pub enum RestoreServerError {
@@ -1303,18 +1286,15 @@ impl RestoreServerError {
     }
 }
 impl fmt::Display for RestoreServerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreServerError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreServerError::InvalidState(ref cause) => cause,
-            RestoreServerError::ResourceNotFound(ref cause) => cause,
+            RestoreServerError::InvalidState(ref cause) => write!(f, "{}", cause),
+            RestoreServerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreServerError {}
 /// Errors returned by StartMaintenance
 #[derive(Debug, PartialEq)]
 pub enum StartMaintenanceError {
@@ -1342,18 +1322,15 @@ impl StartMaintenanceError {
     }
 }
 impl fmt::Display for StartMaintenanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMaintenanceError {
-    fn description(&self) -> &str {
         match *self {
-            StartMaintenanceError::InvalidState(ref cause) => cause,
-            StartMaintenanceError::ResourceNotFound(ref cause) => cause,
+            StartMaintenanceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            StartMaintenanceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMaintenanceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1381,18 +1358,15 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InvalidState(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1420,18 +1394,15 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InvalidState(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateServer
 #[derive(Debug, PartialEq)]
 pub enum UpdateServerError {
@@ -1459,18 +1430,15 @@ impl UpdateServerError {
     }
 }
 impl fmt::Display for UpdateServerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateServerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateServerError::InvalidState(ref cause) => cause,
-            UpdateServerError::ResourceNotFound(ref cause) => cause,
+            UpdateServerError::InvalidState(ref cause) => write!(f, "{}", cause),
+            UpdateServerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateServerError {}
 /// Errors returned by UpdateServerEngineAttributes
 #[derive(Debug, PartialEq)]
 pub enum UpdateServerEngineAttributesError {
@@ -1504,18 +1472,17 @@ impl UpdateServerEngineAttributesError {
     }
 }
 impl fmt::Display for UpdateServerEngineAttributesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateServerEngineAttributesError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateServerEngineAttributesError::InvalidState(ref cause) => cause,
-            UpdateServerEngineAttributesError::ResourceNotFound(ref cause) => cause,
+            UpdateServerEngineAttributesError::InvalidState(ref cause) => write!(f, "{}", cause),
+            UpdateServerEngineAttributesError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateServerEngineAttributesError {}
 /// Trait representing the capabilities of the OpsWorksCM API. OpsWorksCM clients implement this trait.
 #[async_trait]
 pub trait OpsWorksCM {

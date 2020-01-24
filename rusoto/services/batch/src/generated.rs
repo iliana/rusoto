@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An object representing an AWS Batch array job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ArrayProperties {
     /// <p>The size of the array job.</p>
     #[serde(rename = "size")]
@@ -35,7 +37,7 @@ pub struct ArrayProperties {
 
 /// <p>An object representing the array properties of a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArrayPropertiesDetail {
     /// <p>The job index within the array that is associated with this job. This parameter is returned for array job children.</p>
     #[serde(rename = "index")]
@@ -53,7 +55,7 @@ pub struct ArrayPropertiesDetail {
 
 /// <p>An object representing the array properties of a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArrayPropertiesSummary {
     /// <p>The job index within the array that is associated with this job. This parameter is returned for children of array jobs.</p>
     #[serde(rename = "index")]
@@ -67,7 +69,7 @@ pub struct ArrayPropertiesSummary {
 
 /// <p>An object representing the details of a container that is part of a job attempt.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttemptContainerDetail {
     /// <p>The Amazon Resource Name (ARN) of the Amazon ECS container instance that hosts the job attempt.</p>
     #[serde(rename = "containerInstanceArn")]
@@ -97,7 +99,7 @@ pub struct AttemptContainerDetail {
 
 /// <p>An object representing a job attempt.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttemptDetail {
     /// <p>Details about the container in this job attempt.</p>
     #[serde(rename = "container")]
@@ -118,6 +120,7 @@ pub struct AttemptDetail {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelJobRequest {
     /// <p>The AWS Batch job ID of the job to cancel.</p>
     #[serde(rename = "jobId")]
@@ -128,12 +131,12 @@ pub struct CancelJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelJobResponse {}
 
 /// <p>An object representing an AWS Batch compute environment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComputeEnvironmentDetail {
     /// <p>The Amazon Resource Name (ARN) of the compute environment.</p>
     #[serde(rename = "computeEnvironmentArn")]
@@ -246,6 +249,7 @@ pub struct ComputeResource {
 
 /// <p>An object representing the attributes of a compute environment that can be updated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComputeResourceUpdate {
     /// <p>The desired number of Amazon EC2 vCPUS in the compute environment.</p>
     #[serde(rename = "desiredvCpus")]
@@ -263,7 +267,7 @@ pub struct ComputeResourceUpdate {
 
 /// <p>An object representing the details of a container that is part of a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ContainerDetail {
     /// <p>The command that is passed to the container.</p>
     #[serde(rename = "command")]
@@ -353,6 +357,7 @@ pub struct ContainerDetail {
 
 /// <p>The overrides that should be sent to a container.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ContainerOverrides {
     /// <p>The command to send to the container that overrides the default command from the Docker image or the job definition.</p>
     #[serde(rename = "command")]
@@ -447,7 +452,7 @@ pub struct ContainerProperties {
 
 /// <p>An object representing summary details of a container within a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ContainerSummary {
     /// <p>The exit code to return upon completion.</p>
     #[serde(rename = "exitCode")]
@@ -460,6 +465,7 @@ pub struct ContainerSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateComputeEnvironmentRequest {
     /// <p>The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>
     #[serde(rename = "computeEnvironmentName")]
@@ -481,7 +487,7 @@ pub struct CreateComputeEnvironmentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateComputeEnvironmentResponse {
     /// <p>The Amazon Resource Name (ARN) of the compute environment.</p>
     #[serde(rename = "computeEnvironmentArn")]
@@ -494,6 +500,7 @@ pub struct CreateComputeEnvironmentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobQueueRequest {
     /// <p>The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment should execute a given job. Compute environments must be in the <code>VALID</code> state before you can associate them with a job queue. You can associate up to three compute environments with a job queue.</p>
     #[serde(rename = "computeEnvironmentOrder")]
@@ -511,7 +518,7 @@ pub struct CreateJobQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobQueueResponse {
     /// <p>The Amazon Resource Name (ARN) of the job queue.</p>
     #[serde(rename = "jobQueueArn")]
@@ -522,6 +529,7 @@ pub struct CreateJobQueueResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteComputeEnvironmentRequest {
     /// <p>The name or Amazon Resource Name (ARN) of the compute environment to delete.</p>
     #[serde(rename = "computeEnvironment")]
@@ -529,10 +537,11 @@ pub struct DeleteComputeEnvironmentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteComputeEnvironmentResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteJobQueueRequest {
     /// <p>The short name or full Amazon Resource Name (ARN) of the queue to delete.</p>
     #[serde(rename = "jobQueue")]
@@ -540,10 +549,11 @@ pub struct DeleteJobQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteJobQueueResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterJobDefinitionRequest {
     /// <p>The name and revision (<code>name:revision</code>) or full Amazon Resource Name (ARN) of the job definition to deregister.</p>
     #[serde(rename = "jobDefinition")]
@@ -551,10 +561,11 @@ pub struct DeregisterJobDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterJobDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeComputeEnvironmentsRequest {
     /// <p>A list of up to 100 compute environment names or full Amazon Resource Name (ARN) entries.</p>
     #[serde(rename = "computeEnvironments")]
@@ -571,7 +582,7 @@ pub struct DescribeComputeEnvironmentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeComputeEnvironmentsResponse {
     /// <p>The list of compute environments.</p>
     #[serde(rename = "computeEnvironments")]
@@ -584,6 +595,7 @@ pub struct DescribeComputeEnvironmentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobDefinitionsRequest {
     /// <p>The name of the job definition to describe.</p>
     #[serde(rename = "jobDefinitionName")]
@@ -608,7 +620,7 @@ pub struct DescribeJobDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJobDefinitionsResponse {
     /// <p>The list of job definitions.</p>
     #[serde(rename = "jobDefinitions")]
@@ -621,6 +633,7 @@ pub struct DescribeJobDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobQueuesRequest {
     /// <p>A list of up to 100 queue names or full queue Amazon Resource Name (ARN) entries.</p>
     #[serde(rename = "jobQueues")]
@@ -637,7 +650,7 @@ pub struct DescribeJobQueuesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJobQueuesResponse {
     /// <p>The list of job queues.</p>
     #[serde(rename = "jobQueues")]
@@ -650,6 +663,7 @@ pub struct DescribeJobQueuesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobsRequest {
     /// <p>A list of up to 100 job IDs.</p>
     #[serde(rename = "jobs")]
@@ -657,7 +671,7 @@ pub struct DescribeJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJobsResponse {
     /// <p>The list of jobs.</p>
     #[serde(rename = "jobs")]
@@ -692,7 +706,7 @@ pub struct Host {
 
 /// <p>An object representing an AWS Batch job definition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobDefinition {
     /// <p>An object with various properties specific to container-based jobs.</p>
     #[serde(rename = "containerProperties")]
@@ -747,7 +761,7 @@ pub struct JobDependency {
 
 /// <p>An object representing an AWS Batch job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobDetail {
     /// <p>The array properties of the job, if it is an array job.</p>
     #[serde(rename = "arrayProperties")]
@@ -819,7 +833,7 @@ pub struct JobDetail {
 
 /// <p>An object representing the details of an AWS Batch job queue.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobQueueDetail {
     /// <p>The compute environments that are attached to the job queue and the order in which job placement is preferred. Compute environments are selected for job placement in ascending order.</p>
     #[serde(rename = "computeEnvironmentOrder")]
@@ -848,7 +862,7 @@ pub struct JobQueueDetail {
 
 /// <p>An object representing summary details of a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobSummary {
     /// <p>The array properties of the job, if it is an array job.</p>
     #[serde(rename = "arrayProperties")]
@@ -939,6 +953,7 @@ pub struct LinuxParameters {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>The job ID for an array job. Specifying an array job ID with this parameter lists all child jobs from within the specified array.</p>
     #[serde(rename = "arrayJobId")]
@@ -967,7 +982,7 @@ pub struct ListJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResponse {
     /// <p>A list of job summaries that match the request.</p>
     #[serde(rename = "jobSummaryList")]
@@ -997,7 +1012,7 @@ pub struct MountPoint {
 
 /// <p>An object representing the elastic network interface for a multi-node parallel job node.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkInterface {
     /// <p>The attachment ID for the network interface.</p>
     #[serde(rename = "attachmentId")]
@@ -1015,7 +1030,7 @@ pub struct NetworkInterface {
 
 /// <p>An object representing the details of a multi-node parallel job node.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeDetails {
     /// <p>Specifies whether the current node is the main node for a multi-node parallel job.</p>
     #[serde(rename = "isMainNode")]
@@ -1029,6 +1044,7 @@ pub struct NodeDetails {
 
 /// <p>Object representing any node overrides to a job definition that is used in a <a>SubmitJob</a> API operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NodeOverrides {
     /// <p>The node property overrides for the job.</p>
     #[serde(rename = "nodePropertyOverrides")]
@@ -1056,7 +1072,7 @@ pub struct NodeProperties {
 
 /// <p>An object representing the properties of a node that is associated with a multi-node parallel job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodePropertiesSummary {
     /// <p>Specifies whether the current node is the main node for a multi-node parallel job.</p>
     #[serde(rename = "isMainNode")]
@@ -1074,6 +1090,7 @@ pub struct NodePropertiesSummary {
 
 /// <p>Object representing any node overrides to a job definition that is used in a <a>SubmitJob</a> API operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NodePropertyOverride {
     /// <p>The overrides that should be sent to a node range.</p>
     #[serde(rename = "containerOverrides")]
@@ -1097,6 +1114,7 @@ pub struct NodeRangeProperty {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterJobDefinitionRequest {
     /// <p>An object with various properties specific to single-node container-based jobs. If the job definition's <code>type</code> parameter is <code>container</code>, then you must specify either <code>containerProperties</code> or <code>nodeProperties</code>.</p>
     #[serde(rename = "containerProperties")]
@@ -1127,7 +1145,7 @@ pub struct RegisterJobDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterJobDefinitionResponse {
     /// <p>The Amazon Resource Name (ARN) of the job definition.</p>
     #[serde(rename = "jobDefinitionArn")]
@@ -1161,6 +1179,7 @@ pub struct RetryStrategy {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SubmitJobRequest {
     /// <p>The array properties for the submitted job, such as the size of the array. The array size can be between 2 and 10,000. If you specify array properties for a job, it becomes an array job. For more information, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/array_jobs.html">Array Jobs</a> in the <i>AWS Batch User Guide</i>.</p>
     #[serde(rename = "arrayProperties")]
@@ -1202,7 +1221,7 @@ pub struct SubmitJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SubmitJobResponse {
     /// <p>The unique identifier for the job.</p>
     #[serde(rename = "jobId")]
@@ -1213,6 +1232,7 @@ pub struct SubmitJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminateJobRequest {
     /// <p>The AWS Batch job ID of the job to terminate.</p>
     #[serde(rename = "jobId")]
@@ -1223,7 +1243,7 @@ pub struct TerminateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminateJobResponse {}
 
 /// <p>The <code>ulimit</code> settings to pass to the container.</p>
@@ -1241,6 +1261,7 @@ pub struct Ulimit {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateComputeEnvironmentRequest {
     /// <p>The name or full Amazon Resource Name (ARN) of the compute environment to update.</p>
     #[serde(rename = "computeEnvironment")]
@@ -1260,7 +1281,7 @@ pub struct UpdateComputeEnvironmentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateComputeEnvironmentResponse {
     /// <p>The Amazon Resource Name (ARN) of the compute environment.</p>
     #[serde(rename = "computeEnvironmentArn")]
@@ -1273,6 +1294,7 @@ pub struct UpdateComputeEnvironmentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobQueueRequest {
     /// <p>Details the set of compute environments mapped to a job queue and their order relative to each other. This is one of the parameters used by the job scheduler to determine which compute environment should execute a given job.</p>
     #[serde(rename = "computeEnvironmentOrder")]
@@ -1292,7 +1314,7 @@ pub struct UpdateJobQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobQueueResponse {
     /// <p>The Amazon Resource Name (ARN) of the job queue.</p>
     #[serde(rename = "jobQueueArn")]
@@ -1340,18 +1362,15 @@ impl CancelJobError {
     }
 }
 impl fmt::Display for CancelJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelJobError {
-    fn description(&self) -> &str {
         match *self {
-            CancelJobError::Client(ref cause) => cause,
-            CancelJobError::Server(ref cause) => cause,
+            CancelJobError::Client(ref cause) => write!(f, "{}", cause),
+            CancelJobError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelJobError {}
 /// Errors returned by CreateComputeEnvironment
 #[derive(Debug, PartialEq)]
 pub enum CreateComputeEnvironmentError {
@@ -1379,18 +1398,15 @@ impl CreateComputeEnvironmentError {
     }
 }
 impl fmt::Display for CreateComputeEnvironmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateComputeEnvironmentError {
-    fn description(&self) -> &str {
         match *self {
-            CreateComputeEnvironmentError::Client(ref cause) => cause,
-            CreateComputeEnvironmentError::Server(ref cause) => cause,
+            CreateComputeEnvironmentError::Client(ref cause) => write!(f, "{}", cause),
+            CreateComputeEnvironmentError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateComputeEnvironmentError {}
 /// Errors returned by CreateJobQueue
 #[derive(Debug, PartialEq)]
 pub enum CreateJobQueueError {
@@ -1418,18 +1434,15 @@ impl CreateJobQueueError {
     }
 }
 impl fmt::Display for CreateJobQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateJobQueueError {
-    fn description(&self) -> &str {
         match *self {
-            CreateJobQueueError::Client(ref cause) => cause,
-            CreateJobQueueError::Server(ref cause) => cause,
+            CreateJobQueueError::Client(ref cause) => write!(f, "{}", cause),
+            CreateJobQueueError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateJobQueueError {}
 /// Errors returned by DeleteComputeEnvironment
 #[derive(Debug, PartialEq)]
 pub enum DeleteComputeEnvironmentError {
@@ -1457,18 +1470,15 @@ impl DeleteComputeEnvironmentError {
     }
 }
 impl fmt::Display for DeleteComputeEnvironmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteComputeEnvironmentError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteComputeEnvironmentError::Client(ref cause) => cause,
-            DeleteComputeEnvironmentError::Server(ref cause) => cause,
+            DeleteComputeEnvironmentError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteComputeEnvironmentError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteComputeEnvironmentError {}
 /// Errors returned by DeleteJobQueue
 #[derive(Debug, PartialEq)]
 pub enum DeleteJobQueueError {
@@ -1496,18 +1506,15 @@ impl DeleteJobQueueError {
     }
 }
 impl fmt::Display for DeleteJobQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteJobQueueError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteJobQueueError::Client(ref cause) => cause,
-            DeleteJobQueueError::Server(ref cause) => cause,
+            DeleteJobQueueError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteJobQueueError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteJobQueueError {}
 /// Errors returned by DeregisterJobDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeregisterJobDefinitionError {
@@ -1535,18 +1542,15 @@ impl DeregisterJobDefinitionError {
     }
 }
 impl fmt::Display for DeregisterJobDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterJobDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterJobDefinitionError::Client(ref cause) => cause,
-            DeregisterJobDefinitionError::Server(ref cause) => cause,
+            DeregisterJobDefinitionError::Client(ref cause) => write!(f, "{}", cause),
+            DeregisterJobDefinitionError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeregisterJobDefinitionError {}
 /// Errors returned by DescribeComputeEnvironments
 #[derive(Debug, PartialEq)]
 pub enum DescribeComputeEnvironmentsError {
@@ -1576,18 +1580,15 @@ impl DescribeComputeEnvironmentsError {
     }
 }
 impl fmt::Display for DescribeComputeEnvironmentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeComputeEnvironmentsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeComputeEnvironmentsError::Client(ref cause) => cause,
-            DescribeComputeEnvironmentsError::Server(ref cause) => cause,
+            DescribeComputeEnvironmentsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeComputeEnvironmentsError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeComputeEnvironmentsError {}
 /// Errors returned by DescribeJobDefinitions
 #[derive(Debug, PartialEq)]
 pub enum DescribeJobDefinitionsError {
@@ -1615,18 +1616,15 @@ impl DescribeJobDefinitionsError {
     }
 }
 impl fmt::Display for DescribeJobDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobDefinitionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobDefinitionsError::Client(ref cause) => cause,
-            DescribeJobDefinitionsError::Server(ref cause) => cause,
+            DescribeJobDefinitionsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeJobDefinitionsError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobDefinitionsError {}
 /// Errors returned by DescribeJobQueues
 #[derive(Debug, PartialEq)]
 pub enum DescribeJobQueuesError {
@@ -1654,18 +1652,15 @@ impl DescribeJobQueuesError {
     }
 }
 impl fmt::Display for DescribeJobQueuesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobQueuesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobQueuesError::Client(ref cause) => cause,
-            DescribeJobQueuesError::Server(ref cause) => cause,
+            DescribeJobQueuesError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeJobQueuesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobQueuesError {}
 /// Errors returned by DescribeJobs
 #[derive(Debug, PartialEq)]
 pub enum DescribeJobsError {
@@ -1693,18 +1688,15 @@ impl DescribeJobsError {
     }
 }
 impl fmt::Display for DescribeJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobsError::Client(ref cause) => cause,
-            DescribeJobsError::Server(ref cause) => cause,
+            DescribeJobsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeJobsError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobsError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -1728,18 +1720,15 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::Client(ref cause) => cause,
-            ListJobsError::Server(ref cause) => cause,
+            ListJobsError::Client(ref cause) => write!(f, "{}", cause),
+            ListJobsError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by RegisterJobDefinition
 #[derive(Debug, PartialEq)]
 pub enum RegisterJobDefinitionError {
@@ -1767,18 +1756,15 @@ impl RegisterJobDefinitionError {
     }
 }
 impl fmt::Display for RegisterJobDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterJobDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterJobDefinitionError::Client(ref cause) => cause,
-            RegisterJobDefinitionError::Server(ref cause) => cause,
+            RegisterJobDefinitionError::Client(ref cause) => write!(f, "{}", cause),
+            RegisterJobDefinitionError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterJobDefinitionError {}
 /// Errors returned by SubmitJob
 #[derive(Debug, PartialEq)]
 pub enum SubmitJobError {
@@ -1802,18 +1788,15 @@ impl SubmitJobError {
     }
 }
 impl fmt::Display for SubmitJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SubmitJobError {
-    fn description(&self) -> &str {
         match *self {
-            SubmitJobError::Client(ref cause) => cause,
-            SubmitJobError::Server(ref cause) => cause,
+            SubmitJobError::Client(ref cause) => write!(f, "{}", cause),
+            SubmitJobError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SubmitJobError {}
 /// Errors returned by TerminateJob
 #[derive(Debug, PartialEq)]
 pub enum TerminateJobError {
@@ -1841,18 +1824,15 @@ impl TerminateJobError {
     }
 }
 impl fmt::Display for TerminateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TerminateJobError {
-    fn description(&self) -> &str {
         match *self {
-            TerminateJobError::Client(ref cause) => cause,
-            TerminateJobError::Server(ref cause) => cause,
+            TerminateJobError::Client(ref cause) => write!(f, "{}", cause),
+            TerminateJobError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TerminateJobError {}
 /// Errors returned by UpdateComputeEnvironment
 #[derive(Debug, PartialEq)]
 pub enum UpdateComputeEnvironmentError {
@@ -1880,18 +1860,15 @@ impl UpdateComputeEnvironmentError {
     }
 }
 impl fmt::Display for UpdateComputeEnvironmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateComputeEnvironmentError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateComputeEnvironmentError::Client(ref cause) => cause,
-            UpdateComputeEnvironmentError::Server(ref cause) => cause,
+            UpdateComputeEnvironmentError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateComputeEnvironmentError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateComputeEnvironmentError {}
 /// Errors returned by UpdateJobQueue
 #[derive(Debug, PartialEq)]
 pub enum UpdateJobQueueError {
@@ -1919,18 +1896,15 @@ impl UpdateJobQueueError {
     }
 }
 impl fmt::Display for UpdateJobQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateJobQueueError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateJobQueueError::Client(ref cause) => cause,
-            UpdateJobQueueError::Server(ref cause) => cause,
+            UpdateJobQueueError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateJobQueueError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateJobQueueError {}
 /// Trait representing the capabilities of the AWS Batch API. AWS Batch clients implement this trait.
 #[async_trait]
 pub trait Batch {

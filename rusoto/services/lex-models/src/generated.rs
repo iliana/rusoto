@@ -23,11 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Provides information about a bot alias.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BotAliasMetadata {
     /// <p>The name of the bot to which the alias points.</p>
     #[serde(rename = "botName")]
@@ -65,7 +66,7 @@ pub struct BotAliasMetadata {
 
 /// <p>Represents an association between an Amazon Lex bot and an external messaging platform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BotChannelAssociation {
     /// <p>An alias pointing to the specific version of the Amazon Lex bot to which this association is being made. </p>
     #[serde(rename = "botAlias")]
@@ -107,7 +108,7 @@ pub struct BotChannelAssociation {
 
 /// <p>Provides information about a bot. .</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BotMetadata {
     /// <p>The date that the bot was created.</p>
     #[serde(rename = "createdDate")]
@@ -137,7 +138,7 @@ pub struct BotMetadata {
 
 /// <p>Provides metadata for a built-in intent.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuiltinIntentMetadata {
     /// <p>A unique identifier for the built-in intent. To find the signature for an intent, see <a href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/standard-intents">Standard Built-in Intents</a> in the <i>Alexa Skills Kit</i>.</p>
     #[serde(rename = "signature")]
@@ -151,7 +152,7 @@ pub struct BuiltinIntentMetadata {
 
 /// <p>Provides information about a slot used in a built-in intent.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuiltinIntentSlot {
     /// <p>A list of the slots defined for the intent.</p>
     #[serde(rename = "name")]
@@ -161,7 +162,7 @@ pub struct BuiltinIntentSlot {
 
 /// <p>Provides information about a built in slot type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuiltinSlotTypeMetadata {
     /// <p>A unique identifier for the built-in slot type. To find the signature for a slot type, see <a href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference">Slot Type Reference</a> in the <i>Alexa Skills Kit</i>.</p>
     #[serde(rename = "signature")]
@@ -186,6 +187,7 @@ pub struct CodeHook {
 
 /// <p>Provides the settings needed for conversation logs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConversationLogsRequest {
     /// <p>The Amazon Resource Name (ARN) of an IAM role with permission to write to your CloudWatch Logs for text logs and your S3 bucket for audio logs. If audio encryption is enabled, this role also provides access permission for the AWS KMS key used for encrypting audio logs. For more information, see <a href="https://docs.aws.amazon.com/lex/latest/dg/conversation-logs-role-and-policy.html">Creating an IAM Role and Policy for Conversation Logs</a>.</p>
     #[serde(rename = "iamRoleArn")]
@@ -197,7 +199,7 @@ pub struct ConversationLogsRequest {
 
 /// <p>Contains information about conversation log settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConversationLogsResponse {
     /// <p>The Amazon Resource Name (ARN) of the IAM role used to write your logs to CloudWatch Logs or an S3 bucket.</p>
     #[serde(rename = "iamRoleArn")]
@@ -210,6 +212,7 @@ pub struct ConversationLogsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBotVersionRequest {
     /// <p>Identifies a specific revision of the <code>$LATEST</code> version of the bot. If you specify a checksum and the <code>$LATEST</code> version of the bot has a different checksum, a <code>PreconditionFailedException</code> exception is returned and Amazon Lex doesn't publish a new version. If you don't specify a checksum, Amazon Lex publishes the <code>$LATEST</code> version.</p>
     #[serde(rename = "checksum")]
@@ -221,7 +224,7 @@ pub struct CreateBotVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBotVersionResponse {
     /// <p>The message that Amazon Lex uses to abort a conversation. For more information, see <a>PutBot</a>.</p>
     #[serde(rename = "abortStatement")]
@@ -290,6 +293,7 @@ pub struct CreateBotVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateIntentVersionRequest {
     /// <p>Checksum of the <code>$LATEST</code> version of the intent that should be used to create the new version. If you specify a checksum and the <code>$LATEST</code> version of the intent has a different checksum, Amazon Lex returns a <code>PreconditionFailedException</code> exception and doesn't publish a new version. If you don't specify a checksum, Amazon Lex publishes the <code>$LATEST</code> version.</p>
     #[serde(rename = "checksum")]
@@ -301,7 +305,7 @@ pub struct CreateIntentVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateIntentVersionResponse {
     /// <p>Checksum of the intent version created.</p>
     #[serde(rename = "checksum")]
@@ -366,6 +370,7 @@ pub struct CreateIntentVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSlotTypeVersionRequest {
     /// <p>Checksum for the <code>$LATEST</code> version of the slot type that you want to publish. If you specify a checksum and the <code>$LATEST</code> version of the slot type has a different checksum, Amazon Lex returns a <code>PreconditionFailedException</code> exception and doesn't publish the new version. If you don't specify a checksum, Amazon Lex publishes the <code>$LATEST</code> version.</p>
     #[serde(rename = "checksum")]
@@ -377,7 +382,7 @@ pub struct CreateSlotTypeVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSlotTypeVersionResponse {
     /// <p>Checksum of the <code>$LATEST</code> version of the slot type.</p>
     #[serde(rename = "checksum")]
@@ -414,6 +419,7 @@ pub struct CreateSlotTypeVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBotAliasRequest {
     /// <p>The name of the bot that the alias points to.</p>
     #[serde(rename = "botName")]
@@ -424,6 +430,7 @@ pub struct DeleteBotAliasRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBotChannelAssociationRequest {
     /// <p>An alias that points to the specific version of the Amazon Lex bot to which this association is being made.</p>
     #[serde(rename = "botAlias")]
@@ -437,6 +444,7 @@ pub struct DeleteBotChannelAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBotRequest {
     /// <p>The name of the bot. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -444,6 +452,7 @@ pub struct DeleteBotRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBotVersionRequest {
     /// <p>The name of the bot.</p>
     #[serde(rename = "name")]
@@ -454,6 +463,7 @@ pub struct DeleteBotVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteIntentRequest {
     /// <p>The name of the intent. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -461,6 +471,7 @@ pub struct DeleteIntentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteIntentVersionRequest {
     /// <p>The name of the intent.</p>
     #[serde(rename = "name")]
@@ -471,6 +482,7 @@ pub struct DeleteIntentVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSlotTypeRequest {
     /// <p>The name of the slot type. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -478,6 +490,7 @@ pub struct DeleteSlotTypeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSlotTypeVersionRequest {
     /// <p>The name of the slot type.</p>
     #[serde(rename = "name")]
@@ -488,6 +501,7 @@ pub struct DeleteSlotTypeVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUtterancesRequest {
     /// <p>The name of the bot that stored the utterances.</p>
     #[serde(rename = "botName")]
@@ -533,6 +547,7 @@ pub struct FulfillmentActivity {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotAliasRequest {
     /// <p>The name of the bot.</p>
     #[serde(rename = "botName")]
@@ -543,7 +558,7 @@ pub struct GetBotAliasRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotAliasResponse {
     /// <p>The name of the bot that the alias points to.</p>
     #[serde(rename = "botName")]
@@ -580,6 +595,7 @@ pub struct GetBotAliasResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotAliasesRequest {
     /// <p>The name of the bot.</p>
     #[serde(rename = "botName")]
@@ -599,7 +615,7 @@ pub struct GetBotAliasesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotAliasesResponse {
     /// <p>An array of <code>BotAliasMetadata</code> objects, each describing a bot alias.</p>
     #[serde(rename = "BotAliases")]
@@ -612,6 +628,7 @@ pub struct GetBotAliasesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotChannelAssociationRequest {
     /// <p>An alias pointing to the specific version of the Amazon Lex bot to which this association is being made.</p>
     #[serde(rename = "botAlias")]
@@ -625,7 +642,7 @@ pub struct GetBotChannelAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotChannelAssociationResponse {
     /// <p>An alias pointing to the specific version of the Amazon Lex bot to which this association is being made.</p>
     #[serde(rename = "botAlias")]
@@ -666,6 +683,7 @@ pub struct GetBotChannelAssociationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotChannelAssociationsRequest {
     /// <p>An alias pointing to the specific version of the Amazon Lex bot to which this association is being made.</p>
     #[serde(rename = "botAlias")]
@@ -688,7 +706,7 @@ pub struct GetBotChannelAssociationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotChannelAssociationsResponse {
     /// <p>An array of objects, one for each association, that provides information about the Amazon Lex bot and its association with the channel. </p>
     #[serde(rename = "botChannelAssociations")]
@@ -701,6 +719,7 @@ pub struct GetBotChannelAssociationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotRequest {
     /// <p>The name of the bot. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -711,7 +730,7 @@ pub struct GetBotRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotResponse {
     /// <p>The message that Amazon Lex returns when the user elects to end the conversation without completing it. For more information, see <a>PutBot</a>.</p>
     #[serde(rename = "abortStatement")]
@@ -780,6 +799,7 @@ pub struct GetBotResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotVersionsRequest {
     /// <p>The maximum number of bot versions to return in the response. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -795,7 +815,7 @@ pub struct GetBotVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotVersionsResponse {
     /// <p>An array of <code>BotMetadata</code> objects, one for each numbered version of the bot plus one for the <code>$LATEST</code> version.</p>
     #[serde(rename = "bots")]
@@ -808,6 +828,7 @@ pub struct GetBotVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotsRequest {
     /// <p>The maximum number of bots to return in the response that the request will return. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -824,7 +845,7 @@ pub struct GetBotsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotsResponse {
     /// <p>An array of <code>botMetadata</code> objects, with one entry for each bot. </p>
     #[serde(rename = "bots")]
@@ -837,6 +858,7 @@ pub struct GetBotsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBuiltinIntentRequest {
     /// <p>The unique identifier for a built-in intent. To find the signature for an intent, see <a href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/standard-intents">Standard Built-in Intents</a> in the <i>Alexa Skills Kit</i>.</p>
     #[serde(rename = "signature")]
@@ -844,7 +866,7 @@ pub struct GetBuiltinIntentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBuiltinIntentResponse {
     /// <p>The unique identifier for a built-in intent.</p>
     #[serde(rename = "signature")]
@@ -861,6 +883,7 @@ pub struct GetBuiltinIntentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBuiltinIntentsRequest {
     /// <p>A list of locales that the intent supports.</p>
     #[serde(rename = "locale")]
@@ -881,7 +904,7 @@ pub struct GetBuiltinIntentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBuiltinIntentsResponse {
     /// <p>An array of <code>builtinIntentMetadata</code> objects, one for each intent in the response.</p>
     #[serde(rename = "intents")]
@@ -894,6 +917,7 @@ pub struct GetBuiltinIntentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBuiltinSlotTypesRequest {
     /// <p>A list of locales that the slot type supports.</p>
     #[serde(rename = "locale")]
@@ -914,7 +938,7 @@ pub struct GetBuiltinSlotTypesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBuiltinSlotTypesResponse {
     /// <p>If the response is truncated, the response includes a pagination token that you can use in your next request to fetch the next page of slot types.</p>
     #[serde(rename = "nextToken")]
@@ -927,6 +951,7 @@ pub struct GetBuiltinSlotTypesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetExportRequest {
     /// <p>The format of the exported data.</p>
     #[serde(rename = "exportType")]
@@ -943,7 +968,7 @@ pub struct GetExportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetExportResponse {
     /// <p><p>The status of the export. </p> <ul> <li> <p> <code>IN_PROGRESS</code> - The export is in progress.</p> </li> <li> <p> <code>READY</code> - The export is complete.</p> </li> <li> <p> <code>FAILED</code> - The export could not be completed.</p> </li> </ul></p>
     #[serde(rename = "exportStatus")]
@@ -976,6 +1001,7 @@ pub struct GetExportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetImportRequest {
     /// <p>The identifier of the import job information to return.</p>
     #[serde(rename = "importId")]
@@ -983,7 +1009,7 @@ pub struct GetImportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetImportResponse {
     /// <p>A timestamp for the date and time that the import job was created.</p>
     #[serde(rename = "createdDate")]
@@ -1016,6 +1042,7 @@ pub struct GetImportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntentRequest {
     /// <p>The name of the intent. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -1026,7 +1053,7 @@ pub struct GetIntentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntentResponse {
     /// <p>Checksum of the intent.</p>
     #[serde(rename = "checksum")]
@@ -1091,6 +1118,7 @@ pub struct GetIntentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntentVersionsRequest {
     /// <p>The maximum number of intent versions to return in the response. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -1106,7 +1134,7 @@ pub struct GetIntentVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntentVersionsResponse {
     /// <p>An array of <code>IntentMetadata</code> objects, one for each numbered version of the intent plus one for the <code>$LATEST</code> version.</p>
     #[serde(rename = "intents")]
@@ -1119,6 +1147,7 @@ pub struct GetIntentVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntentsRequest {
     /// <p>The maximum number of intents to return in the response. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -1135,7 +1164,7 @@ pub struct GetIntentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntentsResponse {
     /// <p>An array of <code>Intent</code> objects. For more information, see <a>PutBot</a>.</p>
     #[serde(rename = "intents")]
@@ -1148,6 +1177,7 @@ pub struct GetIntentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSlotTypeRequest {
     /// <p>The name of the slot type. The name is case sensitive. </p>
     #[serde(rename = "name")]
@@ -1158,7 +1188,7 @@ pub struct GetSlotTypeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSlotTypeResponse {
     /// <p>Checksum of the <code>$LATEST</code> version of the slot type.</p>
     #[serde(rename = "checksum")]
@@ -1195,6 +1225,7 @@ pub struct GetSlotTypeResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSlotTypeVersionsRequest {
     /// <p>The maximum number of slot type versions to return in the response. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -1210,7 +1241,7 @@ pub struct GetSlotTypeVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSlotTypeVersionsResponse {
     /// <p>A pagination token for fetching the next page of slot type versions. If the response to this call is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of versions, specify the pagination token in the next request. </p>
     #[serde(rename = "nextToken")]
@@ -1223,6 +1254,7 @@ pub struct GetSlotTypeVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSlotTypesRequest {
     /// <p>The maximum number of slot types to return in the response. The default is 10.</p>
     #[serde(rename = "maxResults")]
@@ -1239,7 +1271,7 @@ pub struct GetSlotTypesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSlotTypesResponse {
     /// <p>If the response is truncated, it includes a pagination token that you can specify in your next request to fetch the next page of slot types.</p>
     #[serde(rename = "nextToken")]
@@ -1252,6 +1284,7 @@ pub struct GetSlotTypesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUtterancesViewRequest {
     /// <p>The name of the bot for which utterance information should be returned.</p>
     #[serde(rename = "botName")]
@@ -1265,7 +1298,7 @@ pub struct GetUtterancesViewRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUtterancesViewResponse {
     /// <p>The name of the bot for which utterance information was returned.</p>
     #[serde(rename = "botName")]
@@ -1290,7 +1323,7 @@ pub struct Intent {
 
 /// <p>Provides information about an intent.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IntentMetadata {
     /// <p>The date that the intent was created.</p>
     #[serde(rename = "createdDate")]
@@ -1316,6 +1349,7 @@ pub struct IntentMetadata {
 
 /// <p>Settings used to configure delivery mode and destination for conversation logs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LogSettingsRequest {
     /// <p>Where the logs will be delivered. Text logs are delivered to a CloudWatch Logs log group. Audio logs are delivered to an S3 bucket.</p>
     #[serde(rename = "destination")]
@@ -1334,7 +1368,7 @@ pub struct LogSettingsRequest {
 
 /// <p>The settings for conversation logs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogSettingsResponse {
     /// <p>The destination where logs are delivered.</p>
     #[serde(rename = "destination")]
@@ -1389,6 +1423,7 @@ pub struct Prompt {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutBotAliasRequest {
     /// <p>The name of the bot.</p>
     #[serde(rename = "botName")]
@@ -1414,7 +1449,7 @@ pub struct PutBotAliasRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutBotAliasResponse {
     /// <p>The name of the bot that the alias points to.</p>
     #[serde(rename = "botName")]
@@ -1451,6 +1486,7 @@ pub struct PutBotAliasResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutBotRequest {
     /// <p>When Amazon Lex can't understand the user's input in context, it tries to elicit the information a few times. After that, Amazon Lex sends the message defined in <code>abortStatement</code> to the user, and then aborts the conversation. To set the number of retries, use the <code>valueElicitationPrompt</code> field for the slot type. </p> <p>For example, in a pizza ordering bot, Amazon Lex might ask a user "What type of crust would you like?" If the user's response is not one of the expected responses (for example, "thin crust, "deep dish," etc.), Amazon Lex tries to elicit a correct response a few more times. </p> <p>For example, in a pizza ordering application, <code>OrderPizza</code> might be one of the intents. This intent might require the <code>CrustType</code> slot. You specify the <code>valueElicitationPrompt</code> field when you create the <code>CrustType</code> slot.</p> <p>If you have defined a fallback intent the abort statement will not be sent to the user, the fallback intent is used instead. For more information, see <a href="https://docs.aws.amazon.com/lex/latest/dg/built-in-intent-fallback.html"> AMAZON.FallbackIntent</a>.</p>
     #[serde(rename = "abortStatement")]
@@ -1504,7 +1540,7 @@ pub struct PutBotRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutBotResponse {
     /// <p>The message that Amazon Lex uses to abort a conversation. For more information, see <a>PutBot</a>.</p>
     #[serde(rename = "abortStatement")]
@@ -1577,6 +1613,7 @@ pub struct PutBotResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutIntentRequest {
     /// <p>Identifies a specific revision of the <code>$LATEST</code> version.</p> <p>When you create a new intent, leave the <code>checksum</code> field blank. If you specify a checksum you get a <code>BadRequestException</code> exception.</p> <p>When you want to update a intent, set the <code>checksum</code> field to the checksum of the most recent revision of the <code>$LATEST</code> version. If you don't specify the <code> checksum</code> field, or if the checksum does not match the <code>$LATEST</code> version, you get a <code>PreconditionFailedException</code> exception.</p>
     #[serde(rename = "checksum")]
@@ -1632,7 +1669,7 @@ pub struct PutIntentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutIntentResponse {
     /// <p>Checksum of the <code>$LATEST</code>version of the intent created or updated.</p>
     #[serde(rename = "checksum")]
@@ -1701,6 +1738,7 @@ pub struct PutIntentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutSlotTypeRequest {
     /// <p>Identifies a specific revision of the <code>$LATEST</code> version.</p> <p>When you create a new slot type, leave the <code>checksum</code> field blank. If you specify a checksum you get a <code>BadRequestException</code> exception.</p> <p>When you want to update a slot type, set the <code>checksum</code> field to the checksum of the most recent revision of the <code>$LATEST</code> version. If you don't specify the <code> checksum</code> field, or if the checksum does not match the <code>$LATEST</code> version, you get a <code>PreconditionFailedException</code> exception.</p>
     #[serde(rename = "checksum")]
@@ -1728,7 +1766,7 @@ pub struct PutSlotTypeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutSlotTypeResponse {
     /// <p>Checksum of the <code>$LATEST</code> version of the slot type.</p>
     #[serde(rename = "checksum")]
@@ -1822,7 +1860,7 @@ pub struct Slot {
 
 /// <p>Provides information about a slot type..</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SlotTypeMetadata {
     /// <p>The date that the slot type was created.</p>
     #[serde(rename = "createdDate")]
@@ -1847,6 +1885,7 @@ pub struct SlotTypeMetadata {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartImportRequest {
     /// <p><p>Specifies the action that the <code>StartImport</code> operation should take when there is an existing resource with the same name.</p> <ul> <li> <p>FAIL<em>ON</em>CONFLICT - The import operation is stopped on the first conflict between a resource in the import file and an existing resource. The name of the resource causing the conflict is in the <code>failureReason</code> field of the response to the <code>GetImport</code> operation.</p> <p>OVERWRITE_LATEST - The import operation proceeds even if there is a conflict with an existing resource. The $LASTEST version of the existing resource is overwritten with the data from the import file.</p> </li> </ul></p>
     #[serde(rename = "mergeStrategy")]
@@ -1865,7 +1904,7 @@ pub struct StartImportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartImportResponse {
     /// <p>A timestamp for the date and time that the import job was requested.</p>
     #[serde(rename = "createdDate")]
@@ -1907,7 +1946,7 @@ pub struct Statement {
 
 /// <p>Provides information about a single utterance that was made to your bot. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UtteranceData {
     /// <p>The number of times that the utterance was processed.</p>
     #[serde(rename = "count")]
@@ -1933,7 +1972,7 @@ pub struct UtteranceData {
 
 /// <p>Provides a list of utterances that have been made to a specific version of your bot. The list contains a maximum of 100 utterances.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UtteranceList {
     /// <p>The version of the bot that processed the list.</p>
     #[serde(rename = "botVersion")]
@@ -1992,22 +2031,19 @@ impl CreateBotVersionError {
     }
 }
 impl fmt::Display for CreateBotVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateBotVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateBotVersionError::BadRequest(ref cause) => cause,
-            CreateBotVersionError::Conflict(ref cause) => cause,
-            CreateBotVersionError::InternalFailure(ref cause) => cause,
-            CreateBotVersionError::LimitExceeded(ref cause) => cause,
-            CreateBotVersionError::NotFound(ref cause) => cause,
-            CreateBotVersionError::PreconditionFailed(ref cause) => cause,
+            CreateBotVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateBotVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateBotVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateBotVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateBotVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateBotVersionError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateBotVersionError {}
 /// Errors returned by CreateIntentVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateIntentVersionError {
@@ -2057,22 +2093,19 @@ impl CreateIntentVersionError {
     }
 }
 impl fmt::Display for CreateIntentVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateIntentVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateIntentVersionError::BadRequest(ref cause) => cause,
-            CreateIntentVersionError::Conflict(ref cause) => cause,
-            CreateIntentVersionError::InternalFailure(ref cause) => cause,
-            CreateIntentVersionError::LimitExceeded(ref cause) => cause,
-            CreateIntentVersionError::NotFound(ref cause) => cause,
-            CreateIntentVersionError::PreconditionFailed(ref cause) => cause,
+            CreateIntentVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateIntentVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateIntentVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateIntentVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateIntentVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateIntentVersionError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateIntentVersionError {}
 /// Errors returned by CreateSlotTypeVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateSlotTypeVersionError {
@@ -2124,22 +2157,19 @@ impl CreateSlotTypeVersionError {
     }
 }
 impl fmt::Display for CreateSlotTypeVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSlotTypeVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSlotTypeVersionError::BadRequest(ref cause) => cause,
-            CreateSlotTypeVersionError::Conflict(ref cause) => cause,
-            CreateSlotTypeVersionError::InternalFailure(ref cause) => cause,
-            CreateSlotTypeVersionError::LimitExceeded(ref cause) => cause,
-            CreateSlotTypeVersionError::NotFound(ref cause) => cause,
-            CreateSlotTypeVersionError::PreconditionFailed(ref cause) => cause,
+            CreateSlotTypeVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateSlotTypeVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateSlotTypeVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateSlotTypeVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateSlotTypeVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateSlotTypeVersionError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSlotTypeVersionError {}
 /// Errors returned by DeleteBot
 #[derive(Debug, PartialEq)]
 pub enum DeleteBotError {
@@ -2187,22 +2217,19 @@ impl DeleteBotError {
     }
 }
 impl fmt::Display for DeleteBotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBotError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBotError::BadRequest(ref cause) => cause,
-            DeleteBotError::Conflict(ref cause) => cause,
-            DeleteBotError::InternalFailure(ref cause) => cause,
-            DeleteBotError::LimitExceeded(ref cause) => cause,
-            DeleteBotError::NotFound(ref cause) => cause,
-            DeleteBotError::ResourceInUse(ref cause) => cause,
+            DeleteBotError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBotError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteBotError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteBotError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteBotError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBotError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBotError {}
 /// Errors returned by DeleteBotAlias
 #[derive(Debug, PartialEq)]
 pub enum DeleteBotAliasError {
@@ -2250,22 +2277,19 @@ impl DeleteBotAliasError {
     }
 }
 impl fmt::Display for DeleteBotAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBotAliasError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBotAliasError::BadRequest(ref cause) => cause,
-            DeleteBotAliasError::Conflict(ref cause) => cause,
-            DeleteBotAliasError::InternalFailure(ref cause) => cause,
-            DeleteBotAliasError::LimitExceeded(ref cause) => cause,
-            DeleteBotAliasError::NotFound(ref cause) => cause,
-            DeleteBotAliasError::ResourceInUse(ref cause) => cause,
+            DeleteBotAliasError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBotAliasError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteBotAliasError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteBotAliasError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteBotAliasError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBotAliasError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBotAliasError {}
 /// Errors returned by DeleteBotChannelAssociation
 #[derive(Debug, PartialEq)]
 pub enum DeleteBotChannelAssociationError {
@@ -2320,21 +2344,18 @@ impl DeleteBotChannelAssociationError {
     }
 }
 impl fmt::Display for DeleteBotChannelAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBotChannelAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBotChannelAssociationError::BadRequest(ref cause) => cause,
-            DeleteBotChannelAssociationError::Conflict(ref cause) => cause,
-            DeleteBotChannelAssociationError::InternalFailure(ref cause) => cause,
-            DeleteBotChannelAssociationError::LimitExceeded(ref cause) => cause,
-            DeleteBotChannelAssociationError::NotFound(ref cause) => cause,
+            DeleteBotChannelAssociationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBotChannelAssociationError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteBotChannelAssociationError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteBotChannelAssociationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteBotChannelAssociationError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBotChannelAssociationError {}
 /// Errors returned by DeleteBotVersion
 #[derive(Debug, PartialEq)]
 pub enum DeleteBotVersionError {
@@ -2382,22 +2403,19 @@ impl DeleteBotVersionError {
     }
 }
 impl fmt::Display for DeleteBotVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBotVersionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBotVersionError::BadRequest(ref cause) => cause,
-            DeleteBotVersionError::Conflict(ref cause) => cause,
-            DeleteBotVersionError::InternalFailure(ref cause) => cause,
-            DeleteBotVersionError::LimitExceeded(ref cause) => cause,
-            DeleteBotVersionError::NotFound(ref cause) => cause,
-            DeleteBotVersionError::ResourceInUse(ref cause) => cause,
+            DeleteBotVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBotVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteBotVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteBotVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteBotVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBotVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBotVersionError {}
 /// Errors returned by DeleteIntent
 #[derive(Debug, PartialEq)]
 pub enum DeleteIntentError {
@@ -2445,22 +2463,19 @@ impl DeleteIntentError {
     }
 }
 impl fmt::Display for DeleteIntentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteIntentError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteIntentError::BadRequest(ref cause) => cause,
-            DeleteIntentError::Conflict(ref cause) => cause,
-            DeleteIntentError::InternalFailure(ref cause) => cause,
-            DeleteIntentError::LimitExceeded(ref cause) => cause,
-            DeleteIntentError::NotFound(ref cause) => cause,
-            DeleteIntentError::ResourceInUse(ref cause) => cause,
+            DeleteIntentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteIntentError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteIntentError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteIntentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteIntentError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteIntentError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteIntentError {}
 /// Errors returned by DeleteIntentVersion
 #[derive(Debug, PartialEq)]
 pub enum DeleteIntentVersionError {
@@ -2508,22 +2523,19 @@ impl DeleteIntentVersionError {
     }
 }
 impl fmt::Display for DeleteIntentVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteIntentVersionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteIntentVersionError::BadRequest(ref cause) => cause,
-            DeleteIntentVersionError::Conflict(ref cause) => cause,
-            DeleteIntentVersionError::InternalFailure(ref cause) => cause,
-            DeleteIntentVersionError::LimitExceeded(ref cause) => cause,
-            DeleteIntentVersionError::NotFound(ref cause) => cause,
-            DeleteIntentVersionError::ResourceInUse(ref cause) => cause,
+            DeleteIntentVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteIntentVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteIntentVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteIntentVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteIntentVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteIntentVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteIntentVersionError {}
 /// Errors returned by DeleteSlotType
 #[derive(Debug, PartialEq)]
 pub enum DeleteSlotTypeError {
@@ -2571,22 +2583,19 @@ impl DeleteSlotTypeError {
     }
 }
 impl fmt::Display for DeleteSlotTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSlotTypeError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSlotTypeError::BadRequest(ref cause) => cause,
-            DeleteSlotTypeError::Conflict(ref cause) => cause,
-            DeleteSlotTypeError::InternalFailure(ref cause) => cause,
-            DeleteSlotTypeError::LimitExceeded(ref cause) => cause,
-            DeleteSlotTypeError::NotFound(ref cause) => cause,
-            DeleteSlotTypeError::ResourceInUse(ref cause) => cause,
+            DeleteSlotTypeError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSlotTypeError {}
 /// Errors returned by DeleteSlotTypeVersion
 #[derive(Debug, PartialEq)]
 pub enum DeleteSlotTypeVersionError {
@@ -2636,22 +2645,19 @@ impl DeleteSlotTypeVersionError {
     }
 }
 impl fmt::Display for DeleteSlotTypeVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSlotTypeVersionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSlotTypeVersionError::BadRequest(ref cause) => cause,
-            DeleteSlotTypeVersionError::Conflict(ref cause) => cause,
-            DeleteSlotTypeVersionError::InternalFailure(ref cause) => cause,
-            DeleteSlotTypeVersionError::LimitExceeded(ref cause) => cause,
-            DeleteSlotTypeVersionError::NotFound(ref cause) => cause,
-            DeleteSlotTypeVersionError::ResourceInUse(ref cause) => cause,
+            DeleteSlotTypeVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeVersionError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeVersionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeVersionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteSlotTypeVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSlotTypeVersionError {}
 /// Errors returned by DeleteUtterances
 #[derive(Debug, PartialEq)]
 pub enum DeleteUtterancesError {
@@ -2689,20 +2695,17 @@ impl DeleteUtterancesError {
     }
 }
 impl fmt::Display for DeleteUtterancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUtterancesError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUtterancesError::BadRequest(ref cause) => cause,
-            DeleteUtterancesError::InternalFailure(ref cause) => cause,
-            DeleteUtterancesError::LimitExceeded(ref cause) => cause,
-            DeleteUtterancesError::NotFound(ref cause) => cause,
+            DeleteUtterancesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteUtterancesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteUtterancesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteUtterancesError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteUtterancesError {}
 /// Errors returned by GetBot
 #[derive(Debug, PartialEq)]
 pub enum GetBotError {
@@ -2738,20 +2741,17 @@ impl GetBotError {
     }
 }
 impl fmt::Display for GetBotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotError::BadRequest(ref cause) => cause,
-            GetBotError::InternalFailure(ref cause) => cause,
-            GetBotError::LimitExceeded(ref cause) => cause,
-            GetBotError::NotFound(ref cause) => cause,
+            GetBotError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBotError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotError {}
 /// Errors returned by GetBotAlias
 #[derive(Debug, PartialEq)]
 pub enum GetBotAliasError {
@@ -2789,20 +2789,17 @@ impl GetBotAliasError {
     }
 }
 impl fmt::Display for GetBotAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotAliasError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotAliasError::BadRequest(ref cause) => cause,
-            GetBotAliasError::InternalFailure(ref cause) => cause,
-            GetBotAliasError::LimitExceeded(ref cause) => cause,
-            GetBotAliasError::NotFound(ref cause) => cause,
+            GetBotAliasError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotAliasError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotAliasError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBotAliasError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotAliasError {}
 /// Errors returned by GetBotAliases
 #[derive(Debug, PartialEq)]
 pub enum GetBotAliasesError {
@@ -2835,19 +2832,16 @@ impl GetBotAliasesError {
     }
 }
 impl fmt::Display for GetBotAliasesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotAliasesError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotAliasesError::BadRequest(ref cause) => cause,
-            GetBotAliasesError::InternalFailure(ref cause) => cause,
-            GetBotAliasesError::LimitExceeded(ref cause) => cause,
+            GetBotAliasesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotAliasesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotAliasesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotAliasesError {}
 /// Errors returned by GetBotChannelAssociation
 #[derive(Debug, PartialEq)]
 pub enum GetBotChannelAssociationError {
@@ -2889,20 +2883,17 @@ impl GetBotChannelAssociationError {
     }
 }
 impl fmt::Display for GetBotChannelAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotChannelAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotChannelAssociationError::BadRequest(ref cause) => cause,
-            GetBotChannelAssociationError::InternalFailure(ref cause) => cause,
-            GetBotChannelAssociationError::LimitExceeded(ref cause) => cause,
-            GetBotChannelAssociationError::NotFound(ref cause) => cause,
+            GetBotChannelAssociationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotChannelAssociationError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotChannelAssociationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBotChannelAssociationError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotChannelAssociationError {}
 /// Errors returned by GetBotChannelAssociations
 #[derive(Debug, PartialEq)]
 pub enum GetBotChannelAssociationsError {
@@ -2941,19 +2932,16 @@ impl GetBotChannelAssociationsError {
     }
 }
 impl fmt::Display for GetBotChannelAssociationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotChannelAssociationsError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotChannelAssociationsError::BadRequest(ref cause) => cause,
-            GetBotChannelAssociationsError::InternalFailure(ref cause) => cause,
-            GetBotChannelAssociationsError::LimitExceeded(ref cause) => cause,
+            GetBotChannelAssociationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotChannelAssociationsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotChannelAssociationsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotChannelAssociationsError {}
 /// Errors returned by GetBotVersions
 #[derive(Debug, PartialEq)]
 pub enum GetBotVersionsError {
@@ -2991,20 +2979,17 @@ impl GetBotVersionsError {
     }
 }
 impl fmt::Display for GetBotVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotVersionsError::BadRequest(ref cause) => cause,
-            GetBotVersionsError::InternalFailure(ref cause) => cause,
-            GetBotVersionsError::LimitExceeded(ref cause) => cause,
-            GetBotVersionsError::NotFound(ref cause) => cause,
+            GetBotVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotVersionsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotVersionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBotVersionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotVersionsError {}
 /// Errors returned by GetBots
 #[derive(Debug, PartialEq)]
 pub enum GetBotsError {
@@ -3042,20 +3027,17 @@ impl GetBotsError {
     }
 }
 impl fmt::Display for GetBotsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBotsError {
-    fn description(&self) -> &str {
         match *self {
-            GetBotsError::BadRequest(ref cause) => cause,
-            GetBotsError::InternalFailure(ref cause) => cause,
-            GetBotsError::LimitExceeded(ref cause) => cause,
-            GetBotsError::NotFound(ref cause) => cause,
+            GetBotsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBotsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBotsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBotsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBotsError {}
 /// Errors returned by GetBuiltinIntent
 #[derive(Debug, PartialEq)]
 pub enum GetBuiltinIntentError {
@@ -3093,20 +3075,17 @@ impl GetBuiltinIntentError {
     }
 }
 impl fmt::Display for GetBuiltinIntentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBuiltinIntentError {
-    fn description(&self) -> &str {
         match *self {
-            GetBuiltinIntentError::BadRequest(ref cause) => cause,
-            GetBuiltinIntentError::InternalFailure(ref cause) => cause,
-            GetBuiltinIntentError::LimitExceeded(ref cause) => cause,
-            GetBuiltinIntentError::NotFound(ref cause) => cause,
+            GetBuiltinIntentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBuiltinIntentError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBuiltinIntentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetBuiltinIntentError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBuiltinIntentError {}
 /// Errors returned by GetBuiltinIntents
 #[derive(Debug, PartialEq)]
 pub enum GetBuiltinIntentsError {
@@ -3139,19 +3118,16 @@ impl GetBuiltinIntentsError {
     }
 }
 impl fmt::Display for GetBuiltinIntentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBuiltinIntentsError {
-    fn description(&self) -> &str {
         match *self {
-            GetBuiltinIntentsError::BadRequest(ref cause) => cause,
-            GetBuiltinIntentsError::InternalFailure(ref cause) => cause,
-            GetBuiltinIntentsError::LimitExceeded(ref cause) => cause,
+            GetBuiltinIntentsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBuiltinIntentsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBuiltinIntentsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBuiltinIntentsError {}
 /// Errors returned by GetBuiltinSlotTypes
 #[derive(Debug, PartialEq)]
 pub enum GetBuiltinSlotTypesError {
@@ -3184,19 +3160,16 @@ impl GetBuiltinSlotTypesError {
     }
 }
 impl fmt::Display for GetBuiltinSlotTypesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBuiltinSlotTypesError {
-    fn description(&self) -> &str {
         match *self {
-            GetBuiltinSlotTypesError::BadRequest(ref cause) => cause,
-            GetBuiltinSlotTypesError::InternalFailure(ref cause) => cause,
-            GetBuiltinSlotTypesError::LimitExceeded(ref cause) => cause,
+            GetBuiltinSlotTypesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBuiltinSlotTypesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetBuiltinSlotTypesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBuiltinSlotTypesError {}
 /// Errors returned by GetExport
 #[derive(Debug, PartialEq)]
 pub enum GetExportError {
@@ -3234,20 +3207,17 @@ impl GetExportError {
     }
 }
 impl fmt::Display for GetExportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetExportError {
-    fn description(&self) -> &str {
         match *self {
-            GetExportError::BadRequest(ref cause) => cause,
-            GetExportError::InternalFailure(ref cause) => cause,
-            GetExportError::LimitExceeded(ref cause) => cause,
-            GetExportError::NotFound(ref cause) => cause,
+            GetExportError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetExportError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetExportError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetExportError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetExportError {}
 /// Errors returned by GetImport
 #[derive(Debug, PartialEq)]
 pub enum GetImportError {
@@ -3285,20 +3255,17 @@ impl GetImportError {
     }
 }
 impl fmt::Display for GetImportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetImportError {
-    fn description(&self) -> &str {
         match *self {
-            GetImportError::BadRequest(ref cause) => cause,
-            GetImportError::InternalFailure(ref cause) => cause,
-            GetImportError::LimitExceeded(ref cause) => cause,
-            GetImportError::NotFound(ref cause) => cause,
+            GetImportError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetImportError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetImportError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetImportError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetImportError {}
 /// Errors returned by GetIntent
 #[derive(Debug, PartialEq)]
 pub enum GetIntentError {
@@ -3336,20 +3303,17 @@ impl GetIntentError {
     }
 }
 impl fmt::Display for GetIntentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntentError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntentError::BadRequest(ref cause) => cause,
-            GetIntentError::InternalFailure(ref cause) => cause,
-            GetIntentError::LimitExceeded(ref cause) => cause,
-            GetIntentError::NotFound(ref cause) => cause,
+            GetIntentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIntentError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetIntentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetIntentError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntentError {}
 /// Errors returned by GetIntentVersions
 #[derive(Debug, PartialEq)]
 pub enum GetIntentVersionsError {
@@ -3387,20 +3351,17 @@ impl GetIntentVersionsError {
     }
 }
 impl fmt::Display for GetIntentVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntentVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntentVersionsError::BadRequest(ref cause) => cause,
-            GetIntentVersionsError::InternalFailure(ref cause) => cause,
-            GetIntentVersionsError::LimitExceeded(ref cause) => cause,
-            GetIntentVersionsError::NotFound(ref cause) => cause,
+            GetIntentVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIntentVersionsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetIntentVersionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetIntentVersionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntentVersionsError {}
 /// Errors returned by GetIntents
 #[derive(Debug, PartialEq)]
 pub enum GetIntentsError {
@@ -3438,20 +3399,17 @@ impl GetIntentsError {
     }
 }
 impl fmt::Display for GetIntentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntentsError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntentsError::BadRequest(ref cause) => cause,
-            GetIntentsError::InternalFailure(ref cause) => cause,
-            GetIntentsError::LimitExceeded(ref cause) => cause,
-            GetIntentsError::NotFound(ref cause) => cause,
+            GetIntentsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIntentsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetIntentsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetIntentsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntentsError {}
 /// Errors returned by GetSlotType
 #[derive(Debug, PartialEq)]
 pub enum GetSlotTypeError {
@@ -3489,20 +3447,17 @@ impl GetSlotTypeError {
     }
 }
 impl fmt::Display for GetSlotTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSlotTypeError {
-    fn description(&self) -> &str {
         match *self {
-            GetSlotTypeError::BadRequest(ref cause) => cause,
-            GetSlotTypeError::InternalFailure(ref cause) => cause,
-            GetSlotTypeError::LimitExceeded(ref cause) => cause,
-            GetSlotTypeError::NotFound(ref cause) => cause,
+            GetSlotTypeError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSlotTypeError {}
 /// Errors returned by GetSlotTypeVersions
 #[derive(Debug, PartialEq)]
 pub enum GetSlotTypeVersionsError {
@@ -3540,20 +3495,17 @@ impl GetSlotTypeVersionsError {
     }
 }
 impl fmt::Display for GetSlotTypeVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSlotTypeVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetSlotTypeVersionsError::BadRequest(ref cause) => cause,
-            GetSlotTypeVersionsError::InternalFailure(ref cause) => cause,
-            GetSlotTypeVersionsError::LimitExceeded(ref cause) => cause,
-            GetSlotTypeVersionsError::NotFound(ref cause) => cause,
+            GetSlotTypeVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeVersionsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeVersionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetSlotTypeVersionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSlotTypeVersionsError {}
 /// Errors returned by GetSlotTypes
 #[derive(Debug, PartialEq)]
 pub enum GetSlotTypesError {
@@ -3591,20 +3543,17 @@ impl GetSlotTypesError {
     }
 }
 impl fmt::Display for GetSlotTypesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSlotTypesError {
-    fn description(&self) -> &str {
         match *self {
-            GetSlotTypesError::BadRequest(ref cause) => cause,
-            GetSlotTypesError::InternalFailure(ref cause) => cause,
-            GetSlotTypesError::LimitExceeded(ref cause) => cause,
-            GetSlotTypesError::NotFound(ref cause) => cause,
+            GetSlotTypesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetSlotTypesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetSlotTypesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetSlotTypesError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSlotTypesError {}
 /// Errors returned by GetUtterancesView
 #[derive(Debug, PartialEq)]
 pub enum GetUtterancesViewError {
@@ -3637,19 +3586,16 @@ impl GetUtterancesViewError {
     }
 }
 impl fmt::Display for GetUtterancesViewError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetUtterancesViewError {
-    fn description(&self) -> &str {
         match *self {
-            GetUtterancesViewError::BadRequest(ref cause) => cause,
-            GetUtterancesViewError::InternalFailure(ref cause) => cause,
-            GetUtterancesViewError::LimitExceeded(ref cause) => cause,
+            GetUtterancesViewError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetUtterancesViewError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetUtterancesViewError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetUtterancesViewError {}
 /// Errors returned by PutBot
 #[derive(Debug, PartialEq)]
 pub enum PutBotError {
@@ -3690,21 +3636,18 @@ impl PutBotError {
     }
 }
 impl fmt::Display for PutBotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutBotError {
-    fn description(&self) -> &str {
         match *self {
-            PutBotError::BadRequest(ref cause) => cause,
-            PutBotError::Conflict(ref cause) => cause,
-            PutBotError::InternalFailure(ref cause) => cause,
-            PutBotError::LimitExceeded(ref cause) => cause,
-            PutBotError::PreconditionFailed(ref cause) => cause,
+            PutBotError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutBotError::Conflict(ref cause) => write!(f, "{}", cause),
+            PutBotError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PutBotError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutBotError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutBotError {}
 /// Errors returned by PutBotAlias
 #[derive(Debug, PartialEq)]
 pub enum PutBotAliasError {
@@ -3747,21 +3690,18 @@ impl PutBotAliasError {
     }
 }
 impl fmt::Display for PutBotAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutBotAliasError {
-    fn description(&self) -> &str {
         match *self {
-            PutBotAliasError::BadRequest(ref cause) => cause,
-            PutBotAliasError::Conflict(ref cause) => cause,
-            PutBotAliasError::InternalFailure(ref cause) => cause,
-            PutBotAliasError::LimitExceeded(ref cause) => cause,
-            PutBotAliasError::PreconditionFailed(ref cause) => cause,
+            PutBotAliasError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutBotAliasError::Conflict(ref cause) => write!(f, "{}", cause),
+            PutBotAliasError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PutBotAliasError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutBotAliasError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutBotAliasError {}
 /// Errors returned by PutIntent
 #[derive(Debug, PartialEq)]
 pub enum PutIntentError {
@@ -3804,21 +3744,18 @@ impl PutIntentError {
     }
 }
 impl fmt::Display for PutIntentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutIntentError {
-    fn description(&self) -> &str {
         match *self {
-            PutIntentError::BadRequest(ref cause) => cause,
-            PutIntentError::Conflict(ref cause) => cause,
-            PutIntentError::InternalFailure(ref cause) => cause,
-            PutIntentError::LimitExceeded(ref cause) => cause,
-            PutIntentError::PreconditionFailed(ref cause) => cause,
+            PutIntentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutIntentError::Conflict(ref cause) => write!(f, "{}", cause),
+            PutIntentError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PutIntentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutIntentError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutIntentError {}
 /// Errors returned by PutSlotType
 #[derive(Debug, PartialEq)]
 pub enum PutSlotTypeError {
@@ -3861,21 +3798,18 @@ impl PutSlotTypeError {
     }
 }
 impl fmt::Display for PutSlotTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutSlotTypeError {
-    fn description(&self) -> &str {
         match *self {
-            PutSlotTypeError::BadRequest(ref cause) => cause,
-            PutSlotTypeError::Conflict(ref cause) => cause,
-            PutSlotTypeError::InternalFailure(ref cause) => cause,
-            PutSlotTypeError::LimitExceeded(ref cause) => cause,
-            PutSlotTypeError::PreconditionFailed(ref cause) => cause,
+            PutSlotTypeError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutSlotTypeError::Conflict(ref cause) => write!(f, "{}", cause),
+            PutSlotTypeError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PutSlotTypeError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutSlotTypeError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutSlotTypeError {}
 /// Errors returned by StartImport
 #[derive(Debug, PartialEq)]
 pub enum StartImportError {
@@ -3908,19 +3842,16 @@ impl StartImportError {
     }
 }
 impl fmt::Display for StartImportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartImportError {
-    fn description(&self) -> &str {
         match *self {
-            StartImportError::BadRequest(ref cause) => cause,
-            StartImportError::InternalFailure(ref cause) => cause,
-            StartImportError::LimitExceeded(ref cause) => cause,
+            StartImportError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StartImportError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            StartImportError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartImportError {}
 /// Trait representing the capabilities of the Amazon Lex Model Building Service API. Amazon Lex Model Building Service clients implement this trait.
 #[async_trait]
 pub trait LexModels {

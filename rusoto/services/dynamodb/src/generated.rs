@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains details of a table archival operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArchivalSummary {
     /// <p>The Amazon Resource Name (ARN) of the backup the table was archived to, when applicable in the archival reason. If you wish to restore this backup to the same table name, you will need to delete the original table.</p>
     #[serde(rename = "ArchivalBackupArn")]
@@ -110,6 +111,7 @@ pub struct AttributeValue {
 
 /// <p>For the <code>UpdateItem</code> operation, represents the attributes to be modified, the action to perform on each, and the new value for each.</p> <note> <p>You cannot use <code>UpdateItem</code> to update any primary key attributes. Instead, you will need to delete the item, and then use <code>PutItem</code> to create a new item with new attributes.</p> </note> <p>Attribute values cannot be null; string and binary type attributes must have lengths greater than zero; and set type attributes must not be empty. Requests with empty values will be rejected with a <code>ValidationException</code> exception.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AttributeValueUpdate {
     /// <p><p>Specifies how to perform the update. Valid values are <code>PUT</code> (default), <code>DELETE</code>, and <code>ADD</code>. The behavior depends on whether the specified primary key already exists in the table.</p> <p> <b>If an item with the specified <i>Key</i> is found in the table:</b> </p> <ul> <li> <p> <code>PUT</code> - Adds the specified attribute to the item. If the attribute already exists, it is replaced by the new value. </p> </li> <li> <p> <code>DELETE</code> - If no value is specified, the attribute and its value are removed from the item. The data type of the specified value must match the existing value&#39;s data type.</p> <p>If a <i>set</i> of values is specified, then those values are subtracted from the old set. For example, if the attribute value was the set <code>[a,b,c]</code> and the <code>DELETE</code> action specified <code>[a,c]</code>, then the final attribute value would be <code>[b]</code>. Specifying an empty set is an error.</p> </li> <li> <p> <code>ADD</code> - If the attribute does not already exist, then the attribute and its values are added to the item. If the attribute does exist, then the behavior of <code>ADD</code> depends on the data type of the attribute:</p> <ul> <li> <p>If the existing attribute is a number, and if <code>Value</code> is also a number, then the <code>Value</code> is mathematically added to the existing attribute. If <code>Value</code> is a negative number, then it is subtracted from the existing attribute.</p> <note> <p> If you use <code>ADD</code> to increment or decrement a number value for an item that doesn&#39;t exist before the update, DynamoDB uses 0 as the initial value.</p> <p>In addition, if you use <code>ADD</code> to update an existing item, and intend to increment or decrement an attribute value which does not yet exist, DynamoDB uses <code>0</code> as the initial value. For example, suppose that the item you want to update does not yet have an attribute named <i>itemcount</i>, but you decide to <code>ADD</code> the number <code>3</code> to this attribute anyway, even though it currently does not exist. DynamoDB will create the <i>itemcount</i> attribute, set its initial value to <code>0</code>, and finally add <code>3</code> to it. The result will be a new <i>itemcount</i> attribute in the item, with a value of <code>3</code>.</p> </note> </li> <li> <p>If the existing data type is a set, and if the <code>Value</code> is also a set, then the <code>Value</code> is added to the existing set. (This is a <i>set</i> operation, not mathematical addition.) For example, if the attribute value was the set <code>[1,2]</code>, and the <code>ADD</code> action specified <code>[3]</code>, then the final attribute value would be <code>[1,2,3]</code>. An error occurs if an Add action is specified for a set attribute and the attribute type specified does not match the existing set type. </p> <p>Both sets must have the same primitive data type. For example, if the existing data type is a set of strings, the <code>Value</code> must also be a set of strings. The same holds true for number sets and binary sets.</p> </li> </ul> <p>This action is only valid for an existing attribute whose data type is number or is a set. Do not use <code>ADD</code> for any other data types.</p> </li> </ul> <p> <b>If no item with the specified <i>Key</i> is found:</b> </p> <ul> <li> <p> <code>PUT</code> - DynamoDB creates a new item with the specified primary key, and then adds the attribute. </p> </li> <li> <p> <code>DELETE</code> - Nothing happens; there is no attribute to delete.</p> </li> <li> <p> <code>ADD</code> - DynamoDB creates an item with the supplied primary key and number (or set of numbers) for the attribute value. The only data types allowed are number and number set; no other data types can be specified.</p> </li> </ul></p>
     #[serde(rename = "Action")]
@@ -123,7 +125,7 @@ pub struct AttributeValueUpdate {
 
 /// <p>Represents the properties of the scaling policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutoScalingPolicyDescription {
     /// <p>The name of the scaling policy.</p>
     #[serde(rename = "PolicyName")]
@@ -138,6 +140,7 @@ pub struct AutoScalingPolicyDescription {
 
 /// <p>Represents the auto scaling policy to be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AutoScalingPolicyUpdate {
     /// <p>The name of the scaling policy.</p>
     #[serde(rename = "PolicyName")]
@@ -151,7 +154,7 @@ pub struct AutoScalingPolicyUpdate {
 
 /// <p>Represents the auto scaling settings for a global table or global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutoScalingSettingsDescription {
     /// <p>Disabled auto scaling for this global table or global secondary index.</p>
     #[serde(rename = "AutoScalingDisabled")]
@@ -177,6 +180,7 @@ pub struct AutoScalingSettingsDescription {
 
 /// <p>Represents the auto scaling settings to be modified for a global table or global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AutoScalingSettingsUpdate {
     /// <p>Disabled auto scaling for this global table or global secondary index.</p>
     #[serde(rename = "AutoScalingDisabled")]
@@ -202,7 +206,7 @@ pub struct AutoScalingSettingsUpdate {
 
 /// <p>Represents the properties of a target tracking scaling policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     /// <p>Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.</p>
     #[serde(rename = "DisableScaleIn")]
@@ -223,6 +227,7 @@ pub struct AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
 
 /// <p>Represents the settings of a target tracking scaling policy that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AutoScalingTargetTrackingScalingPolicyConfigurationUpdate {
     /// <p>Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.</p>
     #[serde(rename = "DisableScaleIn")]
@@ -243,7 +248,7 @@ pub struct AutoScalingTargetTrackingScalingPolicyConfigurationUpdate {
 
 /// <p>Contains the description of the backup created for the table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupDescription {
     /// <p>Contains the details of the backup created for the table. </p>
     #[serde(rename = "BackupDetails")]
@@ -261,7 +266,7 @@ pub struct BackupDescription {
 
 /// <p>Contains the details of the backup created for the table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupDetails {
     /// <p>ARN associated with the backup.</p>
     #[serde(rename = "BackupArn")]
@@ -290,7 +295,7 @@ pub struct BackupDetails {
 
 /// <p>Contains details for the backup.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupSummary {
     /// <p>ARN associated with the backup.</p>
     #[serde(rename = "BackupArn")]
@@ -336,6 +341,7 @@ pub struct BackupSummary {
 
 /// <p>Represents the input of a <code>BatchGetItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetItemInput {
     /// <p><p>A map of one or more table names and, for each table, a map that describes one or more items to retrieve from that table. Each table name can be used only once per <code>BatchGetItem</code> request.</p> <p>Each element in the map of items to retrieve consists of the following:</p> <ul> <li> <p> <code>ConsistentRead</code> - If <code>true</code>, a strongly consistent read is used; if <code>false</code> (the default), an eventually consistent read is used.</p> </li> <li> <p> <code>ExpressionAttributeNames</code> - One or more substitution tokens for attribute names in the <code>ProjectionExpression</code> parameter. The following are some use cases for using <code>ExpressionAttributeNames</code>:</p> <ul> <li> <p>To access an attribute whose name conflicts with a DynamoDB reserved word.</p> </li> <li> <p>To create a placeholder for repeating occurrences of an attribute name in an expression.</p> </li> <li> <p>To prevent special characters in an attribute name from being misinterpreted in an expression.</p> </li> </ul> <p>Use the <b>#</b> character in an expression to dereference an attribute name. For example, consider the following attribute name:</p> <ul> <li> <p> <code>Percentile</code> </p> </li> </ul> <p>The name of this attribute conflicts with a reserved word, so it cannot be used directly in an expression. (For the complete list of reserved words, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you could specify the following for <code>ExpressionAttributeNames</code>:</p> <ul> <li> <p> <code>{&quot;#P&quot;:&quot;Percentile&quot;}</code> </p> </li> </ul> <p>You could then use this substitution in an expression, as in this example:</p> <ul> <li> <p> <code>#P = :val</code> </p> </li> </ul> <note> <p>Tokens that begin with the <b>:</b> character are <i>expression attribute values</i>, which are placeholders for the actual value at runtime.</p> </note> <p>For more information about expression attribute names, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> </li> <li> <p> <code>Keys</code> - An array of primary key attribute values that define specific items in the table. For each primary key, you must provide <i>all</i> of the key attributes. For example, with a simple primary key, you only need to provide the partition key value. For a composite key, you must provide <i>both</i> the partition key value and the sort key value.</p> </li> <li> <p> <code>ProjectionExpression</code> - A string that identifies one or more attributes to retrieve from the table. These attributes can include scalars, sets, or elements of a JSON document. The attributes in the expression must be separated by commas.</p> <p>If no attribute names are specified, then all attributes are returned. If any of the requested attributes are not found, they do not appear in the result.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> </li> <li> <p> <code>AttributesToGet</code> - This is a legacy parameter. Use <code>ProjectionExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> </li> </ul></p>
     #[serde(rename = "RequestItems")]
@@ -347,7 +353,7 @@ pub struct BatchGetItemInput {
 
 /// <p>Represents the output of a <code>BatchGetItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetItemOutput {
     /// <p><p>The read capacity units consumed by the entire <code>BatchGetItem</code> operation.</p> <p>Each element consists of:</p> <ul> <li> <p> <code>TableName</code> - The table that consumed the provisioned throughput.</p> </li> <li> <p> <code>CapacityUnits</code> - The total number of capacity units consumed.</p> </li> </ul></p>
     #[serde(rename = "ConsumedCapacity")]
@@ -370,6 +376,7 @@ pub struct BatchGetItemOutput {
 
 /// <p>Represents the input of a <code>BatchWriteItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchWriteItemInput {
     /// <p><p>A map of one or more table names and, for each table, a list of operations to be performed (<code>DeleteRequest</code> or <code>PutRequest</code>). Each element in the map consists of the following:</p> <ul> <li> <p> <code>DeleteRequest</code> - Perform a <code>DeleteItem</code> operation on the specified item. The item to be deleted is identified by a <code>Key</code> subelement:</p> <ul> <li> <p> <code>Key</code> - A map of primary key attribute values that uniquely identify the item. Each entry in this map consists of an attribute name and an attribute value. For each primary key, you must provide <i>all</i> of the key attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for <i>both</i> the partition key and the sort key.</p> </li> </ul> </li> <li> <p> <code>PutRequest</code> - Perform a <code>PutItem</code> operation on the specified item. The item to be put is identified by an <code>Item</code> subelement:</p> <ul> <li> <p> <code>Item</code> - A map of attributes and their values. Each entry in this map consists of an attribute name and an attribute value. Attribute values must not be null; string and binary type attributes must have lengths greater than zero; and set type attributes must not be empty. Requests that contain empty values are rejected with a <code>ValidationException</code> exception.</p> <p>If you specify any attributes that are part of an index key, then the data types for those attributes must match those of the schema in the table&#39;s attribute definition.</p> </li> </ul> </li> </ul></p>
     #[serde(rename = "RequestItems")]
@@ -385,7 +392,7 @@ pub struct BatchWriteItemInput {
 
 /// <p>Represents the output of a <code>BatchWriteItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchWriteItemOutput {
     /// <p><p>The capacity units consumed by the entire <code>BatchWriteItem</code> operation.</p> <p>Each element consists of:</p> <ul> <li> <p> <code>TableName</code> - The table that consumed the provisioned throughput.</p> </li> <li> <p> <code>CapacityUnits</code> - The total number of capacity units consumed.</p> </li> </ul></p>
     #[serde(rename = "ConsumedCapacity")]
@@ -404,7 +411,7 @@ pub struct BatchWriteItemOutput {
 
 /// <p>Contains the details for the read/write capacity mode.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BillingModeSummary {
     /// <p><p>Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later.</p> <ul> <li> <p> <code>PROVISIONED</code> - Sets the read/write capacity mode to <code>PROVISIONED</code>. We recommend using <code>PROVISIONED</code> for predictable workloads.</p> </li> <li> <p> <code>PAY<em>PER</em>REQUEST</code> - Sets the read/write capacity mode to <code>PAY<em>PER</em>REQUEST</code>. We recommend using <code>PAY<em>PER</em>REQUEST</code> for unpredictable workloads. </p> </li> </ul></p>
     #[serde(rename = "BillingMode")]
@@ -429,7 +436,7 @@ pub struct CancellationReason {
 
 /// <p>Represents the amount of provisioned throughput capacity consumed on a table or an index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Capacity {
     /// <p>The total number of capacity units consumed on a table or an index.</p>
     #[serde(rename = "CapacityUnits")]
@@ -447,6 +454,7 @@ pub struct Capacity {
 
 /// <p><p>Represents the selection criteria for a <code>Query</code> or <code>Scan</code> operation:</p> <ul> <li> <p>For a <code>Query</code> operation, <code>Condition</code> is used for specifying the <code>KeyConditions</code> to use when querying a table or an index. For <code>KeyConditions</code>, only the following comparison operators are supported:</p> <p> <code>EQ | LE | LT | GE | GT | BEGINS_WITH | BETWEEN</code> </p> <p> <code>Condition</code> is also used in a <code>QueryFilter</code>, which evaluates the query results and returns only the desired values.</p> </li> <li> <p>For a <code>Scan</code> operation, <code>Condition</code> is used in a <code>ScanFilter</code>, which evaluates the scan results and returns only the desired values.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Condition {
     /// <p>One or more values to evaluate against the supplied attribute. The number of values in the list depends on the <code>ComparisonOperator</code> being used.</p> <p>For type Number, value comparisons are numeric.</p> <p>String value comparisons for greater than, equals, or less than are based on ASCII character code values. For example, <code>a</code> is greater than <code>A</code>, and <code>a</code> is greater than <code>B</code>. For a list of code values, see <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.</p> <p>For Binary, DynamoDB treats each byte of the binary data as unsigned when it compares binary values.</p>
     #[serde(rename = "AttributeValueList")]
@@ -459,6 +467,7 @@ pub struct Condition {
 
 /// <p>Represents a request to perform a check that an item exists or to check the condition of specific attributes of the item.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConditionCheck {
     /// <p>A condition that must be satisfied in order for a conditional update to succeed.</p>
     #[serde(rename = "ConditionExpression")]
@@ -485,7 +494,7 @@ pub struct ConditionCheck {
 
 /// <p>The capacity units consumed by an operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation. <code>ConsumedCapacity</code> is only returned if the request asked for it. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConsumedCapacity {
     /// <p>The total number of capacity units consumed by the operation.</p>
     #[serde(rename = "CapacityUnits")]
@@ -519,7 +528,7 @@ pub struct ConsumedCapacity {
 
 /// <p>Represents the continuous backups and point in time recovery settings on the table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ContinuousBackupsDescription {
     /// <p> <code>ContinuousBackupsStatus</code> can be one of the following states: ENABLED, DISABLED</p>
     #[serde(rename = "ContinuousBackupsStatus")]
@@ -532,7 +541,7 @@ pub struct ContinuousBackupsDescription {
 
 /// <p>Represents a Contributor Insights summary entry..</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ContributorInsightsSummary {
     /// <p>Describes the current status for contributor insights for the given table and index, if applicable.</p>
     #[serde(rename = "ContributorInsightsStatus")]
@@ -549,6 +558,7 @@ pub struct ContributorInsightsSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBackupInput {
     /// <p>Specified name for the backup.</p>
     #[serde(rename = "BackupName")]
@@ -559,7 +569,7 @@ pub struct CreateBackupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBackupOutput {
     /// <p>Contains the details of the backup created for the table.</p>
     #[serde(rename = "BackupDetails")]
@@ -569,6 +579,7 @@ pub struct CreateBackupOutput {
 
 /// <p>Represents a new global secondary index to be added to an existing table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGlobalSecondaryIndexAction {
     /// <p>The name of the global secondary index to be created.</p>
     #[serde(rename = "IndexName")]
@@ -586,6 +597,7 @@ pub struct CreateGlobalSecondaryIndexAction {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGlobalTableInput {
     /// <p>The global table name.</p>
     #[serde(rename = "GlobalTableName")]
@@ -596,7 +608,7 @@ pub struct CreateGlobalTableInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGlobalTableOutput {
     /// <p>Contains the details of the global table.</p>
     #[serde(rename = "GlobalTableDescription")]
@@ -606,6 +618,7 @@ pub struct CreateGlobalTableOutput {
 
 /// <p>Represents a replica to be added.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateReplicaAction {
     /// <p>The Region of the replica to be added.</p>
     #[serde(rename = "RegionName")]
@@ -614,6 +627,7 @@ pub struct CreateReplicaAction {
 
 /// <p>Represents a replica to be created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateReplicationGroupMemberAction {
     /// <p>Replica-specific global secondary index settings.</p>
     #[serde(rename = "GlobalSecondaryIndexes")]
@@ -634,6 +648,7 @@ pub struct CreateReplicationGroupMemberAction {
 
 /// <p>Represents the input of a <code>CreateTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTableInput {
     /// <p>An array of attributes that describe the key schema for the table and indexes.</p>
     #[serde(rename = "AttributeDefinitions")]
@@ -676,7 +691,7 @@ pub struct CreateTableInput {
 
 /// <p>Represents the output of a <code>CreateTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTableOutput {
     /// <p>Represents the properties of the table.</p>
     #[serde(rename = "TableDescription")]
@@ -686,6 +701,7 @@ pub struct CreateTableOutput {
 
 /// <p>Represents a request to perform a <code>DeleteItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Delete {
     /// <p>A condition that must be satisfied in order for a conditional delete to succeed.</p>
     #[serde(rename = "ConditionExpression")]
@@ -712,6 +728,7 @@ pub struct Delete {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupInput {
     /// <p>The ARN associated with the backup.</p>
     #[serde(rename = "BackupArn")]
@@ -719,7 +736,7 @@ pub struct DeleteBackupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteBackupOutput {
     /// <p>Contains the description of the backup created for the table.</p>
     #[serde(rename = "BackupDescription")]
@@ -729,6 +746,7 @@ pub struct DeleteBackupOutput {
 
 /// <p>Represents a global secondary index to be deleted from an existing table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGlobalSecondaryIndexAction {
     /// <p>The name of the global secondary index to be deleted.</p>
     #[serde(rename = "IndexName")]
@@ -737,6 +755,7 @@ pub struct DeleteGlobalSecondaryIndexAction {
 
 /// <p>Represents the input of a <code>DeleteItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteItemInput {
     /// <p>A condition that must be satisfied in order for a conditional <code>DeleteItem</code> to succeed.</p> <p>An expression can contain any of the following:</p> <ul> <li> <p>Functions: <code>attribute_exists | attribute_not_exists | attribute_type | contains | begins_with | size</code> </p> <p>These function names are case-sensitive.</p> </li> <li> <p>Comparison operators: <code>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN </code> </p> </li> <li> <p> Logical operators: <code>AND | OR | NOT</code> </p> </li> </ul> <p>For more information about condition expressions, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition Expressions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "ConditionExpression")]
@@ -779,7 +798,7 @@ pub struct DeleteItemInput {
 
 /// <p>Represents the output of a <code>DeleteItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteItemOutput {
     /// <p>A map of attribute names to <code>AttributeValue</code> objects, representing the item as it appeared before the <code>DeleteItem</code> operation. This map appears in the response only if <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the request.</p>
     #[serde(rename = "Attributes")]
@@ -797,6 +816,7 @@ pub struct DeleteItemOutput {
 
 /// <p>Represents a replica to be removed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReplicaAction {
     /// <p>The Region of the replica to be removed.</p>
     #[serde(rename = "RegionName")]
@@ -805,6 +825,7 @@ pub struct DeleteReplicaAction {
 
 /// <p>Represents a replica to be deleted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReplicationGroupMemberAction {
     /// <p>The Region where the replica exists.</p>
     #[serde(rename = "RegionName")]
@@ -821,6 +842,7 @@ pub struct DeleteRequest {
 
 /// <p>Represents the input of a <code>DeleteTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTableInput {
     /// <p>The name of the table to delete.</p>
     #[serde(rename = "TableName")]
@@ -829,7 +851,7 @@ pub struct DeleteTableInput {
 
 /// <p>Represents the output of a <code>DeleteTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTableOutput {
     /// <p>Represents the properties of a table.</p>
     #[serde(rename = "TableDescription")]
@@ -838,6 +860,7 @@ pub struct DeleteTableOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBackupInput {
     /// <p>The Amazon Resource Name (ARN) associated with the backup.</p>
     #[serde(rename = "BackupArn")]
@@ -845,7 +868,7 @@ pub struct DescribeBackupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBackupOutput {
     /// <p>Contains the description of the backup created for the table.</p>
     #[serde(rename = "BackupDescription")]
@@ -854,6 +877,7 @@ pub struct DescribeBackupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeContinuousBackupsInput {
     /// <p>Name of the table for which the customer wants to check the continuous backups and point in time recovery settings.</p>
     #[serde(rename = "TableName")]
@@ -861,7 +885,7 @@ pub struct DescribeContinuousBackupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeContinuousBackupsOutput {
     /// <p>Represents the continuous backups and point in time recovery settings on the table.</p>
     #[serde(rename = "ContinuousBackupsDescription")]
@@ -870,6 +894,7 @@ pub struct DescribeContinuousBackupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeContributorInsightsInput {
     /// <p>The name of the global secondary index to describe, if applicable.</p>
     #[serde(rename = "IndexName")]
@@ -881,7 +906,7 @@ pub struct DescribeContributorInsightsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeContributorInsightsOutput {
     /// <p>List of names of the associated Alpine rules.</p>
     #[serde(rename = "ContributorInsightsRuleList")]
@@ -910,10 +935,11 @@ pub struct DescribeContributorInsightsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEndpointsRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEndpointsResponse {
     /// <p>List of endpoints.</p>
     #[serde(rename = "Endpoints")]
@@ -921,6 +947,7 @@ pub struct DescribeEndpointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGlobalTableInput {
     /// <p>The name of the global table.</p>
     #[serde(rename = "GlobalTableName")]
@@ -928,7 +955,7 @@ pub struct DescribeGlobalTableInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGlobalTableOutput {
     /// <p>Contains the details of the global table.</p>
     #[serde(rename = "GlobalTableDescription")]
@@ -937,6 +964,7 @@ pub struct DescribeGlobalTableOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGlobalTableSettingsInput {
     /// <p>The name of the global table to describe.</p>
     #[serde(rename = "GlobalTableName")]
@@ -944,7 +972,7 @@ pub struct DescribeGlobalTableSettingsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGlobalTableSettingsOutput {
     /// <p>The name of the global table.</p>
     #[serde(rename = "GlobalTableName")]
@@ -958,11 +986,12 @@ pub struct DescribeGlobalTableSettingsOutput {
 
 /// <p>Represents the input of a <code>DescribeLimits</code> operation. Has no content.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLimitsInput {}
 
 /// <p>Represents the output of a <code>DescribeLimits</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLimitsOutput {
     /// <p>The maximum total read capacity units that your account allows you to provision across all of your tables in this Region.</p>
     #[serde(rename = "AccountMaxReadCapacityUnits")]
@@ -984,6 +1013,7 @@ pub struct DescribeLimitsOutput {
 
 /// <p>Represents the input of a <code>DescribeTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTableInput {
     /// <p>The name of the table to describe.</p>
     #[serde(rename = "TableName")]
@@ -992,7 +1022,7 @@ pub struct DescribeTableInput {
 
 /// <p>Represents the output of a <code>DescribeTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTableOutput {
     /// <p>The properties of the table.</p>
     #[serde(rename = "Table")]
@@ -1001,6 +1031,7 @@ pub struct DescribeTableOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTableReplicaAutoScalingInput {
     /// <p>The name of the table.</p>
     #[serde(rename = "TableName")]
@@ -1008,7 +1039,7 @@ pub struct DescribeTableReplicaAutoScalingInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTableReplicaAutoScalingOutput {
     /// <p>Represents the auto scaling properties of the table.</p>
     #[serde(rename = "TableAutoScalingDescription")]
@@ -1017,6 +1048,7 @@ pub struct DescribeTableReplicaAutoScalingOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTimeToLiveInput {
     /// <p>The name of the table to be described.</p>
     #[serde(rename = "TableName")]
@@ -1024,7 +1056,7 @@ pub struct DescribeTimeToLiveInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTimeToLiveOutput {
     /// <p><p/></p>
     #[serde(rename = "TimeToLiveDescription")]
@@ -1034,7 +1066,7 @@ pub struct DescribeTimeToLiveOutput {
 
 /// <p>An endpoint information details.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Endpoint {
     /// <p>IP address of the endpoint.</p>
     #[serde(rename = "Address")]
@@ -1046,6 +1078,7 @@ pub struct Endpoint {
 
 /// <p>Represents a condition to be compared with an attribute value. This condition can be used with <code>DeleteItem</code>, <code>PutItem</code>, or <code>UpdateItem</code> operations; if the comparison evaluates to true, the operation succeeds; if not, the operation fails. You can use <code>ExpectedAttributeValue</code> in one of two different ways:</p> <ul> <li> <p>Use <code>AttributeValueList</code> to specify one or more values to compare against an attribute. Use <code>ComparisonOperator</code> to specify how you want to perform the comparison. If the comparison evaluates to true, then the conditional operation succeeds.</p> </li> <li> <p>Use <code>Value</code> to specify a value that DynamoDB will compare against an attribute. If the values match, then <code>ExpectedAttributeValue</code> evaluates to true and the conditional operation succeeds. Optionally, you can also set <code>Exists</code> to false, indicating that you <i>do not</i> expect to find the attribute value in the table. In this case, the conditional operation succeeds only if the comparison evaluates to false.</p> </li> </ul> <p> <code>Value</code> and <code>Exists</code> are incompatible with <code>AttributeValueList</code> and <code>ComparisonOperator</code>. Note that if you use both sets of parameters at once, DynamoDB will return a <code>ValidationException</code> exception.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExpectedAttributeValue {
     /// <p>One or more values to evaluate against the supplied attribute. The number of values in the list depends on the <code>ComparisonOperator</code> being used.</p> <p>For type Number, value comparisons are numeric.</p> <p>String value comparisons for greater than, equals, or less than are based on ASCII character code values. For example, <code>a</code> is greater than <code>A</code>, and <code>a</code> is greater than <code>B</code>. For a list of code values, see <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.</p> <p>For Binary, DynamoDB treats each byte of the binary data as unsigned when it compares binary values.</p> <p>For information on specifying data types in JSON, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataFormat.html">JSON Data Format</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "AttributeValueList")]
@@ -1067,7 +1100,7 @@ pub struct ExpectedAttributeValue {
 
 /// <p>Represents a failure a contributor insights operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailureException {
     /// <p>Description of the failure.</p>
     #[serde(rename = "ExceptionDescription")]
@@ -1081,6 +1114,7 @@ pub struct FailureException {
 
 /// <p>Specifies an item and related attribute values to retrieve in a <code>TransactGetItem</code> object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Get {
     /// <p>One or more substitution tokens for attribute names in the ProjectionExpression parameter.</p>
     #[serde(rename = "ExpressionAttributeNames")]
@@ -1100,6 +1134,7 @@ pub struct Get {
 
 /// <p>Represents the input of a <code>GetItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetItemInput {
     /// <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "AttributesToGet")]
@@ -1130,7 +1165,7 @@ pub struct GetItemInput {
 
 /// <p>Represents the output of a <code>GetItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetItemOutput {
     /// <p>The capacity units consumed by the <code>GetItem</code> operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation. <code>ConsumedCapacity</code> is only returned if the <code>ReturnConsumedCapacity</code> parameter was specified. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Read/Write Capacity Mode</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "ConsumedCapacity")]
@@ -1144,6 +1179,7 @@ pub struct GetItemOutput {
 
 /// <p>Represents the properties of a global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GlobalSecondaryIndex {
     /// <p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>
     #[serde(rename = "IndexName")]
@@ -1162,6 +1198,7 @@ pub struct GlobalSecondaryIndex {
 
 /// <p>Represents the auto scaling settings of a global secondary index for a global table that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GlobalSecondaryIndexAutoScalingUpdate {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1174,7 +1211,7 @@ pub struct GlobalSecondaryIndexAutoScalingUpdate {
 
 /// <p>Represents the properties of a global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GlobalSecondaryIndexDescription {
     /// <p><p>Indicates whether the index is currently backfilling. <i>Backfilling</i> is the process of reading items from the table and determining whether they can be added to the index. (Not all items will qualify: For example, a partition key cannot have any duplicate values.) If an item can be added to the index, DynamoDB will do so. After all items have been processed, the backfilling operation is complete and <code>Backfilling</code> is false.</p> <p>You can delete an index that is being created during the <code>Backfilling</code> phase when <code>IndexStatus</code> is set to CREATING and <code>Backfilling</code> is true. You can&#39;t delete the index that is being created when <code>IndexStatus</code> is set to CREATING and <code>Backfilling</code> is false. </p> <note> <p>For indexes that were created during a <code>CreateTable</code> operation, the <code>Backfilling</code> attribute does not appear in the <code>DescribeTable</code> output.</p> </note></p>
     #[serde(rename = "Backfilling")]
@@ -1216,7 +1253,7 @@ pub struct GlobalSecondaryIndexDescription {
 
 /// <p>Represents the properties of a global secondary index for the table when the backup was created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GlobalSecondaryIndexInfo {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1238,6 +1275,7 @@ pub struct GlobalSecondaryIndexInfo {
 
 /// <p><p>Represents one of the following:</p> <ul> <li> <p>A new global secondary index to be added to an existing table.</p> </li> <li> <p>New provisioned throughput parameters for an existing global secondary index.</p> </li> <li> <p>An existing global secondary index to be removed from an existing table.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GlobalSecondaryIndexUpdate {
     /// <p><p>The parameters required for creating a global secondary index on an existing table:</p> <ul> <li> <p> <code>IndexName </code> </p> </li> <li> <p> <code>KeySchema </code> </p> </li> <li> <p> <code>AttributeDefinitions </code> </p> </li> <li> <p> <code>Projection </code> </p> </li> <li> <p> <code>ProvisionedThroughput </code> </p> </li> </ul></p>
     #[serde(rename = "Create")]
@@ -1255,7 +1293,7 @@ pub struct GlobalSecondaryIndexUpdate {
 
 /// <p>Represents the properties of a global table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GlobalTable {
     /// <p>The global table name.</p>
     #[serde(rename = "GlobalTableName")]
@@ -1269,7 +1307,7 @@ pub struct GlobalTable {
 
 /// <p>Contains details about the global table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GlobalTableDescription {
     /// <p>The creation time of the global table.</p>
     #[serde(rename = "CreationDateTime")]
@@ -1295,6 +1333,7 @@ pub struct GlobalTableDescription {
 
 /// <p>Represents the settings of a global secondary index for a global table that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GlobalTableGlobalSecondaryIndexSettingsUpdate {
     /// <p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>
     #[serde(rename = "IndexName")]
@@ -1311,7 +1350,7 @@ pub struct GlobalTableGlobalSecondaryIndexSettingsUpdate {
 
 /// <p>Information about item collections, if any, that were affected by the operation. <code>ItemCollectionMetrics</code> is only returned if the request asked for it. If the table does not have any local secondary indexes, this information is not returned in the response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ItemCollectionMetrics {
     /// <p>The partition key value of the item collection. This value is the same as the partition key value of the item.</p>
     #[serde(rename = "ItemCollectionKey")]
@@ -1325,7 +1364,7 @@ pub struct ItemCollectionMetrics {
 
 /// <p>Details for the requested item.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ItemResponse {
     /// <p>Map of attribute data consisting of the data type and attribute value.</p>
     #[serde(rename = "Item")]
@@ -1369,6 +1408,7 @@ pub struct KeysAndAttributes {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupsInput {
     /// <p><p>The backups from the table specified by <code>BackupType</code> are listed.</p> <p>Where <code>BackupType</code> can be:</p> <ul> <li> <p> <code>USER</code> - On-demand backup created by you.</p> </li> <li> <p> <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.</p> </li> <li> <p> <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).</p> </li> </ul></p>
     #[serde(rename = "BackupType")]
@@ -1397,7 +1437,7 @@ pub struct ListBackupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupsOutput {
     /// <p>List of <code>BackupSummary</code> objects.</p>
     #[serde(rename = "BackupSummaries")]
@@ -1410,6 +1450,7 @@ pub struct ListBackupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListContributorInsightsInput {
     /// <p>Maximum number of results to return per page.</p>
     #[serde(rename = "MaxResults")]
@@ -1426,7 +1467,7 @@ pub struct ListContributorInsightsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListContributorInsightsOutput {
     /// <p>A list of ContributorInsightsSummary.</p>
     #[serde(rename = "ContributorInsightsSummaries")]
@@ -1439,6 +1480,7 @@ pub struct ListContributorInsightsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGlobalTablesInput {
     /// <p>The first global table name that this operation will evaluate.</p>
     #[serde(rename = "ExclusiveStartGlobalTableName")]
@@ -1455,7 +1497,7 @@ pub struct ListGlobalTablesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGlobalTablesOutput {
     /// <p>List of global table names.</p>
     #[serde(rename = "GlobalTables")]
@@ -1469,6 +1511,7 @@ pub struct ListGlobalTablesOutput {
 
 /// <p>Represents the input of a <code>ListTables</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTablesInput {
     /// <p>The first table name that this operation will evaluate. Use the value that was returned for <code>LastEvaluatedTableName</code> in a previous operation, so that you can obtain the next page of results.</p>
     #[serde(rename = "ExclusiveStartTableName")]
@@ -1482,7 +1525,7 @@ pub struct ListTablesInput {
 
 /// <p>Represents the output of a <code>ListTables</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTablesOutput {
     /// <p>The name of the last table in the current page of results. Use this value as the <code>ExclusiveStartTableName</code> in a new request to obtain the next page of results, until all the table names are returned.</p> <p>If you do not receive a <code>LastEvaluatedTableName</code> value in the response, this means that there are no more table names to be retrieved.</p>
     #[serde(rename = "LastEvaluatedTableName")]
@@ -1495,6 +1538,7 @@ pub struct ListTablesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsOfResourceInput {
     /// <p>An optional string that, if supplied, must be copied from the output of a previous call to ListTagOfResource. When provided in this manner, this API fetches the next page of results.</p>
     #[serde(rename = "NextToken")]
@@ -1506,7 +1550,7 @@ pub struct ListTagsOfResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsOfResourceOutput {
     /// <p>If this value is returned, there are additional results to be displayed. To retrieve them, call ListTagsOfResource again, with NextToken set to this value.</p>
     #[serde(rename = "NextToken")]
@@ -1520,6 +1564,7 @@ pub struct ListTagsOfResourceOutput {
 
 /// <p>Represents the properties of a local secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LocalSecondaryIndex {
     /// <p>The name of the local secondary index. The name must be unique among all other indexes on this table.</p>
     #[serde(rename = "IndexName")]
@@ -1534,7 +1579,7 @@ pub struct LocalSecondaryIndex {
 
 /// <p>Represents the properties of a local secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LocalSecondaryIndexDescription {
     /// <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
     #[serde(rename = "IndexArn")]
@@ -1564,7 +1609,7 @@ pub struct LocalSecondaryIndexDescription {
 
 /// <p>Represents the properties of a local secondary index for the table when the backup was created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LocalSecondaryIndexInfo {
     /// <p>Represents the name of the local secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1582,7 +1627,7 @@ pub struct LocalSecondaryIndexInfo {
 
 /// <p>The description of the point in time settings applied to the table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PointInTimeRecoveryDescription {
     /// <p>Specifies the earliest point in time you can restore your table to. You can restore your table to any point in time during the last 35 days. </p>
     #[serde(rename = "EarliestRestorableDateTime")]
@@ -1600,6 +1645,7 @@ pub struct PointInTimeRecoveryDescription {
 
 /// <p>Represents the settings used to enable point in time recovery.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PointInTimeRecoverySpecification {
     /// <p>Indicates whether point in time recovery is enabled (true) or disabled (false) on the table.</p>
     #[serde(rename = "PointInTimeRecoveryEnabled")]
@@ -1632,7 +1678,7 @@ pub struct ProvisionedThroughput {
 
 /// <p>Represents the provisioned throughput settings for the table, consisting of read and write capacity units, along with data about increases and decreases.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedThroughputDescription {
     /// <p>The date and time of the last provisioned throughput decrease for this table.</p>
     #[serde(rename = "LastDecreaseDateTime")]
@@ -1667,6 +1713,7 @@ pub struct ProvisionedThroughputOverride {
 
 /// <p>Represents a request to perform a <code>PutItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Put {
     /// <p>A condition that must be satisfied in order for a conditional update to succeed.</p>
     #[serde(rename = "ConditionExpression")]
@@ -1694,6 +1741,7 @@ pub struct Put {
 
 /// <p>Represents the input of a <code>PutItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutItemInput {
     /// <p>A condition that must be satisfied in order for a conditional <code>PutItem</code> operation to succeed.</p> <p>An expression can contain any of the following:</p> <ul> <li> <p>Functions: <code>attribute_exists | attribute_not_exists | attribute_type | contains | begins_with | size</code> </p> <p>These function names are case-sensitive.</p> </li> <li> <p>Comparison operators: <code>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN </code> </p> </li> <li> <p> Logical operators: <code>AND | OR | NOT</code> </p> </li> </ul> <p>For more information on condition expressions, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition Expressions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "ConditionExpression")]
@@ -1736,7 +1784,7 @@ pub struct PutItemInput {
 
 /// <p>Represents the output of a <code>PutItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutItemOutput {
     /// <p>The attribute values as they appeared before the <code>PutItem</code> operation, but only if <code>ReturnValues</code> is specified as <code>ALL_OLD</code> in the request. Each element consists of an attribute name and an attribute value.</p>
     #[serde(rename = "Attributes")]
@@ -1762,6 +1810,7 @@ pub struct PutRequest {
 
 /// <p>Represents the input of a <code>Query</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct QueryInput {
     /// <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "AttributesToGet")]
@@ -1833,7 +1882,7 @@ pub struct QueryInput {
 
 /// <p>Represents the output of a <code>Query</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryOutput {
     /// <p>The capacity units consumed by the <code>Query</code> operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation. <code>ConsumedCapacity</code> is only returned if the <code>ReturnConsumedCapacity</code> parameter was specified. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "ConsumedCapacity")]
@@ -1868,7 +1917,7 @@ pub struct Replica {
 
 /// <p>Represents the auto scaling settings of the replica.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaAutoScalingDescription {
     /// <p>Replica-specific global secondary index auto scaling settings.</p>
     #[serde(rename = "GlobalSecondaryIndexes")]
@@ -1894,6 +1943,7 @@ pub struct ReplicaAutoScalingDescription {
 
 /// <p>Represents the auto scaling settings of a replica that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaAutoScalingUpdate {
     /// <p>The Region where the replica exists.</p>
     #[serde(rename = "RegionName")]
@@ -1910,7 +1960,7 @@ pub struct ReplicaAutoScalingUpdate {
 
 /// <p>Contains the details of the replica.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaDescription {
     /// <p>Replica-specific global secondary index settings.</p>
     #[serde(rename = "GlobalSecondaryIndexes")]
@@ -1944,6 +1994,7 @@ pub struct ReplicaDescription {
 
 /// <p>Represents the properties of a replica global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaGlobalSecondaryIndex {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1956,7 +2007,7 @@ pub struct ReplicaGlobalSecondaryIndex {
 
 /// <p>Represents the auto scaling configuration for a replica global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaGlobalSecondaryIndexAutoScalingDescription {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1976,6 +2027,7 @@ pub struct ReplicaGlobalSecondaryIndexAutoScalingDescription {
 
 /// <p>Represents the auto scaling settings of a global secondary index for a replica that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaGlobalSecondaryIndexAutoScalingUpdate {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -1988,7 +2040,7 @@ pub struct ReplicaGlobalSecondaryIndexAutoScalingUpdate {
 
 /// <p>Represents the properties of a replica global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaGlobalSecondaryIndexDescription {
     /// <p>The name of the global secondary index.</p>
     #[serde(rename = "IndexName")]
@@ -2002,7 +2054,7 @@ pub struct ReplicaGlobalSecondaryIndexDescription {
 
 /// <p>Represents the properties of a global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaGlobalSecondaryIndexSettingsDescription {
     /// <p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>
     #[serde(rename = "IndexName")]
@@ -2031,6 +2083,7 @@ pub struct ReplicaGlobalSecondaryIndexSettingsDescription {
 
 /// <p>Represents the settings of a global secondary index for a global table that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaGlobalSecondaryIndexSettingsUpdate {
     /// <p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>
     #[serde(rename = "IndexName")]
@@ -2047,7 +2100,7 @@ pub struct ReplicaGlobalSecondaryIndexSettingsUpdate {
 
 /// <p>Represents the properties of a replica.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReplicaSettingsDescription {
     /// <p>The Region name of the replica.</p>
     #[serde(rename = "RegionName")]
@@ -2087,6 +2140,7 @@ pub struct ReplicaSettingsDescription {
 
 /// <p>Represents the settings for a global table in a Region that will be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaSettingsUpdate {
     /// <p>The Region of the replica to be added.</p>
     #[serde(rename = "RegionName")]
@@ -2109,6 +2163,7 @@ pub struct ReplicaSettingsUpdate {
 
 /// <p><p>Represents one of the following:</p> <ul> <li> <p>A new replica to be added to an existing global table.</p> </li> <li> <p>New parameters for an existing replica.</p> </li> <li> <p>An existing replica to be removed from an existing global table.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicaUpdate {
     /// <p>The parameters required for creating a replica on an existing global table.</p>
     #[serde(rename = "Create")]
@@ -2122,6 +2177,7 @@ pub struct ReplicaUpdate {
 
 /// <p><p>Represents one of the following:</p> <ul> <li> <p>A new replica to be added to an existing regional table or global table. This request invokes the <code>CreateTableReplica</code> action in the destination Region.</p> </li> <li> <p>New parameters for an existing replica. This request invokes the <code>UpdateTable</code> action in the destination Region.</p> </li> <li> <p>An existing replica to be deleted. The request invokes the <code>DeleteTableReplica</code> action in the destination Region, deleting the replica and all if its items in the destination Region.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReplicationGroupUpdate {
     /// <p>The parameters required for creating a replica for the table.</p>
     #[serde(rename = "Create")]
@@ -2139,7 +2195,7 @@ pub struct ReplicationGroupUpdate {
 
 /// <p>Contains details for the restore.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreSummary {
     /// <p>Point in time or source backup time.</p>
     #[serde(rename = "RestoreDateTime")]
@@ -2158,6 +2214,7 @@ pub struct RestoreSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreTableFromBackupInput {
     /// <p>The Amazon Resource Name (ARN) associated with the backup.</p>
     #[serde(rename = "BackupArn")]
@@ -2184,7 +2241,7 @@ pub struct RestoreTableFromBackupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreTableFromBackupOutput {
     /// <p>The description of the table created from an existing backup.</p>
     #[serde(rename = "TableDescription")]
@@ -2193,6 +2250,7 @@ pub struct RestoreTableFromBackupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreTableToPointInTimeInput {
     /// <p>The billing mode of the restored table.</p>
     #[serde(rename = "BillingModeOverride")]
@@ -2227,7 +2285,7 @@ pub struct RestoreTableToPointInTimeInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreTableToPointInTimeOutput {
     /// <p>Represents the properties of a table.</p>
     #[serde(rename = "TableDescription")]
@@ -2237,7 +2295,7 @@ pub struct RestoreTableToPointInTimeOutput {
 
 /// <p>The description of the server-side encryption status on the specified table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SSEDescription {
     /// <p>Indicates the time, in UNIX epoch date format, when DynamoDB detected that the table's AWS KMS key was inaccessible. This attribute will automatically be cleared when DynamoDB detects that the table's AWS KMS key is accessible again. DynamoDB will initiate the table archival process when table's AWS KMS key remains inaccessible for more than seven days from this date.</p>
     #[serde(rename = "InaccessibleEncryptionDateTime")]
@@ -2259,6 +2317,7 @@ pub struct SSEDescription {
 
 /// <p>Represents the settings used to enable server-side encryption.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SSESpecification {
     /// <p>Indicates whether server-side encryption is done using an AWS managed CMK or an AWS owned CMK. If enabled (true), server-side encryption type is set to <code>KMS</code> and an AWS managed CMK is used (AWS KMS charges apply). If disabled (false) or not specified, server-side encryption is set to AWS owned CMK.</p>
     #[serde(rename = "Enabled")]
@@ -2276,6 +2335,7 @@ pub struct SSESpecification {
 
 /// <p>Represents the input of a <code>Scan</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScanInput {
     /// <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "AttributesToGet")]
@@ -2343,7 +2403,7 @@ pub struct ScanInput {
 
 /// <p>Represents the output of a <code>Scan</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScanOutput {
     /// <p>The capacity units consumed by the <code>Scan</code> operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation. <code>ConsumedCapacity</code> is only returned if the <code>ReturnConsumedCapacity</code> parameter was specified. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html">Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "ConsumedCapacity")]
@@ -2369,7 +2429,7 @@ pub struct ScanOutput {
 
 /// <p>Contains the details of the table when the backup was created. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SourceTableDetails {
     /// <p><p>Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later.</p> <ul> <li> <p> <code>PROVISIONED</code> - Sets the read/write capacity mode to <code>PROVISIONED</code>. We recommend using <code>PROVISIONED</code> for predictable workloads.</p> </li> <li> <p> <code>PAY<em>PER</em>REQUEST</code> - Sets the read/write capacity mode to <code>PAY<em>PER</em>REQUEST</code>. We recommend using <code>PAY<em>PER</em>REQUEST</code> for unpredictable workloads. </p> </li> </ul></p>
     #[serde(rename = "BillingMode")]
@@ -2406,7 +2466,7 @@ pub struct SourceTableDetails {
 
 /// <p>Contains the details of the features enabled on the table when the backup was created. For example, LSIs, GSIs, streams, TTL. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SourceTableFeatureDetails {
     /// <p>Represents the GSI properties for the table when the backup was created. It includes the IndexName, KeySchema, Projection, and ProvisionedThroughput for the GSIs on the table at the time of backup. </p>
     #[serde(rename = "GlobalSecondaryIndexes")]
@@ -2444,7 +2504,7 @@ pub struct StreamSpecification {
 
 /// <p>Represents the auto scaling configuration for a global table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TableAutoScalingDescription {
     /// <p>Represents replicas of the global table.</p>
     #[serde(rename = "Replicas")]
@@ -2462,7 +2522,7 @@ pub struct TableAutoScalingDescription {
 
 /// <p>Represents the properties of a table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TableDescription {
     /// <p>Contains information about the table archive.</p>
     #[serde(rename = "ArchivalSummary")]
@@ -2562,6 +2622,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>Identifies the Amazon DynamoDB resource to which tags should be added. This value is an Amazon Resource Name (ARN).</p>
     #[serde(rename = "ResourceArn")]
@@ -2573,7 +2634,7 @@ pub struct TagResourceInput {
 
 /// <p>The description of the Time to Live (TTL) status on the specified table. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TimeToLiveDescription {
     /// <p> The name of the TTL attribute for items in the table.</p>
     #[serde(rename = "AttributeName")]
@@ -2598,6 +2659,7 @@ pub struct TimeToLiveSpecification {
 
 /// <p>Specifies an item to be retrieved as part of the transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransactGetItem {
     /// <p>Contains the primary key that identifies the item to get, together with the name of the table that contains the item, and optionally the specific attributes of the item to retrieve.</p>
     #[serde(rename = "Get")]
@@ -2605,6 +2667,7 @@ pub struct TransactGetItem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransactGetItemsInput {
     /// <p>A value of <code>TOTAL</code> causes consumed capacity information to be returned, and a value of <code>NONE</code> prevents that information from being returned. No other value is valid.</p>
     #[serde(rename = "ReturnConsumedCapacity")]
@@ -2616,7 +2679,7 @@ pub struct TransactGetItemsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TransactGetItemsOutput {
     /// <p>If the <i>ReturnConsumedCapacity</i> value was <code>TOTAL</code>, this is an array of <code>ConsumedCapacity</code> objects, one for each table addressed by <code>TransactGetItem</code> objects in the <i>TransactItems</i> parameter. These <code>ConsumedCapacity</code> objects report the read-capacity units consumed by the <code>TransactGetItems</code> call in that table.</p>
     #[serde(rename = "ConsumedCapacity")]
@@ -2630,6 +2693,7 @@ pub struct TransactGetItemsOutput {
 
 /// <p>A list of requests that can perform update, put, delete, or check operations on multiple items in one or more tables atomically.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransactWriteItem {
     /// <p>A request to perform a check item operation.</p>
     #[serde(rename = "ConditionCheck")]
@@ -2650,6 +2714,7 @@ pub struct TransactWriteItem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransactWriteItemsInput {
     /// <p>Providing a <code>ClientRequestToken</code> makes the call to <code>TransactWriteItems</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>Although multiple identical calls using the same client request token produce the same result on the server (no side effects), the responses to the calls might not be the same. If the <code>ReturnConsumedCapacity&gt;</code> parameter is set, then the initial <code>TransactWriteItems</code> call returns the amount of write capacity units consumed in making the changes. Subsequent <code>TransactWriteItems</code> calls with the same client token return the number of read capacity units consumed in reading the item.</p> <p>A client request token is valid for 10 minutes after the first request that uses it is completed. After 10 minutes, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 10 minutes, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 10-minute idempotency window, DynamoDB returns an <code>IdempotentParameterMismatch</code> exception.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -2668,7 +2733,7 @@ pub struct TransactWriteItemsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TransactWriteItemsOutput {
     /// <p>The capacity units consumed by the entire <code>TransactWriteItems</code> operation. The values of the list are ordered according to the ordering of the <code>TransactItems</code> request parameter. </p>
     #[serde(rename = "ConsumedCapacity")]
@@ -2682,6 +2747,7 @@ pub struct TransactWriteItemsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>The DynamoDB resource that the tags will be removed from. This value is an Amazon Resource Name (ARN).</p>
     #[serde(rename = "ResourceArn")]
@@ -2693,6 +2759,7 @@ pub struct UntagResourceInput {
 
 /// <p>Represents a request to perform an <code>UpdateItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Update {
     /// <p>A condition that must be satisfied in order for a conditional update to succeed.</p>
     #[serde(rename = "ConditionExpression")]
@@ -2722,6 +2789,7 @@ pub struct Update {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateContinuousBackupsInput {
     /// <p>Represents the settings used to enable point in time recovery.</p>
     #[serde(rename = "PointInTimeRecoverySpecification")]
@@ -2732,7 +2800,7 @@ pub struct UpdateContinuousBackupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateContinuousBackupsOutput {
     /// <p>Represents the continuous backups and point in time recovery settings on the table.</p>
     #[serde(rename = "ContinuousBackupsDescription")]
@@ -2741,6 +2809,7 @@ pub struct UpdateContinuousBackupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateContributorInsightsInput {
     /// <p>Represents the contributor insights action.</p>
     #[serde(rename = "ContributorInsightsAction")]
@@ -2755,7 +2824,7 @@ pub struct UpdateContributorInsightsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateContributorInsightsOutput {
     /// <p>The status of contributor insights</p>
     #[serde(rename = "ContributorInsightsStatus")]
@@ -2773,6 +2842,7 @@ pub struct UpdateContributorInsightsOutput {
 
 /// <p>Represents the new provisioned throughput settings to be applied to a global secondary index.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGlobalSecondaryIndexAction {
     /// <p>The name of the global secondary index to be updated.</p>
     #[serde(rename = "IndexName")]
@@ -2783,6 +2853,7 @@ pub struct UpdateGlobalSecondaryIndexAction {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGlobalTableInput {
     /// <p>The global table name.</p>
     #[serde(rename = "GlobalTableName")]
@@ -2793,7 +2864,7 @@ pub struct UpdateGlobalTableInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGlobalTableOutput {
     /// <p>Contains the details of the global table.</p>
     #[serde(rename = "GlobalTableDescription")]
@@ -2802,6 +2873,7 @@ pub struct UpdateGlobalTableOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGlobalTableSettingsInput {
     /// <p><p>The billing mode of the global table. If <code>GlobalTableBillingMode</code> is not specified, the global table defaults to <code>PROVISIONED</code> capacity billing mode.</p> <ul> <li> <p> <code>PROVISIONED</code> - We recommend using <code>PROVISIONED</code> for predictable workloads. <code>PROVISIONED</code> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual">Provisioned Mode</a>.</p> </li> <li> <p> <code>PAY<em>PER</em>REQUEST</code> - We recommend using <code>PAY<em>PER</em>REQUEST</code> for unpredictable workloads. <code>PAY<em>PER</em>REQUEST</code> sets the billing mode to <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand">On-Demand Mode</a>. </p> </li> </ul></p>
     #[serde(rename = "GlobalTableBillingMode")]
@@ -2831,7 +2903,7 @@ pub struct UpdateGlobalTableSettingsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGlobalTableSettingsOutput {
     /// <p>The name of the global table.</p>
     #[serde(rename = "GlobalTableName")]
@@ -2845,6 +2917,7 @@ pub struct UpdateGlobalTableSettingsOutput {
 
 /// <p>Represents the input of an <code>UpdateItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateItemInput {
     /// <p>This is a legacy parameter. Use <code>UpdateExpression</code> instead. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
     #[serde(rename = "AttributeUpdates")]
@@ -2895,7 +2968,7 @@ pub struct UpdateItemInput {
 
 /// <p>Represents the output of an <code>UpdateItem</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateItemOutput {
     /// <p>A map of attribute values as they appear before or after the <code>UpdateItem</code> operation, as determined by the <code>ReturnValues</code> parameter.</p> <p>The <code>Attributes</code> map is only present if <code>ReturnValues</code> was specified as something other than <code>NONE</code> in the request. Each element represents one attribute.</p>
     #[serde(rename = "Attributes")]
@@ -2913,6 +2986,7 @@ pub struct UpdateItemOutput {
 
 /// <p>Represents a replica to be modified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateReplicationGroupMemberAction {
     /// <p>Replica-specific global secondary index settings.</p>
     #[serde(rename = "GlobalSecondaryIndexes")]
@@ -2933,6 +3007,7 @@ pub struct UpdateReplicationGroupMemberAction {
 
 /// <p>Represents the input of an <code>UpdateTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTableInput {
     /// <p>An array of attributes that describe the key schema for the table and indexes. If you are adding a new global secondary index to the table, <code>AttributeDefinitions</code> must include the key element(s) of the new index.</p>
     #[serde(rename = "AttributeDefinitions")]
@@ -2969,7 +3044,7 @@ pub struct UpdateTableInput {
 
 /// <p>Represents the output of an <code>UpdateTable</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTableOutput {
     /// <p>Represents the properties of the table.</p>
     #[serde(rename = "TableDescription")]
@@ -2978,6 +3053,7 @@ pub struct UpdateTableOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTableReplicaAutoScalingInput {
     /// <p>Represents the auto scaling settings of the global secondary indexes of the replica to be updated.</p>
     #[serde(rename = "GlobalSecondaryIndexUpdates")]
@@ -2996,7 +3072,7 @@ pub struct UpdateTableReplicaAutoScalingInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTableReplicaAutoScalingOutput {
     /// <p>Returns information about the auto scaling settings of a table with replicas.</p>
     #[serde(rename = "TableAutoScalingDescription")]
@@ -3006,6 +3082,7 @@ pub struct UpdateTableReplicaAutoScalingOutput {
 
 /// <p>Represents the input of an <code>UpdateTimeToLive</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTimeToLiveInput {
     /// <p>The name of the table to be configured.</p>
     #[serde(rename = "TableName")]
@@ -3016,7 +3093,7 @@ pub struct UpdateTimeToLiveInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTimeToLiveOutput {
     /// <p>Represents the output of an <code>UpdateTimeToLive</code> operation.</p>
     #[serde(rename = "TimeToLiveSpecification")]
@@ -3076,20 +3153,17 @@ impl BatchGetItemError {
     }
 }
 impl fmt::Display for BatchGetItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetItemError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetItemError::InternalServerError(ref cause) => cause,
-            BatchGetItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            BatchGetItemError::RequestLimitExceeded(ref cause) => cause,
-            BatchGetItemError::ResourceNotFound(ref cause) => cause,
+            BatchGetItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            BatchGetItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            BatchGetItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            BatchGetItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetItemError {}
 /// Errors returned by BatchWriteItem
 #[derive(Debug, PartialEq)]
 pub enum BatchWriteItemError {
@@ -3136,21 +3210,20 @@ impl BatchWriteItemError {
     }
 }
 impl fmt::Display for BatchWriteItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchWriteItemError {
-    fn description(&self) -> &str {
         match *self {
-            BatchWriteItemError::InternalServerError(ref cause) => cause,
-            BatchWriteItemError::ItemCollectionSizeLimitExceeded(ref cause) => cause,
-            BatchWriteItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            BatchWriteItemError::RequestLimitExceeded(ref cause) => cause,
-            BatchWriteItemError::ResourceNotFound(ref cause) => cause,
+            BatchWriteItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            BatchWriteItemError::ItemCollectionSizeLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchWriteItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            BatchWriteItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            BatchWriteItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchWriteItemError {}
 /// Errors returned by CreateBackup
 #[derive(Debug, PartialEq)]
 pub enum CreateBackupError {
@@ -3200,22 +3273,19 @@ impl CreateBackupError {
     }
 }
 impl fmt::Display for CreateBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateBackupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateBackupError::BackupInUse(ref cause) => cause,
-            CreateBackupError::ContinuousBackupsUnavailable(ref cause) => cause,
-            CreateBackupError::InternalServerError(ref cause) => cause,
-            CreateBackupError::LimitExceeded(ref cause) => cause,
-            CreateBackupError::TableInUse(ref cause) => cause,
-            CreateBackupError::TableNotFound(ref cause) => cause,
+            CreateBackupError::BackupInUse(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::ContinuousBackupsUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::TableInUse(ref cause) => write!(f, "{}", cause),
+            CreateBackupError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateBackupError {}
 /// Errors returned by CreateGlobalTable
 #[derive(Debug, PartialEq)]
 pub enum CreateGlobalTableError {
@@ -3257,20 +3327,17 @@ impl CreateGlobalTableError {
     }
 }
 impl fmt::Display for CreateGlobalTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGlobalTableError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGlobalTableError::GlobalTableAlreadyExists(ref cause) => cause,
-            CreateGlobalTableError::InternalServerError(ref cause) => cause,
-            CreateGlobalTableError::LimitExceeded(ref cause) => cause,
-            CreateGlobalTableError::TableNotFound(ref cause) => cause,
+            CreateGlobalTableError::GlobalTableAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateGlobalTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateGlobalTableError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateGlobalTableError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGlobalTableError {}
 /// Errors returned by CreateTable
 #[derive(Debug, PartialEq)]
 pub enum CreateTableError {
@@ -3303,19 +3370,16 @@ impl CreateTableError {
     }
 }
 impl fmt::Display for CreateTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTableError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTableError::InternalServerError(ref cause) => cause,
-            CreateTableError::LimitExceeded(ref cause) => cause,
-            CreateTableError::ResourceInUse(ref cause) => cause,
+            CreateTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateTableError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateTableError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTableError {}
 /// Errors returned by DeleteBackup
 #[derive(Debug, PartialEq)]
 pub enum DeleteBackupError {
@@ -3353,20 +3417,17 @@ impl DeleteBackupError {
     }
 }
 impl fmt::Display for DeleteBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBackupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBackupError::BackupInUse(ref cause) => cause,
-            DeleteBackupError::BackupNotFound(ref cause) => cause,
-            DeleteBackupError::InternalServerError(ref cause) => cause,
-            DeleteBackupError::LimitExceeded(ref cause) => cause,
+            DeleteBackupError::BackupInUse(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::BackupNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBackupError {}
 /// Errors returned by DeleteItem
 #[derive(Debug, PartialEq)]
 pub enum DeleteItemError {
@@ -3423,23 +3484,20 @@ impl DeleteItemError {
     }
 }
 impl fmt::Display for DeleteItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteItemError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteItemError::ConditionalCheckFailed(ref cause) => cause,
-            DeleteItemError::InternalServerError(ref cause) => cause,
-            DeleteItemError::ItemCollectionSizeLimitExceeded(ref cause) => cause,
-            DeleteItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DeleteItemError::RequestLimitExceeded(ref cause) => cause,
-            DeleteItemError::ResourceNotFound(ref cause) => cause,
-            DeleteItemError::TransactionConflict(ref cause) => cause,
+            DeleteItemError::ConditionalCheckFailed(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::ItemCollectionSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteItemError::TransactionConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteItemError {}
 /// Errors returned by DeleteTable
 #[derive(Debug, PartialEq)]
 pub enum DeleteTableError {
@@ -3477,20 +3535,17 @@ impl DeleteTableError {
     }
 }
 impl fmt::Display for DeleteTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTableError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTableError::InternalServerError(ref cause) => cause,
-            DeleteTableError::LimitExceeded(ref cause) => cause,
-            DeleteTableError::ResourceInUse(ref cause) => cause,
-            DeleteTableError::ResourceNotFound(ref cause) => cause,
+            DeleteTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTableError {}
 /// Errors returned by DescribeBackup
 #[derive(Debug, PartialEq)]
 pub enum DescribeBackupError {
@@ -3518,18 +3573,15 @@ impl DescribeBackupError {
     }
 }
 impl fmt::Display for DescribeBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBackupError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBackupError::BackupNotFound(ref cause) => cause,
-            DescribeBackupError::InternalServerError(ref cause) => cause,
+            DescribeBackupError::BackupNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeBackupError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBackupError {}
 /// Errors returned by DescribeContinuousBackups
 #[derive(Debug, PartialEq)]
 pub enum DescribeContinuousBackupsError {
@@ -3561,18 +3613,17 @@ impl DescribeContinuousBackupsError {
     }
 }
 impl fmt::Display for DescribeContinuousBackupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeContinuousBackupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeContinuousBackupsError::InternalServerError(ref cause) => cause,
-            DescribeContinuousBackupsError::TableNotFound(ref cause) => cause,
+            DescribeContinuousBackupsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeContinuousBackupsError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeContinuousBackupsError {}
 /// Errors returned by DescribeContributorInsights
 #[derive(Debug, PartialEq)]
 pub enum DescribeContributorInsightsError {
@@ -3606,18 +3657,17 @@ impl DescribeContributorInsightsError {
     }
 }
 impl fmt::Display for DescribeContributorInsightsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeContributorInsightsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeContributorInsightsError::InternalServerError(ref cause) => cause,
-            DescribeContributorInsightsError::ResourceNotFound(ref cause) => cause,
+            DescribeContributorInsightsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeContributorInsightsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeContributorInsightsError {}
 /// Errors returned by DescribeEndpoints
 #[derive(Debug, PartialEq)]
 pub enum DescribeEndpointsError {}
@@ -3634,15 +3684,12 @@ impl DescribeEndpointsError {
     }
 }
 impl fmt::Display for DescribeEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEndpointsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for DescribeEndpointsError {}
 /// Errors returned by DescribeGlobalTable
 #[derive(Debug, PartialEq)]
 pub enum DescribeGlobalTableError {
@@ -3674,18 +3721,15 @@ impl DescribeGlobalTableError {
     }
 }
 impl fmt::Display for DescribeGlobalTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGlobalTableError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGlobalTableError::GlobalTableNotFound(ref cause) => cause,
-            DescribeGlobalTableError::InternalServerError(ref cause) => cause,
+            DescribeGlobalTableError::GlobalTableNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeGlobalTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeGlobalTableError {}
 /// Errors returned by DescribeGlobalTableSettings
 #[derive(Debug, PartialEq)]
 pub enum DescribeGlobalTableSettingsError {
@@ -3719,18 +3763,19 @@ impl DescribeGlobalTableSettingsError {
     }
 }
 impl fmt::Display for DescribeGlobalTableSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGlobalTableSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGlobalTableSettingsError::GlobalTableNotFound(ref cause) => cause,
-            DescribeGlobalTableSettingsError::InternalServerError(ref cause) => cause,
+            DescribeGlobalTableSettingsError::GlobalTableNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeGlobalTableSettingsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeGlobalTableSettingsError {}
 /// Errors returned by DescribeLimits
 #[derive(Debug, PartialEq)]
 pub enum DescribeLimitsError {
@@ -3753,17 +3798,14 @@ impl DescribeLimitsError {
     }
 }
 impl fmt::Display for DescribeLimitsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLimitsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLimitsError::InternalServerError(ref cause) => cause,
+            DescribeLimitsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeLimitsError {}
 /// Errors returned by DescribeTable
 #[derive(Debug, PartialEq)]
 pub enum DescribeTableError {
@@ -3791,18 +3833,15 @@ impl DescribeTableError {
     }
 }
 impl fmt::Display for DescribeTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTableError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTableError::InternalServerError(ref cause) => cause,
-            DescribeTableError::ResourceNotFound(ref cause) => cause,
+            DescribeTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeTableError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTableError {}
 /// Errors returned by DescribeTableReplicaAutoScaling
 #[derive(Debug, PartialEq)]
 pub enum DescribeTableReplicaAutoScalingError {
@@ -3836,18 +3875,19 @@ impl DescribeTableReplicaAutoScalingError {
     }
 }
 impl fmt::Display for DescribeTableReplicaAutoScalingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTableReplicaAutoScalingError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTableReplicaAutoScalingError::InternalServerError(ref cause) => cause,
-            DescribeTableReplicaAutoScalingError::ResourceNotFound(ref cause) => cause,
+            DescribeTableReplicaAutoScalingError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeTableReplicaAutoScalingError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeTableReplicaAutoScalingError {}
 /// Errors returned by DescribeTimeToLive
 #[derive(Debug, PartialEq)]
 pub enum DescribeTimeToLiveError {
@@ -3877,18 +3917,15 @@ impl DescribeTimeToLiveError {
     }
 }
 impl fmt::Display for DescribeTimeToLiveError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTimeToLiveError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTimeToLiveError::InternalServerError(ref cause) => cause,
-            DescribeTimeToLiveError::ResourceNotFound(ref cause) => cause,
+            DescribeTimeToLiveError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeTimeToLiveError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTimeToLiveError {}
 /// Errors returned by GetItem
 #[derive(Debug, PartialEq)]
 pub enum GetItemError {
@@ -3928,20 +3965,17 @@ impl GetItemError {
     }
 }
 impl fmt::Display for GetItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetItemError {
-    fn description(&self) -> &str {
         match *self {
-            GetItemError::InternalServerError(ref cause) => cause,
-            GetItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetItemError::RequestLimitExceeded(ref cause) => cause,
-            GetItemError::ResourceNotFound(ref cause) => cause,
+            GetItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            GetItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetItemError {}
 /// Errors returned by ListBackups
 #[derive(Debug, PartialEq)]
 pub enum ListBackupsError {
@@ -3964,17 +3998,14 @@ impl ListBackupsError {
     }
 }
 impl fmt::Display for ListBackupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBackupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListBackupsError::InternalServerError(ref cause) => cause,
+            ListBackupsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBackupsError {}
 /// Errors returned by ListContributorInsights
 #[derive(Debug, PartialEq)]
 pub enum ListContributorInsightsError {
@@ -4006,18 +4037,15 @@ impl ListContributorInsightsError {
     }
 }
 impl fmt::Display for ListContributorInsightsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListContributorInsightsError {
-    fn description(&self) -> &str {
         match *self {
-            ListContributorInsightsError::InternalServerError(ref cause) => cause,
-            ListContributorInsightsError::ResourceNotFound(ref cause) => cause,
+            ListContributorInsightsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListContributorInsightsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListContributorInsightsError {}
 /// Errors returned by ListGlobalTables
 #[derive(Debug, PartialEq)]
 pub enum ListGlobalTablesError {
@@ -4042,17 +4070,14 @@ impl ListGlobalTablesError {
     }
 }
 impl fmt::Display for ListGlobalTablesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGlobalTablesError {
-    fn description(&self) -> &str {
         match *self {
-            ListGlobalTablesError::InternalServerError(ref cause) => cause,
+            ListGlobalTablesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListGlobalTablesError {}
 /// Errors returned by ListTables
 #[derive(Debug, PartialEq)]
 pub enum ListTablesError {
@@ -4075,17 +4100,14 @@ impl ListTablesError {
     }
 }
 impl fmt::Display for ListTablesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTablesError {
-    fn description(&self) -> &str {
         match *self {
-            ListTablesError::InternalServerError(ref cause) => cause,
+            ListTablesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTablesError {}
 /// Errors returned by ListTagsOfResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsOfResourceError {
@@ -4115,18 +4137,15 @@ impl ListTagsOfResourceError {
     }
 }
 impl fmt::Display for ListTagsOfResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsOfResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsOfResourceError::InternalServerError(ref cause) => cause,
-            ListTagsOfResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsOfResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsOfResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsOfResourceError {}
 /// Errors returned by PutItem
 #[derive(Debug, PartialEq)]
 pub enum PutItemError {
@@ -4183,23 +4202,20 @@ impl PutItemError {
     }
 }
 impl fmt::Display for PutItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutItemError {
-    fn description(&self) -> &str {
         match *self {
-            PutItemError::ConditionalCheckFailed(ref cause) => cause,
-            PutItemError::InternalServerError(ref cause) => cause,
-            PutItemError::ItemCollectionSizeLimitExceeded(ref cause) => cause,
-            PutItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            PutItemError::RequestLimitExceeded(ref cause) => cause,
-            PutItemError::ResourceNotFound(ref cause) => cause,
-            PutItemError::TransactionConflict(ref cause) => cause,
+            PutItemError::ConditionalCheckFailed(ref cause) => write!(f, "{}", cause),
+            PutItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PutItemError::ItemCollectionSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            PutItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutItemError::TransactionConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutItemError {}
 /// Errors returned by Query
 #[derive(Debug, PartialEq)]
 pub enum QueryError {
@@ -4237,20 +4253,17 @@ impl QueryError {
     }
 }
 impl fmt::Display for QueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for QueryError {
-    fn description(&self) -> &str {
         match *self {
-            QueryError::InternalServerError(ref cause) => cause,
-            QueryError::ProvisionedThroughputExceeded(ref cause) => cause,
-            QueryError::RequestLimitExceeded(ref cause) => cause,
-            QueryError::ResourceNotFound(ref cause) => cause,
+            QueryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            QueryError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            QueryError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            QueryError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for QueryError {}
 /// Errors returned by RestoreTableFromBackup
 #[derive(Debug, PartialEq)]
 pub enum RestoreTableFromBackupError {
@@ -4306,22 +4319,19 @@ impl RestoreTableFromBackupError {
     }
 }
 impl fmt::Display for RestoreTableFromBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreTableFromBackupError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreTableFromBackupError::BackupInUse(ref cause) => cause,
-            RestoreTableFromBackupError::BackupNotFound(ref cause) => cause,
-            RestoreTableFromBackupError::InternalServerError(ref cause) => cause,
-            RestoreTableFromBackupError::LimitExceeded(ref cause) => cause,
-            RestoreTableFromBackupError::TableAlreadyExists(ref cause) => cause,
-            RestoreTableFromBackupError::TableInUse(ref cause) => cause,
+            RestoreTableFromBackupError::BackupInUse(ref cause) => write!(f, "{}", cause),
+            RestoreTableFromBackupError::BackupNotFound(ref cause) => write!(f, "{}", cause),
+            RestoreTableFromBackupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RestoreTableFromBackupError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            RestoreTableFromBackupError::TableAlreadyExists(ref cause) => write!(f, "{}", cause),
+            RestoreTableFromBackupError::TableInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreTableFromBackupError {}
 /// Errors returned by RestoreTableToPointInTime
 #[derive(Debug, PartialEq)]
 pub enum RestoreTableToPointInTimeError {
@@ -4388,23 +4398,24 @@ impl RestoreTableToPointInTimeError {
     }
 }
 impl fmt::Display for RestoreTableToPointInTimeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreTableToPointInTimeError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreTableToPointInTimeError::InternalServerError(ref cause) => cause,
-            RestoreTableToPointInTimeError::InvalidRestoreTime(ref cause) => cause,
-            RestoreTableToPointInTimeError::LimitExceeded(ref cause) => cause,
-            RestoreTableToPointInTimeError::PointInTimeRecoveryUnavailable(ref cause) => cause,
-            RestoreTableToPointInTimeError::TableAlreadyExists(ref cause) => cause,
-            RestoreTableToPointInTimeError::TableInUse(ref cause) => cause,
-            RestoreTableToPointInTimeError::TableNotFound(ref cause) => cause,
+            RestoreTableToPointInTimeError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RestoreTableToPointInTimeError::InvalidRestoreTime(ref cause) => write!(f, "{}", cause),
+            RestoreTableToPointInTimeError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            RestoreTableToPointInTimeError::PointInTimeRecoveryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RestoreTableToPointInTimeError::TableAlreadyExists(ref cause) => write!(f, "{}", cause),
+            RestoreTableToPointInTimeError::TableInUse(ref cause) => write!(f, "{}", cause),
+            RestoreTableToPointInTimeError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreTableToPointInTimeError {}
 /// Errors returned by Scan
 #[derive(Debug, PartialEq)]
 pub enum ScanError {
@@ -4442,20 +4453,17 @@ impl ScanError {
     }
 }
 impl fmt::Display for ScanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ScanError {
-    fn description(&self) -> &str {
         match *self {
-            ScanError::InternalServerError(ref cause) => cause,
-            ScanError::ProvisionedThroughputExceeded(ref cause) => cause,
-            ScanError::RequestLimitExceeded(ref cause) => cause,
-            ScanError::ResourceNotFound(ref cause) => cause,
+            ScanError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ScanError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            ScanError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            ScanError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ScanError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -4493,20 +4501,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalServerError(ref cause) => cause,
-            TagResourceError::LimitExceeded(ref cause) => cause,
-            TagResourceError::ResourceInUse(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TagResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by TransactGetItems
 #[derive(Debug, PartialEq)]
 pub enum TransactGetItemsError {
@@ -4557,21 +4562,20 @@ impl TransactGetItemsError {
     }
 }
 impl fmt::Display for TransactGetItemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TransactGetItemsError {
-    fn description(&self) -> &str {
         match *self {
-            TransactGetItemsError::InternalServerError(ref cause) => cause,
-            TransactGetItemsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            TransactGetItemsError::RequestLimitExceeded(ref cause) => cause,
-            TransactGetItemsError::ResourceNotFound(ref cause) => cause,
-            TransactGetItemsError::TransactionCanceled(ref cause) => cause,
+            TransactGetItemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TransactGetItemsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            TransactGetItemsError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            TransactGetItemsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TransactGetItemsError::TransactionCanceled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TransactGetItemsError {}
 /// Errors returned by TransactWriteItems
 #[derive(Debug, PartialEq)]
 pub enum TransactWriteItemsError {
@@ -4636,23 +4640,24 @@ impl TransactWriteItemsError {
     }
 }
 impl fmt::Display for TransactWriteItemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TransactWriteItemsError {
-    fn description(&self) -> &str {
         match *self {
-            TransactWriteItemsError::IdempotentParameterMismatch(ref cause) => cause,
-            TransactWriteItemsError::InternalServerError(ref cause) => cause,
-            TransactWriteItemsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            TransactWriteItemsError::RequestLimitExceeded(ref cause) => cause,
-            TransactWriteItemsError::ResourceNotFound(ref cause) => cause,
-            TransactWriteItemsError::TransactionCanceled(ref cause) => cause,
-            TransactWriteItemsError::TransactionInProgress(ref cause) => cause,
+            TransactWriteItemsError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            TransactWriteItemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TransactWriteItemsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            TransactWriteItemsError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            TransactWriteItemsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TransactWriteItemsError::TransactionCanceled(ref cause) => write!(f, "{}", cause),
+            TransactWriteItemsError::TransactionInProgress(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TransactWriteItemsError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -4690,20 +4695,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalServerError(ref cause) => cause,
-            UntagResourceError::LimitExceeded(ref cause) => cause,
-            UntagResourceError::ResourceInUse(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateContinuousBackups
 #[derive(Debug, PartialEq)]
 pub enum UpdateContinuousBackupsError {
@@ -4742,19 +4744,18 @@ impl UpdateContinuousBackupsError {
     }
 }
 impl fmt::Display for UpdateContinuousBackupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateContinuousBackupsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateContinuousBackupsError::ContinuousBackupsUnavailable(ref cause) => cause,
-            UpdateContinuousBackupsError::InternalServerError(ref cause) => cause,
-            UpdateContinuousBackupsError::TableNotFound(ref cause) => cause,
+            UpdateContinuousBackupsError::ContinuousBackupsUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateContinuousBackupsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateContinuousBackupsError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateContinuousBackupsError {}
 /// Errors returned by UpdateContributorInsights
 #[derive(Debug, PartialEq)]
 pub enum UpdateContributorInsightsError {
@@ -4786,18 +4787,17 @@ impl UpdateContributorInsightsError {
     }
 }
 impl fmt::Display for UpdateContributorInsightsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateContributorInsightsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateContributorInsightsError::InternalServerError(ref cause) => cause,
-            UpdateContributorInsightsError::ResourceNotFound(ref cause) => cause,
+            UpdateContributorInsightsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateContributorInsightsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateContributorInsightsError {}
 /// Errors returned by UpdateGlobalTable
 #[derive(Debug, PartialEq)]
 pub enum UpdateGlobalTableError {
@@ -4846,21 +4846,18 @@ impl UpdateGlobalTableError {
     }
 }
 impl fmt::Display for UpdateGlobalTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGlobalTableError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGlobalTableError::GlobalTableNotFound(ref cause) => cause,
-            UpdateGlobalTableError::InternalServerError(ref cause) => cause,
-            UpdateGlobalTableError::ReplicaAlreadyExists(ref cause) => cause,
-            UpdateGlobalTableError::ReplicaNotFound(ref cause) => cause,
-            UpdateGlobalTableError::TableNotFound(ref cause) => cause,
+            UpdateGlobalTableError::GlobalTableNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableError::ReplicaAlreadyExists(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableError::ReplicaNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableError::TableNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGlobalTableError {}
 /// Errors returned by UpdateGlobalTableSettings
 #[derive(Debug, PartialEq)]
 pub enum UpdateGlobalTableSettingsError {
@@ -4920,22 +4917,23 @@ impl UpdateGlobalTableSettingsError {
     }
 }
 impl fmt::Display for UpdateGlobalTableSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGlobalTableSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGlobalTableSettingsError::GlobalTableNotFound(ref cause) => cause,
-            UpdateGlobalTableSettingsError::IndexNotFound(ref cause) => cause,
-            UpdateGlobalTableSettingsError::InternalServerError(ref cause) => cause,
-            UpdateGlobalTableSettingsError::LimitExceeded(ref cause) => cause,
-            UpdateGlobalTableSettingsError::ReplicaNotFound(ref cause) => cause,
-            UpdateGlobalTableSettingsError::ResourceInUse(ref cause) => cause,
+            UpdateGlobalTableSettingsError::GlobalTableNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateGlobalTableSettingsError::IndexNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableSettingsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateGlobalTableSettingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableSettingsError::ReplicaNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGlobalTableSettingsError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGlobalTableSettingsError {}
 /// Errors returned by UpdateItem
 #[derive(Debug, PartialEq)]
 pub enum UpdateItemError {
@@ -4992,23 +4990,20 @@ impl UpdateItemError {
     }
 }
 impl fmt::Display for UpdateItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateItemError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateItemError::ConditionalCheckFailed(ref cause) => cause,
-            UpdateItemError::InternalServerError(ref cause) => cause,
-            UpdateItemError::ItemCollectionSizeLimitExceeded(ref cause) => cause,
-            UpdateItemError::ProvisionedThroughputExceeded(ref cause) => cause,
-            UpdateItemError::RequestLimitExceeded(ref cause) => cause,
-            UpdateItemError::ResourceNotFound(ref cause) => cause,
-            UpdateItemError::TransactionConflict(ref cause) => cause,
+            UpdateItemError::ConditionalCheckFailed(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::ItemCollectionSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::RequestLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateItemError::TransactionConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateItemError {}
 /// Errors returned by UpdateTable
 #[derive(Debug, PartialEq)]
 pub enum UpdateTableError {
@@ -5046,20 +5041,17 @@ impl UpdateTableError {
     }
 }
 impl fmt::Display for UpdateTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTableError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTableError::InternalServerError(ref cause) => cause,
-            UpdateTableError::LimitExceeded(ref cause) => cause,
-            UpdateTableError::ResourceInUse(ref cause) => cause,
-            UpdateTableError::ResourceNotFound(ref cause) => cause,
+            UpdateTableError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTableError {}
 /// Errors returned by UpdateTableReplicaAutoScaling
 #[derive(Debug, PartialEq)]
 pub enum UpdateTableReplicaAutoScalingError {
@@ -5107,20 +5099,21 @@ impl UpdateTableReplicaAutoScalingError {
     }
 }
 impl fmt::Display for UpdateTableReplicaAutoScalingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTableReplicaAutoScalingError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTableReplicaAutoScalingError::InternalServerError(ref cause) => cause,
-            UpdateTableReplicaAutoScalingError::LimitExceeded(ref cause) => cause,
-            UpdateTableReplicaAutoScalingError::ResourceInUse(ref cause) => cause,
-            UpdateTableReplicaAutoScalingError::ResourceNotFound(ref cause) => cause,
+            UpdateTableReplicaAutoScalingError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateTableReplicaAutoScalingError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateTableReplicaAutoScalingError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateTableReplicaAutoScalingError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateTableReplicaAutoScalingError {}
 /// Errors returned by UpdateTimeToLive
 #[derive(Debug, PartialEq)]
 pub enum UpdateTimeToLiveError {
@@ -5160,20 +5153,17 @@ impl UpdateTimeToLiveError {
     }
 }
 impl fmt::Display for UpdateTimeToLiveError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTimeToLiveError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTimeToLiveError::InternalServerError(ref cause) => cause,
-            UpdateTimeToLiveError::LimitExceeded(ref cause) => cause,
-            UpdateTimeToLiveError::ResourceInUse(ref cause) => cause,
-            UpdateTimeToLiveError::ResourceNotFound(ref cause) => cause,
+            UpdateTimeToLiveError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateTimeToLiveError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateTimeToLiveError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateTimeToLiveError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTimeToLiveError {}
 /// Trait representing the capabilities of the DynamoDB API. DynamoDB clients implement this trait.
 #[async_trait]
 pub trait DynamoDb {

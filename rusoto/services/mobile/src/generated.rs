@@ -23,10 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 /// <p> The details of the bundle. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BundleDetails {
     #[serde(rename = "availablePlatforms")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -50,6 +51,7 @@ pub struct BundleDetails {
 
 /// <p> Request structure used to request a project be created. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectRequest {
     /// <p> ZIP or YAML file which contains configuration settings to be used when creating the project. This may be the contents of the file downloaded from the URL provided in an export project operation. </p>
     #[serde(rename = "contents")]
@@ -76,7 +78,7 @@ pub struct CreateProjectRequest {
 
 /// <p> Result structure used in response to a request to create a project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectResult {
     /// <p> Detailed information about the created AWS Mobile Hub project. </p>
     #[serde(rename = "details")]
@@ -86,6 +88,7 @@ pub struct CreateProjectResult {
 
 /// <p> Request structure used to request a project be deleted. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProjectRequest {
     /// <p> Unique project identifier. </p>
     #[serde(rename = "projectId")]
@@ -94,7 +97,7 @@ pub struct DeleteProjectRequest {
 
 /// <p> Result structure used in response to request to delete a project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProjectResult {
     /// <p> Resources which were deleted. </p>
     #[serde(rename = "deletedResources")]
@@ -108,6 +111,7 @@ pub struct DeleteProjectResult {
 
 /// <p> Request structure to request the details of a specific bundle. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBundleRequest {
     /// <p> Unique bundle identifier. </p>
     #[serde(rename = "bundleId")]
@@ -116,7 +120,7 @@ pub struct DescribeBundleRequest {
 
 /// <p> Result structure contains the details of the bundle. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBundleResult {
     /// <p> The details of the bundle. </p>
     #[serde(rename = "details")]
@@ -126,6 +130,7 @@ pub struct DescribeBundleResult {
 
 /// <p> Request structure used to request details about a project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProjectRequest {
     /// <p> Unique project identifier. </p>
     #[serde(rename = "projectId")]
@@ -138,7 +143,7 @@ pub struct DescribeProjectRequest {
 
 /// <p> Result structure used for requests of project details. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProjectResult {
     #[serde(rename = "details")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -147,6 +152,7 @@ pub struct DescribeProjectResult {
 
 /// <p> Request structure used to request generation of custom SDK and tool packages required to integrate mobile web or app clients with backed AWS resources. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportBundleRequest {
     /// <p> Unique bundle identifier. </p>
     #[serde(rename = "bundleId")]
@@ -163,7 +169,7 @@ pub struct ExportBundleRequest {
 
 /// <p> Result structure which contains link to download custom-generated SDK and tool packages used to integrate mobile web or app clients with backed AWS resources. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportBundleResult {
     /// <p> URL which contains the custom-generated SDK and tool packages used to integrate the client mobile app or web app with the AWS resources created by the AWS Mobile Hub project. </p>
     #[serde(rename = "downloadUrl")]
@@ -173,6 +179,7 @@ pub struct ExportBundleResult {
 
 /// <p> Request structure used in requests to export project configuration details. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportProjectRequest {
     /// <p> Unique project identifier. </p>
     #[serde(rename = "projectId")]
@@ -181,7 +188,7 @@ pub struct ExportProjectRequest {
 
 /// <p> Result structure used for requests to export project configuration details. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportProjectResult {
     /// <p> URL which can be used to download the exported project configuation file(s). </p>
     #[serde(rename = "downloadUrl")]
@@ -199,6 +206,7 @@ pub struct ExportProjectResult {
 
 /// <p> Request structure to request all available bundles. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBundlesRequest {
     /// <p> Maximum number of records to list in a single response. </p>
     #[serde(rename = "maxResults")]
@@ -212,7 +220,7 @@ pub struct ListBundlesRequest {
 
 /// <p> Result structure contains a list of all available bundles with details. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBundlesResult {
     /// <p> A list of bundles. </p>
     #[serde(rename = "bundleList")]
@@ -226,6 +234,7 @@ pub struct ListBundlesResult {
 
 /// <p> Request structure used to request projects list in AWS Mobile Hub. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProjectsRequest {
     /// <p> Maximum number of records to list in a single response. </p>
     #[serde(rename = "maxResults")]
@@ -239,7 +248,7 @@ pub struct ListProjectsRequest {
 
 /// <p> Result structure used for requests to list projects in AWS Mobile Hub. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProjectsResult {
     #[serde(rename = "nextToken")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -251,7 +260,7 @@ pub struct ListProjectsResult {
 
 /// <p> Detailed information about an AWS Mobile Hub project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectDetails {
     /// <p> Website URL for this project in the AWS Mobile Hub console. </p>
     #[serde(rename = "consoleUrl")]
@@ -284,7 +293,7 @@ pub struct ProjectDetails {
 
 /// <p> Summary information about an AWS Mobile Hub project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectSummary {
     /// <p> Name of the project. </p>
     #[serde(rename = "name")]
@@ -298,7 +307,7 @@ pub struct ProjectSummary {
 
 /// <p> Information about an instance of an AWS resource associated with a project. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Resource {
     #[serde(rename = "arn")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -319,6 +328,7 @@ pub struct Resource {
 
 /// <p> Request structure used for requests to update project configuration. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProjectRequest {
     /// <p> ZIP or YAML file which contains project configuration to be updated. This should be the contents of the file downloaded from the URL provided in an export project operation. </p>
     #[serde(rename = "contents")]
@@ -336,7 +346,7 @@ pub struct UpdateProjectRequest {
 
 /// <p> Result structure used for requests to updated project configuration. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProjectResult {
     /// <p> Detailed information about the updated AWS Mobile Hub project. </p>
     #[serde(rename = "details")]
@@ -396,23 +406,20 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::BadRequest(ref cause) => cause,
-            CreateProjectError::InternalFailure(ref cause) => cause,
-            CreateProjectError::LimitExceeded(ref cause) => cause,
-            CreateProjectError::NotFound(ref cause) => cause,
-            CreateProjectError::ServiceUnavailable(ref cause) => cause,
-            CreateProjectError::TooManyRequests(ref cause) => cause,
-            CreateProjectError::Unauthorized(ref cause) => cause,
+            CreateProjectError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by DeleteProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteProjectError {
@@ -455,21 +462,18 @@ impl DeleteProjectError {
     }
 }
 impl fmt::Display for DeleteProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProjectError::InternalFailure(ref cause) => cause,
-            DeleteProjectError::NotFound(ref cause) => cause,
-            DeleteProjectError::ServiceUnavailable(ref cause) => cause,
-            DeleteProjectError::TooManyRequests(ref cause) => cause,
-            DeleteProjectError::Unauthorized(ref cause) => cause,
+            DeleteProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProjectError {}
 /// Errors returned by DescribeBundle
 #[derive(Debug, PartialEq)]
 pub enum DescribeBundleError {
@@ -517,22 +521,19 @@ impl DescribeBundleError {
     }
 }
 impl fmt::Display for DescribeBundleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBundleError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBundleError::BadRequest(ref cause) => cause,
-            DescribeBundleError::InternalFailure(ref cause) => cause,
-            DescribeBundleError::NotFound(ref cause) => cause,
-            DescribeBundleError::ServiceUnavailable(ref cause) => cause,
-            DescribeBundleError::TooManyRequests(ref cause) => cause,
-            DescribeBundleError::Unauthorized(ref cause) => cause,
+            DescribeBundleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBundleError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeBundleError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeBundleError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeBundleError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeBundleError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBundleError {}
 /// Errors returned by DescribeProject
 #[derive(Debug, PartialEq)]
 pub enum DescribeProjectError {
@@ -580,22 +581,19 @@ impl DescribeProjectError {
     }
 }
 impl fmt::Display for DescribeProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProjectError::BadRequest(ref cause) => cause,
-            DescribeProjectError::InternalFailure(ref cause) => cause,
-            DescribeProjectError::NotFound(ref cause) => cause,
-            DescribeProjectError::ServiceUnavailable(ref cause) => cause,
-            DescribeProjectError::TooManyRequests(ref cause) => cause,
-            DescribeProjectError::Unauthorized(ref cause) => cause,
+            DescribeProjectError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProjectError {}
 /// Errors returned by ExportBundle
 #[derive(Debug, PartialEq)]
 pub enum ExportBundleError {
@@ -643,22 +641,19 @@ impl ExportBundleError {
     }
 }
 impl fmt::Display for ExportBundleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExportBundleError {
-    fn description(&self) -> &str {
         match *self {
-            ExportBundleError::BadRequest(ref cause) => cause,
-            ExportBundleError::InternalFailure(ref cause) => cause,
-            ExportBundleError::NotFound(ref cause) => cause,
-            ExportBundleError::ServiceUnavailable(ref cause) => cause,
-            ExportBundleError::TooManyRequests(ref cause) => cause,
-            ExportBundleError::Unauthorized(ref cause) => cause,
+            ExportBundleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ExportBundleError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ExportBundleError::NotFound(ref cause) => write!(f, "{}", cause),
+            ExportBundleError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ExportBundleError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ExportBundleError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExportBundleError {}
 /// Errors returned by ExportProject
 #[derive(Debug, PartialEq)]
 pub enum ExportProjectError {
@@ -706,22 +701,19 @@ impl ExportProjectError {
     }
 }
 impl fmt::Display for ExportProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExportProjectError {
-    fn description(&self) -> &str {
         match *self {
-            ExportProjectError::BadRequest(ref cause) => cause,
-            ExportProjectError::InternalFailure(ref cause) => cause,
-            ExportProjectError::NotFound(ref cause) => cause,
-            ExportProjectError::ServiceUnavailable(ref cause) => cause,
-            ExportProjectError::TooManyRequests(ref cause) => cause,
-            ExportProjectError::Unauthorized(ref cause) => cause,
+            ExportProjectError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ExportProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ExportProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            ExportProjectError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ExportProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ExportProjectError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExportProjectError {}
 /// Errors returned by ListBundles
 #[derive(Debug, PartialEq)]
 pub enum ListBundlesError {
@@ -764,21 +756,18 @@ impl ListBundlesError {
     }
 }
 impl fmt::Display for ListBundlesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBundlesError {
-    fn description(&self) -> &str {
         match *self {
-            ListBundlesError::BadRequest(ref cause) => cause,
-            ListBundlesError::InternalFailure(ref cause) => cause,
-            ListBundlesError::ServiceUnavailable(ref cause) => cause,
-            ListBundlesError::TooManyRequests(ref cause) => cause,
-            ListBundlesError::Unauthorized(ref cause) => cause,
+            ListBundlesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListBundlesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListBundlesError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListBundlesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListBundlesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBundlesError {}
 /// Errors returned by ListProjects
 #[derive(Debug, PartialEq)]
 pub enum ListProjectsError {
@@ -821,21 +810,18 @@ impl ListProjectsError {
     }
 }
 impl fmt::Display for ListProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProjectsError::BadRequest(ref cause) => cause,
-            ListProjectsError::InternalFailure(ref cause) => cause,
-            ListProjectsError::ServiceUnavailable(ref cause) => cause,
-            ListProjectsError::TooManyRequests(ref cause) => cause,
-            ListProjectsError::Unauthorized(ref cause) => cause,
+            ListProjectsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProjectsError {}
 /// Errors returned by UpdateProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateProjectError {
@@ -893,24 +879,21 @@ impl UpdateProjectError {
     }
 }
 impl fmt::Display for UpdateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProjectError::AccountActionRequired(ref cause) => cause,
-            UpdateProjectError::BadRequest(ref cause) => cause,
-            UpdateProjectError::InternalFailure(ref cause) => cause,
-            UpdateProjectError::LimitExceeded(ref cause) => cause,
-            UpdateProjectError::NotFound(ref cause) => cause,
-            UpdateProjectError::ServiceUnavailable(ref cause) => cause,
-            UpdateProjectError::TooManyRequests(ref cause) => cause,
-            UpdateProjectError::Unauthorized(ref cause) => cause,
+            UpdateProjectError::AccountActionRequired(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProjectError {}
 /// Trait representing the capabilities of the AWS Mobile API. AWS Mobile clients implement this trait.
 #[async_trait]
 pub trait Mobile {

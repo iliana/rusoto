@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateKmsKeyRequest {
     /// <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. This must be a symmetric CMK. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms">Amazon Resource Names - AWS Key Management Service (AWS KMS)</a> and <a href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Using Symmetric and Asymmetric Keys</a>.</p>
     #[serde(rename = "kmsKeyId")]
@@ -35,6 +37,7 @@ pub struct AssociateKmsKeyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelExportTaskRequest {
     /// <p>The ID of the export task.</p>
     #[serde(rename = "taskId")]
@@ -42,6 +45,7 @@ pub struct CancelExportTaskRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateExportTaskRequest {
     /// <p>The name of S3 bucket for the exported log data. The bucket must be in the same AWS region.</p>
     #[serde(rename = "destination")]
@@ -70,7 +74,7 @@ pub struct CreateExportTaskRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateExportTaskResponse {
     /// <p>The ID of the export task.</p>
     #[serde(rename = "taskId")]
@@ -79,6 +83,7 @@ pub struct CreateExportTaskResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLogGroupRequest {
     /// <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms">Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.</p>
     #[serde(rename = "kmsKeyId")]
@@ -94,6 +99,7 @@ pub struct CreateLogGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLogStreamRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -104,6 +110,7 @@ pub struct CreateLogStreamRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDestinationRequest {
     /// <p>The name of the destination.</p>
     #[serde(rename = "destinationName")]
@@ -111,6 +118,7 @@ pub struct DeleteDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLogGroupRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -118,6 +126,7 @@ pub struct DeleteLogGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLogStreamRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -128,6 +137,7 @@ pub struct DeleteLogStreamRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMetricFilterRequest {
     /// <p>The name of the metric filter.</p>
     #[serde(rename = "filterName")]
@@ -138,6 +148,7 @@ pub struct DeleteMetricFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourcePolicyRequest {
     /// <p>The name of the policy to be revoked. This parameter is required.</p>
     #[serde(rename = "policyName")]
@@ -146,6 +157,7 @@ pub struct DeleteResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRetentionPolicyRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -153,6 +165,7 @@ pub struct DeleteRetentionPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSubscriptionFilterRequest {
     /// <p>The name of the subscription filter.</p>
     #[serde(rename = "filterName")]
@@ -163,6 +176,7 @@ pub struct DeleteSubscriptionFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDestinationsRequest {
     /// <p>The prefix to match. If you don't specify a value, no prefix filter is applied.</p>
     #[serde(rename = "DestinationNamePrefix")]
@@ -179,7 +193,7 @@ pub struct DescribeDestinationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDestinationsResponse {
     /// <p>The destinations.</p>
     #[serde(rename = "destinations")]
@@ -191,6 +205,7 @@ pub struct DescribeDestinationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeExportTasksRequest {
     /// <p>The maximum number of items returned. If you don't specify a value, the default is up to 50 items.</p>
     #[serde(rename = "limit")]
@@ -211,7 +226,7 @@ pub struct DescribeExportTasksRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeExportTasksResponse {
     /// <p>The export tasks.</p>
     #[serde(rename = "exportTasks")]
@@ -223,6 +238,7 @@ pub struct DescribeExportTasksResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLogGroupsRequest {
     /// <p>The maximum number of items returned. If you don't specify a value, the default is up to 50 items.</p>
     #[serde(rename = "limit")]
@@ -239,7 +255,7 @@ pub struct DescribeLogGroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLogGroupsResponse {
     /// <p>The log groups.</p>
     #[serde(rename = "logGroups")]
@@ -251,6 +267,7 @@ pub struct DescribeLogGroupsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLogStreamsRequest {
     /// <p>If the value is true, results are returned in descending order. If the value is to false, results are returned in ascending order. The default value is false.</p>
     #[serde(rename = "descending")]
@@ -278,7 +295,7 @@ pub struct DescribeLogStreamsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLogStreamsResponse {
     /// <p>The log streams.</p>
     #[serde(rename = "logStreams")]
@@ -290,6 +307,7 @@ pub struct DescribeLogStreamsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMetricFiltersRequest {
     /// <p>The prefix to match.</p>
     #[serde(rename = "filterNamePrefix")]
@@ -318,7 +336,7 @@ pub struct DescribeMetricFiltersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMetricFiltersResponse {
     /// <p>The metric filters.</p>
     #[serde(rename = "metricFilters")]
@@ -330,6 +348,7 @@ pub struct DescribeMetricFiltersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeQueriesRequest {
     /// <p>Limits the returned queries to only those for the specified log group.</p>
     #[serde(rename = "logGroupName")]
@@ -349,7 +368,7 @@ pub struct DescribeQueriesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeQueriesResponse {
     #[serde(rename = "nextToken")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -361,6 +380,7 @@ pub struct DescribeQueriesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeResourcePoliciesRequest {
     /// <p>The maximum number of resource policies to be displayed with one call of this API.</p>
     #[serde(rename = "limit")]
@@ -372,7 +392,7 @@ pub struct DescribeResourcePoliciesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeResourcePoliciesResponse {
     #[serde(rename = "nextToken")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -384,6 +404,7 @@ pub struct DescribeResourcePoliciesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSubscriptionFiltersRequest {
     /// <p>The prefix to match. If you don't specify a value, no prefix filter is applied.</p>
     #[serde(rename = "filterNamePrefix")]
@@ -403,7 +424,7 @@ pub struct DescribeSubscriptionFiltersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSubscriptionFiltersResponse {
     #[serde(rename = "nextToken")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -416,7 +437,7 @@ pub struct DescribeSubscriptionFiltersResponse {
 
 /// <p>Represents a cross-account destination that receives subscription log events.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Destination {
     /// <p>An IAM policy document that governs which AWS accounts can create subscription filters against this destination.</p>
     #[serde(rename = "accessPolicy")]
@@ -445,6 +466,7 @@ pub struct Destination {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateKmsKeyRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -453,7 +475,7 @@ pub struct DisassociateKmsKeyRequest {
 
 /// <p>Represents an export task.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportTask {
     /// <p>The name of Amazon S3 bucket to which the log data was exported.</p>
     #[serde(rename = "destination")]
@@ -495,7 +517,7 @@ pub struct ExportTask {
 
 /// <p>Represents the status of an export task.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportTaskExecutionInfo {
     /// <p>The completion time of the export task, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.</p>
     #[serde(rename = "completionTime")]
@@ -509,7 +531,7 @@ pub struct ExportTaskExecutionInfo {
 
 /// <p>Represents the status of an export task.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportTaskStatus {
     /// <p>The status code of the export task.</p>
     #[serde(rename = "code")]
@@ -522,6 +544,7 @@ pub struct ExportTaskStatus {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct FilterLogEventsRequest {
     /// <p>The end of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time are not returned.</p>
     #[serde(rename = "endTime")]
@@ -557,7 +580,7 @@ pub struct FilterLogEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FilterLogEventsResponse {
     /// <p>The matched events.</p>
     #[serde(rename = "events")]
@@ -575,7 +598,7 @@ pub struct FilterLogEventsResponse {
 
 /// <p>Represents a matched event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FilteredLogEvent {
     /// <p>The ID of the event.</p>
     #[serde(rename = "eventId")]
@@ -600,6 +623,7 @@ pub struct FilteredLogEvent {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLogEventsRequest {
     /// <p>The end of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp equal to or later than this time are not included.</p>
     #[serde(rename = "endTime")]
@@ -630,7 +654,7 @@ pub struct GetLogEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLogEventsResponse {
     /// <p>The events.</p>
     #[serde(rename = "events")]
@@ -647,6 +671,7 @@ pub struct GetLogEventsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLogGroupFieldsRequest {
     /// <p>The name of the log group to search.</p>
     #[serde(rename = "logGroupName")]
@@ -658,7 +683,7 @@ pub struct GetLogGroupFieldsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLogGroupFieldsResponse {
     /// <p>The array of fields found in the query. Each object in the array contains the name of the field, along with the percentage of time it appeared in the log events that were queried.</p>
     #[serde(rename = "logGroupFields")]
@@ -667,6 +692,7 @@ pub struct GetLogGroupFieldsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLogRecordRequest {
     /// <p>The pointer corresponding to the log event record you want to retrieve. You get this from the response of a <code>GetQueryResults</code> operation. In that response, the value of the <code>@ptr</code> field for a log event is the value to use as <code>logRecordPointer</code> to retrieve that complete log event record.</p>
     #[serde(rename = "logRecordPointer")]
@@ -674,7 +700,7 @@ pub struct GetLogRecordRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLogRecordResponse {
     /// <p>The requested log event, as a JSON string.</p>
     #[serde(rename = "logRecord")]
@@ -683,6 +709,7 @@ pub struct GetLogRecordResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetQueryResultsRequest {
     /// <p>The ID number of the query.</p>
     #[serde(rename = "queryId")]
@@ -690,7 +717,7 @@ pub struct GetQueryResultsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetQueryResultsResponse {
     /// <p>The log events that matched the query criteria during the most recent time it ran.</p> <p>The <code>results</code> value is an array of arrays. Each log event is one object in the top-level array. Each of these log event objects is an array of <code>field</code>/<code>value</code> pairs.</p>
     #[serde(rename = "results")]
@@ -708,6 +735,7 @@ pub struct GetQueryResultsResponse {
 
 /// <p>Represents a log event, which is a record of activity that was recorded by the application or resource being monitored.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InputLogEvent {
     /// <p>The raw event message.</p>
     #[serde(rename = "message")]
@@ -718,6 +746,7 @@ pub struct InputLogEvent {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsLogGroupRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -725,7 +754,7 @@ pub struct ListTagsLogGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsLogGroupResponse {
     /// <p>The tags for the log group.</p>
     #[serde(rename = "tags")]
@@ -735,7 +764,7 @@ pub struct ListTagsLogGroupResponse {
 
 /// <p>Represents a log group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogGroup {
     /// <p>The Amazon Resource Name (ARN) of the log group.</p>
     #[serde(rename = "arn")]
@@ -768,7 +797,7 @@ pub struct LogGroup {
 
 /// <p>The fields contained in log events found by a <code>GetLogGroupFields</code> operation, along with the percentage of queried log events in which each field appears.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogGroupField {
     /// <p>The name of a log field.</p>
     #[serde(rename = "name")]
@@ -782,7 +811,7 @@ pub struct LogGroupField {
 
 /// <p>Represents a log stream, which is a sequence of log events from a single emitter of logs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogStream {
     /// <p>The Amazon Resource Name (ARN) of the log stream.</p>
     #[serde(rename = "arn")]
@@ -816,7 +845,7 @@ pub struct LogStream {
 
 /// <p>Metric filters express how CloudWatch Logs would extract metric observations from ingested log events and transform them into metric data in a CloudWatch metric.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MetricFilter {
     /// <p>The creation time of the metric filter, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.</p>
     #[serde(rename = "creationTime")]
@@ -841,7 +870,7 @@ pub struct MetricFilter {
 
 /// <p>Represents a matched event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MetricFilterMatchRecord {
     /// <p>The raw event data.</p>
     #[serde(rename = "eventMessage")]
@@ -877,7 +906,7 @@ pub struct MetricTransformation {
 
 /// <p>Represents a log event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputLogEvent {
     /// <p>The time the event was ingested, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.</p>
     #[serde(rename = "ingestionTime")]
@@ -894,6 +923,7 @@ pub struct OutputLogEvent {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutDestinationPolicyRequest {
     /// <p>An IAM policy document that authorizes cross-account users to deliver their log events to the associated destination.</p>
     #[serde(rename = "accessPolicy")]
@@ -904,6 +934,7 @@ pub struct PutDestinationPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutDestinationRequest {
     /// <p>A name for the destination.</p>
     #[serde(rename = "destinationName")]
@@ -917,7 +948,7 @@ pub struct PutDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutDestinationResponse {
     /// <p>The destination.</p>
     #[serde(rename = "destination")]
@@ -926,6 +957,7 @@ pub struct PutDestinationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLogEventsRequest {
     /// <p>The log events.</p>
     #[serde(rename = "logEvents")]
@@ -943,7 +975,7 @@ pub struct PutLogEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLogEventsResponse {
     /// <p>The next sequence token.</p>
     #[serde(rename = "nextSequenceToken")]
@@ -956,6 +988,7 @@ pub struct PutLogEventsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutMetricFilterRequest {
     /// <p>A name for the metric filter.</p>
     #[serde(rename = "filterName")]
@@ -972,6 +1005,7 @@ pub struct PutMetricFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutResourcePolicyRequest {
     /// <p>Details of the new policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. This parameter is required.</p> <p>The following example creates a resource policy enabling the Route 53 service to put DNS query logs in to the specified log group. Replace "logArn" with the ARN of your CloudWatch Logs resource, such as a log group or log stream.</p> <p> <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code> </p>
     #[serde(rename = "policyDocument")]
@@ -984,7 +1018,7 @@ pub struct PutResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutResourcePolicyResponse {
     /// <p>The new policy.</p>
     #[serde(rename = "resourcePolicy")]
@@ -993,6 +1027,7 @@ pub struct PutResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutRetentionPolicyRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -1002,6 +1037,7 @@ pub struct PutRetentionPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutSubscriptionFilterRequest {
     /// <p><p>The ARN of the destination to deliver matching log events to. Currently, the supported destinations are:</p> <ul> <li> <p>An Amazon Kinesis stream belonging to the same account as the subscription filter, for same-account delivery.</p> </li> <li> <p>A logical destination (specified using an ARN) belonging to a different account, for cross-account delivery.</p> </li> <li> <p>An Amazon Kinesis Firehose delivery stream belonging to the same account as the subscription filter, for same-account delivery.</p> </li> <li> <p>An AWS Lambda function belonging to the same account as the subscription filter, for same-account delivery.</p> </li> </ul></p>
     #[serde(rename = "destinationArn")]
@@ -1045,7 +1081,7 @@ pub struct QueryCompileErrorLocation {
 
 /// <p>Information about one CloudWatch Logs Insights query that matches the request in a <code>DescribeQueries</code> operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryInfo {
     /// <p>The date and time that this query was created.</p>
     #[serde(rename = "createTime")]
@@ -1071,7 +1107,7 @@ pub struct QueryInfo {
 
 /// <p>Contains the number of log events scanned by the query, the number of log events that matched the query criteria, and the total number of bytes in the log events that were scanned.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryStatistics {
     /// <p>The total number of bytes in the log events scanned during the query.</p>
     #[serde(rename = "bytesScanned")]
@@ -1089,7 +1125,7 @@ pub struct QueryStatistics {
 
 /// <p>Represents the rejected events.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RejectedLogEventsInfo {
     /// <p>The expired log events.</p>
     #[serde(rename = "expiredLogEventEndIndex")]
@@ -1107,7 +1143,7 @@ pub struct RejectedLogEventsInfo {
 
 /// <p>A policy enabling one or more entities to put logs to a log group in this account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourcePolicy {
     /// <p>Timestamp showing when this policy was last updated, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.</p>
     #[serde(rename = "lastUpdatedTime")]
@@ -1125,7 +1161,7 @@ pub struct ResourcePolicy {
 
 /// <p>Contains one field from one log event returned by a CloudWatch Logs Insights query, along with the value of that field.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResultField {
     /// <p>The log event field.</p>
     #[serde(rename = "field")]
@@ -1139,7 +1175,7 @@ pub struct ResultField {
 
 /// <p>Represents the search status of a log stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchedLogStream {
     /// <p>The name of the log stream.</p>
     #[serde(rename = "logStreamName")]
@@ -1152,6 +1188,7 @@ pub struct SearchedLogStream {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartQueryRequest {
     /// <p>The end of the time range to query. The range is inclusive, so the specified end time is included in the query. Specified as epoch time, the number of seconds since January 1, 1970, 00:00:00 UTC.</p>
     #[serde(rename = "endTime")]
@@ -1177,7 +1214,7 @@ pub struct StartQueryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartQueryResponse {
     /// <p>The unique ID of the query. </p>
     #[serde(rename = "queryId")]
@@ -1186,6 +1223,7 @@ pub struct StartQueryResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopQueryRequest {
     /// <p>The ID number of the query to stop. If necessary, you can use <code>DescribeQueries</code> to find this ID number.</p>
     #[serde(rename = "queryId")]
@@ -1193,7 +1231,7 @@ pub struct StopQueryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopQueryResponse {
     /// <p>This is true if the query was stopped by the <code>StopQuery</code> operation.</p>
     #[serde(rename = "success")]
@@ -1203,7 +1241,7 @@ pub struct StopQueryResponse {
 
 /// <p>Represents a subscription filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SubscriptionFilter {
     /// <p>The creation time of the subscription filter, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.</p>
     #[serde(rename = "creationTime")]
@@ -1234,6 +1272,7 @@ pub struct SubscriptionFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagLogGroupRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -1244,6 +1283,7 @@ pub struct TagLogGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TestMetricFilterRequest {
     #[serde(rename = "filterPattern")]
     pub filter_pattern: String,
@@ -1253,7 +1293,7 @@ pub struct TestMetricFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestMetricFilterResponse {
     /// <p>The matched events.</p>
     #[serde(rename = "matches")]
@@ -1262,6 +1302,7 @@ pub struct TestMetricFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagLogGroupRequest {
     /// <p>The name of the log group.</p>
     #[serde(rename = "logGroupName")]
@@ -1308,20 +1349,17 @@ impl AssociateKmsKeyError {
     }
 }
 impl fmt::Display for AssociateKmsKeyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateKmsKeyError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateKmsKeyError::InvalidParameter(ref cause) => cause,
-            AssociateKmsKeyError::OperationAborted(ref cause) => cause,
-            AssociateKmsKeyError::ResourceNotFound(ref cause) => cause,
-            AssociateKmsKeyError::ServiceUnavailable(ref cause) => cause,
+            AssociateKmsKeyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            AssociateKmsKeyError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            AssociateKmsKeyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            AssociateKmsKeyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateKmsKeyError {}
 /// Errors returned by CancelExportTask
 #[derive(Debug, PartialEq)]
 pub enum CancelExportTaskError {
@@ -1359,20 +1397,17 @@ impl CancelExportTaskError {
     }
 }
 impl fmt::Display for CancelExportTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelExportTaskError {
-    fn description(&self) -> &str {
         match *self {
-            CancelExportTaskError::InvalidOperation(ref cause) => cause,
-            CancelExportTaskError::InvalidParameter(ref cause) => cause,
-            CancelExportTaskError::ResourceNotFound(ref cause) => cause,
-            CancelExportTaskError::ServiceUnavailable(ref cause) => cause,
+            CancelExportTaskError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            CancelExportTaskError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CancelExportTaskError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CancelExportTaskError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelExportTaskError {}
 /// Errors returned by CreateExportTask
 #[derive(Debug, PartialEq)]
 pub enum CreateExportTaskError {
@@ -1422,22 +1457,19 @@ impl CreateExportTaskError {
     }
 }
 impl fmt::Display for CreateExportTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateExportTaskError {
-    fn description(&self) -> &str {
         match *self {
-            CreateExportTaskError::InvalidParameter(ref cause) => cause,
-            CreateExportTaskError::LimitExceeded(ref cause) => cause,
-            CreateExportTaskError::OperationAborted(ref cause) => cause,
-            CreateExportTaskError::ResourceAlreadyExists(ref cause) => cause,
-            CreateExportTaskError::ResourceNotFound(ref cause) => cause,
-            CreateExportTaskError::ServiceUnavailable(ref cause) => cause,
+            CreateExportTaskError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateExportTaskError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateExportTaskError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            CreateExportTaskError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateExportTaskError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CreateExportTaskError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateExportTaskError {}
 /// Errors returned by CreateLogGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateLogGroupError {
@@ -1482,21 +1514,18 @@ impl CreateLogGroupError {
     }
 }
 impl fmt::Display for CreateLogGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLogGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLogGroupError::InvalidParameter(ref cause) => cause,
-            CreateLogGroupError::LimitExceeded(ref cause) => cause,
-            CreateLogGroupError::OperationAborted(ref cause) => cause,
-            CreateLogGroupError::ResourceAlreadyExists(ref cause) => cause,
-            CreateLogGroupError::ServiceUnavailable(ref cause) => cause,
+            CreateLogGroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateLogGroupError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateLogGroupError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            CreateLogGroupError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateLogGroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLogGroupError {}
 /// Errors returned by CreateLogStream
 #[derive(Debug, PartialEq)]
 pub enum CreateLogStreamError {
@@ -1536,20 +1565,17 @@ impl CreateLogStreamError {
     }
 }
 impl fmt::Display for CreateLogStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLogStreamError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLogStreamError::InvalidParameter(ref cause) => cause,
-            CreateLogStreamError::ResourceAlreadyExists(ref cause) => cause,
-            CreateLogStreamError::ResourceNotFound(ref cause) => cause,
-            CreateLogStreamError::ServiceUnavailable(ref cause) => cause,
+            CreateLogStreamError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateLogStreamError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateLogStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CreateLogStreamError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLogStreamError {}
 /// Errors returned by DeleteDestination
 #[derive(Debug, PartialEq)]
 pub enum DeleteDestinationError {
@@ -1589,20 +1615,17 @@ impl DeleteDestinationError {
     }
 }
 impl fmt::Display for DeleteDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDestinationError::InvalidParameter(ref cause) => cause,
-            DeleteDestinationError::OperationAborted(ref cause) => cause,
-            DeleteDestinationError::ResourceNotFound(ref cause) => cause,
-            DeleteDestinationError::ServiceUnavailable(ref cause) => cause,
+            DeleteDestinationError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteDestinationError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteDestinationError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDestinationError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDestinationError {}
 /// Errors returned by DeleteLogGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteLogGroupError {
@@ -1640,20 +1663,17 @@ impl DeleteLogGroupError {
     }
 }
 impl fmt::Display for DeleteLogGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLogGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLogGroupError::InvalidParameter(ref cause) => cause,
-            DeleteLogGroupError::OperationAborted(ref cause) => cause,
-            DeleteLogGroupError::ResourceNotFound(ref cause) => cause,
-            DeleteLogGroupError::ServiceUnavailable(ref cause) => cause,
+            DeleteLogGroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteLogGroupError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteLogGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLogGroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLogGroupError {}
 /// Errors returned by DeleteLogStream
 #[derive(Debug, PartialEq)]
 pub enum DeleteLogStreamError {
@@ -1691,20 +1711,17 @@ impl DeleteLogStreamError {
     }
 }
 impl fmt::Display for DeleteLogStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLogStreamError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLogStreamError::InvalidParameter(ref cause) => cause,
-            DeleteLogStreamError::OperationAborted(ref cause) => cause,
-            DeleteLogStreamError::ResourceNotFound(ref cause) => cause,
-            DeleteLogStreamError::ServiceUnavailable(ref cause) => cause,
+            DeleteLogStreamError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteLogStreamError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteLogStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLogStreamError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLogStreamError {}
 /// Errors returned by DeleteMetricFilter
 #[derive(Debug, PartialEq)]
 pub enum DeleteMetricFilterError {
@@ -1744,20 +1761,17 @@ impl DeleteMetricFilterError {
     }
 }
 impl fmt::Display for DeleteMetricFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMetricFilterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMetricFilterError::InvalidParameter(ref cause) => cause,
-            DeleteMetricFilterError::OperationAborted(ref cause) => cause,
-            DeleteMetricFilterError::ResourceNotFound(ref cause) => cause,
-            DeleteMetricFilterError::ServiceUnavailable(ref cause) => cause,
+            DeleteMetricFilterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteMetricFilterError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteMetricFilterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMetricFilterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMetricFilterError {}
 /// Errors returned by DeleteResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourcePolicyError {
@@ -1796,19 +1810,16 @@ impl DeleteResourcePolicyError {
     }
 }
 impl fmt::Display for DeleteResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourcePolicyError::InvalidParameter(ref cause) => cause,
-            DeleteResourcePolicyError::ResourceNotFound(ref cause) => cause,
-            DeleteResourcePolicyError::ServiceUnavailable(ref cause) => cause,
+            DeleteResourcePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteResourcePolicyError {}
 /// Errors returned by DeleteRetentionPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteRetentionPolicyError {
@@ -1854,20 +1865,17 @@ impl DeleteRetentionPolicyError {
     }
 }
 impl fmt::Display for DeleteRetentionPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRetentionPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRetentionPolicyError::InvalidParameter(ref cause) => cause,
-            DeleteRetentionPolicyError::OperationAborted(ref cause) => cause,
-            DeleteRetentionPolicyError::ResourceNotFound(ref cause) => cause,
-            DeleteRetentionPolicyError::ServiceUnavailable(ref cause) => cause,
+            DeleteRetentionPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteRetentionPolicyError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteRetentionPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRetentionPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRetentionPolicyError {}
 /// Errors returned by DeleteSubscriptionFilter
 #[derive(Debug, PartialEq)]
 pub enum DeleteSubscriptionFilterError {
@@ -1913,20 +1921,17 @@ impl DeleteSubscriptionFilterError {
     }
 }
 impl fmt::Display for DeleteSubscriptionFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSubscriptionFilterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSubscriptionFilterError::InvalidParameter(ref cause) => cause,
-            DeleteSubscriptionFilterError::OperationAborted(ref cause) => cause,
-            DeleteSubscriptionFilterError::ResourceNotFound(ref cause) => cause,
-            DeleteSubscriptionFilterError::ServiceUnavailable(ref cause) => cause,
+            DeleteSubscriptionFilterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteSubscriptionFilterError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DeleteSubscriptionFilterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteSubscriptionFilterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSubscriptionFilterError {}
 /// Errors returned by DescribeDestinations
 #[derive(Debug, PartialEq)]
 pub enum DescribeDestinationsError {
@@ -1958,18 +1963,15 @@ impl DescribeDestinationsError {
     }
 }
 impl fmt::Display for DescribeDestinationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDestinationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDestinationsError::InvalidParameter(ref cause) => cause,
-            DescribeDestinationsError::ServiceUnavailable(ref cause) => cause,
+            DescribeDestinationsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeDestinationsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDestinationsError {}
 /// Errors returned by DescribeExportTasks
 #[derive(Debug, PartialEq)]
 pub enum DescribeExportTasksError {
@@ -2001,18 +2003,15 @@ impl DescribeExportTasksError {
     }
 }
 impl fmt::Display for DescribeExportTasksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeExportTasksError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeExportTasksError::InvalidParameter(ref cause) => cause,
-            DescribeExportTasksError::ServiceUnavailable(ref cause) => cause,
+            DescribeExportTasksError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeExportTasksError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeExportTasksError {}
 /// Errors returned by DescribeLogGroups
 #[derive(Debug, PartialEq)]
 pub enum DescribeLogGroupsError {
@@ -2042,18 +2041,15 @@ impl DescribeLogGroupsError {
     }
 }
 impl fmt::Display for DescribeLogGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLogGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLogGroupsError::InvalidParameter(ref cause) => cause,
-            DescribeLogGroupsError::ServiceUnavailable(ref cause) => cause,
+            DescribeLogGroupsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeLogGroupsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeLogGroupsError {}
 /// Errors returned by DescribeLogStreams
 #[derive(Debug, PartialEq)]
 pub enum DescribeLogStreamsError {
@@ -2088,19 +2084,16 @@ impl DescribeLogStreamsError {
     }
 }
 impl fmt::Display for DescribeLogStreamsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLogStreamsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLogStreamsError::InvalidParameter(ref cause) => cause,
-            DescribeLogStreamsError::ResourceNotFound(ref cause) => cause,
-            DescribeLogStreamsError::ServiceUnavailable(ref cause) => cause,
+            DescribeLogStreamsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeLogStreamsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeLogStreamsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeLogStreamsError {}
 /// Errors returned by DescribeMetricFilters
 #[derive(Debug, PartialEq)]
 pub enum DescribeMetricFiltersError {
@@ -2139,19 +2132,16 @@ impl DescribeMetricFiltersError {
     }
 }
 impl fmt::Display for DescribeMetricFiltersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMetricFiltersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMetricFiltersError::InvalidParameter(ref cause) => cause,
-            DescribeMetricFiltersError::ResourceNotFound(ref cause) => cause,
-            DescribeMetricFiltersError::ServiceUnavailable(ref cause) => cause,
+            DescribeMetricFiltersError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeMetricFiltersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMetricFiltersError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMetricFiltersError {}
 /// Errors returned by DescribeQueries
 #[derive(Debug, PartialEq)]
 pub enum DescribeQueriesError {
@@ -2184,19 +2174,16 @@ impl DescribeQueriesError {
     }
 }
 impl fmt::Display for DescribeQueriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeQueriesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeQueriesError::InvalidParameter(ref cause) => cause,
-            DescribeQueriesError::ResourceNotFound(ref cause) => cause,
-            DescribeQueriesError::ServiceUnavailable(ref cause) => cause,
+            DescribeQueriesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeQueriesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeQueriesError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeQueriesError {}
 /// Errors returned by DescribeResourcePolicies
 #[derive(Debug, PartialEq)]
 pub enum DescribeResourcePoliciesError {
@@ -2228,18 +2215,15 @@ impl DescribeResourcePoliciesError {
     }
 }
 impl fmt::Display for DescribeResourcePoliciesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeResourcePoliciesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeResourcePoliciesError::InvalidParameter(ref cause) => cause,
-            DescribeResourcePoliciesError::ServiceUnavailable(ref cause) => cause,
+            DescribeResourcePoliciesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeResourcePoliciesError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeResourcePoliciesError {}
 /// Errors returned by DescribeSubscriptionFilters
 #[derive(Debug, PartialEq)]
 pub enum DescribeSubscriptionFiltersError {
@@ -2280,19 +2264,18 @@ impl DescribeSubscriptionFiltersError {
     }
 }
 impl fmt::Display for DescribeSubscriptionFiltersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSubscriptionFiltersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSubscriptionFiltersError::InvalidParameter(ref cause) => cause,
-            DescribeSubscriptionFiltersError::ResourceNotFound(ref cause) => cause,
-            DescribeSubscriptionFiltersError::ServiceUnavailable(ref cause) => cause,
+            DescribeSubscriptionFiltersError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeSubscriptionFiltersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeSubscriptionFiltersError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeSubscriptionFiltersError {}
 /// Errors returned by DisassociateKmsKey
 #[derive(Debug, PartialEq)]
 pub enum DisassociateKmsKeyError {
@@ -2332,20 +2315,17 @@ impl DisassociateKmsKeyError {
     }
 }
 impl fmt::Display for DisassociateKmsKeyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateKmsKeyError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateKmsKeyError::InvalidParameter(ref cause) => cause,
-            DisassociateKmsKeyError::OperationAborted(ref cause) => cause,
-            DisassociateKmsKeyError::ResourceNotFound(ref cause) => cause,
-            DisassociateKmsKeyError::ServiceUnavailable(ref cause) => cause,
+            DisassociateKmsKeyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DisassociateKmsKeyError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            DisassociateKmsKeyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DisassociateKmsKeyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateKmsKeyError {}
 /// Errors returned by FilterLogEvents
 #[derive(Debug, PartialEq)]
 pub enum FilterLogEventsError {
@@ -2378,19 +2358,16 @@ impl FilterLogEventsError {
     }
 }
 impl fmt::Display for FilterLogEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for FilterLogEventsError {
-    fn description(&self) -> &str {
         match *self {
-            FilterLogEventsError::InvalidParameter(ref cause) => cause,
-            FilterLogEventsError::ResourceNotFound(ref cause) => cause,
-            FilterLogEventsError::ServiceUnavailable(ref cause) => cause,
+            FilterLogEventsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            FilterLogEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            FilterLogEventsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for FilterLogEventsError {}
 /// Errors returned by GetLogEvents
 #[derive(Debug, PartialEq)]
 pub enum GetLogEventsError {
@@ -2423,19 +2400,16 @@ impl GetLogEventsError {
     }
 }
 impl fmt::Display for GetLogEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLogEventsError {
-    fn description(&self) -> &str {
         match *self {
-            GetLogEventsError::InvalidParameter(ref cause) => cause,
-            GetLogEventsError::ResourceNotFound(ref cause) => cause,
-            GetLogEventsError::ServiceUnavailable(ref cause) => cause,
+            GetLogEventsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLogEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetLogEventsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLogEventsError {}
 /// Errors returned by GetLogGroupFields
 #[derive(Debug, PartialEq)]
 pub enum GetLogGroupFieldsError {
@@ -2475,20 +2449,17 @@ impl GetLogGroupFieldsError {
     }
 }
 impl fmt::Display for GetLogGroupFieldsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLogGroupFieldsError {
-    fn description(&self) -> &str {
         match *self {
-            GetLogGroupFieldsError::InvalidParameter(ref cause) => cause,
-            GetLogGroupFieldsError::LimitExceeded(ref cause) => cause,
-            GetLogGroupFieldsError::ResourceNotFound(ref cause) => cause,
-            GetLogGroupFieldsError::ServiceUnavailable(ref cause) => cause,
+            GetLogGroupFieldsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLogGroupFieldsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetLogGroupFieldsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetLogGroupFieldsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLogGroupFieldsError {}
 /// Errors returned by GetLogRecord
 #[derive(Debug, PartialEq)]
 pub enum GetLogRecordError {
@@ -2526,20 +2497,17 @@ impl GetLogRecordError {
     }
 }
 impl fmt::Display for GetLogRecordError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLogRecordError {
-    fn description(&self) -> &str {
         match *self {
-            GetLogRecordError::InvalidParameter(ref cause) => cause,
-            GetLogRecordError::LimitExceeded(ref cause) => cause,
-            GetLogRecordError::ResourceNotFound(ref cause) => cause,
-            GetLogRecordError::ServiceUnavailable(ref cause) => cause,
+            GetLogRecordError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLogRecordError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetLogRecordError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetLogRecordError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLogRecordError {}
 /// Errors returned by GetQueryResults
 #[derive(Debug, PartialEq)]
 pub enum GetQueryResultsError {
@@ -2572,19 +2540,16 @@ impl GetQueryResultsError {
     }
 }
 impl fmt::Display for GetQueryResultsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetQueryResultsError {
-    fn description(&self) -> &str {
         match *self {
-            GetQueryResultsError::InvalidParameter(ref cause) => cause,
-            GetQueryResultsError::ResourceNotFound(ref cause) => cause,
-            GetQueryResultsError::ServiceUnavailable(ref cause) => cause,
+            GetQueryResultsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetQueryResultsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetQueryResultsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetQueryResultsError {}
 /// Errors returned by ListTagsLogGroup
 #[derive(Debug, PartialEq)]
 pub enum ListTagsLogGroupError {
@@ -2612,18 +2577,15 @@ impl ListTagsLogGroupError {
     }
 }
 impl fmt::Display for ListTagsLogGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsLogGroupError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsLogGroupError::ResourceNotFound(ref cause) => cause,
-            ListTagsLogGroupError::ServiceUnavailable(ref cause) => cause,
+            ListTagsLogGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsLogGroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsLogGroupError {}
 /// Errors returned by PutDestination
 #[derive(Debug, PartialEq)]
 pub enum PutDestinationError {
@@ -2656,19 +2618,16 @@ impl PutDestinationError {
     }
 }
 impl fmt::Display for PutDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            PutDestinationError::InvalidParameter(ref cause) => cause,
-            PutDestinationError::OperationAborted(ref cause) => cause,
-            PutDestinationError::ServiceUnavailable(ref cause) => cause,
+            PutDestinationError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutDestinationError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            PutDestinationError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutDestinationError {}
 /// Errors returned by PutDestinationPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutDestinationPolicyError {
@@ -2707,19 +2666,16 @@ impl PutDestinationPolicyError {
     }
 }
 impl fmt::Display for PutDestinationPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutDestinationPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutDestinationPolicyError::InvalidParameter(ref cause) => cause,
-            PutDestinationPolicyError::OperationAborted(ref cause) => cause,
-            PutDestinationPolicyError::ServiceUnavailable(ref cause) => cause,
+            PutDestinationPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutDestinationPolicyError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            PutDestinationPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutDestinationPolicyError {}
 /// Errors returned by PutLogEvents
 #[derive(Debug, PartialEq)]
 pub enum PutLogEventsError {
@@ -2767,22 +2723,19 @@ impl PutLogEventsError {
     }
 }
 impl fmt::Display for PutLogEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLogEventsError {
-    fn description(&self) -> &str {
         match *self {
-            PutLogEventsError::DataAlreadyAccepted(ref cause) => cause,
-            PutLogEventsError::InvalidParameter(ref cause) => cause,
-            PutLogEventsError::InvalidSequenceToken(ref cause) => cause,
-            PutLogEventsError::ResourceNotFound(ref cause) => cause,
-            PutLogEventsError::ServiceUnavailable(ref cause) => cause,
-            PutLogEventsError::UnrecognizedClient(ref cause) => cause,
+            PutLogEventsError::DataAlreadyAccepted(ref cause) => write!(f, "{}", cause),
+            PutLogEventsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutLogEventsError::InvalidSequenceToken(ref cause) => write!(f, "{}", cause),
+            PutLogEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutLogEventsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            PutLogEventsError::UnrecognizedClient(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutLogEventsError {}
 /// Errors returned by PutMetricFilter
 #[derive(Debug, PartialEq)]
 pub enum PutMetricFilterError {
@@ -2825,21 +2778,18 @@ impl PutMetricFilterError {
     }
 }
 impl fmt::Display for PutMetricFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutMetricFilterError {
-    fn description(&self) -> &str {
         match *self {
-            PutMetricFilterError::InvalidParameter(ref cause) => cause,
-            PutMetricFilterError::LimitExceeded(ref cause) => cause,
-            PutMetricFilterError::OperationAborted(ref cause) => cause,
-            PutMetricFilterError::ResourceNotFound(ref cause) => cause,
-            PutMetricFilterError::ServiceUnavailable(ref cause) => cause,
+            PutMetricFilterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutMetricFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutMetricFilterError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            PutMetricFilterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutMetricFilterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutMetricFilterError {}
 /// Errors returned by PutResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutResourcePolicyError {
@@ -2874,19 +2824,16 @@ impl PutResourcePolicyError {
     }
 }
 impl fmt::Display for PutResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutResourcePolicyError::InvalidParameter(ref cause) => cause,
-            PutResourcePolicyError::LimitExceeded(ref cause) => cause,
-            PutResourcePolicyError::ServiceUnavailable(ref cause) => cause,
+            PutResourcePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutResourcePolicyError {}
 /// Errors returned by PutRetentionPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutRetentionPolicyError {
@@ -2926,20 +2873,17 @@ impl PutRetentionPolicyError {
     }
 }
 impl fmt::Display for PutRetentionPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutRetentionPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutRetentionPolicyError::InvalidParameter(ref cause) => cause,
-            PutRetentionPolicyError::OperationAborted(ref cause) => cause,
-            PutRetentionPolicyError::ResourceNotFound(ref cause) => cause,
-            PutRetentionPolicyError::ServiceUnavailable(ref cause) => cause,
+            PutRetentionPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutRetentionPolicyError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            PutRetentionPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutRetentionPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutRetentionPolicyError {}
 /// Errors returned by PutSubscriptionFilter
 #[derive(Debug, PartialEq)]
 pub enum PutSubscriptionFilterError {
@@ -2990,21 +2934,18 @@ impl PutSubscriptionFilterError {
     }
 }
 impl fmt::Display for PutSubscriptionFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutSubscriptionFilterError {
-    fn description(&self) -> &str {
         match *self {
-            PutSubscriptionFilterError::InvalidParameter(ref cause) => cause,
-            PutSubscriptionFilterError::LimitExceeded(ref cause) => cause,
-            PutSubscriptionFilterError::OperationAborted(ref cause) => cause,
-            PutSubscriptionFilterError::ResourceNotFound(ref cause) => cause,
-            PutSubscriptionFilterError::ServiceUnavailable(ref cause) => cause,
+            PutSubscriptionFilterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutSubscriptionFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutSubscriptionFilterError::OperationAborted(ref cause) => write!(f, "{}", cause),
+            PutSubscriptionFilterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutSubscriptionFilterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutSubscriptionFilterError {}
 /// Errors returned by StartQuery
 #[derive(Debug, PartialEq)]
 pub enum StartQueryError {
@@ -3047,21 +2988,18 @@ impl StartQueryError {
     }
 }
 impl fmt::Display for StartQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartQueryError {
-    fn description(&self) -> &str {
         match *self {
-            StartQueryError::InvalidParameter(ref cause) => cause,
-            StartQueryError::LimitExceeded(ref cause) => cause,
-            StartQueryError::MalformedQuery(ref cause) => cause,
-            StartQueryError::ResourceNotFound(ref cause) => cause,
-            StartQueryError::ServiceUnavailable(ref cause) => cause,
+            StartQueryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartQueryError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartQueryError::MalformedQuery(ref cause) => write!(f, "{}", cause),
+            StartQueryError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartQueryError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartQueryError {}
 /// Errors returned by StopQuery
 #[derive(Debug, PartialEq)]
 pub enum StopQueryError {
@@ -3094,19 +3032,16 @@ impl StopQueryError {
     }
 }
 impl fmt::Display for StopQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopQueryError {
-    fn description(&self) -> &str {
         match *self {
-            StopQueryError::InvalidParameter(ref cause) => cause,
-            StopQueryError::ResourceNotFound(ref cause) => cause,
-            StopQueryError::ServiceUnavailable(ref cause) => cause,
+            StopQueryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StopQueryError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StopQueryError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopQueryError {}
 /// Errors returned by TagLogGroup
 #[derive(Debug, PartialEq)]
 pub enum TagLogGroupError {
@@ -3134,18 +3069,15 @@ impl TagLogGroupError {
     }
 }
 impl fmt::Display for TagLogGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagLogGroupError {
-    fn description(&self) -> &str {
         match *self {
-            TagLogGroupError::InvalidParameter(ref cause) => cause,
-            TagLogGroupError::ResourceNotFound(ref cause) => cause,
+            TagLogGroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            TagLogGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagLogGroupError {}
 /// Errors returned by TestMetricFilter
 #[derive(Debug, PartialEq)]
 pub enum TestMetricFilterError {
@@ -3173,18 +3105,15 @@ impl TestMetricFilterError {
     }
 }
 impl fmt::Display for TestMetricFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TestMetricFilterError {
-    fn description(&self) -> &str {
         match *self {
-            TestMetricFilterError::InvalidParameter(ref cause) => cause,
-            TestMetricFilterError::ServiceUnavailable(ref cause) => cause,
+            TestMetricFilterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            TestMetricFilterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TestMetricFilterError {}
 /// Errors returned by UntagLogGroup
 #[derive(Debug, PartialEq)]
 pub enum UntagLogGroupError {
@@ -3207,17 +3136,14 @@ impl UntagLogGroupError {
     }
 }
 impl fmt::Display for UntagLogGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagLogGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UntagLogGroupError::ResourceNotFound(ref cause) => cause,
+            UntagLogGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagLogGroupError {}
 /// Trait representing the capabilities of the Amazon CloudWatch Logs API. Amazon CloudWatch Logs clients implement this trait.
 #[async_trait]
 pub trait CloudWatchLogs {

@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Describes hints for the buffering to perform before delivering data to the destination. These options are treated as hints, and therefore Kinesis Data Firehose might choose to use different values when it is optimal. The <code>SizeInMBs</code> and <code>IntervalInSeconds</code> parameters are optional. However, if specify a value for one of them, you must also provide a value for the other.</p>
@@ -71,6 +72,7 @@ pub struct CopyCommand {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeliveryStreamInput {
     /// <p>Used to specify the type and Amazon Resource Name (ARN) of the KMS key needed for Server-Side Encryption (SSE).</p>
     #[serde(rename = "DeliveryStreamEncryptionConfigurationInput")]
@@ -111,7 +113,7 @@ pub struct CreateDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeliveryStreamOutput {
     /// <p>The ARN of the delivery stream.</p>
     #[serde(rename = "DeliveryStreamARN")]
@@ -141,6 +143,7 @@ pub struct DataFormatConversionConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDeliveryStreamInput {
     /// <p>Set this to true if you want to delete the delivery stream even if Kinesis Data Firehose is unable to retire the grant for the CMK. Kinesis Data Firehose might be unable to retire the grant due to a customer error, such as when the CMK or the grant are in an invalid state. If you force deletion, you can then use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html">RevokeGrant</a> operation to revoke the grant you gave to Kinesis Data Firehose. If a failure to retire the grant happens due to an AWS KMS issue, Kinesis Data Firehose keeps retrying the delete operation.</p> <p>The default value is false.</p>
     #[serde(rename = "AllowForceDelete")]
@@ -152,12 +155,12 @@ pub struct DeleteDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDeliveryStreamOutput {}
 
 /// <p>Contains information about a delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeliveryStreamDescription {
     /// <p>The date and time that the delivery stream was created.</p>
     #[serde(rename = "CreateTimestamp")]
@@ -204,7 +207,7 @@ pub struct DeliveryStreamDescription {
 
 /// <p>Contains information about the server-side encryption (SSE) status for the delivery stream, the type customer master key (CMK) in use, if any, and the ARN of the CMK. You can get <code>DeliveryStreamEncryptionConfiguration</code> by invoking the <a>DescribeDeliveryStream</a> operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeliveryStreamEncryptionConfiguration {
     /// <p>Provides details in case one of the following operations fails due to an error related to KMS: <a>CreateDeliveryStream</a>, <a>DeleteDeliveryStream</a>, <a>StartDeliveryStreamEncryption</a>, <a>StopDeliveryStreamEncryption</a>.</p>
     #[serde(rename = "FailureDescription")]
@@ -226,6 +229,7 @@ pub struct DeliveryStreamEncryptionConfiguration {
 
 /// <p>Used to specify the type and Amazon Resource Name (ARN) of the CMK needed for Server-Side Encryption (SSE). </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeliveryStreamEncryptionConfigurationInput {
     /// <p>If you set <code>KeyType</code> to <code>CUSTOMER_MANAGED_CMK</code>, you must specify the Amazon Resource Name (ARN) of the CMK. If you set <code>KeyType</code> to <code>AWS_OWNED_CMK</code>, Kinesis Data Firehose uses a service-account CMK.</p>
     #[serde(rename = "KeyARN")]
@@ -237,6 +241,7 @@ pub struct DeliveryStreamEncryptionConfigurationInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDeliveryStreamInput {
     /// <p>The name of the delivery stream.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -252,7 +257,7 @@ pub struct DescribeDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDeliveryStreamOutput {
     /// <p>Information about the delivery stream.</p>
     #[serde(rename = "DeliveryStreamDescription")]
@@ -274,7 +279,7 @@ pub struct Deserializer {
 
 /// <p>Describes the destination for a delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DestinationDescription {
     /// <p>The ID of the destination.</p>
     #[serde(rename = "DestinationId")]
@@ -316,6 +321,7 @@ pub struct ElasticsearchBufferingHints {
 
 /// <p>Describes the configuration of a destination in Amazon ES.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ElasticsearchDestinationConfiguration {
     /// <p>The buffering options. If no value is specified, the default values for <code>ElasticsearchBufferingHints</code> are used.</p>
     #[serde(rename = "BufferingHints")]
@@ -366,7 +372,7 @@ pub struct ElasticsearchDestinationConfiguration {
 
 /// <p>The destination description in Amazon ES.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ElasticsearchDestinationDescription {
     /// <p>The buffering options.</p>
     #[serde(rename = "BufferingHints")]
@@ -420,6 +426,7 @@ pub struct ElasticsearchDestinationDescription {
 
 /// <p>Describes an update for a destination in Amazon ES.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ElasticsearchDestinationUpdate {
     /// <p>The buffering options. If no value is specified, <code>ElasticsearchBufferingHints</code> object default values are used. </p>
     #[serde(rename = "BufferingHints")]
@@ -491,6 +498,7 @@ pub struct EncryptionConfiguration {
 
 /// <p>Describes the configuration of a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExtendedS3DestinationConfiguration {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -542,7 +550,7 @@ pub struct ExtendedS3DestinationConfiguration {
 
 /// <p>Describes a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExtendedS3DestinationDescription {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -591,6 +599,7 @@ pub struct ExtendedS3DestinationDescription {
 
 /// <p>Describes an update for a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExtendedS3DestinationUpdate {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -644,7 +653,7 @@ pub struct ExtendedS3DestinationUpdate {
 
 /// <p>Provides details in case one of the following operations fails due to an error related to KMS: <a>CreateDeliveryStream</a>, <a>DeleteDeliveryStream</a>, <a>StartDeliveryStreamEncryption</a>, <a>StopDeliveryStreamEncryption</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailureDescription {
     /// <p>A message providing details about the error that caused the failure.</p>
     #[serde(rename = "Details")]
@@ -682,6 +691,7 @@ pub struct KMSEncryptionConfig {
 
 /// <p>The stream and role Amazon Resource Names (ARNs) for a Kinesis data stream used as the source for a delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct KinesisStreamSourceConfiguration {
     /// <p>The ARN of the source Kinesis data stream. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon Kinesis Data Streams ARN Format</a>.</p>
     #[serde(rename = "KinesisStreamARN")]
@@ -693,7 +703,7 @@ pub struct KinesisStreamSourceConfiguration {
 
 /// <p>Details about a Kinesis data stream used as the source for a Kinesis Data Firehose delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct KinesisStreamSourceDescription {
     /// <p>Kinesis Data Firehose starts retrieving records from the Kinesis data stream starting with this timestamp.</p>
     #[serde(rename = "DeliveryStartTimestamp")]
@@ -710,6 +720,7 @@ pub struct KinesisStreamSourceDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeliveryStreamsInput {
     /// <p>The delivery stream type. This can be one of the following values:</p> <ul> <li> <p> <code>DirectPut</code>: Provider applications access the delivery stream directly.</p> </li> <li> <p> <code>KinesisStreamAsSource</code>: The delivery stream uses a Kinesis data stream as a source.</p> </li> </ul> <p>This parameter is optional. If this parameter is omitted, delivery streams of all types are returned.</p>
     #[serde(rename = "DeliveryStreamType")]
@@ -726,7 +737,7 @@ pub struct ListDeliveryStreamsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeliveryStreamsOutput {
     /// <p>The names of the delivery streams.</p>
     #[serde(rename = "DeliveryStreamNames")]
@@ -737,6 +748,7 @@ pub struct ListDeliveryStreamsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForDeliveryStreamInput {
     /// <p>The name of the delivery stream whose tags you want to list.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -752,7 +764,7 @@ pub struct ListTagsForDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForDeliveryStreamOutput {
     /// <p>If this is <code>true</code> in the response, more tags are available. To list the remaining tags, set <code>ExclusiveStartTagKey</code> to the key of the last tag returned and call <code>ListTagsForDeliveryStream</code> again.</p>
     #[serde(rename = "HasMoreTags")]
@@ -899,6 +911,7 @@ pub struct ProcessorParameter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutRecordBatchInput {
     /// <p>The name of the delivery stream.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -909,7 +922,7 @@ pub struct PutRecordBatchInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutRecordBatchOutput {
     /// <p>Indicates whether server-side encryption (SSE) was enabled during this operation.</p>
     #[serde(rename = "Encrypted")]
@@ -925,7 +938,7 @@ pub struct PutRecordBatchOutput {
 
 /// <p>Contains the result for an individual record from a <a>PutRecordBatch</a> request. If the record is successfully added to your delivery stream, it receives a record ID. If the record fails to be added to your delivery stream, the result includes an error code and an error message.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutRecordBatchResponseEntry {
     /// <p>The error code for an individual record result.</p>
     #[serde(rename = "ErrorCode")]
@@ -942,6 +955,7 @@ pub struct PutRecordBatchResponseEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutRecordInput {
     /// <p>The name of the delivery stream.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -952,7 +966,7 @@ pub struct PutRecordInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutRecordOutput {
     /// <p>Indicates whether server-side encryption (SSE) was enabled during this operation.</p>
     #[serde(rename = "Encrypted")]
@@ -965,6 +979,7 @@ pub struct PutRecordOutput {
 
 /// <p>The unit of data in a delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Record {
     /// <p>The data blob, which is base64-encoded when the blob is serialized. The maximum size of the data blob, before base64-encoding, is 1,000 KiB.</p>
     #[serde(rename = "Data")]
@@ -978,6 +993,7 @@ pub struct Record {
 
 /// <p>Describes the configuration of a destination in Amazon Redshift.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RedshiftDestinationConfiguration {
     /// <p>The CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1021,7 +1037,7 @@ pub struct RedshiftDestinationConfiguration {
 
 /// <p>Describes a destination in Amazon Redshift.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RedshiftDestinationDescription {
     /// <p>The Amazon CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1062,6 +1078,7 @@ pub struct RedshiftDestinationDescription {
 
 /// <p>Describes an update for a destination in Amazon Redshift.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RedshiftDestinationUpdate {
     /// <p>The Amazon CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1120,6 +1137,7 @@ pub struct RedshiftRetryOptions {
 
 /// <p>Describes the configuration of a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct S3DestinationConfiguration {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -1155,7 +1173,7 @@ pub struct S3DestinationConfiguration {
 
 /// <p>Describes a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct S3DestinationDescription {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -1188,6 +1206,7 @@ pub struct S3DestinationDescription {
 
 /// <p>Describes an update for a destination in Amazon S3.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct S3DestinationUpdate {
     /// <p>The ARN of the S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
     #[serde(rename = "BucketARN")]
@@ -1267,7 +1286,7 @@ pub struct Serializer {
 
 /// <p>Details about a Kinesis data stream used as the source for a Kinesis Data Firehose delivery stream.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SourceDescription {
     /// <p>The <a>KinesisStreamSourceDescription</a> value for the source Kinesis data stream.</p>
     #[serde(rename = "KinesisStreamSourceDescription")]
@@ -1277,6 +1296,7 @@ pub struct SourceDescription {
 
 /// <p>Describes the configuration of a destination in Splunk.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SplunkDestinationConfiguration {
     /// <p>The Amazon CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1314,7 +1334,7 @@ pub struct SplunkDestinationConfiguration {
 
 /// <p>Describes a destination in Splunk.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SplunkDestinationDescription {
     /// <p>The Amazon CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1356,6 +1376,7 @@ pub struct SplunkDestinationDescription {
 
 /// <p>Describes an update for a destination in Splunk.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SplunkDestinationUpdate {
     /// <p>The Amazon CloudWatch logging options for your delivery stream.</p>
     #[serde(rename = "CloudWatchLoggingOptions")]
@@ -1405,6 +1426,7 @@ pub struct SplunkRetryOptions {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartDeliveryStreamEncryptionInput {
     /// <p>Used to specify the type and Amazon Resource Name (ARN) of the KMS key needed for Server-Side Encryption (SSE).</p>
     #[serde(rename = "DeliveryStreamEncryptionConfigurationInput")]
@@ -1417,10 +1439,11 @@ pub struct StartDeliveryStreamEncryptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartDeliveryStreamEncryptionOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopDeliveryStreamEncryptionInput {
     /// <p>The name of the delivery stream for which you want to disable server-side encryption (SSE).</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -1428,7 +1451,7 @@ pub struct StopDeliveryStreamEncryptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopDeliveryStreamEncryptionOutput {}
 
 /// <p>Metadata that you can assign to a delivery stream, consisting of a key-value pair.</p>
@@ -1444,6 +1467,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagDeliveryStreamInput {
     /// <p>The name of the delivery stream to which you want to add the tags.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -1454,10 +1478,11 @@ pub struct TagDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagDeliveryStreamOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagDeliveryStreamInput {
     /// <p>The name of the delivery stream.</p>
     #[serde(rename = "DeliveryStreamName")]
@@ -1468,10 +1493,11 @@ pub struct UntagDeliveryStreamInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagDeliveryStreamOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDestinationInput {
     /// <p>Obtain this value from the <code>VersionId</code> result of <a>DeliveryStreamDescription</a>. This value is required, and helps the service perform conditional operations. For example, if there is an interleaving update and this value is null, then the update destination fails. After the update is successful, the <code>VersionId</code> value is updated. The service then performs a merge of the old configuration with the new configuration.</p>
     #[serde(rename = "CurrentDeliveryStreamVersionId")]
@@ -1501,7 +1527,7 @@ pub struct UpdateDestinationInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDestinationOutput {}
 
 /// Errors returned by CreateDeliveryStream
@@ -1545,20 +1571,17 @@ impl CreateDeliveryStreamError {
     }
 }
 impl fmt::Display for CreateDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeliveryStreamError::InvalidArgument(ref cause) => cause,
-            CreateDeliveryStreamError::InvalidKMSResource(ref cause) => cause,
-            CreateDeliveryStreamError::LimitExceeded(ref cause) => cause,
-            CreateDeliveryStreamError::ResourceInUse(ref cause) => cause,
+            CreateDeliveryStreamError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            CreateDeliveryStreamError::InvalidKMSResource(ref cause) => write!(f, "{}", cause),
+            CreateDeliveryStreamError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDeliveryStreamError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeliveryStreamError {}
 /// Errors returned by DeleteDeliveryStream
 #[derive(Debug, PartialEq)]
 pub enum DeleteDeliveryStreamError {
@@ -1588,18 +1611,15 @@ impl DeleteDeliveryStreamError {
     }
 }
 impl fmt::Display for DeleteDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDeliveryStreamError::ResourceInUse(ref cause) => cause,
-            DeleteDeliveryStreamError::ResourceNotFound(ref cause) => cause,
+            DeleteDeliveryStreamError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteDeliveryStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDeliveryStreamError {}
 /// Errors returned by DescribeDeliveryStream
 #[derive(Debug, PartialEq)]
 pub enum DescribeDeliveryStreamError {
@@ -1624,17 +1644,14 @@ impl DescribeDeliveryStreamError {
     }
 }
 impl fmt::Display for DescribeDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDeliveryStreamError::ResourceNotFound(ref cause) => cause,
+            DescribeDeliveryStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDeliveryStreamError {}
 /// Errors returned by ListDeliveryStreams
 #[derive(Debug, PartialEq)]
 pub enum ListDeliveryStreamsError {}
@@ -1651,15 +1668,12 @@ impl ListDeliveryStreamsError {
     }
 }
 impl fmt::Display for ListDeliveryStreamsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeliveryStreamsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListDeliveryStreamsError {}
 /// Errors returned by ListTagsForDeliveryStream
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForDeliveryStreamError {
@@ -1698,19 +1712,16 @@ impl ListTagsForDeliveryStreamError {
     }
 }
 impl fmt::Display for ListTagsForDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForDeliveryStreamError::InvalidArgument(ref cause) => cause,
-            ListTagsForDeliveryStreamError::LimitExceeded(ref cause) => cause,
-            ListTagsForDeliveryStreamError::ResourceNotFound(ref cause) => cause,
+            ListTagsForDeliveryStreamError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            ListTagsForDeliveryStreamError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListTagsForDeliveryStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForDeliveryStreamError {}
 /// Errors returned by PutRecord
 #[derive(Debug, PartialEq)]
 pub enum PutRecordError {
@@ -1748,20 +1759,17 @@ impl PutRecordError {
     }
 }
 impl fmt::Display for PutRecordError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutRecordError {
-    fn description(&self) -> &str {
         match *self {
-            PutRecordError::InvalidArgument(ref cause) => cause,
-            PutRecordError::InvalidKMSResource(ref cause) => cause,
-            PutRecordError::ResourceNotFound(ref cause) => cause,
-            PutRecordError::ServiceUnavailable(ref cause) => cause,
+            PutRecordError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            PutRecordError::InvalidKMSResource(ref cause) => write!(f, "{}", cause),
+            PutRecordError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutRecordError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutRecordError {}
 /// Errors returned by PutRecordBatch
 #[derive(Debug, PartialEq)]
 pub enum PutRecordBatchError {
@@ -1799,20 +1807,17 @@ impl PutRecordBatchError {
     }
 }
 impl fmt::Display for PutRecordBatchError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutRecordBatchError {
-    fn description(&self) -> &str {
         match *self {
-            PutRecordBatchError::InvalidArgument(ref cause) => cause,
-            PutRecordBatchError::InvalidKMSResource(ref cause) => cause,
-            PutRecordBatchError::ResourceNotFound(ref cause) => cause,
-            PutRecordBatchError::ServiceUnavailable(ref cause) => cause,
+            PutRecordBatchError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            PutRecordBatchError::InvalidKMSResource(ref cause) => write!(f, "{}", cause),
+            PutRecordBatchError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            PutRecordBatchError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutRecordBatchError {}
 /// Errors returned by StartDeliveryStreamEncryption
 #[derive(Debug, PartialEq)]
 pub enum StartDeliveryStreamEncryptionError {
@@ -1867,21 +1872,24 @@ impl StartDeliveryStreamEncryptionError {
     }
 }
 impl fmt::Display for StartDeliveryStreamEncryptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartDeliveryStreamEncryptionError {
-    fn description(&self) -> &str {
         match *self {
-            StartDeliveryStreamEncryptionError::InvalidArgument(ref cause) => cause,
-            StartDeliveryStreamEncryptionError::InvalidKMSResource(ref cause) => cause,
-            StartDeliveryStreamEncryptionError::LimitExceeded(ref cause) => cause,
-            StartDeliveryStreamEncryptionError::ResourceInUse(ref cause) => cause,
-            StartDeliveryStreamEncryptionError::ResourceNotFound(ref cause) => cause,
+            StartDeliveryStreamEncryptionError::InvalidArgument(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartDeliveryStreamEncryptionError::InvalidKMSResource(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartDeliveryStreamEncryptionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartDeliveryStreamEncryptionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StartDeliveryStreamEncryptionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StartDeliveryStreamEncryptionError {}
 /// Errors returned by StopDeliveryStreamEncryption
 #[derive(Debug, PartialEq)]
 pub enum StopDeliveryStreamEncryptionError {
@@ -1929,20 +1937,19 @@ impl StopDeliveryStreamEncryptionError {
     }
 }
 impl fmt::Display for StopDeliveryStreamEncryptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopDeliveryStreamEncryptionError {
-    fn description(&self) -> &str {
         match *self {
-            StopDeliveryStreamEncryptionError::InvalidArgument(ref cause) => cause,
-            StopDeliveryStreamEncryptionError::LimitExceeded(ref cause) => cause,
-            StopDeliveryStreamEncryptionError::ResourceInUse(ref cause) => cause,
-            StopDeliveryStreamEncryptionError::ResourceNotFound(ref cause) => cause,
+            StopDeliveryStreamEncryptionError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            StopDeliveryStreamEncryptionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StopDeliveryStreamEncryptionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StopDeliveryStreamEncryptionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StopDeliveryStreamEncryptionError {}
 /// Errors returned by TagDeliveryStream
 #[derive(Debug, PartialEq)]
 pub enum TagDeliveryStreamError {
@@ -1980,20 +1987,17 @@ impl TagDeliveryStreamError {
     }
 }
 impl fmt::Display for TagDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            TagDeliveryStreamError::InvalidArgument(ref cause) => cause,
-            TagDeliveryStreamError::LimitExceeded(ref cause) => cause,
-            TagDeliveryStreamError::ResourceInUse(ref cause) => cause,
-            TagDeliveryStreamError::ResourceNotFound(ref cause) => cause,
+            TagDeliveryStreamError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            TagDeliveryStreamError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            TagDeliveryStreamError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            TagDeliveryStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagDeliveryStreamError {}
 /// Errors returned by UntagDeliveryStream
 #[derive(Debug, PartialEq)]
 pub enum UntagDeliveryStreamError {
@@ -2033,20 +2037,17 @@ impl UntagDeliveryStreamError {
     }
 }
 impl fmt::Display for UntagDeliveryStreamError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagDeliveryStreamError {
-    fn description(&self) -> &str {
         match *self {
-            UntagDeliveryStreamError::InvalidArgument(ref cause) => cause,
-            UntagDeliveryStreamError::LimitExceeded(ref cause) => cause,
-            UntagDeliveryStreamError::ResourceInUse(ref cause) => cause,
-            UntagDeliveryStreamError::ResourceNotFound(ref cause) => cause,
+            UntagDeliveryStreamError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            UntagDeliveryStreamError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UntagDeliveryStreamError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UntagDeliveryStreamError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagDeliveryStreamError {}
 /// Errors returned by UpdateDestination
 #[derive(Debug, PartialEq)]
 pub enum UpdateDestinationError {
@@ -2086,20 +2087,17 @@ impl UpdateDestinationError {
     }
 }
 impl fmt::Display for UpdateDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDestinationError::ConcurrentModification(ref cause) => cause,
-            UpdateDestinationError::InvalidArgument(ref cause) => cause,
-            UpdateDestinationError::ResourceInUse(ref cause) => cause,
-            UpdateDestinationError::ResourceNotFound(ref cause) => cause,
+            UpdateDestinationError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateDestinationError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            UpdateDestinationError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateDestinationError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDestinationError {}
 /// Trait representing the capabilities of the Firehose API. Firehose clients implement this trait.
 #[async_trait]
 pub trait KinesisFirehose {

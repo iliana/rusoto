@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>A BatchMeterUsageRequest contains UsageRecords, which indicate quantities of usage within your application.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchMeterUsageRequest {
     /// <p>Product code is used to uniquely identify a product in AWS Marketplace. The product code should be the same as the one used during the publishing of a new product.</p>
     #[serde(rename = "ProductCode")]
@@ -37,7 +39,7 @@ pub struct BatchMeterUsageRequest {
 
 /// <p>Contains the UsageRecords processed by BatchMeterUsage and any records that have failed due to transient error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchMeterUsageResult {
     /// <p>Contains all UsageRecords processed by BatchMeterUsage. These records were either honored by AWS Marketplace Metering Service or were invalid.</p>
     #[serde(rename = "Results")]
@@ -50,6 +52,7 @@ pub struct BatchMeterUsageResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MeterUsageRequest {
     /// <p>Checks whether you have the permissions required for the action, but does not make the request. If you have the permissions, the request returns DryRunOperation; otherwise, it returns UnauthorizedException. Defaults to <code>false</code> if not specified.</p>
     #[serde(rename = "DryRun")]
@@ -71,7 +74,7 @@ pub struct MeterUsageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MeterUsageResult {
     /// <p>Metering record id.</p>
     #[serde(rename = "MeteringRecordId")]
@@ -80,6 +83,7 @@ pub struct MeterUsageResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterUsageRequest {
     /// <p>(Optional) To scope down the registration to a specific running software instance and guard against replay attacks.</p>
     #[serde(rename = "Nonce")]
@@ -94,7 +98,7 @@ pub struct RegisterUsageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterUsageResult {
     /// <p>(Optional) Only included when public key version has expired</p>
     #[serde(rename = "PublicKeyRotationTimestamp")]
@@ -108,6 +112,7 @@ pub struct RegisterUsageResult {
 
 /// <p>Contains input to the ResolveCustomer operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResolveCustomerRequest {
     /// <p>When a buyer visits your website during the registration process, the buyer submits a registration token through the browser. The registration token is resolved to obtain a CustomerIdentifier and product code.</p>
     #[serde(rename = "RegistrationToken")]
@@ -116,7 +121,7 @@ pub struct ResolveCustomerRequest {
 
 /// <p>The result of the ResolveCustomer operation. Contains the CustomerIdentifier and product code.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResolveCustomerResult {
     /// <p>The CustomerIdentifier is used to identify an individual customer in your application. Calls to BatchMeterUsage require CustomerIdentifiers for each UsageRecord.</p>
     #[serde(rename = "CustomerIdentifier")]
@@ -148,7 +153,7 @@ pub struct UsageRecord {
 
 /// <p>A UsageRecordResult indicates the status of a given UsageRecord processed by BatchMeterUsage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UsageRecordResult {
     /// <p>The MeteringRecordId is a unique identifier for this metering event.</p>
     #[serde(rename = "MeteringRecordId")]
@@ -224,23 +229,20 @@ impl BatchMeterUsageError {
     }
 }
 impl fmt::Display for BatchMeterUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchMeterUsageError {
-    fn description(&self) -> &str {
         match *self {
-            BatchMeterUsageError::DisabledApi(ref cause) => cause,
-            BatchMeterUsageError::InternalServiceError(ref cause) => cause,
-            BatchMeterUsageError::InvalidCustomerIdentifier(ref cause) => cause,
-            BatchMeterUsageError::InvalidProductCode(ref cause) => cause,
-            BatchMeterUsageError::InvalidUsageDimension(ref cause) => cause,
-            BatchMeterUsageError::Throttling(ref cause) => cause,
-            BatchMeterUsageError::TimestampOutOfBounds(ref cause) => cause,
+            BatchMeterUsageError::DisabledApi(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::InvalidCustomerIdentifier(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::InvalidProductCode(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::InvalidUsageDimension(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::Throttling(ref cause) => write!(f, "{}", cause),
+            BatchMeterUsageError::TimestampOutOfBounds(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchMeterUsageError {}
 /// Errors returned by MeterUsage
 #[derive(Debug, PartialEq)]
 pub enum MeterUsageError {
@@ -298,24 +300,21 @@ impl MeterUsageError {
     }
 }
 impl fmt::Display for MeterUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for MeterUsageError {
-    fn description(&self) -> &str {
         match *self {
-            MeterUsageError::CustomerNotEntitled(ref cause) => cause,
-            MeterUsageError::DuplicateRequest(ref cause) => cause,
-            MeterUsageError::InternalServiceError(ref cause) => cause,
-            MeterUsageError::InvalidEndpointRegion(ref cause) => cause,
-            MeterUsageError::InvalidProductCode(ref cause) => cause,
-            MeterUsageError::InvalidUsageDimension(ref cause) => cause,
-            MeterUsageError::Throttling(ref cause) => cause,
-            MeterUsageError::TimestampOutOfBounds(ref cause) => cause,
+            MeterUsageError::CustomerNotEntitled(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::DuplicateRequest(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::InvalidEndpointRegion(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::InvalidProductCode(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::InvalidUsageDimension(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::Throttling(ref cause) => write!(f, "{}", cause),
+            MeterUsageError::TimestampOutOfBounds(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for MeterUsageError {}
 /// Errors returned by RegisterUsage
 #[derive(Debug, PartialEq)]
 pub enum RegisterUsageError {
@@ -375,24 +374,21 @@ impl RegisterUsageError {
     }
 }
 impl fmt::Display for RegisterUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterUsageError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterUsageError::CustomerNotEntitled(ref cause) => cause,
-            RegisterUsageError::DisabledApi(ref cause) => cause,
-            RegisterUsageError::InternalServiceError(ref cause) => cause,
-            RegisterUsageError::InvalidProductCode(ref cause) => cause,
-            RegisterUsageError::InvalidPublicKeyVersion(ref cause) => cause,
-            RegisterUsageError::InvalidRegion(ref cause) => cause,
-            RegisterUsageError::PlatformNotSupported(ref cause) => cause,
-            RegisterUsageError::Throttling(ref cause) => cause,
+            RegisterUsageError::CustomerNotEntitled(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::DisabledApi(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::InvalidProductCode(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::InvalidPublicKeyVersion(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::InvalidRegion(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::PlatformNotSupported(ref cause) => write!(f, "{}", cause),
+            RegisterUsageError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterUsageError {}
 /// Errors returned by ResolveCustomer
 #[derive(Debug, PartialEq)]
 pub enum ResolveCustomerError {
@@ -437,21 +433,18 @@ impl ResolveCustomerError {
     }
 }
 impl fmt::Display for ResolveCustomerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResolveCustomerError {
-    fn description(&self) -> &str {
         match *self {
-            ResolveCustomerError::DisabledApi(ref cause) => cause,
-            ResolveCustomerError::ExpiredToken(ref cause) => cause,
-            ResolveCustomerError::InternalServiceError(ref cause) => cause,
-            ResolveCustomerError::InvalidToken(ref cause) => cause,
-            ResolveCustomerError::Throttling(ref cause) => cause,
+            ResolveCustomerError::DisabledApi(ref cause) => write!(f, "{}", cause),
+            ResolveCustomerError::ExpiredToken(ref cause) => write!(f, "{}", cause),
+            ResolveCustomerError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            ResolveCustomerError::InvalidToken(ref cause) => write!(f, "{}", cause),
+            ResolveCustomerError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResolveCustomerError {}
 /// Trait representing the capabilities of the AWSMarketplace Metering API. AWSMarketplace Metering clients implement this trait.
 #[async_trait]
 pub trait MarketplaceMetering {

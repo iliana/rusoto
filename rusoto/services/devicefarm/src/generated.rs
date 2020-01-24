@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>A container for account-level settings in AWS Device Farm.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccountSettings {
     /// <p>The AWS account number specified in the <code>AccountSettings</code> container.</p>
     #[serde(rename = "awsAccountNumber")]
@@ -64,7 +65,7 @@ pub struct AccountSettings {
 
 /// <p>Represents the output of a test. Examples of artifacts include logs and screenshots.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Artifact {
     /// <p>The artifact's ARN.</p>
     #[serde(rename = "arn")]
@@ -90,7 +91,7 @@ pub struct Artifact {
 
 /// <p>Represents the amount of CPU that an app is using on a physical device. Does not represent system-wide CPU usage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CPU {
     /// <p>The CPU's architecture (for example, x86 or ARM).</p>
     #[serde(rename = "architecture")]
@@ -108,7 +109,7 @@ pub struct CPU {
 
 /// <p>Represents entity counters.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Counters {
     /// <p>The number of errored entities.</p>
     #[serde(rename = "errored")]
@@ -142,6 +143,7 @@ pub struct Counters {
 
 /// <p>Represents a request to the create device pool operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDevicePoolRequest {
     /// <p>The device pool's description.</p>
     #[serde(rename = "description")]
@@ -164,7 +166,7 @@ pub struct CreateDevicePoolRequest {
 
 /// <p>Represents the result of a create device pool request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDevicePoolResult {
     /// <p>The newly created device pool.</p>
     #[serde(rename = "devicePool")]
@@ -173,6 +175,7 @@ pub struct CreateDevicePoolResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateInstanceProfileRequest {
     /// <p>The description of your instance profile.</p>
     #[serde(rename = "description")]
@@ -196,7 +199,7 @@ pub struct CreateInstanceProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateInstanceProfileResult {
     /// <p>An object that contains information about your instance profile.</p>
     #[serde(rename = "instanceProfile")]
@@ -205,6 +208,7 @@ pub struct CreateInstanceProfileResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateNetworkProfileRequest {
     /// <p>The description of the network profile.</p>
     #[serde(rename = "description")]
@@ -255,7 +259,7 @@ pub struct CreateNetworkProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateNetworkProfileResult {
     /// <p>The network profile that is returned by the create network profile request.</p>
     #[serde(rename = "networkProfile")]
@@ -265,6 +269,7 @@ pub struct CreateNetworkProfileResult {
 
 /// <p>Represents a request to the create project operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectRequest {
     /// <p>Sets the execution timeout value (in minutes) for a project. All test runs in this project use the specified execution timeout value unless overridden when scheduling a run.</p>
     #[serde(rename = "defaultJobTimeoutMinutes")]
@@ -277,7 +282,7 @@ pub struct CreateProjectRequest {
 
 /// <p>Represents the result of a create project request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectResult {
     /// <p>The newly created project.</p>
     #[serde(rename = "project")]
@@ -287,6 +292,7 @@ pub struct CreateProjectResult {
 
 /// <p>Configuration settings for a remote access session, including billing method.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRemoteAccessSessionConfiguration {
     /// <p>The billing method for the remote access session.</p>
     #[serde(rename = "billingMethod")]
@@ -300,6 +306,7 @@ pub struct CreateRemoteAccessSessionConfiguration {
 
 /// <p>Creates and submits a request to start a remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRemoteAccessSessionRequest {
     /// <p>Unique identifier for the client. If you want access to multiple devices on the same client, you should pass the same <code>clientId</code> value in each call to <code>CreateRemoteAccessSession</code>. This identifier is required only if <code>remoteDebugEnabled</code> is set to <code>true</code>.</p> <p>Remote debugging is <a href="https://docs.aws.amazon.com/devicefarm/latest/developerguide/history.html">no longer supported</a>.</p>
     #[serde(rename = "clientId")]
@@ -351,7 +358,7 @@ pub struct CreateRemoteAccessSessionRequest {
 
 /// <p>Represents the server response from a request to create a remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRemoteAccessSessionResult {
     /// <p>A container that describes the remote access session when the request to create a remote access session is sent.</p>
     #[serde(rename = "remoteAccessSession")]
@@ -360,6 +367,7 @@ pub struct CreateRemoteAccessSessionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTestGridProjectRequest {
     /// <p>Human-readable description of the project.</p>
     #[serde(rename = "description")]
@@ -371,7 +379,7 @@ pub struct CreateTestGridProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTestGridProjectResult {
     /// <p>ARN of the Selenium testing project that was created.</p>
     #[serde(rename = "testGridProject")]
@@ -380,6 +388,7 @@ pub struct CreateTestGridProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTestGridUrlRequest {
     /// <p>Lifetime, in seconds, of the URL.</p>
     #[serde(rename = "expiresInSeconds")]
@@ -390,7 +399,7 @@ pub struct CreateTestGridUrlRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTestGridUrlResult {
     /// <p>The number of seconds the URL from <a>CreateTestGridUrlResult$url</a> stays active.</p>
     #[serde(rename = "expires")]
@@ -404,6 +413,7 @@ pub struct CreateTestGridUrlResult {
 
 /// <p>Represents a request to the create upload operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUploadRequest {
     /// <p>The upload's content type (for example, <code>application/octet-stream</code>).</p>
     #[serde(rename = "contentType")]
@@ -422,7 +432,7 @@ pub struct CreateUploadRequest {
 
 /// <p>Represents the result of a create upload request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUploadResult {
     /// <p>The newly created upload.</p>
     #[serde(rename = "upload")]
@@ -431,6 +441,7 @@ pub struct CreateUploadResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVPCEConfigurationRequest {
     /// <p>The DNS name of the service running in your VPC that you want Device Farm to test.</p>
     #[serde(rename = "serviceDnsName")]
@@ -448,7 +459,7 @@ pub struct CreateVPCEConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVPCEConfigurationResult {
     /// <p>An object that contains information about your VPC endpoint configuration.</p>
     #[serde(rename = "vpceConfiguration")]
@@ -475,6 +486,7 @@ pub struct CustomerArtifactPaths {
 
 /// <p>Represents a request to the delete device pool operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDevicePoolRequest {
     /// <p>Represents the Amazon Resource Name (ARN) of the Device Farm device pool to delete.</p>
     #[serde(rename = "arn")]
@@ -483,10 +495,11 @@ pub struct DeleteDevicePoolRequest {
 
 /// <p>Represents the result of a delete device pool request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDevicePoolResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInstanceProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of the instance profile you are requesting to delete.</p>
     #[serde(rename = "arn")]
@@ -494,10 +507,11 @@ pub struct DeleteInstanceProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInstanceProfileResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteNetworkProfileRequest {
     /// <p>The ARN of the network profile to delete.</p>
     #[serde(rename = "arn")]
@@ -505,11 +519,12 @@ pub struct DeleteNetworkProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteNetworkProfileResult {}
 
 /// <p>Represents a request to the delete project operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProjectRequest {
     /// <p>Represents the Amazon Resource Name (ARN) of the Device Farm project to delete.</p>
     #[serde(rename = "arn")]
@@ -518,11 +533,12 @@ pub struct DeleteProjectRequest {
 
 /// <p>Represents the result of a delete project request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProjectResult {}
 
 /// <p>Represents the request to delete the specified remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRemoteAccessSessionRequest {
     /// <p>The Amazon Resource Name (ARN) of the session for which you want to delete remote access.</p>
     #[serde(rename = "arn")]
@@ -531,11 +547,12 @@ pub struct DeleteRemoteAccessSessionRequest {
 
 /// <p>The response from the server when a request is made to delete the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteRemoteAccessSessionResult {}
 
 /// <p>Represents a request to the delete run operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRunRequest {
     /// <p>The Amazon Resource Name (ARN) for the run to delete.</p>
     #[serde(rename = "arn")]
@@ -544,10 +561,11 @@ pub struct DeleteRunRequest {
 
 /// <p>Represents the result of a delete run request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteRunResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTestGridProjectRequest {
     /// <p>The ARN of the project to delete, from <a>CreateTestGridProject</a> or <a>ListTestGridProjects</a>.</p>
     #[serde(rename = "projectArn")]
@@ -555,11 +573,12 @@ pub struct DeleteTestGridProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTestGridProjectResult {}
 
 /// <p>Represents a request to the delete upload operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUploadRequest {
     /// <p>Represents the Amazon Resource Name (ARN) of the Device Farm upload to delete.</p>
     #[serde(rename = "arn")]
@@ -568,10 +587,11 @@ pub struct DeleteUploadRequest {
 
 /// <p>Represents the result of a delete upload request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUploadResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVPCEConfigurationRequest {
     /// <p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to delete.</p>
     #[serde(rename = "arn")]
@@ -579,12 +599,12 @@ pub struct DeleteVPCEConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteVPCEConfigurationResult {}
 
 /// <p>Represents a device type that an app is tested against.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Device {
     /// <p>The device's ARN.</p>
     #[serde(rename = "arn")]
@@ -691,7 +711,7 @@ pub struct DeviceFilter {
 
 /// <p>Represents the device instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeviceInstance {
     /// <p>The Amazon Resource Name (ARN) of the device instance.</p>
     #[serde(rename = "arn")]
@@ -721,7 +741,7 @@ pub struct DeviceInstance {
 
 /// <p>Represents the total (metered or unmetered) minutes used by the resource to run tests. Contains the sum of minutes consumed by all children.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeviceMinutes {
     /// <p>When specified, represents only the sum of metered minutes used by the resource to run tests.</p>
     #[serde(rename = "metered")]
@@ -739,7 +759,7 @@ pub struct DeviceMinutes {
 
 /// <p>Represents a collection of device types.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DevicePool {
     /// <p>The device pool's ARN.</p>
     #[serde(rename = "arn")]
@@ -769,7 +789,7 @@ pub struct DevicePool {
 
 /// <p>Represents a device pool compatibility result.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DevicePoolCompatibilityResult {
     /// <p>Whether the result was compatible with the device pool.</p>
     #[serde(rename = "compatible")]
@@ -787,6 +807,7 @@ pub struct DevicePoolCompatibilityResult {
 
 /// <p>Represents the device filters used in a test run and the maximum number of devices to be included in the run. It is passed in as the <code>deviceSelectionConfiguration</code> request parameter in <a>ScheduleRun</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeviceSelectionConfiguration {
     /// <p><p>Used to dynamically select a set of devices for a test run. A filter is made up of an attribute, an operator, and one or more values.</p> <ul> <li> <p> <b>Attribute</b> </p> <p>The aspect of a device such as platform or model used as the selection criteria in a device filter.</p> <p>Allowed values include:</p> <ul> <li> <p>ARN: The Amazon Resource Name (ARN) of the device (for example, <code>arn:aws:devicefarm:us-west-2::device:12345Example</code>).</p> </li> <li> <p>PLATFORM: The device platform. Valid values are ANDROID or IOS.</p> </li> <li> <p>OS<em>VERSION: The operating system version (for example, 10.3.2).</p> </li> <li> <p>MODEL: The device model (for example, iPad 5th Gen).</p> </li> <li> <p>AVAILABILITY: The current availability of the device. Valid values are AVAILABLE, HIGHLY</em>AVAILABLE, BUSY, or TEMPORARY<em>NOT</em>AVAILABLE.</p> </li> <li> <p>FORM<em>FACTOR: The device form factor. Valid values are PHONE or TABLET.</p> </li> <li> <p>MANUFACTURER: The device manufacturer (for example, Apple).</p> </li> <li> <p>REMOTE</em>ACCESS<em>ENABLED: Whether the device is enabled for remote access. Valid values are TRUE or FALSE.</p> </li> <li> <p>REMOTE</em>DEBUG<em>ENABLED: Whether the device is enabled for remote debugging. Valid values are TRUE or FALSE. Because remote debugging is <a href="https://docs.aws.amazon.com/devicefarm/latest/developerguide/history.html">no longer supported</a>, this filter is ignored.</p> </li> <li> <p>INSTANCE</em>ARN: The Amazon Resource Name (ARN) of the device instance.</p> </li> <li> <p>INSTANCE<em>LABELS: The label of the device instance.</p> </li> <li> <p>FLEET</em>TYPE: The fleet type. Valid values are PUBLIC or PRIVATE.</p> </li> </ul> </li> <li> <p> <b>Operator</b> </p> <p>The filter operator.</p> <ul> <li> <p>The EQUALS operator is available for every attribute except INSTANCE<em>LABELS.</p> </li> <li> <p>The CONTAINS operator is available for the INSTANCE</em>LABELS and MODEL attributes.</p> </li> <li> <p>The IN and NOT<em>IN operators are available for the ARN, OS</em>VERSION, MODEL, MANUFACTURER, and INSTANCE<em>ARN attributes.</p> </li> <li> <p>The LESS</em>THAN, GREATER<em>THAN, LESS</em>THAN<em>OR</em>EQUALS, and GREATER<em>THAN</em>OR<em>EQUALS operators are also available for the OS</em>VERSION attribute.</p> </li> </ul> </li> <li> <p> <b>Values</b> </p> <p>An array of one or more filter values.</p> <p class="title"> <b>Operator Values</b> </p> <ul> <li> <p>The IN and NOT<em>IN operators can take a values array that has more than one element.</p> </li> <li> <p>The other operators require an array with a single element.</p> </li> </ul> <p class="title"> <b>Attribute Values</b> </p> <ul> <li> <p>The PLATFORM attribute can be set to ANDROID or IOS.</p> </li> <li> <p>The AVAILABILITY attribute can be set to AVAILABLE, HIGHLY</em>AVAILABLE, BUSY, or TEMPORARY<em>NOT</em>AVAILABLE.</p> </li> <li> <p>The FORM<em>FACTOR attribute can be set to PHONE or TABLET.</p> </li> <li> <p>The FLEET</em>TYPE attribute can be set to PUBLIC or PRIVATE.</p> </li> </ul> </li> </ul></p>
     #[serde(rename = "filters")]
@@ -798,7 +819,7 @@ pub struct DeviceSelectionConfiguration {
 
 /// <p>Contains the run results requested by the device selection configuration and how many devices were returned. For an example of the JSON response syntax, see <a>ScheduleRun</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeviceSelectionResult {
     /// <p>The filters in a device selection result.</p>
     #[serde(rename = "filters")]
@@ -816,6 +837,7 @@ pub struct DeviceSelectionResult {
 
 /// <p>Represents configuration information about a test run, such as the execution timeout (in minutes).</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecutionConfiguration {
     /// <p>True if account cleanup is enabled at the beginning of the test. Otherwise, false.</p>
     #[serde(rename = "accountsCleanup")]
@@ -841,11 +863,12 @@ pub struct ExecutionConfiguration {
 
 /// <p>Represents the request sent to retrieve the account settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAccountSettingsRequest {}
 
 /// <p>Represents the account settings return values from the <code>GetAccountSettings</code> request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAccountSettingsResult {
     /// <p>The account settings.</p>
     #[serde(rename = "accountSettings")]
@@ -854,6 +877,7 @@ pub struct GetAccountSettingsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeviceInstanceRequest {
     /// <p>The Amazon Resource Name (ARN) of the instance you're requesting information about.</p>
     #[serde(rename = "arn")]
@@ -861,7 +885,7 @@ pub struct GetDeviceInstanceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeviceInstanceResult {
     /// <p>An object that contains information about your device instance.</p>
     #[serde(rename = "deviceInstance")]
@@ -871,6 +895,7 @@ pub struct GetDeviceInstanceResult {
 
 /// <p>Represents a request to the get device pool compatibility operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDevicePoolCompatibilityRequest {
     /// <p>The ARN of the app that is associated with the specified device pool.</p>
     #[serde(rename = "appArn")]
@@ -895,7 +920,7 @@ pub struct GetDevicePoolCompatibilityRequest {
 
 /// <p>Represents the result of describe device pool compatibility request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDevicePoolCompatibilityResult {
     /// <p>Information about compatible devices.</p>
     #[serde(rename = "compatibleDevices")]
@@ -909,6 +934,7 @@ pub struct GetDevicePoolCompatibilityResult {
 
 /// <p>Represents a request to the get device pool operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDevicePoolRequest {
     /// <p>The device pool's ARN.</p>
     #[serde(rename = "arn")]
@@ -917,7 +943,7 @@ pub struct GetDevicePoolRequest {
 
 /// <p>Represents the result of a get device pool request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDevicePoolResult {
     /// <p>An object that contains information about the requested device pool.</p>
     #[serde(rename = "devicePool")]
@@ -927,6 +953,7 @@ pub struct GetDevicePoolResult {
 
 /// <p>Represents a request to the get device request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeviceRequest {
     /// <p>The device type's ARN.</p>
     #[serde(rename = "arn")]
@@ -935,7 +962,7 @@ pub struct GetDeviceRequest {
 
 /// <p>Represents the result of a get device request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeviceResult {
     /// <p>An object that contains information about the requested device.</p>
     #[serde(rename = "device")]
@@ -944,6 +971,7 @@ pub struct GetDeviceResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInstanceProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of an instance profile.</p>
     #[serde(rename = "arn")]
@@ -951,7 +979,7 @@ pub struct GetInstanceProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInstanceProfileResult {
     /// <p>An object that contains information about an instance profile.</p>
     #[serde(rename = "instanceProfile")]
@@ -961,6 +989,7 @@ pub struct GetInstanceProfileResult {
 
 /// <p>Represents a request to the get job operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRequest {
     /// <p>The job's ARN.</p>
     #[serde(rename = "arn")]
@@ -969,7 +998,7 @@ pub struct GetJobRequest {
 
 /// <p>Represents the result of a get job request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobResult {
     /// <p>An object that contains information about the requested job.</p>
     #[serde(rename = "job")]
@@ -978,6 +1007,7 @@ pub struct GetJobResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetNetworkProfileRequest {
     /// <p>The ARN of the network profile to return information about.</p>
     #[serde(rename = "arn")]
@@ -985,7 +1015,7 @@ pub struct GetNetworkProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetNetworkProfileResult {
     /// <p>The network profile.</p>
     #[serde(rename = "networkProfile")]
@@ -995,6 +1025,7 @@ pub struct GetNetworkProfileResult {
 
 /// <p>Represents the request to retrieve the offering status for the specified customer or account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetOfferingStatusRequest {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1004,7 +1035,7 @@ pub struct GetOfferingStatusRequest {
 
 /// <p>Returns the status result for a device offering.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetOfferingStatusResult {
     /// <p>When specified, gets the offering status for the current period.</p>
     #[serde(rename = "current")]
@@ -1022,6 +1053,7 @@ pub struct GetOfferingStatusResult {
 
 /// <p>Represents a request to the get project operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetProjectRequest {
     /// <p>The project's ARN.</p>
     #[serde(rename = "arn")]
@@ -1030,7 +1062,7 @@ pub struct GetProjectRequest {
 
 /// <p>Represents the result of a get project request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetProjectResult {
     /// <p>The project to get information about.</p>
     #[serde(rename = "project")]
@@ -1040,6 +1072,7 @@ pub struct GetProjectResult {
 
 /// <p>Represents the request to get information about the specified remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRemoteAccessSessionRequest {
     /// <p>The Amazon Resource Name (ARN) of the remote access session about which you want to get session information.</p>
     #[serde(rename = "arn")]
@@ -1048,7 +1081,7 @@ pub struct GetRemoteAccessSessionRequest {
 
 /// <p>Represents the response from the server that lists detailed information about the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRemoteAccessSessionResult {
     /// <p>A container that lists detailed information about the remote access session.</p>
     #[serde(rename = "remoteAccessSession")]
@@ -1058,6 +1091,7 @@ pub struct GetRemoteAccessSessionResult {
 
 /// <p>Represents a request to the get run operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRunRequest {
     /// <p>The run's ARN.</p>
     #[serde(rename = "arn")]
@@ -1066,7 +1100,7 @@ pub struct GetRunRequest {
 
 /// <p>Represents the result of a get run request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRunResult {
     /// <p>The run to get results from.</p>
     #[serde(rename = "run")]
@@ -1076,6 +1110,7 @@ pub struct GetRunResult {
 
 /// <p>Represents a request to the get suite operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSuiteRequest {
     /// <p>The suite's ARN.</p>
     #[serde(rename = "arn")]
@@ -1084,7 +1119,7 @@ pub struct GetSuiteRequest {
 
 /// <p>Represents the result of a get suite request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSuiteResult {
     /// <p>A collection of one or more tests.</p>
     #[serde(rename = "suite")]
@@ -1093,6 +1128,7 @@ pub struct GetSuiteResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTestGridProjectRequest {
     /// <p>The ARN of the Selenium testing project, from either <a>CreateTestGridProject</a> or <a>ListTestGridProjects</a>.</p>
     #[serde(rename = "projectArn")]
@@ -1100,7 +1136,7 @@ pub struct GetTestGridProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTestGridProjectResult {
     /// <p>A <a>TestGridProject</a>.</p>
     #[serde(rename = "testGridProject")]
@@ -1109,6 +1145,7 @@ pub struct GetTestGridProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTestGridSessionRequest {
     /// <p>The ARN for the project that this session belongs to. See <a>CreateTestGridProject</a> and <a>ListTestGridProjects</a>.</p>
     #[serde(rename = "projectArn")]
@@ -1125,7 +1162,7 @@ pub struct GetTestGridSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTestGridSessionResult {
     /// <p>The <a>TestGridSession</a> that was requested.</p>
     #[serde(rename = "testGridSession")]
@@ -1135,6 +1172,7 @@ pub struct GetTestGridSessionResult {
 
 /// <p>Represents a request to the get test operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTestRequest {
     /// <p>The test's ARN.</p>
     #[serde(rename = "arn")]
@@ -1143,7 +1181,7 @@ pub struct GetTestRequest {
 
 /// <p>Represents the result of a get test request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTestResult {
     /// <p>A test condition that is evaluated.</p>
     #[serde(rename = "test")]
@@ -1153,6 +1191,7 @@ pub struct GetTestResult {
 
 /// <p>Represents a request to the get upload operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUploadRequest {
     /// <p>The upload's ARN.</p>
     #[serde(rename = "arn")]
@@ -1161,7 +1200,7 @@ pub struct GetUploadRequest {
 
 /// <p>Represents the result of a get upload request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUploadResult {
     /// <p>An app or a set of one or more tests to upload or that have been uploaded.</p>
     #[serde(rename = "upload")]
@@ -1170,6 +1209,7 @@ pub struct GetUploadResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVPCEConfigurationRequest {
     /// <p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to describe.</p>
     #[serde(rename = "arn")]
@@ -1177,7 +1217,7 @@ pub struct GetVPCEConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVPCEConfigurationResult {
     /// <p>An object that contains information about your VPC endpoint configuration.</p>
     #[serde(rename = "vpceConfiguration")]
@@ -1187,7 +1227,7 @@ pub struct GetVPCEConfigurationResult {
 
 /// <p>Represents information about incompatibility.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IncompatibilityMessage {
     /// <p>A message about the incompatibility.</p>
     #[serde(rename = "message")]
@@ -1201,6 +1241,7 @@ pub struct IncompatibilityMessage {
 
 /// <p>Represents the request to install an Android application (in .apk format) or an iOS application (in .ipa format) as part of a remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InstallToRemoteAccessSessionRequest {
     /// <p>The ARN of the app about which you are requesting information.</p>
     #[serde(rename = "appArn")]
@@ -1212,7 +1253,7 @@ pub struct InstallToRemoteAccessSessionRequest {
 
 /// <p>Represents the response from the server after AWS Device Farm makes a request to install to a remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstallToRemoteAccessSessionResult {
     /// <p>An app to upload or that has been uploaded.</p>
     #[serde(rename = "appUpload")]
@@ -1222,7 +1263,7 @@ pub struct InstallToRemoteAccessSessionResult {
 
 /// <p>Represents the instance profile.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceProfile {
     /// <p>The Amazon Resource Name (ARN) of the instance profile.</p>
     #[serde(rename = "arn")]
@@ -1252,7 +1293,7 @@ pub struct InstanceProfile {
 
 /// <p>Represents a device.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Job {
     /// <p>The job's ARN.</p>
     #[serde(rename = "arn")]
@@ -1318,6 +1359,7 @@ pub struct Job {
 
 /// <p>Represents a request to the list artifacts operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListArtifactsRequest {
     /// <p>The run, job, suite, or test ARN.</p>
     #[serde(rename = "arn")]
@@ -1333,7 +1375,7 @@ pub struct ListArtifactsRequest {
 
 /// <p>Represents the result of a list artifacts operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListArtifactsResult {
     /// <p>Information about the artifacts.</p>
     #[serde(rename = "artifacts")]
@@ -1346,6 +1388,7 @@ pub struct ListArtifactsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeviceInstancesRequest {
     /// <p>An integer that specifies the maximum number of items you want to return in the API response.</p>
     #[serde(rename = "maxResults")]
@@ -1358,7 +1401,7 @@ pub struct ListDeviceInstancesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeviceInstancesResult {
     /// <p>An object that contains information about your device instances.</p>
     #[serde(rename = "deviceInstances")]
@@ -1372,6 +1415,7 @@ pub struct ListDeviceInstancesResult {
 
 /// <p>Represents the result of a list device pools request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDevicePoolsRequest {
     /// <p>The project ARN.</p>
     #[serde(rename = "arn")]
@@ -1388,7 +1432,7 @@ pub struct ListDevicePoolsRequest {
 
 /// <p>Represents the result of a list device pools request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDevicePoolsResult {
     /// <p>Information about the device pools.</p>
     #[serde(rename = "devicePools")]
@@ -1402,6 +1446,7 @@ pub struct ListDevicePoolsResult {
 
 /// <p>Represents the result of a list devices request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDevicesRequest {
     /// <p>The Amazon Resource Name (ARN) of the project.</p>
     #[serde(rename = "arn")]
@@ -1419,7 +1464,7 @@ pub struct ListDevicesRequest {
 
 /// <p>Represents the result of a list devices operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDevicesResult {
     /// <p>Information about the devices.</p>
     #[serde(rename = "devices")]
@@ -1432,6 +1477,7 @@ pub struct ListDevicesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInstanceProfilesRequest {
     /// <p>An integer that specifies the maximum number of items you want to return in the API response.</p>
     #[serde(rename = "maxResults")]
@@ -1444,7 +1490,7 @@ pub struct ListInstanceProfilesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInstanceProfilesResult {
     /// <p>An object that contains information about your instance profiles.</p>
     #[serde(rename = "instanceProfiles")]
@@ -1458,6 +1504,7 @@ pub struct ListInstanceProfilesResult {
 
 /// <p>Represents a request to the list jobs operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>The run's Amazon Resource Name (ARN).</p>
     #[serde(rename = "arn")]
@@ -1470,7 +1517,7 @@ pub struct ListJobsRequest {
 
 /// <p>Represents the result of a list jobs request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResult {
     /// <p>Information about the jobs.</p>
     #[serde(rename = "jobs")]
@@ -1483,6 +1530,7 @@ pub struct ListJobsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListNetworkProfilesRequest {
     /// <p>The Amazon Resource Name (ARN) of the project for which you want to list network profiles.</p>
     #[serde(rename = "arn")]
@@ -1498,7 +1546,7 @@ pub struct ListNetworkProfilesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListNetworkProfilesResult {
     /// <p>A list of the available network profiles.</p>
     #[serde(rename = "networkProfiles")]
@@ -1511,6 +1559,7 @@ pub struct ListNetworkProfilesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOfferingPromotionsRequest {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1519,7 +1568,7 @@ pub struct ListOfferingPromotionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOfferingPromotionsResult {
     /// <p>An identifier to be used in the next call to this operation, to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1533,6 +1582,7 @@ pub struct ListOfferingPromotionsResult {
 
 /// <p>Represents the request to list the offering transaction history.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOfferingTransactionsRequest {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1542,7 +1592,7 @@ pub struct ListOfferingTransactionsRequest {
 
 /// <p>Returns the transaction log of the specified offerings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOfferingTransactionsResult {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1556,6 +1606,7 @@ pub struct ListOfferingTransactionsResult {
 
 /// <p>Represents the request to list all offerings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOfferingsRequest {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1565,7 +1616,7 @@ pub struct ListOfferingsRequest {
 
 /// <p>Represents the return values of the list of offerings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOfferingsResult {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1579,6 +1630,7 @@ pub struct ListOfferingsResult {
 
 /// <p>Represents a request to the list projects operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProjectsRequest {
     /// <p>Optional. If no Amazon Resource Name (ARN) is specified, then AWS Device Farm returns a list of all projects for the AWS account. You can also specify a project ARN.</p>
     #[serde(rename = "arn")]
@@ -1592,7 +1644,7 @@ pub struct ListProjectsRequest {
 
 /// <p>Represents the result of a list projects request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProjectsResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1606,6 +1658,7 @@ pub struct ListProjectsResult {
 
 /// <p>Represents the request to return information about the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRemoteAccessSessionsRequest {
     /// <p>The Amazon Resource Name (ARN) of the project about which you are requesting information.</p>
     #[serde(rename = "arn")]
@@ -1618,7 +1671,7 @@ pub struct ListRemoteAccessSessionsRequest {
 
 /// <p>Represents the response from the server after AWS Device Farm makes a request to return information about the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRemoteAccessSessionsResult {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1632,6 +1685,7 @@ pub struct ListRemoteAccessSessionsResult {
 
 /// <p>Represents a request to the list runs operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRunsRequest {
     /// <p>The Amazon Resource Name (ARN) of the project for which you want to list runs.</p>
     #[serde(rename = "arn")]
@@ -1644,7 +1698,7 @@ pub struct ListRunsRequest {
 
 /// <p>Represents the result of a list runs request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRunsResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1658,6 +1712,7 @@ pub struct ListRunsResult {
 
 /// <p>Represents a request to the list samples operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSamplesRequest {
     /// <p>The Amazon Resource Name (ARN) of the job used to list samples.</p>
     #[serde(rename = "arn")]
@@ -1670,7 +1725,7 @@ pub struct ListSamplesRequest {
 
 /// <p>Represents the result of a list samples request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSamplesResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1684,6 +1739,7 @@ pub struct ListSamplesResult {
 
 /// <p>Represents a request to the list suites operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSuitesRequest {
     /// <p>The job's Amazon Resource Name (ARN).</p>
     #[serde(rename = "arn")]
@@ -1696,7 +1752,7 @@ pub struct ListSuitesRequest {
 
 /// <p>Represents the result of a list suites request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSuitesResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1709,6 +1765,7 @@ pub struct ListSuitesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource or resources for which to list tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>
     #[serde(rename = "ResourceARN")]
@@ -1716,7 +1773,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters. Tag values can have a maximum length of 256 characters.</p>
     #[serde(rename = "Tags")]
@@ -1725,6 +1782,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTestGridProjectsRequest {
     /// <p>Return no more than this number of results.</p>
     #[serde(rename = "maxResult")]
@@ -1737,7 +1795,7 @@ pub struct ListTestGridProjectsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTestGridProjectsResult {
     /// <p>Used for pagination. Pass into <a>ListTestGridProjects</a> to get more results in a paginated request.</p>
     #[serde(rename = "nextToken")]
@@ -1750,6 +1808,7 @@ pub struct ListTestGridProjectsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTestGridSessionActionsRequest {
     /// <p>The maximum number of sessions to return per response.</p>
     #[serde(rename = "maxResult")]
@@ -1765,7 +1824,7 @@ pub struct ListTestGridSessionActionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTestGridSessionActionsResult {
     /// <p>The action taken by the session.</p>
     #[serde(rename = "actions")]
@@ -1778,6 +1837,7 @@ pub struct ListTestGridSessionActionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTestGridSessionArtifactsRequest {
     /// <p>The maximum number of results to be returned by a request.</p>
     #[serde(rename = "maxResult")]
@@ -1797,7 +1857,7 @@ pub struct ListTestGridSessionArtifactsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTestGridSessionArtifactsResult {
     /// <p>A list of test grid session artifacts for a <a>TestGridSession</a>.</p>
     #[serde(rename = "artifacts")]
@@ -1810,6 +1870,7 @@ pub struct ListTestGridSessionArtifactsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTestGridSessionsRequest {
     /// <p>Return only sessions created after this time.</p>
     #[serde(rename = "creationTimeAfter")]
@@ -1845,7 +1906,7 @@ pub struct ListTestGridSessionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTestGridSessionsResult {
     /// <p>Pagination token.</p>
     #[serde(rename = "nextToken")]
@@ -1859,6 +1920,7 @@ pub struct ListTestGridSessionsResult {
 
 /// <p>Represents a request to the list tests operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTestsRequest {
     /// <p>The test suite's Amazon Resource Name (ARN).</p>
     #[serde(rename = "arn")]
@@ -1871,7 +1933,7 @@ pub struct ListTestsRequest {
 
 /// <p>Represents the result of a list tests request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTestsResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1885,6 +1947,7 @@ pub struct ListTestsResult {
 
 /// <p>Represents a request to the list unique problems operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUniqueProblemsRequest {
     /// <p>The unique problems' ARNs.</p>
     #[serde(rename = "arn")]
@@ -1897,7 +1960,7 @@ pub struct ListUniqueProblemsRequest {
 
 /// <p>Represents the result of a list unique problems request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUniqueProblemsResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1911,6 +1974,7 @@ pub struct ListUniqueProblemsResult {
 
 /// <p>Represents a request to the list uploads operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUploadsRequest {
     /// <p>The Amazon Resource Name (ARN) of the project for which you want to list uploads.</p>
     #[serde(rename = "arn")]
@@ -1927,7 +1991,7 @@ pub struct ListUploadsRequest {
 
 /// <p>Represents the result of a list uploads request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUploadsResult {
     /// <p>If the number of items that are returned is significantly large, this is an identifier that is also returned. It can be used in a subsequent call to this operation to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1940,6 +2004,7 @@ pub struct ListUploadsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVPCEConfigurationsRequest {
     /// <p>An integer that specifies the maximum number of items you want to return in the API response.</p>
     #[serde(rename = "maxResults")]
@@ -1952,7 +2017,7 @@ pub struct ListVPCEConfigurationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVPCEConfigurationsResult {
     /// <p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1977,7 +2042,7 @@ pub struct Location {
 
 /// <p>A number that represents the monetary amount for an offering or transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MonetaryAmount {
     /// <p>The numerical amount of an offering or transaction.</p>
     #[serde(rename = "amount")]
@@ -1991,7 +2056,7 @@ pub struct MonetaryAmount {
 
 /// <p>An array of settings that describes characteristics of a network profile.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkProfile {
     /// <p>The Amazon Resource Name (ARN) of the network profile.</p>
     #[serde(rename = "arn")]
@@ -2045,7 +2110,7 @@ pub struct NetworkProfile {
 
 /// <p>Represents the metadata of a device offering.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Offering {
     /// <p>A string that describes the offering.</p>
     #[serde(rename = "description")]
@@ -2071,7 +2136,7 @@ pub struct Offering {
 
 /// <p>Represents information about an offering promotion.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OfferingPromotion {
     /// <p>A string that describes the offering promotion.</p>
     #[serde(rename = "description")]
@@ -2085,7 +2150,7 @@ pub struct OfferingPromotion {
 
 /// <p>The status of the offering.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OfferingStatus {
     /// <p>The date on which the offering is effective.</p>
     #[serde(rename = "effectiveOn")]
@@ -2107,7 +2172,7 @@ pub struct OfferingStatus {
 
 /// <p>Represents the metadata of an offering transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OfferingTransaction {
     /// <p>The cost of an offering transaction.</p>
     #[serde(rename = "cost")]
@@ -2133,7 +2198,7 @@ pub struct OfferingTransaction {
 
 /// <p>Represents a specific warning or failure.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Problem {
     /// <p>Information about the associated device.</p>
     #[serde(rename = "device")]
@@ -2167,7 +2232,7 @@ pub struct Problem {
 
 /// <p>Information about a problem detail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProblemDetail {
     /// <p>The problem detail's ARN.</p>
     #[serde(rename = "arn")]
@@ -2181,7 +2246,7 @@ pub struct ProblemDetail {
 
 /// <p>Represents an operating-system neutral workspace for running and managing tests.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Project {
     /// <p>The project's ARN.</p>
     #[serde(rename = "arn")]
@@ -2203,6 +2268,7 @@ pub struct Project {
 
 /// <p>Represents a request for a purchase offering.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PurchaseOfferingRequest {
     /// <p>The ID of the offering.</p>
     #[serde(rename = "offeringId")]
@@ -2220,7 +2286,7 @@ pub struct PurchaseOfferingRequest {
 
 /// <p>The result of the purchase offering (for example, success or failure).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PurchaseOfferingResult {
     /// <p>Represents the offering transaction for the purchase result.</p>
     #[serde(rename = "offeringTransaction")]
@@ -2251,7 +2317,7 @@ pub struct Radios {
 
 /// <p>Specifies whether charges for devices are recurring.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecurringCharge {
     /// <p>The cost of the recurring charge.</p>
     #[serde(rename = "cost")]
@@ -2265,7 +2331,7 @@ pub struct RecurringCharge {
 
 /// <p>Represents information about the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoteAccessSession {
     /// <p>The Amazon Resource Name (ARN) of the remote access session.</p>
     #[serde(rename = "arn")]
@@ -2355,6 +2421,7 @@ pub struct RemoteAccessSession {
 
 /// <p>A request that represents an offering renewal.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RenewOfferingRequest {
     /// <p>The ID of a request to renew an offering.</p>
     #[serde(rename = "offeringId")]
@@ -2368,7 +2435,7 @@ pub struct RenewOfferingRequest {
 
 /// <p>The result of a renewal offering.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RenewOfferingResult {
     /// <p>Represents the status of the offering transaction for the renewal.</p>
     #[serde(rename = "offeringTransaction")]
@@ -2378,7 +2445,7 @@ pub struct RenewOfferingResult {
 
 /// <p>Represents the screen resolution of a device in height and width, expressed in pixels.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Resolution {
     /// <p>The screen resolution's height, expressed in pixels.</p>
     #[serde(rename = "height")]
@@ -2409,7 +2476,7 @@ pub struct Rule {
 
 /// <p>Represents a test run on a set of devices with a given app package, test parameters, and so on.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Run {
     /// <p>An app to upload or that has been uploaded.</p>
     #[serde(rename = "appUpload")]
@@ -2539,7 +2606,7 @@ pub struct Run {
 
 /// <p>Represents a sample of performance data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Sample {
     /// <p>The sample's ARN.</p>
     #[serde(rename = "arn")]
@@ -2557,6 +2624,7 @@ pub struct Sample {
 
 /// <p>Represents the settings for a run. Includes things like location, radio states, auxiliary apps, and network profiles.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScheduleRunConfiguration {
     /// <p>A list of upload ARNs for app packages to be installed with your app.</p>
     #[serde(rename = "auxiliaryApps")]
@@ -2598,6 +2666,7 @@ pub struct ScheduleRunConfiguration {
 
 /// <p>Represents a request to the schedule run operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScheduleRunRequest {
     /// <p>The ARN of an application package to run tests against, created with <a>CreateUpload</a>. See <a>ListUploads</a>.</p>
     #[serde(rename = "appArn")]
@@ -2633,7 +2702,7 @@ pub struct ScheduleRunRequest {
 
 /// <p>Represents the result of a schedule run request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScheduleRunResult {
     /// <p>Information about the scheduled run.</p>
     #[serde(rename = "run")]
@@ -2643,6 +2712,7 @@ pub struct ScheduleRunResult {
 
 /// <p>Represents test settings. This data structure is passed in as the test parameter to ScheduleRun. For an example of the JSON request syntax, see <a>ScheduleRun</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScheduleRunTest {
     /// <p>The test's filter.</p>
     #[serde(rename = "filter")]
@@ -2666,6 +2736,7 @@ pub struct ScheduleRunTest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopJobRequest {
     /// <p>Represents the Amazon Resource Name (ARN) of the Device Farm job to stop.</p>
     #[serde(rename = "arn")]
@@ -2673,7 +2744,7 @@ pub struct StopJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopJobResult {
     /// <p>The job that was stopped.</p>
     #[serde(rename = "job")]
@@ -2683,6 +2754,7 @@ pub struct StopJobResult {
 
 /// <p>Represents the request to stop the remote access session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopRemoteAccessSessionRequest {
     /// <p>The Amazon Resource Name (ARN) of the remote access session to stop.</p>
     #[serde(rename = "arn")]
@@ -2691,7 +2763,7 @@ pub struct StopRemoteAccessSessionRequest {
 
 /// <p>Represents the response from the server that describes the remote access session when AWS Device Farm stops the session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopRemoteAccessSessionResult {
     /// <p>A container that represents the metadata from the service about the remote access session you are stopping.</p>
     #[serde(rename = "remoteAccessSession")]
@@ -2701,6 +2773,7 @@ pub struct StopRemoteAccessSessionResult {
 
 /// <p>Represents the request to stop a specific run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopRunRequest {
     /// <p>Represents the Amazon Resource Name (ARN) of the Device Farm run to stop.</p>
     #[serde(rename = "arn")]
@@ -2709,7 +2782,7 @@ pub struct StopRunRequest {
 
 /// <p>Represents the results of your stop run attempt.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopRunResult {
     /// <p>The run that was stopped.</p>
     #[serde(rename = "run")]
@@ -2719,7 +2792,7 @@ pub struct StopRunResult {
 
 /// <p>Represents a collection of one or more tests.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Suite {
     /// <p>The suite's ARN.</p>
     #[serde(rename = "arn")]
@@ -2779,6 +2852,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource or resources to which to add tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>
     #[serde(rename = "ResourceARN")]
@@ -2789,12 +2863,12 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Represents a condition that is evaluated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Test {
     /// <p>The test's ARN.</p>
     #[serde(rename = "arn")]
@@ -2844,7 +2918,7 @@ pub struct Test {
 
 /// <p>A Selenium testing project. Projects are used to collect and collate sessions.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestGridProject {
     /// <p>The ARN for the project.</p>
     #[serde(rename = "arn")]
@@ -2866,7 +2940,7 @@ pub struct TestGridProject {
 
 /// <p>A <a>TestGridSession</a> is a single instance of a browser launched from the URL provided by a call to <a>CreateTestGridUrl</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestGridSession {
     /// <p>The ARN of the session.</p>
     #[serde(rename = "arn")]
@@ -2896,7 +2970,7 @@ pub struct TestGridSession {
 
 /// <p>An action taken by a <a>TestGridSession</a> browser instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestGridSessionAction {
     /// <p>The action taken by the session.</p>
     #[serde(rename = "action")]
@@ -2922,7 +2996,7 @@ pub struct TestGridSessionAction {
 
 /// <p><p>Artifacts are video and other files that are produced in the process of running a browser in an automated context. </p> <note> <p>Video elements might be broken up into multiple artifacts as they grow in size during creation. </p> </note></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestGridSessionArtifact {
     /// <p>The file name of the artifact.</p>
     #[serde(rename = "filename")]
@@ -2940,7 +3014,7 @@ pub struct TestGridSessionArtifact {
 
 /// <p>Represents information about free trial device minutes for an AWS account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrialMinutes {
     /// <p>The number of free trial minutes remaining in the account.</p>
     #[serde(rename = "remaining")]
@@ -2954,7 +3028,7 @@ pub struct TrialMinutes {
 
 /// <p>A collection of one or more problems, grouped by their result.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UniqueProblem {
     /// <p>A message about the unique problems' result.</p>
     #[serde(rename = "message")]
@@ -2967,6 +3041,7 @@ pub struct UniqueProblem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource or resources from which to delete tags. You can associate tags with the following Device Farm resources: <code>PROJECT</code>, <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>, <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.</p>
     #[serde(rename = "ResourceARN")]
@@ -2977,10 +3052,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDeviceInstanceRequest {
     /// <p>The Amazon Resource Name (ARN) of the device instance.</p>
     #[serde(rename = "arn")]
@@ -2996,7 +3072,7 @@ pub struct UpdateDeviceInstanceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDeviceInstanceResult {
     /// <p>An object that contains information about your device instance.</p>
     #[serde(rename = "deviceInstance")]
@@ -3006,6 +3082,7 @@ pub struct UpdateDeviceInstanceResult {
 
 /// <p>Represents a request to the update device pool operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDevicePoolRequest {
     /// <p>The Amazon Resource Name (ARN) of the Device Farm device pool to update.</p>
     #[serde(rename = "arn")]
@@ -3034,7 +3111,7 @@ pub struct UpdateDevicePoolRequest {
 
 /// <p>Represents the result of an update device pool request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDevicePoolResult {
     /// <p>The device pool you just updated.</p>
     #[serde(rename = "devicePool")]
@@ -3043,6 +3120,7 @@ pub struct UpdateDevicePoolResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateInstanceProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of the instance profile.</p>
     #[serde(rename = "arn")]
@@ -3070,7 +3148,7 @@ pub struct UpdateInstanceProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateInstanceProfileResult {
     /// <p>An object that contains information about your instance profile.</p>
     #[serde(rename = "instanceProfile")]
@@ -3079,6 +3157,7 @@ pub struct UpdateInstanceProfileResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateNetworkProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of the project for which you want to update network profile settings.</p>
     #[serde(rename = "arn")]
@@ -3130,7 +3209,7 @@ pub struct UpdateNetworkProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateNetworkProfileResult {
     /// <p>A list of the available network profiles.</p>
     #[serde(rename = "networkProfile")]
@@ -3140,6 +3219,7 @@ pub struct UpdateNetworkProfileResult {
 
 /// <p>Represents a request to the update project operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProjectRequest {
     /// <p>The Amazon Resource Name (ARN) of the project whose name to update.</p>
     #[serde(rename = "arn")]
@@ -3156,7 +3236,7 @@ pub struct UpdateProjectRequest {
 
 /// <p>Represents the result of an update project request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProjectResult {
     /// <p>The project to update.</p>
     #[serde(rename = "project")]
@@ -3165,6 +3245,7 @@ pub struct UpdateProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTestGridProjectRequest {
     /// <p>Human-readable description for the project.</p>
     #[serde(rename = "description")]
@@ -3180,7 +3261,7 @@ pub struct UpdateTestGridProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTestGridProjectResult {
     /// <p>The project, including updated information.</p>
     #[serde(rename = "testGridProject")]
@@ -3189,6 +3270,7 @@ pub struct UpdateTestGridProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUploadRequest {
     /// <p>The Amazon Resource Name (ARN) of the uploaded test spec.</p>
     #[serde(rename = "arn")]
@@ -3208,7 +3290,7 @@ pub struct UpdateUploadRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateUploadResult {
     /// <p>A test spec uploaded to Device Farm.</p>
     #[serde(rename = "upload")]
@@ -3217,6 +3299,7 @@ pub struct UpdateUploadResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVPCEConfigurationRequest {
     /// <p>The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to update.</p>
     #[serde(rename = "arn")]
@@ -3240,7 +3323,7 @@ pub struct UpdateVPCEConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVPCEConfigurationResult {
     /// <p>An object that contains information about your VPC endpoint configuration.</p>
     #[serde(rename = "vpceConfiguration")]
@@ -3250,7 +3333,7 @@ pub struct UpdateVPCEConfigurationResult {
 
 /// <p>An app or a set of one or more tests to upload or that have been uploaded.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Upload {
     /// <p>The upload's ARN.</p>
     #[serde(rename = "arn")]
@@ -3296,7 +3379,7 @@ pub struct Upload {
 
 /// <p>Represents an Amazon Virtual Private Cloud (VPC) endpoint configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VPCEConfiguration {
     /// <p>The Amazon Resource Name (ARN) of the VPC endpoint configuration.</p>
     #[serde(rename = "arn")]
@@ -3357,20 +3440,17 @@ impl CreateDevicePoolError {
     }
 }
 impl fmt::Display for CreateDevicePoolError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDevicePoolError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDevicePoolError::Argument(ref cause) => cause,
-            CreateDevicePoolError::LimitExceeded(ref cause) => cause,
-            CreateDevicePoolError::NotFound(ref cause) => cause,
-            CreateDevicePoolError::ServiceAccount(ref cause) => cause,
+            CreateDevicePoolError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateDevicePoolError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDevicePoolError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateDevicePoolError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDevicePoolError {}
 /// Errors returned by CreateInstanceProfile
 #[derive(Debug, PartialEq)]
 pub enum CreateInstanceProfileError {
@@ -3410,20 +3490,17 @@ impl CreateInstanceProfileError {
     }
 }
 impl fmt::Display for CreateInstanceProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateInstanceProfileError {
-    fn description(&self) -> &str {
         match *self {
-            CreateInstanceProfileError::Argument(ref cause) => cause,
-            CreateInstanceProfileError::LimitExceeded(ref cause) => cause,
-            CreateInstanceProfileError::NotFound(ref cause) => cause,
-            CreateInstanceProfileError::ServiceAccount(ref cause) => cause,
+            CreateInstanceProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateInstanceProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateInstanceProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateInstanceProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateInstanceProfileError {}
 /// Errors returned by CreateNetworkProfile
 #[derive(Debug, PartialEq)]
 pub enum CreateNetworkProfileError {
@@ -3461,20 +3538,17 @@ impl CreateNetworkProfileError {
     }
 }
 impl fmt::Display for CreateNetworkProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateNetworkProfileError {
-    fn description(&self) -> &str {
         match *self {
-            CreateNetworkProfileError::Argument(ref cause) => cause,
-            CreateNetworkProfileError::LimitExceeded(ref cause) => cause,
-            CreateNetworkProfileError::NotFound(ref cause) => cause,
-            CreateNetworkProfileError::ServiceAccount(ref cause) => cause,
+            CreateNetworkProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateNetworkProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateNetworkProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateNetworkProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateNetworkProfileError {}
 /// Errors returned by CreateProject
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectError {
@@ -3517,21 +3591,18 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::Argument(ref cause) => cause,
-            CreateProjectError::LimitExceeded(ref cause) => cause,
-            CreateProjectError::NotFound(ref cause) => cause,
-            CreateProjectError::ServiceAccount(ref cause) => cause,
-            CreateProjectError::TagOperation(ref cause) => cause,
+            CreateProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ServiceAccount(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::TagOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by CreateRemoteAccessSession
 #[derive(Debug, PartialEq)]
 pub enum CreateRemoteAccessSessionError {
@@ -3573,20 +3644,17 @@ impl CreateRemoteAccessSessionError {
     }
 }
 impl fmt::Display for CreateRemoteAccessSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateRemoteAccessSessionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateRemoteAccessSessionError::Argument(ref cause) => cause,
-            CreateRemoteAccessSessionError::LimitExceeded(ref cause) => cause,
-            CreateRemoteAccessSessionError::NotFound(ref cause) => cause,
-            CreateRemoteAccessSessionError::ServiceAccount(ref cause) => cause,
+            CreateRemoteAccessSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateRemoteAccessSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateRemoteAccessSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateRemoteAccessSessionError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateRemoteAccessSessionError {}
 /// Errors returned by CreateTestGridProject
 #[derive(Debug, PartialEq)]
 pub enum CreateTestGridProjectError {
@@ -3611,17 +3679,14 @@ impl CreateTestGridProjectError {
     }
 }
 impl fmt::Display for CreateTestGridProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTestGridProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTestGridProjectError::InternalService(ref cause) => cause,
+            CreateTestGridProjectError::InternalService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTestGridProjectError {}
 /// Errors returned by CreateTestGridUrl
 #[derive(Debug, PartialEq)]
 pub enum CreateTestGridUrlError {
@@ -3654,19 +3719,16 @@ impl CreateTestGridUrlError {
     }
 }
 impl fmt::Display for CreateTestGridUrlError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTestGridUrlError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTestGridUrlError::Argument(ref cause) => cause,
-            CreateTestGridUrlError::InternalService(ref cause) => cause,
-            CreateTestGridUrlError::NotFound(ref cause) => cause,
+            CreateTestGridUrlError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateTestGridUrlError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateTestGridUrlError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTestGridUrlError {}
 /// Errors returned by CreateUpload
 #[derive(Debug, PartialEq)]
 pub enum CreateUploadError {
@@ -3704,20 +3766,17 @@ impl CreateUploadError {
     }
 }
 impl fmt::Display for CreateUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUploadError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUploadError::Argument(ref cause) => cause,
-            CreateUploadError::LimitExceeded(ref cause) => cause,
-            CreateUploadError::NotFound(ref cause) => cause,
-            CreateUploadError::ServiceAccount(ref cause) => cause,
+            CreateUploadError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateUploadError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateUploadError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateUploadError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateUploadError {}
 /// Errors returned by CreateVPCEConfiguration
 #[derive(Debug, PartialEq)]
 pub enum CreateVPCEConfigurationError {
@@ -3754,19 +3813,16 @@ impl CreateVPCEConfigurationError {
     }
 }
 impl fmt::Display for CreateVPCEConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVPCEConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVPCEConfigurationError::Argument(ref cause) => cause,
-            CreateVPCEConfigurationError::LimitExceeded(ref cause) => cause,
-            CreateVPCEConfigurationError::ServiceAccount(ref cause) => cause,
+            CreateVPCEConfigurationError::Argument(ref cause) => write!(f, "{}", cause),
+            CreateVPCEConfigurationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateVPCEConfigurationError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVPCEConfigurationError {}
 /// Errors returned by DeleteDevicePool
 #[derive(Debug, PartialEq)]
 pub enum DeleteDevicePoolError {
@@ -3804,20 +3860,17 @@ impl DeleteDevicePoolError {
     }
 }
 impl fmt::Display for DeleteDevicePoolError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDevicePoolError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDevicePoolError::Argument(ref cause) => cause,
-            DeleteDevicePoolError::LimitExceeded(ref cause) => cause,
-            DeleteDevicePoolError::NotFound(ref cause) => cause,
-            DeleteDevicePoolError::ServiceAccount(ref cause) => cause,
+            DeleteDevicePoolError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteDevicePoolError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteDevicePoolError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDevicePoolError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDevicePoolError {}
 /// Errors returned by DeleteInstanceProfile
 #[derive(Debug, PartialEq)]
 pub enum DeleteInstanceProfileError {
@@ -3857,20 +3910,17 @@ impl DeleteInstanceProfileError {
     }
 }
 impl fmt::Display for DeleteInstanceProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInstanceProfileError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInstanceProfileError::Argument(ref cause) => cause,
-            DeleteInstanceProfileError::LimitExceeded(ref cause) => cause,
-            DeleteInstanceProfileError::NotFound(ref cause) => cause,
-            DeleteInstanceProfileError::ServiceAccount(ref cause) => cause,
+            DeleteInstanceProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteInstanceProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteInstanceProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteInstanceProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInstanceProfileError {}
 /// Errors returned by DeleteNetworkProfile
 #[derive(Debug, PartialEq)]
 pub enum DeleteNetworkProfileError {
@@ -3908,20 +3958,17 @@ impl DeleteNetworkProfileError {
     }
 }
 impl fmt::Display for DeleteNetworkProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteNetworkProfileError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteNetworkProfileError::Argument(ref cause) => cause,
-            DeleteNetworkProfileError::LimitExceeded(ref cause) => cause,
-            DeleteNetworkProfileError::NotFound(ref cause) => cause,
-            DeleteNetworkProfileError::ServiceAccount(ref cause) => cause,
+            DeleteNetworkProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteNetworkProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteNetworkProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteNetworkProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteNetworkProfileError {}
 /// Errors returned by DeleteProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteProjectError {
@@ -3959,20 +4006,17 @@ impl DeleteProjectError {
     }
 }
 impl fmt::Display for DeleteProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProjectError::Argument(ref cause) => cause,
-            DeleteProjectError::LimitExceeded(ref cause) => cause,
-            DeleteProjectError::NotFound(ref cause) => cause,
-            DeleteProjectError::ServiceAccount(ref cause) => cause,
+            DeleteProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProjectError {}
 /// Errors returned by DeleteRemoteAccessSession
 #[derive(Debug, PartialEq)]
 pub enum DeleteRemoteAccessSessionError {
@@ -4014,20 +4058,17 @@ impl DeleteRemoteAccessSessionError {
     }
 }
 impl fmt::Display for DeleteRemoteAccessSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRemoteAccessSessionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRemoteAccessSessionError::Argument(ref cause) => cause,
-            DeleteRemoteAccessSessionError::LimitExceeded(ref cause) => cause,
-            DeleteRemoteAccessSessionError::NotFound(ref cause) => cause,
-            DeleteRemoteAccessSessionError::ServiceAccount(ref cause) => cause,
+            DeleteRemoteAccessSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteRemoteAccessSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteRemoteAccessSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRemoteAccessSessionError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRemoteAccessSessionError {}
 /// Errors returned by DeleteRun
 #[derive(Debug, PartialEq)]
 pub enum DeleteRunError {
@@ -4065,20 +4106,17 @@ impl DeleteRunError {
     }
 }
 impl fmt::Display for DeleteRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRunError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRunError::Argument(ref cause) => cause,
-            DeleteRunError::LimitExceeded(ref cause) => cause,
-            DeleteRunError::NotFound(ref cause) => cause,
-            DeleteRunError::ServiceAccount(ref cause) => cause,
+            DeleteRunError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteRunError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteRunError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRunError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRunError {}
 /// Errors returned by DeleteTestGridProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteTestGridProjectError {
@@ -4118,20 +4156,17 @@ impl DeleteTestGridProjectError {
     }
 }
 impl fmt::Display for DeleteTestGridProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTestGridProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTestGridProjectError::Argument(ref cause) => cause,
-            DeleteTestGridProjectError::CannotDelete(ref cause) => cause,
-            DeleteTestGridProjectError::InternalService(ref cause) => cause,
-            DeleteTestGridProjectError::NotFound(ref cause) => cause,
+            DeleteTestGridProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteTestGridProjectError::CannotDelete(ref cause) => write!(f, "{}", cause),
+            DeleteTestGridProjectError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteTestGridProjectError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTestGridProjectError {}
 /// Errors returned by DeleteUpload
 #[derive(Debug, PartialEq)]
 pub enum DeleteUploadError {
@@ -4169,20 +4204,17 @@ impl DeleteUploadError {
     }
 }
 impl fmt::Display for DeleteUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUploadError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUploadError::Argument(ref cause) => cause,
-            DeleteUploadError::LimitExceeded(ref cause) => cause,
-            DeleteUploadError::NotFound(ref cause) => cause,
-            DeleteUploadError::ServiceAccount(ref cause) => cause,
+            DeleteUploadError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteUploadError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteUploadError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteUploadError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteUploadError {}
 /// Errors returned by DeleteVPCEConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DeleteVPCEConfigurationError {
@@ -4224,20 +4256,17 @@ impl DeleteVPCEConfigurationError {
     }
 }
 impl fmt::Display for DeleteVPCEConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVPCEConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVPCEConfigurationError::Argument(ref cause) => cause,
-            DeleteVPCEConfigurationError::InvalidOperation(ref cause) => cause,
-            DeleteVPCEConfigurationError::NotFound(ref cause) => cause,
-            DeleteVPCEConfigurationError::ServiceAccount(ref cause) => cause,
+            DeleteVPCEConfigurationError::Argument(ref cause) => write!(f, "{}", cause),
+            DeleteVPCEConfigurationError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            DeleteVPCEConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVPCEConfigurationError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVPCEConfigurationError {}
 /// Errors returned by GetAccountSettings
 #[derive(Debug, PartialEq)]
 pub enum GetAccountSettingsError {
@@ -4275,20 +4304,17 @@ impl GetAccountSettingsError {
     }
 }
 impl fmt::Display for GetAccountSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAccountSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            GetAccountSettingsError::Argument(ref cause) => cause,
-            GetAccountSettingsError::LimitExceeded(ref cause) => cause,
-            GetAccountSettingsError::NotFound(ref cause) => cause,
-            GetAccountSettingsError::ServiceAccount(ref cause) => cause,
+            GetAccountSettingsError::Argument(ref cause) => write!(f, "{}", cause),
+            GetAccountSettingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetAccountSettingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetAccountSettingsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAccountSettingsError {}
 /// Errors returned by GetDevice
 #[derive(Debug, PartialEq)]
 pub enum GetDeviceError {
@@ -4326,20 +4352,17 @@ impl GetDeviceError {
     }
 }
 impl fmt::Display for GetDeviceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeviceError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeviceError::Argument(ref cause) => cause,
-            GetDeviceError::LimitExceeded(ref cause) => cause,
-            GetDeviceError::NotFound(ref cause) => cause,
-            GetDeviceError::ServiceAccount(ref cause) => cause,
+            GetDeviceError::Argument(ref cause) => write!(f, "{}", cause),
+            GetDeviceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetDeviceError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDeviceError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeviceError {}
 /// Errors returned by GetDeviceInstance
 #[derive(Debug, PartialEq)]
 pub enum GetDeviceInstanceError {
@@ -4377,20 +4400,17 @@ impl GetDeviceInstanceError {
     }
 }
 impl fmt::Display for GetDeviceInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeviceInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeviceInstanceError::Argument(ref cause) => cause,
-            GetDeviceInstanceError::LimitExceeded(ref cause) => cause,
-            GetDeviceInstanceError::NotFound(ref cause) => cause,
-            GetDeviceInstanceError::ServiceAccount(ref cause) => cause,
+            GetDeviceInstanceError::Argument(ref cause) => write!(f, "{}", cause),
+            GetDeviceInstanceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetDeviceInstanceError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDeviceInstanceError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeviceInstanceError {}
 /// Errors returned by GetDevicePool
 #[derive(Debug, PartialEq)]
 pub enum GetDevicePoolError {
@@ -4428,20 +4448,17 @@ impl GetDevicePoolError {
     }
 }
 impl fmt::Display for GetDevicePoolError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDevicePoolError {
-    fn description(&self) -> &str {
         match *self {
-            GetDevicePoolError::Argument(ref cause) => cause,
-            GetDevicePoolError::LimitExceeded(ref cause) => cause,
-            GetDevicePoolError::NotFound(ref cause) => cause,
-            GetDevicePoolError::ServiceAccount(ref cause) => cause,
+            GetDevicePoolError::Argument(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDevicePoolError {}
 /// Errors returned by GetDevicePoolCompatibility
 #[derive(Debug, PartialEq)]
 pub enum GetDevicePoolCompatibilityError {
@@ -4485,20 +4502,17 @@ impl GetDevicePoolCompatibilityError {
     }
 }
 impl fmt::Display for GetDevicePoolCompatibilityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDevicePoolCompatibilityError {
-    fn description(&self) -> &str {
         match *self {
-            GetDevicePoolCompatibilityError::Argument(ref cause) => cause,
-            GetDevicePoolCompatibilityError::LimitExceeded(ref cause) => cause,
-            GetDevicePoolCompatibilityError::NotFound(ref cause) => cause,
-            GetDevicePoolCompatibilityError::ServiceAccount(ref cause) => cause,
+            GetDevicePoolCompatibilityError::Argument(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolCompatibilityError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolCompatibilityError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDevicePoolCompatibilityError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDevicePoolCompatibilityError {}
 /// Errors returned by GetInstanceProfile
 #[derive(Debug, PartialEq)]
 pub enum GetInstanceProfileError {
@@ -4536,20 +4550,17 @@ impl GetInstanceProfileError {
     }
 }
 impl fmt::Display for GetInstanceProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInstanceProfileError {
-    fn description(&self) -> &str {
         match *self {
-            GetInstanceProfileError::Argument(ref cause) => cause,
-            GetInstanceProfileError::LimitExceeded(ref cause) => cause,
-            GetInstanceProfileError::NotFound(ref cause) => cause,
-            GetInstanceProfileError::ServiceAccount(ref cause) => cause,
+            GetInstanceProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            GetInstanceProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetInstanceProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetInstanceProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInstanceProfileError {}
 /// Errors returned by GetJob
 #[derive(Debug, PartialEq)]
 pub enum GetJobError {
@@ -4583,20 +4594,17 @@ impl GetJobError {
     }
 }
 impl fmt::Display for GetJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobError::Argument(ref cause) => cause,
-            GetJobError::LimitExceeded(ref cause) => cause,
-            GetJobError::NotFound(ref cause) => cause,
-            GetJobError::ServiceAccount(ref cause) => cause,
+            GetJobError::Argument(ref cause) => write!(f, "{}", cause),
+            GetJobError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetJobError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobError {}
 /// Errors returned by GetNetworkProfile
 #[derive(Debug, PartialEq)]
 pub enum GetNetworkProfileError {
@@ -4634,20 +4642,17 @@ impl GetNetworkProfileError {
     }
 }
 impl fmt::Display for GetNetworkProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetNetworkProfileError {
-    fn description(&self) -> &str {
         match *self {
-            GetNetworkProfileError::Argument(ref cause) => cause,
-            GetNetworkProfileError::LimitExceeded(ref cause) => cause,
-            GetNetworkProfileError::NotFound(ref cause) => cause,
-            GetNetworkProfileError::ServiceAccount(ref cause) => cause,
+            GetNetworkProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            GetNetworkProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetNetworkProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetNetworkProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetNetworkProfileError {}
 /// Errors returned by GetOfferingStatus
 #[derive(Debug, PartialEq)]
 pub enum GetOfferingStatusError {
@@ -4690,21 +4695,18 @@ impl GetOfferingStatusError {
     }
 }
 impl fmt::Display for GetOfferingStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetOfferingStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetOfferingStatusError::Argument(ref cause) => cause,
-            GetOfferingStatusError::LimitExceeded(ref cause) => cause,
-            GetOfferingStatusError::NotEligible(ref cause) => cause,
-            GetOfferingStatusError::NotFound(ref cause) => cause,
-            GetOfferingStatusError::ServiceAccount(ref cause) => cause,
+            GetOfferingStatusError::Argument(ref cause) => write!(f, "{}", cause),
+            GetOfferingStatusError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetOfferingStatusError::NotEligible(ref cause) => write!(f, "{}", cause),
+            GetOfferingStatusError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetOfferingStatusError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetOfferingStatusError {}
 /// Errors returned by GetProject
 #[derive(Debug, PartialEq)]
 pub enum GetProjectError {
@@ -4742,20 +4744,17 @@ impl GetProjectError {
     }
 }
 impl fmt::Display for GetProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetProjectError {
-    fn description(&self) -> &str {
         match *self {
-            GetProjectError::Argument(ref cause) => cause,
-            GetProjectError::LimitExceeded(ref cause) => cause,
-            GetProjectError::NotFound(ref cause) => cause,
-            GetProjectError::ServiceAccount(ref cause) => cause,
+            GetProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            GetProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetProjectError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetProjectError {}
 /// Errors returned by GetRemoteAccessSession
 #[derive(Debug, PartialEq)]
 pub enum GetRemoteAccessSessionError {
@@ -4797,20 +4796,17 @@ impl GetRemoteAccessSessionError {
     }
 }
 impl fmt::Display for GetRemoteAccessSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRemoteAccessSessionError {
-    fn description(&self) -> &str {
         match *self {
-            GetRemoteAccessSessionError::Argument(ref cause) => cause,
-            GetRemoteAccessSessionError::LimitExceeded(ref cause) => cause,
-            GetRemoteAccessSessionError::NotFound(ref cause) => cause,
-            GetRemoteAccessSessionError::ServiceAccount(ref cause) => cause,
+            GetRemoteAccessSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            GetRemoteAccessSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetRemoteAccessSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRemoteAccessSessionError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRemoteAccessSessionError {}
 /// Errors returned by GetRun
 #[derive(Debug, PartialEq)]
 pub enum GetRunError {
@@ -4844,20 +4840,17 @@ impl GetRunError {
     }
 }
 impl fmt::Display for GetRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRunError {
-    fn description(&self) -> &str {
         match *self {
-            GetRunError::Argument(ref cause) => cause,
-            GetRunError::LimitExceeded(ref cause) => cause,
-            GetRunError::NotFound(ref cause) => cause,
-            GetRunError::ServiceAccount(ref cause) => cause,
+            GetRunError::Argument(ref cause) => write!(f, "{}", cause),
+            GetRunError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetRunError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRunError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRunError {}
 /// Errors returned by GetSuite
 #[derive(Debug, PartialEq)]
 pub enum GetSuiteError {
@@ -4895,20 +4888,17 @@ impl GetSuiteError {
     }
 }
 impl fmt::Display for GetSuiteError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSuiteError {
-    fn description(&self) -> &str {
         match *self {
-            GetSuiteError::Argument(ref cause) => cause,
-            GetSuiteError::LimitExceeded(ref cause) => cause,
-            GetSuiteError::NotFound(ref cause) => cause,
-            GetSuiteError::ServiceAccount(ref cause) => cause,
+            GetSuiteError::Argument(ref cause) => write!(f, "{}", cause),
+            GetSuiteError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetSuiteError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetSuiteError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSuiteError {}
 /// Errors returned by GetTest
 #[derive(Debug, PartialEq)]
 pub enum GetTestError {
@@ -4946,20 +4936,17 @@ impl GetTestError {
     }
 }
 impl fmt::Display for GetTestError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTestError {
-    fn description(&self) -> &str {
         match *self {
-            GetTestError::Argument(ref cause) => cause,
-            GetTestError::LimitExceeded(ref cause) => cause,
-            GetTestError::NotFound(ref cause) => cause,
-            GetTestError::ServiceAccount(ref cause) => cause,
+            GetTestError::Argument(ref cause) => write!(f, "{}", cause),
+            GetTestError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetTestError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetTestError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTestError {}
 /// Errors returned by GetTestGridProject
 #[derive(Debug, PartialEq)]
 pub enum GetTestGridProjectError {
@@ -4992,19 +4979,16 @@ impl GetTestGridProjectError {
     }
 }
 impl fmt::Display for GetTestGridProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTestGridProjectError {
-    fn description(&self) -> &str {
         match *self {
-            GetTestGridProjectError::Argument(ref cause) => cause,
-            GetTestGridProjectError::InternalService(ref cause) => cause,
-            GetTestGridProjectError::NotFound(ref cause) => cause,
+            GetTestGridProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            GetTestGridProjectError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTestGridProjectError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTestGridProjectError {}
 /// Errors returned by GetTestGridSession
 #[derive(Debug, PartialEq)]
 pub enum GetTestGridSessionError {
@@ -5037,19 +5021,16 @@ impl GetTestGridSessionError {
     }
 }
 impl fmt::Display for GetTestGridSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTestGridSessionError {
-    fn description(&self) -> &str {
         match *self {
-            GetTestGridSessionError::Argument(ref cause) => cause,
-            GetTestGridSessionError::InternalService(ref cause) => cause,
-            GetTestGridSessionError::NotFound(ref cause) => cause,
+            GetTestGridSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            GetTestGridSessionError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTestGridSessionError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTestGridSessionError {}
 /// Errors returned by GetUpload
 #[derive(Debug, PartialEq)]
 pub enum GetUploadError {
@@ -5087,20 +5068,17 @@ impl GetUploadError {
     }
 }
 impl fmt::Display for GetUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetUploadError {
-    fn description(&self) -> &str {
         match *self {
-            GetUploadError::Argument(ref cause) => cause,
-            GetUploadError::LimitExceeded(ref cause) => cause,
-            GetUploadError::NotFound(ref cause) => cause,
-            GetUploadError::ServiceAccount(ref cause) => cause,
+            GetUploadError::Argument(ref cause) => write!(f, "{}", cause),
+            GetUploadError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetUploadError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetUploadError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetUploadError {}
 /// Errors returned by GetVPCEConfiguration
 #[derive(Debug, PartialEq)]
 pub enum GetVPCEConfigurationError {
@@ -5133,19 +5111,16 @@ impl GetVPCEConfigurationError {
     }
 }
 impl fmt::Display for GetVPCEConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVPCEConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            GetVPCEConfigurationError::Argument(ref cause) => cause,
-            GetVPCEConfigurationError::NotFound(ref cause) => cause,
-            GetVPCEConfigurationError::ServiceAccount(ref cause) => cause,
+            GetVPCEConfigurationError::Argument(ref cause) => write!(f, "{}", cause),
+            GetVPCEConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetVPCEConfigurationError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVPCEConfigurationError {}
 /// Errors returned by InstallToRemoteAccessSession
 #[derive(Debug, PartialEq)]
 pub enum InstallToRemoteAccessSessionError {
@@ -5193,20 +5168,17 @@ impl InstallToRemoteAccessSessionError {
     }
 }
 impl fmt::Display for InstallToRemoteAccessSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InstallToRemoteAccessSessionError {
-    fn description(&self) -> &str {
         match *self {
-            InstallToRemoteAccessSessionError::Argument(ref cause) => cause,
-            InstallToRemoteAccessSessionError::LimitExceeded(ref cause) => cause,
-            InstallToRemoteAccessSessionError::NotFound(ref cause) => cause,
-            InstallToRemoteAccessSessionError::ServiceAccount(ref cause) => cause,
+            InstallToRemoteAccessSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            InstallToRemoteAccessSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            InstallToRemoteAccessSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            InstallToRemoteAccessSessionError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InstallToRemoteAccessSessionError {}
 /// Errors returned by ListArtifacts
 #[derive(Debug, PartialEq)]
 pub enum ListArtifactsError {
@@ -5244,20 +5216,17 @@ impl ListArtifactsError {
     }
 }
 impl fmt::Display for ListArtifactsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListArtifactsError {
-    fn description(&self) -> &str {
         match *self {
-            ListArtifactsError::Argument(ref cause) => cause,
-            ListArtifactsError::LimitExceeded(ref cause) => cause,
-            ListArtifactsError::NotFound(ref cause) => cause,
-            ListArtifactsError::ServiceAccount(ref cause) => cause,
+            ListArtifactsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListArtifactsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListArtifactsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListArtifactsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListArtifactsError {}
 /// Errors returned by ListDeviceInstances
 #[derive(Debug, PartialEq)]
 pub enum ListDeviceInstancesError {
@@ -5295,20 +5264,17 @@ impl ListDeviceInstancesError {
     }
 }
 impl fmt::Display for ListDeviceInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeviceInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeviceInstancesError::Argument(ref cause) => cause,
-            ListDeviceInstancesError::LimitExceeded(ref cause) => cause,
-            ListDeviceInstancesError::NotFound(ref cause) => cause,
-            ListDeviceInstancesError::ServiceAccount(ref cause) => cause,
+            ListDeviceInstancesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListDeviceInstancesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListDeviceInstancesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListDeviceInstancesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeviceInstancesError {}
 /// Errors returned by ListDevicePools
 #[derive(Debug, PartialEq)]
 pub enum ListDevicePoolsError {
@@ -5346,20 +5312,17 @@ impl ListDevicePoolsError {
     }
 }
 impl fmt::Display for ListDevicePoolsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDevicePoolsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDevicePoolsError::Argument(ref cause) => cause,
-            ListDevicePoolsError::LimitExceeded(ref cause) => cause,
-            ListDevicePoolsError::NotFound(ref cause) => cause,
-            ListDevicePoolsError::ServiceAccount(ref cause) => cause,
+            ListDevicePoolsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListDevicePoolsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListDevicePoolsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListDevicePoolsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDevicePoolsError {}
 /// Errors returned by ListDevices
 #[derive(Debug, PartialEq)]
 pub enum ListDevicesError {
@@ -5397,20 +5360,17 @@ impl ListDevicesError {
     }
 }
 impl fmt::Display for ListDevicesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDevicesError {
-    fn description(&self) -> &str {
         match *self {
-            ListDevicesError::Argument(ref cause) => cause,
-            ListDevicesError::LimitExceeded(ref cause) => cause,
-            ListDevicesError::NotFound(ref cause) => cause,
-            ListDevicesError::ServiceAccount(ref cause) => cause,
+            ListDevicesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListDevicesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListDevicesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListDevicesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDevicesError {}
 /// Errors returned by ListInstanceProfiles
 #[derive(Debug, PartialEq)]
 pub enum ListInstanceProfilesError {
@@ -5448,20 +5408,17 @@ impl ListInstanceProfilesError {
     }
 }
 impl fmt::Display for ListInstanceProfilesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInstanceProfilesError {
-    fn description(&self) -> &str {
         match *self {
-            ListInstanceProfilesError::Argument(ref cause) => cause,
-            ListInstanceProfilesError::LimitExceeded(ref cause) => cause,
-            ListInstanceProfilesError::NotFound(ref cause) => cause,
-            ListInstanceProfilesError::ServiceAccount(ref cause) => cause,
+            ListInstanceProfilesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListInstanceProfilesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListInstanceProfilesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListInstanceProfilesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInstanceProfilesError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -5499,20 +5456,17 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::Argument(ref cause) => cause,
-            ListJobsError::LimitExceeded(ref cause) => cause,
-            ListJobsError::NotFound(ref cause) => cause,
-            ListJobsError::ServiceAccount(ref cause) => cause,
+            ListJobsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListJobsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListJobsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListJobsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by ListNetworkProfiles
 #[derive(Debug, PartialEq)]
 pub enum ListNetworkProfilesError {
@@ -5550,20 +5504,17 @@ impl ListNetworkProfilesError {
     }
 }
 impl fmt::Display for ListNetworkProfilesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListNetworkProfilesError {
-    fn description(&self) -> &str {
         match *self {
-            ListNetworkProfilesError::Argument(ref cause) => cause,
-            ListNetworkProfilesError::LimitExceeded(ref cause) => cause,
-            ListNetworkProfilesError::NotFound(ref cause) => cause,
-            ListNetworkProfilesError::ServiceAccount(ref cause) => cause,
+            ListNetworkProfilesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListNetworkProfilesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListNetworkProfilesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListNetworkProfilesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListNetworkProfilesError {}
 /// Errors returned by ListOfferingPromotions
 #[derive(Debug, PartialEq)]
 pub enum ListOfferingPromotionsError {
@@ -5610,21 +5561,18 @@ impl ListOfferingPromotionsError {
     }
 }
 impl fmt::Display for ListOfferingPromotionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOfferingPromotionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListOfferingPromotionsError::Argument(ref cause) => cause,
-            ListOfferingPromotionsError::LimitExceeded(ref cause) => cause,
-            ListOfferingPromotionsError::NotEligible(ref cause) => cause,
-            ListOfferingPromotionsError::NotFound(ref cause) => cause,
-            ListOfferingPromotionsError::ServiceAccount(ref cause) => cause,
+            ListOfferingPromotionsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListOfferingPromotionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListOfferingPromotionsError::NotEligible(ref cause) => write!(f, "{}", cause),
+            ListOfferingPromotionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListOfferingPromotionsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOfferingPromotionsError {}
 /// Errors returned by ListOfferingTransactions
 #[derive(Debug, PartialEq)]
 pub enum ListOfferingTransactionsError {
@@ -5673,21 +5621,18 @@ impl ListOfferingTransactionsError {
     }
 }
 impl fmt::Display for ListOfferingTransactionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOfferingTransactionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListOfferingTransactionsError::Argument(ref cause) => cause,
-            ListOfferingTransactionsError::LimitExceeded(ref cause) => cause,
-            ListOfferingTransactionsError::NotEligible(ref cause) => cause,
-            ListOfferingTransactionsError::NotFound(ref cause) => cause,
-            ListOfferingTransactionsError::ServiceAccount(ref cause) => cause,
+            ListOfferingTransactionsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListOfferingTransactionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListOfferingTransactionsError::NotEligible(ref cause) => write!(f, "{}", cause),
+            ListOfferingTransactionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListOfferingTransactionsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOfferingTransactionsError {}
 /// Errors returned by ListOfferings
 #[derive(Debug, PartialEq)]
 pub enum ListOfferingsError {
@@ -5730,21 +5675,18 @@ impl ListOfferingsError {
     }
 }
 impl fmt::Display for ListOfferingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOfferingsError {
-    fn description(&self) -> &str {
         match *self {
-            ListOfferingsError::Argument(ref cause) => cause,
-            ListOfferingsError::LimitExceeded(ref cause) => cause,
-            ListOfferingsError::NotEligible(ref cause) => cause,
-            ListOfferingsError::NotFound(ref cause) => cause,
-            ListOfferingsError::ServiceAccount(ref cause) => cause,
+            ListOfferingsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::NotEligible(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOfferingsError {}
 /// Errors returned by ListProjects
 #[derive(Debug, PartialEq)]
 pub enum ListProjectsError {
@@ -5782,20 +5724,17 @@ impl ListProjectsError {
     }
 }
 impl fmt::Display for ListProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProjectsError::Argument(ref cause) => cause,
-            ListProjectsError::LimitExceeded(ref cause) => cause,
-            ListProjectsError::NotFound(ref cause) => cause,
-            ListProjectsError::ServiceAccount(ref cause) => cause,
+            ListProjectsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProjectsError {}
 /// Errors returned by ListRemoteAccessSessions
 #[derive(Debug, PartialEq)]
 pub enum ListRemoteAccessSessionsError {
@@ -5837,20 +5776,17 @@ impl ListRemoteAccessSessionsError {
     }
 }
 impl fmt::Display for ListRemoteAccessSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRemoteAccessSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListRemoteAccessSessionsError::Argument(ref cause) => cause,
-            ListRemoteAccessSessionsError::LimitExceeded(ref cause) => cause,
-            ListRemoteAccessSessionsError::NotFound(ref cause) => cause,
-            ListRemoteAccessSessionsError::ServiceAccount(ref cause) => cause,
+            ListRemoteAccessSessionsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListRemoteAccessSessionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListRemoteAccessSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListRemoteAccessSessionsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRemoteAccessSessionsError {}
 /// Errors returned by ListRuns
 #[derive(Debug, PartialEq)]
 pub enum ListRunsError {
@@ -5888,20 +5824,17 @@ impl ListRunsError {
     }
 }
 impl fmt::Display for ListRunsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRunsError {
-    fn description(&self) -> &str {
         match *self {
-            ListRunsError::Argument(ref cause) => cause,
-            ListRunsError::LimitExceeded(ref cause) => cause,
-            ListRunsError::NotFound(ref cause) => cause,
-            ListRunsError::ServiceAccount(ref cause) => cause,
+            ListRunsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListRunsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListRunsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListRunsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRunsError {}
 /// Errors returned by ListSamples
 #[derive(Debug, PartialEq)]
 pub enum ListSamplesError {
@@ -5939,20 +5872,17 @@ impl ListSamplesError {
     }
 }
 impl fmt::Display for ListSamplesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSamplesError {
-    fn description(&self) -> &str {
         match *self {
-            ListSamplesError::Argument(ref cause) => cause,
-            ListSamplesError::LimitExceeded(ref cause) => cause,
-            ListSamplesError::NotFound(ref cause) => cause,
-            ListSamplesError::ServiceAccount(ref cause) => cause,
+            ListSamplesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListSamplesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListSamplesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListSamplesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSamplesError {}
 /// Errors returned by ListSuites
 #[derive(Debug, PartialEq)]
 pub enum ListSuitesError {
@@ -5990,20 +5920,17 @@ impl ListSuitesError {
     }
 }
 impl fmt::Display for ListSuitesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSuitesError {
-    fn description(&self) -> &str {
         match *self {
-            ListSuitesError::Argument(ref cause) => cause,
-            ListSuitesError::LimitExceeded(ref cause) => cause,
-            ListSuitesError::NotFound(ref cause) => cause,
-            ListSuitesError::ServiceAccount(ref cause) => cause,
+            ListSuitesError::Argument(ref cause) => write!(f, "{}", cause),
+            ListSuitesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListSuitesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListSuitesError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSuitesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -6036,19 +5963,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::Argument(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
-            ListTagsForResourceError::TagOperation(ref cause) => cause,
+            ListTagsForResourceError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::TagOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListTestGridProjects
 #[derive(Debug, PartialEq)]
 pub enum ListTestGridProjectsError {
@@ -6078,18 +6002,15 @@ impl ListTestGridProjectsError {
     }
 }
 impl fmt::Display for ListTestGridProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTestGridProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTestGridProjectsError::Argument(ref cause) => cause,
-            ListTestGridProjectsError::InternalService(ref cause) => cause,
+            ListTestGridProjectsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTestGridProjectsError::InternalService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTestGridProjectsError {}
 /// Errors returned by ListTestGridSessionActions
 #[derive(Debug, PartialEq)]
 pub enum ListTestGridSessionActionsError {
@@ -6126,19 +6047,16 @@ impl ListTestGridSessionActionsError {
     }
 }
 impl fmt::Display for ListTestGridSessionActionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTestGridSessionActionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTestGridSessionActionsError::Argument(ref cause) => cause,
-            ListTestGridSessionActionsError::InternalService(ref cause) => cause,
-            ListTestGridSessionActionsError::NotFound(ref cause) => cause,
+            ListTestGridSessionActionsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionActionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionActionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTestGridSessionActionsError {}
 /// Errors returned by ListTestGridSessionArtifacts
 #[derive(Debug, PartialEq)]
 pub enum ListTestGridSessionArtifactsError {
@@ -6179,19 +6097,16 @@ impl ListTestGridSessionArtifactsError {
     }
 }
 impl fmt::Display for ListTestGridSessionArtifactsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTestGridSessionArtifactsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTestGridSessionArtifactsError::Argument(ref cause) => cause,
-            ListTestGridSessionArtifactsError::InternalService(ref cause) => cause,
-            ListTestGridSessionArtifactsError::NotFound(ref cause) => cause,
+            ListTestGridSessionArtifactsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionArtifactsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionArtifactsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTestGridSessionArtifactsError {}
 /// Errors returned by ListTestGridSessions
 #[derive(Debug, PartialEq)]
 pub enum ListTestGridSessionsError {
@@ -6226,19 +6141,16 @@ impl ListTestGridSessionsError {
     }
 }
 impl fmt::Display for ListTestGridSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTestGridSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTestGridSessionsError::Argument(ref cause) => cause,
-            ListTestGridSessionsError::InternalService(ref cause) => cause,
-            ListTestGridSessionsError::NotFound(ref cause) => cause,
+            ListTestGridSessionsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListTestGridSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTestGridSessionsError {}
 /// Errors returned by ListTests
 #[derive(Debug, PartialEq)]
 pub enum ListTestsError {
@@ -6276,20 +6188,17 @@ impl ListTestsError {
     }
 }
 impl fmt::Display for ListTestsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTestsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTestsError::Argument(ref cause) => cause,
-            ListTestsError::LimitExceeded(ref cause) => cause,
-            ListTestsError::NotFound(ref cause) => cause,
-            ListTestsError::ServiceAccount(ref cause) => cause,
+            ListTestsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListTestsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListTestsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListTestsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTestsError {}
 /// Errors returned by ListUniqueProblems
 #[derive(Debug, PartialEq)]
 pub enum ListUniqueProblemsError {
@@ -6327,20 +6236,17 @@ impl ListUniqueProblemsError {
     }
 }
 impl fmt::Display for ListUniqueProblemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListUniqueProblemsError {
-    fn description(&self) -> &str {
         match *self {
-            ListUniqueProblemsError::Argument(ref cause) => cause,
-            ListUniqueProblemsError::LimitExceeded(ref cause) => cause,
-            ListUniqueProblemsError::NotFound(ref cause) => cause,
-            ListUniqueProblemsError::ServiceAccount(ref cause) => cause,
+            ListUniqueProblemsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListUniqueProblemsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListUniqueProblemsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListUniqueProblemsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListUniqueProblemsError {}
 /// Errors returned by ListUploads
 #[derive(Debug, PartialEq)]
 pub enum ListUploadsError {
@@ -6378,20 +6284,17 @@ impl ListUploadsError {
     }
 }
 impl fmt::Display for ListUploadsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListUploadsError {
-    fn description(&self) -> &str {
         match *self {
-            ListUploadsError::Argument(ref cause) => cause,
-            ListUploadsError::LimitExceeded(ref cause) => cause,
-            ListUploadsError::NotFound(ref cause) => cause,
-            ListUploadsError::ServiceAccount(ref cause) => cause,
+            ListUploadsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListUploadsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListUploadsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListUploadsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListUploadsError {}
 /// Errors returned by ListVPCEConfigurations
 #[derive(Debug, PartialEq)]
 pub enum ListVPCEConfigurationsError {
@@ -6421,18 +6324,15 @@ impl ListVPCEConfigurationsError {
     }
 }
 impl fmt::Display for ListVPCEConfigurationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListVPCEConfigurationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListVPCEConfigurationsError::Argument(ref cause) => cause,
-            ListVPCEConfigurationsError::ServiceAccount(ref cause) => cause,
+            ListVPCEConfigurationsError::Argument(ref cause) => write!(f, "{}", cause),
+            ListVPCEConfigurationsError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListVPCEConfigurationsError {}
 /// Errors returned by PurchaseOffering
 #[derive(Debug, PartialEq)]
 pub enum PurchaseOfferingError {
@@ -6475,21 +6375,18 @@ impl PurchaseOfferingError {
     }
 }
 impl fmt::Display for PurchaseOfferingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PurchaseOfferingError {
-    fn description(&self) -> &str {
         match *self {
-            PurchaseOfferingError::Argument(ref cause) => cause,
-            PurchaseOfferingError::LimitExceeded(ref cause) => cause,
-            PurchaseOfferingError::NotEligible(ref cause) => cause,
-            PurchaseOfferingError::NotFound(ref cause) => cause,
-            PurchaseOfferingError::ServiceAccount(ref cause) => cause,
+            PurchaseOfferingError::Argument(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::NotEligible(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::NotFound(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PurchaseOfferingError {}
 /// Errors returned by RenewOffering
 #[derive(Debug, PartialEq)]
 pub enum RenewOfferingError {
@@ -6532,21 +6429,18 @@ impl RenewOfferingError {
     }
 }
 impl fmt::Display for RenewOfferingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RenewOfferingError {
-    fn description(&self) -> &str {
         match *self {
-            RenewOfferingError::Argument(ref cause) => cause,
-            RenewOfferingError::LimitExceeded(ref cause) => cause,
-            RenewOfferingError::NotEligible(ref cause) => cause,
-            RenewOfferingError::NotFound(ref cause) => cause,
-            RenewOfferingError::ServiceAccount(ref cause) => cause,
+            RenewOfferingError::Argument(ref cause) => write!(f, "{}", cause),
+            RenewOfferingError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            RenewOfferingError::NotEligible(ref cause) => write!(f, "{}", cause),
+            RenewOfferingError::NotFound(ref cause) => write!(f, "{}", cause),
+            RenewOfferingError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RenewOfferingError {}
 /// Errors returned by ScheduleRun
 #[derive(Debug, PartialEq)]
 pub enum ScheduleRunError {
@@ -6589,21 +6483,18 @@ impl ScheduleRunError {
     }
 }
 impl fmt::Display for ScheduleRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ScheduleRunError {
-    fn description(&self) -> &str {
         match *self {
-            ScheduleRunError::Argument(ref cause) => cause,
-            ScheduleRunError::Idempotency(ref cause) => cause,
-            ScheduleRunError::LimitExceeded(ref cause) => cause,
-            ScheduleRunError::NotFound(ref cause) => cause,
-            ScheduleRunError::ServiceAccount(ref cause) => cause,
+            ScheduleRunError::Argument(ref cause) => write!(f, "{}", cause),
+            ScheduleRunError::Idempotency(ref cause) => write!(f, "{}", cause),
+            ScheduleRunError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ScheduleRunError::NotFound(ref cause) => write!(f, "{}", cause),
+            ScheduleRunError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ScheduleRunError {}
 /// Errors returned by StopJob
 #[derive(Debug, PartialEq)]
 pub enum StopJobError {
@@ -6641,20 +6532,17 @@ impl StopJobError {
     }
 }
 impl fmt::Display for StopJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopJobError {
-    fn description(&self) -> &str {
         match *self {
-            StopJobError::Argument(ref cause) => cause,
-            StopJobError::LimitExceeded(ref cause) => cause,
-            StopJobError::NotFound(ref cause) => cause,
-            StopJobError::ServiceAccount(ref cause) => cause,
+            StopJobError::Argument(ref cause) => write!(f, "{}", cause),
+            StopJobError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StopJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopJobError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopJobError {}
 /// Errors returned by StopRemoteAccessSession
 #[derive(Debug, PartialEq)]
 pub enum StopRemoteAccessSessionError {
@@ -6696,20 +6584,17 @@ impl StopRemoteAccessSessionError {
     }
 }
 impl fmt::Display for StopRemoteAccessSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopRemoteAccessSessionError {
-    fn description(&self) -> &str {
         match *self {
-            StopRemoteAccessSessionError::Argument(ref cause) => cause,
-            StopRemoteAccessSessionError::LimitExceeded(ref cause) => cause,
-            StopRemoteAccessSessionError::NotFound(ref cause) => cause,
-            StopRemoteAccessSessionError::ServiceAccount(ref cause) => cause,
+            StopRemoteAccessSessionError::Argument(ref cause) => write!(f, "{}", cause),
+            StopRemoteAccessSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StopRemoteAccessSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopRemoteAccessSessionError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopRemoteAccessSessionError {}
 /// Errors returned by StopRun
 #[derive(Debug, PartialEq)]
 pub enum StopRunError {
@@ -6747,20 +6632,17 @@ impl StopRunError {
     }
 }
 impl fmt::Display for StopRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopRunError {
-    fn description(&self) -> &str {
         match *self {
-            StopRunError::Argument(ref cause) => cause,
-            StopRunError::LimitExceeded(ref cause) => cause,
-            StopRunError::NotFound(ref cause) => cause,
-            StopRunError::ServiceAccount(ref cause) => cause,
+            StopRunError::Argument(ref cause) => write!(f, "{}", cause),
+            StopRunError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StopRunError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopRunError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopRunError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -6803,21 +6685,18 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::Argument(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
-            TagResourceError::TagOperation(ref cause) => cause,
-            TagResourceError::TagPolicy(ref cause) => cause,
-            TagResourceError::TooManyTags(ref cause) => cause,
+            TagResourceError::Argument(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TagOperation(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TagPolicy(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -6850,19 +6729,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::Argument(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
-            UntagResourceError::TagOperation(ref cause) => cause,
+            UntagResourceError::Argument(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TagOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateDeviceInstance
 #[derive(Debug, PartialEq)]
 pub enum UpdateDeviceInstanceError {
@@ -6900,20 +6776,17 @@ impl UpdateDeviceInstanceError {
     }
 }
 impl fmt::Display for UpdateDeviceInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDeviceInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDeviceInstanceError::Argument(ref cause) => cause,
-            UpdateDeviceInstanceError::LimitExceeded(ref cause) => cause,
-            UpdateDeviceInstanceError::NotFound(ref cause) => cause,
-            UpdateDeviceInstanceError::ServiceAccount(ref cause) => cause,
+            UpdateDeviceInstanceError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateDeviceInstanceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateDeviceInstanceError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDeviceInstanceError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDeviceInstanceError {}
 /// Errors returned by UpdateDevicePool
 #[derive(Debug, PartialEq)]
 pub enum UpdateDevicePoolError {
@@ -6951,20 +6824,17 @@ impl UpdateDevicePoolError {
     }
 }
 impl fmt::Display for UpdateDevicePoolError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDevicePoolError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDevicePoolError::Argument(ref cause) => cause,
-            UpdateDevicePoolError::LimitExceeded(ref cause) => cause,
-            UpdateDevicePoolError::NotFound(ref cause) => cause,
-            UpdateDevicePoolError::ServiceAccount(ref cause) => cause,
+            UpdateDevicePoolError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateDevicePoolError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateDevicePoolError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDevicePoolError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDevicePoolError {}
 /// Errors returned by UpdateInstanceProfile
 #[derive(Debug, PartialEq)]
 pub enum UpdateInstanceProfileError {
@@ -7004,20 +6874,17 @@ impl UpdateInstanceProfileError {
     }
 }
 impl fmt::Display for UpdateInstanceProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateInstanceProfileError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateInstanceProfileError::Argument(ref cause) => cause,
-            UpdateInstanceProfileError::LimitExceeded(ref cause) => cause,
-            UpdateInstanceProfileError::NotFound(ref cause) => cause,
-            UpdateInstanceProfileError::ServiceAccount(ref cause) => cause,
+            UpdateInstanceProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateInstanceProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateInstanceProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateInstanceProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateInstanceProfileError {}
 /// Errors returned by UpdateNetworkProfile
 #[derive(Debug, PartialEq)]
 pub enum UpdateNetworkProfileError {
@@ -7055,20 +6922,17 @@ impl UpdateNetworkProfileError {
     }
 }
 impl fmt::Display for UpdateNetworkProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateNetworkProfileError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateNetworkProfileError::Argument(ref cause) => cause,
-            UpdateNetworkProfileError::LimitExceeded(ref cause) => cause,
-            UpdateNetworkProfileError::NotFound(ref cause) => cause,
-            UpdateNetworkProfileError::ServiceAccount(ref cause) => cause,
+            UpdateNetworkProfileError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateNetworkProfileError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateNetworkProfileError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateNetworkProfileError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateNetworkProfileError {}
 /// Errors returned by UpdateProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateProjectError {
@@ -7106,20 +6970,17 @@ impl UpdateProjectError {
     }
 }
 impl fmt::Display for UpdateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProjectError::Argument(ref cause) => cause,
-            UpdateProjectError::LimitExceeded(ref cause) => cause,
-            UpdateProjectError::NotFound(ref cause) => cause,
-            UpdateProjectError::ServiceAccount(ref cause) => cause,
+            UpdateProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProjectError {}
 /// Errors returned by UpdateTestGridProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateTestGridProjectError {
@@ -7154,19 +7015,16 @@ impl UpdateTestGridProjectError {
     }
 }
 impl fmt::Display for UpdateTestGridProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTestGridProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTestGridProjectError::Argument(ref cause) => cause,
-            UpdateTestGridProjectError::InternalService(ref cause) => cause,
-            UpdateTestGridProjectError::NotFound(ref cause) => cause,
+            UpdateTestGridProjectError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateTestGridProjectError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateTestGridProjectError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTestGridProjectError {}
 /// Errors returned by UpdateUpload
 #[derive(Debug, PartialEq)]
 pub enum UpdateUploadError {
@@ -7204,20 +7062,17 @@ impl UpdateUploadError {
     }
 }
 impl fmt::Display for UpdateUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateUploadError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateUploadError::Argument(ref cause) => cause,
-            UpdateUploadError::LimitExceeded(ref cause) => cause,
-            UpdateUploadError::NotFound(ref cause) => cause,
-            UpdateUploadError::ServiceAccount(ref cause) => cause,
+            UpdateUploadError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateUploadError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateUploadError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateUploadError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateUploadError {}
 /// Errors returned by UpdateVPCEConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateVPCEConfigurationError {
@@ -7259,20 +7114,17 @@ impl UpdateVPCEConfigurationError {
     }
 }
 impl fmt::Display for UpdateVPCEConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateVPCEConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateVPCEConfigurationError::Argument(ref cause) => cause,
-            UpdateVPCEConfigurationError::InvalidOperation(ref cause) => cause,
-            UpdateVPCEConfigurationError::NotFound(ref cause) => cause,
-            UpdateVPCEConfigurationError::ServiceAccount(ref cause) => cause,
+            UpdateVPCEConfigurationError::Argument(ref cause) => write!(f, "{}", cause),
+            UpdateVPCEConfigurationError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            UpdateVPCEConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateVPCEConfigurationError::ServiceAccount(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateVPCEConfigurationError {}
 /// Trait representing the capabilities of the AWS Device Farm API. AWS Device Farm clients implement this trait.
 #[async_trait]
 pub trait DeviceFarm {

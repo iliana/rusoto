@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLexiconInput {
     /// <p>The name of the lexicon to delete. Must be an existing lexicon in the region.</p>
     #[serde(rename = "Name")]
@@ -33,10 +35,11 @@ pub struct DeleteLexiconInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLexiconOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeVoicesInput {
     /// <p>Specifies the engine (<code>standard</code> or <code>neural</code>) used by Amazon Polly when processing input text for speech synthesis. </p>
     #[serde(rename = "Engine")]
@@ -57,7 +60,7 @@ pub struct DescribeVoicesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeVoicesOutput {
     /// <p>The pagination token to use in the next request to continue the listing of voices. <code>NextToken</code> is returned only if the response is truncated.</p>
     #[serde(rename = "NextToken")]
@@ -70,6 +73,7 @@ pub struct DescribeVoicesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLexiconInput {
     /// <p>Name of the lexicon.</p>
     #[serde(rename = "Name")]
@@ -77,7 +81,7 @@ pub struct GetLexiconInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLexiconOutput {
     /// <p>Lexicon object that provides name and the string content of the lexicon. </p>
     #[serde(rename = "Lexicon")]
@@ -90,6 +94,7 @@ pub struct GetLexiconOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSpeechSynthesisTaskInput {
     /// <p>The Amazon Polly generated identifier for a speech synthesis task.</p>
     #[serde(rename = "TaskId")]
@@ -97,7 +102,7 @@ pub struct GetSpeechSynthesisTaskInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSpeechSynthesisTaskOutput {
     /// <p>SynthesisTask object that provides information from the requested task, including output format, creation time, task status, and so on.</p>
     #[serde(rename = "SynthesisTask")]
@@ -107,7 +112,7 @@ pub struct GetSpeechSynthesisTaskOutput {
 
 /// <p>Provides lexicon name and lexicon content in string format. For more information, see <a href="https://www.w3.org/TR/pronunciation-lexicon/">Pronunciation Lexicon Specification (PLS) Version 1.0</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Lexicon {
     /// <p>Lexicon content in string format. The content of a lexicon must be in PLS format.</p>
     #[serde(rename = "Content")]
@@ -121,7 +126,7 @@ pub struct Lexicon {
 
 /// <p>Contains metadata describing the lexicon such as the number of lexemes, language code, and so on. For more information, see <a href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html">Managing Lexicons</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LexiconAttributes {
     /// <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>.</p>
     #[serde(rename = "Alphabet")]
@@ -151,7 +156,7 @@ pub struct LexiconAttributes {
 
 /// <p>Describes the content of the lexicon.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LexiconDescription {
     /// <p>Provides lexicon metadata.</p>
     #[serde(rename = "Attributes")]
@@ -164,6 +169,7 @@ pub struct LexiconDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLexiconsInput {
     /// <p>An opaque pagination token returned from previous <code>ListLexicons</code> operation. If present, indicates where to continue the list of lexicons.</p>
     #[serde(rename = "NextToken")]
@@ -172,7 +178,7 @@ pub struct ListLexiconsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLexiconsOutput {
     /// <p>A list of lexicon names and attributes.</p>
     #[serde(rename = "Lexicons")]
@@ -185,6 +191,7 @@ pub struct ListLexiconsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSpeechSynthesisTasksInput {
     /// <p>Maximum number of speech synthesis tasks returned in a List operation.</p>
     #[serde(rename = "MaxResults")]
@@ -201,7 +208,7 @@ pub struct ListSpeechSynthesisTasksInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSpeechSynthesisTasksOutput {
     /// <p>An opaque pagination token returned from the previous List operation in this request. If present, this indicates where to continue the listing.</p>
     #[serde(rename = "NextToken")]
@@ -214,6 +221,7 @@ pub struct ListSpeechSynthesisTasksOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLexiconInput {
     /// <p>Content of the PLS lexicon as string data.</p>
     #[serde(rename = "Content")]
@@ -224,10 +232,11 @@ pub struct PutLexiconInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLexiconOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartSpeechSynthesisTaskInput {
     /// <p>Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.</p>
     #[serde(rename = "Engine")]
@@ -276,7 +285,7 @@ pub struct StartSpeechSynthesisTaskInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartSpeechSynthesisTaskOutput {
     /// <p>SynthesisTask object that provides information and attributes about a newly submitted speech synthesis task.</p>
     #[serde(rename = "SynthesisTask")]
@@ -286,7 +295,7 @@ pub struct StartSpeechSynthesisTaskOutput {
 
 /// <p>SynthesisTask object that provides information about a speech synthesis task.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SynthesisTask {
     /// <p>Timestamp for the time the synthesis task was started.</p>
     #[serde(rename = "CreationTime")]
@@ -351,6 +360,7 @@ pub struct SynthesisTask {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SynthesizeSpeechInput {
     /// <p>Specifies the engine (<code>standard</code> or <code>neural</code>) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.</p>
     #[serde(rename = "Engine")]
@@ -399,7 +409,7 @@ pub struct SynthesizeSpeechOutput {
 
 /// <p>Description of the voice.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Voice {
     /// <p>Additional codes for languages available for the specified voice in addition to its default language. </p> <p>For example, the default language for Aditi is Indian English (en-IN) because it was first used for that language. Since Aditi is bilingual and fluent in both Indian English and Hindi, this parameter would show the code <code>hi-IN</code>.</p>
     #[serde(rename = "AdditionalLanguageCodes")]
@@ -458,18 +468,15 @@ impl DeleteLexiconError {
     }
 }
 impl fmt::Display for DeleteLexiconError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLexiconError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLexiconError::LexiconNotFound(ref cause) => cause,
-            DeleteLexiconError::ServiceFailure(ref cause) => cause,
+            DeleteLexiconError::LexiconNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLexiconError::ServiceFailure(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLexiconError {}
 /// Errors returned by DescribeVoices
 #[derive(Debug, PartialEq)]
 pub enum DescribeVoicesError {
@@ -497,18 +504,15 @@ impl DescribeVoicesError {
     }
 }
 impl fmt::Display for DescribeVoicesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeVoicesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeVoicesError::InvalidNextToken(ref cause) => cause,
-            DescribeVoicesError::ServiceFailure(ref cause) => cause,
+            DescribeVoicesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeVoicesError::ServiceFailure(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeVoicesError {}
 /// Errors returned by GetLexicon
 #[derive(Debug, PartialEq)]
 pub enum GetLexiconError {
@@ -536,18 +540,15 @@ impl GetLexiconError {
     }
 }
 impl fmt::Display for GetLexiconError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLexiconError {
-    fn description(&self) -> &str {
         match *self {
-            GetLexiconError::LexiconNotFound(ref cause) => cause,
-            GetLexiconError::ServiceFailure(ref cause) => cause,
+            GetLexiconError::LexiconNotFound(ref cause) => write!(f, "{}", cause),
+            GetLexiconError::ServiceFailure(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLexiconError {}
 /// Errors returned by GetSpeechSynthesisTask
 #[derive(Debug, PartialEq)]
 pub enum GetSpeechSynthesisTaskError {
@@ -586,19 +587,16 @@ impl GetSpeechSynthesisTaskError {
     }
 }
 impl fmt::Display for GetSpeechSynthesisTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSpeechSynthesisTaskError {
-    fn description(&self) -> &str {
         match *self {
-            GetSpeechSynthesisTaskError::InvalidTaskId(ref cause) => cause,
-            GetSpeechSynthesisTaskError::ServiceFailure(ref cause) => cause,
-            GetSpeechSynthesisTaskError::SynthesisTaskNotFound(ref cause) => cause,
+            GetSpeechSynthesisTaskError::InvalidTaskId(ref cause) => write!(f, "{}", cause),
+            GetSpeechSynthesisTaskError::ServiceFailure(ref cause) => write!(f, "{}", cause),
+            GetSpeechSynthesisTaskError::SynthesisTaskNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSpeechSynthesisTaskError {}
 /// Errors returned by ListLexicons
 #[derive(Debug, PartialEq)]
 pub enum ListLexiconsError {
@@ -626,18 +624,15 @@ impl ListLexiconsError {
     }
 }
 impl fmt::Display for ListLexiconsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLexiconsError {
-    fn description(&self) -> &str {
         match *self {
-            ListLexiconsError::InvalidNextToken(ref cause) => cause,
-            ListLexiconsError::ServiceFailure(ref cause) => cause,
+            ListLexiconsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListLexiconsError::ServiceFailure(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListLexiconsError {}
 /// Errors returned by ListSpeechSynthesisTasks
 #[derive(Debug, PartialEq)]
 pub enum ListSpeechSynthesisTasksError {
@@ -669,18 +664,15 @@ impl ListSpeechSynthesisTasksError {
     }
 }
 impl fmt::Display for ListSpeechSynthesisTasksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSpeechSynthesisTasksError {
-    fn description(&self) -> &str {
         match *self {
-            ListSpeechSynthesisTasksError::InvalidNextToken(ref cause) => cause,
-            ListSpeechSynthesisTasksError::ServiceFailure(ref cause) => cause,
+            ListSpeechSynthesisTasksError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListSpeechSynthesisTasksError::ServiceFailure(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSpeechSynthesisTasksError {}
 /// Errors returned by PutLexicon
 #[derive(Debug, PartialEq)]
 pub enum PutLexiconError {
@@ -735,23 +727,20 @@ impl PutLexiconError {
     }
 }
 impl fmt::Display for PutLexiconError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLexiconError {
-    fn description(&self) -> &str {
         match *self {
-            PutLexiconError::InvalidLexicon(ref cause) => cause,
-            PutLexiconError::LexiconSizeExceeded(ref cause) => cause,
-            PutLexiconError::MaxLexemeLengthExceeded(ref cause) => cause,
-            PutLexiconError::MaxLexiconsNumberExceeded(ref cause) => cause,
-            PutLexiconError::ServiceFailure(ref cause) => cause,
-            PutLexiconError::UnsupportedPlsAlphabet(ref cause) => cause,
-            PutLexiconError::UnsupportedPlsLanguage(ref cause) => cause,
+            PutLexiconError::InvalidLexicon(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::LexiconSizeExceeded(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::MaxLexemeLengthExceeded(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::MaxLexiconsNumberExceeded(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::ServiceFailure(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::UnsupportedPlsAlphabet(ref cause) => write!(f, "{}", cause),
+            PutLexiconError::UnsupportedPlsLanguage(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutLexiconError {}
 /// Errors returned by StartSpeechSynthesisTask
 #[derive(Debug, PartialEq)]
 pub enum StartSpeechSynthesisTaskError {
@@ -853,28 +842,31 @@ impl StartSpeechSynthesisTaskError {
     }
 }
 impl fmt::Display for StartSpeechSynthesisTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartSpeechSynthesisTaskError {
-    fn description(&self) -> &str {
         match *self {
-            StartSpeechSynthesisTaskError::EngineNotSupported(ref cause) => cause,
-            StartSpeechSynthesisTaskError::InvalidS3Bucket(ref cause) => cause,
-            StartSpeechSynthesisTaskError::InvalidS3Key(ref cause) => cause,
-            StartSpeechSynthesisTaskError::InvalidSampleRate(ref cause) => cause,
-            StartSpeechSynthesisTaskError::InvalidSnsTopicArn(ref cause) => cause,
-            StartSpeechSynthesisTaskError::InvalidSsml(ref cause) => cause,
-            StartSpeechSynthesisTaskError::LanguageNotSupported(ref cause) => cause,
-            StartSpeechSynthesisTaskError::LexiconNotFound(ref cause) => cause,
-            StartSpeechSynthesisTaskError::MarksNotSupportedForFormat(ref cause) => cause,
-            StartSpeechSynthesisTaskError::ServiceFailure(ref cause) => cause,
-            StartSpeechSynthesisTaskError::SsmlMarksNotSupportedForTextType(ref cause) => cause,
-            StartSpeechSynthesisTaskError::TextLengthExceeded(ref cause) => cause,
+            StartSpeechSynthesisTaskError::EngineNotSupported(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::InvalidS3Bucket(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::InvalidS3Key(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::InvalidSampleRate(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::InvalidSnsTopicArn(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::InvalidSsml(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::LanguageNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartSpeechSynthesisTaskError::LexiconNotFound(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::MarksNotSupportedForFormat(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartSpeechSynthesisTaskError::ServiceFailure(ref cause) => write!(f, "{}", cause),
+            StartSpeechSynthesisTaskError::SsmlMarksNotSupportedForTextType(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartSpeechSynthesisTaskError::TextLengthExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartSpeechSynthesisTaskError {}
 /// Errors returned by SynthesizeSpeech
 #[derive(Debug, PartialEq)]
 pub enum SynthesizeSpeechError {
@@ -943,25 +935,24 @@ impl SynthesizeSpeechError {
     }
 }
 impl fmt::Display for SynthesizeSpeechError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SynthesizeSpeechError {
-    fn description(&self) -> &str {
         match *self {
-            SynthesizeSpeechError::EngineNotSupported(ref cause) => cause,
-            SynthesizeSpeechError::InvalidSampleRate(ref cause) => cause,
-            SynthesizeSpeechError::InvalidSsml(ref cause) => cause,
-            SynthesizeSpeechError::LanguageNotSupported(ref cause) => cause,
-            SynthesizeSpeechError::LexiconNotFound(ref cause) => cause,
-            SynthesizeSpeechError::MarksNotSupportedForFormat(ref cause) => cause,
-            SynthesizeSpeechError::ServiceFailure(ref cause) => cause,
-            SynthesizeSpeechError::SsmlMarksNotSupportedForTextType(ref cause) => cause,
-            SynthesizeSpeechError::TextLengthExceeded(ref cause) => cause,
+            SynthesizeSpeechError::EngineNotSupported(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::InvalidSampleRate(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::InvalidSsml(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::LanguageNotSupported(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::LexiconNotFound(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::MarksNotSupportedForFormat(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::ServiceFailure(ref cause) => write!(f, "{}", cause),
+            SynthesizeSpeechError::SsmlMarksNotSupportedForTextType(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SynthesizeSpeechError::TextLengthExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SynthesizeSpeechError {}
 /// Trait representing the capabilities of the Amazon Polly API. Amazon Polly clients implement this trait.
 #[async_trait]
 pub trait Polly {

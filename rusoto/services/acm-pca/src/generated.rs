@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains information about the certificate subject. The certificate can be one issued by your private certificate authority (CA) or it can be your private CA certificate. The <b>Subject</b> field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The <b>Subject</b> must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate. The DN must be unique for each entity, but your private CA can issue more than one certificate with the same DN to the same entity. </p>
@@ -87,7 +88,7 @@ pub struct ASN1Subject {
 
 /// <p>Contains information about your private certificate authority (CA). Your private CA can issue and revoke X.509 digital certificates. Digital certificates verify that the entity named in the certificate <b>Subject</b> field owns or controls the public key contained in the <b>Subject Public Key Info</b> field. Call the <a>CreateCertificateAuthority</a> action to create your private CA. You must then call the <a>GetCertificateAuthorityCertificate</a> action to retrieve a private CA certificate signing request (CSR). Sign the CSR with your ACM Private CA-hosted or on-premises root or subordinate CA certificate. Call the <a>ImportCertificateAuthorityCertificate</a> action to import the signed certificate into AWS Certificate Manager (ACM). </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CertificateAuthority {
     /// <p>Amazon Resource Name (ARN) for your private certificate authority (CA). The format is <code> <i>12345678-1234-1234-1234-123456789012</i> </code>.</p>
     #[serde(rename = "Arn")]
@@ -154,6 +155,7 @@ pub struct CertificateAuthorityConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCertificateAuthorityAuditReportRequest {
     /// <p>The format in which to create the report. This can be either <b>JSON</b> or <b>CSV</b>.</p>
     #[serde(rename = "AuditReportResponseFormat")]
@@ -167,7 +169,7 @@ pub struct CreateCertificateAuthorityAuditReportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCertificateAuthorityAuditReportResponse {
     /// <p>An alphanumeric string that contains a report identifier.</p>
     #[serde(rename = "AuditReportId")]
@@ -180,6 +182,7 @@ pub struct CreateCertificateAuthorityAuditReportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCertificateAuthorityRequest {
     /// <p>Name and bit size of the private key algorithm, the name of the signing algorithm, and X.500 certificate subject information.</p>
     #[serde(rename = "CertificateAuthorityConfiguration")]
@@ -202,7 +205,7 @@ pub struct CreateCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCertificateAuthorityResponse {
     /// <p>If successful, the Amazon Resource Name (ARN) of the certificate authority (CA). This is of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code>. </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -211,6 +214,7 @@ pub struct CreateCertificateAuthorityResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePermissionRequest {
     /// <p>The actions that the specified AWS service principal can use. These include <code>IssueCertificate</code>, <code>GetCertificate</code>, and <code>ListPermissions</code>.</p>
     #[serde(rename = "Actions")]
@@ -248,6 +252,7 @@ pub struct CrlConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCertificateAuthorityRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called <a>CreateCertificateAuthority</a>. This must have the following form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code>. </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -259,6 +264,7 @@ pub struct DeleteCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePermissionRequest {
     /// <p>The Amazon Resource Number (ARN) of the private CA that issued the permissions. You can find the CA's ARN by calling the <a>ListCertificateAuthorities</a> action. This must have the following form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code>. </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -273,6 +279,7 @@ pub struct DeletePermissionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCertificateAuthorityAuditReportRequest {
     /// <p>The report ID returned by calling the <a>CreateCertificateAuthorityAuditReport</a> action.</p>
     #[serde(rename = "AuditReportId")]
@@ -283,7 +290,7 @@ pub struct DescribeCertificateAuthorityAuditReportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCertificateAuthorityAuditReportResponse {
     /// <p>Specifies whether report creation is in progress, has succeeded, or has failed.</p>
     #[serde(rename = "AuditReportStatus")]
@@ -304,6 +311,7 @@ pub struct DescribeCertificateAuthorityAuditReportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCertificateAuthorityRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called <a>CreateCertificateAuthority</a>. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code>. </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -311,7 +319,7 @@ pub struct DescribeCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCertificateAuthorityResponse {
     /// <p>A <a>CertificateAuthority</a> structure that contains information about your private CA.</p>
     #[serde(rename = "CertificateAuthority")]
@@ -320,6 +328,7 @@ pub struct DescribeCertificateAuthorityResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCertificateAuthorityCertificateRequest {
     /// <p>The Amazon Resource Name (ARN) of your private CA. This is of the form:</p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code>. </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -327,7 +336,7 @@ pub struct GetCertificateAuthorityCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCertificateAuthorityCertificateResponse {
     /// <p>Base64-encoded certificate authority (CA) certificate.</p>
     #[serde(rename = "Certificate")]
@@ -340,6 +349,7 @@ pub struct GetCertificateAuthorityCertificateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCertificateAuthorityCsrRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called the <a>CreateCertificateAuthority</a> action. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -347,7 +357,7 @@ pub struct GetCertificateAuthorityCsrRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCertificateAuthorityCsrResponse {
     /// <p>The base64 PEM-encoded certificate signing request (CSR) for your private CA certificate.</p>
     #[serde(rename = "Csr")]
@@ -356,6 +366,7 @@ pub struct GetCertificateAuthorityCsrResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCertificateRequest {
     /// <p>The ARN of the issued certificate. The ARN contains the certificate serial number and must be in the following form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>/certificate/<i>286535153982981100925020015808220737245</i> </code> </p>
     #[serde(rename = "CertificateArn")]
@@ -366,7 +377,7 @@ pub struct GetCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCertificateResponse {
     /// <p>The base64 PEM-encoded certificate specified by the <code>CertificateArn</code> parameter.</p>
     #[serde(rename = "Certificate")]
@@ -379,6 +390,7 @@ pub struct GetCertificateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportCertificateAuthorityCertificateRequest {
     /// <p>The PEM-encoded certificate for a private CA. This may be a self-signed certificate in the case of a root CA, or it may be signed by another CA that you control.</p>
     #[serde(rename = "Certificate")]
@@ -403,6 +415,7 @@ pub struct ImportCertificateAuthorityCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct IssueCertificateRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called <a>CreateCertificateAuthority</a>. This must be of the form:</p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -432,7 +445,7 @@ pub struct IssueCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IssueCertificateResponse {
     /// <p>The Amazon Resource Name (ARN) of the issued certificate and the certificate serial number. This is of the form:</p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>/certificate/<i>286535153982981100925020015808220737245</i> </code> </p>
     #[serde(rename = "CertificateArn")]
@@ -441,6 +454,7 @@ pub struct IssueCertificateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCertificateAuthoritiesRequest {
     /// <p>Use this parameter when paginating results to specify the maximum number of items to return in the response on each page. If additional items exist beyond the number you specify, the <code>NextToken</code> element is sent in the response. Use this <code>NextToken</code> value in a subsequent request to retrieve additional items.</p>
     #[serde(rename = "MaxResults")]
@@ -453,7 +467,7 @@ pub struct ListCertificateAuthoritiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCertificateAuthoritiesResponse {
     /// <p>Summary information about each certificate authority you have created.</p>
     #[serde(rename = "CertificateAuthorities")]
@@ -466,6 +480,7 @@ pub struct ListCertificateAuthoritiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPermissionsRequest {
     /// <p>The Amazon Resource Number (ARN) of the private CA to inspect. You can find the ARN by calling the <a>ListCertificateAuthorities</a> action. This must be of the form: <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code> You can get a private CA's ARN by running the <a>ListCertificateAuthorities</a> action.</p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -481,7 +496,7 @@ pub struct ListPermissionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPermissionsResponse {
     /// <p>When the list is truncated, this value is present and should be used for the <b>NextToken</b> parameter in a subsequent pagination request. </p>
     #[serde(rename = "NextToken")]
@@ -494,6 +509,7 @@ pub struct ListPermissionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called the <a>CreateCertificateAuthority</a> action. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -509,7 +525,7 @@ pub struct ListTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsResponse {
     /// <p>When the list is truncated, this value is present and should be used for the <b>NextToken</b> parameter in a subsequent pagination request. </p>
     #[serde(rename = "NextToken")]
@@ -523,7 +539,7 @@ pub struct ListTagsResponse {
 
 /// <p>Permissions designate which private CA actions can be performed by an AWS service or entity. In order for ACM to automatically renew private certificates, you must give the ACM service principal all available permissions (<code>IssueCertificate</code>, <code>GetCertificate</code>, and <code>ListPermissions</code>). Permissions can be assigned with the <a>CreatePermission</a> action, removed with the <a>DeletePermission</a> action, and listed with the <a>ListPermissions</a> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Permission {
     /// <p>The private CA actions that can be performed by the designated AWS service.</p>
     #[serde(rename = "Actions")]
@@ -552,6 +568,7 @@ pub struct Permission {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreCertificateAuthorityRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called the <a>CreateCertificateAuthority</a> action. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -568,6 +585,7 @@ pub struct RevocationConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RevokeCertificateRequest {
     /// <p>Amazon Resource Name (ARN) of the private CA that issued the certificate to be revoked. This must be of the form:</p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -593,6 +611,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagCertificateAuthorityRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called <a>CreateCertificateAuthority</a>. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -603,6 +622,7 @@ pub struct TagCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagCertificateAuthorityRequest {
     /// <p>The Amazon Resource Name (ARN) that was returned when you called <a>CreateCertificateAuthority</a>. This must be of the form: </p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -613,6 +633,7 @@ pub struct UntagCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateCertificateAuthorityRequest {
     /// <p>Amazon Resource Name (ARN) of the private CA that issued the certificate to be revoked. This must be of the form:</p> <p> <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i> </code> </p>
     #[serde(rename = "CertificateAuthorityArn")]
@@ -629,6 +650,7 @@ pub struct UpdateCertificateAuthorityRequest {
 
 /// <p>Length of time for which the certificate issued by your private certificate authority (CA), or by the private CA itself, is valid in days, months, or years. You can issue a certificate by calling the <a>IssueCertificate</a> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Validity {
     /// <p>Specifies whether the <code>Value</code> parameter represents days, months, or years.</p>
     #[serde(rename = "Type")]
@@ -685,20 +707,17 @@ impl CreateCertificateAuthorityError {
     }
 }
 impl fmt::Display for CreateCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCertificateAuthorityError::InvalidArgs(ref cause) => cause,
-            CreateCertificateAuthorityError::InvalidPolicy(ref cause) => cause,
-            CreateCertificateAuthorityError::InvalidTag(ref cause) => cause,
-            CreateCertificateAuthorityError::LimitExceeded(ref cause) => cause,
+            CreateCertificateAuthorityError::InvalidArgs(ref cause) => write!(f, "{}", cause),
+            CreateCertificateAuthorityError::InvalidPolicy(ref cause) => write!(f, "{}", cause),
+            CreateCertificateAuthorityError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            CreateCertificateAuthorityError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCertificateAuthorityError {}
 /// Errors returned by CreateCertificateAuthorityAuditReport
 #[derive(Debug, PartialEq)]
 pub enum CreateCertificateAuthorityAuditReportError {
@@ -760,22 +779,31 @@ impl CreateCertificateAuthorityAuditReportError {
     }
 }
 impl fmt::Display for CreateCertificateAuthorityAuditReportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCertificateAuthorityAuditReportError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCertificateAuthorityAuditReportError::InvalidArgs(ref cause) => cause,
-            CreateCertificateAuthorityAuditReportError::InvalidArn(ref cause) => cause,
-            CreateCertificateAuthorityAuditReportError::InvalidState(ref cause) => cause,
-            CreateCertificateAuthorityAuditReportError::RequestFailed(ref cause) => cause,
-            CreateCertificateAuthorityAuditReportError::RequestInProgress(ref cause) => cause,
-            CreateCertificateAuthorityAuditReportError::ResourceNotFound(ref cause) => cause,
+            CreateCertificateAuthorityAuditReportError::InvalidArgs(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCertificateAuthorityAuditReportError::InvalidArn(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCertificateAuthorityAuditReportError::InvalidState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCertificateAuthorityAuditReportError::RequestFailed(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCertificateAuthorityAuditReportError::RequestInProgress(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCertificateAuthorityAuditReportError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateCertificateAuthorityAuditReportError {}
 /// Errors returned by CreatePermission
 #[derive(Debug, PartialEq)]
 pub enum CreatePermissionError {
@@ -825,22 +853,19 @@ impl CreatePermissionError {
     }
 }
 impl fmt::Display for CreatePermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePermissionError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePermissionError::InvalidArn(ref cause) => cause,
-            CreatePermissionError::InvalidState(ref cause) => cause,
-            CreatePermissionError::LimitExceeded(ref cause) => cause,
-            CreatePermissionError::PermissionAlreadyExists(ref cause) => cause,
-            CreatePermissionError::RequestFailed(ref cause) => cause,
-            CreatePermissionError::ResourceNotFound(ref cause) => cause,
+            CreatePermissionError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            CreatePermissionError::InvalidState(ref cause) => write!(f, "{}", cause),
+            CreatePermissionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreatePermissionError::PermissionAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreatePermissionError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            CreatePermissionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePermissionError {}
 /// Errors returned by DeleteCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum DeleteCertificateAuthorityError {
@@ -888,20 +913,19 @@ impl DeleteCertificateAuthorityError {
     }
 }
 impl fmt::Display for DeleteCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCertificateAuthorityError::ConcurrentModification(ref cause) => cause,
-            DeleteCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            DeleteCertificateAuthorityError::InvalidState(ref cause) => cause,
-            DeleteCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
+            DeleteCertificateAuthorityError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            DeleteCertificateAuthorityError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeleteCertificateAuthorityError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCertificateAuthorityError {}
 /// Errors returned by DeletePermission
 #[derive(Debug, PartialEq)]
 pub enum DeletePermissionError {
@@ -939,20 +963,17 @@ impl DeletePermissionError {
     }
 }
 impl fmt::Display for DeletePermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePermissionError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePermissionError::InvalidArn(ref cause) => cause,
-            DeletePermissionError::InvalidState(ref cause) => cause,
-            DeletePermissionError::RequestFailed(ref cause) => cause,
-            DeletePermissionError::ResourceNotFound(ref cause) => cause,
+            DeletePermissionError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            DeletePermissionError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeletePermissionError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            DeletePermissionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePermissionError {}
 /// Errors returned by DescribeCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum DescribeCertificateAuthorityError {
@@ -986,18 +1007,17 @@ impl DescribeCertificateAuthorityError {
     }
 }
 impl fmt::Display for DescribeCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            DescribeCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
+            DescribeCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateAuthorityError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeCertificateAuthorityError {}
 /// Errors returned by DescribeCertificateAuthorityAuditReport
 #[derive(Debug, PartialEq)]
 pub enum DescribeCertificateAuthorityAuditReportError {
@@ -1038,19 +1058,22 @@ impl DescribeCertificateAuthorityAuditReportError {
     }
 }
 impl fmt::Display for DescribeCertificateAuthorityAuditReportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCertificateAuthorityAuditReportError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCertificateAuthorityAuditReportError::InvalidArgs(ref cause) => cause,
-            DescribeCertificateAuthorityAuditReportError::InvalidArn(ref cause) => cause,
-            DescribeCertificateAuthorityAuditReportError::ResourceNotFound(ref cause) => cause,
+            DescribeCertificateAuthorityAuditReportError::InvalidArgs(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeCertificateAuthorityAuditReportError::InvalidArn(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeCertificateAuthorityAuditReportError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeCertificateAuthorityAuditReportError {}
 /// Errors returned by GetCertificate
 #[derive(Debug, PartialEq)]
 pub enum GetCertificateError {
@@ -1093,21 +1116,18 @@ impl GetCertificateError {
     }
 }
 impl fmt::Display for GetCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            GetCertificateError::InvalidArn(ref cause) => cause,
-            GetCertificateError::InvalidState(ref cause) => cause,
-            GetCertificateError::RequestFailed(ref cause) => cause,
-            GetCertificateError::RequestInProgress(ref cause) => cause,
-            GetCertificateError::ResourceNotFound(ref cause) => cause,
+            GetCertificateError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            GetCertificateError::InvalidState(ref cause) => write!(f, "{}", cause),
+            GetCertificateError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            GetCertificateError::RequestInProgress(ref cause) => write!(f, "{}", cause),
+            GetCertificateError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCertificateError {}
 /// Errors returned by GetCertificateAuthorityCertificate
 #[derive(Debug, PartialEq)]
 pub enum GetCertificateAuthorityCertificateError {
@@ -1148,19 +1168,22 @@ impl GetCertificateAuthorityCertificateError {
     }
 }
 impl fmt::Display for GetCertificateAuthorityCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCertificateAuthorityCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            GetCertificateAuthorityCertificateError::InvalidArn(ref cause) => cause,
-            GetCertificateAuthorityCertificateError::InvalidState(ref cause) => cause,
-            GetCertificateAuthorityCertificateError::ResourceNotFound(ref cause) => cause,
+            GetCertificateAuthorityCertificateError::InvalidArn(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetCertificateAuthorityCertificateError::InvalidState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetCertificateAuthorityCertificateError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetCertificateAuthorityCertificateError {}
 /// Errors returned by GetCertificateAuthorityCsr
 #[derive(Debug, PartialEq)]
 pub enum GetCertificateAuthorityCsrError {
@@ -1215,21 +1238,18 @@ impl GetCertificateAuthorityCsrError {
     }
 }
 impl fmt::Display for GetCertificateAuthorityCsrError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCertificateAuthorityCsrError {
-    fn description(&self) -> &str {
         match *self {
-            GetCertificateAuthorityCsrError::InvalidArn(ref cause) => cause,
-            GetCertificateAuthorityCsrError::InvalidState(ref cause) => cause,
-            GetCertificateAuthorityCsrError::RequestFailed(ref cause) => cause,
-            GetCertificateAuthorityCsrError::RequestInProgress(ref cause) => cause,
-            GetCertificateAuthorityCsrError::ResourceNotFound(ref cause) => cause,
+            GetCertificateAuthorityCsrError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            GetCertificateAuthorityCsrError::InvalidState(ref cause) => write!(f, "{}", cause),
+            GetCertificateAuthorityCsrError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            GetCertificateAuthorityCsrError::RequestInProgress(ref cause) => write!(f, "{}", cause),
+            GetCertificateAuthorityCsrError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCertificateAuthorityCsrError {}
 /// Errors returned by ImportCertificateAuthorityCertificate
 #[derive(Debug, PartialEq)]
 pub enum ImportCertificateAuthorityCertificateError {
@@ -1312,25 +1332,40 @@ impl ImportCertificateAuthorityCertificateError {
     }
 }
 impl fmt::Display for ImportCertificateAuthorityCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ImportCertificateAuthorityCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            ImportCertificateAuthorityCertificateError::CertificateMismatch(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::ConcurrentModification(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::InvalidArn(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::InvalidRequest(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::InvalidState(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::MalformedCertificate(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::RequestFailed(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::RequestInProgress(ref cause) => cause,
-            ImportCertificateAuthorityCertificateError::ResourceNotFound(ref cause) => cause,
+            ImportCertificateAuthorityCertificateError::CertificateMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::InvalidArn(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::InvalidState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::MalformedCertificate(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::RequestFailed(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::RequestInProgress(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ImportCertificateAuthorityCertificateError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ImportCertificateAuthorityCertificateError {}
 /// Errors returned by IssueCertificate
 #[derive(Debug, PartialEq)]
 pub enum IssueCertificateError {
@@ -1378,22 +1413,19 @@ impl IssueCertificateError {
     }
 }
 impl fmt::Display for IssueCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for IssueCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            IssueCertificateError::InvalidArgs(ref cause) => cause,
-            IssueCertificateError::InvalidArn(ref cause) => cause,
-            IssueCertificateError::InvalidState(ref cause) => cause,
-            IssueCertificateError::LimitExceeded(ref cause) => cause,
-            IssueCertificateError::MalformedCSR(ref cause) => cause,
-            IssueCertificateError::ResourceNotFound(ref cause) => cause,
+            IssueCertificateError::InvalidArgs(ref cause) => write!(f, "{}", cause),
+            IssueCertificateError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            IssueCertificateError::InvalidState(ref cause) => write!(f, "{}", cause),
+            IssueCertificateError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            IssueCertificateError::MalformedCSR(ref cause) => write!(f, "{}", cause),
+            IssueCertificateError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for IssueCertificateError {}
 /// Errors returned by ListCertificateAuthorities
 #[derive(Debug, PartialEq)]
 pub enum ListCertificateAuthoritiesError {
@@ -1420,17 +1452,14 @@ impl ListCertificateAuthoritiesError {
     }
 }
 impl fmt::Display for ListCertificateAuthoritiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCertificateAuthoritiesError {
-    fn description(&self) -> &str {
         match *self {
-            ListCertificateAuthoritiesError::InvalidNextToken(ref cause) => cause,
+            ListCertificateAuthoritiesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCertificateAuthoritiesError {}
 /// Errors returned by ListPermissions
 #[derive(Debug, PartialEq)]
 pub enum ListPermissionsError {
@@ -1473,21 +1502,18 @@ impl ListPermissionsError {
     }
 }
 impl fmt::Display for ListPermissionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPermissionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPermissionsError::InvalidArn(ref cause) => cause,
-            ListPermissionsError::InvalidNextToken(ref cause) => cause,
-            ListPermissionsError::InvalidState(ref cause) => cause,
-            ListPermissionsError::RequestFailed(ref cause) => cause,
-            ListPermissionsError::ResourceNotFound(ref cause) => cause,
+            ListPermissionsError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            ListPermissionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListPermissionsError::InvalidState(ref cause) => write!(f, "{}", cause),
+            ListPermissionsError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            ListPermissionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPermissionsError {}
 /// Errors returned by ListTags
 #[derive(Debug, PartialEq)]
 pub enum ListTagsError {
@@ -1520,19 +1546,16 @@ impl ListTagsError {
     }
 }
 impl fmt::Display for ListTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsError::InvalidArn(ref cause) => cause,
-            ListTagsError::InvalidState(ref cause) => cause,
-            ListTagsError::ResourceNotFound(ref cause) => cause,
+            ListTagsError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            ListTagsError::InvalidState(ref cause) => write!(f, "{}", cause),
+            ListTagsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsError {}
 /// Errors returned by RestoreCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum RestoreCertificateAuthorityError {
@@ -1573,19 +1596,16 @@ impl RestoreCertificateAuthorityError {
     }
 }
 impl fmt::Display for RestoreCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            RestoreCertificateAuthorityError::InvalidState(ref cause) => cause,
-            RestoreCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
+            RestoreCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            RestoreCertificateAuthorityError::InvalidState(ref cause) => write!(f, "{}", cause),
+            RestoreCertificateAuthorityError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreCertificateAuthorityError {}
 /// Errors returned by RevokeCertificate
 #[derive(Debug, PartialEq)]
 pub enum RevokeCertificateError {
@@ -1652,25 +1672,22 @@ impl RevokeCertificateError {
     }
 }
 impl fmt::Display for RevokeCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RevokeCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            RevokeCertificateError::ConcurrentModification(ref cause) => cause,
-            RevokeCertificateError::InvalidArn(ref cause) => cause,
-            RevokeCertificateError::InvalidRequest(ref cause) => cause,
-            RevokeCertificateError::InvalidState(ref cause) => cause,
-            RevokeCertificateError::LimitExceeded(ref cause) => cause,
-            RevokeCertificateError::RequestAlreadyProcessed(ref cause) => cause,
-            RevokeCertificateError::RequestFailed(ref cause) => cause,
-            RevokeCertificateError::RequestInProgress(ref cause) => cause,
-            RevokeCertificateError::ResourceNotFound(ref cause) => cause,
+            RevokeCertificateError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::InvalidState(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::RequestAlreadyProcessed(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::RequestFailed(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::RequestInProgress(ref cause) => write!(f, "{}", cause),
+            RevokeCertificateError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RevokeCertificateError {}
 /// Errors returned by TagCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum TagCertificateAuthorityError {
@@ -1717,21 +1734,18 @@ impl TagCertificateAuthorityError {
     }
 }
 impl fmt::Display for TagCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            TagCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            TagCertificateAuthorityError::InvalidState(ref cause) => cause,
-            TagCertificateAuthorityError::InvalidTag(ref cause) => cause,
-            TagCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
-            TagCertificateAuthorityError::TooManyTags(ref cause) => cause,
+            TagCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            TagCertificateAuthorityError::InvalidState(ref cause) => write!(f, "{}", cause),
+            TagCertificateAuthorityError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            TagCertificateAuthorityError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TagCertificateAuthorityError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagCertificateAuthorityError {}
 /// Errors returned by UntagCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum UntagCertificateAuthorityError {
@@ -1777,20 +1791,17 @@ impl UntagCertificateAuthorityError {
     }
 }
 impl fmt::Display for UntagCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            UntagCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            UntagCertificateAuthorityError::InvalidState(ref cause) => cause,
-            UntagCertificateAuthorityError::InvalidTag(ref cause) => cause,
-            UntagCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
+            UntagCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            UntagCertificateAuthorityError::InvalidState(ref cause) => write!(f, "{}", cause),
+            UntagCertificateAuthorityError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            UntagCertificateAuthorityError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagCertificateAuthorityError {}
 /// Errors returned by UpdateCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum UpdateCertificateAuthorityError {
@@ -1852,22 +1863,21 @@ impl UpdateCertificateAuthorityError {
     }
 }
 impl fmt::Display for UpdateCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateCertificateAuthorityError::ConcurrentModification(ref cause) => cause,
-            UpdateCertificateAuthorityError::InvalidArgs(ref cause) => cause,
-            UpdateCertificateAuthorityError::InvalidArn(ref cause) => cause,
-            UpdateCertificateAuthorityError::InvalidPolicy(ref cause) => cause,
-            UpdateCertificateAuthorityError::InvalidState(ref cause) => cause,
-            UpdateCertificateAuthorityError::ResourceNotFound(ref cause) => cause,
+            UpdateCertificateAuthorityError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateCertificateAuthorityError::InvalidArgs(ref cause) => write!(f, "{}", cause),
+            UpdateCertificateAuthorityError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            UpdateCertificateAuthorityError::InvalidPolicy(ref cause) => write!(f, "{}", cause),
+            UpdateCertificateAuthorityError::InvalidState(ref cause) => write!(f, "{}", cause),
+            UpdateCertificateAuthorityError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateCertificateAuthorityError {}
 /// Trait representing the capabilities of the ACM-PCA API. ACM-PCA clients implement this trait.
 #[async_trait]
 pub trait AcmPca {

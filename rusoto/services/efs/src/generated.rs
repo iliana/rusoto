@@ -23,11 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Provides a description of an EFS file system access point.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccessPointDescription {
     /// <p>The unique Amazon Resource Name (ARN) associated with the access point.</p>
     #[serde(rename = "AccessPointArn")]
@@ -72,6 +73,7 @@ pub struct AccessPointDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAccessPointRequest {
     /// <p>A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.</p>
     #[serde(rename = "ClientToken")]
@@ -94,6 +96,7 @@ pub struct CreateAccessPointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFileSystemRequest {
     /// <p>A string of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent creation.</p>
     #[serde(rename = "CreationToken")]
@@ -126,6 +129,7 @@ pub struct CreateFileSystemRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMountTargetRequest {
     /// <p>The ID of the file system for which to create the mount target.</p>
     #[serde(rename = "FileSystemId")]
@@ -145,6 +149,7 @@ pub struct CreateMountTargetRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTagsRequest {
     /// <p>The ID of the file system whose tags you want to modify (String). This operation modifies the tags only, not the file system.</p>
     #[serde(rename = "FileSystemId")]
@@ -169,6 +174,7 @@ pub struct CreationInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAccessPointRequest {
     /// <p>The ID of the access point that you want to delete.</p>
     #[serde(rename = "AccessPointId")]
@@ -176,6 +182,7 @@ pub struct DeleteAccessPointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFileSystemPolicyRequest {
     /// <p>Specifies the EFS file system for which to delete the <code>FileSystemPolicy</code>.</p>
     #[serde(rename = "FileSystemId")]
@@ -184,6 +191,7 @@ pub struct DeleteFileSystemPolicyRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFileSystemRequest {
     /// <p>The ID of the file system you want to delete.</p>
     #[serde(rename = "FileSystemId")]
@@ -192,6 +200,7 @@ pub struct DeleteFileSystemRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMountTargetRequest {
     /// <p>The ID of the mount target to delete (String).</p>
     #[serde(rename = "MountTargetId")]
@@ -200,6 +209,7 @@ pub struct DeleteMountTargetRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagsRequest {
     /// <p>The ID of the file system whose tags you want to delete (String).</p>
     #[serde(rename = "FileSystemId")]
@@ -210,6 +220,7 @@ pub struct DeleteTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAccessPointsRequest {
     /// <p>(Optional) Specifies an EFS access point to describe in the response; mutually exclusive with <code>FileSystemId</code>.</p>
     #[serde(rename = "AccessPointId")]
@@ -230,7 +241,7 @@ pub struct DescribeAccessPointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAccessPointsResponse {
     /// <p>An array of access point descriptions.</p>
     #[serde(rename = "AccessPoints")]
@@ -243,6 +254,7 @@ pub struct DescribeAccessPointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFileSystemPolicyRequest {
     /// <p>Specifies which EFS file system to retrieve the <code>FileSystemPolicy</code> for.</p>
     #[serde(rename = "FileSystemId")]
@@ -251,6 +263,7 @@ pub struct DescribeFileSystemPolicyRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFileSystemsRequest {
     /// <p>(Optional) Restricts the list to the file system with this creation token (String). You specify a creation token when you create an Amazon EFS file system.</p>
     #[serde(rename = "CreationToken")]
@@ -271,7 +284,7 @@ pub struct DescribeFileSystemsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFileSystemsResponse {
     /// <p>An array of file system descriptions.</p>
     #[serde(rename = "FileSystems")]
@@ -288,6 +301,7 @@ pub struct DescribeFileSystemsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLifecycleConfigurationRequest {
     /// <p>The ID of the file system whose <code>LifecycleConfiguration</code> object you want to retrieve (String).</p>
     #[serde(rename = "FileSystemId")]
@@ -296,6 +310,7 @@ pub struct DescribeLifecycleConfigurationRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMountTargetSecurityGroupsRequest {
     /// <p>The ID of the mount target whose security groups you want to retrieve.</p>
     #[serde(rename = "MountTargetId")]
@@ -303,7 +318,7 @@ pub struct DescribeMountTargetSecurityGroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMountTargetSecurityGroupsResponse {
     /// <p>An array of security groups.</p>
     #[serde(rename = "SecurityGroups")]
@@ -312,6 +327,7 @@ pub struct DescribeMountTargetSecurityGroupsResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMountTargetsRequest {
     /// <p>(Optional) The ID of the access point whose mount targets that you want to list. It must be included in your request if a <code>FileSystemId</code> or <code>MountTargetId</code> is not included in your request. Accepts either an access point ID or ARN as input.</p>
     #[serde(rename = "AccessPointId")]
@@ -337,7 +353,7 @@ pub struct DescribeMountTargetsRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMountTargetsResponse {
     /// <p>If the request included the <code>Marker</code>, the response returns that value in this field.</p>
     #[serde(rename = "Marker")]
@@ -355,6 +371,7 @@ pub struct DescribeMountTargetsResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTagsRequest {
     /// <p>The ID of the file system whose tag set you want to retrieve.</p>
     #[serde(rename = "FileSystemId")]
@@ -371,7 +388,7 @@ pub struct DescribeTagsRequest {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTagsResponse {
     /// <p>If the request included a <code>Marker</code>, the response returns that value in this field.</p>
     #[serde(rename = "Marker")]
@@ -388,7 +405,7 @@ pub struct DescribeTagsResponse {
 
 /// <p>A description of the file system.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FileSystemDescription {
     /// <p>The time that the file system was created, in seconds (since 1970-01-01T00:00:00Z).</p>
     #[serde(rename = "CreationTime")]
@@ -440,7 +457,7 @@ pub struct FileSystemDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FileSystemPolicyDescription {
     /// <p>Specifies the EFS file system to which the <code>FileSystemPolicy</code> applies.</p>
     #[serde(rename = "FileSystemId")]
@@ -454,7 +471,7 @@ pub struct FileSystemPolicyDescription {
 
 /// <p>The latest known metered size (in bytes) of data stored in the file system, in its <code>Value</code> field, and the time at which that size was determined in its <code>Timestamp</code> field. The value doesn't represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system. That is, the value represents the actual size only if the file system is not modified for a period longer than a couple of hours. Otherwise, the value is not necessarily the exact size the file system was at any instant in time.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FileSystemSize {
     /// <p>The time at which the size of data, returned in the <code>Value</code> field, was determined. The value is the integer number of seconds since 1970-01-01T00:00:00Z.</p>
     #[serde(rename = "Timestamp")]
@@ -474,7 +491,7 @@ pub struct FileSystemSize {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LifecycleConfigurationDescription {
     /// <p>An array of lifecycle management policies. Currently, EFS supports a maximum of one policy per file system.</p>
     #[serde(rename = "LifecyclePolicies")]
@@ -492,6 +509,7 @@ pub struct LifecyclePolicy {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>(Optional) Specifies the maximum number of tag objects to return in the response. The default value is 100.</p>
     #[serde(rename = "MaxResults")]
@@ -507,7 +525,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p> <code>NextToken</code> is present if the response payload is paginated. You can use <code>NextToken</code> in a subsequent request to fetch the next page of access point descriptions.</p>
     #[serde(rename = "NextToken")]
@@ -521,6 +539,7 @@ pub struct ListTagsForResourceResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyMountTargetSecurityGroupsRequest {
     /// <p>The ID of the mount target whose security groups you want to modify.</p>
     #[serde(rename = "MountTargetId")]
@@ -533,7 +552,7 @@ pub struct ModifyMountTargetSecurityGroupsRequest {
 
 /// <p>Provides a description of a mount target.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MountTargetDescription {
     /// <p>The unique and consistent identifier of the Availability Zone (AZ) that the mount target resides in. For example, <code>use1-az1</code> is an AZ ID for the us-east-1 Region and it has the same location in every AWS account.</p>
     #[serde(rename = "AvailabilityZoneId")]
@@ -585,6 +604,7 @@ pub struct PosixUser {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutFileSystemPolicyRequest {
     /// <p>(Optional) A flag to indicate whether to bypass the <code>FileSystemPolicy</code> lockout safety check. The policy lockout safety check determines whether the policy in the request will prevent the principal making the request will be locked out from making future <code>PutFileSystemPolicy</code> requests on the file system. Set <code>BypassPolicyLockoutSafetyCheck</code> to <code>True</code> only when you intend to prevent the principal that is making the request from making a subsequent <code>PutFileSystemPolicy</code> request on the file system. The default value is False. </p>
     #[serde(rename = "BypassPolicyLockoutSafetyCheck")]
@@ -599,6 +619,7 @@ pub struct PutFileSystemPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLifecycleConfigurationRequest {
     /// <p>The ID of the file system for which you are creating the <code>LifecycleConfiguration</code> object (String).</p>
     #[serde(rename = "FileSystemId")]
@@ -633,6 +654,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ID specifying the EFS resource that you want to create a tag for. </p>
     #[serde(rename = "ResourceId")]
@@ -643,6 +665,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>Specifies the EFS resource that you want to remove tags from.</p>
     #[serde(rename = "ResourceId")]
@@ -654,6 +677,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFileSystemRequest {
     /// <p>The ID of the file system that you want to update.</p>
     #[serde(rename = "FileSystemId")]
@@ -718,21 +742,18 @@ impl CreateAccessPointError {
     }
 }
 impl fmt::Display for CreateAccessPointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAccessPointError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAccessPointError::AccessPointAlreadyExists(ref cause) => cause,
-            CreateAccessPointError::AccessPointLimitExceeded(ref cause) => cause,
-            CreateAccessPointError::BadRequest(ref cause) => cause,
-            CreateAccessPointError::FileSystemNotFound(ref cause) => cause,
-            CreateAccessPointError::InternalServerError(ref cause) => cause,
+            CreateAccessPointError::AccessPointAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateAccessPointError::AccessPointLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateAccessPointError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateAccessPointError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            CreateAccessPointError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAccessPointError {}
 /// Errors returned by CreateFileSystem
 #[derive(Debug, PartialEq)]
 pub enum CreateFileSystemError {
@@ -790,22 +811,21 @@ impl CreateFileSystemError {
     }
 }
 impl fmt::Display for CreateFileSystemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFileSystemError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFileSystemError::BadRequest(ref cause) => cause,
-            CreateFileSystemError::FileSystemAlreadyExists(ref cause) => cause,
-            CreateFileSystemError::FileSystemLimitExceeded(ref cause) => cause,
-            CreateFileSystemError::InsufficientThroughputCapacity(ref cause) => cause,
-            CreateFileSystemError::InternalServerError(ref cause) => cause,
-            CreateFileSystemError::ThroughputLimitExceeded(ref cause) => cause,
+            CreateFileSystemError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateFileSystemError::FileSystemAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateFileSystemError::FileSystemLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateFileSystemError::InsufficientThroughputCapacity(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateFileSystemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateFileSystemError::ThroughputLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFileSystemError {}
 /// Errors returned by CreateMountTarget
 #[derive(Debug, PartialEq)]
 pub enum CreateMountTargetError {
@@ -901,28 +921,31 @@ impl CreateMountTargetError {
     }
 }
 impl fmt::Display for CreateMountTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMountTargetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMountTargetError::BadRequest(ref cause) => cause,
-            CreateMountTargetError::FileSystemNotFound(ref cause) => cause,
-            CreateMountTargetError::IncorrectFileSystemLifeCycleState(ref cause) => cause,
-            CreateMountTargetError::InternalServerError(ref cause) => cause,
-            CreateMountTargetError::IpAddressInUse(ref cause) => cause,
-            CreateMountTargetError::MountTargetConflict(ref cause) => cause,
-            CreateMountTargetError::NetworkInterfaceLimitExceeded(ref cause) => cause,
-            CreateMountTargetError::NoFreeAddressesInSubnet(ref cause) => cause,
-            CreateMountTargetError::SecurityGroupLimitExceeded(ref cause) => cause,
-            CreateMountTargetError::SecurityGroupNotFound(ref cause) => cause,
-            CreateMountTargetError::SubnetNotFound(ref cause) => cause,
-            CreateMountTargetError::UnsupportedAvailabilityZone(ref cause) => cause,
+            CreateMountTargetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::IncorrectFileSystemLifeCycleState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMountTargetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::IpAddressInUse(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::MountTargetConflict(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::NetworkInterfaceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMountTargetError::NoFreeAddressesInSubnet(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::SecurityGroupLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::SecurityGroupNotFound(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::SubnetNotFound(ref cause) => write!(f, "{}", cause),
+            CreateMountTargetError::UnsupportedAvailabilityZone(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateMountTargetError {}
 /// Errors returned by CreateTags
 #[derive(Debug, PartialEq)]
 pub enum CreateTagsError {
@@ -953,19 +976,16 @@ impl CreateTagsError {
     }
 }
 impl fmt::Display for CreateTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTagsError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTagsError::BadRequest(ref cause) => cause,
-            CreateTagsError::FileSystemNotFound(ref cause) => cause,
-            CreateTagsError::InternalServerError(ref cause) => cause,
+            CreateTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTagsError {}
 /// Errors returned by DeleteAccessPoint
 #[derive(Debug, PartialEq)]
 pub enum DeleteAccessPointError {
@@ -1002,19 +1022,16 @@ impl DeleteAccessPointError {
     }
 }
 impl fmt::Display for DeleteAccessPointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteAccessPointError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteAccessPointError::AccessPointNotFound(ref cause) => cause,
-            DeleteAccessPointError::BadRequest(ref cause) => cause,
-            DeleteAccessPointError::InternalServerError(ref cause) => cause,
+            DeleteAccessPointError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteAccessPointError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteAccessPointError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteAccessPointError {}
 /// Errors returned by DeleteFileSystem
 #[derive(Debug, PartialEq)]
 pub enum DeleteFileSystemError {
@@ -1054,20 +1071,17 @@ impl DeleteFileSystemError {
     }
 }
 impl fmt::Display for DeleteFileSystemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFileSystemError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFileSystemError::BadRequest(ref cause) => cause,
-            DeleteFileSystemError::FileSystemInUse(ref cause) => cause,
-            DeleteFileSystemError::FileSystemNotFound(ref cause) => cause,
-            DeleteFileSystemError::InternalServerError(ref cause) => cause,
+            DeleteFileSystemError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteFileSystemError::FileSystemInUse(ref cause) => write!(f, "{}", cause),
+            DeleteFileSystemError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteFileSystemError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFileSystemError {}
 /// Errors returned by DeleteFileSystemPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteFileSystemPolicyError {
@@ -1106,19 +1120,18 @@ impl DeleteFileSystemPolicyError {
     }
 }
 impl fmt::Display for DeleteFileSystemPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFileSystemPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFileSystemPolicyError::FileSystemNotFound(ref cause) => cause,
-            DeleteFileSystemPolicyError::IncorrectFileSystemLifeCycleState(ref cause) => cause,
-            DeleteFileSystemPolicyError::InternalServerError(ref cause) => cause,
+            DeleteFileSystemPolicyError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteFileSystemPolicyError::IncorrectFileSystemLifeCycleState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteFileSystemPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFileSystemPolicyError {}
 /// Errors returned by DeleteMountTarget
 #[derive(Debug, PartialEq)]
 pub enum DeleteMountTargetError {
@@ -1160,20 +1173,17 @@ impl DeleteMountTargetError {
     }
 }
 impl fmt::Display for DeleteMountTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMountTargetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMountTargetError::BadRequest(ref cause) => cause,
-            DeleteMountTargetError::DependencyTimeout(ref cause) => cause,
-            DeleteMountTargetError::InternalServerError(ref cause) => cause,
-            DeleteMountTargetError::MountTargetNotFound(ref cause) => cause,
+            DeleteMountTargetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteMountTargetError::DependencyTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteMountTargetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteMountTargetError::MountTargetNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMountTargetError {}
 /// Errors returned by DeleteTags
 #[derive(Debug, PartialEq)]
 pub enum DeleteTagsError {
@@ -1204,19 +1214,16 @@ impl DeleteTagsError {
     }
 }
 impl fmt::Display for DeleteTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTagsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTagsError::BadRequest(ref cause) => cause,
-            DeleteTagsError::FileSystemNotFound(ref cause) => cause,
-            DeleteTagsError::InternalServerError(ref cause) => cause,
+            DeleteTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTagsError {}
 /// Errors returned by DescribeAccessPoints
 #[derive(Debug, PartialEq)]
 pub enum DescribeAccessPointsError {
@@ -1260,20 +1267,17 @@ impl DescribeAccessPointsError {
     }
 }
 impl fmt::Display for DescribeAccessPointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAccessPointsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAccessPointsError::AccessPointNotFound(ref cause) => cause,
-            DescribeAccessPointsError::BadRequest(ref cause) => cause,
-            DescribeAccessPointsError::FileSystemNotFound(ref cause) => cause,
-            DescribeAccessPointsError::InternalServerError(ref cause) => cause,
+            DescribeAccessPointsError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeAccessPointsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeAccessPointsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeAccessPointsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAccessPointsError {}
 /// Errors returned by DescribeFileSystemPolicy
 #[derive(Debug, PartialEq)]
 pub enum DescribeFileSystemPolicyError {
@@ -1312,19 +1316,16 @@ impl DescribeFileSystemPolicyError {
     }
 }
 impl fmt::Display for DescribeFileSystemPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFileSystemPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFileSystemPolicyError::FileSystemNotFound(ref cause) => cause,
-            DescribeFileSystemPolicyError::InternalServerError(ref cause) => cause,
-            DescribeFileSystemPolicyError::PolicyNotFound(ref cause) => cause,
+            DescribeFileSystemPolicyError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFileSystemPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeFileSystemPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFileSystemPolicyError {}
 /// Errors returned by DescribeFileSystems
 #[derive(Debug, PartialEq)]
 pub enum DescribeFileSystemsError {
@@ -1361,19 +1362,16 @@ impl DescribeFileSystemsError {
     }
 }
 impl fmt::Display for DescribeFileSystemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFileSystemsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFileSystemsError::BadRequest(ref cause) => cause,
-            DescribeFileSystemsError::FileSystemNotFound(ref cause) => cause,
-            DescribeFileSystemsError::InternalServerError(ref cause) => cause,
+            DescribeFileSystemsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFileSystemsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFileSystemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFileSystemsError {}
 /// Errors returned by DescribeLifecycleConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DescribeLifecycleConfigurationError {
@@ -1414,19 +1412,20 @@ impl DescribeLifecycleConfigurationError {
     }
 }
 impl fmt::Display for DescribeLifecycleConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLifecycleConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLifecycleConfigurationError::BadRequest(ref cause) => cause,
-            DescribeLifecycleConfigurationError::FileSystemNotFound(ref cause) => cause,
-            DescribeLifecycleConfigurationError::InternalServerError(ref cause) => cause,
+            DescribeLifecycleConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeLifecycleConfigurationError::FileSystemNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeLifecycleConfigurationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeLifecycleConfigurationError {}
 /// Errors returned by DescribeMountTargetSecurityGroups
 #[derive(Debug, PartialEq)]
 pub enum DescribeMountTargetSecurityGroupsError {
@@ -1474,20 +1473,23 @@ impl DescribeMountTargetSecurityGroupsError {
     }
 }
 impl fmt::Display for DescribeMountTargetSecurityGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMountTargetSecurityGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMountTargetSecurityGroupsError::BadRequest(ref cause) => cause,
-            DescribeMountTargetSecurityGroupsError::IncorrectMountTargetState(ref cause) => cause,
-            DescribeMountTargetSecurityGroupsError::InternalServerError(ref cause) => cause,
-            DescribeMountTargetSecurityGroupsError::MountTargetNotFound(ref cause) => cause,
+            DescribeMountTargetSecurityGroupsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMountTargetSecurityGroupsError::IncorrectMountTargetState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMountTargetSecurityGroupsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMountTargetSecurityGroupsError::MountTargetNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMountTargetSecurityGroupsError {}
 /// Errors returned by DescribeMountTargets
 #[derive(Debug, PartialEq)]
 pub enum DescribeMountTargetsError {
@@ -1538,21 +1540,18 @@ impl DescribeMountTargetsError {
     }
 }
 impl fmt::Display for DescribeMountTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMountTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMountTargetsError::AccessPointNotFound(ref cause) => cause,
-            DescribeMountTargetsError::BadRequest(ref cause) => cause,
-            DescribeMountTargetsError::FileSystemNotFound(ref cause) => cause,
-            DescribeMountTargetsError::InternalServerError(ref cause) => cause,
-            DescribeMountTargetsError::MountTargetNotFound(ref cause) => cause,
+            DescribeMountTargetsError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMountTargetsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMountTargetsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMountTargetsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeMountTargetsError::MountTargetNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMountTargetsError {}
 /// Errors returned by DescribeTags
 #[derive(Debug, PartialEq)]
 pub enum DescribeTagsError {
@@ -1585,19 +1584,16 @@ impl DescribeTagsError {
     }
 }
 impl fmt::Display for DescribeTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTagsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTagsError::BadRequest(ref cause) => cause,
-            DescribeTagsError::FileSystemNotFound(ref cause) => cause,
-            DescribeTagsError::InternalServerError(ref cause) => cause,
+            DescribeTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeTagsError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTagsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1641,20 +1637,17 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::AccessPointNotFound(ref cause) => cause,
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::FileSystemNotFound(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
+            ListTagsForResourceError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ModifyMountTargetSecurityGroups
 #[derive(Debug, PartialEq)]
 pub enum ModifyMountTargetSecurityGroupsError {
@@ -1716,22 +1709,29 @@ impl ModifyMountTargetSecurityGroupsError {
     }
 }
 impl fmt::Display for ModifyMountTargetSecurityGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ModifyMountTargetSecurityGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ModifyMountTargetSecurityGroupsError::BadRequest(ref cause) => cause,
-            ModifyMountTargetSecurityGroupsError::IncorrectMountTargetState(ref cause) => cause,
-            ModifyMountTargetSecurityGroupsError::InternalServerError(ref cause) => cause,
-            ModifyMountTargetSecurityGroupsError::MountTargetNotFound(ref cause) => cause,
-            ModifyMountTargetSecurityGroupsError::SecurityGroupLimitExceeded(ref cause) => cause,
-            ModifyMountTargetSecurityGroupsError::SecurityGroupNotFound(ref cause) => cause,
+            ModifyMountTargetSecurityGroupsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ModifyMountTargetSecurityGroupsError::IncorrectMountTargetState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyMountTargetSecurityGroupsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyMountTargetSecurityGroupsError::MountTargetNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyMountTargetSecurityGroupsError::SecurityGroupLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyMountTargetSecurityGroupsError::SecurityGroupNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ModifyMountTargetSecurityGroupsError {}
 /// Errors returned by PutFileSystemPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutFileSystemPolicyError {
@@ -1775,20 +1775,19 @@ impl PutFileSystemPolicyError {
     }
 }
 impl fmt::Display for PutFileSystemPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutFileSystemPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutFileSystemPolicyError::FileSystemNotFound(ref cause) => cause,
-            PutFileSystemPolicyError::IncorrectFileSystemLifeCycleState(ref cause) => cause,
-            PutFileSystemPolicyError::InternalServerError(ref cause) => cause,
-            PutFileSystemPolicyError::InvalidPolicy(ref cause) => cause,
+            PutFileSystemPolicyError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            PutFileSystemPolicyError::IncorrectFileSystemLifeCycleState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutFileSystemPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PutFileSystemPolicyError::InvalidPolicy(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutFileSystemPolicyError {}
 /// Errors returned by PutLifecycleConfiguration
 #[derive(Debug, PartialEq)]
 pub enum PutLifecycleConfigurationError {
@@ -1834,20 +1833,21 @@ impl PutLifecycleConfigurationError {
     }
 }
 impl fmt::Display for PutLifecycleConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLifecycleConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            PutLifecycleConfigurationError::BadRequest(ref cause) => cause,
-            PutLifecycleConfigurationError::FileSystemNotFound(ref cause) => cause,
-            PutLifecycleConfigurationError::IncorrectFileSystemLifeCycleState(ref cause) => cause,
-            PutLifecycleConfigurationError::InternalServerError(ref cause) => cause,
+            PutLifecycleConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutLifecycleConfigurationError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            PutLifecycleConfigurationError::IncorrectFileSystemLifeCycleState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutLifecycleConfigurationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PutLifecycleConfigurationError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1883,20 +1883,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::AccessPointNotFound(ref cause) => cause,
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::FileSystemNotFound(ref cause) => cause,
-            TagResourceError::InternalServerError(ref cause) => cause,
+            TagResourceError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1934,20 +1931,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::AccessPointNotFound(ref cause) => cause,
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::FileSystemNotFound(ref cause) => cause,
-            UntagResourceError::InternalServerError(ref cause) => cause,
+            UntagResourceError::AccessPointNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateFileSystem
 #[derive(Debug, PartialEq)]
 pub enum UpdateFileSystemError {
@@ -2008,23 +2002,24 @@ impl UpdateFileSystemError {
     }
 }
 impl fmt::Display for UpdateFileSystemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFileSystemError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFileSystemError::BadRequest(ref cause) => cause,
-            UpdateFileSystemError::FileSystemNotFound(ref cause) => cause,
-            UpdateFileSystemError::IncorrectFileSystemLifeCycleState(ref cause) => cause,
-            UpdateFileSystemError::InsufficientThroughputCapacity(ref cause) => cause,
-            UpdateFileSystemError::InternalServerError(ref cause) => cause,
-            UpdateFileSystemError::ThroughputLimitExceeded(ref cause) => cause,
-            UpdateFileSystemError::TooManyRequests(ref cause) => cause,
+            UpdateFileSystemError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFileSystemError::FileSystemNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateFileSystemError::IncorrectFileSystemLifeCycleState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateFileSystemError::InsufficientThroughputCapacity(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateFileSystemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateFileSystemError::ThroughputLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFileSystemError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFileSystemError {}
 /// Trait representing the capabilities of the EFS API. EFS clients implement this trait.
 #[async_trait]
 pub trait Efs {

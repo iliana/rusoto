@@ -152,11 +152,7 @@ impl HttpDispatchError {
     }
 }
 
-impl Error for HttpDispatchError {
-    fn description(&self) -> &str {
-        &self.message
-    }
-}
+impl Error for HttpDispatchError {}
 
 impl fmt::Display for HttpDispatchError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -438,11 +434,7 @@ pub struct TlsError {
     message: String,
 }
 
-impl Error for TlsError {
-    fn description(&self) -> &str {
-        &self.message
-    }
-}
+impl Error for TlsError {}
 
 impl fmt::Display for TlsError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

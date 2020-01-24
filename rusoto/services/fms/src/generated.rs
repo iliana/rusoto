@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateAdminAccountRequest {
     /// <p>The AWS account ID to associate with AWS Firewall Manager as the AWS Firewall Manager administrator account. This can be an AWS Organizations master account or a member account. For more information about AWS Organizations and master accounts, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html">Managing the AWS Accounts in Your Organization</a>.</p>
     #[serde(rename = "AdminAccount")]
@@ -33,7 +35,7 @@ pub struct AssociateAdminAccountRequest {
 
 /// <p>Details of the resource that is not protected by the policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComplianceViolator {
     /// <p>The resource ID.</p>
     #[serde(rename = "ResourceId")]
@@ -50,9 +52,11 @@ pub struct ComplianceViolator {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteNotificationChannelRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePolicyRequest {
     /// <p>If <code>True</code>, the request performs cleanup according to the policy type. </p> <p>For AWS WAF and Shield Advanced policies, the cleanup does the following:</p> <ul> <li> <p>Deletes rule groups created by AWS Firewall Manager</p> </li> <li> <p>Removes web ACLs from in-scope resources</p> </li> <li> <p>Deletes web ACLs that contain no rules or rule groups</p> </li> </ul> <p>For security group policies, the cleanup does the following for each security group in the policy:</p> <ul> <li> <p>Disassociates the security group from in-scope resources </p> </li> <li> <p>Deletes the security group if it was created through Firewall Manager and if it's no longer associated with any resources through another policy</p> </li> </ul> <p>After the cleanup, in-scope resources are no longer protected by web ACLs in this policy. Protection of out-of-scope resources remains unchanged. Scope is determined by tags that you create and accounts that you associate with the policy. When creating the policy, if you specify that only resources in specific accounts or with specific tags are in scope of the policy, those accounts and resources are handled by the policy. All others are out of scope. If you don't specify tags or accounts, all resources are in scope. </p>
     #[serde(rename = "DeleteAllPolicyResources")]
@@ -64,11 +68,12 @@ pub struct DeletePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateAdminAccountRequest {}
 
 /// <p>Describes the compliance status for the account. An account is considered noncompliant if it includes resources that are not protected by the specified policy or that don't comply with the policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EvaluationResult {
     /// <p>Describes an AWS account's compliance with the AWS Firewall Manager policy.</p>
     #[serde(rename = "ComplianceStatus")]
@@ -85,10 +90,11 @@ pub struct EvaluationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAdminAccountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAdminAccountResponse {
     /// <p>The AWS account that is set as the AWS Firewall Manager administrator.</p>
     #[serde(rename = "AdminAccount")]
@@ -101,6 +107,7 @@ pub struct GetAdminAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetComplianceDetailRequest {
     /// <p>The AWS account that owns the resources that you want to get the details for.</p>
     #[serde(rename = "MemberAccount")]
@@ -111,7 +118,7 @@ pub struct GetComplianceDetailRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetComplianceDetailResponse {
     /// <p>Information about the resources and the policy that you specified in the <code>GetComplianceDetail</code> request.</p>
     #[serde(rename = "PolicyComplianceDetail")]
@@ -120,10 +127,11 @@ pub struct GetComplianceDetailResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetNotificationChannelRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetNotificationChannelResponse {
     /// <p>The IAM role that is used by AWS Firewall Manager to record activity to SNS.</p>
     #[serde(rename = "SnsRoleName")]
@@ -136,6 +144,7 @@ pub struct GetNotificationChannelResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPolicyRequest {
     /// <p>The ID of the AWS Firewall Manager policy that you want the details for.</p>
     #[serde(rename = "PolicyId")]
@@ -143,7 +152,7 @@ pub struct GetPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPolicyResponse {
     /// <p>Information about the specified AWS Firewall Manager policy.</p>
     #[serde(rename = "Policy")]
@@ -156,6 +165,7 @@ pub struct GetPolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetProtectionStatusRequest {
     /// <p>The end of the time period to query for the attacks. This is a <code>timestamp</code> type. The request syntax listing indicates a <code>number</code> type because the default used by AWS Firewall Manager is Unix time in seconds. However, any valid <code>timestamp</code> format is allowed.</p>
     #[serde(rename = "EndTime")]
@@ -183,7 +193,7 @@ pub struct GetProtectionStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetProtectionStatusResponse {
     /// <p>The ID of the AWS Firewall administrator account for this policy.</p>
     #[serde(rename = "AdminAccountId")]
@@ -204,6 +214,7 @@ pub struct GetProtectionStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListComplianceStatusRequest {
     /// <p>Specifies the number of <code>PolicyComplianceStatus</code> objects that you want AWS Firewall Manager to return for this request. If you have more <code>PolicyComplianceStatus</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicyComplianceStatus</code> objects.</p>
     #[serde(rename = "MaxResults")]
@@ -219,7 +230,7 @@ pub struct ListComplianceStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListComplianceStatusResponse {
     /// <p>If you have more <code>PolicyComplianceStatus</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicyComplianceStatus</code> objects, submit another <code>ListComplianceStatus</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>
     #[serde(rename = "NextToken")]
@@ -232,6 +243,7 @@ pub struct ListComplianceStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMemberAccountsRequest {
     /// <p>Specifies the number of member account IDs that you want AWS Firewall Manager to return for this request. If you have more IDs than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of member account IDs.</p>
     #[serde(rename = "MaxResults")]
@@ -244,7 +256,7 @@ pub struct ListMemberAccountsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMemberAccountsResponse {
     /// <p>An array of account IDs.</p>
     #[serde(rename = "MemberAccounts")]
@@ -257,6 +269,7 @@ pub struct ListMemberAccountsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPoliciesRequest {
     /// <p>Specifies the number of <code>PolicySummary</code> objects that you want AWS Firewall Manager to return for this request. If you have more <code>PolicySummary</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicySummary</code> objects.</p>
     #[serde(rename = "MaxResults")]
@@ -269,7 +282,7 @@ pub struct ListPoliciesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPoliciesResponse {
     /// <p>If you have more <code>PolicySummary</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicySummary</code> objects, submit another <code>ListPolicies</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>
     #[serde(rename = "NextToken")]
@@ -282,6 +295,7 @@ pub struct ListPoliciesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN..</p>
     #[serde(rename = "ResourceArn")]
@@ -289,7 +303,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags associated with the resource.</p>
     #[serde(rename = "TagList")]
@@ -343,7 +357,7 @@ pub struct Policy {
 
 /// <p>Describes the noncompliant resources in a member account for a specific AWS Firewall Manager policy. A maximum of 100 entries are displayed. If more than 100 resources are noncompliant, <code>EvaluationLimitExceeded</code> is set to <code>True</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicyComplianceDetail {
     /// <p>Indicates if over 100 resources are noncompliant with the AWS Firewall Manager policy.</p>
     #[serde(rename = "EvaluationLimitExceeded")]
@@ -377,7 +391,7 @@ pub struct PolicyComplianceDetail {
 
 /// <p>Indicates whether the account is compliant with the specified policy. An account is considered noncompliant if it includes resources that are not protected by the policy, for AWS WAF and Shield Advanced policies, or that are noncompliant with the policy, for security group policies.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicyComplianceStatus {
     /// <p>An array of <code>EvaluationResult</code> objects.</p>
     #[serde(rename = "EvaluationResults")]
@@ -411,7 +425,7 @@ pub struct PolicyComplianceStatus {
 
 /// <p>Details of the AWS Firewall Manager policy. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicySummary {
     /// <p>The Amazon Resource Name (ARN) of the specified policy.</p>
     #[serde(rename = "PolicyArn")]
@@ -440,6 +454,7 @@ pub struct PolicySummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutNotificationChannelRequest {
     /// <p>The Amazon Resource Name (ARN) of the IAM role that allows Amazon SNS to record AWS Firewall Manager activity. </p>
     #[serde(rename = "SnsRoleName")]
@@ -450,6 +465,7 @@ pub struct PutNotificationChannelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutPolicyRequest {
     /// <p>The details of the AWS Firewall Manager policy to be created.</p>
     #[serde(rename = "Policy")]
@@ -461,7 +477,7 @@ pub struct PutPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutPolicyResponse {
     /// <p>The details of the AWS Firewall Manager policy that was created.</p>
     #[serde(rename = "Policy")]
@@ -509,6 +525,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN.</p>
     #[serde(rename = "ResourceArn")]
@@ -519,10 +536,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN.</p>
     #[serde(rename = "ResourceArn")]
@@ -533,7 +551,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 /// Errors returned by AssociateAdminAccount
@@ -577,20 +595,17 @@ impl AssociateAdminAccountError {
     }
 }
 impl fmt::Display for AssociateAdminAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateAdminAccountError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateAdminAccountError::InternalError(ref cause) => cause,
-            AssociateAdminAccountError::InvalidInput(ref cause) => cause,
-            AssociateAdminAccountError::InvalidOperation(ref cause) => cause,
-            AssociateAdminAccountError::ResourceNotFound(ref cause) => cause,
+            AssociateAdminAccountError::InternalError(ref cause) => write!(f, "{}", cause),
+            AssociateAdminAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            AssociateAdminAccountError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            AssociateAdminAccountError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateAdminAccountError {}
 /// Errors returned by DeleteNotificationChannel
 #[derive(Debug, PartialEq)]
 pub enum DeleteNotificationChannelError {
@@ -629,19 +644,16 @@ impl DeleteNotificationChannelError {
     }
 }
 impl fmt::Display for DeleteNotificationChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteNotificationChannelError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteNotificationChannelError::InternalError(ref cause) => cause,
-            DeleteNotificationChannelError::InvalidOperation(ref cause) => cause,
-            DeleteNotificationChannelError::ResourceNotFound(ref cause) => cause,
+            DeleteNotificationChannelError::InternalError(ref cause) => write!(f, "{}", cause),
+            DeleteNotificationChannelError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            DeleteNotificationChannelError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteNotificationChannelError {}
 /// Errors returned by DeletePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeletePolicyError {
@@ -674,19 +686,16 @@ impl DeletePolicyError {
     }
 }
 impl fmt::Display for DeletePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePolicyError::InternalError(ref cause) => cause,
-            DeletePolicyError::InvalidOperation(ref cause) => cause,
-            DeletePolicyError::ResourceNotFound(ref cause) => cause,
+            DeletePolicyError::InternalError(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePolicyError {}
 /// Errors returned by DisassociateAdminAccount
 #[derive(Debug, PartialEq)]
 pub enum DisassociateAdminAccountError {
@@ -725,19 +734,16 @@ impl DisassociateAdminAccountError {
     }
 }
 impl fmt::Display for DisassociateAdminAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateAdminAccountError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateAdminAccountError::InternalError(ref cause) => cause,
-            DisassociateAdminAccountError::InvalidOperation(ref cause) => cause,
-            DisassociateAdminAccountError::ResourceNotFound(ref cause) => cause,
+            DisassociateAdminAccountError::InternalError(ref cause) => write!(f, "{}", cause),
+            DisassociateAdminAccountError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            DisassociateAdminAccountError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateAdminAccountError {}
 /// Errors returned by GetAdminAccount
 #[derive(Debug, PartialEq)]
 pub enum GetAdminAccountError {
@@ -770,19 +776,16 @@ impl GetAdminAccountError {
     }
 }
 impl fmt::Display for GetAdminAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAdminAccountError {
-    fn description(&self) -> &str {
         match *self {
-            GetAdminAccountError::InternalError(ref cause) => cause,
-            GetAdminAccountError::InvalidOperation(ref cause) => cause,
-            GetAdminAccountError::ResourceNotFound(ref cause) => cause,
+            GetAdminAccountError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetAdminAccountError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            GetAdminAccountError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAdminAccountError {}
 /// Errors returned by GetComplianceDetail
 #[derive(Debug, PartialEq)]
 pub enum GetComplianceDetailError {
@@ -812,18 +815,15 @@ impl GetComplianceDetailError {
     }
 }
 impl fmt::Display for GetComplianceDetailError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetComplianceDetailError {
-    fn description(&self) -> &str {
         match *self {
-            GetComplianceDetailError::InternalError(ref cause) => cause,
-            GetComplianceDetailError::ResourceNotFound(ref cause) => cause,
+            GetComplianceDetailError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetComplianceDetailError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetComplianceDetailError {}
 /// Errors returned by GetNotificationChannel
 #[derive(Debug, PartialEq)]
 pub enum GetNotificationChannelError {
@@ -862,19 +862,16 @@ impl GetNotificationChannelError {
     }
 }
 impl fmt::Display for GetNotificationChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetNotificationChannelError {
-    fn description(&self) -> &str {
         match *self {
-            GetNotificationChannelError::InternalError(ref cause) => cause,
-            GetNotificationChannelError::InvalidOperation(ref cause) => cause,
-            GetNotificationChannelError::ResourceNotFound(ref cause) => cause,
+            GetNotificationChannelError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetNotificationChannelError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            GetNotificationChannelError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetNotificationChannelError {}
 /// Errors returned by GetPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetPolicyError {
@@ -912,20 +909,17 @@ impl GetPolicyError {
     }
 }
 impl fmt::Display for GetPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetPolicyError::InternalError(ref cause) => cause,
-            GetPolicyError::InvalidOperation(ref cause) => cause,
-            GetPolicyError::InvalidType(ref cause) => cause,
-            GetPolicyError::ResourceNotFound(ref cause) => cause,
+            GetPolicyError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetPolicyError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            GetPolicyError::InvalidType(ref cause) => write!(f, "{}", cause),
+            GetPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPolicyError {}
 /// Errors returned by GetProtectionStatus
 #[derive(Debug, PartialEq)]
 pub enum GetProtectionStatusError {
@@ -960,19 +954,16 @@ impl GetProtectionStatusError {
     }
 }
 impl fmt::Display for GetProtectionStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetProtectionStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetProtectionStatusError::InternalError(ref cause) => cause,
-            GetProtectionStatusError::InvalidInput(ref cause) => cause,
-            GetProtectionStatusError::ResourceNotFound(ref cause) => cause,
+            GetProtectionStatusError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetProtectionStatusError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetProtectionStatusError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetProtectionStatusError {}
 /// Errors returned by ListComplianceStatus
 #[derive(Debug, PartialEq)]
 pub enum ListComplianceStatusError {
@@ -1002,18 +993,15 @@ impl ListComplianceStatusError {
     }
 }
 impl fmt::Display for ListComplianceStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListComplianceStatusError {
-    fn description(&self) -> &str {
         match *self {
-            ListComplianceStatusError::InternalError(ref cause) => cause,
-            ListComplianceStatusError::ResourceNotFound(ref cause) => cause,
+            ListComplianceStatusError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListComplianceStatusError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListComplianceStatusError {}
 /// Errors returned by ListMemberAccounts
 #[derive(Debug, PartialEq)]
 pub enum ListMemberAccountsError {
@@ -1041,18 +1029,15 @@ impl ListMemberAccountsError {
     }
 }
 impl fmt::Display for ListMemberAccountsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMemberAccountsError {
-    fn description(&self) -> &str {
         match *self {
-            ListMemberAccountsError::InternalError(ref cause) => cause,
-            ListMemberAccountsError::ResourceNotFound(ref cause) => cause,
+            ListMemberAccountsError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListMemberAccountsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMemberAccountsError {}
 /// Errors returned by ListPolicies
 #[derive(Debug, PartialEq)]
 pub enum ListPoliciesError {
@@ -1090,20 +1075,17 @@ impl ListPoliciesError {
     }
 }
 impl fmt::Display for ListPoliciesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPoliciesError {
-    fn description(&self) -> &str {
         match *self {
-            ListPoliciesError::InternalError(ref cause) => cause,
-            ListPoliciesError::InvalidOperation(ref cause) => cause,
-            ListPoliciesError::LimitExceeded(ref cause) => cause,
-            ListPoliciesError::ResourceNotFound(ref cause) => cause,
+            ListPoliciesError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPoliciesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1145,20 +1127,17 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalError(ref cause) => cause,
-            ListTagsForResourceError::InvalidInput(ref cause) => cause,
-            ListTagsForResourceError::InvalidOperation(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PutNotificationChannel
 #[derive(Debug, PartialEq)]
 pub enum PutNotificationChannelError {
@@ -1197,19 +1176,16 @@ impl PutNotificationChannelError {
     }
 }
 impl fmt::Display for PutNotificationChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutNotificationChannelError {
-    fn description(&self) -> &str {
         match *self {
-            PutNotificationChannelError::InternalError(ref cause) => cause,
-            PutNotificationChannelError::InvalidOperation(ref cause) => cause,
-            PutNotificationChannelError::ResourceNotFound(ref cause) => cause,
+            PutNotificationChannelError::InternalError(ref cause) => write!(f, "{}", cause),
+            PutNotificationChannelError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            PutNotificationChannelError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutNotificationChannelError {}
 /// Errors returned by PutPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutPolicyError {
@@ -1257,22 +1233,19 @@ impl PutPolicyError {
     }
 }
 impl fmt::Display for PutPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutPolicyError::InternalError(ref cause) => cause,
-            PutPolicyError::InvalidInput(ref cause) => cause,
-            PutPolicyError::InvalidOperation(ref cause) => cause,
-            PutPolicyError::InvalidType(ref cause) => cause,
-            PutPolicyError::LimitExceeded(ref cause) => cause,
-            PutPolicyError::ResourceNotFound(ref cause) => cause,
+            PutPolicyError::InternalError(ref cause) => write!(f, "{}", cause),
+            PutPolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            PutPolicyError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            PutPolicyError::InvalidType(ref cause) => write!(f, "{}", cause),
+            PutPolicyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutPolicyError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1315,21 +1288,18 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalError(ref cause) => cause,
-            TagResourceError::InvalidInput(ref cause) => cause,
-            TagResourceError::InvalidOperation(ref cause) => cause,
-            TagResourceError::LimitExceeded(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalError(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            TagResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1367,20 +1337,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalError(ref cause) => cause,
-            UntagResourceError::InvalidInput(ref cause) => cause,
-            UntagResourceError::InvalidOperation(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalError(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidOperation(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Trait representing the capabilities of the FMS API. FMS clients implement this trait.
 #[async_trait]
 pub trait Fms {

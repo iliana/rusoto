@@ -23,11 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents an option to be shown on the client platform (Facebook, Slack, etc.)</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Button {
     /// <p>Text that is visible to the user on the button.</p>
     #[serde(rename = "text")]
@@ -38,6 +39,7 @@ pub struct Button {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSessionRequest {
     /// <p>The alias in use for the bot that contains the session data.</p>
     #[serde(rename = "botAlias")]
@@ -51,7 +53,7 @@ pub struct DeleteSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSessionResponse {
     /// <p>The alias in use for the bot associated with the session data.</p>
     #[serde(rename = "botAlias")]
@@ -105,7 +107,7 @@ pub struct DialogAction {
 
 /// <p>Represents an option rendered to the user when a prompt is shown. It could be an image, a button, a link, or text. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GenericAttachment {
     /// <p>The URL of an attachment to the response card.</p>
     #[serde(rename = "attachmentLinkUrl")]
@@ -130,6 +132,7 @@ pub struct GenericAttachment {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSessionRequest {
     /// <p>The alias in use for the bot that contains the session data.</p>
     #[serde(rename = "botAlias")]
@@ -147,7 +150,7 @@ pub struct GetSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSessionResponse {
     /// <p>Describes the current state of the bot.</p>
     #[serde(rename = "dialogAction")]
@@ -200,6 +203,7 @@ pub struct IntentSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PostContentRequest {
     /// <p><p> You pass this value as the <code>Accept</code> HTTP header. </p> <p> The message Amazon Lex returns in the response can be either text or speech based on the <code>Accept</code> HTTP header value in the request. </p> <ul> <li> <p> If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex returns text in the response. </p> </li> <li> <p> If the value begins with <code>audio/</code>, Amazon Lex returns speech in the response. Amazon Lex uses Amazon Polly to generate the speech (using the configuration you specified in the <code>Accept</code> header). For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech returned is <code>audio/pcm</code> in 16-bit, little endian format. </p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p>audio/mpeg</p> </li> <li> <p>audio/ogg</p> </li> <li> <p>audio/pcm</p> </li> <li> <p>text/plain; charset=utf-8</p> </li> <li> <p>audio/* (defaults to mpeg)</p> </li> </ul> </li> </ul></p>
     #[serde(rename = "accept")]
@@ -264,6 +268,7 @@ pub struct PostContentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PostTextRequest {
     /// <p>The alias of the Amazon Lex bot.</p>
     #[serde(rename = "botAlias")]
@@ -288,7 +293,7 @@ pub struct PostTextRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PostTextResponse {
     /// <p><p> Identifies the current state of the user interaction. Amazon Lex returns one of the following values as <code>dialogState</code>. The client can optionally use this information to customize the user interface. </p> <ul> <li> <p> <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent. </p> <p>For example, a user might utter an intent (&quot;I want to order a pizza&quot;). If Amazon Lex cannot infer the user intent from this utterance, it will return this dialogState.</p> </li> <li> <p> <code>ConfirmIntent</code> - Amazon Lex is expecting a &quot;yes&quot; or &quot;no&quot; response. </p> <p> For example, Amazon Lex wants user confirmation before fulfilling an intent. </p> <p>Instead of a simple &quot;yes&quot; or &quot;no,&quot; a user might respond with additional information. For example, &quot;yes, but make it thick crust pizza&quot; or &quot;no, I want to order a drink&quot;. Amazon Lex can process such additional information (in these examples, update the crust type slot value, or change intent from OrderPizza to OrderDrink).</p> </li> <li> <p> <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the current intent. </p> <p>For example, suppose that in the response Amazon Lex sends this message: &quot;What size pizza would you like?&quot;. A user might reply with the slot value (e.g., &quot;medium&quot;). The user might also provide additional information in the response (e.g., &quot;medium thick crust pizza&quot;). Amazon Lex can process such additional information appropriately. </p> </li> <li> <p> <code>Fulfilled</code> - Conveys that the Lambda function configured for the intent has successfully fulfilled the intent. </p> </li> <li> <p> <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the intent. </p> </li> <li> <p> <code>Failed</code> - Conveys that the conversation with the user failed. </p> <p> This can happen for various reasons including that the user did not provide an appropriate response to prompts from the service (you can configure how many times Amazon Lex can prompt a user for specific information), or the Lambda function failed to fulfill the intent. </p> </li> </ul></p>
     #[serde(rename = "dialogState")]
@@ -333,6 +338,7 @@ pub struct PostTextResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutSessionRequest {
     /// <p><p>The message that Amazon Lex returns in the response can be either text or speech based depending on the value of this field.</p> <ul> <li> <p>If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex returns speech in the response. Amazon Lex uses Amazon Polly to generate the speech in the configuration that you specify. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech is returned as <code>audio/pcm</code> in 16-bit, little endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p> <code>audio/mpeg</code> </p> </li> <li> <p> <code>audio/ogg</code> </p> </li> <li> <p> <code>audio/pcm</code> </p> </li> <li> <p> <code>audio/*</code> (defaults to mpeg)</p> </li> <li> <p> <code>text/plain; charset=utf-8</code> </p> </li> </ul> </li> </ul></p>
     #[serde(rename = "accept")]
@@ -387,7 +393,7 @@ pub struct PutSessionResponse {
 
 /// <p>If you configure a response card when creating your bots, Amazon Lex substitutes the session attributes and slot values that are available, and then returns it. The response card can also come from a Lambda function ( <code>dialogCodeHook</code> and <code>fulfillmentActivity</code> on an intent).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResponseCard {
     /// <p>The content type of the response.</p>
     #[serde(rename = "contentType")]
@@ -405,7 +411,7 @@ pub struct ResponseCard {
 
 /// <p>The sentiment expressed in an utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field structure contains the result of the analysis.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SentimentResponse {
     /// <p>The inferred sentiment that Amazon Comprehend has the highest confidence in.</p>
     #[serde(rename = "sentimentLabel")]
@@ -459,21 +465,18 @@ impl DeleteSessionError {
     }
 }
 impl fmt::Display for DeleteSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSessionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSessionError::BadRequest(ref cause) => cause,
-            DeleteSessionError::Conflict(ref cause) => cause,
-            DeleteSessionError::InternalFailure(ref cause) => cause,
-            DeleteSessionError::LimitExceeded(ref cause) => cause,
-            DeleteSessionError::NotFound(ref cause) => cause,
+            DeleteSessionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteSessionError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteSessionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteSessionError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSessionError {}
 /// Errors returned by GetSession
 #[derive(Debug, PartialEq)]
 pub enum GetSessionError {
@@ -511,20 +514,17 @@ impl GetSessionError {
     }
 }
 impl fmt::Display for GetSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSessionError {
-    fn description(&self) -> &str {
         match *self {
-            GetSessionError::BadRequest(ref cause) => cause,
-            GetSessionError::InternalFailure(ref cause) => cause,
-            GetSessionError::LimitExceeded(ref cause) => cause,
-            GetSessionError::NotFound(ref cause) => cause,
+            GetSessionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetSessionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetSessionError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSessionError {}
 /// Errors returned by PostContent
 #[derive(Debug, PartialEq)]
 pub enum PostContentError {
@@ -597,27 +597,24 @@ impl PostContentError {
     }
 }
 impl fmt::Display for PostContentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PostContentError {
-    fn description(&self) -> &str {
         match *self {
-            PostContentError::BadGateway(ref cause) => cause,
-            PostContentError::BadRequest(ref cause) => cause,
-            PostContentError::Conflict(ref cause) => cause,
-            PostContentError::DependencyFailed(ref cause) => cause,
-            PostContentError::InternalFailure(ref cause) => cause,
-            PostContentError::LimitExceeded(ref cause) => cause,
-            PostContentError::LoopDetected(ref cause) => cause,
-            PostContentError::NotAcceptable(ref cause) => cause,
-            PostContentError::NotFound(ref cause) => cause,
-            PostContentError::RequestTimeout(ref cause) => cause,
-            PostContentError::UnsupportedMediaType(ref cause) => cause,
+            PostContentError::BadGateway(ref cause) => write!(f, "{}", cause),
+            PostContentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PostContentError::Conflict(ref cause) => write!(f, "{}", cause),
+            PostContentError::DependencyFailed(ref cause) => write!(f, "{}", cause),
+            PostContentError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PostContentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PostContentError::LoopDetected(ref cause) => write!(f, "{}", cause),
+            PostContentError::NotAcceptable(ref cause) => write!(f, "{}", cause),
+            PostContentError::NotFound(ref cause) => write!(f, "{}", cause),
+            PostContentError::RequestTimeout(ref cause) => write!(f, "{}", cause),
+            PostContentError::UnsupportedMediaType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PostContentError {}
 /// Errors returned by PostText
 #[derive(Debug, PartialEq)]
 pub enum PostTextError {
@@ -675,24 +672,21 @@ impl PostTextError {
     }
 }
 impl fmt::Display for PostTextError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PostTextError {
-    fn description(&self) -> &str {
         match *self {
-            PostTextError::BadGateway(ref cause) => cause,
-            PostTextError::BadRequest(ref cause) => cause,
-            PostTextError::Conflict(ref cause) => cause,
-            PostTextError::DependencyFailed(ref cause) => cause,
-            PostTextError::InternalFailure(ref cause) => cause,
-            PostTextError::LimitExceeded(ref cause) => cause,
-            PostTextError::LoopDetected(ref cause) => cause,
-            PostTextError::NotFound(ref cause) => cause,
+            PostTextError::BadGateway(ref cause) => write!(f, "{}", cause),
+            PostTextError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PostTextError::Conflict(ref cause) => write!(f, "{}", cause),
+            PostTextError::DependencyFailed(ref cause) => write!(f, "{}", cause),
+            PostTextError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PostTextError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PostTextError::LoopDetected(ref cause) => write!(f, "{}", cause),
+            PostTextError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PostTextError {}
 /// Errors returned by PutSession
 #[derive(Debug, PartialEq)]
 pub enum PutSessionError {
@@ -750,24 +744,21 @@ impl PutSessionError {
     }
 }
 impl fmt::Display for PutSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutSessionError {
-    fn description(&self) -> &str {
         match *self {
-            PutSessionError::BadGateway(ref cause) => cause,
-            PutSessionError::BadRequest(ref cause) => cause,
-            PutSessionError::Conflict(ref cause) => cause,
-            PutSessionError::DependencyFailed(ref cause) => cause,
-            PutSessionError::InternalFailure(ref cause) => cause,
-            PutSessionError::LimitExceeded(ref cause) => cause,
-            PutSessionError::NotAcceptable(ref cause) => cause,
-            PutSessionError::NotFound(ref cause) => cause,
+            PutSessionError::BadGateway(ref cause) => write!(f, "{}", cause),
+            PutSessionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PutSessionError::Conflict(ref cause) => write!(f, "{}", cause),
+            PutSessionError::DependencyFailed(ref cause) => write!(f, "{}", cause),
+            PutSessionError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PutSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutSessionError::NotAcceptable(ref cause) => write!(f, "{}", cause),
+            PutSessionError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutSessionError {}
 /// Trait representing the capabilities of the Amazon Lex Runtime Service API. Amazon Lex Runtime Service clients implement this trait.
 #[async_trait]
 pub trait LexRuntime {

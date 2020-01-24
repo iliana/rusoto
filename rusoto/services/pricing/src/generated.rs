@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The values of a given attribute, such as <code>Throughput Optimized HDD</code> or <code>Provisioned IOPS</code> for the <code>Amazon EC2</code> <code>volumeType</code> attribute.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttributeValue {
     /// <p>The specific value of an <code>attributeName</code>.</p>
     #[serde(rename = "Value")]
@@ -35,6 +36,7 @@ pub struct AttributeValue {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServicesRequest {
     /// <p>The format version that you want the response to be in.</p> <p>Valid values are: <code>aws_v1</code> </p>
     #[serde(rename = "FormatVersion")]
@@ -55,7 +57,7 @@ pub struct DescribeServicesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServicesResponse {
     /// <p>The format version of the response. For example, <code>aws_v1</code>.</p>
     #[serde(rename = "FormatVersion")]
@@ -73,6 +75,7 @@ pub struct DescribeServicesResponse {
 
 /// <p>The constraints that you want all returned products to match.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Filter {
     /// <p>The product metadata field that you want to filter on. You can filter by just the service code to see all products for a specific service, filter by just the attribute name to see a specific attribute for multiple services, or use both a service code and an attribute name to retrieve only products that match both fields.</p> <p>Valid values include: <code>ServiceCode</code>, and all attribute names</p> <p>For example, you can filter by the <code>AmazonEC2</code> service code and the <code>volumeType</code> attribute name to get the prices for only Amazon EC2 volumes.</p>
     #[serde(rename = "Field")]
@@ -86,6 +89,7 @@ pub struct Filter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAttributeValuesRequest {
     /// <p>The name of the attribute that you want to retrieve the values for, such as <code>volumeType</code>.</p>
     #[serde(rename = "AttributeName")]
@@ -104,7 +108,7 @@ pub struct GetAttributeValuesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAttributeValuesResponse {
     /// <p>The list of values for an attribute. For example, <code>Throughput Optimized HDD</code> and <code>Provisioned IOPS</code> are two available values for the <code>AmazonEC2</code> <code>volumeType</code>.</p>
     #[serde(rename = "AttributeValues")]
@@ -117,6 +121,7 @@ pub struct GetAttributeValuesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetProductsRequest {
     /// <p>The list of filters that limit the returned products. only products that match all filters are returned.</p>
     #[serde(rename = "Filters")]
@@ -141,7 +146,7 @@ pub struct GetProductsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetProductsResponse {
     /// <p>The format version of the response. For example, aws_v1.</p>
     #[serde(rename = "FormatVersion")]
@@ -159,7 +164,7 @@ pub struct GetProductsResponse {
 
 /// <p>The metadata for a service, such as the service code and available attribute names.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Service {
     /// <p>The attributes that are available for this service.</p>
     #[serde(rename = "AttributeNames")]
@@ -213,21 +218,18 @@ impl DescribeServicesError {
     }
 }
 impl fmt::Display for DescribeServicesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeServicesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeServicesError::ExpiredNextToken(ref cause) => cause,
-            DescribeServicesError::InternalError(ref cause) => cause,
-            DescribeServicesError::InvalidNextToken(ref cause) => cause,
-            DescribeServicesError::InvalidParameter(ref cause) => cause,
-            DescribeServicesError::NotFound(ref cause) => cause,
+            DescribeServicesError::ExpiredNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeServicesError::InternalError(ref cause) => write!(f, "{}", cause),
+            DescribeServicesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeServicesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeServicesError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeServicesError {}
 /// Errors returned by GetAttributeValues
 #[derive(Debug, PartialEq)]
 pub enum GetAttributeValuesError {
@@ -270,21 +272,18 @@ impl GetAttributeValuesError {
     }
 }
 impl fmt::Display for GetAttributeValuesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAttributeValuesError {
-    fn description(&self) -> &str {
         match *self {
-            GetAttributeValuesError::ExpiredNextToken(ref cause) => cause,
-            GetAttributeValuesError::InternalError(ref cause) => cause,
-            GetAttributeValuesError::InvalidNextToken(ref cause) => cause,
-            GetAttributeValuesError::InvalidParameter(ref cause) => cause,
-            GetAttributeValuesError::NotFound(ref cause) => cause,
+            GetAttributeValuesError::ExpiredNextToken(ref cause) => write!(f, "{}", cause),
+            GetAttributeValuesError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetAttributeValuesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetAttributeValuesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetAttributeValuesError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAttributeValuesError {}
 /// Errors returned by GetProducts
 #[derive(Debug, PartialEq)]
 pub enum GetProductsError {
@@ -327,21 +326,18 @@ impl GetProductsError {
     }
 }
 impl fmt::Display for GetProductsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetProductsError {
-    fn description(&self) -> &str {
         match *self {
-            GetProductsError::ExpiredNextToken(ref cause) => cause,
-            GetProductsError::InternalError(ref cause) => cause,
-            GetProductsError::InvalidNextToken(ref cause) => cause,
-            GetProductsError::InvalidParameter(ref cause) => cause,
-            GetProductsError::NotFound(ref cause) => cause,
+            GetProductsError::ExpiredNextToken(ref cause) => write!(f, "{}", cause),
+            GetProductsError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetProductsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetProductsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetProductsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetProductsError {}
 /// Trait representing the capabilities of the AWS Pricing API. AWS Pricing clients implement this trait.
 #[async_trait]
 pub trait Pricing {

@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeleteBuildsInput {
     /// <p>The IDs of the builds to delete.</p>
     #[serde(rename = "ids")]
@@ -32,7 +34,7 @@ pub struct BatchDeleteBuildsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeleteBuildsOutput {
     /// <p>The IDs of the builds that were successfully deleted.</p>
     #[serde(rename = "buildsDeleted")]
@@ -45,6 +47,7 @@ pub struct BatchDeleteBuildsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetBuildsInput {
     /// <p>The IDs of the builds.</p>
     #[serde(rename = "ids")]
@@ -52,7 +55,7 @@ pub struct BatchGetBuildsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetBuildsOutput {
     /// <p>Information about the requested builds.</p>
     #[serde(rename = "builds")]
@@ -65,6 +68,7 @@ pub struct BatchGetBuildsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetProjectsInput {
     /// <p>The names or ARNs of the build projects. To get information about a project shared with your AWS account, its ARN must be specified. You cannot specify a shared project using its name.</p>
     #[serde(rename = "names")]
@@ -72,7 +76,7 @@ pub struct BatchGetProjectsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetProjectsOutput {
     /// <p>Information about the requested build projects.</p>
     #[serde(rename = "projects")]
@@ -85,6 +89,7 @@ pub struct BatchGetProjectsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetReportGroupsInput {
     /// <p> An array of report group ARNs that identify the report groups to return. </p>
     #[serde(rename = "reportGroupArns")]
@@ -92,7 +97,7 @@ pub struct BatchGetReportGroupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetReportGroupsOutput {
     /// <p> The array of report groups returned by <code>BatchGetReportGroups</code>. </p>
     #[serde(rename = "reportGroups")]
@@ -105,6 +110,7 @@ pub struct BatchGetReportGroupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetReportsInput {
     /// <p> An array of ARNs that identify the <code>Report</code> objects to return. </p>
     #[serde(rename = "reportArns")]
@@ -112,7 +118,7 @@ pub struct BatchGetReportsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetReportsOutput {
     /// <p> The array of <code>Report</code> objects returned by <code>BatchGetReports</code>. </p>
     #[serde(rename = "reports")]
@@ -126,7 +132,7 @@ pub struct BatchGetReportsOutput {
 
 /// <p>Information about a build.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Build {
     /// <p>The Amazon Resource Name (ARN) of the build.</p>
     #[serde(rename = "arn")]
@@ -248,7 +254,7 @@ pub struct Build {
 
 /// <p>Information about build output artifacts.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuildArtifacts {
     /// <p> An identifier for this artifact definition. </p>
     #[serde(rename = "artifactIdentifier")]
@@ -278,7 +284,7 @@ pub struct BuildArtifacts {
 
 /// <p>Information about a build that could not be successfully deleted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuildNotDeleted {
     /// <p>The ID of the build that could not be successfully deleted.</p>
     #[serde(rename = "id")]
@@ -292,7 +298,7 @@ pub struct BuildNotDeleted {
 
 /// <p>Information about a stage for a build.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BuildPhase {
     /// <p>Additional information about a build phase, especially to help troubleshoot a failed build.</p>
     #[serde(rename = "contexts")]
@@ -337,6 +343,7 @@ pub struct CloudWatchLogsConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectInput {
     /// <p>Information about the build output artifacts for the build project.</p>
     #[serde(rename = "artifacts")]
@@ -408,7 +415,7 @@ pub struct CreateProjectInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectOutput {
     /// <p>Information about the build project that was created.</p>
     #[serde(rename = "project")]
@@ -417,6 +424,7 @@ pub struct CreateProjectOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateReportGroupInput {
     /// <p> A <code>ReportExportConfig</code> object that contains information about where the report group test results are exported. </p>
     #[serde(rename = "exportConfig")]
@@ -430,7 +438,7 @@ pub struct CreateReportGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateReportGroupOutput {
     /// <p> Information about the report group that was created. </p>
     #[serde(rename = "reportGroup")]
@@ -439,6 +447,7 @@ pub struct CreateReportGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateWebhookInput {
     /// <p><p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note></p>
     #[serde(rename = "branchFilter")]
@@ -454,7 +463,7 @@ pub struct CreateWebhookInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateWebhookOutput {
     /// <p>Information about a webhook that connects repository events to a build project in AWS CodeBuild.</p>
     #[serde(rename = "webhook")]
@@ -463,6 +472,7 @@ pub struct CreateWebhookOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProjectInput {
     /// <p>The name of the build project.</p>
     #[serde(rename = "name")]
@@ -470,10 +480,11 @@ pub struct DeleteProjectInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProjectOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReportGroupInput {
     /// <p> The ARN of the report group to delete. </p>
     #[serde(rename = "arn")]
@@ -481,10 +492,11 @@ pub struct DeleteReportGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteReportGroupOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReportInput {
     /// <p> The ARN of the report to delete. </p>
     #[serde(rename = "arn")]
@@ -492,10 +504,11 @@ pub struct DeleteReportInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteReportOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourcePolicyInput {
     /// <p> The ARN of the resource that is associated with the resource policy. </p>
     #[serde(rename = "resourceArn")]
@@ -503,10 +516,11 @@ pub struct DeleteResourcePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteResourcePolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSourceCredentialsInput {
     /// <p> The Amazon Resource Name (ARN) of the token.</p>
     #[serde(rename = "arn")]
@@ -514,7 +528,7 @@ pub struct DeleteSourceCredentialsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSourceCredentialsOutput {
     /// <p> The Amazon Resource Name (ARN) of the token. </p>
     #[serde(rename = "arn")]
@@ -523,6 +537,7 @@ pub struct DeleteSourceCredentialsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteWebhookInput {
     /// <p>The name of the AWS CodeBuild project.</p>
     #[serde(rename = "projectName")]
@@ -530,10 +545,11 @@ pub struct DeleteWebhookInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteWebhookOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTestCasesInput {
     /// <p> A <code>TestCaseFilter</code> object used to filter the returned reports. </p>
     #[serde(rename = "filter")]
@@ -553,7 +569,7 @@ pub struct DescribeTestCasesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTestCasesOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -567,7 +583,7 @@ pub struct DescribeTestCasesOutput {
 
 /// <p>Information about a Docker image that is managed by AWS CodeBuild.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentImage {
     /// <p>The description of the Docker image.</p>
     #[serde(rename = "description")]
@@ -585,7 +601,7 @@ pub struct EnvironmentImage {
 
 /// <p>A set of Docker images that are related by programming language and are managed by AWS CodeBuild.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentLanguage {
     /// <p>The list of Docker images that are related by the specified programming language.</p>
     #[serde(rename = "images")]
@@ -599,7 +615,7 @@ pub struct EnvironmentLanguage {
 
 /// <p>A set of Docker images that are related by platform and are managed by AWS CodeBuild.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentPlatform {
     /// <p>The list of programming languages that are available for the specified platform.</p>
     #[serde(rename = "languages")]
@@ -628,7 +644,7 @@ pub struct EnvironmentVariable {
 
 /// <p> Information about an exported environment variable. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportedEnvironmentVariable {
     /// <p> The name of this exported environment variable. </p>
     #[serde(rename = "name")]
@@ -641,6 +657,7 @@ pub struct ExportedEnvironmentVariable {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetResourcePolicyInput {
     /// <p> The ARN of the resource that is associated with the resource policy. </p>
     #[serde(rename = "resourceArn")]
@@ -648,7 +665,7 @@ pub struct GetResourcePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetResourcePolicyOutput {
     /// <p> The resource policy for the resource identified by the input ARN parameter. </p>
     #[serde(rename = "policy")]
@@ -665,6 +682,7 @@ pub struct GitSubmodulesConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportSourceCredentialsInput {
     /// <p> The type of authentication used to connect to a GitHub, GitHub Enterprise, or Bitbucket repository. An OAUTH connection is not supported by the API and must be created using the AWS CodeBuild console. </p>
     #[serde(rename = "authType")]
@@ -686,7 +704,7 @@ pub struct ImportSourceCredentialsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportSourceCredentialsOutput {
     /// <p> The Amazon Resource Name (ARN) of the token. </p>
     #[serde(rename = "arn")]
@@ -695,6 +713,7 @@ pub struct ImportSourceCredentialsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InvalidateProjectCacheInput {
     /// <p>The name of the AWS CodeBuild build project that the cache is reset for.</p>
     #[serde(rename = "projectName")]
@@ -702,10 +721,11 @@ pub struct InvalidateProjectCacheInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InvalidateProjectCacheOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBuildsForProjectInput {
     /// <p>During a previous call, if there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>nextToken</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>
     #[serde(rename = "nextToken")]
@@ -721,7 +741,7 @@ pub struct ListBuildsForProjectInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBuildsForProjectOutput {
     /// <p>A list of build IDs for the specified build project, with each build ID representing a single build.</p>
     #[serde(rename = "ids")]
@@ -734,6 +754,7 @@ pub struct ListBuildsForProjectOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBuildsInput {
     /// <p>During a previous call, if there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>nextToken</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>
     #[serde(rename = "nextToken")]
@@ -746,7 +767,7 @@ pub struct ListBuildsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBuildsOutput {
     /// <p>A list of build IDs, with each build ID representing a single build.</p>
     #[serde(rename = "ids")]
@@ -759,10 +780,11 @@ pub struct ListBuildsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCuratedEnvironmentImagesInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCuratedEnvironmentImagesOutput {
     /// <p>Information about supported platforms for Docker images that are managed by AWS CodeBuild.</p>
     #[serde(rename = "platforms")]
@@ -771,6 +793,7 @@ pub struct ListCuratedEnvironmentImagesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProjectsInput {
     /// <p>During a previous call, if there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>nextToken</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.</p>
     #[serde(rename = "nextToken")]
@@ -787,7 +810,7 @@ pub struct ListProjectsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProjectsOutput {
     /// <p>If there are more than 100 items in the list, only the first 100 items are returned, along with a unique string called a <i>nextToken</i>. To get the next batch of items in the list, call this operation again, adding the next token to the call.</p>
     #[serde(rename = "nextToken")]
@@ -800,6 +823,7 @@ pub struct ListProjectsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListReportGroupsInput {
     /// <p> The maximum number of paginated report groups returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>ReportGroup</code> objects. The default value is 100. </p>
     #[serde(rename = "maxResults")]
@@ -820,7 +844,7 @@ pub struct ListReportGroupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListReportGroupsOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -833,6 +857,7 @@ pub struct ListReportGroupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListReportsForReportGroupInput {
     /// <p> A <code>ReportFilter</code> object used to filter the returned reports. </p>
     #[serde(rename = "filter")]
@@ -856,7 +881,7 @@ pub struct ListReportsForReportGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListReportsForReportGroupOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -869,6 +894,7 @@ pub struct ListReportsForReportGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListReportsInput {
     /// <p> A <code>ReportFilter</code> object used to filter the returned reports. </p>
     #[serde(rename = "filter")]
@@ -889,7 +915,7 @@ pub struct ListReportsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListReportsOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -902,6 +928,7 @@ pub struct ListReportsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSharedProjectsInput {
     /// <p> The maximum number of paginated shared build projects returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>Project</code> objects. The default value is 100. </p>
     #[serde(rename = "maxResults")]
@@ -922,7 +949,7 @@ pub struct ListSharedProjectsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSharedProjectsOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -935,6 +962,7 @@ pub struct ListSharedProjectsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSharedReportGroupsInput {
     /// <p> The maximum number of paginated shared report groups per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>ReportGroup</code> objects. The default value is 100. </p>
     #[serde(rename = "maxResults")]
@@ -955,7 +983,7 @@ pub struct ListSharedReportGroupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSharedReportGroupsOutput {
     /// <p> During a previous call, the maximum number of items that can be returned is the value specified in <code>maxResults</code>. If there more items in the list, then a unique string called a <i>nextToken</i> is returned. To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned. </p>
     #[serde(rename = "nextToken")]
@@ -968,10 +996,11 @@ pub struct ListSharedReportGroupsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSourceCredentialsInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSourceCredentialsOutput {
     /// <p> A list of <code>SourceCredentialsInfo</code> objects. Each <code>SourceCredentialsInfo</code> object includes the authentication type, token ARN, and type of source provider for one set of credentials. </p>
     #[serde(rename = "sourceCredentialsInfos")]
@@ -994,7 +1023,7 @@ pub struct LogsConfig {
 
 /// <p>Information about build logs in Amazon CloudWatch Logs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogsLocation {
     /// <p> Information about Amazon CloudWatch Logs for a build project. </p>
     #[serde(rename = "cloudWatchLogs")]
@@ -1032,7 +1061,7 @@ pub struct LogsLocation {
 
 /// <p>Describes a network interface.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkInterface {
     /// <p>The ID of the network interface.</p>
     #[serde(rename = "networkInterfaceId")]
@@ -1046,7 +1075,7 @@ pub struct NetworkInterface {
 
 /// <p>Additional information about a build phase that has an error. You can use this information for troubleshooting.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhaseContext {
     /// <p>An explanation of the build phase's context. This might include a command ID and an exit code.</p>
     #[serde(rename = "message")]
@@ -1060,7 +1089,7 @@ pub struct PhaseContext {
 
 /// <p>Information about a build project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Project {
     /// <p>The Amazon Resource Name (ARN) of the build project.</p>
     #[serde(rename = "arn")]
@@ -1194,7 +1223,7 @@ pub struct ProjectArtifacts {
 
 /// <p>Information about the build badge for the build project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectBadge {
     /// <p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>
     #[serde(rename = "badgeEnabled")]
@@ -1308,6 +1337,7 @@ pub struct ProjectSourceVersion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutResourcePolicyInput {
     /// <p> A JSON-formatted resource policy. For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/project-sharing.html#project-sharing-share">Sharing a Project</a> and <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/report-groups-sharing.html#report-groups-sharing-share">Sharing a Report Group</a> in the <i>AWS CodeBuild User Guide</i>. </p>
     #[serde(rename = "policy")]
@@ -1318,7 +1348,7 @@ pub struct PutResourcePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutResourcePolicyOutput {
     /// <p> The ARN of the <code>Project</code> or <code>ReportGroup</code> resource that is associated with a resource policy. </p>
     #[serde(rename = "resourceArn")]
@@ -1339,7 +1369,7 @@ pub struct RegistryCredential {
 
 /// <p> Information about the results from running a series of test cases during the run of a build project. The test cases are specified in the buildspec for the build project using one or more paths to the test case files. You can specify any type of tests you want, such as unit tests, integration tests, and functional tests. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Report {
     /// <p> The ARN of the report run. </p>
     #[serde(rename = "arn")]
@@ -1402,6 +1432,7 @@ pub struct ReportExportConfig {
 
 /// <p> A filter used to return reports with the status specified by the input <code>status</code> parameter. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReportFilter {
     /// <p> The status used to filter reports. You can filter using one status only. </p>
     #[serde(rename = "status")]
@@ -1411,7 +1442,7 @@ pub struct ReportFilter {
 
 /// <p> A series of reports. Each report contains information about the results from running a series of test cases. You specify the test cases for a report group in the buildspec for a build project using one or more paths to the test case files. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReportGroup {
     /// <p> The ARN of a <code>ReportGroup</code>. </p>
     #[serde(rename = "arn")]
@@ -1494,7 +1525,7 @@ pub struct SourceAuth {
 
 /// <p> Information about the credentials for a GitHub, GitHub Enterprise, or Bitbucket repository. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SourceCredentialsInfo {
     /// <p> The Amazon Resource Name (ARN) of the token. </p>
     #[serde(rename = "arn")]
@@ -1511,6 +1542,7 @@ pub struct SourceCredentialsInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartBuildInput {
     /// <p>Build output artifact settings that override, for this build only, the latest ones already defined in the build project.</p>
     #[serde(rename = "artifactsOverride")]
@@ -1630,7 +1662,7 @@ pub struct StartBuildInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartBuildOutput {
     /// <p>Information about the build to be run.</p>
     #[serde(rename = "build")]
@@ -1639,6 +1671,7 @@ pub struct StartBuildOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopBuildInput {
     /// <p>The ID of the build.</p>
     #[serde(rename = "id")]
@@ -1646,7 +1679,7 @@ pub struct StopBuildInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopBuildOutput {
     /// <p>Information about the build.</p>
     #[serde(rename = "build")]
@@ -1669,7 +1702,7 @@ pub struct Tag {
 
 /// <p> Information about a test case created using a framework such as NUnit or Cucumber. A test case might be a unit test or a configuration test. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestCase {
     /// <p> The number of nanoseconds it took to run this test case. </p>
     #[serde(rename = "durationInNanoSeconds")]
@@ -1707,6 +1740,7 @@ pub struct TestCase {
 
 /// <p> A filter used to return specific types of test cases. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TestCaseFilter {
     /// <p> The status used to filter test cases. Valid statuses are <code>SUCCEEDED</code>, <code>FAILED</code>, <code>ERROR</code>, <code>SKIPPED</code>, and <code>UNKNOWN</code>. A <code>TestCaseFilter</code> can have one status. </p>
     #[serde(rename = "status")]
@@ -1716,7 +1750,7 @@ pub struct TestCaseFilter {
 
 /// <p> Information about a test report. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestReportSummary {
     /// <p> The number of nanoseconds it took to run all of the test cases in this report. </p>
     #[serde(rename = "durationInNanoSeconds")]
@@ -1730,6 +1764,7 @@ pub struct TestReportSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProjectInput {
     /// <p>Information to be changed about the build output artifacts for the build project.</p>
     #[serde(rename = "artifacts")]
@@ -1805,7 +1840,7 @@ pub struct UpdateProjectInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProjectOutput {
     /// <p>Information about the build project that was changed.</p>
     #[serde(rename = "project")]
@@ -1814,6 +1849,7 @@ pub struct UpdateProjectOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateReportGroupInput {
     /// <p> The ARN of the report group to update. </p>
     #[serde(rename = "arn")]
@@ -1825,7 +1861,7 @@ pub struct UpdateReportGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateReportGroupOutput {
     /// <p> Information about the updated report group. </p>
     #[serde(rename = "reportGroup")]
@@ -1834,6 +1870,7 @@ pub struct UpdateReportGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateWebhookInput {
     /// <p><p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note></p>
     #[serde(rename = "branchFilter")]
@@ -1853,7 +1890,7 @@ pub struct UpdateWebhookInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateWebhookOutput {
     /// <p> Information about a repository's webhook that is associated with a project in AWS CodeBuild. </p>
     #[serde(rename = "webhook")]
@@ -1880,7 +1917,7 @@ pub struct VpcConfig {
 
 /// <p>Information about a webhook that connects repository events to a build project in AWS CodeBuild.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Webhook {
     /// <p><p>A regular expression used to determine which repository branches are built when a webhook is triggered. If the name of a branch matches the regular expression, then it is built. If <code>branchFilter</code> is empty, then all branches are built.</p> <note> <p> It is recommended that you use <code>filterGroups</code> instead of <code>branchFilter</code>. </p> </note></p>
     #[serde(rename = "branchFilter")]
@@ -1945,17 +1982,14 @@ impl BatchDeleteBuildsError {
     }
 }
 impl fmt::Display for BatchDeleteBuildsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeleteBuildsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeleteBuildsError::InvalidInput(ref cause) => cause,
+            BatchDeleteBuildsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeleteBuildsError {}
 /// Errors returned by BatchGetBuilds
 #[derive(Debug, PartialEq)]
 pub enum BatchGetBuildsError {
@@ -1978,17 +2012,14 @@ impl BatchGetBuildsError {
     }
 }
 impl fmt::Display for BatchGetBuildsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetBuildsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetBuildsError::InvalidInput(ref cause) => cause,
+            BatchGetBuildsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetBuildsError {}
 /// Errors returned by BatchGetProjects
 #[derive(Debug, PartialEq)]
 pub enum BatchGetProjectsError {
@@ -2011,17 +2042,14 @@ impl BatchGetProjectsError {
     }
 }
 impl fmt::Display for BatchGetProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetProjectsError::InvalidInput(ref cause) => cause,
+            BatchGetProjectsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetProjectsError {}
 /// Errors returned by BatchGetReportGroups
 #[derive(Debug, PartialEq)]
 pub enum BatchGetReportGroupsError {
@@ -2044,17 +2072,14 @@ impl BatchGetReportGroupsError {
     }
 }
 impl fmt::Display for BatchGetReportGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetReportGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetReportGroupsError::InvalidInput(ref cause) => cause,
+            BatchGetReportGroupsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetReportGroupsError {}
 /// Errors returned by BatchGetReports
 #[derive(Debug, PartialEq)]
 pub enum BatchGetReportsError {
@@ -2077,17 +2102,14 @@ impl BatchGetReportsError {
     }
 }
 impl fmt::Display for BatchGetReportsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetReportsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetReportsError::InvalidInput(ref cause) => cause,
+            BatchGetReportsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetReportsError {}
 /// Errors returned by CreateProject
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectError {
@@ -2120,19 +2142,16 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::AccountLimitExceeded(ref cause) => cause,
-            CreateProjectError::InvalidInput(ref cause) => cause,
-            CreateProjectError::ResourceAlreadyExists(ref cause) => cause,
+            CreateProjectError::AccountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by CreateReportGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateReportGroupError {
@@ -2169,19 +2188,16 @@ impl CreateReportGroupError {
     }
 }
 impl fmt::Display for CreateReportGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateReportGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateReportGroupError::AccountLimitExceeded(ref cause) => cause,
-            CreateReportGroupError::InvalidInput(ref cause) => cause,
-            CreateReportGroupError::ResourceAlreadyExists(ref cause) => cause,
+            CreateReportGroupError::AccountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateReportGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateReportGroupError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateReportGroupError {}
 /// Errors returned by CreateWebhook
 #[derive(Debug, PartialEq)]
 pub enum CreateWebhookError {
@@ -2219,20 +2235,17 @@ impl CreateWebhookError {
     }
 }
 impl fmt::Display for CreateWebhookError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateWebhookError {
-    fn description(&self) -> &str {
         match *self {
-            CreateWebhookError::InvalidInput(ref cause) => cause,
-            CreateWebhookError::OAuthProvider(ref cause) => cause,
-            CreateWebhookError::ResourceAlreadyExists(ref cause) => cause,
-            CreateWebhookError::ResourceNotFound(ref cause) => cause,
+            CreateWebhookError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateWebhookError::OAuthProvider(ref cause) => write!(f, "{}", cause),
+            CreateWebhookError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateWebhookError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateWebhookError {}
 /// Errors returned by DeleteProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteProjectError {
@@ -2255,17 +2268,14 @@ impl DeleteProjectError {
     }
 }
 impl fmt::Display for DeleteProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProjectError::InvalidInput(ref cause) => cause,
+            DeleteProjectError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProjectError {}
 /// Errors returned by DeleteReport
 #[derive(Debug, PartialEq)]
 pub enum DeleteReportError {
@@ -2288,17 +2298,14 @@ impl DeleteReportError {
     }
 }
 impl fmt::Display for DeleteReportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteReportError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteReportError::InvalidInput(ref cause) => cause,
+            DeleteReportError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteReportError {}
 /// Errors returned by DeleteReportGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteReportGroupError {
@@ -2321,17 +2328,14 @@ impl DeleteReportGroupError {
     }
 }
 impl fmt::Display for DeleteReportGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteReportGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteReportGroupError::InvalidInput(ref cause) => cause,
+            DeleteReportGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteReportGroupError {}
 /// Errors returned by DeleteResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourcePolicyError {
@@ -2354,17 +2358,14 @@ impl DeleteResourcePolicyError {
     }
 }
 impl fmt::Display for DeleteResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourcePolicyError::InvalidInput(ref cause) => cause,
+            DeleteResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteResourcePolicyError {}
 /// Errors returned by DeleteSourceCredentials
 #[derive(Debug, PartialEq)]
 pub enum DeleteSourceCredentialsError {
@@ -2396,18 +2397,15 @@ impl DeleteSourceCredentialsError {
     }
 }
 impl fmt::Display for DeleteSourceCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSourceCredentialsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSourceCredentialsError::InvalidInput(ref cause) => cause,
-            DeleteSourceCredentialsError::ResourceNotFound(ref cause) => cause,
+            DeleteSourceCredentialsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteSourceCredentialsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSourceCredentialsError {}
 /// Errors returned by DeleteWebhook
 #[derive(Debug, PartialEq)]
 pub enum DeleteWebhookError {
@@ -2440,19 +2438,16 @@ impl DeleteWebhookError {
     }
 }
 impl fmt::Display for DeleteWebhookError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteWebhookError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteWebhookError::InvalidInput(ref cause) => cause,
-            DeleteWebhookError::OAuthProvider(ref cause) => cause,
-            DeleteWebhookError::ResourceNotFound(ref cause) => cause,
+            DeleteWebhookError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteWebhookError::OAuthProvider(ref cause) => write!(f, "{}", cause),
+            DeleteWebhookError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteWebhookError {}
 /// Errors returned by DescribeTestCases
 #[derive(Debug, PartialEq)]
 pub enum DescribeTestCasesError {
@@ -2480,18 +2475,15 @@ impl DescribeTestCasesError {
     }
 }
 impl fmt::Display for DescribeTestCasesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTestCasesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTestCasesError::InvalidInput(ref cause) => cause,
-            DescribeTestCasesError::ResourceNotFound(ref cause) => cause,
+            DescribeTestCasesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeTestCasesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTestCasesError {}
 /// Errors returned by GetResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum GetResourcePolicyError {
@@ -2519,18 +2511,15 @@ impl GetResourcePolicyError {
     }
 }
 impl fmt::Display for GetResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetResourcePolicyError::InvalidInput(ref cause) => cause,
-            GetResourcePolicyError::ResourceNotFound(ref cause) => cause,
+            GetResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetResourcePolicyError {}
 /// Errors returned by ImportSourceCredentials
 #[derive(Debug, PartialEq)]
 pub enum ImportSourceCredentialsError {
@@ -2569,19 +2558,18 @@ impl ImportSourceCredentialsError {
     }
 }
 impl fmt::Display for ImportSourceCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ImportSourceCredentialsError {
-    fn description(&self) -> &str {
         match *self {
-            ImportSourceCredentialsError::AccountLimitExceeded(ref cause) => cause,
-            ImportSourceCredentialsError::InvalidInput(ref cause) => cause,
-            ImportSourceCredentialsError::ResourceAlreadyExists(ref cause) => cause,
+            ImportSourceCredentialsError::AccountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            ImportSourceCredentialsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ImportSourceCredentialsError::ResourceAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ImportSourceCredentialsError {}
 /// Errors returned by InvalidateProjectCache
 #[derive(Debug, PartialEq)]
 pub enum InvalidateProjectCacheError {
@@ -2611,18 +2599,15 @@ impl InvalidateProjectCacheError {
     }
 }
 impl fmt::Display for InvalidateProjectCacheError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InvalidateProjectCacheError {
-    fn description(&self) -> &str {
         match *self {
-            InvalidateProjectCacheError::InvalidInput(ref cause) => cause,
-            InvalidateProjectCacheError::ResourceNotFound(ref cause) => cause,
+            InvalidateProjectCacheError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            InvalidateProjectCacheError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InvalidateProjectCacheError {}
 /// Errors returned by ListBuilds
 #[derive(Debug, PartialEq)]
 pub enum ListBuildsError {
@@ -2645,17 +2630,14 @@ impl ListBuildsError {
     }
 }
 impl fmt::Display for ListBuildsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBuildsError {
-    fn description(&self) -> &str {
         match *self {
-            ListBuildsError::InvalidInput(ref cause) => cause,
+            ListBuildsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBuildsError {}
 /// Errors returned by ListBuildsForProject
 #[derive(Debug, PartialEq)]
 pub enum ListBuildsForProjectError {
@@ -2685,18 +2667,15 @@ impl ListBuildsForProjectError {
     }
 }
 impl fmt::Display for ListBuildsForProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBuildsForProjectError {
-    fn description(&self) -> &str {
         match *self {
-            ListBuildsForProjectError::InvalidInput(ref cause) => cause,
-            ListBuildsForProjectError::ResourceNotFound(ref cause) => cause,
+            ListBuildsForProjectError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListBuildsForProjectError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBuildsForProjectError {}
 /// Errors returned by ListCuratedEnvironmentImages
 #[derive(Debug, PartialEq)]
 pub enum ListCuratedEnvironmentImagesError {}
@@ -2715,15 +2694,12 @@ impl ListCuratedEnvironmentImagesError {
     }
 }
 impl fmt::Display for ListCuratedEnvironmentImagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCuratedEnvironmentImagesError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListCuratedEnvironmentImagesError {}
 /// Errors returned by ListProjects
 #[derive(Debug, PartialEq)]
 pub enum ListProjectsError {
@@ -2746,17 +2722,14 @@ impl ListProjectsError {
     }
 }
 impl fmt::Display for ListProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProjectsError::InvalidInput(ref cause) => cause,
+            ListProjectsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProjectsError {}
 /// Errors returned by ListReportGroups
 #[derive(Debug, PartialEq)]
 pub enum ListReportGroupsError {
@@ -2779,17 +2752,14 @@ impl ListReportGroupsError {
     }
 }
 impl fmt::Display for ListReportGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListReportGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListReportGroupsError::InvalidInput(ref cause) => cause,
+            ListReportGroupsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListReportGroupsError {}
 /// Errors returned by ListReports
 #[derive(Debug, PartialEq)]
 pub enum ListReportsError {
@@ -2812,17 +2782,14 @@ impl ListReportsError {
     }
 }
 impl fmt::Display for ListReportsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListReportsError {
-    fn description(&self) -> &str {
         match *self {
-            ListReportsError::InvalidInput(ref cause) => cause,
+            ListReportsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListReportsError {}
 /// Errors returned by ListReportsForReportGroup
 #[derive(Debug, PartialEq)]
 pub enum ListReportsForReportGroupError {
@@ -2854,18 +2821,15 @@ impl ListReportsForReportGroupError {
     }
 }
 impl fmt::Display for ListReportsForReportGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListReportsForReportGroupError {
-    fn description(&self) -> &str {
         match *self {
-            ListReportsForReportGroupError::InvalidInput(ref cause) => cause,
-            ListReportsForReportGroupError::ResourceNotFound(ref cause) => cause,
+            ListReportsForReportGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListReportsForReportGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListReportsForReportGroupError {}
 /// Errors returned by ListSharedProjects
 #[derive(Debug, PartialEq)]
 pub enum ListSharedProjectsError {
@@ -2888,17 +2852,14 @@ impl ListSharedProjectsError {
     }
 }
 impl fmt::Display for ListSharedProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSharedProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSharedProjectsError::InvalidInput(ref cause) => cause,
+            ListSharedProjectsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSharedProjectsError {}
 /// Errors returned by ListSharedReportGroups
 #[derive(Debug, PartialEq)]
 pub enum ListSharedReportGroupsError {
@@ -2921,17 +2882,14 @@ impl ListSharedReportGroupsError {
     }
 }
 impl fmt::Display for ListSharedReportGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSharedReportGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSharedReportGroupsError::InvalidInput(ref cause) => cause,
+            ListSharedReportGroupsError::InvalidInput(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSharedReportGroupsError {}
 /// Errors returned by ListSourceCredentials
 #[derive(Debug, PartialEq)]
 pub enum ListSourceCredentialsError {}
@@ -2948,15 +2906,12 @@ impl ListSourceCredentialsError {
     }
 }
 impl fmt::Display for ListSourceCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSourceCredentialsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListSourceCredentialsError {}
 /// Errors returned by PutResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutResourcePolicyError {
@@ -2984,18 +2939,15 @@ impl PutResourcePolicyError {
     }
 }
 impl fmt::Display for PutResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutResourcePolicyError::InvalidInput(ref cause) => cause,
-            PutResourcePolicyError::ResourceNotFound(ref cause) => cause,
+            PutResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutResourcePolicyError {}
 /// Errors returned by StartBuild
 #[derive(Debug, PartialEq)]
 pub enum StartBuildError {
@@ -3028,19 +2980,16 @@ impl StartBuildError {
     }
 }
 impl fmt::Display for StartBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartBuildError {
-    fn description(&self) -> &str {
         match *self {
-            StartBuildError::AccountLimitExceeded(ref cause) => cause,
-            StartBuildError::InvalidInput(ref cause) => cause,
-            StartBuildError::ResourceNotFound(ref cause) => cause,
+            StartBuildError::AccountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartBuildError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartBuildError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartBuildError {}
 /// Errors returned by StopBuild
 #[derive(Debug, PartialEq)]
 pub enum StopBuildError {
@@ -3068,18 +3017,15 @@ impl StopBuildError {
     }
 }
 impl fmt::Display for StopBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopBuildError {
-    fn description(&self) -> &str {
         match *self {
-            StopBuildError::InvalidInput(ref cause) => cause,
-            StopBuildError::ResourceNotFound(ref cause) => cause,
+            StopBuildError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StopBuildError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopBuildError {}
 /// Errors returned by UpdateProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateProjectError {
@@ -3107,18 +3053,15 @@ impl UpdateProjectError {
     }
 }
 impl fmt::Display for UpdateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProjectError::InvalidInput(ref cause) => cause,
-            UpdateProjectError::ResourceNotFound(ref cause) => cause,
+            UpdateProjectError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProjectError {}
 /// Errors returned by UpdateReportGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateReportGroupError {
@@ -3146,18 +3089,15 @@ impl UpdateReportGroupError {
     }
 }
 impl fmt::Display for UpdateReportGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateReportGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateReportGroupError::InvalidInput(ref cause) => cause,
-            UpdateReportGroupError::ResourceNotFound(ref cause) => cause,
+            UpdateReportGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateReportGroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateReportGroupError {}
 /// Errors returned by UpdateWebhook
 #[derive(Debug, PartialEq)]
 pub enum UpdateWebhookError {
@@ -3190,19 +3130,16 @@ impl UpdateWebhookError {
     }
 }
 impl fmt::Display for UpdateWebhookError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateWebhookError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateWebhookError::InvalidInput(ref cause) => cause,
-            UpdateWebhookError::OAuthProvider(ref cause) => cause,
-            UpdateWebhookError::ResourceNotFound(ref cause) => cause,
+            UpdateWebhookError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateWebhookError::OAuthProvider(ref cause) => write!(f, "{}", cause),
+            UpdateWebhookError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateWebhookError {}
 /// Trait representing the capabilities of the AWS CodeBuild API. AWS CodeBuild clients implement this trait.
 #[async_trait]
 pub trait CodeBuild {

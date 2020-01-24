@@ -88,10 +88,14 @@ pub fn generate_services(
         features.insert("default".into(), vec!["native-tls".into()]);
         features.insert("native-tls".into(), vec!["rusoto_core/native-tls".into()]);
         features.insert("rustls".into(), vec!["rusoto_core/rustls".into()]);
-        features.insert("serialize_structs".into(), vec![]);
+
+        let serialize_feature_dependencies = vec!["bytes/serde".into()];
 
         let service_dependencies = service.get_dependencies();
         let service_dev_dependencies = service.get_dev_dependencies();
+
+        features.insert("serialize_structs".into(), serialize_feature_dependencies.clone());
+        features.insert("deserialize_structs".into(), serialize_feature_dependencies.clone());
 
         let mut cargo_manifest = BufWriter::new(
             OpenOptions::new()
@@ -176,6 +180,7 @@ To use `{crate_name}` in your application, add it as a dependency in your `Cargo
 - `native-tls` - use platform-specific TLS implementation.
 - `rustls` - use rustls TLS implementation.
 - `serialize_structs` - output structs of most operations get `derive(Serialize)`.
+- `deserialize_structs` - input structs of most operations get `derive(Deserialize)`.
 
 Note: the crate will use the `native-tls` TLS implementation by default.
 

@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The address that you want the Snowball or Snowballs associated with a specific job to be shipped to. Addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. Although no individual elements of the <code>Address</code> are required, if the address is invalid or unsupported, then an exception is thrown.</p>
@@ -86,6 +87,7 @@ pub struct Address {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelClusterRequest {
     /// <p>The 39-character ID for the cluster that you want to cancel, for example <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "ClusterId")]
@@ -93,10 +95,11 @@ pub struct CancelClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelClusterResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelJobRequest {
     /// <p>The 39-character job ID for the job that you want to cancel, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -104,12 +107,12 @@ pub struct CancelJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelJobResult {}
 
 /// <p>Contains a cluster's state, a cluster's ID, and other important information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterListEntry {
     /// <p>The 39-character ID for the cluster that you want to list, for example <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "ClusterId")]
@@ -131,7 +134,7 @@ pub struct ClusterListEntry {
 
 /// <p>Contains metadata about a specific cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterMetadata {
     /// <p>The automatically generated ID for a specific address.</p>
     #[serde(rename = "AddressId")]
@@ -189,7 +192,7 @@ pub struct ClusterMetadata {
 
 /// <p>A JSON-formatted object that describes a compatible Amazon Machine Image (AMI), including the ID and name for a Snowball Edge AMI. This AMI is compatible with the device's physical hardware requirements, and it should be able to be run in an SBE1 instance on the device.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompatibleImage {
     /// <p>The unique identifier for an individual Snowball Edge AMI.</p>
     #[serde(rename = "AmiId")]
@@ -202,6 +205,7 @@ pub struct CompatibleImage {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAddressRequest {
     /// <p>The address that you want the Snowball shipped to.</p>
     #[serde(rename = "Address")]
@@ -209,7 +213,7 @@ pub struct CreateAddressRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAddressResult {
     /// <p>The automatically generated ID for a specific address. You'll use this ID when you create a job to specify which address you want the Snowball for that job shipped to.</p>
     #[serde(rename = "AddressId")]
@@ -218,6 +222,7 @@ pub struct CreateAddressResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClusterRequest {
     /// <p>The ID for the address that you want the cluster shipped to.</p>
     #[serde(rename = "AddressId")]
@@ -257,7 +262,7 @@ pub struct CreateClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClusterResult {
     /// <p>The automatically generated ID for a cluster.</p>
     #[serde(rename = "ClusterId")]
@@ -266,6 +271,7 @@ pub struct CreateClusterResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobRequest {
     /// <p>The ID for the address that you want the Snowball shipped to.</p>
     #[serde(rename = "AddressId")]
@@ -318,7 +324,7 @@ pub struct CreateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobResult {
     /// <p>The automatically generated ID for a job, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -328,7 +334,7 @@ pub struct CreateJobResult {
 
 /// <p>Defines the real-time status of a Snowball's data transfer while the device is at AWS. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DataTransfer {
     /// <p>The number of bytes transferred between a Snowball and Amazon S3.</p>
     #[serde(rename = "BytesTransferred")]
@@ -349,6 +355,7 @@ pub struct DataTransfer {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAddressRequest {
     /// <p>The automatically generated ID for a specific address.</p>
     #[serde(rename = "AddressId")]
@@ -356,7 +363,7 @@ pub struct DescribeAddressRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAddressResult {
     /// <p>The address that you want the Snowball or Snowballs associated with a specific job to be shipped to.</p>
     #[serde(rename = "Address")]
@@ -365,6 +372,7 @@ pub struct DescribeAddressResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAddressesRequest {
     /// <p>The number of <code>ADDRESS</code> objects to return.</p>
     #[serde(rename = "MaxResults")]
@@ -377,7 +385,7 @@ pub struct DescribeAddressesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAddressesResult {
     /// <p>The Snowball shipping addresses that were created for this account.</p>
     #[serde(rename = "Addresses")]
@@ -390,6 +398,7 @@ pub struct DescribeAddressesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterRequest {
     /// <p>The automatically generated ID for a cluster.</p>
     #[serde(rename = "ClusterId")]
@@ -397,7 +406,7 @@ pub struct DescribeClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterResult {
     /// <p>Information about a specific cluster, including shipping information, cluster status, and other important metadata.</p>
     #[serde(rename = "ClusterMetadata")]
@@ -406,6 +415,7 @@ pub struct DescribeClusterResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobRequest {
     /// <p>The automatically generated ID for a job, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -413,7 +423,7 @@ pub struct DescribeJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJobResult {
     /// <p>Information about a specific job, including shipping information, job status, and other important metadata.</p>
     #[serde(rename = "JobMetadata")]
@@ -447,6 +457,7 @@ pub struct EventTriggerDefinition {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobManifestRequest {
     /// <p>The ID for a job that you want to get the manifest file for, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -454,7 +465,7 @@ pub struct GetJobManifestRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobManifestResult {
     /// <p>The Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code> value.</p>
     #[serde(rename = "ManifestURI")]
@@ -463,6 +474,7 @@ pub struct GetJobManifestResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobUnlockCodeRequest {
     /// <p>The ID for the job that you want to get the <code>UnlockCode</code> value for, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -470,7 +482,7 @@ pub struct GetJobUnlockCodeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobUnlockCodeResult {
     /// <p>The <code>UnlockCode</code> value for the specified job. The <code>UnlockCode</code> value can be accessed for up to 90 days after the job has been created.</p>
     #[serde(rename = "UnlockCode")]
@@ -479,10 +491,11 @@ pub struct GetJobUnlockCodeResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSnowballUsageRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSnowballUsageResult {
     /// <p>The service limit for number of Snowballs this account can have at once. The default service limit is 1 (one).</p>
     #[serde(rename = "SnowballLimit")]
@@ -495,6 +508,7 @@ pub struct GetSnowballUsageResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSoftwareUpdatesRequest {
     /// <p>The ID for a job that you want to get the software update file for, for example <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "JobId")]
@@ -502,7 +516,7 @@ pub struct GetSoftwareUpdatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSoftwareUpdatesResult {
     /// <p>The Amazon S3 presigned URL for the update file associated with the specified <code>JobId</code> value. The software update will be available for 2 days after this request is made. To access an update after the 2 days have passed, you'll have to make another call to <code>GetSoftwareUpdates</code>.</p>
     #[serde(rename = "UpdatesURI")]
@@ -512,7 +526,7 @@ pub struct GetSoftwareUpdatesResult {
 
 /// <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of an export job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobListEntry {
     /// <p>The creation date for this job.</p>
     #[serde(rename = "CreationDate")]
@@ -546,7 +560,7 @@ pub struct JobListEntry {
 
 /// <p>Contains job logs. Whenever Snowball is used to import data into or export data out of Amazon S3, you'll have the option of downloading a PDF job report. Job logs are returned as a part of the response syntax of the <code>DescribeJob</code> action in the <code>JobMetadata</code> data type. The job logs can be accessed for up to 60 minutes after this request has been made. To access any of the job logs after 60 minutes have passed, you'll have to make another call to the <code>DescribeJob</code> action.</p> <p>For import jobs, the PDF job report becomes available at the end of the import process. For export jobs, your job report typically becomes available while the Snowball for your job part is being delivered to you.</p> <p>The job report provides you insight into the state of your Amazon S3 data transfer. The report includes details about your job or job part for your records.</p> <p>For deeper visibility into the status of your transferred objects, you can look at the two associated logs: a success log and a failure log. The logs are saved in comma-separated value (CSV) format, and the name of each log includes the ID of the job or job part that the log describes.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobLogs {
     /// <p>A link to an Amazon S3 presigned URL where the job completion report is located.</p>
     #[serde(rename = "JobCompletionReportURI")]
@@ -564,7 +578,7 @@ pub struct JobLogs {
 
 /// <p>Contains information about a specific job including shipping information, job status, and other important metadata. This information is returned as a part of the response syntax of the <code>DescribeJob</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobMetadata {
     /// <p>The ID for the address that you want the Snowball shipped to.</p>
     #[serde(rename = "AddressId")]
@@ -680,6 +694,7 @@ pub struct LambdaResource {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClusterJobsRequest {
     /// <p>The 39-character ID for the cluster that you want to list, for example <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
     #[serde(rename = "ClusterId")]
@@ -695,7 +710,7 @@ pub struct ListClusterJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClusterJobsResult {
     /// <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. </p>
     #[serde(rename = "JobListEntries")]
@@ -708,6 +723,7 @@ pub struct ListClusterJobsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClustersRequest {
     /// <p>The number of <code>ClusterListEntry</code> objects to return.</p>
     #[serde(rename = "MaxResults")]
@@ -720,7 +736,7 @@ pub struct ListClustersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClustersResult {
     /// <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's ID, and other important status information.</p>
     #[serde(rename = "ClusterListEntries")]
@@ -733,6 +749,7 @@ pub struct ListClustersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCompatibleImagesRequest {
     /// <p>The maximum number of results for the list of compatible images. Currently, a Snowball Edge device can store 10 AMIs.</p>
     #[serde(rename = "MaxResults")]
@@ -745,7 +762,7 @@ pub struct ListCompatibleImagesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCompatibleImagesResult {
     /// <p>A JSON-formatted object that describes a compatible AMI, including the ID and name for a Snowball Edge AMI.</p>
     #[serde(rename = "CompatibleImages")]
@@ -758,6 +775,7 @@ pub struct ListCompatibleImagesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>The number of <code>JobListEntry</code> objects to return.</p>
     #[serde(rename = "MaxResults")]
@@ -770,7 +788,7 @@ pub struct ListJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResult {
     /// <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. </p>
     #[serde(rename = "JobListEntries")]
@@ -814,7 +832,7 @@ pub struct S3Resource {
 
 /// <p>The <code>Status</code> and <code>TrackingNumber</code> information for an inbound or outbound shipment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Shipment {
     /// <p>Status information for a shipment.</p>
     #[serde(rename = "Status")]
@@ -828,7 +846,7 @@ pub struct Shipment {
 
 /// <p>A job's shipping information, including inbound and outbound tracking numbers and shipping speed options.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShippingDetails {
     /// <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball being returned to AWS for a particular job.</p>
     #[serde(rename = "InboundShipment")]
@@ -845,6 +863,7 @@ pub struct ShippingDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClusterRequest {
     /// <p>The ID of the updated <a>Address</a> object.</p>
     #[serde(rename = "AddressId")]
@@ -880,10 +899,11 @@ pub struct UpdateClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClusterResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobRequest {
     /// <p>The ID of the updated <a>Address</a> object.</p>
     #[serde(rename = "AddressId")]
@@ -923,7 +943,7 @@ pub struct UpdateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobResult {}
 
 /// Errors returned by CancelCluster
@@ -958,19 +978,16 @@ impl CancelClusterError {
     }
 }
 impl fmt::Display for CancelClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelClusterError {
-    fn description(&self) -> &str {
         match *self {
-            CancelClusterError::InvalidJobState(ref cause) => cause,
-            CancelClusterError::InvalidResource(ref cause) => cause,
-            CancelClusterError::KMSRequestFailed(ref cause) => cause,
+            CancelClusterError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            CancelClusterError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            CancelClusterError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelClusterError {}
 /// Errors returned by CancelJob
 #[derive(Debug, PartialEq)]
 pub enum CancelJobError {
@@ -1003,19 +1020,16 @@ impl CancelJobError {
     }
 }
 impl fmt::Display for CancelJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelJobError {
-    fn description(&self) -> &str {
         match *self {
-            CancelJobError::InvalidJobState(ref cause) => cause,
-            CancelJobError::InvalidResource(ref cause) => cause,
-            CancelJobError::KMSRequestFailed(ref cause) => cause,
+            CancelJobError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            CancelJobError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            CancelJobError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelJobError {}
 /// Errors returned by CreateAddress
 #[derive(Debug, PartialEq)]
 pub enum CreateAddressError {
@@ -1043,18 +1057,15 @@ impl CreateAddressError {
     }
 }
 impl fmt::Display for CreateAddressError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAddressError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAddressError::InvalidAddress(ref cause) => cause,
-            CreateAddressError::UnsupportedAddress(ref cause) => cause,
+            CreateAddressError::InvalidAddress(ref cause) => write!(f, "{}", cause),
+            CreateAddressError::UnsupportedAddress(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAddressError {}
 /// Errors returned by CreateCluster
 #[derive(Debug, PartialEq)]
 pub enum CreateClusterError {
@@ -1094,20 +1105,17 @@ impl CreateClusterError {
     }
 }
 impl fmt::Display for CreateClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateClusterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateClusterError::Ec2RequestFailed(ref cause) => cause,
-            CreateClusterError::InvalidInputCombination(ref cause) => cause,
-            CreateClusterError::InvalidResource(ref cause) => cause,
-            CreateClusterError::KMSRequestFailed(ref cause) => cause,
+            CreateClusterError::Ec2RequestFailed(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::InvalidInputCombination(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateClusterError {}
 /// Errors returned by CreateJob
 #[derive(Debug, PartialEq)]
 pub enum CreateJobError {
@@ -1150,21 +1158,18 @@ impl CreateJobError {
     }
 }
 impl fmt::Display for CreateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateJobError {
-    fn description(&self) -> &str {
         match *self {
-            CreateJobError::ClusterLimitExceeded(ref cause) => cause,
-            CreateJobError::Ec2RequestFailed(ref cause) => cause,
-            CreateJobError::InvalidInputCombination(ref cause) => cause,
-            CreateJobError::InvalidResource(ref cause) => cause,
-            CreateJobError::KMSRequestFailed(ref cause) => cause,
+            CreateJobError::ClusterLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateJobError::Ec2RequestFailed(ref cause) => write!(f, "{}", cause),
+            CreateJobError::InvalidInputCombination(ref cause) => write!(f, "{}", cause),
+            CreateJobError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            CreateJobError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateJobError {}
 /// Errors returned by DescribeAddress
 #[derive(Debug, PartialEq)]
 pub enum DescribeAddressError {
@@ -1187,17 +1192,14 @@ impl DescribeAddressError {
     }
 }
 impl fmt::Display for DescribeAddressError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAddressError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAddressError::InvalidResource(ref cause) => cause,
+            DescribeAddressError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAddressError {}
 /// Errors returned by DescribeAddresses
 #[derive(Debug, PartialEq)]
 pub enum DescribeAddressesError {
@@ -1225,18 +1227,15 @@ impl DescribeAddressesError {
     }
 }
 impl fmt::Display for DescribeAddressesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAddressesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAddressesError::InvalidNextToken(ref cause) => cause,
-            DescribeAddressesError::InvalidResource(ref cause) => cause,
+            DescribeAddressesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeAddressesError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAddressesError {}
 /// Errors returned by DescribeCluster
 #[derive(Debug, PartialEq)]
 pub enum DescribeClusterError {
@@ -1259,17 +1258,14 @@ impl DescribeClusterError {
     }
 }
 impl fmt::Display for DescribeClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeClusterError::InvalidResource(ref cause) => cause,
+            DescribeClusterError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeClusterError {}
 /// Errors returned by DescribeJob
 #[derive(Debug, PartialEq)]
 pub enum DescribeJobError {
@@ -1292,17 +1288,14 @@ impl DescribeJobError {
     }
 }
 impl fmt::Display for DescribeJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobError::InvalidResource(ref cause) => cause,
+            DescribeJobError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobError {}
 /// Errors returned by GetJobManifest
 #[derive(Debug, PartialEq)]
 pub enum GetJobManifestError {
@@ -1330,18 +1323,15 @@ impl GetJobManifestError {
     }
 }
 impl fmt::Display for GetJobManifestError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobManifestError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobManifestError::InvalidJobState(ref cause) => cause,
-            GetJobManifestError::InvalidResource(ref cause) => cause,
+            GetJobManifestError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            GetJobManifestError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobManifestError {}
 /// Errors returned by GetJobUnlockCode
 #[derive(Debug, PartialEq)]
 pub enum GetJobUnlockCodeError {
@@ -1369,18 +1359,15 @@ impl GetJobUnlockCodeError {
     }
 }
 impl fmt::Display for GetJobUnlockCodeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobUnlockCodeError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobUnlockCodeError::InvalidJobState(ref cause) => cause,
-            GetJobUnlockCodeError::InvalidResource(ref cause) => cause,
+            GetJobUnlockCodeError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            GetJobUnlockCodeError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobUnlockCodeError {}
 /// Errors returned by GetSnowballUsage
 #[derive(Debug, PartialEq)]
 pub enum GetSnowballUsageError {}
@@ -1397,15 +1384,12 @@ impl GetSnowballUsageError {
     }
 }
 impl fmt::Display for GetSnowballUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSnowballUsageError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for GetSnowballUsageError {}
 /// Errors returned by GetSoftwareUpdates
 #[derive(Debug, PartialEq)]
 pub enum GetSoftwareUpdatesError {
@@ -1433,18 +1417,15 @@ impl GetSoftwareUpdatesError {
     }
 }
 impl fmt::Display for GetSoftwareUpdatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSoftwareUpdatesError {
-    fn description(&self) -> &str {
         match *self {
-            GetSoftwareUpdatesError::InvalidJobState(ref cause) => cause,
-            GetSoftwareUpdatesError::InvalidResource(ref cause) => cause,
+            GetSoftwareUpdatesError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            GetSoftwareUpdatesError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSoftwareUpdatesError {}
 /// Errors returned by ListClusterJobs
 #[derive(Debug, PartialEq)]
 pub enum ListClusterJobsError {
@@ -1472,18 +1453,15 @@ impl ListClusterJobsError {
     }
 }
 impl fmt::Display for ListClusterJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListClusterJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListClusterJobsError::InvalidNextToken(ref cause) => cause,
-            ListClusterJobsError::InvalidResource(ref cause) => cause,
+            ListClusterJobsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListClusterJobsError::InvalidResource(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListClusterJobsError {}
 /// Errors returned by ListClusters
 #[derive(Debug, PartialEq)]
 pub enum ListClustersError {
@@ -1506,17 +1484,14 @@ impl ListClustersError {
     }
 }
 impl fmt::Display for ListClustersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListClustersError {
-    fn description(&self) -> &str {
         match *self {
-            ListClustersError::InvalidNextToken(ref cause) => cause,
+            ListClustersError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListClustersError {}
 /// Errors returned by ListCompatibleImages
 #[derive(Debug, PartialEq)]
 pub enum ListCompatibleImagesError {
@@ -1548,18 +1523,15 @@ impl ListCompatibleImagesError {
     }
 }
 impl fmt::Display for ListCompatibleImagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCompatibleImagesError {
-    fn description(&self) -> &str {
         match *self {
-            ListCompatibleImagesError::Ec2RequestFailed(ref cause) => cause,
-            ListCompatibleImagesError::InvalidNextToken(ref cause) => cause,
+            ListCompatibleImagesError::Ec2RequestFailed(ref cause) => write!(f, "{}", cause),
+            ListCompatibleImagesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCompatibleImagesError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -1582,17 +1554,14 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::InvalidNextToken(ref cause) => cause,
+            ListJobsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by UpdateCluster
 #[derive(Debug, PartialEq)]
 pub enum UpdateClusterError {
@@ -1637,21 +1606,18 @@ impl UpdateClusterError {
     }
 }
 impl fmt::Display for UpdateClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateClusterError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateClusterError::Ec2RequestFailed(ref cause) => cause,
-            UpdateClusterError::InvalidInputCombination(ref cause) => cause,
-            UpdateClusterError::InvalidJobState(ref cause) => cause,
-            UpdateClusterError::InvalidResource(ref cause) => cause,
-            UpdateClusterError::KMSRequestFailed(ref cause) => cause,
+            UpdateClusterError::Ec2RequestFailed(ref cause) => write!(f, "{}", cause),
+            UpdateClusterError::InvalidInputCombination(ref cause) => write!(f, "{}", cause),
+            UpdateClusterError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            UpdateClusterError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            UpdateClusterError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateClusterError {}
 /// Errors returned by UpdateJob
 #[derive(Debug, PartialEq)]
 pub enum UpdateJobError {
@@ -1699,22 +1665,19 @@ impl UpdateJobError {
     }
 }
 impl fmt::Display for UpdateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateJobError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateJobError::ClusterLimitExceeded(ref cause) => cause,
-            UpdateJobError::Ec2RequestFailed(ref cause) => cause,
-            UpdateJobError::InvalidInputCombination(ref cause) => cause,
-            UpdateJobError::InvalidJobState(ref cause) => cause,
-            UpdateJobError::InvalidResource(ref cause) => cause,
-            UpdateJobError::KMSRequestFailed(ref cause) => cause,
+            UpdateJobError::ClusterLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::Ec2RequestFailed(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::InvalidInputCombination(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::InvalidResource(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::KMSRequestFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateJobError {}
 /// Trait representing the capabilities of the Amazon Snowball API. Amazon Snowball clients implement this trait.
 #[async_trait]
 pub trait Snowball {

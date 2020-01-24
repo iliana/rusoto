@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents an application source.</p>
@@ -38,6 +39,7 @@ pub struct ApplicationSource {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateScalingPlanRequest {
     /// <p>A CloudFormation stack or set of tags. You can create one scaling plan per application source.</p>
     #[serde(rename = "ApplicationSource")]
@@ -51,7 +53,7 @@ pub struct CreateScalingPlanRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateScalingPlanResponse {
     /// <p>The version number of the scaling plan. This value is always 1.</p> <p>Currently, you cannot specify multiple scaling plan versions.</p>
     #[serde(rename = "ScalingPlanVersion")]
@@ -104,7 +106,7 @@ pub struct CustomizedScalingMetricSpecification {
 
 /// <p>Represents a single value in the forecast data used for predictive scaling.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Datapoint {
     /// <p>The time stamp for the data point in UTC format.</p>
     #[serde(rename = "Timestamp")]
@@ -117,6 +119,7 @@ pub struct Datapoint {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteScalingPlanRequest {
     /// <p>The name of the scaling plan.</p>
     #[serde(rename = "ScalingPlanName")]
@@ -127,10 +130,11 @@ pub struct DeleteScalingPlanRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteScalingPlanResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeScalingPlanResourcesRequest {
     /// <p>The maximum number of scalable resources to return. The value must be between 1 and 50. The default value is 50.</p>
     #[serde(rename = "MaxResults")]
@@ -149,7 +153,7 @@ pub struct DescribeScalingPlanResourcesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeScalingPlanResourcesResponse {
     /// <p>The token required to get the next set of results. This value is <code>null</code> if there are no more results to return.</p>
     #[serde(rename = "NextToken")]
@@ -162,6 +166,7 @@ pub struct DescribeScalingPlanResourcesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeScalingPlansRequest {
     /// <p>The sources for the applications (up to 10). If you specify scaling plan names, you cannot specify application sources.</p>
     #[serde(rename = "ApplicationSources")]
@@ -186,7 +191,7 @@ pub struct DescribeScalingPlansRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeScalingPlansResponse {
     /// <p>The token required to get the next set of results. This value is <code>null</code> if there are no more results to return.</p>
     #[serde(rename = "NextToken")]
@@ -199,6 +204,7 @@ pub struct DescribeScalingPlansResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetScalingPlanResourceForecastDataRequest {
     /// <p>The exclusive end time of the time range for the forecast data to get. The maximum time duration between the start and end time is seven days. </p> <p>Although this parameter can accept a date and time that is more than two days in the future, the availability of forecast data has limits. AWS Auto Scaling only issues forecasts for periods of two days in advance.</p>
     #[serde(rename = "EndTime")]
@@ -227,7 +233,7 @@ pub struct GetScalingPlanResourceForecastDataRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetScalingPlanResourceForecastDataResponse {
     /// <p>The data points to return.</p>
     #[serde(rename = "Datapoints")]
@@ -326,7 +332,7 @@ pub struct ScalingInstruction {
 
 /// <p>Represents a scaling plan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScalingPlan {
     /// <p>The application source.</p>
     #[serde(rename = "ApplicationSource")]
@@ -359,7 +365,7 @@ pub struct ScalingPlan {
 
 /// <p>Represents a scalable resource.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScalingPlanResource {
     /// <p><p>The ID of the resource. This string consists of the resource type and unique identifier.</p> <ul> <li> <p>Auto Scaling group - The resource type is <code>autoScalingGroup</code> and the unique identifier is the name of the Auto Scaling group. Example: <code>autoScalingGroup/my-asg</code>.</p> </li> <li> <p>ECS service - The resource type is <code>service</code> and the unique identifier is the cluster name and service name. Example: <code>service/default/sample-webapp</code>.</p> </li> <li> <p>Spot Fleet request - The resource type is <code>spot-fleet-request</code> and the unique identifier is the Spot Fleet request ID. Example: <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p> </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the unique identifier is the resource ID. Example: <code>table/my-table</code>.</p> </li> <li> <p>DynamoDB global secondary index - The resource type is <code>index</code> and the unique identifier is the resource ID. Example: <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB cluster - The resource type is <code>cluster</code> and the unique identifier is the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul></p>
     #[serde(rename = "ResourceId")]
@@ -391,7 +397,7 @@ pub struct ScalingPlanResource {
 
 /// <p>Represents a scaling policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScalingPolicy {
     /// <p>The name of the scaling policy.</p>
     #[serde(rename = "PolicyName")]
@@ -451,6 +457,7 @@ pub struct TargetTrackingConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateScalingPlanRequest {
     /// <p>A CloudFormation stack or set of tags.</p>
     #[serde(rename = "ApplicationSource")]
@@ -469,7 +476,7 @@ pub struct UpdateScalingPlanRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateScalingPlanResponse {}
 
 /// Errors returned by CreateScalingPlan
@@ -504,19 +511,16 @@ impl CreateScalingPlanError {
     }
 }
 impl fmt::Display for CreateScalingPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateScalingPlanError {
-    fn description(&self) -> &str {
         match *self {
-            CreateScalingPlanError::ConcurrentUpdate(ref cause) => cause,
-            CreateScalingPlanError::InternalService(ref cause) => cause,
-            CreateScalingPlanError::LimitExceeded(ref cause) => cause,
+            CreateScalingPlanError::ConcurrentUpdate(ref cause) => write!(f, "{}", cause),
+            CreateScalingPlanError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateScalingPlanError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateScalingPlanError {}
 /// Errors returned by DeleteScalingPlan
 #[derive(Debug, PartialEq)]
 pub enum DeleteScalingPlanError {
@@ -549,19 +553,16 @@ impl DeleteScalingPlanError {
     }
 }
 impl fmt::Display for DeleteScalingPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteScalingPlanError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteScalingPlanError::ConcurrentUpdate(ref cause) => cause,
-            DeleteScalingPlanError::InternalService(ref cause) => cause,
-            DeleteScalingPlanError::ObjectNotFound(ref cause) => cause,
+            DeleteScalingPlanError::ConcurrentUpdate(ref cause) => write!(f, "{}", cause),
+            DeleteScalingPlanError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteScalingPlanError::ObjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteScalingPlanError {}
 /// Errors returned by DescribeScalingPlanResources
 #[derive(Debug, PartialEq)]
 pub enum DescribeScalingPlanResourcesError {
@@ -602,19 +603,20 @@ impl DescribeScalingPlanResourcesError {
     }
 }
 impl fmt::Display for DescribeScalingPlanResourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeScalingPlanResourcesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeScalingPlanResourcesError::ConcurrentUpdate(ref cause) => cause,
-            DescribeScalingPlanResourcesError::InternalService(ref cause) => cause,
-            DescribeScalingPlanResourcesError::InvalidNextToken(ref cause) => cause,
+            DescribeScalingPlanResourcesError::ConcurrentUpdate(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeScalingPlanResourcesError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPlanResourcesError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeScalingPlanResourcesError {}
 /// Errors returned by DescribeScalingPlans
 #[derive(Debug, PartialEq)]
 pub enum DescribeScalingPlansError {
@@ -653,19 +655,16 @@ impl DescribeScalingPlansError {
     }
 }
 impl fmt::Display for DescribeScalingPlansError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeScalingPlansError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeScalingPlansError::ConcurrentUpdate(ref cause) => cause,
-            DescribeScalingPlansError::InternalService(ref cause) => cause,
-            DescribeScalingPlansError::InvalidNextToken(ref cause) => cause,
+            DescribeScalingPlansError::ConcurrentUpdate(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPlansError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPlansError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeScalingPlansError {}
 /// Errors returned by GetScalingPlanResourceForecastData
 #[derive(Debug, PartialEq)]
 pub enum GetScalingPlanResourceForecastDataError {
@@ -692,17 +691,16 @@ impl GetScalingPlanResourceForecastDataError {
     }
 }
 impl fmt::Display for GetScalingPlanResourceForecastDataError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetScalingPlanResourceForecastDataError {
-    fn description(&self) -> &str {
         match *self {
-            GetScalingPlanResourceForecastDataError::InternalService(ref cause) => cause,
+            GetScalingPlanResourceForecastDataError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetScalingPlanResourceForecastDataError {}
 /// Errors returned by UpdateScalingPlan
 #[derive(Debug, PartialEq)]
 pub enum UpdateScalingPlanError {
@@ -735,19 +733,16 @@ impl UpdateScalingPlanError {
     }
 }
 impl fmt::Display for UpdateScalingPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateScalingPlanError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateScalingPlanError::ConcurrentUpdate(ref cause) => cause,
-            UpdateScalingPlanError::InternalService(ref cause) => cause,
-            UpdateScalingPlanError::ObjectNotFound(ref cause) => cause,
+            UpdateScalingPlanError::ConcurrentUpdate(ref cause) => write!(f, "{}", cause),
+            UpdateScalingPlanError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateScalingPlanError::ObjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateScalingPlanError {}
 /// Trait representing the capabilities of the AWS Auto Scaling Plans API. AWS Auto Scaling Plans clients implement this trait.
 #[async_trait]
 pub trait AutoscalingPlans {

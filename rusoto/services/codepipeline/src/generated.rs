@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents an AWS session credentials object. These credentials are temporary credentials that are issued by AWS Secure Token Service (STS). They can be used to access input and output artifacts in the Amazon S3 bucket used to store artifact for the pipeline in AWS CodePipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AWSSessionCredentials {
     /// <p>The access key for the session.</p>
     #[serde(rename = "accessKeyId")]
@@ -41,6 +42,7 @@ pub struct AWSSessionCredentials {
 
 /// <p>Represents the input of an AcknowledgeJob action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcknowledgeJobInput {
     /// <p>The unique system-generated ID of the job for which you want to confirm receipt.</p>
     #[serde(rename = "jobId")]
@@ -52,7 +54,7 @@ pub struct AcknowledgeJobInput {
 
 /// <p>Represents the output of an AcknowledgeJob action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcknowledgeJobOutput {
     /// <p>Whether the job worker has received the specified job.</p>
     #[serde(rename = "status")]
@@ -62,6 +64,7 @@ pub struct AcknowledgeJobOutput {
 
 /// <p>Represents the input of an AcknowledgeThirdPartyJob action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcknowledgeThirdPartyJobInput {
     /// <p>The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.</p>
     #[serde(rename = "clientToken")]
@@ -76,7 +79,7 @@ pub struct AcknowledgeThirdPartyJobInput {
 
 /// <p>Represents the output of an AcknowledgeThirdPartyJob action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcknowledgeThirdPartyJobOutput {
     /// <p>The status information for the third party job, if any.</p>
     #[serde(rename = "status")]
@@ -86,7 +89,7 @@ pub struct AcknowledgeThirdPartyJobOutput {
 
 /// <p>Represents information about an action configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionConfiguration {
     /// <p>The configuration data for the action.</p>
     #[serde(rename = "configuration")]
@@ -125,7 +128,7 @@ pub struct ActionConfigurationProperty {
 
 /// <p>Represents the context of an action in the stage of a pipeline to a job worker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionContext {
     /// <p>The system-generated unique ID that corresponds to an action's execution.</p>
     #[serde(rename = "actionExecutionId")]
@@ -178,7 +181,7 @@ pub struct ActionDeclaration {
 
 /// <p>Represents information about the run of an action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionExecution {
     /// <p>The details of an error returned by a URL external to AWS.</p>
     #[serde(rename = "errorDetails")]
@@ -220,7 +223,7 @@ pub struct ActionExecution {
 
 /// <p>Returns information about an execution of an action, including the action execution ID, and the name, version, and timing of the action. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionExecutionDetail {
     /// <p>The action execution ID.</p>
     #[serde(rename = "actionExecutionId")]
@@ -266,6 +269,7 @@ pub struct ActionExecutionDetail {
 
 /// <p>Filter values for the action execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ActionExecutionFilter {
     /// <p>The pipeline execution ID used to filter action execution history.</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -275,7 +279,7 @@ pub struct ActionExecutionFilter {
 
 /// <p>Input information used for an action execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionExecutionInput {
     #[serde(rename = "actionTypeId")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -308,7 +312,7 @@ pub struct ActionExecutionInput {
 
 /// <p>Output details listed for an action execution, such as the action execution result.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionExecutionOutput {
     /// <p>Execution result information listed in the output details for an action execution.</p>
     #[serde(rename = "executionResult")]
@@ -326,7 +330,7 @@ pub struct ActionExecutionOutput {
 
 /// <p>Execution result information, such as the external execution ID.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionExecutionResult {
     /// <p>The action provider's external ID for the action execution.</p>
     #[serde(rename = "externalExecutionId")]
@@ -358,7 +362,7 @@ pub struct ActionRevision {
 
 /// <p>Represents information about the state of an action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionState {
     /// <p>The name of the action.</p>
     #[serde(rename = "actionName")]
@@ -384,7 +388,7 @@ pub struct ActionState {
 
 /// <p>Returns information about the details of an action type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionType {
     /// <p>The configuration properties for the action type.</p>
     #[serde(rename = "actionConfigurationProperties")]
@@ -445,6 +449,7 @@ pub struct ActionTypeSettings {
 
 /// <p>Represents information about the result of an approval request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ApprovalResult {
     /// <p>The response submitted by a reviewer assigned to an approval action request.</p>
     #[serde(rename = "status")]
@@ -456,7 +461,7 @@ pub struct ApprovalResult {
 
 /// <p>Represents information about an artifact that is worked on by actions in the pipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Artifact {
     /// <p>The location of an artifact.</p>
     #[serde(rename = "location")]
@@ -474,7 +479,7 @@ pub struct Artifact {
 
 /// <p>Artifact details for the action execution, such as the artifact location.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArtifactDetail {
     /// <p>The artifact object name for the action execution.</p>
     #[serde(rename = "name")]
@@ -499,7 +504,7 @@ pub struct ArtifactDetails {
 
 /// <p>Represents information about the location of an artifact.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArtifactLocation {
     /// <p>The Amazon S3 bucket that contains the artifact.</p>
     #[serde(rename = "s3Location")]
@@ -513,7 +518,7 @@ pub struct ArtifactLocation {
 
 /// <p>Represents revision details of an artifact. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArtifactRevision {
     /// <p>The date and time when the most recent revision of the artifact was created, in timestamp format.</p>
     #[serde(rename = "created")]
@@ -569,6 +574,7 @@ pub struct BlockerDeclaration {
 
 /// <p>Represents the input of a CreateCustomActionType operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCustomActionTypeInput {
     /// <p><p>The category of the custom action, such as a build action or a test action.</p> <note> <p>Although <code>Source</code> and <code>Approval</code> are listed as valid values, they are not currently functional. These values are reserved for future use.</p> </note></p>
     #[serde(rename = "category")]
@@ -601,7 +607,7 @@ pub struct CreateCustomActionTypeInput {
 
 /// <p>Represents the output of a <code>CreateCustomActionType</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCustomActionTypeOutput {
     /// <p>Returns information about the details of an action type.</p>
     #[serde(rename = "actionType")]
@@ -614,6 +620,7 @@ pub struct CreateCustomActionTypeOutput {
 
 /// <p>Represents the input of a <code>CreatePipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePipelineInput {
     /// <p>Represents the structure of actions and stages to be performed in the pipeline. </p>
     #[serde(rename = "pipeline")]
@@ -626,7 +633,7 @@ pub struct CreatePipelineInput {
 
 /// <p>Represents the output of a <code>CreatePipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePipelineOutput {
     /// <p>Represents the structure of actions and stages to be performed in the pipeline. </p>
     #[serde(rename = "pipeline")]
@@ -640,6 +647,7 @@ pub struct CreatePipelineOutput {
 
 /// <p>Represents information about a current revision.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CurrentRevision {
     /// <p>The change identifier for the current revision.</p>
     #[serde(rename = "changeIdentifier")]
@@ -659,6 +667,7 @@ pub struct CurrentRevision {
 
 /// <p>Represents the input of a <code>DeleteCustomActionType</code> operation. The custom action will be marked as deleted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCustomActionTypeInput {
     /// <p>The category of the custom action that you want to delete, such as source or deploy.</p>
     #[serde(rename = "category")]
@@ -673,6 +682,7 @@ pub struct DeleteCustomActionTypeInput {
 
 /// <p>Represents the input of a <code>DeletePipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePipelineInput {
     /// <p>The name of the pipeline to be deleted.</p>
     #[serde(rename = "name")]
@@ -680,6 +690,7 @@ pub struct DeletePipelineInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteWebhookInput {
     /// <p>The name of the webhook you want to delete.</p>
     #[serde(rename = "name")]
@@ -687,10 +698,11 @@ pub struct DeleteWebhookInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteWebhookOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterWebhookWithThirdPartyInput {
     /// <p>The name of the webhook you want to deregister.</p>
     #[serde(rename = "webhookName")]
@@ -699,11 +711,12 @@ pub struct DeregisterWebhookWithThirdPartyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterWebhookWithThirdPartyOutput {}
 
 /// <p>Represents the input of a <code>DisableStageTransition</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableStageTransitionInput {
     /// <p>The name of the pipeline in which you want to disable the flow of artifacts from one stage to another.</p>
     #[serde(rename = "pipelineName")]
@@ -721,6 +734,7 @@ pub struct DisableStageTransitionInput {
 
 /// <p>Represents the input of an <code>EnableStageTransition</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableStageTransitionInput {
     /// <p>The name of the pipeline in which you want to enable the flow of artifacts from one stage to another.</p>
     #[serde(rename = "pipelineName")]
@@ -746,7 +760,7 @@ pub struct EncryptionKey {
 
 /// <p>Represents information about an error in AWS CodePipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorDetails {
     /// <p>The system ID or number code of the error.</p>
     #[serde(rename = "code")]
@@ -760,6 +774,7 @@ pub struct ErrorDetails {
 
 /// <p>The details of the actions taken and results produced on an artifact as it passes through stages in the pipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecutionDetails {
     /// <p>The system-generated unique ID of this action used to identify this job worker in any external systems, such as AWS CodeDeploy.</p>
     #[serde(rename = "externalExecutionId")]
@@ -777,7 +792,7 @@ pub struct ExecutionDetails {
 
 /// <p>The interaction or event that started a pipeline execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecutionTrigger {
     /// <p>Detail related to the event that started a pipeline execution, such as the webhook ARN of the webhook that triggered the pipeline execution or the user ARN for a user-initiated <code>start-pipeline-execution</code> CLI command.</p>
     #[serde(rename = "triggerDetail")]
@@ -791,6 +806,7 @@ pub struct ExecutionTrigger {
 
 /// <p>Represents information about failure details.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct FailureDetails {
     /// <p>The external ID of the run of the action that failed.</p>
     #[serde(rename = "externalExecutionId")]
@@ -806,6 +822,7 @@ pub struct FailureDetails {
 
 /// <p>Represents the input of a <code>GetJobDetails</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobDetailsInput {
     /// <p>The unique system-generated ID for the job.</p>
     #[serde(rename = "jobId")]
@@ -814,7 +831,7 @@ pub struct GetJobDetailsInput {
 
 /// <p>Represents the output of a <code>GetJobDetails</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobDetailsOutput {
     /// <p><p>The details of the job.</p> <note> <p>If AWSSessionCredentials is used, a long-running job can call <code>GetJobDetails</code> again to obtain new credentials.</p> </note></p>
     #[serde(rename = "jobDetails")]
@@ -824,6 +841,7 @@ pub struct GetJobDetailsOutput {
 
 /// <p>Represents the input of a <code>GetPipelineExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPipelineExecutionInput {
     /// <p>The ID of the pipeline execution about which you want to get execution details.</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -835,7 +853,7 @@ pub struct GetPipelineExecutionInput {
 
 /// <p>Represents the output of a <code>GetPipelineExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPipelineExecutionOutput {
     /// <p>Represents information about the execution of a pipeline.</p>
     #[serde(rename = "pipelineExecution")]
@@ -845,6 +863,7 @@ pub struct GetPipelineExecutionOutput {
 
 /// <p>Represents the input of a <code>GetPipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPipelineInput {
     /// <p>The name of the pipeline for which you want to get information. Pipeline names must be unique under an AWS user account.</p>
     #[serde(rename = "name")]
@@ -857,7 +876,7 @@ pub struct GetPipelineInput {
 
 /// <p>Represents the output of a <code>GetPipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPipelineOutput {
     /// <p>Represents the pipeline metadata information returned as part of the output of a <code>GetPipeline</code> action.</p>
     #[serde(rename = "metadata")]
@@ -871,6 +890,7 @@ pub struct GetPipelineOutput {
 
 /// <p>Represents the input of a <code>GetPipelineState</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPipelineStateInput {
     /// <p>The name of the pipeline about which you want to get information.</p>
     #[serde(rename = "name")]
@@ -879,7 +899,7 @@ pub struct GetPipelineStateInput {
 
 /// <p>Represents the output of a <code>GetPipelineState</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPipelineStateOutput {
     /// <p>The date and time the pipeline was created, in timestamp format.</p>
     #[serde(rename = "created")]
@@ -905,6 +925,7 @@ pub struct GetPipelineStateOutput {
 
 /// <p>Represents the input of a <code>GetThirdPartyJobDetails</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetThirdPartyJobDetailsInput {
     /// <p>The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.</p>
     #[serde(rename = "clientToken")]
@@ -916,7 +937,7 @@ pub struct GetThirdPartyJobDetailsInput {
 
 /// <p>Represents the output of a <code>GetThirdPartyJobDetails</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetThirdPartyJobDetailsOutput {
     /// <p>The details of the job, including any protected values defined for the job.</p>
     #[serde(rename = "jobDetails")]
@@ -934,7 +955,7 @@ pub struct InputArtifact {
 
 /// <p>Represents information about a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Job {
     /// <p>The ID of the AWS account to use when performing the job.</p>
     #[serde(rename = "accountId")]
@@ -956,7 +977,7 @@ pub struct Job {
 
 /// <p>Represents other information about a job required for a job worker to complete the job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobData {
     /// <p>Represents information about an action configuration.</p>
     #[serde(rename = "actionConfiguration")]
@@ -994,7 +1015,7 @@ pub struct JobData {
 
 /// <p>Represents information about the details of a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobDetails {
     /// <p>The AWS account ID associated with the job.</p>
     #[serde(rename = "accountId")]
@@ -1011,6 +1032,7 @@ pub struct JobDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListActionExecutionsInput {
     /// <p>Input information used to filter action execution history.</p>
     #[serde(rename = "filter")]
@@ -1030,7 +1052,7 @@ pub struct ListActionExecutionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListActionExecutionsOutput {
     /// <p>The details for a list of recent executions, such as action execution ID.</p>
     #[serde(rename = "actionExecutionDetails")]
@@ -1044,6 +1066,7 @@ pub struct ListActionExecutionsOutput {
 
 /// <p>Represents the input of a <code>ListActionTypes</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListActionTypesInput {
     /// <p>Filters the list of action types to those created by a specified entity.</p>
     #[serde(rename = "actionOwnerFilter")]
@@ -1057,7 +1080,7 @@ pub struct ListActionTypesInput {
 
 /// <p>Represents the output of a <code>ListActionTypes</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListActionTypesOutput {
     /// <p>Provides details of the action types.</p>
     #[serde(rename = "actionTypes")]
@@ -1070,6 +1093,7 @@ pub struct ListActionTypesOutput {
 
 /// <p>Represents the input of a <code>ListPipelineExecutions</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPipelineExecutionsInput {
     /// <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Pipeline history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.</p>
     #[serde(rename = "maxResults")]
@@ -1086,7 +1110,7 @@ pub struct ListPipelineExecutionsInput {
 
 /// <p>Represents the output of a <code>ListPipelineExecutions</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPipelineExecutionsOutput {
     /// <p>A token that can be used in the next <code>ListPipelineExecutions</code> call. To view all items in the list, continue to call this operation with each subsequent token until no more nextToken values are returned.</p>
     #[serde(rename = "nextToken")]
@@ -1100,6 +1124,7 @@ pub struct ListPipelineExecutionsOutput {
 
 /// <p>Represents the input of a <code>ListPipelines</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPipelinesInput {
     /// <p>An identifier that was returned from the previous list pipelines call. It can be used to return the next set of pipelines in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1109,7 +1134,7 @@ pub struct ListPipelinesInput {
 
 /// <p>Represents the output of a <code>ListPipelines</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPipelinesOutput {
     /// <p>If the amount of returned information is significantly large, an identifier is also returned. It can be used in a subsequent list pipelines call to return the next set of pipelines in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1122,6 +1147,7 @@ pub struct ListPipelinesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>The maximum number of results to return in a single call.</p>
     #[serde(rename = "maxResults")]
@@ -1137,7 +1163,7 @@ pub struct ListTagsForResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>If the amount of returned information is significantly large, an identifier is also returned and can be used in a subsequent API call to return the next page of the list. The ListTagsforResource call lists all available tags in one call and does not use pagination.</p>
     #[serde(rename = "nextToken")]
@@ -1151,7 +1177,7 @@ pub struct ListTagsForResourceOutput {
 
 /// <p>The detail returned for each webhook after listing webhooks, such as the webhook URL, the webhook name, and the webhook ARN.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListWebhookItem {
     /// <p>The Amazon Resource Name (ARN) of the webhook.</p>
     #[serde(rename = "arn")]
@@ -1182,6 +1208,7 @@ pub struct ListWebhookItem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListWebhooksInput {
     /// <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>
     #[serde(rename = "MaxResults")]
@@ -1194,7 +1221,7 @@ pub struct ListWebhooksInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListWebhooksOutput {
     /// <p>If the amount of returned information is significantly large, an identifier is also returned and can be used in a subsequent ListWebhooks call to return the next set of webhooks in the list. </p>
     #[serde(rename = "NextToken")]
@@ -1216,7 +1243,7 @@ pub struct OutputArtifact {
 
 /// <p><p>Represents information about a pipeline to a job worker.</p> <note> <p>PipelineContext contains <code>pipelineArn</code> and <code>pipelineExecutionId</code> for custom action jobs. The <code>pipelineArn</code> and <code>pipelineExecutionId</code> fields are not populated for ThirdParty action jobs.</p> </note></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineContext {
     /// <p>The context of an action to a job worker in the stage of a pipeline.</p>
     #[serde(rename = "action")]
@@ -1268,7 +1295,7 @@ pub struct PipelineDeclaration {
 
 /// <p>Represents information about an execution of a pipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineExecution {
     /// <p>A list of <code>ArtifactRevision</code> objects included in a pipeline execution.</p>
     #[serde(rename = "artifactRevisions")]
@@ -1294,7 +1321,7 @@ pub struct PipelineExecution {
 
 /// <p>Summary information about a pipeline execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineExecutionSummary {
     /// <p>The date and time of the last change to the pipeline execution, in timestamp format.</p>
     #[serde(rename = "lastUpdateTime")]
@@ -1324,7 +1351,7 @@ pub struct PipelineExecutionSummary {
 
 /// <p>Information about a pipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineMetadata {
     /// <p>The date and time the pipeline was created, in timestamp format.</p>
     #[serde(rename = "created")]
@@ -1342,7 +1369,7 @@ pub struct PipelineMetadata {
 
 /// <p>Returns a summary of a pipeline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineSummary {
     /// <p>The date and time the pipeline was created, in timestamp format.</p>
     #[serde(rename = "created")]
@@ -1364,6 +1391,7 @@ pub struct PipelineSummary {
 
 /// <p>Represents the input of a <code>PollForJobs</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PollForJobsInput {
     /// <p>Represents information about an action type.</p>
     #[serde(rename = "actionTypeId")]
@@ -1380,7 +1408,7 @@ pub struct PollForJobsInput {
 
 /// <p>Represents the output of a <code>PollForJobs</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PollForJobsOutput {
     /// <p>Information about the jobs to take action on.</p>
     #[serde(rename = "jobs")]
@@ -1390,6 +1418,7 @@ pub struct PollForJobsOutput {
 
 /// <p>Represents the input of a <code>PollForThirdPartyJobs</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PollForThirdPartyJobsInput {
     /// <p>Represents information about an action type.</p>
     #[serde(rename = "actionTypeId")]
@@ -1402,7 +1431,7 @@ pub struct PollForThirdPartyJobsInput {
 
 /// <p>Represents the output of a <code>PollForThirdPartyJobs</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PollForThirdPartyJobsOutput {
     /// <p>Information about the jobs to take action on.</p>
     #[serde(rename = "jobs")]
@@ -1412,6 +1441,7 @@ pub struct PollForThirdPartyJobsOutput {
 
 /// <p>Represents the input of a <code>PutActionRevision</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutActionRevisionInput {
     /// <p>The name of the action that processes the revision.</p>
     #[serde(rename = "actionName")]
@@ -1429,7 +1459,7 @@ pub struct PutActionRevisionInput {
 
 /// <p>Represents the output of a <code>PutActionRevision</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutActionRevisionOutput {
     /// <p>Indicates whether the artifact revision was previously used in an execution of the specified pipeline.</p>
     #[serde(rename = "newRevision")]
@@ -1443,6 +1473,7 @@ pub struct PutActionRevisionOutput {
 
 /// <p>Represents the input of a <code>PutApprovalResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutApprovalResultInput {
     /// <p>The name of the action for which approval is requested.</p>
     #[serde(rename = "actionName")]
@@ -1463,7 +1494,7 @@ pub struct PutApprovalResultInput {
 
 /// <p>Represents the output of a <code>PutApprovalResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutApprovalResultOutput {
     /// <p>The timestamp showing when the approval or rejection was submitted.</p>
     #[serde(rename = "approvedAt")]
@@ -1473,6 +1504,7 @@ pub struct PutApprovalResultOutput {
 
 /// <p>Represents the input of a <code>PutJobFailureResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutJobFailureResultInput {
     /// <p>The details about the failure of a job.</p>
     #[serde(rename = "failureDetails")]
@@ -1484,6 +1516,7 @@ pub struct PutJobFailureResultInput {
 
 /// <p>Represents the input of a <code>PutJobSuccessResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutJobSuccessResultInput {
     /// <p>A token generated by a job worker, such as an AWS CodeDeploy deployment ID, that a successful job provides to identify a custom action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the custom action. When the action is complete, no continuation token should be supplied.</p>
     #[serde(rename = "continuationToken")]
@@ -1508,6 +1541,7 @@ pub struct PutJobSuccessResultInput {
 
 /// <p>Represents the input of a <code>PutThirdPartyJobFailureResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutThirdPartyJobFailureResultInput {
     /// <p>The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.</p>
     #[serde(rename = "clientToken")]
@@ -1522,6 +1556,7 @@ pub struct PutThirdPartyJobFailureResultInput {
 
 /// <p>Represents the input of a <code>PutThirdPartyJobSuccessResult</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutThirdPartyJobSuccessResultInput {
     /// <p>The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.</p>
     #[serde(rename = "clientToken")]
@@ -1544,6 +1579,7 @@ pub struct PutThirdPartyJobSuccessResultInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutWebhookInput {
     /// <p>The tags for the webhook.</p>
     #[serde(rename = "tags")]
@@ -1555,7 +1591,7 @@ pub struct PutWebhookInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutWebhookOutput {
     /// <p>The detail returned from creating the webhook, such as the webhook name, webhook URL, and webhook ARN.</p>
     #[serde(rename = "webhook")]
@@ -1564,6 +1600,7 @@ pub struct PutWebhookOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterWebhookWithThirdPartyInput {
     /// <p>The name of an existing webhook created with PutWebhook to register with a supported third party. </p>
     #[serde(rename = "webhookName")]
@@ -1572,11 +1609,12 @@ pub struct RegisterWebhookWithThirdPartyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterWebhookWithThirdPartyOutput {}
 
 /// <p>Represents the input of a <code>RetryStageExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RetryStageExecutionInput {
     /// <p>The ID of the pipeline execution in the failed stage to be retried. Use the <a>GetPipelineState</a> action to retrieve the current pipelineExecutionId of the failed stage</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -1594,7 +1632,7 @@ pub struct RetryStageExecutionInput {
 
 /// <p>Represents the output of a <code>RetryStageExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RetryStageExecutionOutput {
     /// <p>The ID of the current workflow execution in the failed stage.</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -1604,7 +1642,7 @@ pub struct RetryStageExecutionOutput {
 
 /// <p>The location of the Amazon S3 bucket that contains a revision.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct S3ArtifactLocation {
     /// <p>The name of the Amazon S3 bucket.</p>
     #[serde(rename = "bucketName")]
@@ -1616,7 +1654,7 @@ pub struct S3ArtifactLocation {
 
 /// <p>The Amazon S3 artifact location for an action's artifacts.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct S3Location {
     /// <p>The Amazon S3 artifact bucket for an action's artifacts.</p>
     #[serde(rename = "bucket")]
@@ -1630,7 +1668,7 @@ pub struct S3Location {
 
 /// <p>Information about the version (or revision) of a source artifact that initiated a pipeline execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SourceRevision {
     /// <p>The name of the action that processed the revision to the source artifact.</p>
     #[serde(rename = "actionName")]
@@ -1651,7 +1689,7 @@ pub struct SourceRevision {
 
 /// <p>Represents information about a stage to a job worker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StageContext {
     /// <p>The name of the stage.</p>
     #[serde(rename = "name")]
@@ -1676,7 +1714,7 @@ pub struct StageDeclaration {
 
 /// <p>Represents information about the run of a stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StageExecution {
     /// <p>The ID of the pipeline execution associated with the stage.</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -1688,7 +1726,7 @@ pub struct StageExecution {
 
 /// <p>Represents information about the state of the stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StageState {
     /// <p>The state of the stage.</p>
     #[serde(rename = "actionStates")]
@@ -1710,6 +1748,7 @@ pub struct StageState {
 
 /// <p>Represents the input of a <code>StartPipelineExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartPipelineExecutionInput {
     /// <p>The system-generated unique ID used to identify a unique execution request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -1722,7 +1761,7 @@ pub struct StartPipelineExecutionInput {
 
 /// <p>Represents the output of a <code>StartPipelineExecution</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartPipelineExecutionOutput {
     /// <p>The unique system-generated ID of the pipeline execution that was started.</p>
     #[serde(rename = "pipelineExecutionId")]
@@ -1742,6 +1781,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>The Amazon Resource Name (ARN) of the resource you want to add tags to.</p>
     #[serde(rename = "resourceArn")]
@@ -1752,12 +1792,12 @@ pub struct TagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceOutput {}
 
 /// <p>A response to a <code>PollForThirdPartyJobs</code> request returned by AWS CodePipeline when there is a job to be worked on by a partner action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ThirdPartyJob {
     /// <p>The <code>clientToken</code> portion of the <code>clientId</code> and <code>clientToken</code> pair used to verify that the calling entity is allowed access to the job and its details.</p>
     #[serde(rename = "clientId")]
@@ -1771,7 +1811,7 @@ pub struct ThirdPartyJob {
 
 /// <p>Represents information about the job data for a partner action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ThirdPartyJobData {
     /// <p>Represents information about an action configuration.</p>
     #[serde(rename = "actionConfiguration")]
@@ -1809,7 +1849,7 @@ pub struct ThirdPartyJobData {
 
 /// <p>The details of a job sent in response to a <code>GetThirdPartyJobDetails</code> request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ThirdPartyJobDetails {
     /// <p>The data to be returned by the third party job worker.</p>
     #[serde(rename = "data")]
@@ -1827,7 +1867,7 @@ pub struct ThirdPartyJobDetails {
 
 /// <p>Represents information about the state of transitions between one stage and another stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TransitionState {
     /// <p>The user-specified reason why the transition between two stages of a pipeline was disabled.</p>
     #[serde(rename = "disabledReason")]
@@ -1848,6 +1888,7 @@ pub struct TransitionState {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p> The Amazon Resource Name (ARN) of the resource to remove tags from.</p>
     #[serde(rename = "resourceArn")]
@@ -1858,11 +1899,12 @@ pub struct UntagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceOutput {}
 
 /// <p>Represents the input of an <code>UpdatePipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePipelineInput {
     /// <p>The name of the pipeline to be updated.</p>
     #[serde(rename = "pipeline")]
@@ -1871,7 +1913,7 @@ pub struct UpdatePipelineInput {
 
 /// <p>Represents the output of an <code>UpdatePipeline</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePipelineOutput {
     /// <p>The structure of the updated pipeline.</p>
     #[serde(rename = "pipeline")]
@@ -1954,18 +1996,15 @@ impl AcknowledgeJobError {
     }
 }
 impl fmt::Display for AcknowledgeJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcknowledgeJobError {
-    fn description(&self) -> &str {
         match *self {
-            AcknowledgeJobError::InvalidNonce(ref cause) => cause,
-            AcknowledgeJobError::JobNotFound(ref cause) => cause,
+            AcknowledgeJobError::InvalidNonce(ref cause) => write!(f, "{}", cause),
+            AcknowledgeJobError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcknowledgeJobError {}
 /// Errors returned by AcknowledgeThirdPartyJob
 #[derive(Debug, PartialEq)]
 pub enum AcknowledgeThirdPartyJobError {
@@ -2004,19 +2043,16 @@ impl AcknowledgeThirdPartyJobError {
     }
 }
 impl fmt::Display for AcknowledgeThirdPartyJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcknowledgeThirdPartyJobError {
-    fn description(&self) -> &str {
         match *self {
-            AcknowledgeThirdPartyJobError::InvalidClientToken(ref cause) => cause,
-            AcknowledgeThirdPartyJobError::InvalidNonce(ref cause) => cause,
-            AcknowledgeThirdPartyJobError::JobNotFound(ref cause) => cause,
+            AcknowledgeThirdPartyJobError::InvalidClientToken(ref cause) => write!(f, "{}", cause),
+            AcknowledgeThirdPartyJobError::InvalidNonce(ref cause) => write!(f, "{}", cause),
+            AcknowledgeThirdPartyJobError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcknowledgeThirdPartyJobError {}
 /// Errors returned by CreateCustomActionType
 #[derive(Debug, PartialEq)]
 pub enum CreateCustomActionTypeError {
@@ -2058,20 +2094,19 @@ impl CreateCustomActionTypeError {
     }
 }
 impl fmt::Display for CreateCustomActionTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCustomActionTypeError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCustomActionTypeError::ConcurrentModification(ref cause) => cause,
-            CreateCustomActionTypeError::InvalidTags(ref cause) => cause,
-            CreateCustomActionTypeError::LimitExceeded(ref cause) => cause,
-            CreateCustomActionTypeError::TooManyTags(ref cause) => cause,
+            CreateCustomActionTypeError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCustomActionTypeError::InvalidTags(ref cause) => write!(f, "{}", cause),
+            CreateCustomActionTypeError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateCustomActionTypeError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCustomActionTypeError {}
 /// Errors returned by CreatePipeline
 #[derive(Debug, PartialEq)]
 pub enum CreatePipelineError {
@@ -2142,25 +2177,22 @@ impl CreatePipelineError {
     }
 }
 impl fmt::Display for CreatePipelineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePipelineError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePipelineError::ConcurrentModification(ref cause) => cause,
-            CreatePipelineError::InvalidActionDeclaration(ref cause) => cause,
-            CreatePipelineError::InvalidBlockerDeclaration(ref cause) => cause,
-            CreatePipelineError::InvalidStageDeclaration(ref cause) => cause,
-            CreatePipelineError::InvalidStructure(ref cause) => cause,
-            CreatePipelineError::InvalidTags(ref cause) => cause,
-            CreatePipelineError::LimitExceeded(ref cause) => cause,
-            CreatePipelineError::PipelineNameInUse(ref cause) => cause,
-            CreatePipelineError::TooManyTags(ref cause) => cause,
+            CreatePipelineError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::InvalidActionDeclaration(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::InvalidBlockerDeclaration(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::InvalidStageDeclaration(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::InvalidStructure(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::InvalidTags(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::PipelineNameInUse(ref cause) => write!(f, "{}", cause),
+            CreatePipelineError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePipelineError {}
 /// Errors returned by DeleteCustomActionType
 #[derive(Debug, PartialEq)]
 pub enum DeleteCustomActionTypeError {
@@ -2185,17 +2217,16 @@ impl DeleteCustomActionTypeError {
     }
 }
 impl fmt::Display for DeleteCustomActionTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCustomActionTypeError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCustomActionTypeError::ConcurrentModification(ref cause) => cause,
+            DeleteCustomActionTypeError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteCustomActionTypeError {}
 /// Errors returned by DeletePipeline
 #[derive(Debug, PartialEq)]
 pub enum DeletePipelineError {
@@ -2220,17 +2251,14 @@ impl DeletePipelineError {
     }
 }
 impl fmt::Display for DeletePipelineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePipelineError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePipelineError::ConcurrentModification(ref cause) => cause,
+            DeletePipelineError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePipelineError {}
 /// Errors returned by DeleteWebhook
 #[derive(Debug, PartialEq)]
 pub enum DeleteWebhookError {
@@ -2255,17 +2283,14 @@ impl DeleteWebhookError {
     }
 }
 impl fmt::Display for DeleteWebhookError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteWebhookError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteWebhookError::ConcurrentModification(ref cause) => cause,
+            DeleteWebhookError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteWebhookError {}
 /// Errors returned by DeregisterWebhookWithThirdParty
 #[derive(Debug, PartialEq)]
 pub enum DeregisterWebhookWithThirdPartyError {
@@ -2292,17 +2317,16 @@ impl DeregisterWebhookWithThirdPartyError {
     }
 }
 impl fmt::Display for DeregisterWebhookWithThirdPartyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterWebhookWithThirdPartyError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterWebhookWithThirdPartyError::WebhookNotFound(ref cause) => cause,
+            DeregisterWebhookWithThirdPartyError::WebhookNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeregisterWebhookWithThirdPartyError {}
 /// Errors returned by DisableStageTransition
 #[derive(Debug, PartialEq)]
 pub enum DisableStageTransitionError {
@@ -2334,18 +2358,15 @@ impl DisableStageTransitionError {
     }
 }
 impl fmt::Display for DisableStageTransitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableStageTransitionError {
-    fn description(&self) -> &str {
         match *self {
-            DisableStageTransitionError::PipelineNotFound(ref cause) => cause,
-            DisableStageTransitionError::StageNotFound(ref cause) => cause,
+            DisableStageTransitionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            DisableStageTransitionError::StageNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableStageTransitionError {}
 /// Errors returned by EnableStageTransition
 #[derive(Debug, PartialEq)]
 pub enum EnableStageTransitionError {
@@ -2375,18 +2396,15 @@ impl EnableStageTransitionError {
     }
 }
 impl fmt::Display for EnableStageTransitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableStageTransitionError {
-    fn description(&self) -> &str {
         match *self {
-            EnableStageTransitionError::PipelineNotFound(ref cause) => cause,
-            EnableStageTransitionError::StageNotFound(ref cause) => cause,
+            EnableStageTransitionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            EnableStageTransitionError::StageNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableStageTransitionError {}
 /// Errors returned by GetJobDetails
 #[derive(Debug, PartialEq)]
 pub enum GetJobDetailsError {
@@ -2409,17 +2427,14 @@ impl GetJobDetailsError {
     }
 }
 impl fmt::Display for GetJobDetailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobDetailsError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobDetailsError::JobNotFound(ref cause) => cause,
+            GetJobDetailsError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobDetailsError {}
 /// Errors returned by GetPipeline
 #[derive(Debug, PartialEq)]
 pub enum GetPipelineError {
@@ -2447,18 +2462,15 @@ impl GetPipelineError {
     }
 }
 impl fmt::Display for GetPipelineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPipelineError {
-    fn description(&self) -> &str {
         match *self {
-            GetPipelineError::PipelineNotFound(ref cause) => cause,
-            GetPipelineError::PipelineVersionNotFound(ref cause) => cause,
+            GetPipelineError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            GetPipelineError::PipelineVersionNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPipelineError {}
 /// Errors returned by GetPipelineExecution
 #[derive(Debug, PartialEq)]
 pub enum GetPipelineExecutionError {
@@ -2490,18 +2502,17 @@ impl GetPipelineExecutionError {
     }
 }
 impl fmt::Display for GetPipelineExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPipelineExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            GetPipelineExecutionError::PipelineExecutionNotFound(ref cause) => cause,
-            GetPipelineExecutionError::PipelineNotFound(ref cause) => cause,
+            GetPipelineExecutionError::PipelineExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetPipelineExecutionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPipelineExecutionError {}
 /// Errors returned by GetPipelineState
 #[derive(Debug, PartialEq)]
 pub enum GetPipelineStateError {
@@ -2524,17 +2535,14 @@ impl GetPipelineStateError {
     }
 }
 impl fmt::Display for GetPipelineStateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPipelineStateError {
-    fn description(&self) -> &str {
         match *self {
-            GetPipelineStateError::PipelineNotFound(ref cause) => cause,
+            GetPipelineStateError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPipelineStateError {}
 /// Errors returned by GetThirdPartyJobDetails
 #[derive(Debug, PartialEq)]
 pub enum GetThirdPartyJobDetailsError {
@@ -2569,19 +2577,16 @@ impl GetThirdPartyJobDetailsError {
     }
 }
 impl fmt::Display for GetThirdPartyJobDetailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetThirdPartyJobDetailsError {
-    fn description(&self) -> &str {
         match *self {
-            GetThirdPartyJobDetailsError::InvalidClientToken(ref cause) => cause,
-            GetThirdPartyJobDetailsError::InvalidJob(ref cause) => cause,
-            GetThirdPartyJobDetailsError::JobNotFound(ref cause) => cause,
+            GetThirdPartyJobDetailsError::InvalidClientToken(ref cause) => write!(f, "{}", cause),
+            GetThirdPartyJobDetailsError::InvalidJob(ref cause) => write!(f, "{}", cause),
+            GetThirdPartyJobDetailsError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetThirdPartyJobDetailsError {}
 /// Errors returned by ListActionExecutions
 #[derive(Debug, PartialEq)]
 pub enum ListActionExecutionsError {
@@ -2620,19 +2625,18 @@ impl ListActionExecutionsError {
     }
 }
 impl fmt::Display for ListActionExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListActionExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListActionExecutionsError::InvalidNextToken(ref cause) => cause,
-            ListActionExecutionsError::PipelineExecutionNotFound(ref cause) => cause,
-            ListActionExecutionsError::PipelineNotFound(ref cause) => cause,
+            ListActionExecutionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListActionExecutionsError::PipelineExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListActionExecutionsError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListActionExecutionsError {}
 /// Errors returned by ListActionTypes
 #[derive(Debug, PartialEq)]
 pub enum ListActionTypesError {
@@ -2655,17 +2659,14 @@ impl ListActionTypesError {
     }
 }
 impl fmt::Display for ListActionTypesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListActionTypesError {
-    fn description(&self) -> &str {
         match *self {
-            ListActionTypesError::InvalidNextToken(ref cause) => cause,
+            ListActionTypesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListActionTypesError {}
 /// Errors returned by ListPipelineExecutions
 #[derive(Debug, PartialEq)]
 pub enum ListPipelineExecutionsError {
@@ -2697,18 +2698,15 @@ impl ListPipelineExecutionsError {
     }
 }
 impl fmt::Display for ListPipelineExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPipelineExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPipelineExecutionsError::InvalidNextToken(ref cause) => cause,
-            ListPipelineExecutionsError::PipelineNotFound(ref cause) => cause,
+            ListPipelineExecutionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListPipelineExecutionsError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPipelineExecutionsError {}
 /// Errors returned by ListPipelines
 #[derive(Debug, PartialEq)]
 pub enum ListPipelinesError {
@@ -2731,17 +2729,14 @@ impl ListPipelinesError {
     }
 }
 impl fmt::Display for ListPipelinesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPipelinesError {
-    fn description(&self) -> &str {
         match *self {
-            ListPipelinesError::InvalidNextToken(ref cause) => cause,
+            ListPipelinesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPipelinesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -2778,19 +2773,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InvalidArn(ref cause) => cause,
-            ListTagsForResourceError::InvalidNextToken(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListWebhooks
 #[derive(Debug, PartialEq)]
 pub enum ListWebhooksError {
@@ -2813,17 +2805,14 @@ impl ListWebhooksError {
     }
 }
 impl fmt::Display for ListWebhooksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListWebhooksError {
-    fn description(&self) -> &str {
         match *self {
-            ListWebhooksError::InvalidNextToken(ref cause) => cause,
+            ListWebhooksError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListWebhooksError {}
 /// Errors returned by PollForJobs
 #[derive(Debug, PartialEq)]
 pub enum PollForJobsError {
@@ -2846,17 +2835,14 @@ impl PollForJobsError {
     }
 }
 impl fmt::Display for PollForJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PollForJobsError {
-    fn description(&self) -> &str {
         match *self {
-            PollForJobsError::ActionTypeNotFound(ref cause) => cause,
+            PollForJobsError::ActionTypeNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PollForJobsError {}
 /// Errors returned by PollForThirdPartyJobs
 #[derive(Debug, PartialEq)]
 pub enum PollForThirdPartyJobsError {
@@ -2881,17 +2867,14 @@ impl PollForThirdPartyJobsError {
     }
 }
 impl fmt::Display for PollForThirdPartyJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PollForThirdPartyJobsError {
-    fn description(&self) -> &str {
         match *self {
-            PollForThirdPartyJobsError::ActionTypeNotFound(ref cause) => cause,
+            PollForThirdPartyJobsError::ActionTypeNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PollForThirdPartyJobsError {}
 /// Errors returned by PutActionRevision
 #[derive(Debug, PartialEq)]
 pub enum PutActionRevisionError {
@@ -2924,19 +2907,16 @@ impl PutActionRevisionError {
     }
 }
 impl fmt::Display for PutActionRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutActionRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            PutActionRevisionError::ActionNotFound(ref cause) => cause,
-            PutActionRevisionError::PipelineNotFound(ref cause) => cause,
-            PutActionRevisionError::StageNotFound(ref cause) => cause,
+            PutActionRevisionError::ActionNotFound(ref cause) => write!(f, "{}", cause),
+            PutActionRevisionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            PutActionRevisionError::StageNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutActionRevisionError {}
 /// Errors returned by PutApprovalResult
 #[derive(Debug, PartialEq)]
 pub enum PutApprovalResultError {
@@ -2983,21 +2963,18 @@ impl PutApprovalResultError {
     }
 }
 impl fmt::Display for PutApprovalResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutApprovalResultError {
-    fn description(&self) -> &str {
         match *self {
-            PutApprovalResultError::ActionNotFound(ref cause) => cause,
-            PutApprovalResultError::ApprovalAlreadyCompleted(ref cause) => cause,
-            PutApprovalResultError::InvalidApprovalToken(ref cause) => cause,
-            PutApprovalResultError::PipelineNotFound(ref cause) => cause,
-            PutApprovalResultError::StageNotFound(ref cause) => cause,
+            PutApprovalResultError::ActionNotFound(ref cause) => write!(f, "{}", cause),
+            PutApprovalResultError::ApprovalAlreadyCompleted(ref cause) => write!(f, "{}", cause),
+            PutApprovalResultError::InvalidApprovalToken(ref cause) => write!(f, "{}", cause),
+            PutApprovalResultError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            PutApprovalResultError::StageNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutApprovalResultError {}
 /// Errors returned by PutJobFailureResult
 #[derive(Debug, PartialEq)]
 pub enum PutJobFailureResultError {
@@ -3025,18 +3002,15 @@ impl PutJobFailureResultError {
     }
 }
 impl fmt::Display for PutJobFailureResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutJobFailureResultError {
-    fn description(&self) -> &str {
         match *self {
-            PutJobFailureResultError::InvalidJobState(ref cause) => cause,
-            PutJobFailureResultError::JobNotFound(ref cause) => cause,
+            PutJobFailureResultError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            PutJobFailureResultError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutJobFailureResultError {}
 /// Errors returned by PutJobSuccessResult
 #[derive(Debug, PartialEq)]
 pub enum PutJobSuccessResultError {
@@ -3071,19 +3045,18 @@ impl PutJobSuccessResultError {
     }
 }
 impl fmt::Display for PutJobSuccessResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutJobSuccessResultError {
-    fn description(&self) -> &str {
         match *self {
-            PutJobSuccessResultError::InvalidJobState(ref cause) => cause,
-            PutJobSuccessResultError::JobNotFound(ref cause) => cause,
-            PutJobSuccessResultError::OutputVariablesSizeExceeded(ref cause) => cause,
+            PutJobSuccessResultError::InvalidJobState(ref cause) => write!(f, "{}", cause),
+            PutJobSuccessResultError::JobNotFound(ref cause) => write!(f, "{}", cause),
+            PutJobSuccessResultError::OutputVariablesSizeExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PutJobSuccessResultError {}
 /// Errors returned by PutThirdPartyJobFailureResult
 #[derive(Debug, PartialEq)]
 pub enum PutThirdPartyJobFailureResultError {
@@ -3124,19 +3097,20 @@ impl PutThirdPartyJobFailureResultError {
     }
 }
 impl fmt::Display for PutThirdPartyJobFailureResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutThirdPartyJobFailureResultError {
-    fn description(&self) -> &str {
         match *self {
-            PutThirdPartyJobFailureResultError::InvalidClientToken(ref cause) => cause,
-            PutThirdPartyJobFailureResultError::InvalidJobState(ref cause) => cause,
-            PutThirdPartyJobFailureResultError::JobNotFound(ref cause) => cause,
+            PutThirdPartyJobFailureResultError::InvalidClientToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutThirdPartyJobFailureResultError::InvalidJobState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutThirdPartyJobFailureResultError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutThirdPartyJobFailureResultError {}
 /// Errors returned by PutThirdPartyJobSuccessResult
 #[derive(Debug, PartialEq)]
 pub enum PutThirdPartyJobSuccessResultError {
@@ -3177,19 +3151,20 @@ impl PutThirdPartyJobSuccessResultError {
     }
 }
 impl fmt::Display for PutThirdPartyJobSuccessResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutThirdPartyJobSuccessResultError {
-    fn description(&self) -> &str {
         match *self {
-            PutThirdPartyJobSuccessResultError::InvalidClientToken(ref cause) => cause,
-            PutThirdPartyJobSuccessResultError::InvalidJobState(ref cause) => cause,
-            PutThirdPartyJobSuccessResultError::JobNotFound(ref cause) => cause,
+            PutThirdPartyJobSuccessResultError::InvalidClientToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutThirdPartyJobSuccessResultError::InvalidJobState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutThirdPartyJobSuccessResultError::JobNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutThirdPartyJobSuccessResultError {}
 /// Errors returned by PutWebhook
 #[derive(Debug, PartialEq)]
 pub enum PutWebhookError {
@@ -3246,23 +3221,22 @@ impl PutWebhookError {
     }
 }
 impl fmt::Display for PutWebhookError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutWebhookError {
-    fn description(&self) -> &str {
         match *self {
-            PutWebhookError::ConcurrentModification(ref cause) => cause,
-            PutWebhookError::InvalidTags(ref cause) => cause,
-            PutWebhookError::InvalidWebhookAuthenticationParameters(ref cause) => cause,
-            PutWebhookError::InvalidWebhookFilterPattern(ref cause) => cause,
-            PutWebhookError::LimitExceeded(ref cause) => cause,
-            PutWebhookError::PipelineNotFound(ref cause) => cause,
-            PutWebhookError::TooManyTags(ref cause) => cause,
+            PutWebhookError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            PutWebhookError::InvalidTags(ref cause) => write!(f, "{}", cause),
+            PutWebhookError::InvalidWebhookAuthenticationParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutWebhookError::InvalidWebhookFilterPattern(ref cause) => write!(f, "{}", cause),
+            PutWebhookError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutWebhookError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            PutWebhookError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutWebhookError {}
 /// Errors returned by RegisterWebhookWithThirdParty
 #[derive(Debug, PartialEq)]
 pub enum RegisterWebhookWithThirdPartyError {
@@ -3289,17 +3263,16 @@ impl RegisterWebhookWithThirdPartyError {
     }
 }
 impl fmt::Display for RegisterWebhookWithThirdPartyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterWebhookWithThirdPartyError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterWebhookWithThirdPartyError::WebhookNotFound(ref cause) => cause,
+            RegisterWebhookWithThirdPartyError::WebhookNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterWebhookWithThirdPartyError {}
 /// Errors returned by RetryStageExecution
 #[derive(Debug, PartialEq)]
 pub enum RetryStageExecutionError {
@@ -3343,20 +3316,19 @@ impl RetryStageExecutionError {
     }
 }
 impl fmt::Display for RetryStageExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RetryStageExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            RetryStageExecutionError::NotLatestPipelineExecution(ref cause) => cause,
-            RetryStageExecutionError::PipelineNotFound(ref cause) => cause,
-            RetryStageExecutionError::StageNotFound(ref cause) => cause,
-            RetryStageExecutionError::StageNotRetryable(ref cause) => cause,
+            RetryStageExecutionError::NotLatestPipelineExecution(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RetryStageExecutionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
+            RetryStageExecutionError::StageNotFound(ref cause) => write!(f, "{}", cause),
+            RetryStageExecutionError::StageNotRetryable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RetryStageExecutionError {}
 /// Errors returned by StartPipelineExecution
 #[derive(Debug, PartialEq)]
 pub enum StartPipelineExecutionError {
@@ -3381,17 +3353,14 @@ impl StartPipelineExecutionError {
     }
 }
 impl fmt::Display for StartPipelineExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartPipelineExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StartPipelineExecutionError::PipelineNotFound(ref cause) => cause,
+            StartPipelineExecutionError::PipelineNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartPipelineExecutionError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -3434,21 +3403,18 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::ConcurrentModification(ref cause) => cause,
-            TagResourceError::InvalidArn(ref cause) => cause,
-            TagResourceError::InvalidTags(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
-            TagResourceError::TooManyTags(ref cause) => cause,
+            TagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidTags(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -3488,20 +3454,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::ConcurrentModification(ref cause) => cause,
-            UntagResourceError::InvalidArn(ref cause) => cause,
-            UntagResourceError::InvalidTags(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidTags(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdatePipeline
 #[derive(Debug, PartialEq)]
 pub enum UpdatePipelineError {
@@ -3550,21 +3513,18 @@ impl UpdatePipelineError {
     }
 }
 impl fmt::Display for UpdatePipelineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePipelineError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePipelineError::InvalidActionDeclaration(ref cause) => cause,
-            UpdatePipelineError::InvalidBlockerDeclaration(ref cause) => cause,
-            UpdatePipelineError::InvalidStageDeclaration(ref cause) => cause,
-            UpdatePipelineError::InvalidStructure(ref cause) => cause,
-            UpdatePipelineError::LimitExceeded(ref cause) => cause,
+            UpdatePipelineError::InvalidActionDeclaration(ref cause) => write!(f, "{}", cause),
+            UpdatePipelineError::InvalidBlockerDeclaration(ref cause) => write!(f, "{}", cause),
+            UpdatePipelineError::InvalidStageDeclaration(ref cause) => write!(f, "{}", cause),
+            UpdatePipelineError::InvalidStructure(ref cause) => write!(f, "{}", cause),
+            UpdatePipelineError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePipelineError {}
 /// Trait representing the capabilities of the CodePipeline API. CodePipeline clients implement this trait.
 #[async_trait]
 pub trait CodePipeline {

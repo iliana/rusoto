@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEnvironmentEC2Request {
     /// <p>The number of minutes until the running instance is shut down after the environment has last been used.</p>
     #[serde(rename = "automaticStopTimeMinutes")]
@@ -55,7 +57,7 @@ pub struct CreateEnvironmentEC2Request {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEnvironmentEC2Result {
     /// <p>The ID of the environment that was created.</p>
     #[serde(rename = "environmentId")]
@@ -64,6 +66,7 @@ pub struct CreateEnvironmentEC2Result {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEnvironmentMembershipRequest {
     /// <p>The ID of the environment that contains the environment member you want to add.</p>
     #[serde(rename = "environmentId")]
@@ -77,7 +80,7 @@ pub struct CreateEnvironmentMembershipRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEnvironmentMembershipResult {
     /// <p>Information about the environment member that was added.</p>
     #[serde(rename = "membership")]
@@ -86,6 +89,7 @@ pub struct CreateEnvironmentMembershipResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEnvironmentMembershipRequest {
     /// <p>The ID of the environment to delete the environment member from.</p>
     #[serde(rename = "environmentId")]
@@ -96,10 +100,11 @@ pub struct DeleteEnvironmentMembershipRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteEnvironmentMembershipResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEnvironmentRequest {
     /// <p>The ID of the environment to delete.</p>
     #[serde(rename = "environmentId")]
@@ -107,10 +112,11 @@ pub struct DeleteEnvironmentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteEnvironmentResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentMembershipsRequest {
     /// <p>The ID of the environment to get environment member information about.</p>
     #[serde(rename = "environmentId")]
@@ -135,7 +141,7 @@ pub struct DescribeEnvironmentMembershipsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentMembershipsResult {
     /// <p>Information about the environment members for the environment.</p>
     #[serde(rename = "memberships")]
@@ -148,6 +154,7 @@ pub struct DescribeEnvironmentMembershipsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentStatusRequest {
     /// <p>The ID of the environment to get status information about.</p>
     #[serde(rename = "environmentId")]
@@ -155,7 +162,7 @@ pub struct DescribeEnvironmentStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentStatusResult {
     /// <p>Any informational message about the status of the environment.</p>
     #[serde(rename = "message")]
@@ -168,6 +175,7 @@ pub struct DescribeEnvironmentStatusResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentsRequest {
     /// <p>The IDs of individual environments to get information about.</p>
     #[serde(rename = "environmentIds")]
@@ -175,7 +183,7 @@ pub struct DescribeEnvironmentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentsResult {
     /// <p>Information about the environments that are returned.</p>
     #[serde(rename = "environments")]
@@ -185,7 +193,7 @@ pub struct DescribeEnvironmentsResult {
 
 /// <p>Information about an AWS Cloud9 development environment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Environment {
     /// <p>The Amazon Resource Name (ARN) of the environment.</p>
     #[serde(rename = "arn")]
@@ -219,7 +227,7 @@ pub struct Environment {
 
 /// <p>Information about the current creation or deletion lifecycle state of an AWS Cloud9 development environment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentLifecycle {
     /// <p>If the environment failed to delete, the Amazon Resource Name (ARN) of the related AWS resource.</p>
     #[serde(rename = "failureResource")]
@@ -237,7 +245,7 @@ pub struct EnvironmentLifecycle {
 
 /// <p>Information about an environment member for an AWS Cloud9 development environment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentMember {
     /// <p>The ID of the environment for the environment member.</p>
     #[serde(rename = "environmentId")]
@@ -262,6 +270,7 @@ pub struct EnvironmentMember {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEnvironmentsRequest {
     /// <p>The maximum number of environments to get identifiers for.</p>
     #[serde(rename = "maxResults")]
@@ -274,7 +283,7 @@ pub struct ListEnvironmentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEnvironmentsResult {
     /// <p>The list of environment identifiers.</p>
     #[serde(rename = "environmentIds")]
@@ -287,6 +296,7 @@ pub struct ListEnvironmentsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEnvironmentMembershipRequest {
     /// <p>The ID of the environment for the environment member whose settings you want to change.</p>
     #[serde(rename = "environmentId")]
@@ -300,7 +310,7 @@ pub struct UpdateEnvironmentMembershipRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateEnvironmentMembershipResult {
     /// <p>Information about the environment member whose settings were changed.</p>
     #[serde(rename = "membership")]
@@ -309,6 +319,7 @@ pub struct UpdateEnvironmentMembershipResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEnvironmentRequest {
     /// <p>Any new or replacement description for the environment.</p>
     #[serde(rename = "description")]
@@ -324,7 +335,7 @@ pub struct UpdateEnvironmentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateEnvironmentResult {}
 
 /// Errors returned by CreateEnvironmentEC2
@@ -383,23 +394,20 @@ impl CreateEnvironmentEC2Error {
     }
 }
 impl fmt::Display for CreateEnvironmentEC2Error {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateEnvironmentEC2Error {
-    fn description(&self) -> &str {
         match *self {
-            CreateEnvironmentEC2Error::BadRequest(ref cause) => cause,
-            CreateEnvironmentEC2Error::Conflict(ref cause) => cause,
-            CreateEnvironmentEC2Error::Forbidden(ref cause) => cause,
-            CreateEnvironmentEC2Error::InternalServerError(ref cause) => cause,
-            CreateEnvironmentEC2Error::LimitExceeded(ref cause) => cause,
-            CreateEnvironmentEC2Error::NotFound(ref cause) => cause,
-            CreateEnvironmentEC2Error::TooManyRequests(ref cause) => cause,
+            CreateEnvironmentEC2Error::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentEC2Error::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateEnvironmentEC2Error {}
 /// Errors returned by CreateEnvironmentMembership
 #[derive(Debug, PartialEq)]
 pub enum CreateEnvironmentMembershipError {
@@ -468,23 +476,22 @@ impl CreateEnvironmentMembershipError {
     }
 }
 impl fmt::Display for CreateEnvironmentMembershipError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateEnvironmentMembershipError {
-    fn description(&self) -> &str {
         match *self {
-            CreateEnvironmentMembershipError::BadRequest(ref cause) => cause,
-            CreateEnvironmentMembershipError::Conflict(ref cause) => cause,
-            CreateEnvironmentMembershipError::Forbidden(ref cause) => cause,
-            CreateEnvironmentMembershipError::InternalServerError(ref cause) => cause,
-            CreateEnvironmentMembershipError::LimitExceeded(ref cause) => cause,
-            CreateEnvironmentMembershipError::NotFound(ref cause) => cause,
-            CreateEnvironmentMembershipError::TooManyRequests(ref cause) => cause,
+            CreateEnvironmentMembershipError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentMembershipError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentMembershipError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentMembershipError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateEnvironmentMembershipError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentMembershipError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateEnvironmentMembershipError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateEnvironmentMembershipError {}
 /// Errors returned by DeleteEnvironment
 #[derive(Debug, PartialEq)]
 pub enum DeleteEnvironmentError {
@@ -539,23 +546,20 @@ impl DeleteEnvironmentError {
     }
 }
 impl fmt::Display for DeleteEnvironmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteEnvironmentError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteEnvironmentError::BadRequest(ref cause) => cause,
-            DeleteEnvironmentError::Conflict(ref cause) => cause,
-            DeleteEnvironmentError::Forbidden(ref cause) => cause,
-            DeleteEnvironmentError::InternalServerError(ref cause) => cause,
-            DeleteEnvironmentError::LimitExceeded(ref cause) => cause,
-            DeleteEnvironmentError::NotFound(ref cause) => cause,
-            DeleteEnvironmentError::TooManyRequests(ref cause) => cause,
+            DeleteEnvironmentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteEnvironmentError {}
 /// Errors returned by DeleteEnvironmentMembership
 #[derive(Debug, PartialEq)]
 pub enum DeleteEnvironmentMembershipError {
@@ -624,23 +628,22 @@ impl DeleteEnvironmentMembershipError {
     }
 }
 impl fmt::Display for DeleteEnvironmentMembershipError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteEnvironmentMembershipError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteEnvironmentMembershipError::BadRequest(ref cause) => cause,
-            DeleteEnvironmentMembershipError::Conflict(ref cause) => cause,
-            DeleteEnvironmentMembershipError::Forbidden(ref cause) => cause,
-            DeleteEnvironmentMembershipError::InternalServerError(ref cause) => cause,
-            DeleteEnvironmentMembershipError::LimitExceeded(ref cause) => cause,
-            DeleteEnvironmentMembershipError::NotFound(ref cause) => cause,
-            DeleteEnvironmentMembershipError::TooManyRequests(ref cause) => cause,
+            DeleteEnvironmentMembershipError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentMembershipError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentMembershipError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentMembershipError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteEnvironmentMembershipError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentMembershipError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteEnvironmentMembershipError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteEnvironmentMembershipError {}
 /// Errors returned by DescribeEnvironmentMemberships
 #[derive(Debug, PartialEq)]
 pub enum DescribeEnvironmentMembershipsError {
@@ -709,23 +712,24 @@ impl DescribeEnvironmentMembershipsError {
     }
 }
 impl fmt::Display for DescribeEnvironmentMembershipsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEnvironmentMembershipsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEnvironmentMembershipsError::BadRequest(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::Conflict(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::Forbidden(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::InternalServerError(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::LimitExceeded(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::NotFound(ref cause) => cause,
-            DescribeEnvironmentMembershipsError::TooManyRequests(ref cause) => cause,
+            DescribeEnvironmentMembershipsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentMembershipsError::Conflict(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentMembershipsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentMembershipsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEnvironmentMembershipsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentMembershipsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentMembershipsError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEnvironmentMembershipsError {}
 /// Errors returned by DescribeEnvironmentStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribeEnvironmentStatusError {
@@ -786,23 +790,22 @@ impl DescribeEnvironmentStatusError {
     }
 }
 impl fmt::Display for DescribeEnvironmentStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEnvironmentStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEnvironmentStatusError::BadRequest(ref cause) => cause,
-            DescribeEnvironmentStatusError::Conflict(ref cause) => cause,
-            DescribeEnvironmentStatusError::Forbidden(ref cause) => cause,
-            DescribeEnvironmentStatusError::InternalServerError(ref cause) => cause,
-            DescribeEnvironmentStatusError::LimitExceeded(ref cause) => cause,
-            DescribeEnvironmentStatusError::NotFound(ref cause) => cause,
-            DescribeEnvironmentStatusError::TooManyRequests(ref cause) => cause,
+            DescribeEnvironmentStatusError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentStatusError::Conflict(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentStatusError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentStatusError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEnvironmentStatusError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentStatusError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentStatusError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEnvironmentStatusError {}
 /// Errors returned by DescribeEnvironments
 #[derive(Debug, PartialEq)]
 pub enum DescribeEnvironmentsError {
@@ -859,23 +862,20 @@ impl DescribeEnvironmentsError {
     }
 }
 impl fmt::Display for DescribeEnvironmentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEnvironmentsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEnvironmentsError::BadRequest(ref cause) => cause,
-            DescribeEnvironmentsError::Conflict(ref cause) => cause,
-            DescribeEnvironmentsError::Forbidden(ref cause) => cause,
-            DescribeEnvironmentsError::InternalServerError(ref cause) => cause,
-            DescribeEnvironmentsError::LimitExceeded(ref cause) => cause,
-            DescribeEnvironmentsError::NotFound(ref cause) => cause,
-            DescribeEnvironmentsError::TooManyRequests(ref cause) => cause,
+            DescribeEnvironmentsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::Conflict(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeEnvironmentsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEnvironmentsError {}
 /// Errors returned by ListEnvironments
 #[derive(Debug, PartialEq)]
 pub enum ListEnvironmentsError {
@@ -930,23 +930,20 @@ impl ListEnvironmentsError {
     }
 }
 impl fmt::Display for ListEnvironmentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListEnvironmentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListEnvironmentsError::BadRequest(ref cause) => cause,
-            ListEnvironmentsError::Conflict(ref cause) => cause,
-            ListEnvironmentsError::Forbidden(ref cause) => cause,
-            ListEnvironmentsError::InternalServerError(ref cause) => cause,
-            ListEnvironmentsError::LimitExceeded(ref cause) => cause,
-            ListEnvironmentsError::NotFound(ref cause) => cause,
-            ListEnvironmentsError::TooManyRequests(ref cause) => cause,
+            ListEnvironmentsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListEnvironmentsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListEnvironmentsError {}
 /// Errors returned by UpdateEnvironment
 #[derive(Debug, PartialEq)]
 pub enum UpdateEnvironmentError {
@@ -1001,23 +998,20 @@ impl UpdateEnvironmentError {
     }
 }
 impl fmt::Display for UpdateEnvironmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateEnvironmentError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateEnvironmentError::BadRequest(ref cause) => cause,
-            UpdateEnvironmentError::Conflict(ref cause) => cause,
-            UpdateEnvironmentError::Forbidden(ref cause) => cause,
-            UpdateEnvironmentError::InternalServerError(ref cause) => cause,
-            UpdateEnvironmentError::LimitExceeded(ref cause) => cause,
-            UpdateEnvironmentError::NotFound(ref cause) => cause,
-            UpdateEnvironmentError::TooManyRequests(ref cause) => cause,
+            UpdateEnvironmentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateEnvironmentError {}
 /// Errors returned by UpdateEnvironmentMembership
 #[derive(Debug, PartialEq)]
 pub enum UpdateEnvironmentMembershipError {
@@ -1086,23 +1080,22 @@ impl UpdateEnvironmentMembershipError {
     }
 }
 impl fmt::Display for UpdateEnvironmentMembershipError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateEnvironmentMembershipError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateEnvironmentMembershipError::BadRequest(ref cause) => cause,
-            UpdateEnvironmentMembershipError::Conflict(ref cause) => cause,
-            UpdateEnvironmentMembershipError::Forbidden(ref cause) => cause,
-            UpdateEnvironmentMembershipError::InternalServerError(ref cause) => cause,
-            UpdateEnvironmentMembershipError::LimitExceeded(ref cause) => cause,
-            UpdateEnvironmentMembershipError::NotFound(ref cause) => cause,
-            UpdateEnvironmentMembershipError::TooManyRequests(ref cause) => cause,
+            UpdateEnvironmentMembershipError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentMembershipError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentMembershipError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentMembershipError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateEnvironmentMembershipError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentMembershipError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateEnvironmentMembershipError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateEnvironmentMembershipError {}
 /// Trait representing the capabilities of the AWS Cloud9 API. AWS Cloud9 clients implement this trait.
 #[async_trait]
 pub trait Cloud9 {

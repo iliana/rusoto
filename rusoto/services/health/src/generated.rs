@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Information about an entity that is affected by a Health event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AffectedEntity {
     /// <p>The 12-digit AWS account number that contains the affected entity.</p>
     #[serde(rename = "awsAccountId")]
@@ -64,6 +65,7 @@ pub struct AffectedEntity {
 
 /// <p>A range of dates and times that is used by the <a>EventFilter</a> and <a>EntityFilter</a> objects. If <code>from</code> is set and <code>to</code> is set: match items where the timestamp (<code>startTime</code>, <code>endTime</code>, or <code>lastUpdatedTime</code>) is between <code>from</code> and <code>to</code> inclusive. If <code>from</code> is set and <code>to</code> is not set: match items where the timestamp value is equal to or after <code>from</code>. If <code>from</code> is not set and <code>to</code> is set: match items where the timestamp value is equal to or before <code>to</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DateTimeRange {
     /// <p>The starting date and time of a time range.</p>
     #[serde(rename = "from")]
@@ -76,6 +78,7 @@ pub struct DateTimeRange {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedAccountsForOrganizationRequest {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
     #[serde(rename = "eventArn")]
@@ -91,7 +94,7 @@ pub struct DescribeAffectedAccountsForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedAccountsForOrganizationResponse {
     /// <p>A JSON set of elements of the affected accounts.</p>
     #[serde(rename = "affectedAccounts")]
@@ -104,6 +107,7 @@ pub struct DescribeAffectedAccountsForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedEntitiesForOrganizationRequest {
     /// <p>The locale (language) to return information in. English (en) is the default and the only supported value at this time.</p>
     #[serde(rename = "locale")]
@@ -123,7 +127,7 @@ pub struct DescribeAffectedEntitiesForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedEntitiesForOrganizationResponse {
     /// <p>A JSON set of elements including the <code>awsAccountId</code> and its <code>entityArn</code>, <code>entityValue</code> and its <code>entityArn</code>, <code>lastUpdatedTime</code>, <code>statusCode</code>, and <code>tags</code>.</p>
     #[serde(rename = "entities")]
@@ -140,6 +144,7 @@ pub struct DescribeAffectedEntitiesForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedEntitiesRequest {
     /// <p>Values to narrow the results returned. At least one event ARN is required.</p>
     #[serde(rename = "filter")]
@@ -159,7 +164,7 @@ pub struct DescribeAffectedEntitiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedEntitiesResponse {
     /// <p>The entities that match the filter criteria.</p>
     #[serde(rename = "entities")]
@@ -172,6 +177,7 @@ pub struct DescribeAffectedEntitiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEntityAggregatesRequest {
     /// <p>A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code> </p>
     #[serde(rename = "eventArns")]
@@ -180,7 +186,7 @@ pub struct DescribeEntityAggregatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEntityAggregatesResponse {
     /// <p>The number of entities that are affected by each of the specified events.</p>
     #[serde(rename = "entityAggregates")]
@@ -189,6 +195,7 @@ pub struct DescribeEntityAggregatesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventAggregatesRequest {
     /// <p>The only currently supported value is <code>eventTypeCategory</code>.</p>
     #[serde(rename = "aggregateField")]
@@ -208,7 +215,7 @@ pub struct DescribeEventAggregatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventAggregatesResponse {
     /// <p>The number of events in each category that meet the optional filter criteria.</p>
     #[serde(rename = "eventAggregates")]
@@ -221,6 +228,7 @@ pub struct DescribeEventAggregatesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventDetailsForOrganizationRequest {
     /// <p>The locale (language) to return information in. English (en) is the default and the only supported value at this time.</p>
     #[serde(rename = "locale")]
@@ -232,7 +240,7 @@ pub struct DescribeEventDetailsForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventDetailsForOrganizationResponse {
     /// <p>Error messages for any events that could not be retrieved.</p>
     #[serde(rename = "failedSet")]
@@ -245,6 +253,7 @@ pub struct DescribeEventDetailsForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventDetailsRequest {
     /// <p>A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code> </p>
     #[serde(rename = "eventArns")]
@@ -256,7 +265,7 @@ pub struct DescribeEventDetailsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventDetailsResponse {
     /// <p>Error messages for any events that could not be retrieved.</p>
     #[serde(rename = "failedSet")]
@@ -269,6 +278,7 @@ pub struct DescribeEventDetailsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventTypesRequest {
     /// <p>Values to narrow the results returned.</p>
     #[serde(rename = "filter")]
@@ -289,7 +299,7 @@ pub struct DescribeEventTypesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventTypesResponse {
     /// <p>A list of event types that match the filter criteria. Event types have a category (<code>issue</code>, <code>accountNotification</code>, or <code>scheduledChange</code>), a service (for example, <code>EC2</code>, <code>RDS</code>, <code>DATAPIPELINE</code>, <code>BILLING</code>), and a code (in the format <code>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i> </code>; for example, <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>).</p>
     #[serde(rename = "eventTypes")]
@@ -302,6 +312,7 @@ pub struct DescribeEventTypesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsForOrganizationRequest {
     /// <p>Values to narrow the results returned.</p>
     #[serde(rename = "filter")]
@@ -322,7 +333,7 @@ pub struct DescribeEventsForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventsForOrganizationResponse {
     /// <p>The events that match the specified filter criteria.</p>
     #[serde(rename = "events")]
@@ -335,6 +346,7 @@ pub struct DescribeEventsForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsRequest {
     /// <p>Values to narrow the results returned.</p>
     #[serde(rename = "filter")]
@@ -355,7 +367,7 @@ pub struct DescribeEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventsResponse {
     /// <p>The events that match the specified filter criteria.</p>
     #[serde(rename = "events")]
@@ -368,7 +380,7 @@ pub struct DescribeEventsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHealthServiceStatusForOrganizationResponse {
     /// <p>Information about the status of enabling or disabling AWS Health Organizational View in your organization.</p> <p>Valid values are <code>ENABLED | DISABLED | PENDING</code>. </p>
     #[serde(rename = "healthServiceAccessStatusForOrganization")]
@@ -378,7 +390,7 @@ pub struct DescribeHealthServiceStatusForOrganizationResponse {
 
 /// <p>The number of entities that are affected by one or more events. Returned by the <a>DescribeEntityAggregates</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EntityAggregate {
     /// <p>The number entities that match the criteria for the specified events.</p>
     #[serde(rename = "count")]
@@ -392,6 +404,7 @@ pub struct EntityAggregate {
 
 /// <p>The values to use to filter results from the <a>DescribeAffectedEntities</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EntityFilter {
     /// <p>A list of entity ARNs (unique identifiers).</p>
     #[serde(rename = "entityArns")]
@@ -420,7 +433,7 @@ pub struct EntityFilter {
 
 /// <p>Summary information about an AWS Health event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Event {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
     #[serde(rename = "arn")]
@@ -466,6 +479,7 @@ pub struct Event {
 
 /// <p>The values used to filter results from the <a>DescribeEventDetailsForOrganization</a> and <a>DescribeAffectedEntitiesForOrganization</a> operations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventAccountFilter {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
     #[serde(rename = "awsAccountId")]
@@ -477,7 +491,7 @@ pub struct EventAccountFilter {
 
 /// <p>The number of events of each issue type. Returned by the <a>DescribeEventAggregates</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventAggregate {
     /// <p>The issue type for the associated count.</p>
     #[serde(rename = "aggregateValue")]
@@ -491,7 +505,7 @@ pub struct EventAggregate {
 
 /// <p>Detailed information about an event. A combination of an <a>Event</a> object, an <a>EventDescription</a> object, and additional metadata about the event. Returned by the <a>DescribeEventDetails</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventDetails {
     /// <p>Summary information about the event.</p>
     #[serde(rename = "event")]
@@ -509,7 +523,7 @@ pub struct EventDetails {
 
 /// <p>Error information returned when a <a>DescribeEventDetails</a> operation cannot find a specified event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventDetailsErrorItem {
     /// <p>A message that describes the error.</p>
     #[serde(rename = "errorMessage")]
@@ -527,6 +541,7 @@ pub struct EventDetailsErrorItem {
 
 /// <p>The values to use to filter results from the <a>DescribeEvents</a> and <a>DescribeEventAggregates</a> operations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventFilter {
     /// <p>A list of AWS availability zones.</p>
     #[serde(rename = "availabilityZones")]
@@ -584,6 +599,7 @@ pub struct EventFilter {
 
 /// <p>The values to use to filter results from the <a>DescribeEventTypes</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventTypeFilter {
     /// <p>A list of event type category codes (<code>issue</code>, <code>scheduledChange</code>, or <code>accountNotification</code>).</p>
     #[serde(rename = "eventTypeCategories")]
@@ -601,7 +617,7 @@ pub struct EventTypeFilter {
 
 /// <p>Error information returned when a <a>DescribeAffectedEntitiesForOrganization</a> operation cannot find or process a specific entity.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationAffectedEntitiesErrorItem {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
     #[serde(rename = "awsAccountId")]
@@ -623,7 +639,7 @@ pub struct OrganizationAffectedEntitiesErrorItem {
 
 /// <p>Summary information about an event, returned by the <a>DescribeEventsForOrganization</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEvent {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
     #[serde(rename = "arn")]
@@ -665,7 +681,7 @@ pub struct OrganizationEvent {
 
 /// <p>Detailed information about an event. A combination of an <a>Event</a> object, an <a>EventDescription</a> object, and additional metadata about the event. Returned by the <a>DescribeEventDetailsForOrganization</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEventDetails {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
     #[serde(rename = "awsAccountId")]
@@ -685,7 +701,7 @@ pub struct OrganizationEventDetails {
 
 /// <p>Error information returned when a <a>DescribeEventDetailsForOrganization</a> operation cannot find a specified event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEventDetailsErrorItem {
     /// <p>Error information returned when a <a>DescribeEventDetailsForOrganization</a> operation cannot find a specified event.</p>
     #[serde(rename = "awsAccountId")]
@@ -707,6 +723,7 @@ pub struct OrganizationEventDetailsErrorItem {
 
 /// <p>The values to filter results from the <a>DescribeEventsForOrganization</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OrganizationEventFilter {
     /// <p>A list of 12-digit AWS account numbers that contains the affected entities.</p>
     #[serde(rename = "awsAccountIds")]
@@ -779,19 +796,16 @@ impl DescribeAffectedAccountsForOrganizationError {
     }
 }
 impl fmt::Display for DescribeAffectedAccountsForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAffectedAccountsForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
             DescribeAffectedAccountsForOrganizationError::InvalidPaginationToken(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for DescribeAffectedAccountsForOrganizationError {}
 /// Errors returned by DescribeAffectedEntities
 #[derive(Debug, PartialEq)]
 pub enum DescribeAffectedEntitiesError {
@@ -823,18 +837,17 @@ impl DescribeAffectedEntitiesError {
     }
 }
 impl fmt::Display for DescribeAffectedEntitiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAffectedEntitiesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAffectedEntitiesError::InvalidPaginationToken(ref cause) => cause,
-            DescribeAffectedEntitiesError::UnsupportedLocale(ref cause) => cause,
+            DescribeAffectedEntitiesError::InvalidPaginationToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAffectedEntitiesError::UnsupportedLocale(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAffectedEntitiesError {}
 /// Errors returned by DescribeAffectedEntitiesForOrganization
 #[derive(Debug, PartialEq)]
 pub enum DescribeAffectedEntitiesForOrganizationError {
@@ -870,20 +883,19 @@ impl DescribeAffectedEntitiesForOrganizationError {
     }
 }
 impl fmt::Display for DescribeAffectedEntitiesForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAffectedEntitiesForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
             DescribeAffectedEntitiesForOrganizationError::InvalidPaginationToken(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
-            DescribeAffectedEntitiesForOrganizationError::UnsupportedLocale(ref cause) => cause,
+            DescribeAffectedEntitiesForOrganizationError::UnsupportedLocale(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeAffectedEntitiesForOrganizationError {}
 /// Errors returned by DescribeEntityAggregates
 #[derive(Debug, PartialEq)]
 pub enum DescribeEntityAggregatesError {}
@@ -900,15 +912,12 @@ impl DescribeEntityAggregatesError {
     }
 }
 impl fmt::Display for DescribeEntityAggregatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEntityAggregatesError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for DescribeEntityAggregatesError {}
 /// Errors returned by DescribeEventAggregates
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventAggregatesError {
@@ -933,17 +942,16 @@ impl DescribeEventAggregatesError {
     }
 }
 impl fmt::Display for DescribeEventAggregatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventAggregatesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventAggregatesError::InvalidPaginationToken(ref cause) => cause,
+            DescribeEventAggregatesError::InvalidPaginationToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEventAggregatesError {}
 /// Errors returned by DescribeEventDetails
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventDetailsError {
@@ -968,17 +976,14 @@ impl DescribeEventDetailsError {
     }
 }
 impl fmt::Display for DescribeEventDetailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventDetailsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventDetailsError::UnsupportedLocale(ref cause) => cause,
+            DescribeEventDetailsError::UnsupportedLocale(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventDetailsError {}
 /// Errors returned by DescribeEventDetailsForOrganization
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventDetailsForOrganizationError {
@@ -1005,17 +1010,16 @@ impl DescribeEventDetailsForOrganizationError {
     }
 }
 impl fmt::Display for DescribeEventDetailsForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventDetailsForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventDetailsForOrganizationError::UnsupportedLocale(ref cause) => cause,
+            DescribeEventDetailsForOrganizationError::UnsupportedLocale(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEventDetailsForOrganizationError {}
 /// Errors returned by DescribeEventTypes
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventTypesError {
@@ -1047,18 +1051,15 @@ impl DescribeEventTypesError {
     }
 }
 impl fmt::Display for DescribeEventTypesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventTypesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventTypesError::InvalidPaginationToken(ref cause) => cause,
-            DescribeEventTypesError::UnsupportedLocale(ref cause) => cause,
+            DescribeEventTypesError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            DescribeEventTypesError::UnsupportedLocale(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventTypesError {}
 /// Errors returned by DescribeEvents
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventsError {
@@ -1088,18 +1089,15 @@ impl DescribeEventsError {
     }
 }
 impl fmt::Display for DescribeEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventsError::InvalidPaginationToken(ref cause) => cause,
-            DescribeEventsError::UnsupportedLocale(ref cause) => cause,
+            DescribeEventsError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            DescribeEventsError::UnsupportedLocale(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventsError {}
 /// Errors returned by DescribeEventsForOrganization
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventsForOrganizationError {
@@ -1133,18 +1131,19 @@ impl DescribeEventsForOrganizationError {
     }
 }
 impl fmt::Display for DescribeEventsForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventsForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventsForOrganizationError::InvalidPaginationToken(ref cause) => cause,
-            DescribeEventsForOrganizationError::UnsupportedLocale(ref cause) => cause,
+            DescribeEventsForOrganizationError::InvalidPaginationToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEventsForOrganizationError::UnsupportedLocale(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEventsForOrganizationError {}
 /// Errors returned by DescribeHealthServiceStatusForOrganization
 #[derive(Debug, PartialEq)]
 pub enum DescribeHealthServiceStatusForOrganizationError {}
@@ -1163,15 +1162,12 @@ impl DescribeHealthServiceStatusForOrganizationError {
     }
 }
 impl fmt::Display for DescribeHealthServiceStatusForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeHealthServiceStatusForOrganizationError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for DescribeHealthServiceStatusForOrganizationError {}
 /// Errors returned by DisableHealthServiceAccessForOrganization
 #[derive(Debug, PartialEq)]
 pub enum DisableHealthServiceAccessForOrganizationError {
@@ -1200,19 +1196,16 @@ impl DisableHealthServiceAccessForOrganizationError {
     }
 }
 impl fmt::Display for DisableHealthServiceAccessForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableHealthServiceAccessForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
             DisableHealthServiceAccessForOrganizationError::ConcurrentModification(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for DisableHealthServiceAccessForOrganizationError {}
 /// Errors returned by EnableHealthServiceAccessForOrganization
 #[derive(Debug, PartialEq)]
 pub enum EnableHealthServiceAccessForOrganizationError {
@@ -1241,19 +1234,16 @@ impl EnableHealthServiceAccessForOrganizationError {
     }
 }
 impl fmt::Display for EnableHealthServiceAccessForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableHealthServiceAccessForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
             EnableHealthServiceAccessForOrganizationError::ConcurrentModification(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for EnableHealthServiceAccessForOrganizationError {}
 /// Trait representing the capabilities of the AWSHealth API. AWSHealth clients implement this trait.
 #[async_trait]
 pub trait AWSHealth {

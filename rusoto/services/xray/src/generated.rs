@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An alias for an edge.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Alias {
     /// <p>The canonical name of the alias.</p>
     #[serde(rename = "Name")]
@@ -44,7 +45,7 @@ pub struct Alias {
 
 /// <p>Value of a segment annotation. Has one of three value types: Number, Boolean or String.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AnnotationValue {
     /// <p>Value for a Boolean annotation.</p>
     #[serde(rename = "BooleanValue")]
@@ -62,7 +63,7 @@ pub struct AnnotationValue {
 
 /// <p>A list of availability zones corresponding to the segments in a trace.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AvailabilityZoneDetail {
     /// <p>The name of a corresponding availability zone.</p>
     #[serde(rename = "Name")]
@@ -72,6 +73,7 @@ pub struct AvailabilityZoneDetail {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BackendConnectionErrors {
     /// <p><p/></p>
     #[serde(rename = "ConnectionRefusedCount")]
@@ -100,6 +102,7 @@ pub struct BackendConnectionErrors {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetTracesRequest {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -111,7 +114,7 @@ pub struct BatchGetTracesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetTracesResult {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -128,6 +131,7 @@ pub struct BatchGetTracesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGroupRequest {
     /// <p>The filter expression defining criteria by which to group traces.</p>
     #[serde(rename = "FilterExpression")]
@@ -139,7 +143,7 @@ pub struct CreateGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGroupResult {
     /// <p>The group that was created. Contains the name of the group that was created, the ARN of the group that was generated based on the group name, and the filter expression that was assigned to the group.</p>
     #[serde(rename = "Group")]
@@ -148,6 +152,7 @@ pub struct CreateGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSamplingRuleRequest {
     /// <p>The rule definition.</p>
     #[serde(rename = "SamplingRule")]
@@ -155,7 +160,7 @@ pub struct CreateSamplingRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSamplingRuleResult {
     /// <p>The saved rule definition and metadata.</p>
     #[serde(rename = "SamplingRuleRecord")]
@@ -164,6 +169,7 @@ pub struct CreateSamplingRuleResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGroupRequest {
     /// <p>The ARN of the group that was generated on creation.</p>
     #[serde(rename = "GroupARN")]
@@ -176,10 +182,11 @@ pub struct DeleteGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteGroupResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSamplingRuleRequest {
     /// <p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>
     #[serde(rename = "RuleARN")]
@@ -192,7 +199,7 @@ pub struct DeleteSamplingRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSamplingRuleResult {
     /// <p>The deleted rule definition and metadata.</p>
     #[serde(rename = "SamplingRuleRecord")]
@@ -202,7 +209,7 @@ pub struct DeleteSamplingRuleResult {
 
 /// <p>Information about a connection between two services.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Edge {
     /// <p>Aliases for the edge.</p>
     #[serde(rename = "Aliases")]
@@ -232,7 +239,7 @@ pub struct Edge {
 
 /// <p>Response statistics for an edge.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EdgeStatistics {
     /// <p>Information about requests that failed with a 4xx Client Error status code.</p>
     #[serde(rename = "ErrorStatistics")]
@@ -258,7 +265,7 @@ pub struct EdgeStatistics {
 
 /// <p>A configuration document that specifies encryption configuration settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EncryptionConfig {
     /// <p>The ID of the customer master key (CMK) used for encryption, if applicable.</p>
     #[serde(rename = "KeyId")]
@@ -276,7 +283,7 @@ pub struct EncryptionConfig {
 
 /// <p>The root cause of a trace summary error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorRootCause {
     /// <p>A list of services corresponding to an error. A service identifies a segment and it contains a name, account ID, type, and inferred flag.</p>
     #[serde(rename = "Services")]
@@ -286,7 +293,7 @@ pub struct ErrorRootCause {
 
 /// <p>A collection of segments and corresponding subsegments associated to a trace summary error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorRootCauseEntity {
     /// <p>The types and messages of the exceptions.</p>
     #[serde(rename = "Exceptions")]
@@ -304,7 +311,7 @@ pub struct ErrorRootCauseEntity {
 
 /// <p>A collection of fields identifying the services in a trace summary error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorRootCauseService {
     /// <p>The account ID associated to the service.</p>
     #[serde(rename = "AccountId")]
@@ -334,7 +341,7 @@ pub struct ErrorRootCauseService {
 
 /// <p>Information about requests that failed with a 4xx Client Error status code.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorStatistics {
     /// <p>The number of requests that failed with untracked 4xx Client Error status codes.</p>
     #[serde(rename = "OtherCount")]
@@ -352,7 +359,7 @@ pub struct ErrorStatistics {
 
 /// <p>The root cause information for a trace summary fault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaultRootCause {
     /// <p>A list of corresponding services. A service identifies a segment and it contains a name, account ID, type, and inferred flag.</p>
     #[serde(rename = "Services")]
@@ -362,7 +369,7 @@ pub struct FaultRootCause {
 
 /// <p>A collection of segments and corresponding subsegments associated to a trace summary fault error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaultRootCauseEntity {
     /// <p>The types and messages of the exceptions.</p>
     #[serde(rename = "Exceptions")]
@@ -380,7 +387,7 @@ pub struct FaultRootCauseEntity {
 
 /// <p>A collection of fields identifying the services in a trace summary fault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaultRootCauseService {
     /// <p>The account ID associated to the service.</p>
     #[serde(rename = "AccountId")]
@@ -410,7 +417,7 @@ pub struct FaultRootCauseService {
 
 /// <p>Information about requests that failed with a 5xx Server Error status code.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaultStatistics {
     /// <p>The number of requests that failed with untracked 5xx Server Error status codes.</p>
     #[serde(rename = "OtherCount")]
@@ -423,10 +430,11 @@ pub struct FaultStatistics {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetEncryptionConfigRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetEncryptionConfigResult {
     /// <p>The encryption configuration document.</p>
     #[serde(rename = "EncryptionConfig")]
@@ -435,6 +443,7 @@ pub struct GetEncryptionConfigResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupRequest {
     /// <p>The ARN of the group that was generated on creation.</p>
     #[serde(rename = "GroupARN")]
@@ -447,7 +456,7 @@ pub struct GetGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupResult {
     /// <p>The group that was requested. Contains the name of the group, the ARN of the group, and the filter expression that assigned to the group.</p>
     #[serde(rename = "Group")]
@@ -456,6 +465,7 @@ pub struct GetGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupsRequest {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -464,7 +474,7 @@ pub struct GetGroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupsResult {
     /// <p>The collection of all active groups.</p>
     #[serde(rename = "Groups")]
@@ -477,6 +487,7 @@ pub struct GetGroupsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSamplingRulesRequest {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -485,7 +496,7 @@ pub struct GetSamplingRulesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSamplingRulesResult {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -498,6 +509,7 @@ pub struct GetSamplingRulesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSamplingStatisticSummariesRequest {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -506,7 +518,7 @@ pub struct GetSamplingStatisticSummariesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSamplingStatisticSummariesResult {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -519,6 +531,7 @@ pub struct GetSamplingStatisticSummariesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSamplingTargetsRequest {
     /// <p>Information about rules that the service is using to sample requests.</p>
     #[serde(rename = "SamplingStatisticsDocuments")]
@@ -526,7 +539,7 @@ pub struct GetSamplingTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSamplingTargetsResult {
     /// <p>The last time a user changed the sampling rule configuration. If the sampling rule configuration changed since the service last retrieved it, the service should call <a>GetSamplingRules</a> to get the latest version.</p>
     #[serde(rename = "LastRuleModification")]
@@ -543,6 +556,7 @@ pub struct GetSamplingTargetsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetServiceGraphRequest {
     /// <p>The end of the timeframe for which to generate a graph.</p>
     #[serde(rename = "EndTime")]
@@ -565,7 +579,7 @@ pub struct GetServiceGraphRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetServiceGraphResult {
     /// <p>A flag indicating whether the group's filter expression has been consistent, or if the returned service graph may show traces from an older version of the group's filter expression.</p>
     #[serde(rename = "ContainsOldGroupVersions")]
@@ -590,6 +604,7 @@ pub struct GetServiceGraphResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTimeSeriesServiceStatisticsRequest {
     /// <p>The end of the time frame for which to aggregate statistics.</p>
     #[serde(rename = "EndTime")]
@@ -620,7 +635,7 @@ pub struct GetTimeSeriesServiceStatisticsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTimeSeriesServiceStatisticsResult {
     /// <p>A flag indicating whether or not a group's filter expression has been consistent, or if a returned aggregation may show statistics from an older version of the group's filter expression.</p>
     #[serde(rename = "ContainsOldGroupVersions")]
@@ -637,6 +652,7 @@ pub struct GetTimeSeriesServiceStatisticsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTraceGraphRequest {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -648,7 +664,7 @@ pub struct GetTraceGraphRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTraceGraphResult {
     /// <p>Pagination token.</p>
     #[serde(rename = "NextToken")]
@@ -661,6 +677,7 @@ pub struct GetTraceGraphResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTraceSummariesRequest {
     /// <p>The end of the time frame for which to retrieve traces.</p>
     #[serde(rename = "EndTime")]
@@ -691,7 +708,7 @@ pub struct GetTraceSummariesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTraceSummariesResult {
     /// <p>The start time of this page of results.</p>
     #[serde(rename = "ApproximateTime")]
@@ -713,7 +730,7 @@ pub struct GetTraceSummariesResult {
 
 /// <p>Details and metadata for a group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Group {
     /// <p>The filter expression defining the parameters to include traces.</p>
     #[serde(rename = "FilterExpression")]
@@ -731,7 +748,7 @@ pub struct Group {
 
 /// <p>Details for a group without metadata.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GroupSummary {
     /// <p>The filter expression defining the parameters to include traces.</p>
     #[serde(rename = "FilterExpression")]
@@ -749,7 +766,7 @@ pub struct GroupSummary {
 
 /// <p>An entry in a histogram for a statistic. A histogram maps the range of observed values on the X axis, and the prevalence of each value on the Y axis.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HistogramEntry {
     /// <p>The prevalence of the entry.</p>
     #[serde(rename = "Count")]
@@ -763,7 +780,7 @@ pub struct HistogramEntry {
 
 /// <p>Information about an HTTP request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Http {
     /// <p>The IP address of the requestor.</p>
     #[serde(rename = "ClientIp")]
@@ -789,7 +806,7 @@ pub struct Http {
 
 /// <p>A list of EC2 instance IDs corresponding to the segments in a trace. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceIdDetail {
     /// <p>The ID of a corresponding EC2 instance.</p>
     #[serde(rename = "Id")]
@@ -798,6 +815,7 @@ pub struct InstanceIdDetail {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutEncryptionConfigRequest {
     /// <p>An AWS KMS customer master key (CMK) in one of the following formats:</p> <ul> <li> <p> <b>Alias</b> - The name of the key. For example, <code>alias/MyKey</code>.</p> </li> <li> <p> <b>Key ID</b> - The KMS key ID of the key. For example, <code>ae4aa6d49-a4d8-9df9-a475-4ff6d7898456</code>. AWS X-Ray does not support asymmetric CMKs.</p> </li> <li> <p> <b>ARN</b> - The full Amazon Resource Name of the key ID or alias. For example, <code>arn:aws:kms:us-east-2:123456789012:key/ae4aa6d49-a4d8-9df9-a475-4ff6d7898456</code>. Use this format to specify a key in a different account.</p> </li> </ul> <p>Omit this key if you set <code>Type</code> to <code>NONE</code>.</p>
     #[serde(rename = "KeyId")]
@@ -809,7 +827,7 @@ pub struct PutEncryptionConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutEncryptionConfigResult {
     /// <p>The new encryption configuration.</p>
     #[serde(rename = "EncryptionConfig")]
@@ -818,6 +836,7 @@ pub struct PutEncryptionConfigResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutTelemetryRecordsRequest {
     /// <p><p/></p>
     #[serde(rename = "EC2InstanceId")]
@@ -837,10 +856,11 @@ pub struct PutTelemetryRecordsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutTelemetryRecordsResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutTraceSegmentsRequest {
     /// <p>A string containing a JSON document defining one or more segments or subsegments.</p>
     #[serde(rename = "TraceSegmentDocuments")]
@@ -848,7 +868,7 @@ pub struct PutTraceSegmentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutTraceSegmentsResult {
     /// <p>Segments that failed processing.</p>
     #[serde(rename = "UnprocessedTraceSegments")]
@@ -858,7 +878,7 @@ pub struct PutTraceSegmentsResult {
 
 /// <p>A list of resources ARNs corresponding to the segments in a trace.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceARNDetail {
     /// <p>The ARN of a corresponding resource.</p>
     #[serde(rename = "ARN")]
@@ -868,7 +888,7 @@ pub struct ResourceARNDetail {
 
 /// <p>The root cause information for a response time warning.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResponseTimeRootCause {
     /// <p>A list of corresponding services. A service identifies a segment and contains a name, account ID, type, and inferred flag.</p>
     #[serde(rename = "Services")]
@@ -878,7 +898,7 @@ pub struct ResponseTimeRootCause {
 
 /// <p>A collection of segments and corresponding subsegments associated to a response time warning.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResponseTimeRootCauseEntity {
     /// <p>The types and messages of the exceptions.</p>
     #[serde(rename = "Coverage")]
@@ -896,7 +916,7 @@ pub struct ResponseTimeRootCauseEntity {
 
 /// <p>A collection of fields identifying the service in a response time warning.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResponseTimeRootCauseService {
     /// <p>The account ID associated to the service.</p>
     #[serde(rename = "AccountId")]
@@ -926,7 +946,7 @@ pub struct ResponseTimeRootCauseService {
 
 /// <p>The exception associated with a root cause.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RootCauseException {
     /// <p>The message of the exception.</p>
     #[serde(rename = "Message")]
@@ -987,7 +1007,7 @@ pub struct SamplingRule {
 
 /// <p>A <a>SamplingRule</a> and its metadata.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SamplingRuleRecord {
     /// <p>When the rule was created.</p>
     #[serde(rename = "CreatedAt")]
@@ -1005,6 +1025,7 @@ pub struct SamplingRuleRecord {
 
 /// <p>A document specifying changes to a sampling rule's configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SamplingRuleUpdate {
     /// <p>Matches attributes derived from the request.</p>
     #[serde(rename = "Attributes")]
@@ -1058,7 +1079,7 @@ pub struct SamplingRuleUpdate {
 
 /// <p>Aggregated request sampling data for a sampling rule across all services for a 10 second window.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SamplingStatisticSummary {
     /// <p>The number of requests recorded with borrowed reservoir quota.</p>
     #[serde(rename = "BorrowCount")]
@@ -1084,6 +1105,7 @@ pub struct SamplingStatisticSummary {
 
 /// <p>Request sampling results for a single rule from a service. Results are for the last 10 seconds unless the service has been assigned a longer reporting interval after a previous call to <a>GetSamplingTargets</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SamplingStatisticsDocument {
     /// <p>The number of requests recorded with borrowed reservoir quota.</p>
     #[serde(rename = "BorrowCount")]
@@ -1108,6 +1130,7 @@ pub struct SamplingStatisticsDocument {
 
 /// <p>The name and value of a sampling rule to apply to a trace summary.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SamplingStrategy {
     /// <p>The name of a sampling rule.</p>
     #[serde(rename = "Name")]
@@ -1121,7 +1144,7 @@ pub struct SamplingStrategy {
 
 /// <p>Temporary changes to a sampling rule configuration. To meet the global sampling target for a rule, X-Ray calculates a new reservoir for each service based on the recent sampling results of all services that called <a>GetSamplingTargets</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SamplingTargetDocument {
     /// <p>The percentage of matching requests to instrument, after the reservoir is exhausted.</p>
     #[serde(rename = "FixedRate")]
@@ -1147,7 +1170,7 @@ pub struct SamplingTargetDocument {
 
 /// <p>A segment from a trace that has been ingested by the X-Ray service. The segment can be compiled from documents uploaded with <a>PutTraceSegments</a>, or an <code>inferred</code> segment for a downstream service, generated from a subsegment sent by the service that called it.</p> <p>For the full segment document schema, see <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html">AWS X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Segment {
     /// <p>The segment document.</p>
     #[serde(rename = "Document")]
@@ -1161,7 +1184,7 @@ pub struct Segment {
 
 /// <p>Information about an application that processed requests, users that made requests, or downstream services, resources and applications that an application used.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Service {
     /// <p>Identifier of the AWS account in which the service runs.</p>
     #[serde(rename = "AccountId")]
@@ -1219,7 +1242,7 @@ pub struct Service {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceId {
     /// <p><p/></p>
     #[serde(rename = "AccountId")]
@@ -1241,7 +1264,7 @@ pub struct ServiceId {
 
 /// <p>Response statistics for a service.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceStatistics {
     /// <p>Information about requests that failed with a 4xx Client Error status code.</p>
     #[serde(rename = "ErrorStatistics")]
@@ -1267,6 +1290,7 @@ pub struct ServiceStatistics {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TelemetryRecord {
     /// <p><p/></p>
     #[serde(rename = "BackendConnectionErrors")]
@@ -1295,7 +1319,7 @@ pub struct TelemetryRecord {
 
 /// <p>A list of TimeSeriesStatistic structures.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TimeSeriesServiceStatistics {
     #[serde(rename = "EdgeSummaryStatistics")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1315,7 +1339,7 @@ pub struct TimeSeriesServiceStatistics {
 
 /// <p>A collection of segment documents with matching trace IDs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Trace {
     /// <p>The length of time in seconds between the start time of the root segment and the end time of the last segment that completed.</p>
     #[serde(rename = "Duration")]
@@ -1333,7 +1357,7 @@ pub struct Trace {
 
 /// <p>Metadata generated from the segment documents in a trace.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TraceSummary {
     /// <p>Annotations from the trace's segment documents.</p>
     #[serde(rename = "Annotations")]
@@ -1419,7 +1443,7 @@ pub struct TraceSummary {
 
 /// <p>Information about a user recorded in segment documents.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TraceUser {
     /// <p>Services that the user's request hit.</p>
     #[serde(rename = "ServiceIds")]
@@ -1433,7 +1457,7 @@ pub struct TraceUser {
 
 /// <p>Sampling statistics from a call to <a>GetSamplingTargets</a> that X-Ray could not process.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnprocessedStatistics {
     /// <p>The error code.</p>
     #[serde(rename = "ErrorCode")]
@@ -1451,7 +1475,7 @@ pub struct UnprocessedStatistics {
 
 /// <p>Information about a segment that failed processing.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnprocessedTraceSegment {
     /// <p>The error that caused processing to fail.</p>
     #[serde(rename = "ErrorCode")]
@@ -1468,6 +1492,7 @@ pub struct UnprocessedTraceSegment {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGroupRequest {
     /// <p>The updated filter expression defining criteria by which to group traces.</p>
     #[serde(rename = "FilterExpression")]
@@ -1484,7 +1509,7 @@ pub struct UpdateGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGroupResult {
     /// <p>The group that was updated. Contains the name of the group that was updated, the ARN of the group that was updated, and the updated filter expression assigned to the group.</p>
     #[serde(rename = "Group")]
@@ -1493,6 +1518,7 @@ pub struct UpdateGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateSamplingRuleRequest {
     /// <p>The rule and fields to change.</p>
     #[serde(rename = "SamplingRuleUpdate")]
@@ -1500,7 +1526,7 @@ pub struct UpdateSamplingRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateSamplingRuleResult {
     /// <p>The updated rule definition and metadata.</p>
     #[serde(rename = "SamplingRuleRecord")]
@@ -1510,7 +1536,7 @@ pub struct UpdateSamplingRuleResult {
 
 /// <p>Information about a segment annotation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ValueWithServiceIds {
     /// <p>Values of the annotation.</p>
     #[serde(rename = "AnnotationValue")]
@@ -1549,18 +1575,15 @@ impl BatchGetTracesError {
     }
 }
 impl fmt::Display for BatchGetTracesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetTracesError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetTracesError::InvalidRequest(ref cause) => cause,
-            BatchGetTracesError::Throttled(ref cause) => cause,
+            BatchGetTracesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            BatchGetTracesError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetTracesError {}
 /// Errors returned by CreateGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateGroupError {
@@ -1588,18 +1611,15 @@ impl CreateGroupError {
     }
 }
 impl fmt::Display for CreateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGroupError::InvalidRequest(ref cause) => cause,
-            CreateGroupError::Throttled(ref cause) => cause,
+            CreateGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateGroupError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGroupError {}
 /// Errors returned by CreateSamplingRule
 #[derive(Debug, PartialEq)]
 pub enum CreateSamplingRuleError {
@@ -1634,19 +1654,16 @@ impl CreateSamplingRuleError {
     }
 }
 impl fmt::Display for CreateSamplingRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSamplingRuleError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSamplingRuleError::InvalidRequest(ref cause) => cause,
-            CreateSamplingRuleError::RuleLimitExceeded(ref cause) => cause,
-            CreateSamplingRuleError::Throttled(ref cause) => cause,
+            CreateSamplingRuleError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateSamplingRuleError::RuleLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateSamplingRuleError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSamplingRuleError {}
 /// Errors returned by DeleteGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteGroupError {
@@ -1674,18 +1691,15 @@ impl DeleteGroupError {
     }
 }
 impl fmt::Display for DeleteGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteGroupError::InvalidRequest(ref cause) => cause,
-            DeleteGroupError::Throttled(ref cause) => cause,
+            DeleteGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteGroupError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteGroupError {}
 /// Errors returned by DeleteSamplingRule
 #[derive(Debug, PartialEq)]
 pub enum DeleteSamplingRuleError {
@@ -1713,18 +1727,15 @@ impl DeleteSamplingRuleError {
     }
 }
 impl fmt::Display for DeleteSamplingRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSamplingRuleError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSamplingRuleError::InvalidRequest(ref cause) => cause,
-            DeleteSamplingRuleError::Throttled(ref cause) => cause,
+            DeleteSamplingRuleError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteSamplingRuleError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSamplingRuleError {}
 /// Errors returned by GetEncryptionConfig
 #[derive(Debug, PartialEq)]
 pub enum GetEncryptionConfigError {
@@ -1752,18 +1763,15 @@ impl GetEncryptionConfigError {
     }
 }
 impl fmt::Display for GetEncryptionConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetEncryptionConfigError {
-    fn description(&self) -> &str {
         match *self {
-            GetEncryptionConfigError::InvalidRequest(ref cause) => cause,
-            GetEncryptionConfigError::Throttled(ref cause) => cause,
+            GetEncryptionConfigError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetEncryptionConfigError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetEncryptionConfigError {}
 /// Errors returned by GetGroup
 #[derive(Debug, PartialEq)]
 pub enum GetGroupError {
@@ -1791,18 +1799,15 @@ impl GetGroupError {
     }
 }
 impl fmt::Display for GetGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupError::InvalidRequest(ref cause) => cause,
-            GetGroupError::Throttled(ref cause) => cause,
+            GetGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupError {}
 /// Errors returned by GetGroups
 #[derive(Debug, PartialEq)]
 pub enum GetGroupsError {
@@ -1830,18 +1835,15 @@ impl GetGroupsError {
     }
 }
 impl fmt::Display for GetGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupsError::InvalidRequest(ref cause) => cause,
-            GetGroupsError::Throttled(ref cause) => cause,
+            GetGroupsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupsError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupsError {}
 /// Errors returned by GetSamplingRules
 #[derive(Debug, PartialEq)]
 pub enum GetSamplingRulesError {
@@ -1869,18 +1871,15 @@ impl GetSamplingRulesError {
     }
 }
 impl fmt::Display for GetSamplingRulesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSamplingRulesError {
-    fn description(&self) -> &str {
         match *self {
-            GetSamplingRulesError::InvalidRequest(ref cause) => cause,
-            GetSamplingRulesError::Throttled(ref cause) => cause,
+            GetSamplingRulesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetSamplingRulesError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSamplingRulesError {}
 /// Errors returned by GetSamplingStatisticSummaries
 #[derive(Debug, PartialEq)]
 pub enum GetSamplingStatisticSummariesError {
@@ -1914,18 +1913,15 @@ impl GetSamplingStatisticSummariesError {
     }
 }
 impl fmt::Display for GetSamplingStatisticSummariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSamplingStatisticSummariesError {
-    fn description(&self) -> &str {
         match *self {
-            GetSamplingStatisticSummariesError::InvalidRequest(ref cause) => cause,
-            GetSamplingStatisticSummariesError::Throttled(ref cause) => cause,
+            GetSamplingStatisticSummariesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetSamplingStatisticSummariesError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSamplingStatisticSummariesError {}
 /// Errors returned by GetSamplingTargets
 #[derive(Debug, PartialEq)]
 pub enum GetSamplingTargetsError {
@@ -1953,18 +1949,15 @@ impl GetSamplingTargetsError {
     }
 }
 impl fmt::Display for GetSamplingTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSamplingTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            GetSamplingTargetsError::InvalidRequest(ref cause) => cause,
-            GetSamplingTargetsError::Throttled(ref cause) => cause,
+            GetSamplingTargetsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetSamplingTargetsError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSamplingTargetsError {}
 /// Errors returned by GetServiceGraph
 #[derive(Debug, PartialEq)]
 pub enum GetServiceGraphError {
@@ -1992,18 +1985,15 @@ impl GetServiceGraphError {
     }
 }
 impl fmt::Display for GetServiceGraphError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetServiceGraphError {
-    fn description(&self) -> &str {
         match *self {
-            GetServiceGraphError::InvalidRequest(ref cause) => cause,
-            GetServiceGraphError::Throttled(ref cause) => cause,
+            GetServiceGraphError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetServiceGraphError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetServiceGraphError {}
 /// Errors returned by GetTimeSeriesServiceStatistics
 #[derive(Debug, PartialEq)]
 pub enum GetTimeSeriesServiceStatisticsError {
@@ -2037,18 +2027,17 @@ impl GetTimeSeriesServiceStatisticsError {
     }
 }
 impl fmt::Display for GetTimeSeriesServiceStatisticsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTimeSeriesServiceStatisticsError {
-    fn description(&self) -> &str {
         match *self {
-            GetTimeSeriesServiceStatisticsError::InvalidRequest(ref cause) => cause,
-            GetTimeSeriesServiceStatisticsError::Throttled(ref cause) => cause,
+            GetTimeSeriesServiceStatisticsError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetTimeSeriesServiceStatisticsError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTimeSeriesServiceStatisticsError {}
 /// Errors returned by GetTraceGraph
 #[derive(Debug, PartialEq)]
 pub enum GetTraceGraphError {
@@ -2076,18 +2065,15 @@ impl GetTraceGraphError {
     }
 }
 impl fmt::Display for GetTraceGraphError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTraceGraphError {
-    fn description(&self) -> &str {
         match *self {
-            GetTraceGraphError::InvalidRequest(ref cause) => cause,
-            GetTraceGraphError::Throttled(ref cause) => cause,
+            GetTraceGraphError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetTraceGraphError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTraceGraphError {}
 /// Errors returned by GetTraceSummaries
 #[derive(Debug, PartialEq)]
 pub enum GetTraceSummariesError {
@@ -2115,18 +2101,15 @@ impl GetTraceSummariesError {
     }
 }
 impl fmt::Display for GetTraceSummariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTraceSummariesError {
-    fn description(&self) -> &str {
         match *self {
-            GetTraceSummariesError::InvalidRequest(ref cause) => cause,
-            GetTraceSummariesError::Throttled(ref cause) => cause,
+            GetTraceSummariesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetTraceSummariesError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTraceSummariesError {}
 /// Errors returned by PutEncryptionConfig
 #[derive(Debug, PartialEq)]
 pub enum PutEncryptionConfigError {
@@ -2154,18 +2137,15 @@ impl PutEncryptionConfigError {
     }
 }
 impl fmt::Display for PutEncryptionConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutEncryptionConfigError {
-    fn description(&self) -> &str {
         match *self {
-            PutEncryptionConfigError::InvalidRequest(ref cause) => cause,
-            PutEncryptionConfigError::Throttled(ref cause) => cause,
+            PutEncryptionConfigError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutEncryptionConfigError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutEncryptionConfigError {}
 /// Errors returned by PutTelemetryRecords
 #[derive(Debug, PartialEq)]
 pub enum PutTelemetryRecordsError {
@@ -2193,18 +2173,15 @@ impl PutTelemetryRecordsError {
     }
 }
 impl fmt::Display for PutTelemetryRecordsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutTelemetryRecordsError {
-    fn description(&self) -> &str {
         match *self {
-            PutTelemetryRecordsError::InvalidRequest(ref cause) => cause,
-            PutTelemetryRecordsError::Throttled(ref cause) => cause,
+            PutTelemetryRecordsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutTelemetryRecordsError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutTelemetryRecordsError {}
 /// Errors returned by PutTraceSegments
 #[derive(Debug, PartialEq)]
 pub enum PutTraceSegmentsError {
@@ -2232,18 +2209,15 @@ impl PutTraceSegmentsError {
     }
 }
 impl fmt::Display for PutTraceSegmentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutTraceSegmentsError {
-    fn description(&self) -> &str {
         match *self {
-            PutTraceSegmentsError::InvalidRequest(ref cause) => cause,
-            PutTraceSegmentsError::Throttled(ref cause) => cause,
+            PutTraceSegmentsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutTraceSegmentsError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutTraceSegmentsError {}
 /// Errors returned by UpdateGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateGroupError {
@@ -2271,18 +2245,15 @@ impl UpdateGroupError {
     }
 }
 impl fmt::Display for UpdateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGroupError::InvalidRequest(ref cause) => cause,
-            UpdateGroupError::Throttled(ref cause) => cause,
+            UpdateGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateGroupError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGroupError {}
 /// Errors returned by UpdateSamplingRule
 #[derive(Debug, PartialEq)]
 pub enum UpdateSamplingRuleError {
@@ -2310,18 +2281,15 @@ impl UpdateSamplingRuleError {
     }
 }
 impl fmt::Display for UpdateSamplingRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateSamplingRuleError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateSamplingRuleError::InvalidRequest(ref cause) => cause,
-            UpdateSamplingRuleError::Throttled(ref cause) => cause,
+            UpdateSamplingRuleError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateSamplingRuleError::Throttled(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateSamplingRuleError {}
 /// Trait representing the capabilities of the AWS X-Ray API. AWS X-Ray clients implement this trait.
 #[async_trait]
 pub trait XRay {

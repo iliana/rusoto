@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Defines an action to be initiated by a trigger.</p>
@@ -54,6 +55,7 @@ pub struct Action {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchCreatePartitionRequest {
     /// <p>The ID of the catalog in which the partition is to be created. Currently, this should be the AWS account ID.</p>
     #[serde(rename = "CatalogId")]
@@ -71,7 +73,7 @@ pub struct BatchCreatePartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchCreatePartitionResponse {
     /// <p>The errors encountered when trying to create the requested partitions.</p>
     #[serde(rename = "Errors")]
@@ -80,6 +82,7 @@ pub struct BatchCreatePartitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeleteConnectionRequest {
     /// <p>The ID of the Data Catalog in which the connections reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -91,7 +94,7 @@ pub struct BatchDeleteConnectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeleteConnectionResponse {
     /// <p>A map of the names of connections that were not successfully deleted to error details.</p>
     #[serde(rename = "Errors")]
@@ -104,6 +107,7 @@ pub struct BatchDeleteConnectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeletePartitionRequest {
     /// <p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -121,7 +125,7 @@ pub struct BatchDeletePartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeletePartitionResponse {
     /// <p>The errors encountered when trying to delete the requested partitions.</p>
     #[serde(rename = "Errors")]
@@ -130,6 +134,7 @@ pub struct BatchDeletePartitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeleteTableRequest {
     /// <p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -144,7 +149,7 @@ pub struct BatchDeleteTableRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeleteTableResponse {
     /// <p>A list of errors encountered in attempting to delete the specified tables.</p>
     #[serde(rename = "Errors")]
@@ -153,6 +158,7 @@ pub struct BatchDeleteTableResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeleteTableVersionRequest {
     /// <p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -170,7 +176,7 @@ pub struct BatchDeleteTableVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeleteTableVersionResponse {
     /// <p>A list of errors encountered while trying to delete the specified table versions.</p>
     #[serde(rename = "Errors")]
@@ -179,6 +185,7 @@ pub struct BatchDeleteTableVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetCrawlersRequest {
     /// <p>A list of crawler names, which might be the names returned from the <code>ListCrawlers</code> operation.</p>
     #[serde(rename = "CrawlerNames")]
@@ -186,7 +193,7 @@ pub struct BatchGetCrawlersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetCrawlersResponse {
     /// <p>A list of crawler definitions.</p>
     #[serde(rename = "Crawlers")]
@@ -199,6 +206,7 @@ pub struct BatchGetCrawlersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetDevEndpointsRequest {
     /// <p>The list of <code>DevEndpoint</code> names, which might be the names returned from the <code>ListDevEndpoint</code> operation.</p>
     #[serde(rename = "DevEndpointNames")]
@@ -206,7 +214,7 @@ pub struct BatchGetDevEndpointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetDevEndpointsResponse {
     /// <p>A list of <code>DevEndpoint</code> definitions.</p>
     #[serde(rename = "DevEndpoints")]
@@ -219,6 +227,7 @@ pub struct BatchGetDevEndpointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetJobsRequest {
     /// <p>A list of job names, which might be the names returned from the <code>ListJobs</code> operation.</p>
     #[serde(rename = "JobNames")]
@@ -226,7 +235,7 @@ pub struct BatchGetJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetJobsResponse {
     /// <p>A list of job definitions.</p>
     #[serde(rename = "Jobs")]
@@ -239,6 +248,7 @@ pub struct BatchGetJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetPartitionRequest {
     /// <p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -256,7 +266,7 @@ pub struct BatchGetPartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetPartitionResponse {
     /// <p>A list of the requested partitions.</p>
     #[serde(rename = "Partitions")]
@@ -269,6 +279,7 @@ pub struct BatchGetPartitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetTriggersRequest {
     /// <p>A list of trigger names, which may be the names returned from the <code>ListTriggers</code> operation.</p>
     #[serde(rename = "TriggerNames")]
@@ -276,7 +287,7 @@ pub struct BatchGetTriggersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetTriggersResponse {
     /// <p>A list of trigger definitions.</p>
     #[serde(rename = "Triggers")]
@@ -289,6 +300,7 @@ pub struct BatchGetTriggersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetWorkflowsRequest {
     /// <p>Specifies whether to include a graph when returning the workflow resource metadata.</p>
     #[serde(rename = "IncludeGraph")]
@@ -300,7 +312,7 @@ pub struct BatchGetWorkflowsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetWorkflowsResponse {
     /// <p>A list of names of workflows not found.</p>
     #[serde(rename = "MissingWorkflows")]
@@ -314,7 +326,7 @@ pub struct BatchGetWorkflowsResponse {
 
 /// <p>Records an error that occurred when attempting to stop a specified job run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchStopJobRunError {
     /// <p>Specifies details about the error that was encountered.</p>
     #[serde(rename = "ErrorDetail")]
@@ -331,6 +343,7 @@ pub struct BatchStopJobRunError {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchStopJobRunRequest {
     /// <p>The name of the job definition for which to stop job runs.</p>
     #[serde(rename = "JobName")]
@@ -341,7 +354,7 @@ pub struct BatchStopJobRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchStopJobRunResponse {
     /// <p>A list of the errors that were encountered in trying to stop <code>JobRuns</code>, including the <code>JobRunId</code> for which each error was encountered and details about the error.</p>
     #[serde(rename = "Errors")]
@@ -355,7 +368,7 @@ pub struct BatchStopJobRunResponse {
 
 /// <p>Records a successful request to stop a specified <code>JobRun</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchStopJobRunSuccessfulSubmission {
     /// <p>The name of the job definition used in the job run that was stopped.</p>
     #[serde(rename = "JobName")]
@@ -368,6 +381,7 @@ pub struct BatchStopJobRunSuccessfulSubmission {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelMLTaskRunRequest {
     /// <p>A unique identifier for the task run.</p>
     #[serde(rename = "TaskRunId")]
@@ -378,7 +392,7 @@ pub struct CancelMLTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelMLTaskRunResponse {
     /// <p>The status for this run.</p>
     #[serde(rename = "Status")]
@@ -396,6 +410,7 @@ pub struct CancelMLTaskRunResponse {
 
 /// <p>Specifies a table definition in the AWS Glue Data Catalog.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CatalogEntry {
     /// <p>The database in which the table metadata resides.</p>
     #[serde(rename = "DatabaseName")]
@@ -407,7 +422,7 @@ pub struct CatalogEntry {
 
 /// <p>A structure containing migration status information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CatalogImportStatus {
     /// <p> <code>True</code> if the migration has completed, or <code>False</code> otherwise.</p>
     #[serde(rename = "ImportCompleted")]
@@ -436,7 +451,7 @@ pub struct CatalogTarget {
 
 /// <p>Classifiers are triggered during a crawl task. A classifier checks whether a given file is in a format it can handle. If it is, the classifier creates a schema in the form of a <code>StructType</code> object that matches that data format.</p> <p>You can use the standard classifiers that AWS Glue provides, or you can write your own classifiers to best categorize your data sources and specify the appropriate schemas to use for them. A classifier can be a <code>grok</code> classifier, an <code>XML</code> classifier, a <code>JSON</code> classifier, or a custom <code>CSV</code> classifier, as specified in one of the fields in the <code>Classifier</code> object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Classifier {
     /// <p>A classifier for comma-separated values (CSV).</p>
     #[serde(rename = "CsvClassifier")]
@@ -564,7 +579,7 @@ pub struct Condition {
 
 /// <p>The confusion matrix shows you what your transform is predicting accurately and what types of errors it is making.</p> <p>For more information, see <a href="https://en.wikipedia.org/wiki/Confusion_matrix">Confusion matrix</a> in Wikipedia.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConfusionMatrix {
     /// <p>The number of matches in the data that the transform didn't find, in the confusion matrix for your transform.</p>
     #[serde(rename = "NumFalseNegatives")]
@@ -586,7 +601,7 @@ pub struct ConfusionMatrix {
 
 /// <p>Defines a connection to a data source.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Connection {
     /// <p><p>These key-value pairs define parameters for the connection:</p> <ul> <li> <p> <code>HOST</code> - The host URI: either the fully qualified domain name (FQDN) or the IPv4 address of the database host.</p> </li> <li> <p> <code>PORT</code> - The port number, between 1024 and 65535, of the port on which the database host is listening for database connections.</p> </li> <li> <p> <code>USER<em>NAME</code> - The name under which to log in to the database. The value string for <code>USER</em>NAME</code> is &quot;<code>USERNAME</code>&quot;.</p> </li> <li> <p> <code>PASSWORD</code> - A password, if one is used, for the user name.</p> </li> <li> <p> <code>ENCRYPTED<em>PASSWORD</code> - When you enable connection password protection by setting <code>ConnectionPasswordEncryption</code> in the Data Catalog encryption settings, this field stores the encrypted password.</p> </li> <li> <p> <code>JDBC</em>DRIVER<em>JAR</em>URI</code> - The Amazon Simple Storage Service (Amazon S3) path of the JAR file that contains the JDBC driver to use.</p> </li> <li> <p> <code>JDBC<em>DRIVER</em>CLASS<em>NAME</code> - The class name of the JDBC driver to use.</p> </li> <li> <p> <code>JDBC</em>ENGINE</code> - The name of the JDBC engine to use.</p> </li> <li> <p> <code>JDBC<em>ENGINE</em>VERSION</code> - The version of the JDBC engine to use.</p> </li> <li> <p> <code>CONFIG<em>FILES</code> - (Reserved for future use.)</p> </li> <li> <p> <code>INSTANCE</em>ID</code> - The instance ID to use.</p> </li> <li> <p> <code>JDBC<em>CONNECTION</em>URL</code> - The URL for the JDBC connection.</p> </li> <li> <p> <code>JDBC<em>ENFORCE</em>SSL</code> - A Boolean string (true, false) specifying whether Secure Sockets Layer (SSL) with hostname matching is enforced for the JDBC connection on the client. The default is false.</p> </li> <li> <p> <code>CUSTOM<em>JDBC</em>CERT</code> - An Amazon S3 location specifying the customer&#39;s root certificate. AWS Glue uses this root certificate to validate the customer’s certificate when connecting to the customer database. AWS Glue only handles X.509 certificates. The certificate provided must be DER-encoded and supplied in Base64 encoding PEM format.</p> </li> <li> <p> <code>SKIP<em>CUSTOM</em>JDBC<em>CERT</em>VALIDATION</code> - By default, this is <code>false</code>. AWS Glue validates the Signature algorithm and Subject Public Key Algorithm for the customer certificate. The only permitted algorithms for the Signature algorithm are SHA256withRSA, SHA384withRSA or SHA512withRSA. For the Subject Public Key Algorithm, the key length must be at least 2048. You can set the value of this property to <code>true</code> to skip AWS Glue’s validation of the customer certificate.</p> </li> <li> <p> <code>CUSTOM<em>JDBC</em>CERT<em>STRING</code> - A custom JDBC certificate string which is used for domain match or distinguished name match to prevent a man-in-the-middle attack. In Oracle database, this is used as the <code>SSL</em>SERVER<em>CERT</em>DN</code>; in Microsoft SQL Server, this is used as the <code>hostNameInCertificate</code>.</p> </li> </ul></p>
     #[serde(rename = "ConnectionProperties")]
@@ -628,6 +643,7 @@ pub struct Connection {
 
 /// <p>A structure that is used to specify a connection to create or update.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConnectionInput {
     /// <p>These key-value pairs define parameters for the connection.</p>
     #[serde(rename = "ConnectionProperties")]
@@ -675,7 +691,7 @@ pub struct ConnectionsList {
 
 /// <p>The details of a crawl in the workflow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Crawl {
     /// <p>The date and time on which the crawl completed.</p>
     #[serde(rename = "CompletedOn")]
@@ -705,7 +721,7 @@ pub struct Crawl {
 
 /// <p>Specifies a crawler program that examines a data source and uses classifiers to try to determine its schema. If successful, the crawler records metadata concerning the data source in the AWS Glue Data Catalog.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Crawler {
     /// <p>A list of UTF-8 strings that specify the custom classifiers that are associated with the crawler.</p>
     #[serde(rename = "Classifiers")]
@@ -779,7 +795,7 @@ pub struct Crawler {
 
 /// <p>Metrics for a specified crawler.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CrawlerMetrics {
     /// <p>The name of the crawler.</p>
     #[serde(rename = "CrawlerName")]
@@ -817,7 +833,7 @@ pub struct CrawlerMetrics {
 
 /// <p>The details of a Crawler node present in the workflow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CrawlerNodeDetails {
     /// <p>A list of crawls represented by the crawl node.</p>
     #[serde(rename = "Crawls")]
@@ -847,6 +863,7 @@ pub struct CrawlerTargets {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClassifierRequest {
     /// <p>A <code>CsvClassifier</code> object specifying the classifier to create.</p>
     #[serde(rename = "CsvClassifier")]
@@ -867,10 +884,11 @@ pub struct CreateClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClassifierResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConnectionRequest {
     /// <p>The ID of the Data Catalog in which to create the connection. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -882,10 +900,11 @@ pub struct CreateConnectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConnectionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCrawlerRequest {
     /// <p>A list of custom classifiers that the user has registered. By default, all built-in classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.</p>
     #[serde(rename = "Classifiers")]
@@ -935,11 +954,12 @@ pub struct CreateCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCrawlerResponse {}
 
 /// <p>Specifies a custom CSV classifier for <code>CreateClassifier</code> to create.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCsvClassifierRequest {
     /// <p>Enables the processing of files that contain only one column.</p>
     #[serde(rename = "AllowSingleColumn")]
@@ -971,6 +991,7 @@ pub struct CreateCsvClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDatabaseRequest {
     /// <p>The ID of the Data Catalog in which to create the database. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -982,10 +1003,11 @@ pub struct CreateDatabaseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDatabaseResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDevEndpointRequest {
     /// <p>A map of arguments used to configure the <code>DevEndpoint</code>.</p>
     #[serde(rename = "Arguments")]
@@ -1048,7 +1070,7 @@ pub struct CreateDevEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDevEndpointResponse {
     /// <p>The map of arguments used to configure this <code>DevEndpoint</code>.</p> <p>Valid arguments are:</p> <ul> <li> <p> <code>"--enable-glue-datacatalog": ""</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "3"</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "2"</code> </p> </li> </ul> <p>You can specify a version of Python support for development endpoints by using the <code>Arguments</code> parameter in the <code>CreateDevEndpoint</code> or <code>UpdateDevEndpoint</code> APIs. If no arguments are provided, the version defaults to Python 2.</p>
     #[serde(rename = "Arguments")]
@@ -1130,6 +1152,7 @@ pub struct CreateDevEndpointResponse {
 
 /// <p>Specifies a <code>grok</code> classifier for <code>CreateClassifier</code> to create.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGrokClassifierRequest {
     /// <p>An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, Amazon CloudWatch Logs, and so on.</p>
     #[serde(rename = "Classification")]
@@ -1147,6 +1170,7 @@ pub struct CreateGrokClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobRequest {
     /// <p>The <code>JobCommand</code> that executes this job.</p>
     #[serde(rename = "Command")]
@@ -1216,7 +1240,7 @@ pub struct CreateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobResponse {
     /// <p>The unique name that was provided for this job definition.</p>
     #[serde(rename = "Name")]
@@ -1226,6 +1250,7 @@ pub struct CreateJobResponse {
 
 /// <p>Specifies a JSON classifier for <code>CreateClassifier</code> to create.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJsonClassifierRequest {
     /// <p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href="https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json">Writing JsonPath Custom Classifiers</a>.</p>
     #[serde(rename = "JsonPath")]
@@ -1236,6 +1261,7 @@ pub struct CreateJsonClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMLTransformRequest {
     /// <p>A description of the machine learning transform that is being defined. The default is an empty string.</p>
     #[serde(rename = "Description")]
@@ -1280,7 +1306,7 @@ pub struct CreateMLTransformRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMLTransformResponse {
     /// <p>A unique identifier that is generated for the transform.</p>
     #[serde(rename = "TransformId")]
@@ -1289,6 +1315,7 @@ pub struct CreateMLTransformResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePartitionRequest {
     /// <p>The AWS account ID of the catalog in which the partition is to be created.</p>
     #[serde(rename = "CatalogId")]
@@ -1306,10 +1333,11 @@ pub struct CreatePartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePartitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateScriptRequest {
     /// <p>A list of the edges in the DAG.</p>
     #[serde(rename = "DagEdges")]
@@ -1326,7 +1354,7 @@ pub struct CreateScriptRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateScriptResponse {
     /// <p>The Python script generated from the DAG.</p>
     #[serde(rename = "PythonScript")]
@@ -1339,6 +1367,7 @@ pub struct CreateScriptResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSecurityConfigurationRequest {
     /// <p>The encryption configuration for the new security configuration.</p>
     #[serde(rename = "EncryptionConfiguration")]
@@ -1349,7 +1378,7 @@ pub struct CreateSecurityConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSecurityConfigurationResponse {
     /// <p>The time at which the new security configuration was created.</p>
     #[serde(rename = "CreatedTimestamp")]
@@ -1362,6 +1391,7 @@ pub struct CreateSecurityConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTableRequest {
     /// <p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1376,10 +1406,11 @@ pub struct CreateTableRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTableResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTriggerRequest {
     /// <p>The actions initiated by this trigger when it fires.</p>
     #[serde(rename = "Actions")]
@@ -1417,7 +1448,7 @@ pub struct CreateTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTriggerResponse {
     /// <p>The name of the trigger.</p>
     #[serde(rename = "Name")]
@@ -1426,6 +1457,7 @@ pub struct CreateTriggerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUserDefinedFunctionRequest {
     /// <p>The ID of the Data Catalog in which to create the function. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1440,10 +1472,11 @@ pub struct CreateUserDefinedFunctionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUserDefinedFunctionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateWorkflowRequest {
     /// <p>A collection of properties to be used as part of each execution of the workflow.</p>
     #[serde(rename = "DefaultRunProperties")]
@@ -1463,7 +1496,7 @@ pub struct CreateWorkflowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateWorkflowResponse {
     /// <p>The name of the workflow which was provided as part of the request.</p>
     #[serde(rename = "Name")]
@@ -1473,6 +1506,7 @@ pub struct CreateWorkflowResponse {
 
 /// <p>Specifies an XML classifier for <code>CreateClassifier</code> to create.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateXMLClassifierRequest {
     /// <p>An identifier of the data format that the classifier matches.</p>
     #[serde(rename = "Classification")]
@@ -1488,7 +1522,7 @@ pub struct CreateXMLClassifierRequest {
 
 /// <p>A classifier for custom <code>CSV</code> content.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CsvClassifier {
     /// <p>Enables the processing of files that contain only one column.</p>
     #[serde(rename = "AllowSingleColumn")]
@@ -1555,7 +1589,7 @@ pub struct DataLakePrincipal {
 
 /// <p>The <code>Database</code> object represents a logical grouping of tables that might reside in a Hive metastore or an RDBMS.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Database {
     /// <p>Creates a set of default permissions on the table for principals. </p>
     #[serde(rename = "CreateTableDefaultPermissions")]
@@ -1584,6 +1618,7 @@ pub struct Database {
 
 /// <p>The structure used to create or update a database.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DatabaseInput {
     /// <p>Creates a set of default permissions on the table for principals. </p>
     #[serde(rename = "CreateTableDefaultPermissions")]
@@ -1607,6 +1642,7 @@ pub struct DatabaseInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteClassifierRequest {
     /// <p>Name of the classifier to remove.</p>
     #[serde(rename = "Name")]
@@ -1614,10 +1650,11 @@ pub struct DeleteClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteClassifierResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConnectionRequest {
     /// <p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1629,10 +1666,11 @@ pub struct DeleteConnectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConnectionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCrawlerRequest {
     /// <p>The name of the crawler to remove.</p>
     #[serde(rename = "Name")]
@@ -1640,10 +1678,11 @@ pub struct DeleteCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteCrawlerResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDatabaseRequest {
     /// <p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1655,10 +1694,11 @@ pub struct DeleteDatabaseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDatabaseResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDevEndpointRequest {
     /// <p>The name of the <code>DevEndpoint</code>.</p>
     #[serde(rename = "EndpointName")]
@@ -1666,10 +1706,11 @@ pub struct DeleteDevEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDevEndpointResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteJobRequest {
     /// <p>The name of the job definition to delete.</p>
     #[serde(rename = "JobName")]
@@ -1677,7 +1718,7 @@ pub struct DeleteJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteJobResponse {
     /// <p>The name of the job definition that was deleted.</p>
     #[serde(rename = "JobName")]
@@ -1686,6 +1727,7 @@ pub struct DeleteJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMLTransformRequest {
     /// <p>The unique identifier of the transform to delete.</p>
     #[serde(rename = "TransformId")]
@@ -1693,7 +1735,7 @@ pub struct DeleteMLTransformRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMLTransformResponse {
     /// <p>The unique identifier of the transform that was deleted.</p>
     #[serde(rename = "TransformId")]
@@ -1702,6 +1744,7 @@ pub struct DeleteMLTransformResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePartitionRequest {
     /// <p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1719,10 +1762,11 @@ pub struct DeletePartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePartitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourcePolicyRequest {
     /// <p>The hash value returned when this policy was set.</p>
     #[serde(rename = "PolicyHashCondition")]
@@ -1731,10 +1775,11 @@ pub struct DeleteResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteResourcePolicyResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSecurityConfigurationRequest {
     /// <p>The name of the security configuration to delete.</p>
     #[serde(rename = "Name")]
@@ -1742,10 +1787,11 @@ pub struct DeleteSecurityConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSecurityConfigurationResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTableRequest {
     /// <p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1760,10 +1806,11 @@ pub struct DeleteTableRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTableResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTableVersionRequest {
     /// <p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1781,10 +1828,11 @@ pub struct DeleteTableVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTableVersionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTriggerRequest {
     /// <p>The name of the trigger to delete.</p>
     #[serde(rename = "Name")]
@@ -1792,7 +1840,7 @@ pub struct DeleteTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTriggerResponse {
     /// <p>The name of the trigger that was deleted.</p>
     #[serde(rename = "Name")]
@@ -1801,6 +1849,7 @@ pub struct DeleteTriggerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUserDefinedFunctionRequest {
     /// <p>The ID of the Data Catalog where the function to be deleted is located. If none is supplied, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -1815,10 +1864,11 @@ pub struct DeleteUserDefinedFunctionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUserDefinedFunctionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteWorkflowRequest {
     /// <p>Name of the workflow to be deleted.</p>
     #[serde(rename = "Name")]
@@ -1826,7 +1876,7 @@ pub struct DeleteWorkflowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteWorkflowResponse {
     /// <p>Name of the workflow specified in input.</p>
     #[serde(rename = "Name")]
@@ -1836,7 +1886,7 @@ pub struct DeleteWorkflowResponse {
 
 /// <p>A development endpoint where a developer can remotely debug extract, transform, and load (ETL) scripts.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DevEndpoint {
     /// <p>A map of arguments used to configure the <code>DevEndpoint</code>.</p> <p>Valid arguments are:</p> <ul> <li> <p> <code>"--enable-glue-datacatalog": ""</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "3"</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "2"</code> </p> </li> </ul> <p>You can specify a version of Python support for development endpoints by using the <code>Arguments</code> parameter in the <code>CreateDevEndpoint</code> or <code>UpdateDevEndpoint</code> APIs. If no arguments are provided, the version defaults to Python 2.</p>
     #[serde(rename = "Arguments")]
@@ -1942,6 +1992,7 @@ pub struct DevEndpoint {
 
 /// <p>Custom libraries to be loaded into a development endpoint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DevEndpointCustomLibraries {
     /// <p><p>The path to one or more Java <code>.jar</code> files in an S3 bucket that should be loaded in your <code>DevEndpoint</code>.</p> <note> <p>You can only use pure Java/Scala libraries with a <code>DevEndpoint</code>.</p> </note></p>
     #[serde(rename = "ExtraJarsS3Path")]
@@ -1964,7 +2015,7 @@ pub struct DynamoDBTarget {
 
 /// <p>An edge represents a directed connection between two AWS Glue components which are part of the workflow the edge belongs to.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Edge {
     /// <p>The unique of the node within the workflow where the edge ends.</p>
     #[serde(rename = "DestinationId")]
@@ -2007,7 +2058,7 @@ pub struct EncryptionConfiguration {
 
 /// <p>Contains details about an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorDetail {
     /// <p>The code associated with this error.</p>
     #[serde(rename = "ErrorCode")]
@@ -2021,7 +2072,7 @@ pub struct ErrorDetail {
 
 /// <p>Evaluation metrics provide an estimate of the quality of your machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EvaluationMetrics {
     /// <p>The evaluation metrics for the find matches algorithm.</p>
     #[serde(rename = "FindMatchesMetrics")]
@@ -2043,7 +2094,7 @@ pub struct ExecutionProperty {
 
 /// <p>Specifies configuration properties for an exporting labels task run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportLabelsTaskRunProperties {
     /// <p>The Amazon Simple Storage Service (Amazon S3) path where you will export the labels.</p>
     #[serde(rename = "OutputS3Path")]
@@ -2053,7 +2104,7 @@ pub struct ExportLabelsTaskRunProperties {
 
 /// <p>The evaluation metrics for the find matches algorithm. The quality of your machine learning transform is measured by getting your transform to predict some matches and comparing the results to known matches from the same dataset. The quality metrics are based on a subset of your data, so they are not precise.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FindMatchesMetrics {
     /// <p>The area under the precision/recall curve (AUPRC) is a single number measuring the overall quality of the transform, that is independent of the choice made for precision vs. recall. Higher values indicate that you have a more attractive precision vs. recall tradeoff.</p> <p>For more information, see <a href="https://en.wikipedia.org/wiki/Precision_and_recall">Precision and recall</a> in Wikipedia.</p>
     #[serde(rename = "AreaUnderPRCurve")]
@@ -2100,7 +2151,7 @@ pub struct FindMatchesParameters {
 
 /// <p>Specifies configuration properties for a Find Matches task run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FindMatchesTaskRunProperties {
     /// <p>The job ID for the Find Matches task run.</p>
     #[serde(rename = "JobId")]
@@ -2117,6 +2168,7 @@ pub struct FindMatchesTaskRunProperties {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCatalogImportStatusRequest {
     /// <p>The ID of the catalog to migrate. Currently, this should be the AWS account ID.</p>
     #[serde(rename = "CatalogId")]
@@ -2125,7 +2177,7 @@ pub struct GetCatalogImportStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCatalogImportStatusResponse {
     /// <p>The status of the specified catalog migration.</p>
     #[serde(rename = "ImportStatus")]
@@ -2134,6 +2186,7 @@ pub struct GetCatalogImportStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetClassifierRequest {
     /// <p>Name of the classifier to retrieve.</p>
     #[serde(rename = "Name")]
@@ -2141,7 +2194,7 @@ pub struct GetClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetClassifierResponse {
     /// <p>The requested classifier.</p>
     #[serde(rename = "Classifier")]
@@ -2150,6 +2203,7 @@ pub struct GetClassifierResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetClassifiersRequest {
     /// <p>The size of the list to return (optional).</p>
     #[serde(rename = "MaxResults")]
@@ -2162,7 +2216,7 @@ pub struct GetClassifiersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetClassifiersResponse {
     /// <p>The requested list of classifier objects.</p>
     #[serde(rename = "Classifiers")]
@@ -2175,6 +2229,7 @@ pub struct GetClassifiersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectionRequest {
     /// <p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2190,7 +2245,7 @@ pub struct GetConnectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectionResponse {
     /// <p>The requested connection definition.</p>
     #[serde(rename = "Connection")]
@@ -2200,6 +2255,7 @@ pub struct GetConnectionResponse {
 
 /// <p>Filters the connection definitions that are returned by the <code>GetConnections</code> API operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectionsFilter {
     /// <p>The type of connections to return. Currently, only JDBC is supported; SFTP is not supported.</p>
     #[serde(rename = "ConnectionType")]
@@ -2212,6 +2268,7 @@ pub struct GetConnectionsFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectionsRequest {
     /// <p>The ID of the Data Catalog in which the connections reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2236,7 +2293,7 @@ pub struct GetConnectionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectionsResponse {
     /// <p>A list of requested connection definitions.</p>
     #[serde(rename = "ConnectionList")]
@@ -2249,6 +2306,7 @@ pub struct GetConnectionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCrawlerMetricsRequest {
     /// <p>A list of the names of crawlers about which to retrieve metrics.</p>
     #[serde(rename = "CrawlerNameList")]
@@ -2265,7 +2323,7 @@ pub struct GetCrawlerMetricsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCrawlerMetricsResponse {
     /// <p>A list of metrics for the specified crawler.</p>
     #[serde(rename = "CrawlerMetricsList")]
@@ -2278,6 +2336,7 @@ pub struct GetCrawlerMetricsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCrawlerRequest {
     /// <p>The name of the crawler to retrieve metadata for.</p>
     #[serde(rename = "Name")]
@@ -2285,7 +2344,7 @@ pub struct GetCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCrawlerResponse {
     /// <p>The metadata for the specified crawler.</p>
     #[serde(rename = "Crawler")]
@@ -2294,6 +2353,7 @@ pub struct GetCrawlerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCrawlersRequest {
     /// <p>The number of crawlers to return on each call.</p>
     #[serde(rename = "MaxResults")]
@@ -2306,7 +2366,7 @@ pub struct GetCrawlersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCrawlersResponse {
     /// <p>A list of crawler metadata.</p>
     #[serde(rename = "Crawlers")]
@@ -2319,6 +2379,7 @@ pub struct GetCrawlersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDataCatalogEncryptionSettingsRequest {
     /// <p>The ID of the Data Catalog to retrieve the security configuration for. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2327,7 +2388,7 @@ pub struct GetDataCatalogEncryptionSettingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDataCatalogEncryptionSettingsResponse {
     /// <p>The requested security configuration.</p>
     #[serde(rename = "DataCatalogEncryptionSettings")]
@@ -2336,6 +2397,7 @@ pub struct GetDataCatalogEncryptionSettingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDatabaseRequest {
     /// <p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2347,7 +2409,7 @@ pub struct GetDatabaseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDatabaseResponse {
     /// <p>The definition of the specified database in the Data Catalog.</p>
     #[serde(rename = "Database")]
@@ -2356,6 +2418,7 @@ pub struct GetDatabaseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDatabasesRequest {
     /// <p>The ID of the Data Catalog from which to retrieve <code>Databases</code>. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2372,7 +2435,7 @@ pub struct GetDatabasesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDatabasesResponse {
     /// <p>A list of <code>Database</code> objects from the specified catalog.</p>
     #[serde(rename = "DatabaseList")]
@@ -2384,6 +2447,7 @@ pub struct GetDatabasesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDataflowGraphRequest {
     /// <p>The Python script to transform.</p>
     #[serde(rename = "PythonScript")]
@@ -2392,7 +2456,7 @@ pub struct GetDataflowGraphRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDataflowGraphResponse {
     /// <p>A list of the edges in the resulting DAG.</p>
     #[serde(rename = "DagEdges")]
@@ -2405,6 +2469,7 @@ pub struct GetDataflowGraphResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDevEndpointRequest {
     /// <p>Name of the <code>DevEndpoint</code> to retrieve information for.</p>
     #[serde(rename = "EndpointName")]
@@ -2412,7 +2477,7 @@ pub struct GetDevEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDevEndpointResponse {
     /// <p>A <code>DevEndpoint</code> definition.</p>
     #[serde(rename = "DevEndpoint")]
@@ -2421,6 +2486,7 @@ pub struct GetDevEndpointResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDevEndpointsRequest {
     /// <p>The maximum size of information to return.</p>
     #[serde(rename = "MaxResults")]
@@ -2433,7 +2499,7 @@ pub struct GetDevEndpointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDevEndpointsResponse {
     /// <p>A list of <code>DevEndpoint</code> definitions.</p>
     #[serde(rename = "DevEndpoints")]
@@ -2446,6 +2512,7 @@ pub struct GetDevEndpointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobBookmarkRequest {
     /// <p>The name of the job in question.</p>
     #[serde(rename = "JobName")]
@@ -2457,7 +2524,7 @@ pub struct GetJobBookmarkRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobBookmarkResponse {
     /// <p>A structure that defines a point that a job can resume processing.</p>
     #[serde(rename = "JobBookmarkEntry")]
@@ -2466,6 +2533,7 @@ pub struct GetJobBookmarkResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRequest {
     /// <p>The name of the job definition to retrieve.</p>
     #[serde(rename = "JobName")]
@@ -2473,7 +2541,7 @@ pub struct GetJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobResponse {
     /// <p>The requested job definition.</p>
     #[serde(rename = "Job")]
@@ -2482,6 +2550,7 @@ pub struct GetJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRunRequest {
     /// <p>Name of the job definition being run.</p>
     #[serde(rename = "JobName")]
@@ -2496,7 +2565,7 @@ pub struct GetJobRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobRunResponse {
     /// <p>The requested job-run metadata.</p>
     #[serde(rename = "JobRun")]
@@ -2505,6 +2574,7 @@ pub struct GetJobRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRunsRequest {
     /// <p>The name of the job definition for which to retrieve all job runs.</p>
     #[serde(rename = "JobName")]
@@ -2520,7 +2590,7 @@ pub struct GetJobRunsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobRunsResponse {
     /// <p>A list of job-run metadata objects.</p>
     #[serde(rename = "JobRuns")]
@@ -2533,6 +2603,7 @@ pub struct GetJobRunsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobsRequest {
     /// <p>The maximum size of the response.</p>
     #[serde(rename = "MaxResults")]
@@ -2545,7 +2616,7 @@ pub struct GetJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobsResponse {
     /// <p>A list of job definitions.</p>
     #[serde(rename = "Jobs")]
@@ -2558,6 +2629,7 @@ pub struct GetJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMLTaskRunRequest {
     /// <p>The unique identifier of the task run.</p>
     #[serde(rename = "TaskRunId")]
@@ -2568,7 +2640,7 @@ pub struct GetMLTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMLTaskRunResponse {
     /// <p>The date and time when this task run was completed.</p>
     #[serde(rename = "CompletedOn")]
@@ -2613,6 +2685,7 @@ pub struct GetMLTaskRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMLTaskRunsRequest {
     /// <p>The filter criteria, in the <code>TaskRunFilterCriteria</code> structure, for the task run.</p>
     #[serde(rename = "Filter")]
@@ -2636,7 +2709,7 @@ pub struct GetMLTaskRunsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMLTaskRunsResponse {
     /// <p>A pagination token, if more results are available.</p>
     #[serde(rename = "NextToken")]
@@ -2649,6 +2722,7 @@ pub struct GetMLTaskRunsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMLTransformRequest {
     /// <p>The unique identifier of the transform, generated at the time that the transform was created.</p>
     #[serde(rename = "TransformId")]
@@ -2656,7 +2730,7 @@ pub struct GetMLTransformRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMLTransformResponse {
     /// <p>The date and time when the transform was created.</p>
     #[serde(rename = "CreatedOn")]
@@ -2733,6 +2807,7 @@ pub struct GetMLTransformResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMLTransformsRequest {
     /// <p>The filter transformation criteria.</p>
     #[serde(rename = "Filter")]
@@ -2753,7 +2828,7 @@ pub struct GetMLTransformsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMLTransformsResponse {
     /// <p>A pagination token, if more results are available.</p>
     #[serde(rename = "NextToken")]
@@ -2765,6 +2840,7 @@ pub struct GetMLTransformsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMappingRequest {
     /// <p>Parameters for the mapping.</p>
     #[serde(rename = "Location")]
@@ -2780,7 +2856,7 @@ pub struct GetMappingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMappingResponse {
     /// <p>A list of mappings to the specified targets.</p>
     #[serde(rename = "Mapping")]
@@ -2788,6 +2864,7 @@ pub struct GetMappingResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPartitionRequest {
     /// <p>The ID of the Data Catalog where the partition in question resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2805,7 +2882,7 @@ pub struct GetPartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPartitionResponse {
     /// <p>The requested information, in the form of a <code>Partition</code> object.</p>
     #[serde(rename = "Partition")]
@@ -2814,6 +2891,7 @@ pub struct GetPartitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPartitionsRequest {
     /// <p>The ID of the Data Catalog where the partitions in question reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2844,7 +2922,7 @@ pub struct GetPartitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPartitionsResponse {
     /// <p>A continuation token, if the returned list of partitions does not include the last one.</p>
     #[serde(rename = "NextToken")]
@@ -2857,6 +2935,7 @@ pub struct GetPartitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPlanRequest {
     /// <p>The programming language of the code to perform the mapping.</p>
     #[serde(rename = "Language")]
@@ -2879,7 +2958,7 @@ pub struct GetPlanRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPlanResponse {
     /// <p>A Python script to perform the mapping.</p>
     #[serde(rename = "PythonScript")]
@@ -2892,10 +2971,11 @@ pub struct GetPlanResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetResourcePolicyRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetResourcePolicyResponse {
     /// <p>The date and time at which the policy was created.</p>
     #[serde(rename = "CreateTime")]
@@ -2916,6 +2996,7 @@ pub struct GetResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSecurityConfigurationRequest {
     /// <p>The name of the security configuration to retrieve.</p>
     #[serde(rename = "Name")]
@@ -2923,7 +3004,7 @@ pub struct GetSecurityConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSecurityConfigurationResponse {
     /// <p>The requested security configuration.</p>
     #[serde(rename = "SecurityConfiguration")]
@@ -2932,6 +3013,7 @@ pub struct GetSecurityConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSecurityConfigurationsRequest {
     /// <p>The maximum number of results to return.</p>
     #[serde(rename = "MaxResults")]
@@ -2944,7 +3026,7 @@ pub struct GetSecurityConfigurationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSecurityConfigurationsResponse {
     /// <p>A continuation token, if there are more security configurations to return.</p>
     #[serde(rename = "NextToken")]
@@ -2957,6 +3039,7 @@ pub struct GetSecurityConfigurationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTableRequest {
     /// <p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2971,7 +3054,7 @@ pub struct GetTableRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTableResponse {
     /// <p>The <code>Table</code> object that defines the specified table.</p>
     #[serde(rename = "Table")]
@@ -2980,6 +3063,7 @@ pub struct GetTableResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTableVersionRequest {
     /// <p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -2998,7 +3082,7 @@ pub struct GetTableVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTableVersionResponse {
     /// <p>The requested table version.</p>
     #[serde(rename = "TableVersion")]
@@ -3007,6 +3091,7 @@ pub struct GetTableVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTableVersionsRequest {
     /// <p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -3029,7 +3114,7 @@ pub struct GetTableVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTableVersionsResponse {
     /// <p>A continuation token, if the list of available versions does not include the last one.</p>
     #[serde(rename = "NextToken")]
@@ -3042,6 +3127,7 @@ pub struct GetTableVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTablesRequest {
     /// <p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -3065,7 +3151,7 @@ pub struct GetTablesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTablesResponse {
     /// <p>A continuation token, present if the current list segment is not the last.</p>
     #[serde(rename = "NextToken")]
@@ -3078,6 +3164,7 @@ pub struct GetTablesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTagsRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource for which to retrieve tags.</p>
     #[serde(rename = "ResourceArn")]
@@ -3085,7 +3172,7 @@ pub struct GetTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTagsResponse {
     /// <p>The requested tags.</p>
     #[serde(rename = "Tags")]
@@ -3094,6 +3181,7 @@ pub struct GetTagsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTriggerRequest {
     /// <p>The name of the trigger to retrieve.</p>
     #[serde(rename = "Name")]
@@ -3101,7 +3189,7 @@ pub struct GetTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTriggerResponse {
     /// <p>The requested trigger definition.</p>
     #[serde(rename = "Trigger")]
@@ -3110,6 +3198,7 @@ pub struct GetTriggerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTriggersRequest {
     /// <p>The name of the job to retrieve triggers for. The trigger that can start this job is returned, and if there is no such trigger, all triggers are returned.</p>
     #[serde(rename = "DependentJobName")]
@@ -3126,7 +3215,7 @@ pub struct GetTriggersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTriggersResponse {
     /// <p>A continuation token, if not all the requested triggers have yet been returned.</p>
     #[serde(rename = "NextToken")]
@@ -3139,6 +3228,7 @@ pub struct GetTriggersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUserDefinedFunctionRequest {
     /// <p>The ID of the Data Catalog where the function to be retrieved is located. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -3153,7 +3243,7 @@ pub struct GetUserDefinedFunctionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUserDefinedFunctionResponse {
     /// <p>The requested function definition.</p>
     #[serde(rename = "UserDefinedFunction")]
@@ -3162,6 +3252,7 @@ pub struct GetUserDefinedFunctionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUserDefinedFunctionsRequest {
     /// <p>The ID of the Data Catalog where the functions to be retrieved are located. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -3184,7 +3275,7 @@ pub struct GetUserDefinedFunctionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUserDefinedFunctionsResponse {
     /// <p>A continuation token, if the list of functions returned does not include the last requested function.</p>
     #[serde(rename = "NextToken")]
@@ -3197,6 +3288,7 @@ pub struct GetUserDefinedFunctionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetWorkflowRequest {
     /// <p>Specifies whether to include a graph when returning the workflow resource metadata.</p>
     #[serde(rename = "IncludeGraph")]
@@ -3208,7 +3300,7 @@ pub struct GetWorkflowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetWorkflowResponse {
     /// <p>The resource metadata for the workflow.</p>
     #[serde(rename = "Workflow")]
@@ -3217,6 +3309,7 @@ pub struct GetWorkflowResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetWorkflowRunPropertiesRequest {
     /// <p>Name of the workflow which was run.</p>
     #[serde(rename = "Name")]
@@ -3227,7 +3320,7 @@ pub struct GetWorkflowRunPropertiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetWorkflowRunPropertiesResponse {
     /// <p>The workflow run properties which were set during the specified run.</p>
     #[serde(rename = "RunProperties")]
@@ -3236,6 +3329,7 @@ pub struct GetWorkflowRunPropertiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetWorkflowRunRequest {
     /// <p>Specifies whether to include the workflow graph in response or not.</p>
     #[serde(rename = "IncludeGraph")]
@@ -3250,7 +3344,7 @@ pub struct GetWorkflowRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetWorkflowRunResponse {
     /// <p>The requested workflow run metadata.</p>
     #[serde(rename = "Run")]
@@ -3259,6 +3353,7 @@ pub struct GetWorkflowRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetWorkflowRunsRequest {
     /// <p>Specifies whether to include the workflow graph in response or not.</p>
     #[serde(rename = "IncludeGraph")]
@@ -3278,7 +3373,7 @@ pub struct GetWorkflowRunsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetWorkflowRunsResponse {
     /// <p>A continuation token, if not all requested workflow runs have been returned.</p>
     #[serde(rename = "NextToken")]
@@ -3311,7 +3406,7 @@ pub struct GlueTable {
 
 /// <p>A classifier that uses <code>grok</code> patterns.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GrokClassifier {
     /// <p>An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, and so on.</p>
     #[serde(rename = "Classification")]
@@ -3341,6 +3436,7 @@ pub struct GrokClassifier {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportCatalogToGlueRequest {
     /// <p>The ID of the catalog to import. Currently, this should be the AWS account ID.</p>
     #[serde(rename = "CatalogId")]
@@ -3349,12 +3445,12 @@ pub struct ImportCatalogToGlueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportCatalogToGlueResponse {}
 
 /// <p>Specifies configuration properties for an importing labels task run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportLabelsTaskRunProperties {
     /// <p>The Amazon Simple Storage Service (Amazon S3) path from where you will import the labels.</p>
     #[serde(rename = "InputS3Path")]
@@ -3385,7 +3481,7 @@ pub struct JdbcTarget {
 
 /// <p>Specifies a job definition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Job {
     /// <p>The <code>JobCommand</code> that executes this job.</p>
     #[serde(rename = "Command")]
@@ -3463,7 +3559,7 @@ pub struct Job {
 
 /// <p>Defines a point that a job can resume processing.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobBookmarkEntry {
     /// <p>The attempt ID number.</p>
     #[serde(rename = "Attempt")]
@@ -3527,7 +3623,7 @@ pub struct JobCommand {
 
 /// <p>The details of a Job node present in the workflow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobNodeDetails {
     /// <p>The information for the job runs represented by the job node.</p>
     #[serde(rename = "JobRuns")]
@@ -3537,7 +3633,7 @@ pub struct JobNodeDetails {
 
 /// <p>Contains information about a job run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobRun {
     /// <p>The job arguments associated with this run. For this job run, they replace the default arguments set in the job definition itself.</p> <p>You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes.</p> <p>For information about how to specify and consume your own job arguments, see the <a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling AWS Glue APIs in Python</a> topic in the developer guide.</p> <p>For information about the key-value pairs that AWS Glue consumes to set up your job, see the <a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special Parameters Used by AWS Glue</a> topic in the developer guide.</p>
     #[serde(rename = "Arguments")]
@@ -3627,6 +3723,7 @@ pub struct JobRun {
 
 /// <p>Specifies information used to update an existing job definition. The previous job definition is completely overwritten by this information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct JobUpdate {
     /// <p>The <code>JobCommand</code> that executes this job (required).</p>
     #[serde(rename = "Command")]
@@ -3692,7 +3789,7 @@ pub struct JobUpdate {
 
 /// <p>A classifier for <code>JSON</code> content.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JsonClassifier {
     /// <p>The time that this classifier was registered.</p>
     #[serde(rename = "CreationTime")]
@@ -3716,7 +3813,7 @@ pub struct JsonClassifier {
 
 /// <p>Specifies configuration properties for a labeling set generation task run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LabelingSetGenerationTaskRunProperties {
     /// <p>The Amazon Simple Storage Service (Amazon S3) path where you will generate the labeling set.</p>
     #[serde(rename = "OutputS3Path")]
@@ -3726,7 +3823,7 @@ pub struct LabelingSetGenerationTaskRunProperties {
 
 /// <p>Status and error information about the most recent crawl.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LastCrawlInfo {
     /// <p>If an error occurred, the error information about the last crawl.</p>
     #[serde(rename = "ErrorMessage")]
@@ -3755,6 +3852,7 @@ pub struct LastCrawlInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCrawlersRequest {
     /// <p>The maximum size of a list to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3771,7 +3869,7 @@ pub struct ListCrawlersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCrawlersResponse {
     /// <p>The names of all crawlers in the account, or the crawlers with the specified tags.</p>
     #[serde(rename = "CrawlerNames")]
@@ -3784,6 +3882,7 @@ pub struct ListCrawlersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDevEndpointsRequest {
     /// <p>The maximum size of a list to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3800,7 +3899,7 @@ pub struct ListDevEndpointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDevEndpointsResponse {
     /// <p>The names of all the <code>DevEndpoint</code>s in the account, or the <code>DevEndpoint</code>s with the specified tags.</p>
     #[serde(rename = "DevEndpointNames")]
@@ -3813,6 +3912,7 @@ pub struct ListDevEndpointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>The maximum size of a list to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3829,7 +3929,7 @@ pub struct ListJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResponse {
     /// <p>The names of all jobs in the account, or the jobs with the specified tags.</p>
     #[serde(rename = "JobNames")]
@@ -3842,6 +3942,7 @@ pub struct ListJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTriggersRequest {
     /// <p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>
     #[serde(rename = "DependentJobName")]
@@ -3862,7 +3963,7 @@ pub struct ListTriggersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTriggersResponse {
     /// <p>A continuation token, if the returned list does not contain the last metric available.</p>
     #[serde(rename = "NextToken")]
@@ -3875,6 +3976,7 @@ pub struct ListTriggersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListWorkflowsRequest {
     /// <p>The maximum size of a list to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3887,7 +3989,7 @@ pub struct ListWorkflowsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListWorkflowsResponse {
     /// <p>A continuation token, if not all workflow names have been returned.</p>
     #[serde(rename = "NextToken")]
@@ -3901,6 +4003,7 @@ pub struct ListWorkflowsResponse {
 
 /// <p>The location of resources.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Location {
     /// <p>An Amazon DynamoDB table location.</p>
     #[serde(rename = "DynamoDB")]
@@ -3918,7 +4021,7 @@ pub struct Location {
 
 /// <p>A structure for a machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MLTransform {
     /// <p>A timestamp. The time and date that this machine learning transform was created.</p>
     #[serde(rename = "CreatedOn")]
@@ -4025,7 +4128,7 @@ pub struct MappingEntry {
 
 /// <p>A node represents an AWS Glue component like Trigger, Job etc. which is part of a workflow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Node {
     /// <p>Details of the crawler when the node represents a crawler.</p>
     #[serde(rename = "CrawlerDetails")]
@@ -4075,7 +4178,7 @@ pub struct Order {
 
 /// <p>Represents a slice of table data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Partition {
     /// <p>The time at which the partition was created.</p>
     #[serde(rename = "CreationTime")]
@@ -4113,7 +4216,7 @@ pub struct Partition {
 
 /// <p>Contains information about a partition error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PartitionError {
     /// <p>The details about the partition error.</p>
     #[serde(rename = "ErrorDetail")]
@@ -4127,6 +4230,7 @@ pub struct PartitionError {
 
 /// <p>The structure used to create and update a partition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PartitionInput {
     /// <p>The last time at which the partition was accessed.</p>
     #[serde(rename = "LastAccessTime")]
@@ -4177,7 +4281,7 @@ pub struct PhysicalConnectionRequirements {
 
 /// <p>A job run that was used in the predicate of a conditional trigger that triggered this job run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Predecessor {
     /// <p>The name of the job definition used by the predecessor job run.</p>
     #[serde(rename = "JobName")]
@@ -4217,6 +4321,7 @@ pub struct PrincipalPermissions {
 
 /// <p>Defines a property predicate.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PropertyPredicate {
     /// <p>The comparator used to compare this property to others.</p>
     #[serde(rename = "Comparator")]
@@ -4233,6 +4338,7 @@ pub struct PropertyPredicate {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutDataCatalogEncryptionSettingsRequest {
     /// <p>The ID of the Data Catalog to set the security configuration for. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -4244,10 +4350,11 @@ pub struct PutDataCatalogEncryptionSettingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutDataCatalogEncryptionSettingsResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutResourcePolicyRequest {
     /// <p>A value of <code>MUST_EXIST</code> is used to update a policy. A value of <code>NOT_EXIST</code> is used to create a new policy. If a value of <code>NONE</code> or a null value is used, the call will not depend on the existence of a policy.</p>
     #[serde(rename = "PolicyExistsCondition")]
@@ -4263,7 +4370,7 @@ pub struct PutResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutResourcePolicyResponse {
     /// <p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>
     #[serde(rename = "PolicyHash")]
@@ -4272,6 +4379,7 @@ pub struct PutResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutWorkflowRunPropertiesRequest {
     /// <p>Name of the workflow which was run.</p>
     #[serde(rename = "Name")]
@@ -4285,10 +4393,11 @@ pub struct PutWorkflowRunPropertiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutWorkflowRunPropertiesResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetJobBookmarkRequest {
     /// <p>The name of the job in question.</p>
     #[serde(rename = "JobName")]
@@ -4300,7 +4409,7 @@ pub struct ResetJobBookmarkRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResetJobBookmarkResponse {
     /// <p>The reset bookmark entry.</p>
     #[serde(rename = "JobBookmarkEntry")]
@@ -4349,7 +4458,7 @@ pub struct S3Target {
 
 /// <p>A scheduling object using a <code>cron</code> statement to schedule an event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Schedule {
     /// <p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>
     #[serde(rename = "ScheduleExpression")]
@@ -4388,6 +4497,7 @@ pub struct SchemaColumn {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchTablesRequest {
     /// <p>A unique identifier, consisting of <code> <i>account_id</i>/datalake</code>.</p>
     #[serde(rename = "CatalogId")]
@@ -4416,7 +4526,7 @@ pub struct SearchTablesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchTablesResponse {
     /// <p>A continuation token, present if the current list segment is not the last.</p>
     #[serde(rename = "NextToken")]
@@ -4430,7 +4540,7 @@ pub struct SearchTablesResponse {
 
 /// <p>Specifies a security configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SecurityConfiguration {
     /// <p>The time at which this security configuration was created.</p>
     #[serde(rename = "CreatedTimeStamp")]
@@ -4448,6 +4558,7 @@ pub struct SecurityConfiguration {
 
 /// <p>Defines a non-overlapping region of a table's partitions, allowing multiple requests to be executed in parallel.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Segment {
     /// <p>The zero-based index number of the segment. For example, if the total number of segments is 4, <code>SegmentNumber</code> values range from 0 through 3.</p>
     #[serde(rename = "SegmentNumber")]
@@ -4493,6 +4604,7 @@ pub struct SkewedInfo {
 
 /// <p>Specifies a field to sort by and a sort order.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SortCriterion {
     /// <p>The name of the field on which to sort.</p>
     #[serde(rename = "FieldName")]
@@ -4505,6 +4617,7 @@ pub struct SortCriterion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartCrawlerRequest {
     /// <p>Name of the crawler to start.</p>
     #[serde(rename = "Name")]
@@ -4512,10 +4625,11 @@ pub struct StartCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartCrawlerResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartCrawlerScheduleRequest {
     /// <p>Name of the crawler to schedule.</p>
     #[serde(rename = "CrawlerName")]
@@ -4523,10 +4637,11 @@ pub struct StartCrawlerScheduleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartCrawlerScheduleResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartExportLabelsTaskRunRequest {
     /// <p>The Amazon S3 path where you export the labels.</p>
     #[serde(rename = "OutputS3Path")]
@@ -4537,7 +4652,7 @@ pub struct StartExportLabelsTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartExportLabelsTaskRunResponse {
     /// <p>The unique identifier for the task run.</p>
     #[serde(rename = "TaskRunId")]
@@ -4546,6 +4661,7 @@ pub struct StartExportLabelsTaskRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartImportLabelsTaskRunRequest {
     /// <p>The Amazon Simple Storage Service (Amazon S3) path from where you import the labels.</p>
     #[serde(rename = "InputS3Path")]
@@ -4560,7 +4676,7 @@ pub struct StartImportLabelsTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartImportLabelsTaskRunResponse {
     /// <p>The unique identifier for the task run.</p>
     #[serde(rename = "TaskRunId")]
@@ -4569,6 +4685,7 @@ pub struct StartImportLabelsTaskRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartJobRunRequest {
     /// <p>The job arguments specifically for this run. For this job run, they replace the default arguments set in the job definition itself.</p> <p>You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes.</p> <p>For information about how to specify and consume your own Job arguments, see the <a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling AWS Glue APIs in Python</a> topic in the developer guide.</p> <p>For information about the key-value pairs that AWS Glue consumes to set up your job, see the <a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special Parameters Used by AWS Glue</a> topic in the developer guide.</p>
     #[serde(rename = "Arguments")]
@@ -4608,7 +4725,7 @@ pub struct StartJobRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartJobRunResponse {
     /// <p>The ID assigned to this job run.</p>
     #[serde(rename = "JobRunId")]
@@ -4617,6 +4734,7 @@ pub struct StartJobRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMLEvaluationTaskRunRequest {
     /// <p>The unique identifier of the machine learning transform.</p>
     #[serde(rename = "TransformId")]
@@ -4624,7 +4742,7 @@ pub struct StartMLEvaluationTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMLEvaluationTaskRunResponse {
     /// <p>The unique identifier associated with this run.</p>
     #[serde(rename = "TaskRunId")]
@@ -4633,6 +4751,7 @@ pub struct StartMLEvaluationTaskRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMLLabelingSetGenerationTaskRunRequest {
     /// <p>The Amazon Simple Storage Service (Amazon S3) path where you generate the labeling set.</p>
     #[serde(rename = "OutputS3Path")]
@@ -4643,7 +4762,7 @@ pub struct StartMLLabelingSetGenerationTaskRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMLLabelingSetGenerationTaskRunResponse {
     /// <p>The unique run identifier that is associated with this task run.</p>
     #[serde(rename = "TaskRunId")]
@@ -4652,6 +4771,7 @@ pub struct StartMLLabelingSetGenerationTaskRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartTriggerRequest {
     /// <p>The name of the trigger to start.</p>
     #[serde(rename = "Name")]
@@ -4659,7 +4779,7 @@ pub struct StartTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartTriggerResponse {
     /// <p>The name of the trigger that was started.</p>
     #[serde(rename = "Name")]
@@ -4668,6 +4788,7 @@ pub struct StartTriggerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartWorkflowRunRequest {
     /// <p>The name of the workflow to start.</p>
     #[serde(rename = "Name")]
@@ -4675,7 +4796,7 @@ pub struct StartWorkflowRunRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartWorkflowRunResponse {
     /// <p>An Id for the new run.</p>
     #[serde(rename = "RunId")]
@@ -4684,6 +4805,7 @@ pub struct StartWorkflowRunResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopCrawlerRequest {
     /// <p>Name of the crawler to stop.</p>
     #[serde(rename = "Name")]
@@ -4691,10 +4813,11 @@ pub struct StopCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopCrawlerResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopCrawlerScheduleRequest {
     /// <p>Name of the crawler whose schedule state to set.</p>
     #[serde(rename = "CrawlerName")]
@@ -4702,10 +4825,11 @@ pub struct StopCrawlerScheduleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopCrawlerScheduleResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopTriggerRequest {
     /// <p>The name of the trigger to stop.</p>
     #[serde(rename = "Name")]
@@ -4713,7 +4837,7 @@ pub struct StopTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopTriggerResponse {
     /// <p>The name of the trigger that was stopped.</p>
     #[serde(rename = "Name")]
@@ -4776,7 +4900,7 @@ pub struct StorageDescriptor {
 
 /// <p>Represents a collection of related data organized in columns and rows.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Table {
     /// <p>The time when the table definition was created in the Data Catalog.</p>
     #[serde(rename = "CreateTime")]
@@ -4849,7 +4973,7 @@ pub struct Table {
 
 /// <p>An error record for table operations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TableError {
     /// <p>The details about the error.</p>
     #[serde(rename = "ErrorDetail")]
@@ -4863,6 +4987,7 @@ pub struct TableError {
 
 /// <p>A structure used to define a table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TableInput {
     /// <p>A description of the table.</p>
     #[serde(rename = "Description")]
@@ -4915,7 +5040,7 @@ pub struct TableInput {
 
 /// <p>Specifies a version of a table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TableVersion {
     /// <p>The table in question.</p>
     #[serde(rename = "Table")]
@@ -4929,7 +5054,7 @@ pub struct TableVersion {
 
 /// <p>An error record for table-version operations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TableVersionError {
     /// <p>The details about the error.</p>
     #[serde(rename = "ErrorDetail")]
@@ -4946,6 +5071,7 @@ pub struct TableVersionError {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the AWS Glue resource to which to add the tags. For more information about AWS Glue resource ARNs, see the <a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id">AWS Glue ARN string pattern</a>.</p>
     #[serde(rename = "ResourceArn")]
@@ -4956,12 +5082,12 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>The sampling parameters that are associated with the machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TaskRun {
     /// <p>The last point in time that the requested task run was completed.</p>
     #[serde(rename = "CompletedOn")]
@@ -5007,6 +5133,7 @@ pub struct TaskRun {
 
 /// <p>The criteria that are used to filter the task runs for the machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TaskRunFilterCriteria {
     /// <p>Filter on task runs started after this date.</p>
     #[serde(rename = "StartedAfter")]
@@ -5028,7 +5155,7 @@ pub struct TaskRunFilterCriteria {
 
 /// <p>The configuration properties for the task run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TaskRunProperties {
     /// <p>The configuration properties for an exporting labels task run.</p>
     #[serde(rename = "ExportLabelsTaskRunProperties")]
@@ -5054,6 +5181,7 @@ pub struct TaskRunProperties {
 
 /// <p>The sorting criteria that are used to sort the list of task runs for the machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TaskRunSortCriteria {
     /// <p>The column to be used to sort the list of task runs for the machine learning transform.</p>
     #[serde(rename = "Column")]
@@ -5065,6 +5193,7 @@ pub struct TaskRunSortCriteria {
 
 /// <p>The criteria used to filter the machine learning transforms.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransformFilterCriteria {
     /// <p>The time and date after which the transforms were created.</p>
     #[serde(rename = "CreatedAfter")]
@@ -5118,6 +5247,7 @@ pub struct TransformParameters {
 
 /// <p>The sorting criteria that are associated with the machine learning transform.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransformSortCriteria {
     /// <p>The column to be used in the sorting criteria that are associated with the machine learning transform.</p>
     #[serde(rename = "Column")]
@@ -5129,7 +5259,7 @@ pub struct TransformSortCriteria {
 
 /// <p>Information about a specific trigger.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Trigger {
     /// <p>The actions initiated by this trigger.</p>
     #[serde(rename = "Actions")]
@@ -5171,7 +5301,7 @@ pub struct Trigger {
 
 /// <p>The details of a Trigger node present in the workflow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TriggerNodeDetails {
     /// <p>The information of the trigger represented by the trigger node.</p>
     #[serde(rename = "Trigger")]
@@ -5181,6 +5311,7 @@ pub struct TriggerNodeDetails {
 
 /// <p>A structure used to provide information used to update a trigger. This object updates the previous trigger definition by overwriting it completely.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TriggerUpdate {
     /// <p>The actions initiated by this trigger.</p>
     #[serde(rename = "Actions")]
@@ -5205,6 +5336,7 @@ pub struct TriggerUpdate {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource from which to remove the tags.</p>
     #[serde(rename = "ResourceArn")]
@@ -5215,10 +5347,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClassifierRequest {
     /// <p>A <code>CsvClassifier</code> object with updated fields.</p>
     #[serde(rename = "CsvClassifier")]
@@ -5239,10 +5372,11 @@ pub struct UpdateClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClassifierResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConnectionRequest {
     /// <p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -5257,10 +5391,11 @@ pub struct UpdateConnectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConnectionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateCrawlerRequest {
     /// <p>A list of custom classifiers that the user has registered. By default, all built-in classifiers are included in a crawl, but these custom classifiers always override the default classifiers for a given classification.</p>
     #[serde(rename = "Classifiers")]
@@ -5308,10 +5443,11 @@ pub struct UpdateCrawlerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateCrawlerResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateCrawlerScheduleRequest {
     /// <p>The name of the crawler whose schedule to update.</p>
     #[serde(rename = "CrawlerName")]
@@ -5323,11 +5459,12 @@ pub struct UpdateCrawlerScheduleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateCrawlerScheduleResponse {}
 
 /// <p>Specifies a custom CSV classifier to be updated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateCsvClassifierRequest {
     /// <p>Enables the processing of files that contain only one column.</p>
     #[serde(rename = "AllowSingleColumn")]
@@ -5359,6 +5496,7 @@ pub struct UpdateCsvClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDatabaseRequest {
     /// <p>The ID of the Data Catalog in which the metadata database resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -5373,10 +5511,11 @@ pub struct UpdateDatabaseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDatabaseResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDevEndpointRequest {
     /// <p>The map of arguments to add the map of arguments used to configure the <code>DevEndpoint</code>.</p> <p>Valid arguments are:</p> <ul> <li> <p> <code>"--enable-glue-datacatalog": ""</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "3"</code> </p> </li> <li> <p> <code>"GLUE_PYTHON_VERSION": "2"</code> </p> </li> </ul> <p>You can specify a version of Python support for development endpoints by using the <code>Arguments</code> parameter in the <code>CreateDevEndpoint</code> or <code>UpdateDevEndpoint</code> APIs. If no arguments are provided, the version defaults to Python 2.</p>
     #[serde(rename = "AddArguments")]
@@ -5412,11 +5551,12 @@ pub struct UpdateDevEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDevEndpointResponse {}
 
 /// <p>Specifies a grok classifier to update when passed to <code>UpdateClassifier</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGrokClassifierRequest {
     /// <p>An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, Amazon CloudWatch Logs, and so on.</p>
     #[serde(rename = "Classification")]
@@ -5436,6 +5576,7 @@ pub struct UpdateGrokClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobRequest {
     /// <p>The name of the job definition to update.</p>
     #[serde(rename = "JobName")]
@@ -5446,7 +5587,7 @@ pub struct UpdateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobResponse {
     /// <p>Returns the name of the updated job definition.</p>
     #[serde(rename = "JobName")]
@@ -5456,6 +5597,7 @@ pub struct UpdateJobResponse {
 
 /// <p>Specifies a JSON classifier to be updated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJsonClassifierRequest {
     /// <p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href="https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json">Writing JsonPath Custom Classifiers</a>.</p>
     #[serde(rename = "JsonPath")]
@@ -5467,6 +5609,7 @@ pub struct UpdateJsonClassifierRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMLTransformRequest {
     /// <p>A description of the transform. The default is an empty string.</p>
     #[serde(rename = "Description")]
@@ -5514,7 +5657,7 @@ pub struct UpdateMLTransformRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMLTransformResponse {
     /// <p>The unique identifier for the transform that was updated.</p>
     #[serde(rename = "TransformId")]
@@ -5523,6 +5666,7 @@ pub struct UpdateMLTransformResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePartitionRequest {
     /// <p>The ID of the Data Catalog where the partition to be updated resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -5543,10 +5687,11 @@ pub struct UpdatePartitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePartitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTableRequest {
     /// <p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -5565,10 +5710,11 @@ pub struct UpdateTableRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTableResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTriggerRequest {
     /// <p>The name of the trigger to update.</p>
     #[serde(rename = "Name")]
@@ -5579,7 +5725,7 @@ pub struct UpdateTriggerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTriggerResponse {
     /// <p>The resulting trigger definition.</p>
     #[serde(rename = "Trigger")]
@@ -5588,6 +5734,7 @@ pub struct UpdateTriggerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserDefinedFunctionRequest {
     /// <p>The ID of the Data Catalog where the function to be updated is located. If none is provided, the AWS account ID is used by default.</p>
     #[serde(rename = "CatalogId")]
@@ -5605,10 +5752,11 @@ pub struct UpdateUserDefinedFunctionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateUserDefinedFunctionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateWorkflowRequest {
     /// <p>A collection of properties to be used as part of each execution of the workflow.</p>
     #[serde(rename = "DefaultRunProperties")]
@@ -5624,7 +5772,7 @@ pub struct UpdateWorkflowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateWorkflowResponse {
     /// <p>The name of the workflow which was specified in input.</p>
     #[serde(rename = "Name")]
@@ -5634,6 +5782,7 @@ pub struct UpdateWorkflowResponse {
 
 /// <p>Specifies an XML classifier to be updated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateXMLClassifierRequest {
     /// <p>An identifier of the data format that the classifier matches.</p>
     #[serde(rename = "Classification")]
@@ -5650,7 +5799,7 @@ pub struct UpdateXMLClassifierRequest {
 
 /// <p>Represents the equivalent of a Hive user-defined function (<code>UDF</code>) definition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserDefinedFunction {
     /// <p>The Java class that contains the function code.</p>
     #[serde(rename = "ClassName")]
@@ -5680,6 +5829,7 @@ pub struct UserDefinedFunction {
 
 /// <p>A structure used to create or update a user-defined function.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UserDefinedFunctionInput {
     /// <p>The Java class that contains the function code.</p>
     #[serde(rename = "ClassName")]
@@ -5705,7 +5855,7 @@ pub struct UserDefinedFunctionInput {
 
 /// <p>A workflow represents a flow in which AWS Glue components should be executed to complete a logical task.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Workflow {
     /// <p>The date and time when the workflow was created.</p>
     #[serde(rename = "CreatedOn")]
@@ -5739,7 +5889,7 @@ pub struct Workflow {
 
 /// <p>A workflow graph represents the complete workflow containing all the AWS Glue components present in the workflow and all the directed connections between them.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct WorkflowGraph {
     /// <p>A list of all the directed connections between the nodes belonging to the workflow.</p>
     #[serde(rename = "Edges")]
@@ -5753,7 +5903,7 @@ pub struct WorkflowGraph {
 
 /// <p>A workflow run is an execution of a workflow providing all the runtime information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct WorkflowRun {
     /// <p>The date and time when the workflow run completed.</p>
     #[serde(rename = "CompletedOn")]
@@ -5791,7 +5941,7 @@ pub struct WorkflowRun {
 
 /// <p>Workflow run statistics provides statistics about the workflow run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct WorkflowRunStatistics {
     /// <p>Total number of Actions which have failed.</p>
     #[serde(rename = "FailedActions")]
@@ -5821,7 +5971,7 @@ pub struct WorkflowRunStatistics {
 
 /// <p>A classifier for <code>XML</code> content.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct XMLClassifier {
     /// <p>An identifier of the data format that the classifier matches.</p>
     #[serde(rename = "Classification")]
@@ -5905,23 +6055,22 @@ impl BatchCreatePartitionError {
     }
 }
 impl fmt::Display for BatchCreatePartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchCreatePartitionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchCreatePartitionError::AlreadyExists(ref cause) => cause,
-            BatchCreatePartitionError::EntityNotFound(ref cause) => cause,
-            BatchCreatePartitionError::GlueEncryption(ref cause) => cause,
-            BatchCreatePartitionError::InternalService(ref cause) => cause,
-            BatchCreatePartitionError::InvalidInput(ref cause) => cause,
-            BatchCreatePartitionError::OperationTimeout(ref cause) => cause,
-            BatchCreatePartitionError::ResourceNumberLimitExceeded(ref cause) => cause,
+            BatchCreatePartitionError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            BatchCreatePartitionError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchCreatePartitionError {}
 /// Errors returned by BatchDeleteConnection
 #[derive(Debug, PartialEq)]
 pub enum BatchDeleteConnectionError {
@@ -5953,18 +6102,15 @@ impl BatchDeleteConnectionError {
     }
 }
 impl fmt::Display for BatchDeleteConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeleteConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeleteConnectionError::InternalService(ref cause) => cause,
-            BatchDeleteConnectionError::OperationTimeout(ref cause) => cause,
+            BatchDeleteConnectionError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchDeleteConnectionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeleteConnectionError {}
 /// Errors returned by BatchDeletePartition
 #[derive(Debug, PartialEq)]
 pub enum BatchDeletePartitionError {
@@ -6006,20 +6152,17 @@ impl BatchDeletePartitionError {
     }
 }
 impl fmt::Display for BatchDeletePartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeletePartitionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeletePartitionError::EntityNotFound(ref cause) => cause,
-            BatchDeletePartitionError::InternalService(ref cause) => cause,
-            BatchDeletePartitionError::InvalidInput(ref cause) => cause,
-            BatchDeletePartitionError::OperationTimeout(ref cause) => cause,
+            BatchDeletePartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            BatchDeletePartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchDeletePartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchDeletePartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeletePartitionError {}
 /// Errors returned by BatchDeleteTable
 #[derive(Debug, PartialEq)]
 pub enum BatchDeleteTableError {
@@ -6057,20 +6200,17 @@ impl BatchDeleteTableError {
     }
 }
 impl fmt::Display for BatchDeleteTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeleteTableError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeleteTableError::EntityNotFound(ref cause) => cause,
-            BatchDeleteTableError::InternalService(ref cause) => cause,
-            BatchDeleteTableError::InvalidInput(ref cause) => cause,
-            BatchDeleteTableError::OperationTimeout(ref cause) => cause,
+            BatchDeleteTableError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeleteTableError {}
 /// Errors returned by BatchDeleteTableVersion
 #[derive(Debug, PartialEq)]
 pub enum BatchDeleteTableVersionError {
@@ -6116,20 +6256,17 @@ impl BatchDeleteTableVersionError {
     }
 }
 impl fmt::Display for BatchDeleteTableVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeleteTableVersionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeleteTableVersionError::EntityNotFound(ref cause) => cause,
-            BatchDeleteTableVersionError::InternalService(ref cause) => cause,
-            BatchDeleteTableVersionError::InvalidInput(ref cause) => cause,
-            BatchDeleteTableVersionError::OperationTimeout(ref cause) => cause,
+            BatchDeleteTableVersionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableVersionError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableVersionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchDeleteTableVersionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeleteTableVersionError {}
 /// Errors returned by BatchGetCrawlers
 #[derive(Debug, PartialEq)]
 pub enum BatchGetCrawlersError {
@@ -6157,18 +6294,15 @@ impl BatchGetCrawlersError {
     }
 }
 impl fmt::Display for BatchGetCrawlersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetCrawlersError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetCrawlersError::InvalidInput(ref cause) => cause,
-            BatchGetCrawlersError::OperationTimeout(ref cause) => cause,
+            BatchGetCrawlersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetCrawlersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetCrawlersError {}
 /// Errors returned by BatchGetDevEndpoints
 #[derive(Debug, PartialEq)]
 pub enum BatchGetDevEndpointsError {
@@ -6210,20 +6344,17 @@ impl BatchGetDevEndpointsError {
     }
 }
 impl fmt::Display for BatchGetDevEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetDevEndpointsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetDevEndpointsError::AccessDenied(ref cause) => cause,
-            BatchGetDevEndpointsError::InternalService(ref cause) => cause,
-            BatchGetDevEndpointsError::InvalidInput(ref cause) => cause,
-            BatchGetDevEndpointsError::OperationTimeout(ref cause) => cause,
+            BatchGetDevEndpointsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            BatchGetDevEndpointsError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchGetDevEndpointsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetDevEndpointsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetDevEndpointsError {}
 /// Errors returned by BatchGetJobs
 #[derive(Debug, PartialEq)]
 pub enum BatchGetJobsError {
@@ -6256,19 +6387,16 @@ impl BatchGetJobsError {
     }
 }
 impl fmt::Display for BatchGetJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetJobsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetJobsError::InternalService(ref cause) => cause,
-            BatchGetJobsError::InvalidInput(ref cause) => cause,
-            BatchGetJobsError::OperationTimeout(ref cause) => cause,
+            BatchGetJobsError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchGetJobsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetJobsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetJobsError {}
 /// Errors returned by BatchGetPartition
 #[derive(Debug, PartialEq)]
 pub enum BatchGetPartitionError {
@@ -6311,21 +6439,18 @@ impl BatchGetPartitionError {
     }
 }
 impl fmt::Display for BatchGetPartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetPartitionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetPartitionError::EntityNotFound(ref cause) => cause,
-            BatchGetPartitionError::GlueEncryption(ref cause) => cause,
-            BatchGetPartitionError::InternalService(ref cause) => cause,
-            BatchGetPartitionError::InvalidInput(ref cause) => cause,
-            BatchGetPartitionError::OperationTimeout(ref cause) => cause,
+            BatchGetPartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            BatchGetPartitionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            BatchGetPartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchGetPartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetPartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetPartitionError {}
 /// Errors returned by BatchGetTriggers
 #[derive(Debug, PartialEq)]
 pub enum BatchGetTriggersError {
@@ -6358,19 +6483,16 @@ impl BatchGetTriggersError {
     }
 }
 impl fmt::Display for BatchGetTriggersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetTriggersError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetTriggersError::InternalService(ref cause) => cause,
-            BatchGetTriggersError::InvalidInput(ref cause) => cause,
-            BatchGetTriggersError::OperationTimeout(ref cause) => cause,
+            BatchGetTriggersError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchGetTriggersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetTriggersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetTriggersError {}
 /// Errors returned by BatchGetWorkflows
 #[derive(Debug, PartialEq)]
 pub enum BatchGetWorkflowsError {
@@ -6403,19 +6525,16 @@ impl BatchGetWorkflowsError {
     }
 }
 impl fmt::Display for BatchGetWorkflowsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetWorkflowsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetWorkflowsError::InternalService(ref cause) => cause,
-            BatchGetWorkflowsError::InvalidInput(ref cause) => cause,
-            BatchGetWorkflowsError::OperationTimeout(ref cause) => cause,
+            BatchGetWorkflowsError::InternalService(ref cause) => write!(f, "{}", cause),
+            BatchGetWorkflowsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchGetWorkflowsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetWorkflowsError {}
 /// Errors returned by BatchStopJobRun
 #[derive(Debug, PartialEq)]
 pub enum GlueBatchStopJobRunError {
@@ -6450,19 +6569,16 @@ impl GlueBatchStopJobRunError {
     }
 }
 impl fmt::Display for GlueBatchStopJobRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GlueBatchStopJobRunError {
-    fn description(&self) -> &str {
         match *self {
-            GlueBatchStopJobRunError::InternalService(ref cause) => cause,
-            GlueBatchStopJobRunError::InvalidInput(ref cause) => cause,
-            GlueBatchStopJobRunError::OperationTimeout(ref cause) => cause,
+            GlueBatchStopJobRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            GlueBatchStopJobRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GlueBatchStopJobRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GlueBatchStopJobRunError {}
 /// Errors returned by CancelMLTaskRun
 #[derive(Debug, PartialEq)]
 pub enum CancelMLTaskRunError {
@@ -6500,20 +6616,17 @@ impl CancelMLTaskRunError {
     }
 }
 impl fmt::Display for CancelMLTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelMLTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            CancelMLTaskRunError::EntityNotFound(ref cause) => cause,
-            CancelMLTaskRunError::InternalService(ref cause) => cause,
-            CancelMLTaskRunError::InvalidInput(ref cause) => cause,
-            CancelMLTaskRunError::OperationTimeout(ref cause) => cause,
+            CancelMLTaskRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            CancelMLTaskRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            CancelMLTaskRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CancelMLTaskRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelMLTaskRunError {}
 /// Errors returned by CreateClassifier
 #[derive(Debug, PartialEq)]
 pub enum CreateClassifierError {
@@ -6546,19 +6659,16 @@ impl CreateClassifierError {
     }
 }
 impl fmt::Display for CreateClassifierError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateClassifierError {
-    fn description(&self) -> &str {
         match *self {
-            CreateClassifierError::AlreadyExists(ref cause) => cause,
-            CreateClassifierError::InvalidInput(ref cause) => cause,
-            CreateClassifierError::OperationTimeout(ref cause) => cause,
+            CreateClassifierError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateClassifierError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateClassifierError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateClassifierError {}
 /// Errors returned by CreateConnection
 #[derive(Debug, PartialEq)]
 pub enum CreateConnectionError {
@@ -6603,21 +6713,18 @@ impl CreateConnectionError {
     }
 }
 impl fmt::Display for CreateConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConnectionError::AlreadyExists(ref cause) => cause,
-            CreateConnectionError::GlueEncryption(ref cause) => cause,
-            CreateConnectionError::InvalidInput(ref cause) => cause,
-            CreateConnectionError::OperationTimeout(ref cause) => cause,
-            CreateConnectionError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateConnectionError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateConnectionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            CreateConnectionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateConnectionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateConnectionError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConnectionError {}
 /// Errors returned by CreateCrawler
 #[derive(Debug, PartialEq)]
 pub enum CreateCrawlerError {
@@ -6657,20 +6764,17 @@ impl CreateCrawlerError {
     }
 }
 impl fmt::Display for CreateCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCrawlerError::AlreadyExists(ref cause) => cause,
-            CreateCrawlerError::InvalidInput(ref cause) => cause,
-            CreateCrawlerError::OperationTimeout(ref cause) => cause,
-            CreateCrawlerError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateCrawlerError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateCrawlerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateCrawlerError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCrawlerError {}
 /// Errors returned by CreateDatabase
 #[derive(Debug, PartialEq)]
 pub enum CreateDatabaseError {
@@ -6720,22 +6824,19 @@ impl CreateDatabaseError {
     }
 }
 impl fmt::Display for CreateDatabaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDatabaseError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDatabaseError::AlreadyExists(ref cause) => cause,
-            CreateDatabaseError::GlueEncryption(ref cause) => cause,
-            CreateDatabaseError::InternalService(ref cause) => cause,
-            CreateDatabaseError::InvalidInput(ref cause) => cause,
-            CreateDatabaseError::OperationTimeout(ref cause) => cause,
-            CreateDatabaseError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateDatabaseError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateDatabaseError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            CreateDatabaseError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateDatabaseError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateDatabaseError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateDatabaseError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDatabaseError {}
 /// Errors returned by CreateDevEndpoint
 #[derive(Debug, PartialEq)]
 pub enum CreateDevEndpointError {
@@ -6792,23 +6893,24 @@ impl CreateDevEndpointError {
     }
 }
 impl fmt::Display for CreateDevEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDevEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDevEndpointError::AccessDenied(ref cause) => cause,
-            CreateDevEndpointError::AlreadyExists(ref cause) => cause,
-            CreateDevEndpointError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateDevEndpointError::InternalService(ref cause) => cause,
-            CreateDevEndpointError::InvalidInput(ref cause) => cause,
-            CreateDevEndpointError::OperationTimeout(ref cause) => cause,
-            CreateDevEndpointError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateDevEndpointError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateDevEndpointError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateDevEndpointError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDevEndpointError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateDevEndpointError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateDevEndpointError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateDevEndpointError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateDevEndpointError {}
 /// Errors returned by CreateJob
 #[derive(Debug, PartialEq)]
 pub enum CreateJobError {
@@ -6865,23 +6967,20 @@ impl CreateJobError {
     }
 }
 impl fmt::Display for CreateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateJobError {
-    fn description(&self) -> &str {
         match *self {
-            CreateJobError::AlreadyExists(ref cause) => cause,
-            CreateJobError::ConcurrentModification(ref cause) => cause,
-            CreateJobError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateJobError::InternalService(ref cause) => cause,
-            CreateJobError::InvalidInput(ref cause) => cause,
-            CreateJobError::OperationTimeout(ref cause) => cause,
-            CreateJobError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateJobError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateJobError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateJobError::IdempotentParameterMismatch(ref cause) => write!(f, "{}", cause),
+            CreateJobError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateJobError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateJobError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateJobError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateJobError {}
 /// Errors returned by CreateMLTransform
 #[derive(Debug, PartialEq)]
 pub enum CreateMLTransformError {
@@ -6938,23 +7037,24 @@ impl CreateMLTransformError {
     }
 }
 impl fmt::Display for CreateMLTransformError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMLTransformError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMLTransformError::AccessDenied(ref cause) => cause,
-            CreateMLTransformError::AlreadyExists(ref cause) => cause,
-            CreateMLTransformError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateMLTransformError::InternalService(ref cause) => cause,
-            CreateMLTransformError::InvalidInput(ref cause) => cause,
-            CreateMLTransformError::OperationTimeout(ref cause) => cause,
-            CreateMLTransformError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateMLTransformError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateMLTransformError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateMLTransformError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMLTransformError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateMLTransformError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateMLTransformError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateMLTransformError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateMLTransformError {}
 /// Errors returned by CreatePartition
 #[derive(Debug, PartialEq)]
 pub enum CreatePartitionError {
@@ -7009,23 +7109,20 @@ impl CreatePartitionError {
     }
 }
 impl fmt::Display for CreatePartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePartitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePartitionError::AlreadyExists(ref cause) => cause,
-            CreatePartitionError::EntityNotFound(ref cause) => cause,
-            CreatePartitionError::GlueEncryption(ref cause) => cause,
-            CreatePartitionError::InternalService(ref cause) => cause,
-            CreatePartitionError::InvalidInput(ref cause) => cause,
-            CreatePartitionError::OperationTimeout(ref cause) => cause,
-            CreatePartitionError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreatePartitionError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreatePartitionError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePartitionError {}
 /// Errors returned by CreateScript
 #[derive(Debug, PartialEq)]
 pub enum CreateScriptError {
@@ -7058,19 +7155,16 @@ impl CreateScriptError {
     }
 }
 impl fmt::Display for CreateScriptError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateScriptError {
-    fn description(&self) -> &str {
         match *self {
-            CreateScriptError::InternalService(ref cause) => cause,
-            CreateScriptError::InvalidInput(ref cause) => cause,
-            CreateScriptError::OperationTimeout(ref cause) => cause,
+            CreateScriptError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateScriptError {}
 /// Errors returned by CreateSecurityConfiguration
 #[derive(Debug, PartialEq)]
 pub enum CreateSecurityConfigurationError {
@@ -7125,21 +7219,20 @@ impl CreateSecurityConfigurationError {
     }
 }
 impl fmt::Display for CreateSecurityConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSecurityConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSecurityConfigurationError::AlreadyExists(ref cause) => cause,
-            CreateSecurityConfigurationError::InternalService(ref cause) => cause,
-            CreateSecurityConfigurationError::InvalidInput(ref cause) => cause,
-            CreateSecurityConfigurationError::OperationTimeout(ref cause) => cause,
-            CreateSecurityConfigurationError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateSecurityConfigurationError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateSecurityConfigurationError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateSecurityConfigurationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateSecurityConfigurationError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateSecurityConfigurationError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateSecurityConfigurationError {}
 /// Errors returned by CreateTable
 #[derive(Debug, PartialEq)]
 pub enum CreateTableError {
@@ -7194,23 +7287,20 @@ impl CreateTableError {
     }
 }
 impl fmt::Display for CreateTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTableError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTableError::AlreadyExists(ref cause) => cause,
-            CreateTableError::EntityNotFound(ref cause) => cause,
-            CreateTableError::GlueEncryption(ref cause) => cause,
-            CreateTableError::InternalService(ref cause) => cause,
-            CreateTableError::InvalidInput(ref cause) => cause,
-            CreateTableError::OperationTimeout(ref cause) => cause,
-            CreateTableError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateTableError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateTableError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            CreateTableError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            CreateTableError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateTableError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateTableError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateTableError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTableError {}
 /// Errors returned by CreateTrigger
 #[derive(Debug, PartialEq)]
 pub enum CreateTriggerError {
@@ -7274,24 +7364,21 @@ impl CreateTriggerError {
     }
 }
 impl fmt::Display for CreateTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTriggerError::AlreadyExists(ref cause) => cause,
-            CreateTriggerError::ConcurrentModification(ref cause) => cause,
-            CreateTriggerError::EntityNotFound(ref cause) => cause,
-            CreateTriggerError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateTriggerError::InternalService(ref cause) => cause,
-            CreateTriggerError::InvalidInput(ref cause) => cause,
-            CreateTriggerError::OperationTimeout(ref cause) => cause,
-            CreateTriggerError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateTriggerError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::IdempotentParameterMismatch(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateTriggerError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTriggerError {}
 /// Errors returned by CreateUserDefinedFunction
 #[derive(Debug, PartialEq)]
 pub enum CreateUserDefinedFunctionError {
@@ -7358,23 +7445,22 @@ impl CreateUserDefinedFunctionError {
     }
 }
 impl fmt::Display for CreateUserDefinedFunctionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUserDefinedFunctionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUserDefinedFunctionError::AlreadyExists(ref cause) => cause,
-            CreateUserDefinedFunctionError::EntityNotFound(ref cause) => cause,
-            CreateUserDefinedFunctionError::GlueEncryption(ref cause) => cause,
-            CreateUserDefinedFunctionError::InternalService(ref cause) => cause,
-            CreateUserDefinedFunctionError::InvalidInput(ref cause) => cause,
-            CreateUserDefinedFunctionError::OperationTimeout(ref cause) => cause,
-            CreateUserDefinedFunctionError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateUserDefinedFunctionError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateUserDefinedFunctionError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateUserDefinedFunctionError {}
 /// Errors returned by CreateWorkflow
 #[derive(Debug, PartialEq)]
 pub enum CreateWorkflowError {
@@ -7426,22 +7512,19 @@ impl CreateWorkflowError {
     }
 }
 impl fmt::Display for CreateWorkflowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateWorkflowError {
-    fn description(&self) -> &str {
         match *self {
-            CreateWorkflowError::AlreadyExists(ref cause) => cause,
-            CreateWorkflowError::ConcurrentModification(ref cause) => cause,
-            CreateWorkflowError::InternalService(ref cause) => cause,
-            CreateWorkflowError::InvalidInput(ref cause) => cause,
-            CreateWorkflowError::OperationTimeout(ref cause) => cause,
-            CreateWorkflowError::ResourceNumberLimitExceeded(ref cause) => cause,
+            CreateWorkflowError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateWorkflowError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateWorkflowError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateWorkflowError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateWorkflowError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            CreateWorkflowError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateWorkflowError {}
 /// Errors returned by DeleteClassifier
 #[derive(Debug, PartialEq)]
 pub enum DeleteClassifierError {
@@ -7469,18 +7552,15 @@ impl DeleteClassifierError {
     }
 }
 impl fmt::Display for DeleteClassifierError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteClassifierError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteClassifierError::EntityNotFound(ref cause) => cause,
-            DeleteClassifierError::OperationTimeout(ref cause) => cause,
+            DeleteClassifierError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteClassifierError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteClassifierError {}
 /// Errors returned by DeleteConnection
 #[derive(Debug, PartialEq)]
 pub enum DeleteConnectionError {
@@ -7508,18 +7588,15 @@ impl DeleteConnectionError {
     }
 }
 impl fmt::Display for DeleteConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteConnectionError::EntityNotFound(ref cause) => cause,
-            DeleteConnectionError::OperationTimeout(ref cause) => cause,
+            DeleteConnectionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteConnectionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteConnectionError {}
 /// Errors returned by DeleteCrawler
 #[derive(Debug, PartialEq)]
 pub enum DeleteCrawlerError {
@@ -7559,20 +7636,17 @@ impl DeleteCrawlerError {
     }
 }
 impl fmt::Display for DeleteCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCrawlerError::CrawlerRunning(ref cause) => cause,
-            DeleteCrawlerError::EntityNotFound(ref cause) => cause,
-            DeleteCrawlerError::OperationTimeout(ref cause) => cause,
-            DeleteCrawlerError::SchedulerTransitioning(ref cause) => cause,
+            DeleteCrawlerError::CrawlerRunning(ref cause) => write!(f, "{}", cause),
+            DeleteCrawlerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteCrawlerError::SchedulerTransitioning(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCrawlerError {}
 /// Errors returned by DeleteDatabase
 #[derive(Debug, PartialEq)]
 pub enum DeleteDatabaseError {
@@ -7610,20 +7684,17 @@ impl DeleteDatabaseError {
     }
 }
 impl fmt::Display for DeleteDatabaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDatabaseError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDatabaseError::EntityNotFound(ref cause) => cause,
-            DeleteDatabaseError::InternalService(ref cause) => cause,
-            DeleteDatabaseError::InvalidInput(ref cause) => cause,
-            DeleteDatabaseError::OperationTimeout(ref cause) => cause,
+            DeleteDatabaseError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDatabaseError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteDatabaseError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteDatabaseError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDatabaseError {}
 /// Errors returned by DeleteDevEndpoint
 #[derive(Debug, PartialEq)]
 pub enum DeleteDevEndpointError {
@@ -7661,20 +7732,17 @@ impl DeleteDevEndpointError {
     }
 }
 impl fmt::Display for DeleteDevEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDevEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDevEndpointError::EntityNotFound(ref cause) => cause,
-            DeleteDevEndpointError::InternalService(ref cause) => cause,
-            DeleteDevEndpointError::InvalidInput(ref cause) => cause,
-            DeleteDevEndpointError::OperationTimeout(ref cause) => cause,
+            DeleteDevEndpointError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDevEndpointError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteDevEndpointError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteDevEndpointError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDevEndpointError {}
 /// Errors returned by DeleteJob
 #[derive(Debug, PartialEq)]
 pub enum DeleteJobError {
@@ -7707,19 +7775,16 @@ impl DeleteJobError {
     }
 }
 impl fmt::Display for DeleteJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteJobError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteJobError::InternalService(ref cause) => cause,
-            DeleteJobError::InvalidInput(ref cause) => cause,
-            DeleteJobError::OperationTimeout(ref cause) => cause,
+            DeleteJobError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteJobError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteJobError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteJobError {}
 /// Errors returned by DeleteMLTransform
 #[derive(Debug, PartialEq)]
 pub enum DeleteMLTransformError {
@@ -7757,20 +7822,17 @@ impl DeleteMLTransformError {
     }
 }
 impl fmt::Display for DeleteMLTransformError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMLTransformError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMLTransformError::EntityNotFound(ref cause) => cause,
-            DeleteMLTransformError::InternalService(ref cause) => cause,
-            DeleteMLTransformError::InvalidInput(ref cause) => cause,
-            DeleteMLTransformError::OperationTimeout(ref cause) => cause,
+            DeleteMLTransformError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMLTransformError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteMLTransformError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteMLTransformError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMLTransformError {}
 /// Errors returned by DeletePartition
 #[derive(Debug, PartialEq)]
 pub enum DeletePartitionError {
@@ -7808,20 +7870,17 @@ impl DeletePartitionError {
     }
 }
 impl fmt::Display for DeletePartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePartitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePartitionError::EntityNotFound(ref cause) => cause,
-            DeletePartitionError::InternalService(ref cause) => cause,
-            DeletePartitionError::InvalidInput(ref cause) => cause,
-            DeletePartitionError::OperationTimeout(ref cause) => cause,
+            DeletePartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeletePartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeletePartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeletePartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePartitionError {}
 /// Errors returned by DeleteResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourcePolicyError {
@@ -7870,21 +7929,18 @@ impl DeleteResourcePolicyError {
     }
 }
 impl fmt::Display for DeleteResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourcePolicyError::ConditionCheckFailure(ref cause) => cause,
-            DeleteResourcePolicyError::EntityNotFound(ref cause) => cause,
-            DeleteResourcePolicyError::InternalService(ref cause) => cause,
-            DeleteResourcePolicyError::InvalidInput(ref cause) => cause,
-            DeleteResourcePolicyError::OperationTimeout(ref cause) => cause,
+            DeleteResourcePolicyError::ConditionCheckFailure(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteResourcePolicyError {}
 /// Errors returned by DeleteSecurityConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DeleteSecurityConfigurationError {
@@ -7932,20 +7988,17 @@ impl DeleteSecurityConfigurationError {
     }
 }
 impl fmt::Display for DeleteSecurityConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSecurityConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSecurityConfigurationError::EntityNotFound(ref cause) => cause,
-            DeleteSecurityConfigurationError::InternalService(ref cause) => cause,
-            DeleteSecurityConfigurationError::InvalidInput(ref cause) => cause,
-            DeleteSecurityConfigurationError::OperationTimeout(ref cause) => cause,
+            DeleteSecurityConfigurationError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteSecurityConfigurationError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteSecurityConfigurationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteSecurityConfigurationError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSecurityConfigurationError {}
 /// Errors returned by DeleteTable
 #[derive(Debug, PartialEq)]
 pub enum DeleteTableError {
@@ -7983,20 +8036,17 @@ impl DeleteTableError {
     }
 }
 impl fmt::Display for DeleteTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTableError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTableError::EntityNotFound(ref cause) => cause,
-            DeleteTableError::InternalService(ref cause) => cause,
-            DeleteTableError::InvalidInput(ref cause) => cause,
-            DeleteTableError::OperationTimeout(ref cause) => cause,
+            DeleteTableError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteTableError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTableError {}
 /// Errors returned by DeleteTableVersion
 #[derive(Debug, PartialEq)]
 pub enum DeleteTableVersionError {
@@ -8034,20 +8084,17 @@ impl DeleteTableVersionError {
     }
 }
 impl fmt::Display for DeleteTableVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTableVersionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTableVersionError::EntityNotFound(ref cause) => cause,
-            DeleteTableVersionError::InternalService(ref cause) => cause,
-            DeleteTableVersionError::InvalidInput(ref cause) => cause,
-            DeleteTableVersionError::OperationTimeout(ref cause) => cause,
+            DeleteTableVersionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTableVersionError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteTableVersionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteTableVersionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTableVersionError {}
 /// Errors returned by DeleteTrigger
 #[derive(Debug, PartialEq)]
 pub enum DeleteTriggerError {
@@ -8087,20 +8134,17 @@ impl DeleteTriggerError {
     }
 }
 impl fmt::Display for DeleteTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTriggerError::ConcurrentModification(ref cause) => cause,
-            DeleteTriggerError::InternalService(ref cause) => cause,
-            DeleteTriggerError::InvalidInput(ref cause) => cause,
-            DeleteTriggerError::OperationTimeout(ref cause) => cause,
+            DeleteTriggerError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTriggerError {}
 /// Errors returned by DeleteUserDefinedFunction
 #[derive(Debug, PartialEq)]
 pub enum DeleteUserDefinedFunctionError {
@@ -8146,20 +8190,17 @@ impl DeleteUserDefinedFunctionError {
     }
 }
 impl fmt::Display for DeleteUserDefinedFunctionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUserDefinedFunctionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUserDefinedFunctionError::EntityNotFound(ref cause) => cause,
-            DeleteUserDefinedFunctionError::InternalService(ref cause) => cause,
-            DeleteUserDefinedFunctionError::InvalidInput(ref cause) => cause,
-            DeleteUserDefinedFunctionError::OperationTimeout(ref cause) => cause,
+            DeleteUserDefinedFunctionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteUserDefinedFunctionError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteUserDefinedFunctionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteUserDefinedFunctionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteUserDefinedFunctionError {}
 /// Errors returned by DeleteWorkflow
 #[derive(Debug, PartialEq)]
 pub enum DeleteWorkflowError {
@@ -8199,20 +8240,17 @@ impl DeleteWorkflowError {
     }
 }
 impl fmt::Display for DeleteWorkflowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteWorkflowError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteWorkflowError::ConcurrentModification(ref cause) => cause,
-            DeleteWorkflowError::InternalService(ref cause) => cause,
-            DeleteWorkflowError::InvalidInput(ref cause) => cause,
-            DeleteWorkflowError::OperationTimeout(ref cause) => cause,
+            DeleteWorkflowError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteWorkflowError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteWorkflowError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteWorkflowError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteWorkflowError {}
 /// Errors returned by GetCatalogImportStatus
 #[derive(Debug, PartialEq)]
 pub enum GetCatalogImportStatusError {
@@ -8244,18 +8282,15 @@ impl GetCatalogImportStatusError {
     }
 }
 impl fmt::Display for GetCatalogImportStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCatalogImportStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetCatalogImportStatusError::InternalService(ref cause) => cause,
-            GetCatalogImportStatusError::OperationTimeout(ref cause) => cause,
+            GetCatalogImportStatusError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetCatalogImportStatusError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCatalogImportStatusError {}
 /// Errors returned by GetClassifier
 #[derive(Debug, PartialEq)]
 pub enum GetClassifierError {
@@ -8283,18 +8318,15 @@ impl GetClassifierError {
     }
 }
 impl fmt::Display for GetClassifierError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetClassifierError {
-    fn description(&self) -> &str {
         match *self {
-            GetClassifierError::EntityNotFound(ref cause) => cause,
-            GetClassifierError::OperationTimeout(ref cause) => cause,
+            GetClassifierError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetClassifierError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetClassifierError {}
 /// Errors returned by GetClassifiers
 #[derive(Debug, PartialEq)]
 pub enum GetClassifiersError {
@@ -8317,17 +8349,14 @@ impl GetClassifiersError {
     }
 }
 impl fmt::Display for GetClassifiersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetClassifiersError {
-    fn description(&self) -> &str {
         match *self {
-            GetClassifiersError::OperationTimeout(ref cause) => cause,
+            GetClassifiersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetClassifiersError {}
 /// Errors returned by GetConnection
 #[derive(Debug, PartialEq)]
 pub enum GetConnectionError {
@@ -8365,20 +8394,17 @@ impl GetConnectionError {
     }
 }
 impl fmt::Display for GetConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectionError::EntityNotFound(ref cause) => cause,
-            GetConnectionError::GlueEncryption(ref cause) => cause,
-            GetConnectionError::InvalidInput(ref cause) => cause,
-            GetConnectionError::OperationTimeout(ref cause) => cause,
+            GetConnectionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetConnectionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetConnectionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetConnectionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectionError {}
 /// Errors returned by GetConnections
 #[derive(Debug, PartialEq)]
 pub enum GetConnectionsError {
@@ -8416,20 +8442,17 @@ impl GetConnectionsError {
     }
 }
 impl fmt::Display for GetConnectionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectionsError::EntityNotFound(ref cause) => cause,
-            GetConnectionsError::GlueEncryption(ref cause) => cause,
-            GetConnectionsError::InvalidInput(ref cause) => cause,
-            GetConnectionsError::OperationTimeout(ref cause) => cause,
+            GetConnectionsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetConnectionsError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetConnectionsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetConnectionsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectionsError {}
 /// Errors returned by GetCrawler
 #[derive(Debug, PartialEq)]
 pub enum GetCrawlerError {
@@ -8457,18 +8480,15 @@ impl GetCrawlerError {
     }
 }
 impl fmt::Display for GetCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            GetCrawlerError::EntityNotFound(ref cause) => cause,
-            GetCrawlerError::OperationTimeout(ref cause) => cause,
+            GetCrawlerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCrawlerError {}
 /// Errors returned by GetCrawlerMetrics
 #[derive(Debug, PartialEq)]
 pub enum GetCrawlerMetricsError {
@@ -8491,17 +8511,14 @@ impl GetCrawlerMetricsError {
     }
 }
 impl fmt::Display for GetCrawlerMetricsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCrawlerMetricsError {
-    fn description(&self) -> &str {
         match *self {
-            GetCrawlerMetricsError::OperationTimeout(ref cause) => cause,
+            GetCrawlerMetricsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCrawlerMetricsError {}
 /// Errors returned by GetCrawlers
 #[derive(Debug, PartialEq)]
 pub enum GetCrawlersError {
@@ -8524,17 +8541,14 @@ impl GetCrawlersError {
     }
 }
 impl fmt::Display for GetCrawlersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCrawlersError {
-    fn description(&self) -> &str {
         match *self {
-            GetCrawlersError::OperationTimeout(ref cause) => cause,
+            GetCrawlersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCrawlersError {}
 /// Errors returned by GetDataCatalogEncryptionSettings
 #[derive(Debug, PartialEq)]
 pub enum GetDataCatalogEncryptionSettingsError {
@@ -8575,19 +8589,22 @@ impl GetDataCatalogEncryptionSettingsError {
     }
 }
 impl fmt::Display for GetDataCatalogEncryptionSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDataCatalogEncryptionSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            GetDataCatalogEncryptionSettingsError::InternalService(ref cause) => cause,
-            GetDataCatalogEncryptionSettingsError::InvalidInput(ref cause) => cause,
-            GetDataCatalogEncryptionSettingsError::OperationTimeout(ref cause) => cause,
+            GetDataCatalogEncryptionSettingsError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDataCatalogEncryptionSettingsError::InvalidInput(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDataCatalogEncryptionSettingsError::OperationTimeout(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetDataCatalogEncryptionSettingsError {}
 /// Errors returned by GetDatabase
 #[derive(Debug, PartialEq)]
 pub enum GetDatabaseError {
@@ -8630,21 +8647,18 @@ impl GetDatabaseError {
     }
 }
 impl fmt::Display for GetDatabaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDatabaseError {
-    fn description(&self) -> &str {
         match *self {
-            GetDatabaseError::EntityNotFound(ref cause) => cause,
-            GetDatabaseError::GlueEncryption(ref cause) => cause,
-            GetDatabaseError::InternalService(ref cause) => cause,
-            GetDatabaseError::InvalidInput(ref cause) => cause,
-            GetDatabaseError::OperationTimeout(ref cause) => cause,
+            GetDatabaseError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetDatabaseError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetDatabaseError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetDatabaseError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetDatabaseError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDatabaseError {}
 /// Errors returned by GetDatabases
 #[derive(Debug, PartialEq)]
 pub enum GetDatabasesError {
@@ -8682,20 +8696,17 @@ impl GetDatabasesError {
     }
 }
 impl fmt::Display for GetDatabasesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDatabasesError {
-    fn description(&self) -> &str {
         match *self {
-            GetDatabasesError::GlueEncryption(ref cause) => cause,
-            GetDatabasesError::InternalService(ref cause) => cause,
-            GetDatabasesError::InvalidInput(ref cause) => cause,
-            GetDatabasesError::OperationTimeout(ref cause) => cause,
+            GetDatabasesError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetDatabasesError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetDatabasesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetDatabasesError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDatabasesError {}
 /// Errors returned by GetDataflowGraph
 #[derive(Debug, PartialEq)]
 pub enum GetDataflowGraphError {
@@ -8728,19 +8739,16 @@ impl GetDataflowGraphError {
     }
 }
 impl fmt::Display for GetDataflowGraphError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDataflowGraphError {
-    fn description(&self) -> &str {
         match *self {
-            GetDataflowGraphError::InternalService(ref cause) => cause,
-            GetDataflowGraphError::InvalidInput(ref cause) => cause,
-            GetDataflowGraphError::OperationTimeout(ref cause) => cause,
+            GetDataflowGraphError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetDataflowGraphError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetDataflowGraphError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDataflowGraphError {}
 /// Errors returned by GetDevEndpoint
 #[derive(Debug, PartialEq)]
 pub enum GetDevEndpointError {
@@ -8778,20 +8786,17 @@ impl GetDevEndpointError {
     }
 }
 impl fmt::Display for GetDevEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDevEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            GetDevEndpointError::EntityNotFound(ref cause) => cause,
-            GetDevEndpointError::InternalService(ref cause) => cause,
-            GetDevEndpointError::InvalidInput(ref cause) => cause,
-            GetDevEndpointError::OperationTimeout(ref cause) => cause,
+            GetDevEndpointError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDevEndpointError {}
 /// Errors returned by GetDevEndpoints
 #[derive(Debug, PartialEq)]
 pub enum GetDevEndpointsError {
@@ -8829,20 +8834,17 @@ impl GetDevEndpointsError {
     }
 }
 impl fmt::Display for GetDevEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDevEndpointsError {
-    fn description(&self) -> &str {
         match *self {
-            GetDevEndpointsError::EntityNotFound(ref cause) => cause,
-            GetDevEndpointsError::InternalService(ref cause) => cause,
-            GetDevEndpointsError::InvalidInput(ref cause) => cause,
-            GetDevEndpointsError::OperationTimeout(ref cause) => cause,
+            GetDevEndpointsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetDevEndpointsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDevEndpointsError {}
 /// Errors returned by GetJob
 #[derive(Debug, PartialEq)]
 pub enum GetJobError {
@@ -8880,20 +8882,17 @@ impl GetJobError {
     }
 }
 impl fmt::Display for GetJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobError::EntityNotFound(ref cause) => cause,
-            GetJobError::InternalService(ref cause) => cause,
-            GetJobError::InvalidInput(ref cause) => cause,
-            GetJobError::OperationTimeout(ref cause) => cause,
+            GetJobError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetJobError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetJobError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobError {}
 /// Errors returned by GetJobBookmark
 #[derive(Debug, PartialEq)]
 pub enum GetJobBookmarkError {
@@ -8931,20 +8930,17 @@ impl GetJobBookmarkError {
     }
 }
 impl fmt::Display for GetJobBookmarkError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobBookmarkError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobBookmarkError::EntityNotFound(ref cause) => cause,
-            GetJobBookmarkError::InternalService(ref cause) => cause,
-            GetJobBookmarkError::InvalidInput(ref cause) => cause,
-            GetJobBookmarkError::OperationTimeout(ref cause) => cause,
+            GetJobBookmarkError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobBookmarkError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetJobBookmarkError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetJobBookmarkError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobBookmarkError {}
 /// Errors returned by GetJobRun
 #[derive(Debug, PartialEq)]
 pub enum GetJobRunError {
@@ -8982,20 +8978,17 @@ impl GetJobRunError {
     }
 }
 impl fmt::Display for GetJobRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobRunError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobRunError::EntityNotFound(ref cause) => cause,
-            GetJobRunError::InternalService(ref cause) => cause,
-            GetJobRunError::InvalidInput(ref cause) => cause,
-            GetJobRunError::OperationTimeout(ref cause) => cause,
+            GetJobRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetJobRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetJobRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobRunError {}
 /// Errors returned by GetJobRuns
 #[derive(Debug, PartialEq)]
 pub enum GetJobRunsError {
@@ -9033,20 +9026,17 @@ impl GetJobRunsError {
     }
 }
 impl fmt::Display for GetJobRunsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobRunsError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobRunsError::EntityNotFound(ref cause) => cause,
-            GetJobRunsError::InternalService(ref cause) => cause,
-            GetJobRunsError::InvalidInput(ref cause) => cause,
-            GetJobRunsError::OperationTimeout(ref cause) => cause,
+            GetJobRunsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobRunsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetJobRunsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetJobRunsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobRunsError {}
 /// Errors returned by GetJobs
 #[derive(Debug, PartialEq)]
 pub enum GetJobsError {
@@ -9084,20 +9074,17 @@ impl GetJobsError {
     }
 }
 impl fmt::Display for GetJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobsError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobsError::EntityNotFound(ref cause) => cause,
-            GetJobsError::InternalService(ref cause) => cause,
-            GetJobsError::InvalidInput(ref cause) => cause,
-            GetJobsError::OperationTimeout(ref cause) => cause,
+            GetJobsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetJobsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetJobsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobsError {}
 /// Errors returned by GetMLTaskRun
 #[derive(Debug, PartialEq)]
 pub enum GetMLTaskRunError {
@@ -9135,20 +9122,17 @@ impl GetMLTaskRunError {
     }
 }
 impl fmt::Display for GetMLTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMLTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            GetMLTaskRunError::EntityNotFound(ref cause) => cause,
-            GetMLTaskRunError::InternalService(ref cause) => cause,
-            GetMLTaskRunError::InvalidInput(ref cause) => cause,
-            GetMLTaskRunError::OperationTimeout(ref cause) => cause,
+            GetMLTaskRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMLTaskRunError {}
 /// Errors returned by GetMLTaskRuns
 #[derive(Debug, PartialEq)]
 pub enum GetMLTaskRunsError {
@@ -9186,20 +9170,17 @@ impl GetMLTaskRunsError {
     }
 }
 impl fmt::Display for GetMLTaskRunsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMLTaskRunsError {
-    fn description(&self) -> &str {
         match *self {
-            GetMLTaskRunsError::EntityNotFound(ref cause) => cause,
-            GetMLTaskRunsError::InternalService(ref cause) => cause,
-            GetMLTaskRunsError::InvalidInput(ref cause) => cause,
-            GetMLTaskRunsError::OperationTimeout(ref cause) => cause,
+            GetMLTaskRunsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMLTaskRunsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMLTaskRunsError {}
 /// Errors returned by GetMLTransform
 #[derive(Debug, PartialEq)]
 pub enum GetMLTransformError {
@@ -9237,20 +9218,17 @@ impl GetMLTransformError {
     }
 }
 impl fmt::Display for GetMLTransformError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMLTransformError {
-    fn description(&self) -> &str {
         match *self {
-            GetMLTransformError::EntityNotFound(ref cause) => cause,
-            GetMLTransformError::InternalService(ref cause) => cause,
-            GetMLTransformError::InvalidInput(ref cause) => cause,
-            GetMLTransformError::OperationTimeout(ref cause) => cause,
+            GetMLTransformError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetMLTransformError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetMLTransformError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMLTransformError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMLTransformError {}
 /// Errors returned by GetMLTransforms
 #[derive(Debug, PartialEq)]
 pub enum GetMLTransformsError {
@@ -9288,20 +9266,17 @@ impl GetMLTransformsError {
     }
 }
 impl fmt::Display for GetMLTransformsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMLTransformsError {
-    fn description(&self) -> &str {
         match *self {
-            GetMLTransformsError::EntityNotFound(ref cause) => cause,
-            GetMLTransformsError::InternalService(ref cause) => cause,
-            GetMLTransformsError::InvalidInput(ref cause) => cause,
-            GetMLTransformsError::OperationTimeout(ref cause) => cause,
+            GetMLTransformsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetMLTransformsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetMLTransformsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMLTransformsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMLTransformsError {}
 /// Errors returned by GetMapping
 #[derive(Debug, PartialEq)]
 pub enum GetMappingError {
@@ -9339,20 +9314,17 @@ impl GetMappingError {
     }
 }
 impl fmt::Display for GetMappingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMappingError {
-    fn description(&self) -> &str {
         match *self {
-            GetMappingError::EntityNotFound(ref cause) => cause,
-            GetMappingError::InternalService(ref cause) => cause,
-            GetMappingError::InvalidInput(ref cause) => cause,
-            GetMappingError::OperationTimeout(ref cause) => cause,
+            GetMappingError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetMappingError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetMappingError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMappingError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMappingError {}
 /// Errors returned by GetPartition
 #[derive(Debug, PartialEq)]
 pub enum GetPartitionError {
@@ -9395,21 +9367,18 @@ impl GetPartitionError {
     }
 }
 impl fmt::Display for GetPartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPartitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetPartitionError::EntityNotFound(ref cause) => cause,
-            GetPartitionError::GlueEncryption(ref cause) => cause,
-            GetPartitionError::InternalService(ref cause) => cause,
-            GetPartitionError::InvalidInput(ref cause) => cause,
-            GetPartitionError::OperationTimeout(ref cause) => cause,
+            GetPartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetPartitionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetPartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetPartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetPartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPartitionError {}
 /// Errors returned by GetPartitions
 #[derive(Debug, PartialEq)]
 pub enum GetPartitionsError {
@@ -9452,21 +9421,18 @@ impl GetPartitionsError {
     }
 }
 impl fmt::Display for GetPartitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPartitionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetPartitionsError::EntityNotFound(ref cause) => cause,
-            GetPartitionsError::GlueEncryption(ref cause) => cause,
-            GetPartitionsError::InternalService(ref cause) => cause,
-            GetPartitionsError::InvalidInput(ref cause) => cause,
-            GetPartitionsError::OperationTimeout(ref cause) => cause,
+            GetPartitionsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetPartitionsError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetPartitionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetPartitionsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetPartitionsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPartitionsError {}
 /// Errors returned by GetPlan
 #[derive(Debug, PartialEq)]
 pub enum GetPlanError {
@@ -9499,19 +9465,16 @@ impl GetPlanError {
     }
 }
 impl fmt::Display for GetPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPlanError {
-    fn description(&self) -> &str {
         match *self {
-            GetPlanError::InternalService(ref cause) => cause,
-            GetPlanError::InvalidInput(ref cause) => cause,
-            GetPlanError::OperationTimeout(ref cause) => cause,
+            GetPlanError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetPlanError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetPlanError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPlanError {}
 /// Errors returned by GetResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum GetResourcePolicyError {
@@ -9549,20 +9512,17 @@ impl GetResourcePolicyError {
     }
 }
 impl fmt::Display for GetResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetResourcePolicyError::EntityNotFound(ref cause) => cause,
-            GetResourcePolicyError::InternalService(ref cause) => cause,
-            GetResourcePolicyError::InvalidInput(ref cause) => cause,
-            GetResourcePolicyError::OperationTimeout(ref cause) => cause,
+            GetResourcePolicyError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetResourcePolicyError {}
 /// Errors returned by GetSecurityConfiguration
 #[derive(Debug, PartialEq)]
 pub enum GetSecurityConfigurationError {
@@ -9608,20 +9568,17 @@ impl GetSecurityConfigurationError {
     }
 }
 impl fmt::Display for GetSecurityConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSecurityConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            GetSecurityConfigurationError::EntityNotFound(ref cause) => cause,
-            GetSecurityConfigurationError::InternalService(ref cause) => cause,
-            GetSecurityConfigurationError::InvalidInput(ref cause) => cause,
-            GetSecurityConfigurationError::OperationTimeout(ref cause) => cause,
+            GetSecurityConfigurationError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSecurityConfigurationError {}
 /// Errors returned by GetSecurityConfigurations
 #[derive(Debug, PartialEq)]
 pub enum GetSecurityConfigurationsError {
@@ -9667,20 +9624,17 @@ impl GetSecurityConfigurationsError {
     }
 }
 impl fmt::Display for GetSecurityConfigurationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSecurityConfigurationsError {
-    fn description(&self) -> &str {
         match *self {
-            GetSecurityConfigurationsError::EntityNotFound(ref cause) => cause,
-            GetSecurityConfigurationsError::InternalService(ref cause) => cause,
-            GetSecurityConfigurationsError::InvalidInput(ref cause) => cause,
-            GetSecurityConfigurationsError::OperationTimeout(ref cause) => cause,
+            GetSecurityConfigurationsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetSecurityConfigurationsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSecurityConfigurationsError {}
 /// Errors returned by GetTable
 #[derive(Debug, PartialEq)]
 pub enum GetTableError {
@@ -9723,21 +9677,18 @@ impl GetTableError {
     }
 }
 impl fmt::Display for GetTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTableError {
-    fn description(&self) -> &str {
         match *self {
-            GetTableError::EntityNotFound(ref cause) => cause,
-            GetTableError::GlueEncryption(ref cause) => cause,
-            GetTableError::InternalService(ref cause) => cause,
-            GetTableError::InvalidInput(ref cause) => cause,
-            GetTableError::OperationTimeout(ref cause) => cause,
+            GetTableError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTableError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetTableError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTableError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTableError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTableError {}
 /// Errors returned by GetTableVersion
 #[derive(Debug, PartialEq)]
 pub enum GetTableVersionError {
@@ -9780,21 +9731,18 @@ impl GetTableVersionError {
     }
 }
 impl fmt::Display for GetTableVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTableVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetTableVersionError::EntityNotFound(ref cause) => cause,
-            GetTableVersionError::GlueEncryption(ref cause) => cause,
-            GetTableVersionError::InternalService(ref cause) => cause,
-            GetTableVersionError::InvalidInput(ref cause) => cause,
-            GetTableVersionError::OperationTimeout(ref cause) => cause,
+            GetTableVersionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTableVersionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetTableVersionError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTableVersionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTableVersionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTableVersionError {}
 /// Errors returned by GetTableVersions
 #[derive(Debug, PartialEq)]
 pub enum GetTableVersionsError {
@@ -9837,21 +9785,18 @@ impl GetTableVersionsError {
     }
 }
 impl fmt::Display for GetTableVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTableVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetTableVersionsError::EntityNotFound(ref cause) => cause,
-            GetTableVersionsError::GlueEncryption(ref cause) => cause,
-            GetTableVersionsError::InternalService(ref cause) => cause,
-            GetTableVersionsError::InvalidInput(ref cause) => cause,
-            GetTableVersionsError::OperationTimeout(ref cause) => cause,
+            GetTableVersionsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTableVersionsError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetTableVersionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTableVersionsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTableVersionsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTableVersionsError {}
 /// Errors returned by GetTables
 #[derive(Debug, PartialEq)]
 pub enum GetTablesError {
@@ -9894,21 +9839,18 @@ impl GetTablesError {
     }
 }
 impl fmt::Display for GetTablesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTablesError {
-    fn description(&self) -> &str {
         match *self {
-            GetTablesError::EntityNotFound(ref cause) => cause,
-            GetTablesError::GlueEncryption(ref cause) => cause,
-            GetTablesError::InternalService(ref cause) => cause,
-            GetTablesError::InvalidInput(ref cause) => cause,
-            GetTablesError::OperationTimeout(ref cause) => cause,
+            GetTablesError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTablesError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetTablesError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTablesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTablesError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTablesError {}
 /// Errors returned by GetTags
 #[derive(Debug, PartialEq)]
 pub enum GetTagsError {
@@ -9946,20 +9888,17 @@ impl GetTagsError {
     }
 }
 impl fmt::Display for GetTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTagsError {
-    fn description(&self) -> &str {
         match *self {
-            GetTagsError::EntityNotFound(ref cause) => cause,
-            GetTagsError::InternalService(ref cause) => cause,
-            GetTagsError::InvalidInput(ref cause) => cause,
-            GetTagsError::OperationTimeout(ref cause) => cause,
+            GetTagsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTagsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTagsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTagsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTagsError {}
 /// Errors returned by GetTrigger
 #[derive(Debug, PartialEq)]
 pub enum GetTriggerError {
@@ -9997,20 +9936,17 @@ impl GetTriggerError {
     }
 }
 impl fmt::Display for GetTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            GetTriggerError::EntityNotFound(ref cause) => cause,
-            GetTriggerError::InternalService(ref cause) => cause,
-            GetTriggerError::InvalidInput(ref cause) => cause,
-            GetTriggerError::OperationTimeout(ref cause) => cause,
+            GetTriggerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTriggerError {}
 /// Errors returned by GetTriggers
 #[derive(Debug, PartialEq)]
 pub enum GetTriggersError {
@@ -10048,20 +9984,17 @@ impl GetTriggersError {
     }
 }
 impl fmt::Display for GetTriggersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTriggersError {
-    fn description(&self) -> &str {
         match *self {
-            GetTriggersError::EntityNotFound(ref cause) => cause,
-            GetTriggersError::InternalService(ref cause) => cause,
-            GetTriggersError::InvalidInput(ref cause) => cause,
-            GetTriggersError::OperationTimeout(ref cause) => cause,
+            GetTriggersError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetTriggersError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetTriggersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetTriggersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTriggersError {}
 /// Errors returned by GetUserDefinedFunction
 #[derive(Debug, PartialEq)]
 pub enum GetUserDefinedFunctionError {
@@ -10112,21 +10045,18 @@ impl GetUserDefinedFunctionError {
     }
 }
 impl fmt::Display for GetUserDefinedFunctionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetUserDefinedFunctionError {
-    fn description(&self) -> &str {
         match *self {
-            GetUserDefinedFunctionError::EntityNotFound(ref cause) => cause,
-            GetUserDefinedFunctionError::GlueEncryption(ref cause) => cause,
-            GetUserDefinedFunctionError::InternalService(ref cause) => cause,
-            GetUserDefinedFunctionError::InvalidInput(ref cause) => cause,
-            GetUserDefinedFunctionError::OperationTimeout(ref cause) => cause,
+            GetUserDefinedFunctionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetUserDefinedFunctionError {}
 /// Errors returned by GetUserDefinedFunctions
 #[derive(Debug, PartialEq)]
 pub enum GetUserDefinedFunctionsError {
@@ -10179,21 +10109,18 @@ impl GetUserDefinedFunctionsError {
     }
 }
 impl fmt::Display for GetUserDefinedFunctionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetUserDefinedFunctionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetUserDefinedFunctionsError::EntityNotFound(ref cause) => cause,
-            GetUserDefinedFunctionsError::GlueEncryption(ref cause) => cause,
-            GetUserDefinedFunctionsError::InternalService(ref cause) => cause,
-            GetUserDefinedFunctionsError::InvalidInput(ref cause) => cause,
-            GetUserDefinedFunctionsError::OperationTimeout(ref cause) => cause,
+            GetUserDefinedFunctionsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionsError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetUserDefinedFunctionsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetUserDefinedFunctionsError {}
 /// Errors returned by GetWorkflow
 #[derive(Debug, PartialEq)]
 pub enum GetWorkflowError {
@@ -10231,20 +10158,17 @@ impl GetWorkflowError {
     }
 }
 impl fmt::Display for GetWorkflowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetWorkflowError {
-    fn description(&self) -> &str {
         match *self {
-            GetWorkflowError::EntityNotFound(ref cause) => cause,
-            GetWorkflowError::InternalService(ref cause) => cause,
-            GetWorkflowError::InvalidInput(ref cause) => cause,
-            GetWorkflowError::OperationTimeout(ref cause) => cause,
+            GetWorkflowError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetWorkflowError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetWorkflowError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetWorkflowError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetWorkflowError {}
 /// Errors returned by GetWorkflowRun
 #[derive(Debug, PartialEq)]
 pub enum GetWorkflowRunError {
@@ -10282,20 +10206,17 @@ impl GetWorkflowRunError {
     }
 }
 impl fmt::Display for GetWorkflowRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetWorkflowRunError {
-    fn description(&self) -> &str {
         match *self {
-            GetWorkflowRunError::EntityNotFound(ref cause) => cause,
-            GetWorkflowRunError::InternalService(ref cause) => cause,
-            GetWorkflowRunError::InvalidInput(ref cause) => cause,
-            GetWorkflowRunError::OperationTimeout(ref cause) => cause,
+            GetWorkflowRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetWorkflowRunError {}
 /// Errors returned by GetWorkflowRunProperties
 #[derive(Debug, PartialEq)]
 pub enum GetWorkflowRunPropertiesError {
@@ -10341,20 +10262,17 @@ impl GetWorkflowRunPropertiesError {
     }
 }
 impl fmt::Display for GetWorkflowRunPropertiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetWorkflowRunPropertiesError {
-    fn description(&self) -> &str {
         match *self {
-            GetWorkflowRunPropertiesError::EntityNotFound(ref cause) => cause,
-            GetWorkflowRunPropertiesError::InternalService(ref cause) => cause,
-            GetWorkflowRunPropertiesError::InvalidInput(ref cause) => cause,
-            GetWorkflowRunPropertiesError::OperationTimeout(ref cause) => cause,
+            GetWorkflowRunPropertiesError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunPropertiesError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunPropertiesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunPropertiesError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetWorkflowRunPropertiesError {}
 /// Errors returned by GetWorkflowRuns
 #[derive(Debug, PartialEq)]
 pub enum GetWorkflowRunsError {
@@ -10392,20 +10310,17 @@ impl GetWorkflowRunsError {
     }
 }
 impl fmt::Display for GetWorkflowRunsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetWorkflowRunsError {
-    fn description(&self) -> &str {
         match *self {
-            GetWorkflowRunsError::EntityNotFound(ref cause) => cause,
-            GetWorkflowRunsError::InternalService(ref cause) => cause,
-            GetWorkflowRunsError::InvalidInput(ref cause) => cause,
-            GetWorkflowRunsError::OperationTimeout(ref cause) => cause,
+            GetWorkflowRunsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunsError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetWorkflowRunsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetWorkflowRunsError {}
 /// Errors returned by ImportCatalogToGlue
 #[derive(Debug, PartialEq)]
 pub enum ImportCatalogToGlueError {
@@ -10435,18 +10350,15 @@ impl ImportCatalogToGlueError {
     }
 }
 impl fmt::Display for ImportCatalogToGlueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ImportCatalogToGlueError {
-    fn description(&self) -> &str {
         match *self {
-            ImportCatalogToGlueError::InternalService(ref cause) => cause,
-            ImportCatalogToGlueError::OperationTimeout(ref cause) => cause,
+            ImportCatalogToGlueError::InternalService(ref cause) => write!(f, "{}", cause),
+            ImportCatalogToGlueError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ImportCatalogToGlueError {}
 /// Errors returned by ListCrawlers
 #[derive(Debug, PartialEq)]
 pub enum ListCrawlersError {
@@ -10469,17 +10381,14 @@ impl ListCrawlersError {
     }
 }
 impl fmt::Display for ListCrawlersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCrawlersError {
-    fn description(&self) -> &str {
         match *self {
-            ListCrawlersError::OperationTimeout(ref cause) => cause,
+            ListCrawlersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCrawlersError {}
 /// Errors returned by ListDevEndpoints
 #[derive(Debug, PartialEq)]
 pub enum ListDevEndpointsError {
@@ -10517,20 +10426,17 @@ impl ListDevEndpointsError {
     }
 }
 impl fmt::Display for ListDevEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDevEndpointsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDevEndpointsError::EntityNotFound(ref cause) => cause,
-            ListDevEndpointsError::InternalService(ref cause) => cause,
-            ListDevEndpointsError::InvalidInput(ref cause) => cause,
-            ListDevEndpointsError::OperationTimeout(ref cause) => cause,
+            ListDevEndpointsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            ListDevEndpointsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListDevEndpointsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListDevEndpointsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDevEndpointsError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -10568,20 +10474,17 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::EntityNotFound(ref cause) => cause,
-            ListJobsError::InternalService(ref cause) => cause,
-            ListJobsError::InvalidInput(ref cause) => cause,
-            ListJobsError::OperationTimeout(ref cause) => cause,
+            ListJobsError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            ListJobsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListJobsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListJobsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by ListTriggers
 #[derive(Debug, PartialEq)]
 pub enum ListTriggersError {
@@ -10619,20 +10522,17 @@ impl ListTriggersError {
     }
 }
 impl fmt::Display for ListTriggersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTriggersError {
-    fn description(&self) -> &str {
         match *self {
-            ListTriggersError::EntityNotFound(ref cause) => cause,
-            ListTriggersError::InternalService(ref cause) => cause,
-            ListTriggersError::InvalidInput(ref cause) => cause,
-            ListTriggersError::OperationTimeout(ref cause) => cause,
+            ListTriggersError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            ListTriggersError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListTriggersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListTriggersError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTriggersError {}
 /// Errors returned by ListWorkflows
 #[derive(Debug, PartialEq)]
 pub enum ListWorkflowsError {
@@ -10665,19 +10565,16 @@ impl ListWorkflowsError {
     }
 }
 impl fmt::Display for ListWorkflowsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListWorkflowsError {
-    fn description(&self) -> &str {
         match *self {
-            ListWorkflowsError::InternalService(ref cause) => cause,
-            ListWorkflowsError::InvalidInput(ref cause) => cause,
-            ListWorkflowsError::OperationTimeout(ref cause) => cause,
+            ListWorkflowsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListWorkflowsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListWorkflowsError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListWorkflowsError {}
 /// Errors returned by PutDataCatalogEncryptionSettings
 #[derive(Debug, PartialEq)]
 pub enum PutDataCatalogEncryptionSettingsError {
@@ -10718,19 +10615,22 @@ impl PutDataCatalogEncryptionSettingsError {
     }
 }
 impl fmt::Display for PutDataCatalogEncryptionSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutDataCatalogEncryptionSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            PutDataCatalogEncryptionSettingsError::InternalService(ref cause) => cause,
-            PutDataCatalogEncryptionSettingsError::InvalidInput(ref cause) => cause,
-            PutDataCatalogEncryptionSettingsError::OperationTimeout(ref cause) => cause,
+            PutDataCatalogEncryptionSettingsError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutDataCatalogEncryptionSettingsError::InvalidInput(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutDataCatalogEncryptionSettingsError::OperationTimeout(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PutDataCatalogEncryptionSettingsError {}
 /// Errors returned by PutResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutResourcePolicyError {
@@ -10775,21 +10675,18 @@ impl PutResourcePolicyError {
     }
 }
 impl fmt::Display for PutResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutResourcePolicyError::ConditionCheckFailure(ref cause) => cause,
-            PutResourcePolicyError::EntityNotFound(ref cause) => cause,
-            PutResourcePolicyError::InternalService(ref cause) => cause,
-            PutResourcePolicyError::InvalidInput(ref cause) => cause,
-            PutResourcePolicyError::OperationTimeout(ref cause) => cause,
+            PutResourcePolicyError::ConditionCheckFailure(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::InternalService(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutResourcePolicyError {}
 /// Errors returned by PutWorkflowRunProperties
 #[derive(Debug, PartialEq)]
 pub enum PutWorkflowRunPropertiesError {
@@ -10856,23 +10753,24 @@ impl PutWorkflowRunPropertiesError {
     }
 }
 impl fmt::Display for PutWorkflowRunPropertiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutWorkflowRunPropertiesError {
-    fn description(&self) -> &str {
         match *self {
-            PutWorkflowRunPropertiesError::AlreadyExists(ref cause) => cause,
-            PutWorkflowRunPropertiesError::ConcurrentModification(ref cause) => cause,
-            PutWorkflowRunPropertiesError::EntityNotFound(ref cause) => cause,
-            PutWorkflowRunPropertiesError::InternalService(ref cause) => cause,
-            PutWorkflowRunPropertiesError::InvalidInput(ref cause) => cause,
-            PutWorkflowRunPropertiesError::OperationTimeout(ref cause) => cause,
-            PutWorkflowRunPropertiesError::ResourceNumberLimitExceeded(ref cause) => cause,
+            PutWorkflowRunPropertiesError::AlreadyExists(ref cause) => write!(f, "{}", cause),
+            PutWorkflowRunPropertiesError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutWorkflowRunPropertiesError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            PutWorkflowRunPropertiesError::InternalService(ref cause) => write!(f, "{}", cause),
+            PutWorkflowRunPropertiesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            PutWorkflowRunPropertiesError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            PutWorkflowRunPropertiesError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PutWorkflowRunPropertiesError {}
 /// Errors returned by ResetJobBookmark
 #[derive(Debug, PartialEq)]
 pub enum ResetJobBookmarkError {
@@ -10910,20 +10808,17 @@ impl ResetJobBookmarkError {
     }
 }
 impl fmt::Display for ResetJobBookmarkError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResetJobBookmarkError {
-    fn description(&self) -> &str {
         match *self {
-            ResetJobBookmarkError::EntityNotFound(ref cause) => cause,
-            ResetJobBookmarkError::InternalService(ref cause) => cause,
-            ResetJobBookmarkError::InvalidInput(ref cause) => cause,
-            ResetJobBookmarkError::OperationTimeout(ref cause) => cause,
+            ResetJobBookmarkError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            ResetJobBookmarkError::InternalService(ref cause) => write!(f, "{}", cause),
+            ResetJobBookmarkError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ResetJobBookmarkError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResetJobBookmarkError {}
 /// Errors returned by SearchTables
 #[derive(Debug, PartialEq)]
 pub enum SearchTablesError {
@@ -10956,19 +10851,16 @@ impl SearchTablesError {
     }
 }
 impl fmt::Display for SearchTablesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchTablesError {
-    fn description(&self) -> &str {
         match *self {
-            SearchTablesError::InternalService(ref cause) => cause,
-            SearchTablesError::InvalidInput(ref cause) => cause,
-            SearchTablesError::OperationTimeout(ref cause) => cause,
+            SearchTablesError::InternalService(ref cause) => write!(f, "{}", cause),
+            SearchTablesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            SearchTablesError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchTablesError {}
 /// Errors returned by StartCrawler
 #[derive(Debug, PartialEq)]
 pub enum StartCrawlerError {
@@ -11001,19 +10893,16 @@ impl StartCrawlerError {
     }
 }
 impl fmt::Display for StartCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            StartCrawlerError::CrawlerRunning(ref cause) => cause,
-            StartCrawlerError::EntityNotFound(ref cause) => cause,
-            StartCrawlerError::OperationTimeout(ref cause) => cause,
+            StartCrawlerError::CrawlerRunning(ref cause) => write!(f, "{}", cause),
+            StartCrawlerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartCrawlerError {}
 /// Errors returned by StartCrawlerSchedule
 #[derive(Debug, PartialEq)]
 pub enum StartCrawlerScheduleError {
@@ -11062,21 +10951,18 @@ impl StartCrawlerScheduleError {
     }
 }
 impl fmt::Display for StartCrawlerScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartCrawlerScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            StartCrawlerScheduleError::EntityNotFound(ref cause) => cause,
-            StartCrawlerScheduleError::NoSchedule(ref cause) => cause,
-            StartCrawlerScheduleError::OperationTimeout(ref cause) => cause,
-            StartCrawlerScheduleError::SchedulerRunning(ref cause) => cause,
-            StartCrawlerScheduleError::SchedulerTransitioning(ref cause) => cause,
+            StartCrawlerScheduleError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartCrawlerScheduleError::NoSchedule(ref cause) => write!(f, "{}", cause),
+            StartCrawlerScheduleError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StartCrawlerScheduleError::SchedulerRunning(ref cause) => write!(f, "{}", cause),
+            StartCrawlerScheduleError::SchedulerTransitioning(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartCrawlerScheduleError {}
 /// Errors returned by StartExportLabelsTaskRun
 #[derive(Debug, PartialEq)]
 pub enum StartExportLabelsTaskRunError {
@@ -11122,20 +11008,17 @@ impl StartExportLabelsTaskRunError {
     }
 }
 impl fmt::Display for StartExportLabelsTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartExportLabelsTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartExportLabelsTaskRunError::EntityNotFound(ref cause) => cause,
-            StartExportLabelsTaskRunError::InternalService(ref cause) => cause,
-            StartExportLabelsTaskRunError::InvalidInput(ref cause) => cause,
-            StartExportLabelsTaskRunError::OperationTimeout(ref cause) => cause,
+            StartExportLabelsTaskRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartExportLabelsTaskRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartExportLabelsTaskRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartExportLabelsTaskRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartExportLabelsTaskRunError {}
 /// Errors returned by StartImportLabelsTaskRun
 #[derive(Debug, PartialEq)]
 pub enum StartImportLabelsTaskRunError {
@@ -11188,21 +11071,20 @@ impl StartImportLabelsTaskRunError {
     }
 }
 impl fmt::Display for StartImportLabelsTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartImportLabelsTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartImportLabelsTaskRunError::EntityNotFound(ref cause) => cause,
-            StartImportLabelsTaskRunError::InternalService(ref cause) => cause,
-            StartImportLabelsTaskRunError::InvalidInput(ref cause) => cause,
-            StartImportLabelsTaskRunError::OperationTimeout(ref cause) => cause,
-            StartImportLabelsTaskRunError::ResourceNumberLimitExceeded(ref cause) => cause,
+            StartImportLabelsTaskRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartImportLabelsTaskRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartImportLabelsTaskRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartImportLabelsTaskRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StartImportLabelsTaskRunError::ResourceNumberLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StartImportLabelsTaskRunError {}
 /// Errors returned by StartJobRun
 #[derive(Debug, PartialEq)]
 pub enum StartJobRunError {
@@ -11252,22 +11134,19 @@ impl StartJobRunError {
     }
 }
 impl fmt::Display for StartJobRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartJobRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartJobRunError::ConcurrentRunsExceeded(ref cause) => cause,
-            StartJobRunError::EntityNotFound(ref cause) => cause,
-            StartJobRunError::InternalService(ref cause) => cause,
-            StartJobRunError::InvalidInput(ref cause) => cause,
-            StartJobRunError::OperationTimeout(ref cause) => cause,
-            StartJobRunError::ResourceNumberLimitExceeded(ref cause) => cause,
+            StartJobRunError::ConcurrentRunsExceeded(ref cause) => write!(f, "{}", cause),
+            StartJobRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartJobRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartJobRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartJobRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StartJobRunError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartJobRunError {}
 /// Errors returned by StartMLEvaluationTaskRun
 #[derive(Debug, PartialEq)]
 pub enum StartMLEvaluationTaskRunError {
@@ -11327,22 +11206,21 @@ impl StartMLEvaluationTaskRunError {
     }
 }
 impl fmt::Display for StartMLEvaluationTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMLEvaluationTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartMLEvaluationTaskRunError::ConcurrentRunsExceeded(ref cause) => cause,
-            StartMLEvaluationTaskRunError::EntityNotFound(ref cause) => cause,
-            StartMLEvaluationTaskRunError::InternalService(ref cause) => cause,
-            StartMLEvaluationTaskRunError::InvalidInput(ref cause) => cause,
-            StartMLEvaluationTaskRunError::MLTransformNotReady(ref cause) => cause,
-            StartMLEvaluationTaskRunError::OperationTimeout(ref cause) => cause,
+            StartMLEvaluationTaskRunError::ConcurrentRunsExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartMLEvaluationTaskRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartMLEvaluationTaskRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartMLEvaluationTaskRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartMLEvaluationTaskRunError::MLTransformNotReady(ref cause) => write!(f, "{}", cause),
+            StartMLEvaluationTaskRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMLEvaluationTaskRunError {}
 /// Errors returned by StartMLLabelingSetGenerationTaskRun
 #[derive(Debug, PartialEq)]
 pub enum StartMLLabelingSetGenerationTaskRunError {
@@ -11397,21 +11275,28 @@ impl StartMLLabelingSetGenerationTaskRunError {
     }
 }
 impl fmt::Display for StartMLLabelingSetGenerationTaskRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMLLabelingSetGenerationTaskRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartMLLabelingSetGenerationTaskRunError::ConcurrentRunsExceeded(ref cause) => cause,
-            StartMLLabelingSetGenerationTaskRunError::EntityNotFound(ref cause) => cause,
-            StartMLLabelingSetGenerationTaskRunError::InternalService(ref cause) => cause,
-            StartMLLabelingSetGenerationTaskRunError::InvalidInput(ref cause) => cause,
-            StartMLLabelingSetGenerationTaskRunError::OperationTimeout(ref cause) => cause,
+            StartMLLabelingSetGenerationTaskRunError::ConcurrentRunsExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartMLLabelingSetGenerationTaskRunError::EntityNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartMLLabelingSetGenerationTaskRunError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartMLLabelingSetGenerationTaskRunError::InvalidInput(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartMLLabelingSetGenerationTaskRunError::OperationTimeout(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StartMLLabelingSetGenerationTaskRunError {}
 /// Errors returned by StartTrigger
 #[derive(Debug, PartialEq)]
 pub enum StartTriggerError {
@@ -11461,22 +11346,19 @@ impl StartTriggerError {
     }
 }
 impl fmt::Display for StartTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            StartTriggerError::ConcurrentRunsExceeded(ref cause) => cause,
-            StartTriggerError::EntityNotFound(ref cause) => cause,
-            StartTriggerError::InternalService(ref cause) => cause,
-            StartTriggerError::InvalidInput(ref cause) => cause,
-            StartTriggerError::OperationTimeout(ref cause) => cause,
-            StartTriggerError::ResourceNumberLimitExceeded(ref cause) => cause,
+            StartTriggerError::ConcurrentRunsExceeded(ref cause) => write!(f, "{}", cause),
+            StartTriggerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StartTriggerError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartTriggerError {}
 /// Errors returned by StartWorkflowRun
 #[derive(Debug, PartialEq)]
 pub enum StartWorkflowRunError {
@@ -11528,22 +11410,19 @@ impl StartWorkflowRunError {
     }
 }
 impl fmt::Display for StartWorkflowRunError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartWorkflowRunError {
-    fn description(&self) -> &str {
         match *self {
-            StartWorkflowRunError::ConcurrentRunsExceeded(ref cause) => cause,
-            StartWorkflowRunError::EntityNotFound(ref cause) => cause,
-            StartWorkflowRunError::InternalService(ref cause) => cause,
-            StartWorkflowRunError::InvalidInput(ref cause) => cause,
-            StartWorkflowRunError::OperationTimeout(ref cause) => cause,
-            StartWorkflowRunError::ResourceNumberLimitExceeded(ref cause) => cause,
+            StartWorkflowRunError::ConcurrentRunsExceeded(ref cause) => write!(f, "{}", cause),
+            StartWorkflowRunError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StartWorkflowRunError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartWorkflowRunError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StartWorkflowRunError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StartWorkflowRunError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartWorkflowRunError {}
 /// Errors returned by StopCrawler
 #[derive(Debug, PartialEq)]
 pub enum StopCrawlerError {
@@ -11581,20 +11460,17 @@ impl StopCrawlerError {
     }
 }
 impl fmt::Display for StopCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            StopCrawlerError::CrawlerNotRunning(ref cause) => cause,
-            StopCrawlerError::CrawlerStopping(ref cause) => cause,
-            StopCrawlerError::EntityNotFound(ref cause) => cause,
-            StopCrawlerError::OperationTimeout(ref cause) => cause,
+            StopCrawlerError::CrawlerNotRunning(ref cause) => write!(f, "{}", cause),
+            StopCrawlerError::CrawlerStopping(ref cause) => write!(f, "{}", cause),
+            StopCrawlerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StopCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopCrawlerError {}
 /// Errors returned by StopCrawlerSchedule
 #[derive(Debug, PartialEq)]
 pub enum StopCrawlerScheduleError {
@@ -11638,20 +11514,17 @@ impl StopCrawlerScheduleError {
     }
 }
 impl fmt::Display for StopCrawlerScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopCrawlerScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            StopCrawlerScheduleError::EntityNotFound(ref cause) => cause,
-            StopCrawlerScheduleError::OperationTimeout(ref cause) => cause,
-            StopCrawlerScheduleError::SchedulerNotRunning(ref cause) => cause,
-            StopCrawlerScheduleError::SchedulerTransitioning(ref cause) => cause,
+            StopCrawlerScheduleError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StopCrawlerScheduleError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            StopCrawlerScheduleError::SchedulerNotRunning(ref cause) => write!(f, "{}", cause),
+            StopCrawlerScheduleError::SchedulerTransitioning(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopCrawlerScheduleError {}
 /// Errors returned by StopTrigger
 #[derive(Debug, PartialEq)]
 pub enum StopTriggerError {
@@ -11694,21 +11567,18 @@ impl StopTriggerError {
     }
 }
 impl fmt::Display for StopTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            StopTriggerError::ConcurrentModification(ref cause) => cause,
-            StopTriggerError::EntityNotFound(ref cause) => cause,
-            StopTriggerError::InternalService(ref cause) => cause,
-            StopTriggerError::InvalidInput(ref cause) => cause,
-            StopTriggerError::OperationTimeout(ref cause) => cause,
+            StopTriggerError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            StopTriggerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            StopTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            StopTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            StopTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopTriggerError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -11746,20 +11616,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::EntityNotFound(ref cause) => cause,
-            TagResourceError::InternalService(ref cause) => cause,
-            TagResourceError::InvalidInput(ref cause) => cause,
-            TagResourceError::OperationTimeout(ref cause) => cause,
+            TagResourceError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalService(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            TagResourceError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -11797,20 +11664,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::EntityNotFound(ref cause) => cause,
-            UntagResourceError::InternalService(ref cause) => cause,
-            UntagResourceError::InvalidInput(ref cause) => cause,
-            UntagResourceError::OperationTimeout(ref cause) => cause,
+            UntagResourceError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalService(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateClassifier
 #[derive(Debug, PartialEq)]
 pub enum UpdateClassifierError {
@@ -11848,20 +11712,17 @@ impl UpdateClassifierError {
     }
 }
 impl fmt::Display for UpdateClassifierError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateClassifierError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateClassifierError::EntityNotFound(ref cause) => cause,
-            UpdateClassifierError::InvalidInput(ref cause) => cause,
-            UpdateClassifierError::OperationTimeout(ref cause) => cause,
-            UpdateClassifierError::VersionMismatch(ref cause) => cause,
+            UpdateClassifierError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateClassifierError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateClassifierError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateClassifierError::VersionMismatch(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateClassifierError {}
 /// Errors returned by UpdateConnection
 #[derive(Debug, PartialEq)]
 pub enum UpdateConnectionError {
@@ -11899,20 +11760,17 @@ impl UpdateConnectionError {
     }
 }
 impl fmt::Display for UpdateConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConnectionError::EntityNotFound(ref cause) => cause,
-            UpdateConnectionError::GlueEncryption(ref cause) => cause,
-            UpdateConnectionError::InvalidInput(ref cause) => cause,
-            UpdateConnectionError::OperationTimeout(ref cause) => cause,
+            UpdateConnectionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateConnectionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            UpdateConnectionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateConnectionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateConnectionError {}
 /// Errors returned by UpdateCrawler
 #[derive(Debug, PartialEq)]
 pub enum UpdateCrawlerError {
@@ -11955,21 +11813,18 @@ impl UpdateCrawlerError {
     }
 }
 impl fmt::Display for UpdateCrawlerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateCrawlerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateCrawlerError::CrawlerRunning(ref cause) => cause,
-            UpdateCrawlerError::EntityNotFound(ref cause) => cause,
-            UpdateCrawlerError::InvalidInput(ref cause) => cause,
-            UpdateCrawlerError::OperationTimeout(ref cause) => cause,
-            UpdateCrawlerError::VersionMismatch(ref cause) => cause,
+            UpdateCrawlerError::CrawlerRunning(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerError::VersionMismatch(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateCrawlerError {}
 /// Errors returned by UpdateCrawlerSchedule
 #[derive(Debug, PartialEq)]
 pub enum UpdateCrawlerScheduleError {
@@ -12020,21 +11875,18 @@ impl UpdateCrawlerScheduleError {
     }
 }
 impl fmt::Display for UpdateCrawlerScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateCrawlerScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateCrawlerScheduleError::EntityNotFound(ref cause) => cause,
-            UpdateCrawlerScheduleError::InvalidInput(ref cause) => cause,
-            UpdateCrawlerScheduleError::OperationTimeout(ref cause) => cause,
-            UpdateCrawlerScheduleError::SchedulerTransitioning(ref cause) => cause,
-            UpdateCrawlerScheduleError::VersionMismatch(ref cause) => cause,
+            UpdateCrawlerScheduleError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerScheduleError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerScheduleError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerScheduleError::SchedulerTransitioning(ref cause) => write!(f, "{}", cause),
+            UpdateCrawlerScheduleError::VersionMismatch(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateCrawlerScheduleError {}
 /// Errors returned by UpdateDatabase
 #[derive(Debug, PartialEq)]
 pub enum UpdateDatabaseError {
@@ -12077,21 +11929,18 @@ impl UpdateDatabaseError {
     }
 }
 impl fmt::Display for UpdateDatabaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDatabaseError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDatabaseError::EntityNotFound(ref cause) => cause,
-            UpdateDatabaseError::GlueEncryption(ref cause) => cause,
-            UpdateDatabaseError::InternalService(ref cause) => cause,
-            UpdateDatabaseError::InvalidInput(ref cause) => cause,
-            UpdateDatabaseError::OperationTimeout(ref cause) => cause,
+            UpdateDatabaseError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDatabaseError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            UpdateDatabaseError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateDatabaseError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateDatabaseError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDatabaseError {}
 /// Errors returned by UpdateDevEndpoint
 #[derive(Debug, PartialEq)]
 pub enum UpdateDevEndpointError {
@@ -12129,20 +11978,17 @@ impl UpdateDevEndpointError {
     }
 }
 impl fmt::Display for UpdateDevEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDevEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDevEndpointError::EntityNotFound(ref cause) => cause,
-            UpdateDevEndpointError::InternalService(ref cause) => cause,
-            UpdateDevEndpointError::InvalidInput(ref cause) => cause,
-            UpdateDevEndpointError::OperationTimeout(ref cause) => cause,
+            UpdateDevEndpointError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDevEndpointError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateDevEndpointError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateDevEndpointError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDevEndpointError {}
 /// Errors returned by UpdateJob
 #[derive(Debug, PartialEq)]
 pub enum UpdateJobError {
@@ -12185,21 +12031,18 @@ impl UpdateJobError {
     }
 }
 impl fmt::Display for UpdateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateJobError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateJobError::ConcurrentModification(ref cause) => cause,
-            UpdateJobError::EntityNotFound(ref cause) => cause,
-            UpdateJobError::InternalService(ref cause) => cause,
-            UpdateJobError::InvalidInput(ref cause) => cause,
-            UpdateJobError::OperationTimeout(ref cause) => cause,
+            UpdateJobError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateJobError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateJobError {}
 /// Errors returned by UpdateMLTransform
 #[derive(Debug, PartialEq)]
 pub enum UpdateMLTransformError {
@@ -12242,21 +12085,18 @@ impl UpdateMLTransformError {
     }
 }
 impl fmt::Display for UpdateMLTransformError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMLTransformError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMLTransformError::AccessDenied(ref cause) => cause,
-            UpdateMLTransformError::EntityNotFound(ref cause) => cause,
-            UpdateMLTransformError::InternalService(ref cause) => cause,
-            UpdateMLTransformError::InvalidInput(ref cause) => cause,
-            UpdateMLTransformError::OperationTimeout(ref cause) => cause,
+            UpdateMLTransformError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            UpdateMLTransformError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateMLTransformError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateMLTransformError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateMLTransformError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateMLTransformError {}
 /// Errors returned by UpdatePartition
 #[derive(Debug, PartialEq)]
 pub enum UpdatePartitionError {
@@ -12299,21 +12139,18 @@ impl UpdatePartitionError {
     }
 }
 impl fmt::Display for UpdatePartitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePartitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePartitionError::EntityNotFound(ref cause) => cause,
-            UpdatePartitionError::GlueEncryption(ref cause) => cause,
-            UpdatePartitionError::InternalService(ref cause) => cause,
-            UpdatePartitionError::InvalidInput(ref cause) => cause,
-            UpdatePartitionError::OperationTimeout(ref cause) => cause,
+            UpdatePartitionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdatePartitionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            UpdatePartitionError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdatePartitionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdatePartitionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePartitionError {}
 /// Errors returned by UpdateTable
 #[derive(Debug, PartialEq)]
 pub enum UpdateTableError {
@@ -12368,23 +12205,20 @@ impl UpdateTableError {
     }
 }
 impl fmt::Display for UpdateTableError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTableError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTableError::ConcurrentModification(ref cause) => cause,
-            UpdateTableError::EntityNotFound(ref cause) => cause,
-            UpdateTableError::GlueEncryption(ref cause) => cause,
-            UpdateTableError::InternalService(ref cause) => cause,
-            UpdateTableError::InvalidInput(ref cause) => cause,
-            UpdateTableError::OperationTimeout(ref cause) => cause,
-            UpdateTableError::ResourceNumberLimitExceeded(ref cause) => cause,
+            UpdateTableError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::OperationTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateTableError::ResourceNumberLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTableError {}
 /// Errors returned by UpdateTrigger
 #[derive(Debug, PartialEq)]
 pub enum UpdateTriggerError {
@@ -12429,21 +12263,18 @@ impl UpdateTriggerError {
     }
 }
 impl fmt::Display for UpdateTriggerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTriggerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTriggerError::ConcurrentModification(ref cause) => cause,
-            UpdateTriggerError::EntityNotFound(ref cause) => cause,
-            UpdateTriggerError::InternalService(ref cause) => cause,
-            UpdateTriggerError::InvalidInput(ref cause) => cause,
-            UpdateTriggerError::OperationTimeout(ref cause) => cause,
+            UpdateTriggerError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateTriggerError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTriggerError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateTriggerError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateTriggerError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTriggerError {}
 /// Errors returned by UpdateUserDefinedFunction
 #[derive(Debug, PartialEq)]
 pub enum UpdateUserDefinedFunctionError {
@@ -12496,21 +12327,18 @@ impl UpdateUserDefinedFunctionError {
     }
 }
 impl fmt::Display for UpdateUserDefinedFunctionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateUserDefinedFunctionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateUserDefinedFunctionError::EntityNotFound(ref cause) => cause,
-            UpdateUserDefinedFunctionError::GlueEncryption(ref cause) => cause,
-            UpdateUserDefinedFunctionError::InternalService(ref cause) => cause,
-            UpdateUserDefinedFunctionError::InvalidInput(ref cause) => cause,
-            UpdateUserDefinedFunctionError::OperationTimeout(ref cause) => cause,
+            UpdateUserDefinedFunctionError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateUserDefinedFunctionError::GlueEncryption(ref cause) => write!(f, "{}", cause),
+            UpdateUserDefinedFunctionError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateUserDefinedFunctionError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateUserDefinedFunctionError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateUserDefinedFunctionError {}
 /// Errors returned by UpdateWorkflow
 #[derive(Debug, PartialEq)]
 pub enum UpdateWorkflowError {
@@ -12555,21 +12383,18 @@ impl UpdateWorkflowError {
     }
 }
 impl fmt::Display for UpdateWorkflowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateWorkflowError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateWorkflowError::ConcurrentModification(ref cause) => cause,
-            UpdateWorkflowError::EntityNotFound(ref cause) => cause,
-            UpdateWorkflowError::InternalService(ref cause) => cause,
-            UpdateWorkflowError::InvalidInput(ref cause) => cause,
-            UpdateWorkflowError::OperationTimeout(ref cause) => cause,
+            UpdateWorkflowError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateWorkflowError::EntityNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateWorkflowError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateWorkflowError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateWorkflowError::OperationTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateWorkflowError {}
 /// Trait representing the capabilities of the AWS Glue API. AWS Glue clients implement this trait.
 #[async_trait]
 pub trait Glue {

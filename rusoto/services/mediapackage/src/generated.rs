@@ -23,6 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>CDN Authorization credentials</p>
@@ -38,7 +39,7 @@ pub struct Authorization {
 
 /// <p>A Channel resource configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Channel {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -73,7 +74,7 @@ pub struct CmafEncryption {
 
 /// <p>A Common Media Application Format (CMAF) packaging configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CmafPackage {
     #[serde(rename = "Encryption")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -98,6 +99,7 @@ pub struct CmafPackage {
 
 /// <p>A Common Media Application Format (CMAF) packaging configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CmafPackageCreateOrUpdateParameters {
     #[serde(rename = "Encryption")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -122,6 +124,7 @@ pub struct CmafPackageCreateOrUpdateParameters {
 
 /// <p>A new Channel configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateChannelRequest {
     /// <p>A short text description of the Channel.</p>
     #[serde(rename = "Description")]
@@ -137,7 +140,7 @@ pub struct CreateChannelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateChannelResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -161,6 +164,7 @@ pub struct CreateChannelResponse {
 
 /// <p>Configuration parameters used to create a new HarvestJob.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateHarvestJobRequest {
     /// <p>The end of the time-window which will be harvested</p>
     #[serde(rename = "EndTime")]
@@ -181,7 +185,7 @@ pub struct CreateHarvestJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateHarvestJobResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the HarvestJob.</p>
     #[serde(rename = "Arn")]
@@ -226,6 +230,7 @@ pub struct CreateHarvestJobResponse {
 
 /// <p>Configuration parameters used to create a new OriginEndpoint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateOriginEndpointRequest {
     #[serde(rename = "Authorization")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -284,7 +289,7 @@ pub struct CreateOriginEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateOriginEndpointResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the OriginEndpoint.</p>
     #[serde(rename = "Arn")]
@@ -419,6 +424,7 @@ pub struct DashPackage {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteChannelRequest {
     /// <p>The ID of the Channel to delete.</p>
     #[serde(rename = "Id")]
@@ -426,10 +432,11 @@ pub struct DeleteChannelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteChannelResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteOriginEndpointRequest {
     /// <p>The ID of the OriginEndpoint to delete.</p>
     #[serde(rename = "Id")]
@@ -437,10 +444,11 @@ pub struct DeleteOriginEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteOriginEndpointResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeChannelRequest {
     /// <p>The ID of a Channel.</p>
     #[serde(rename = "Id")]
@@ -448,7 +456,7 @@ pub struct DescribeChannelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeChannelResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -471,6 +479,7 @@ pub struct DescribeChannelResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeHarvestJobRequest {
     /// <p>The ID of the HarvestJob.</p>
     #[serde(rename = "Id")]
@@ -478,7 +487,7 @@ pub struct DescribeHarvestJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHarvestJobResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the HarvestJob.</p>
     #[serde(rename = "Arn")]
@@ -522,6 +531,7 @@ pub struct DescribeHarvestJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeOriginEndpointRequest {
     /// <p>The ID of the OriginEndpoint.</p>
     #[serde(rename = "Id")]
@@ -529,7 +539,7 @@ pub struct DescribeOriginEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeOriginEndpointResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the OriginEndpoint.</p>
     #[serde(rename = "Arn")]
@@ -597,7 +607,7 @@ pub struct DescribeOriginEndpointResponse {
 
 /// <p>A HarvestJob resource configuration</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HarvestJob {
     /// <p>The Amazon Resource Name (ARN) assigned to the HarvestJob.</p>
     #[serde(rename = "Arn")]
@@ -666,7 +676,7 @@ pub struct HlsEncryption {
 
 /// <p>An HTTP Live Streaming (HLS) ingest resource configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HlsIngest {
     /// <p>A list of endpoints to which the source stream should be sent.</p>
     #[serde(rename = "IngestEndpoints")]
@@ -676,7 +686,7 @@ pub struct HlsIngest {
 
 /// <p>A HTTP Live Streaming (HLS) manifest configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HlsManifest {
     /// <p>This setting controls how ad markers are included in the packaged OriginEndpoint.
     /// &quot;NONE&quot; will omit all SCTE-35 ad markers from the output.
@@ -728,6 +738,7 @@ pub struct HlsManifest {
 
 /// <p>A HTTP Live Streaming (HLS) manifest configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HlsManifestCreateOrUpdateParameters {
     /// <p>This setting controls how ad markers are included in the packaged OriginEndpoint.
     /// &quot;NONE&quot; will omit all SCTE-35 ad markers from the output.
@@ -842,7 +853,7 @@ pub struct HlsPackage {
 
 /// <p>An endpoint for ingesting source content for a Channel.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IngestEndpoint {
     /// <p>The system generated unique identifier for the IngestEndpoint</p>
     #[serde(rename = "Id")]
@@ -863,6 +874,7 @@ pub struct IngestEndpoint {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListChannelsRequest {
     /// <p>Upper bound on number of records to return.</p>
     #[serde(rename = "MaxResults")]
@@ -875,7 +887,7 @@ pub struct ListChannelsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListChannelsResponse {
     /// <p>A list of Channel records.</p>
     #[serde(rename = "Channels")]
@@ -888,6 +900,7 @@ pub struct ListChannelsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListHarvestJobsRequest {
     /// <p>When specified, the request will return only HarvestJobs associated with the given Channel ID.</p>
     #[serde(rename = "IncludeChannelId")]
@@ -908,7 +921,7 @@ pub struct ListHarvestJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListHarvestJobsResponse {
     /// <p>A list of HarvestJob records.</p>
     #[serde(rename = "HarvestJobs")]
@@ -921,6 +934,7 @@ pub struct ListHarvestJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOriginEndpointsRequest {
     /// <p>When specified, the request will return only OriginEndpoints associated with the given Channel ID.</p>
     #[serde(rename = "ChannelId")]
@@ -937,7 +951,7 @@ pub struct ListOriginEndpointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOriginEndpointsResponse {
     /// <p>A token that can be used to resume pagination from the end of the collection.</p>
     #[serde(rename = "NextToken")]
@@ -950,13 +964,14 @@ pub struct ListOriginEndpointsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     #[serde(rename = "Tags")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -991,7 +1006,7 @@ pub struct MssPackage {
 
 /// <p>An OriginEndpoint resource configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OriginEndpoint {
     /// <p>The Amazon Resource Name (ARN) assigned to the OriginEndpoint.</p>
     #[serde(rename = "Arn")]
@@ -1058,6 +1073,7 @@ pub struct OriginEndpoint {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RotateChannelCredentialsRequest {
     /// <p>The ID of the channel to update.</p>
     #[serde(rename = "Id")]
@@ -1065,7 +1081,7 @@ pub struct RotateChannelCredentialsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RotateChannelCredentialsResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -1088,6 +1104,7 @@ pub struct RotateChannelCredentialsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RotateIngestEndpointCredentialsRequest {
     /// <p>The ID of the channel the IngestEndpoint is on.</p>
     #[serde(rename = "Id")]
@@ -1098,7 +1115,7 @@ pub struct RotateIngestEndpointCredentialsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RotateIngestEndpointCredentialsResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -1176,6 +1193,7 @@ pub struct StreamSelection {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
@@ -1184,6 +1202,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
@@ -1194,6 +1213,7 @@ pub struct UntagResourceRequest {
 
 /// <p>Configuration parameters used to update the Channel.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateChannelRequest {
     /// <p>A short text description of the Channel.</p>
     #[serde(rename = "Description")]
@@ -1205,7 +1225,7 @@ pub struct UpdateChannelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateChannelResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the Channel.</p>
     #[serde(rename = "Arn")]
@@ -1229,6 +1249,7 @@ pub struct UpdateChannelResponse {
 
 /// <p>Configuration parameters used to update an existing OriginEndpoint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateOriginEndpointRequest {
     #[serde(rename = "Authorization")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1279,7 +1300,7 @@ pub struct UpdateOriginEndpointRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateOriginEndpointResponse {
     /// <p>The Amazon Resource Name (ARN) assigned to the OriginEndpoint.</p>
     #[serde(rename = "Arn")]
@@ -1392,22 +1413,19 @@ impl CreateChannelError {
     }
 }
 impl fmt::Display for CreateChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateChannelError {
-    fn description(&self) -> &str {
         match *self {
-            CreateChannelError::Forbidden(ref cause) => cause,
-            CreateChannelError::InternalServerError(ref cause) => cause,
-            CreateChannelError::NotFound(ref cause) => cause,
-            CreateChannelError::ServiceUnavailable(ref cause) => cause,
-            CreateChannelError::TooManyRequests(ref cause) => cause,
-            CreateChannelError::UnprocessableEntity(ref cause) => cause,
+            CreateChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateChannelError {}
 /// Errors returned by CreateHarvestJob
 #[derive(Debug, PartialEq)]
 pub enum CreateHarvestJobError {
@@ -1459,22 +1477,19 @@ impl CreateHarvestJobError {
     }
 }
 impl fmt::Display for CreateHarvestJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateHarvestJobError {
-    fn description(&self) -> &str {
         match *self {
-            CreateHarvestJobError::Forbidden(ref cause) => cause,
-            CreateHarvestJobError::InternalServerError(ref cause) => cause,
-            CreateHarvestJobError::NotFound(ref cause) => cause,
-            CreateHarvestJobError::ServiceUnavailable(ref cause) => cause,
-            CreateHarvestJobError::TooManyRequests(ref cause) => cause,
-            CreateHarvestJobError::UnprocessableEntity(ref cause) => cause,
+            CreateHarvestJobError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateHarvestJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateHarvestJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateHarvestJobError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateHarvestJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateHarvestJobError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateHarvestJobError {}
 /// Errors returned by CreateOriginEndpoint
 #[derive(Debug, PartialEq)]
 pub enum CreateOriginEndpointError {
@@ -1530,22 +1545,19 @@ impl CreateOriginEndpointError {
     }
 }
 impl fmt::Display for CreateOriginEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateOriginEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            CreateOriginEndpointError::Forbidden(ref cause) => cause,
-            CreateOriginEndpointError::InternalServerError(ref cause) => cause,
-            CreateOriginEndpointError::NotFound(ref cause) => cause,
-            CreateOriginEndpointError::ServiceUnavailable(ref cause) => cause,
-            CreateOriginEndpointError::TooManyRequests(ref cause) => cause,
-            CreateOriginEndpointError::UnprocessableEntity(ref cause) => cause,
+            CreateOriginEndpointError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateOriginEndpointError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateOriginEndpointError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateOriginEndpointError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateOriginEndpointError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateOriginEndpointError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateOriginEndpointError {}
 /// Errors returned by DeleteChannel
 #[derive(Debug, PartialEq)]
 pub enum DeleteChannelError {
@@ -1593,22 +1605,19 @@ impl DeleteChannelError {
     }
 }
 impl fmt::Display for DeleteChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteChannelError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteChannelError::Forbidden(ref cause) => cause,
-            DeleteChannelError::InternalServerError(ref cause) => cause,
-            DeleteChannelError::NotFound(ref cause) => cause,
-            DeleteChannelError::ServiceUnavailable(ref cause) => cause,
-            DeleteChannelError::TooManyRequests(ref cause) => cause,
-            DeleteChannelError::UnprocessableEntity(ref cause) => cause,
+            DeleteChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteChannelError {}
 /// Errors returned by DeleteOriginEndpoint
 #[derive(Debug, PartialEq)]
 pub enum DeleteOriginEndpointError {
@@ -1664,22 +1673,19 @@ impl DeleteOriginEndpointError {
     }
 }
 impl fmt::Display for DeleteOriginEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteOriginEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteOriginEndpointError::Forbidden(ref cause) => cause,
-            DeleteOriginEndpointError::InternalServerError(ref cause) => cause,
-            DeleteOriginEndpointError::NotFound(ref cause) => cause,
-            DeleteOriginEndpointError::ServiceUnavailable(ref cause) => cause,
-            DeleteOriginEndpointError::TooManyRequests(ref cause) => cause,
-            DeleteOriginEndpointError::UnprocessableEntity(ref cause) => cause,
+            DeleteOriginEndpointError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteOriginEndpointError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteOriginEndpointError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteOriginEndpointError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DeleteOriginEndpointError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DeleteOriginEndpointError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteOriginEndpointError {}
 /// Errors returned by DescribeChannel
 #[derive(Debug, PartialEq)]
 pub enum DescribeChannelError {
@@ -1727,22 +1733,19 @@ impl DescribeChannelError {
     }
 }
 impl fmt::Display for DescribeChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeChannelError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeChannelError::Forbidden(ref cause) => cause,
-            DescribeChannelError::InternalServerError(ref cause) => cause,
-            DescribeChannelError::NotFound(ref cause) => cause,
-            DescribeChannelError::ServiceUnavailable(ref cause) => cause,
-            DescribeChannelError::TooManyRequests(ref cause) => cause,
-            DescribeChannelError::UnprocessableEntity(ref cause) => cause,
+            DescribeChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeChannelError {}
 /// Errors returned by DescribeHarvestJob
 #[derive(Debug, PartialEq)]
 pub enum DescribeHarvestJobError {
@@ -1796,22 +1799,19 @@ impl DescribeHarvestJobError {
     }
 }
 impl fmt::Display for DescribeHarvestJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeHarvestJobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeHarvestJobError::Forbidden(ref cause) => cause,
-            DescribeHarvestJobError::InternalServerError(ref cause) => cause,
-            DescribeHarvestJobError::NotFound(ref cause) => cause,
-            DescribeHarvestJobError::ServiceUnavailable(ref cause) => cause,
-            DescribeHarvestJobError::TooManyRequests(ref cause) => cause,
-            DescribeHarvestJobError::UnprocessableEntity(ref cause) => cause,
+            DescribeHarvestJobError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeHarvestJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeHarvestJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeHarvestJobError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeHarvestJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeHarvestJobError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeHarvestJobError {}
 /// Errors returned by DescribeOriginEndpoint
 #[derive(Debug, PartialEq)]
 pub enum DescribeOriginEndpointError {
@@ -1867,22 +1867,19 @@ impl DescribeOriginEndpointError {
     }
 }
 impl fmt::Display for DescribeOriginEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeOriginEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeOriginEndpointError::Forbidden(ref cause) => cause,
-            DescribeOriginEndpointError::InternalServerError(ref cause) => cause,
-            DescribeOriginEndpointError::NotFound(ref cause) => cause,
-            DescribeOriginEndpointError::ServiceUnavailable(ref cause) => cause,
-            DescribeOriginEndpointError::TooManyRequests(ref cause) => cause,
-            DescribeOriginEndpointError::UnprocessableEntity(ref cause) => cause,
+            DescribeOriginEndpointError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeOriginEndpointError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeOriginEndpointError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeOriginEndpointError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeOriginEndpointError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeOriginEndpointError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeOriginEndpointError {}
 /// Errors returned by ListChannels
 #[derive(Debug, PartialEq)]
 pub enum ListChannelsError {
@@ -1930,22 +1927,19 @@ impl ListChannelsError {
     }
 }
 impl fmt::Display for ListChannelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListChannelsError {
-    fn description(&self) -> &str {
         match *self {
-            ListChannelsError::Forbidden(ref cause) => cause,
-            ListChannelsError::InternalServerError(ref cause) => cause,
-            ListChannelsError::NotFound(ref cause) => cause,
-            ListChannelsError::ServiceUnavailable(ref cause) => cause,
-            ListChannelsError::TooManyRequests(ref cause) => cause,
-            ListChannelsError::UnprocessableEntity(ref cause) => cause,
+            ListChannelsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListChannelsError {}
 /// Errors returned by ListHarvestJobs
 #[derive(Debug, PartialEq)]
 pub enum ListHarvestJobsError {
@@ -1993,22 +1987,19 @@ impl ListHarvestJobsError {
     }
 }
 impl fmt::Display for ListHarvestJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListHarvestJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListHarvestJobsError::Forbidden(ref cause) => cause,
-            ListHarvestJobsError::InternalServerError(ref cause) => cause,
-            ListHarvestJobsError::NotFound(ref cause) => cause,
-            ListHarvestJobsError::ServiceUnavailable(ref cause) => cause,
-            ListHarvestJobsError::TooManyRequests(ref cause) => cause,
-            ListHarvestJobsError::UnprocessableEntity(ref cause) => cause,
+            ListHarvestJobsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListHarvestJobsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListHarvestJobsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListHarvestJobsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListHarvestJobsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListHarvestJobsError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListHarvestJobsError {}
 /// Errors returned by ListOriginEndpoints
 #[derive(Debug, PartialEq)]
 pub enum ListOriginEndpointsError {
@@ -2062,22 +2053,19 @@ impl ListOriginEndpointsError {
     }
 }
 impl fmt::Display for ListOriginEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOriginEndpointsError {
-    fn description(&self) -> &str {
         match *self {
-            ListOriginEndpointsError::Forbidden(ref cause) => cause,
-            ListOriginEndpointsError::InternalServerError(ref cause) => cause,
-            ListOriginEndpointsError::NotFound(ref cause) => cause,
-            ListOriginEndpointsError::ServiceUnavailable(ref cause) => cause,
-            ListOriginEndpointsError::TooManyRequests(ref cause) => cause,
-            ListOriginEndpointsError::UnprocessableEntity(ref cause) => cause,
+            ListOriginEndpointsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListOriginEndpointsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListOriginEndpointsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListOriginEndpointsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListOriginEndpointsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListOriginEndpointsError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOriginEndpointsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {}
@@ -2094,15 +2082,12 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by RotateChannelCredentials
 #[derive(Debug, PartialEq)]
 pub enum RotateChannelCredentialsError {
@@ -2158,22 +2143,19 @@ impl RotateChannelCredentialsError {
     }
 }
 impl fmt::Display for RotateChannelCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RotateChannelCredentialsError {
-    fn description(&self) -> &str {
         match *self {
-            RotateChannelCredentialsError::Forbidden(ref cause) => cause,
-            RotateChannelCredentialsError::InternalServerError(ref cause) => cause,
-            RotateChannelCredentialsError::NotFound(ref cause) => cause,
-            RotateChannelCredentialsError::ServiceUnavailable(ref cause) => cause,
-            RotateChannelCredentialsError::TooManyRequests(ref cause) => cause,
-            RotateChannelCredentialsError::UnprocessableEntity(ref cause) => cause,
+            RotateChannelCredentialsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            RotateChannelCredentialsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RotateChannelCredentialsError::NotFound(ref cause) => write!(f, "{}", cause),
+            RotateChannelCredentialsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            RotateChannelCredentialsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            RotateChannelCredentialsError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RotateChannelCredentialsError {}
 /// Errors returned by RotateIngestEndpointCredentials
 #[derive(Debug, PartialEq)]
 pub enum RotateIngestEndpointCredentialsError {
@@ -2235,22 +2217,27 @@ impl RotateIngestEndpointCredentialsError {
     }
 }
 impl fmt::Display for RotateIngestEndpointCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RotateIngestEndpointCredentialsError {
-    fn description(&self) -> &str {
         match *self {
-            RotateIngestEndpointCredentialsError::Forbidden(ref cause) => cause,
-            RotateIngestEndpointCredentialsError::InternalServerError(ref cause) => cause,
-            RotateIngestEndpointCredentialsError::NotFound(ref cause) => cause,
-            RotateIngestEndpointCredentialsError::ServiceUnavailable(ref cause) => cause,
-            RotateIngestEndpointCredentialsError::TooManyRequests(ref cause) => cause,
-            RotateIngestEndpointCredentialsError::UnprocessableEntity(ref cause) => cause,
+            RotateIngestEndpointCredentialsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            RotateIngestEndpointCredentialsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RotateIngestEndpointCredentialsError::NotFound(ref cause) => write!(f, "{}", cause),
+            RotateIngestEndpointCredentialsError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RotateIngestEndpointCredentialsError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RotateIngestEndpointCredentialsError::UnprocessableEntity(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RotateIngestEndpointCredentialsError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {}
@@ -2267,15 +2254,12 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {}
@@ -2292,15 +2276,12 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateChannel
 #[derive(Debug, PartialEq)]
 pub enum UpdateChannelError {
@@ -2348,22 +2329,19 @@ impl UpdateChannelError {
     }
 }
 impl fmt::Display for UpdateChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateChannelError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateChannelError::Forbidden(ref cause) => cause,
-            UpdateChannelError::InternalServerError(ref cause) => cause,
-            UpdateChannelError::NotFound(ref cause) => cause,
-            UpdateChannelError::ServiceUnavailable(ref cause) => cause,
-            UpdateChannelError::TooManyRequests(ref cause) => cause,
-            UpdateChannelError::UnprocessableEntity(ref cause) => cause,
+            UpdateChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateChannelError {}
 /// Errors returned by UpdateOriginEndpoint
 #[derive(Debug, PartialEq)]
 pub enum UpdateOriginEndpointError {
@@ -2419,22 +2397,19 @@ impl UpdateOriginEndpointError {
     }
 }
 impl fmt::Display for UpdateOriginEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateOriginEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateOriginEndpointError::Forbidden(ref cause) => cause,
-            UpdateOriginEndpointError::InternalServerError(ref cause) => cause,
-            UpdateOriginEndpointError::NotFound(ref cause) => cause,
-            UpdateOriginEndpointError::ServiceUnavailable(ref cause) => cause,
-            UpdateOriginEndpointError::TooManyRequests(ref cause) => cause,
-            UpdateOriginEndpointError::UnprocessableEntity(ref cause) => cause,
+            UpdateOriginEndpointError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateOriginEndpointError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateOriginEndpointError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateOriginEndpointError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateOriginEndpointError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            UpdateOriginEndpointError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateOriginEndpointError {}
 /// Trait representing the capabilities of the MediaPackage API. MediaPackage clients implement this trait.
 #[async_trait]
 pub trait MediaPackage {

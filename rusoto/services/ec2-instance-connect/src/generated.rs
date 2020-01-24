@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SendSSHPublicKeyRequest {
     /// <p>The availability zone the EC2 instance was launched in.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -41,7 +43,7 @@ pub struct SendSSHPublicKeyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SendSSHPublicKeyResponse {
     /// <p>The request ID as logged by EC2 Connect. Please provide this when contacting AWS Support.</p>
     #[serde(rename = "RequestId")]
@@ -97,21 +99,18 @@ impl SendSSHPublicKeyError {
     }
 }
 impl fmt::Display for SendSSHPublicKeyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SendSSHPublicKeyError {
-    fn description(&self) -> &str {
         match *self {
-            SendSSHPublicKeyError::Auth(ref cause) => cause,
-            SendSSHPublicKeyError::EC2InstanceNotFound(ref cause) => cause,
-            SendSSHPublicKeyError::InvalidArgs(ref cause) => cause,
-            SendSSHPublicKeyError::Service(ref cause) => cause,
-            SendSSHPublicKeyError::Throttling(ref cause) => cause,
+            SendSSHPublicKeyError::Auth(ref cause) => write!(f, "{}", cause),
+            SendSSHPublicKeyError::EC2InstanceNotFound(ref cause) => write!(f, "{}", cause),
+            SendSSHPublicKeyError::InvalidArgs(ref cause) => write!(f, "{}", cause),
+            SendSSHPublicKeyError::Service(ref cause) => write!(f, "{}", cause),
+            SendSSHPublicKeyError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SendSSHPublicKeyError {}
 /// Trait representing the capabilities of the EC2 Instance Connect API. EC2 Instance Connect clients implement this trait.
 #[async_trait]
 pub trait Ec2InstanceConnect {

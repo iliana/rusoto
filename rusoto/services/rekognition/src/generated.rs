@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Structure containing the estimated age range, in years, for a face.</p> <p>Amazon Rekognition estimates an age range for faces detected in the input image. Estimated age ranges can overlap. A face of a 5-year-old might have an estimated range of 4-6, while the face of a 6-year-old might have an estimated range of 4-8.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AgeRange {
     /// <p>The highest estimated age.</p>
     #[serde(rename = "High")]
@@ -48,7 +49,7 @@ pub struct Asset {
 
 /// <p>Indicates whether or not the face has a beard, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Beard {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -62,7 +63,7 @@ pub struct Beard {
 
 /// <p><p>Identifies the bounding box around the label, face, or text. The <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are coordinates representing the top and left sides of the bounding box. Note that the upper-left corner of the image is the origin (0,0). </p> <p>The <code>top</code> and <code>left</code> values returned are ratios of the overall image size. For example, if the input image is 700x200 pixels, and the top-left coordinate of the bounding box is 350x50 pixels, the API returns a <code>left</code> value of 0.5 (350/700) and a <code>top</code> value of 0.25 (50/200).</p> <p>The <code>width</code> and <code>height</code> values represent the dimensions of the bounding box as a ratio of the overall image dimension. For example, if the input image is 700x200 pixels, and the bounding box width is 70 pixels, the width returned is 0.1. </p> <note> <p> The bounding box coordinates can have negative values. For example, if Amazon Rekognition is able to detect a face that is at the image edge and is only partially visible, the service can return coordinates that are outside the image bounds and, depending on the image edge, you might get negative values or values greater than 1 for the <code>left</code> or <code>top</code> values. </p> </note></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BoundingBox {
     /// <p>Height of the bounding box as a ratio of the overall image height.</p>
     #[serde(rename = "Height")]
@@ -84,7 +85,7 @@ pub struct BoundingBox {
 
 /// <p>Provides information about a celebrity recognized by the <a>RecognizeCelebrities</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Celebrity {
     /// <p>Provides information about the celebrity's face, such as its location on the image.</p>
     #[serde(rename = "Face")]
@@ -110,7 +111,7 @@ pub struct Celebrity {
 
 /// <p>Information about a recognized celebrity.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CelebrityDetail {
     /// <p>Bounding box around the body of a celebrity.</p>
     #[serde(rename = "BoundingBox")]
@@ -140,7 +141,7 @@ pub struct CelebrityDetail {
 
 /// <p>Information about a detected celebrity and the time the celebrity was detected in a stored video. For more information, see GetCelebrityRecognition in the Amazon Rekognition Developer Guide.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CelebrityRecognition {
     /// <p>Information about a recognized celebrity.</p>
     #[serde(rename = "Celebrity")]
@@ -154,7 +155,7 @@ pub struct CelebrityRecognition {
 
 /// <p>Provides information about a face in a target image that matches the source image face analyzed by <code>CompareFaces</code>. The <code>Face</code> property contains the bounding box of the face in the target image. The <code>Similarity</code> property is the confidence that the source image face matches the face in the bounding box.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompareFacesMatch {
     /// <p>Provides face metadata (bounding box and confidence that the bounding box actually contains a face).</p>
     #[serde(rename = "Face")]
@@ -167,6 +168,7 @@ pub struct CompareFacesMatch {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CompareFacesRequest {
     /// <p>A filter that specifies a quality bar for how much filtering is done to identify faces. Filtered faces aren't compared. If you specify <code>AUTO</code>, Amazon Rekognition chooses the quality bar. If you specify <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>, filtering removes all faces that don’t meet the chosen quality bar. The quality bar is based on a variety of common use cases. Low-quality detections can occur for a number of reasons. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use. If you specify <code>NONE</code>, no filtering is performed. The default value is <code>NONE</code>. </p> <p>To use quality filtering, the collection you are using must be associated with version 3 of the face model or higher.</p>
     #[serde(rename = "QualityFilter")]
@@ -185,7 +187,7 @@ pub struct CompareFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompareFacesResponse {
     /// <p>An array of faces in the target image that match the source image face. Each <code>CompareFacesMatch</code> object provides the bounding box, the confidence level that the bounding box contains a face, and the similarity score for the face in the bounding box and the face in the source image.</p>
     #[serde(rename = "FaceMatches")]
@@ -211,7 +213,7 @@ pub struct CompareFacesResponse {
 
 /// <p>Provides face metadata for target image faces that are analyzed by <code>CompareFaces</code> and <code>RecognizeCelebrities</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComparedFace {
     /// <p>Bounding box of the face.</p>
     #[serde(rename = "BoundingBox")]
@@ -237,7 +239,7 @@ pub struct ComparedFace {
 
 /// <p>Type that describes the face Amazon Rekognition chose to compare with the faces in the target. This contains a bounding box for the selected face and confidence level that the bounding box contains a face. Note that Amazon Rekognition selects the largest face in the source image for this comparison. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComparedSourceImageFace {
     /// <p>Bounding box of the face.</p>
     #[serde(rename = "BoundingBox")]
@@ -251,7 +253,7 @@ pub struct ComparedSourceImageFace {
 
 /// <p>Information about an unsafe content label detection in a stored video.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ContentModerationDetection {
     /// <p>The unsafe content label detected by in the stored video.</p>
     #[serde(rename = "ModerationLabel")]
@@ -264,6 +266,7 @@ pub struct ContentModerationDetection {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCollectionRequest {
     /// <p>ID for the collection that you are creating.</p>
     #[serde(rename = "CollectionId")]
@@ -271,7 +274,7 @@ pub struct CreateCollectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCollectionResponse {
     /// <p>Amazon Resource Name (ARN) of the collection. You can use this to manage permissions on your resources. </p>
     #[serde(rename = "CollectionArn")]
@@ -288,6 +291,7 @@ pub struct CreateCollectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectRequest {
     /// <p>The name of the project to create.</p>
     #[serde(rename = "ProjectName")]
@@ -295,7 +299,7 @@ pub struct CreateProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectResponse {
     /// <p>The Amazon Resource Name (ARN) of the new project. You can use the ARN to configure IAM access to the project. </p>
     #[serde(rename = "ProjectArn")]
@@ -304,6 +308,7 @@ pub struct CreateProjectResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectVersionRequest {
     /// <p>The Amazon S3 location to store the results of training.</p>
     #[serde(rename = "OutputConfig")]
@@ -323,7 +328,7 @@ pub struct CreateProjectVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectVersionResponse {
     /// <p>The ARN of the model version that was created. Use <code>DescribeProjectVersion</code> to get the current status of the training operation.</p>
     #[serde(rename = "ProjectVersionArn")]
@@ -332,6 +337,7 @@ pub struct CreateProjectVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateStreamProcessorRequest {
     /// <p>Kinesis video stream stream that provides the source streaming video. If you are using the AWS CLI, the parameter name is <code>StreamProcessorInput</code>.</p>
     #[serde(rename = "Input")]
@@ -351,7 +357,7 @@ pub struct CreateStreamProcessorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateStreamProcessorResponse {
     /// <p>ARN for the newly create stream processor.</p>
     #[serde(rename = "StreamProcessorArn")]
@@ -361,7 +367,7 @@ pub struct CreateStreamProcessorResponse {
 
 /// <p>A custom label detected in an image by a call to <a>DetectCustomLabels</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CustomLabel {
     /// <p>The confidence that the model has in the detection of the custom label. The range is 0-100. A higher value indicates a higher confidence.</p>
     #[serde(rename = "Confidence")]
@@ -378,6 +384,7 @@ pub struct CustomLabel {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCollectionRequest {
     /// <p>ID of the collection to delete.</p>
     #[serde(rename = "CollectionId")]
@@ -385,7 +392,7 @@ pub struct DeleteCollectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteCollectionResponse {
     /// <p>HTTP status code that indicates the result of the operation.</p>
     #[serde(rename = "StatusCode")]
@@ -394,6 +401,7 @@ pub struct DeleteCollectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFacesRequest {
     /// <p>Collection from which to remove the specific faces.</p>
     #[serde(rename = "CollectionId")]
@@ -404,7 +412,7 @@ pub struct DeleteFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteFacesResponse {
     /// <p>An array of strings (face IDs) of the faces that were deleted.</p>
     #[serde(rename = "DeletedFaces")]
@@ -413,6 +421,7 @@ pub struct DeleteFacesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteStreamProcessorRequest {
     /// <p>The name of the stream processor you want to delete.</p>
     #[serde(rename = "Name")]
@@ -420,10 +429,11 @@ pub struct DeleteStreamProcessorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteStreamProcessorResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCollectionRequest {
     /// <p>The ID of the collection to describe.</p>
     #[serde(rename = "CollectionId")]
@@ -431,7 +441,7 @@ pub struct DescribeCollectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCollectionResponse {
     /// <p>The Amazon Resource Name (ARN) of the collection.</p>
     #[serde(rename = "CollectionARN")]
@@ -452,6 +462,7 @@ pub struct DescribeCollectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProjectVersionsRequest {
     /// <p>The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100. </p>
     #[serde(rename = "MaxResults")]
@@ -471,7 +482,7 @@ pub struct DescribeProjectVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProjectVersionsResponse {
     /// <p>If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. </p>
     #[serde(rename = "NextToken")]
@@ -484,6 +495,7 @@ pub struct DescribeProjectVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProjectsRequest {
     /// <p>The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100. </p>
     #[serde(rename = "MaxResults")]
@@ -496,7 +508,7 @@ pub struct DescribeProjectsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProjectsResponse {
     /// <p>If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results. </p>
     #[serde(rename = "NextToken")]
@@ -509,6 +521,7 @@ pub struct DescribeProjectsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeStreamProcessorRequest {
     /// <p>Name of the stream processor for which you want information.</p>
     #[serde(rename = "Name")]
@@ -516,7 +529,7 @@ pub struct DescribeStreamProcessorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeStreamProcessorResponse {
     /// <p>Date and time the stream processor was created</p>
     #[serde(rename = "CreationTimestamp")]
@@ -561,6 +574,7 @@ pub struct DescribeStreamProcessorResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectCustomLabelsRequest {
     #[serde(rename = "Image")]
     pub image: Image,
@@ -578,7 +592,7 @@ pub struct DetectCustomLabelsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectCustomLabelsResponse {
     /// <p>An array of custom labels detected in the input image.</p>
     #[serde(rename = "CustomLabels")]
@@ -587,6 +601,7 @@ pub struct DetectCustomLabelsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectFacesRequest {
     /// <p>An array of facial attributes you want to be returned. This can be the default list of attributes or all attributes. If you don't specify a value for <code>Attributes</code> or if you specify <code>["DEFAULT"]</code>, the API returns the following subset of facial attributes: <code>BoundingBox</code>, <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If you provide <code>["ALL"]</code>, all facial attributes are returned, but the operation takes longer to complete.</p> <p>If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a logical AND operator to determine which attributes to return (in this case, all attributes). </p>
     #[serde(rename = "Attributes")]
@@ -598,7 +613,7 @@ pub struct DetectFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectFacesResponse {
     /// <p>Details of each face found in the image. </p>
     #[serde(rename = "FaceDetails")]
@@ -611,6 +626,7 @@ pub struct DetectFacesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectLabelsRequest {
     /// <p>The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported. Images stored in an S3 Bucket do not need to be base64-encoded.</p> <p>If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the <code>Bytes</code> field. For more information, see Images in the Amazon Rekognition developer guide.</p>
     #[serde(rename = "Image")]
@@ -626,7 +642,7 @@ pub struct DetectLabelsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectLabelsResponse {
     /// <p>Version number of the label detection model that was used to detect labels.</p>
     #[serde(rename = "LabelModelVersion")]
@@ -643,6 +659,7 @@ pub struct DetectLabelsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectModerationLabelsRequest {
     /// <p>Sets up the configuration for human evaluation, including the FlowDefinition the image will be sent to.</p>
     #[serde(rename = "HumanLoopConfig")]
@@ -658,7 +675,7 @@ pub struct DetectModerationLabelsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectModerationLabelsResponse {
     /// <p>Shows the results of the human in the loop evaluation.</p>
     #[serde(rename = "HumanLoopActivationOutput")]
@@ -675,6 +692,7 @@ pub struct DetectModerationLabelsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectTextRequest {
     /// <p>The input image as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes. </p> <p>If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the <code>Bytes</code> field. For more information, see Images in the Amazon Rekognition developer guide.</p>
     #[serde(rename = "Image")]
@@ -682,7 +700,7 @@ pub struct DetectTextRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectTextResponse {
     /// <p>An array of text that was detected in the input image.</p>
     #[serde(rename = "TextDetections")]
@@ -692,7 +710,7 @@ pub struct DetectTextResponse {
 
 /// <p>The emotions that appear to be expressed on the face, and the confidence level in the determination. The API is only making a determination of the physical appearance of a person's face. It is not a determination of the person’s internal emotional state and should not be used in such a way. For example, a person pretending to have a sad face might not be sad emotionally.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Emotion {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -706,7 +724,7 @@ pub struct Emotion {
 
 /// <p>The evaluation results for the training of a model.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EvaluationResult {
     /// <p>The F1 score for the evaluation of all labels. The F1 score metric evaluates the overall precision and recall performance of the model as a single value. A higher value indicates better precision and recall performance. A lower score indicates that precision, recall, or both are performing poorly. </p>
     #[serde(rename = "F1Score")]
@@ -720,7 +738,7 @@ pub struct EvaluationResult {
 
 /// <p>Indicates whether or not the eyes on the face are open, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EyeOpen {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -734,7 +752,7 @@ pub struct EyeOpen {
 
 /// <p>Indicates whether or not the face is wearing eye glasses, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Eyeglasses {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -748,7 +766,7 @@ pub struct Eyeglasses {
 
 /// <p>Describes the face properties such as the bounding box, face ID, image ID of the input image, and external image ID that you assigned. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Face {
     /// <p>Bounding box of the face.</p>
     #[serde(rename = "BoundingBox")]
@@ -774,7 +792,7 @@ pub struct Face {
 
 /// <p>Structure containing attributes of the face that the algorithm detected.</p> <p>A <code>FaceDetail</code> object contains either the default facial attributes or all facial attributes. The default attributes are <code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>.</p> <p> <a>GetFaceDetection</a> is the only Amazon Rekognition Video stored video operation that can return a <code>FaceDetail</code> object with all attributes. To specify which attributes to return, use the <code>FaceAttributes</code> input parameter for <a>StartFaceDetection</a>. The following Amazon Rekognition Video operations return only the default attributes. The corresponding Start operations don't have a <code>FaceAttributes</code> input parameter.</p> <ul> <li> <p>GetCelebrityRecognition</p> </li> <li> <p>GetPersonTracking</p> </li> <li> <p>GetFaceSearch</p> </li> </ul> <p>The Amazon Rekognition Image <a>DetectFaces</a> and <a>IndexFaces</a> operations can return all facial attributes. To specify which attributes to return, use the <code>Attributes</code> input parameter for <code>DetectFaces</code>. For <code>IndexFaces</code>, use the <code>DetectAttributes</code> input parameter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaceDetail {
     /// <p>The estimated age range, in years, for the face. Low represents the lowest estimated age and High represents the highest estimated age.</p>
     #[serde(rename = "AgeRange")]
@@ -840,7 +858,7 @@ pub struct FaceDetail {
 
 /// <p>Information about a face detected in a video analysis request and the time the face was detected in the video. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaceDetection {
     /// <p>The face properties for the detected face.</p>
     #[serde(rename = "Face")]
@@ -854,7 +872,7 @@ pub struct FaceDetection {
 
 /// <p>Provides face metadata. In addition, it also provides the confidence in the match of this face with the input face.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaceMatch {
     /// <p>Describes the face properties such as the bounding box, face ID, image ID of the source image, and external image ID that you assigned.</p>
     #[serde(rename = "Face")]
@@ -868,7 +886,7 @@ pub struct FaceMatch {
 
 /// <p>Object containing both the face metadata (stored in the backend database), and facial attributes that are detected but aren't stored in the database.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FaceRecord {
     /// <p>Describes the face properties such as the bounding box, face ID, image ID of the input image, and external image ID that you assigned. </p>
     #[serde(rename = "Face")]
@@ -895,7 +913,7 @@ pub struct FaceSearchSettings {
 
 /// <p>The predicted gender of a detected face. </p> <p>Amazon Rekognition makes gender binary (male/female) predictions based on the physical appearance of a face in a particular image. This kind of prediction is not designed to categorize a person’s gender identity, and you shouldn't use Amazon Rekognition to make such a determination. For example, a male actor wearing a long-haired wig and earrings for a role might be predicted as female.</p> <p>Using Amazon Rekognition to make gender binary predictions is best suited for use cases where aggregate gender distribution statistics need to be analyzed without identifying specific users. For example, the percentage of female users compared to male users on a social media platform. </p> <p>We don't recommend using gender binary predictions to make decisions that impact&#x2028; an individual's rights, privacy, or access to services.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Gender {
     /// <p>Level of confidence in the prediction.</p>
     #[serde(rename = "Confidence")]
@@ -909,7 +927,7 @@ pub struct Gender {
 
 /// <p>Information about where an object (<a>DetectCustomLabels</a>) or text (<a>DetectText</a>) is located on an image.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Geometry {
     /// <p>An axis-aligned coarse representation of the detected item's location on the image.</p>
     #[serde(rename = "BoundingBox")]
@@ -922,6 +940,7 @@ pub struct Geometry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCelebrityInfoRequest {
     /// <p>The ID for the celebrity. You get the celebrity ID from a call to the <a>RecognizeCelebrities</a> operation, which recognizes celebrities in an image. </p>
     #[serde(rename = "Id")]
@@ -929,7 +948,7 @@ pub struct GetCelebrityInfoRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCelebrityInfoResponse {
     /// <p>The name of the celebrity.</p>
     #[serde(rename = "Name")]
@@ -942,6 +961,7 @@ pub struct GetCelebrityInfoResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCelebrityRecognitionRequest {
     /// <p>Job identifier for the required celebrity recognition analysis. You can get the job identifer from a call to <code>StartCelebrityRecognition</code>.</p>
     #[serde(rename = "JobId")]
@@ -961,7 +981,7 @@ pub struct GetCelebrityRecognitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCelebrityRecognitionResponse {
     /// <p>Array of celebrities recognized in the video.</p>
     #[serde(rename = "Celebrities")]
@@ -986,6 +1006,7 @@ pub struct GetCelebrityRecognitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetContentModerationRequest {
     /// <p>The identifier for the unsafe content job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetContentModeration</code>.</p>
     #[serde(rename = "JobId")]
@@ -1005,7 +1026,7 @@ pub struct GetContentModerationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetContentModerationResponse {
     /// <p>The current status of the unsafe content analysis job.</p>
     #[serde(rename = "JobStatus")]
@@ -1034,6 +1055,7 @@ pub struct GetContentModerationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFaceDetectionRequest {
     /// <p>Unique identifier for the face detection job. The <code>JobId</code> is returned from <code>StartFaceDetection</code>.</p>
     #[serde(rename = "JobId")]
@@ -1049,7 +1071,7 @@ pub struct GetFaceDetectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFaceDetectionResponse {
     /// <p>An array of faces detected in the video. Each element contains a detected face's details and the time, in milliseconds from the start of the video, the face was detected. </p>
     #[serde(rename = "Faces")]
@@ -1074,6 +1096,7 @@ pub struct GetFaceDetectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFaceSearchRequest {
     /// <p>The job identifer for the search request. You get the job identifier from an initial call to <code>StartFaceSearch</code>.</p>
     #[serde(rename = "JobId")]
@@ -1093,7 +1116,7 @@ pub struct GetFaceSearchRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFaceSearchResponse {
     /// <p>The current status of the face search job.</p>
     #[serde(rename = "JobStatus")]
@@ -1118,6 +1141,7 @@ pub struct GetFaceSearchResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLabelDetectionRequest {
     /// <p>Job identifier for the label detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartlabelDetection</code>.</p>
     #[serde(rename = "JobId")]
@@ -1137,7 +1161,7 @@ pub struct GetLabelDetectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLabelDetectionResponse {
     /// <p>The current status of the label detection job.</p>
     #[serde(rename = "JobStatus")]
@@ -1166,6 +1190,7 @@ pub struct GetLabelDetectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPersonTrackingRequest {
     /// <p>The identifier for a job that tracks persons in a video. You get the <code>JobId</code> from a call to <code>StartPersonTracking</code>. </p>
     #[serde(rename = "JobId")]
@@ -1185,7 +1210,7 @@ pub struct GetPersonTrackingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPersonTrackingResponse {
     /// <p>The current status of the person tracking job.</p>
     #[serde(rename = "JobStatus")]
@@ -1219,7 +1244,7 @@ pub struct GroundTruthManifest {
 
 /// <p>Shows the results of the human in the loop evaluation. If there is no HumanLoopArn, the input did not trigger human review.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HumanLoopActivationOutput {
     /// <p>Shows the result of condition evaluations, including those conditions which activated a human review.</p>
     #[serde(rename = "HumanLoopActivationConditionsEvaluationResults")]
@@ -1237,6 +1262,7 @@ pub struct HumanLoopActivationOutput {
 
 /// <p>Sets up the flow definition the image will be sent to if one of the conditions is met. You can also set certain attributes of the image before review.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HumanLoopConfig {
     /// <p>Sets attributes of the input data.</p>
     #[serde(rename = "DataAttributes")]
@@ -1252,6 +1278,7 @@ pub struct HumanLoopConfig {
 
 /// <p>Allows you to set attributes of the image. Currently, you can declare an image as free of personally identifiable information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HumanLoopDataAttributes {
     /// <p>Sets whether the input image is free of personally identifiable information.</p>
     #[serde(rename = "ContentClassifiers")]
@@ -1261,6 +1288,7 @@ pub struct HumanLoopDataAttributes {
 
 /// <p>Provides the input image either as bytes or an S3 object.</p> <p>You pass image bytes to an Amazon Rekognition API operation by using the <code>Bytes</code> property. For example, you would use the <code>Bytes</code> property to pass an image loaded from a local file system. Image bytes passed by using the <code>Bytes</code> property must be base64-encoded. Your code may not need to encode image bytes if you are using an AWS SDK to call Amazon Rekognition API operations. </p> <p>For more information, see Analyzing an Image Loaded from a Local File System in the Amazon Rekognition Developer Guide.</p> <p> You pass images stored in an S3 bucket to an Amazon Rekognition API operation by using the <code>S3Object</code> property. Images stored in an S3 bucket do not need to be base64-encoded.</p> <p>The region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition operations.</p> <p>If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes using the Bytes property is not supported. You must first upload the image to an Amazon S3 bucket and then call the operation using the S3Object property.</p> <p>For Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object. For more information, see Resource Based Policies in the Amazon Rekognition Developer Guide. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Image {
     /// <p>Blob of image bytes up to 5 MBs.</p>
     #[serde(rename = "Bytes")]
@@ -1279,7 +1307,7 @@ pub struct Image {
 
 /// <p>Identifies face image brightness and sharpness. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageQuality {
     /// <p>Value representing brightness of the face. The service returns a value between 0 and 100 (inclusive). A higher value indicates a brighter face image.</p>
     #[serde(rename = "Brightness")]
@@ -1292,6 +1320,7 @@ pub struct ImageQuality {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct IndexFacesRequest {
     /// <p>The ID of an existing collection to which you want to add the faces that are detected in the input images.</p>
     #[serde(rename = "CollectionId")]
@@ -1318,7 +1347,7 @@ pub struct IndexFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IndexFacesResponse {
     /// <p>The version number of the face detection model that's associated with the input collection (<code>CollectionId</code>).</p>
     #[serde(rename = "FaceModelVersion")]
@@ -1340,7 +1369,7 @@ pub struct IndexFacesResponse {
 
 /// <p>An instance of a label returned by Amazon Rekognition Image (<a>DetectLabels</a>) or by Amazon Rekognition Video (<a>GetLabelDetection</a>).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Instance {
     /// <p>The position of the label instance on the image.</p>
     #[serde(rename = "BoundingBox")]
@@ -1372,7 +1401,7 @@ pub struct KinesisVideoStream {
 
 /// <p>Structure containing details about the detected label, including the name, detected instances, parent labels, and level of confidence.</p> <p> </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Label {
     /// <p>Level of confidence.</p>
     #[serde(rename = "Confidence")]
@@ -1394,7 +1423,7 @@ pub struct Label {
 
 /// <p>Information about a label detected in a video analysis request and the time the label was detected in the video. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LabelDetection {
     /// <p>Details about the detected label.</p>
     #[serde(rename = "Label")]
@@ -1408,7 +1437,7 @@ pub struct LabelDetection {
 
 /// <p>Indicates the location of the landmark on the face.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Landmark {
     /// <p>Type of landmark.</p>
     #[serde(rename = "Type")]
@@ -1425,6 +1454,7 @@ pub struct Landmark {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCollectionsRequest {
     /// <p>Maximum number of collection IDs to return. </p>
     #[serde(rename = "MaxResults")]
@@ -1437,7 +1467,7 @@ pub struct ListCollectionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCollectionsResponse {
     /// <p>An array of collection IDs.</p>
     #[serde(rename = "CollectionIds")]
@@ -1454,6 +1484,7 @@ pub struct ListCollectionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFacesRequest {
     /// <p>ID of the collection from which to list the faces.</p>
     #[serde(rename = "CollectionId")]
@@ -1469,7 +1500,7 @@ pub struct ListFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFacesResponse {
     /// <p>Version number of the face detection model associated with the input collection (<code>CollectionId</code>).</p>
     #[serde(rename = "FaceModelVersion")]
@@ -1486,6 +1517,7 @@ pub struct ListFacesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListStreamProcessorsRequest {
     /// <p>Maximum number of stream processors you want Amazon Rekognition Video to return in the response. The default is 1000. </p>
     #[serde(rename = "MaxResults")]
@@ -1498,7 +1530,7 @@ pub struct ListStreamProcessorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListStreamProcessorsResponse {
     /// <p>If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of stream processors. </p>
     #[serde(rename = "NextToken")]
@@ -1512,7 +1544,7 @@ pub struct ListStreamProcessorsResponse {
 
 /// <p>Provides information about a single type of unsafe content found in an image or video. Each type of moderated content has a label within a hierarchical taxonomy. For more information, see Detecting Unsafe Content in the Amazon Rekognition Developer Guide.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ModerationLabel {
     /// <p>Specifies the confidence that Amazon Rekognition has that the label has been correctly identified.</p> <p>If you don't specify the <code>MinConfidence</code> parameter in the call to <code>DetectModerationLabels</code>, the operation returns labels with a confidence value greater than or equal to 50 percent.</p>
     #[serde(rename = "Confidence")]
@@ -1530,7 +1562,7 @@ pub struct ModerationLabel {
 
 /// <p>Indicates whether or not the mouth on the face is open, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MouthOpen {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -1544,7 +1576,7 @@ pub struct MouthOpen {
 
 /// <p>Indicates whether or not the face has a mustache, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Mustache {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -1558,6 +1590,7 @@ pub struct Mustache {
 
 /// <p>The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation. For more information, see <a>api-video</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NotificationChannel {
     /// <p>The ARN of an IAM role that gives Amazon Rekognition publishing permissions to the Amazon SNS topic. </p>
     #[serde(rename = "RoleArn")]
@@ -1582,7 +1615,7 @@ pub struct OutputConfig {
 
 /// <p>A parent label for a label. A label can have 0, 1, or more parents. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Parent {
     /// <p>The name of the parent label.</p>
     #[serde(rename = "Name")]
@@ -1592,7 +1625,7 @@ pub struct Parent {
 
 /// <p>Details about a person detected in a video analysis request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PersonDetail {
     /// <p>Bounding box around the detected person.</p>
     #[serde(rename = "BoundingBox")]
@@ -1610,7 +1643,7 @@ pub struct PersonDetail {
 
 /// <p>Details and path tracking information for a single time a person's path is tracked in a video. Amazon Rekognition operations that track people's paths return an array of <code>PersonDetection</code> objects with elements for each time a person's path is tracked in a video. </p> <p>For more information, see GetPersonTracking in the Amazon Rekognition Developer Guide. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PersonDetection {
     /// <p>Details about a person whose path was tracked in a video.</p>
     #[serde(rename = "Person")]
@@ -1624,7 +1657,7 @@ pub struct PersonDetection {
 
 /// <p>Information about a person whose face matches a face(s) in an Amazon Rekognition collection. Includes information about the faces in the Amazon Rekognition collection (<a>FaceMatch</a>), information about the person (<a>PersonDetail</a>), and the time stamp for when the person was detected in a video. An array of <code>PersonMatch</code> objects is returned by <a>GetFaceSearch</a>. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PersonMatch {
     /// <p>Information about the faces in the input collection that match the face of a person in the video.</p>
     #[serde(rename = "FaceMatches")]
@@ -1642,7 +1675,7 @@ pub struct PersonMatch {
 
 /// <p>The X and Y coordinates of a point on an image. The X and Y values returned are ratios of the overall image size. For example, if the input image is 700x200 and the operation returns X=0.5 and Y=0.25, then the point is at the (350,50) pixel coordinate on the image.</p> <p>An array of <code>Point</code> objects, <code>Polygon</code>, is returned by <a>DetectText</a> and by <a>DetectCustomLabels</a>. <code>Polygon</code> represents a fine-grained polygon around a detected item. For more information, see Geometry in the Amazon Rekognition Developer Guide. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Point {
     /// <p>The value of the X coordinate for a point on a <code>Polygon</code>.</p>
     #[serde(rename = "X")]
@@ -1656,7 +1689,7 @@ pub struct Point {
 
 /// <p>Indicates the pose of the face as determined by its pitch, roll, and yaw.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Pose {
     /// <p>Value representing the face rotation on the pitch axis.</p>
     #[serde(rename = "Pitch")]
@@ -1674,7 +1707,7 @@ pub struct Pose {
 
 /// <p>A description of a Amazon Rekognition Custom Labels project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectDescription {
     /// <p>The Unix timestamp for the date and time that the project was created.</p>
     #[serde(rename = "CreationTimestamp")]
@@ -1692,7 +1725,7 @@ pub struct ProjectDescription {
 
 /// <p>The description of a version of a model.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectVersionDescription {
     /// <p>The duration, in seconds, that the model version has been billed for training. This value is only returned if the model version has been successfully trained.</p>
     #[serde(rename = "BillableTrainingTimeInSeconds")]
@@ -1741,6 +1774,7 @@ pub struct ProjectVersionDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RecognizeCelebritiesRequest {
     /// <p>The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported. </p> <p>If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the <code>Bytes</code> field. For more information, see Images in the Amazon Rekognition developer guide.</p>
     #[serde(rename = "Image")]
@@ -1748,7 +1782,7 @@ pub struct RecognizeCelebritiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecognizeCelebritiesResponse {
     /// <p>Details about each celebrity found in the image. Amazon Rekognition can detect a maximum of 15 celebrities in an image.</p>
     #[serde(rename = "CelebrityFaces")]
@@ -1782,6 +1816,7 @@ pub struct S3Object {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchFacesByImageRequest {
     /// <p>ID of the collection to search.</p>
     #[serde(rename = "CollectionId")]
@@ -1804,7 +1839,7 @@ pub struct SearchFacesByImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchFacesByImageResponse {
     /// <p>An array of faces that match the input face, along with the confidence in the match.</p>
     #[serde(rename = "FaceMatches")]
@@ -1825,6 +1860,7 @@ pub struct SearchFacesByImageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchFacesRequest {
     /// <p>ID of the collection the face belongs to.</p>
     #[serde(rename = "CollectionId")]
@@ -1843,7 +1879,7 @@ pub struct SearchFacesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchFacesResponse {
     /// <p>An array of faces that matched the input face, along with the confidence in the match.</p>
     #[serde(rename = "FaceMatches")]
@@ -1861,7 +1897,7 @@ pub struct SearchFacesResponse {
 
 /// <p>Indicates whether or not the face is smiling, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Smile {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -1874,6 +1910,7 @@ pub struct Smile {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartCelebrityRecognitionRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartCelebrityRecognition</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -1893,7 +1930,7 @@ pub struct StartCelebrityRecognitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartCelebrityRecognitionResponse {
     /// <p>The identifier for the celebrity recognition analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetCelebrityRecognition</code>.</p>
     #[serde(rename = "JobId")]
@@ -1902,6 +1939,7 @@ pub struct StartCelebrityRecognitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartContentModerationRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartContentModeration</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -1925,7 +1963,7 @@ pub struct StartContentModerationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartContentModerationResponse {
     /// <p>The identifier for the unsafe content analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetContentModeration</code>.</p>
     #[serde(rename = "JobId")]
@@ -1934,6 +1972,7 @@ pub struct StartContentModerationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartFaceDetectionRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartFaceDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -1957,7 +1996,7 @@ pub struct StartFaceDetectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartFaceDetectionResponse {
     /// <p>The identifier for the face detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetFaceDetection</code>.</p>
     #[serde(rename = "JobId")]
@@ -1966,6 +2005,7 @@ pub struct StartFaceDetectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartFaceSearchRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartFaceSearch</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -1992,7 +2032,7 @@ pub struct StartFaceSearchRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartFaceSearchResponse {
     /// <p>The identifier for the search job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetFaceSearch</code>. </p>
     #[serde(rename = "JobId")]
@@ -2001,6 +2041,7 @@ pub struct StartFaceSearchResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartLabelDetectionRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartLabelDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -2024,7 +2065,7 @@ pub struct StartLabelDetectionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartLabelDetectionResponse {
     /// <p>The identifier for the label detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetLabelDetection</code>. </p>
     #[serde(rename = "JobId")]
@@ -2033,6 +2074,7 @@ pub struct StartLabelDetectionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartPersonTrackingRequest {
     /// <p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartPersonTracking</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>
     #[serde(rename = "ClientRequestToken")]
@@ -2052,7 +2094,7 @@ pub struct StartPersonTrackingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartPersonTrackingResponse {
     /// <p>The identifier for the person detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetPersonTracking</code>.</p>
     #[serde(rename = "JobId")]
@@ -2061,6 +2103,7 @@ pub struct StartPersonTrackingResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartProjectVersionRequest {
     /// <p>The minimum number of inference units to use. A single inference unit represents 1 hour of processing and can support up to 5 Transaction Pers Second (TPS). Use a higher number to increase the TPS throughput of your model. You are charged for the number of inference units that you use. </p>
     #[serde(rename = "MinInferenceUnits")]
@@ -2071,7 +2114,7 @@ pub struct StartProjectVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartProjectVersionResponse {
     /// <p>The current running status of the model. </p>
     #[serde(rename = "Status")]
@@ -2080,6 +2123,7 @@ pub struct StartProjectVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartStreamProcessorRequest {
     /// <p>The name of the stream processor to start processing.</p>
     #[serde(rename = "Name")]
@@ -2087,10 +2131,11 @@ pub struct StartStreamProcessorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartStreamProcessorResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopProjectVersionRequest {
     /// <p>The Amazon Resource Name (ARN) of the model version that you want to delete.</p> <p>This operation requires permissions to perform the <code>rekognition:StopProjectVersion</code> action.</p>
     #[serde(rename = "ProjectVersionArn")]
@@ -2098,7 +2143,7 @@ pub struct StopProjectVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopProjectVersionResponse {
     /// <p>The current status of the stop operation. </p>
     #[serde(rename = "Status")]
@@ -2107,6 +2152,7 @@ pub struct StopProjectVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopStreamProcessorRequest {
     /// <p>The name of a stream processor created by <a>CreateStreamProcessor</a>.</p>
     #[serde(rename = "Name")]
@@ -2114,12 +2160,12 @@ pub struct StopStreamProcessorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopStreamProcessorResponse {}
 
 /// <p>An object that recognizes faces in a streaming video. An Amazon Rekognition stream processor is created by a call to <a>CreateStreamProcessor</a>. The request parameters for <code>CreateStreamProcessor</code> describe the Kinesis video stream source for the streaming video, face recognition parameters, and where to stream the analysis resullts. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StreamProcessor {
     /// <p>Name of the Amazon Rekognition stream processor. </p>
     #[serde(rename = "Name")]
@@ -2160,7 +2206,7 @@ pub struct StreamProcessorSettings {
 
 /// <p>The S3 bucket that contains the training summary. The training summary includes aggregated evaluation metrics for the entire testing dataset and metrics for each individual label. </p> <p>You get the training summary S3 bucket location by calling <a>DescribeProjectVersions</a>. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Summary {
     #[serde(rename = "S3Object")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2169,7 +2215,7 @@ pub struct Summary {
 
 /// <p>Indicates whether or not the face is wearing sunglasses, and the confidence level in the determination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Sunglasses {
     /// <p>Level of confidence in the determination.</p>
     #[serde(rename = "Confidence")]
@@ -2196,7 +2242,7 @@ pub struct TestingData {
 
 /// <p>A Sagemaker Groundtruth format manifest file representing the dataset used for testing.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestingDataResult {
     /// <p>The testing dataset that was supplied for training.</p>
     #[serde(rename = "Input")]
@@ -2210,7 +2256,7 @@ pub struct TestingDataResult {
 
 /// <p>Information about a word or line of text detected by <a>DetectText</a>.</p> <p>The <code>DetectedText</code> field contains the text that Amazon Rekognition detected in the image. </p> <p>Every word and line has an identifier (<code>Id</code>). Each word belongs to a line and has a parent identifier (<code>ParentId</code>) that identifies the line of text in which the word appears. The word <code>Id</code> is also an index for the word within a line of words. </p> <p>For more information, see Detecting Text in the Amazon Rekognition Developer Guide.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TextDetection {
     /// <p>The confidence that Amazon Rekognition has in the accuracy of the detected text and the accuracy of the geometry points around the detected text.</p>
     #[serde(rename = "Confidence")]
@@ -2249,7 +2295,7 @@ pub struct TrainingData {
 
 /// <p>A Sagemaker Groundtruth format manifest file that represents the dataset used for training.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrainingDataResult {
     /// <p>The training assets that you supplied for training.</p>
     #[serde(rename = "Input")]
@@ -2263,7 +2309,7 @@ pub struct TrainingDataResult {
 
 /// <p>A face that <a>IndexFaces</a> detected, but didn't index. Use the <code>Reasons</code> response attribute to determine why a face wasn't indexed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnindexedFace {
     /// <p>The structure that contains attributes of a face that <code>IndexFaces</code>detected, but didn't index. </p>
     #[serde(rename = "FaceDetail")]
@@ -2277,6 +2323,7 @@ pub struct UnindexedFace {
 
 /// <p>Video file stored in an Amazon S3 bucket. Amazon Rekognition video start operations such as <a>StartLabelDetection</a> use <code>Video</code> to specify a video for analysis. The supported file formats are .mp4, .mov and .avi.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Video {
     /// <p>The Amazon S3 bucket name and file name for the video.</p>
     #[serde(rename = "S3Object")]
@@ -2286,7 +2333,7 @@ pub struct Video {
 
 /// <p>Information about a video that Amazon Rekognition analyzed. <code>Videometadata</code> is returned in every page of paginated responses from a Amazon Rekognition video operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VideoMetadata {
     /// <p>Type of compression used in the analyzed video. </p>
     #[serde(rename = "Codec")]
@@ -2373,24 +2420,21 @@ impl CompareFacesError {
     }
 }
 impl fmt::Display for CompareFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CompareFacesError {
-    fn description(&self) -> &str {
         match *self {
-            CompareFacesError::AccessDenied(ref cause) => cause,
-            CompareFacesError::ImageTooLarge(ref cause) => cause,
-            CompareFacesError::InternalServerError(ref cause) => cause,
-            CompareFacesError::InvalidImageFormat(ref cause) => cause,
-            CompareFacesError::InvalidParameter(ref cause) => cause,
-            CompareFacesError::InvalidS3Object(ref cause) => cause,
-            CompareFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            CompareFacesError::Throttling(ref cause) => cause,
+            CompareFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            CompareFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CompareFacesError {}
 /// Errors returned by CreateCollection
 #[derive(Debug, PartialEq)]
 pub enum CreateCollectionError {
@@ -2444,22 +2488,21 @@ impl CreateCollectionError {
     }
 }
 impl fmt::Display for CreateCollectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCollectionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCollectionError::AccessDenied(ref cause) => cause,
-            CreateCollectionError::InternalServerError(ref cause) => cause,
-            CreateCollectionError::InvalidParameter(ref cause) => cause,
-            CreateCollectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            CreateCollectionError::ResourceAlreadyExists(ref cause) => cause,
-            CreateCollectionError::Throttling(ref cause) => cause,
+            CreateCollectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateCollectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateCollectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateCollectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateCollectionError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateCollectionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCollectionError {}
 /// Errors returned by CreateProject
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectError {
@@ -2514,23 +2557,20 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::AccessDenied(ref cause) => cause,
-            CreateProjectError::InternalServerError(ref cause) => cause,
-            CreateProjectError::InvalidParameter(ref cause) => cause,
-            CreateProjectError::LimitExceeded(ref cause) => cause,
-            CreateProjectError::ProvisionedThroughputExceeded(ref cause) => cause,
-            CreateProjectError::ResourceInUse(ref cause) => cause,
-            CreateProjectError::Throttling(ref cause) => cause,
+            CreateProjectError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by CreateProjectVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectVersionError {
@@ -2596,24 +2636,23 @@ impl CreateProjectVersionError {
     }
 }
 impl fmt::Display for CreateProjectVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectVersionError::AccessDenied(ref cause) => cause,
-            CreateProjectVersionError::InternalServerError(ref cause) => cause,
-            CreateProjectVersionError::InvalidParameter(ref cause) => cause,
-            CreateProjectVersionError::LimitExceeded(ref cause) => cause,
-            CreateProjectVersionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            CreateProjectVersionError::ResourceInUse(ref cause) => cause,
-            CreateProjectVersionError::ResourceNotFound(ref cause) => cause,
-            CreateProjectVersionError::Throttling(ref cause) => cause,
+            CreateProjectVersionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateProjectVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CreateProjectVersionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectVersionError {}
 /// Errors returned by CreateStreamProcessor
 #[derive(Debug, PartialEq)]
 pub enum CreateStreamProcessorError {
@@ -2672,23 +2711,22 @@ impl CreateStreamProcessorError {
     }
 }
 impl fmt::Display for CreateStreamProcessorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateStreamProcessorError {
-    fn description(&self) -> &str {
         match *self {
-            CreateStreamProcessorError::AccessDenied(ref cause) => cause,
-            CreateStreamProcessorError::InternalServerError(ref cause) => cause,
-            CreateStreamProcessorError::InvalidParameter(ref cause) => cause,
-            CreateStreamProcessorError::LimitExceeded(ref cause) => cause,
-            CreateStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => cause,
-            CreateStreamProcessorError::ResourceInUse(ref cause) => cause,
-            CreateStreamProcessorError::Throttling(ref cause) => cause,
+            CreateStreamProcessorError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateStreamProcessorError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateStreamProcessorError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateStreamProcessorError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateStreamProcessorError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            CreateStreamProcessorError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateStreamProcessorError {}
 /// Errors returned by DeleteCollection
 #[derive(Debug, PartialEq)]
 pub enum DeleteCollectionError {
@@ -2740,22 +2778,21 @@ impl DeleteCollectionError {
     }
 }
 impl fmt::Display for DeleteCollectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCollectionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCollectionError::AccessDenied(ref cause) => cause,
-            DeleteCollectionError::InternalServerError(ref cause) => cause,
-            DeleteCollectionError::InvalidParameter(ref cause) => cause,
-            DeleteCollectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DeleteCollectionError::ResourceNotFound(ref cause) => cause,
-            DeleteCollectionError::Throttling(ref cause) => cause,
+            DeleteCollectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteCollectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteCollectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteCollectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteCollectionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteCollectionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCollectionError {}
 /// Errors returned by DeleteFaces
 #[derive(Debug, PartialEq)]
 pub enum DeleteFacesError {
@@ -2805,22 +2842,19 @@ impl DeleteFacesError {
     }
 }
 impl fmt::Display for DeleteFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFacesError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFacesError::AccessDenied(ref cause) => cause,
-            DeleteFacesError::InternalServerError(ref cause) => cause,
-            DeleteFacesError::InvalidParameter(ref cause) => cause,
-            DeleteFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DeleteFacesError::ResourceNotFound(ref cause) => cause,
-            DeleteFacesError::Throttling(ref cause) => cause,
+            DeleteFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteFacesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFacesError {}
 /// Errors returned by DeleteStreamProcessor
 #[derive(Debug, PartialEq)]
 pub enum DeleteStreamProcessorError {
@@ -2881,23 +2915,22 @@ impl DeleteStreamProcessorError {
     }
 }
 impl fmt::Display for DeleteStreamProcessorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteStreamProcessorError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteStreamProcessorError::AccessDenied(ref cause) => cause,
-            DeleteStreamProcessorError::InternalServerError(ref cause) => cause,
-            DeleteStreamProcessorError::InvalidParameter(ref cause) => cause,
-            DeleteStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DeleteStreamProcessorError::ResourceInUse(ref cause) => cause,
-            DeleteStreamProcessorError::ResourceNotFound(ref cause) => cause,
-            DeleteStreamProcessorError::Throttling(ref cause) => cause,
+            DeleteStreamProcessorError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteStreamProcessorError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteStreamProcessorError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteStreamProcessorError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteStreamProcessorError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteStreamProcessorError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteStreamProcessorError {}
 /// Errors returned by DescribeCollection
 #[derive(Debug, PartialEq)]
 pub enum DescribeCollectionError {
@@ -2949,22 +2982,21 @@ impl DescribeCollectionError {
     }
 }
 impl fmt::Display for DescribeCollectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCollectionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCollectionError::AccessDenied(ref cause) => cause,
-            DescribeCollectionError::InternalServerError(ref cause) => cause,
-            DescribeCollectionError::InvalidParameter(ref cause) => cause,
-            DescribeCollectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DescribeCollectionError::ResourceNotFound(ref cause) => cause,
-            DescribeCollectionError::Throttling(ref cause) => cause,
+            DescribeCollectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeCollectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeCollectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeCollectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeCollectionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeCollectionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeCollectionError {}
 /// Errors returned by DescribeProjectVersions
 #[derive(Debug, PartialEq)]
 pub enum DescribeProjectVersionsError {
@@ -3029,23 +3061,24 @@ impl DescribeProjectVersionsError {
     }
 }
 impl fmt::Display for DescribeProjectVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProjectVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProjectVersionsError::AccessDenied(ref cause) => cause,
-            DescribeProjectVersionsError::InternalServerError(ref cause) => cause,
-            DescribeProjectVersionsError::InvalidPaginationToken(ref cause) => cause,
-            DescribeProjectVersionsError::InvalidParameter(ref cause) => cause,
-            DescribeProjectVersionsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DescribeProjectVersionsError::ResourceNotFound(ref cause) => cause,
-            DescribeProjectVersionsError::Throttling(ref cause) => cause,
+            DescribeProjectVersionsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeProjectVersionsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeProjectVersionsError::InvalidPaginationToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeProjectVersionsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeProjectVersionsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeProjectVersionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeProjectVersionsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProjectVersionsError {}
 /// Errors returned by DescribeProjects
 #[derive(Debug, PartialEq)]
 pub enum DescribeProjectsError {
@@ -3099,22 +3132,21 @@ impl DescribeProjectsError {
     }
 }
 impl fmt::Display for DescribeProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProjectsError::AccessDenied(ref cause) => cause,
-            DescribeProjectsError::InternalServerError(ref cause) => cause,
-            DescribeProjectsError::InvalidPaginationToken(ref cause) => cause,
-            DescribeProjectsError::InvalidParameter(ref cause) => cause,
-            DescribeProjectsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DescribeProjectsError::Throttling(ref cause) => cause,
+            DescribeProjectsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeProjectsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeProjectsError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            DescribeProjectsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeProjectsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeProjectsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProjectsError {}
 /// Errors returned by DescribeStreamProcessor
 #[derive(Debug, PartialEq)]
 pub enum DescribeStreamProcessorError {
@@ -3172,22 +3204,21 @@ impl DescribeStreamProcessorError {
     }
 }
 impl fmt::Display for DescribeStreamProcessorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeStreamProcessorError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeStreamProcessorError::AccessDenied(ref cause) => cause,
-            DescribeStreamProcessorError::InternalServerError(ref cause) => cause,
-            DescribeStreamProcessorError::InvalidParameter(ref cause) => cause,
-            DescribeStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DescribeStreamProcessorError::ResourceNotFound(ref cause) => cause,
-            DescribeStreamProcessorError::Throttling(ref cause) => cause,
+            DescribeStreamProcessorError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeStreamProcessorError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeStreamProcessorError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeStreamProcessorError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeStreamProcessorError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeStreamProcessorError {}
 /// Errors returned by DetectCustomLabels
 #[derive(Debug, PartialEq)]
 pub enum DetectCustomLabelsError {
@@ -3266,27 +3297,26 @@ impl DetectCustomLabelsError {
     }
 }
 impl fmt::Display for DetectCustomLabelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectCustomLabelsError {
-    fn description(&self) -> &str {
         match *self {
-            DetectCustomLabelsError::AccessDenied(ref cause) => cause,
-            DetectCustomLabelsError::ImageTooLarge(ref cause) => cause,
-            DetectCustomLabelsError::InternalServerError(ref cause) => cause,
-            DetectCustomLabelsError::InvalidImageFormat(ref cause) => cause,
-            DetectCustomLabelsError::InvalidParameter(ref cause) => cause,
-            DetectCustomLabelsError::InvalidS3Object(ref cause) => cause,
-            DetectCustomLabelsError::LimitExceeded(ref cause) => cause,
-            DetectCustomLabelsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DetectCustomLabelsError::ResourceNotFound(ref cause) => cause,
-            DetectCustomLabelsError::ResourceNotReady(ref cause) => cause,
-            DetectCustomLabelsError::Throttling(ref cause) => cause,
+            DetectCustomLabelsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DetectCustomLabelsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::ResourceNotReady(ref cause) => write!(f, "{}", cause),
+            DetectCustomLabelsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectCustomLabelsError {}
 /// Errors returned by DetectFaces
 #[derive(Debug, PartialEq)]
 pub enum DetectFacesError {
@@ -3346,24 +3376,21 @@ impl DetectFacesError {
     }
 }
 impl fmt::Display for DetectFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectFacesError {
-    fn description(&self) -> &str {
         match *self {
-            DetectFacesError::AccessDenied(ref cause) => cause,
-            DetectFacesError::ImageTooLarge(ref cause) => cause,
-            DetectFacesError::InternalServerError(ref cause) => cause,
-            DetectFacesError::InvalidImageFormat(ref cause) => cause,
-            DetectFacesError::InvalidParameter(ref cause) => cause,
-            DetectFacesError::InvalidS3Object(ref cause) => cause,
-            DetectFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DetectFacesError::Throttling(ref cause) => cause,
+            DetectFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            DetectFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectFacesError {}
 /// Errors returned by DetectLabels
 #[derive(Debug, PartialEq)]
 pub enum DetectLabelsError {
@@ -3423,24 +3450,21 @@ impl DetectLabelsError {
     }
 }
 impl fmt::Display for DetectLabelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectLabelsError {
-    fn description(&self) -> &str {
         match *self {
-            DetectLabelsError::AccessDenied(ref cause) => cause,
-            DetectLabelsError::ImageTooLarge(ref cause) => cause,
-            DetectLabelsError::InternalServerError(ref cause) => cause,
-            DetectLabelsError::InvalidImageFormat(ref cause) => cause,
-            DetectLabelsError::InvalidParameter(ref cause) => cause,
-            DetectLabelsError::InvalidS3Object(ref cause) => cause,
-            DetectLabelsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DetectLabelsError::Throttling(ref cause) => cause,
+            DetectLabelsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            DetectLabelsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectLabelsError {}
 /// Errors returned by DetectModerationLabels
 #[derive(Debug, PartialEq)]
 pub enum DetectModerationLabelsError {
@@ -3517,25 +3541,26 @@ impl DetectModerationLabelsError {
     }
 }
 impl fmt::Display for DetectModerationLabelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectModerationLabelsError {
-    fn description(&self) -> &str {
         match *self {
-            DetectModerationLabelsError::AccessDenied(ref cause) => cause,
-            DetectModerationLabelsError::HumanLoopQuotaExceeded(ref cause) => cause,
-            DetectModerationLabelsError::ImageTooLarge(ref cause) => cause,
-            DetectModerationLabelsError::InternalServerError(ref cause) => cause,
-            DetectModerationLabelsError::InvalidImageFormat(ref cause) => cause,
-            DetectModerationLabelsError::InvalidParameter(ref cause) => cause,
-            DetectModerationLabelsError::InvalidS3Object(ref cause) => cause,
-            DetectModerationLabelsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DetectModerationLabelsError::Throttling(ref cause) => cause,
+            DetectModerationLabelsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::HumanLoopQuotaExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DetectModerationLabelsError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            DetectModerationLabelsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DetectModerationLabelsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectModerationLabelsError {}
 /// Errors returned by DetectText
 #[derive(Debug, PartialEq)]
 pub enum DetectTextError {
@@ -3595,24 +3620,21 @@ impl DetectTextError {
     }
 }
 impl fmt::Display for DetectTextError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectTextError {
-    fn description(&self) -> &str {
         match *self {
-            DetectTextError::AccessDenied(ref cause) => cause,
-            DetectTextError::ImageTooLarge(ref cause) => cause,
-            DetectTextError::InternalServerError(ref cause) => cause,
-            DetectTextError::InvalidImageFormat(ref cause) => cause,
-            DetectTextError::InvalidParameter(ref cause) => cause,
-            DetectTextError::InvalidS3Object(ref cause) => cause,
-            DetectTextError::ProvisionedThroughputExceeded(ref cause) => cause,
-            DetectTextError::Throttling(ref cause) => cause,
+            DetectTextError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetectTextError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            DetectTextError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DetectTextError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            DetectTextError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DetectTextError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            DetectTextError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            DetectTextError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectTextError {}
 /// Errors returned by GetCelebrityInfo
 #[derive(Debug, PartialEq)]
 pub enum GetCelebrityInfoError {
@@ -3664,22 +3686,21 @@ impl GetCelebrityInfoError {
     }
 }
 impl fmt::Display for GetCelebrityInfoError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCelebrityInfoError {
-    fn description(&self) -> &str {
         match *self {
-            GetCelebrityInfoError::AccessDenied(ref cause) => cause,
-            GetCelebrityInfoError::InternalServerError(ref cause) => cause,
-            GetCelebrityInfoError::InvalidParameter(ref cause) => cause,
-            GetCelebrityInfoError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetCelebrityInfoError::ResourceNotFound(ref cause) => cause,
-            GetCelebrityInfoError::Throttling(ref cause) => cause,
+            GetCelebrityInfoError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetCelebrityInfoError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetCelebrityInfoError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetCelebrityInfoError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetCelebrityInfoError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetCelebrityInfoError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCelebrityInfoError {}
 /// Errors returned by GetCelebrityRecognition
 #[derive(Debug, PartialEq)]
 pub enum GetCelebrityRecognitionError {
@@ -3744,23 +3765,24 @@ impl GetCelebrityRecognitionError {
     }
 }
 impl fmt::Display for GetCelebrityRecognitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCelebrityRecognitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetCelebrityRecognitionError::AccessDenied(ref cause) => cause,
-            GetCelebrityRecognitionError::InternalServerError(ref cause) => cause,
-            GetCelebrityRecognitionError::InvalidPaginationToken(ref cause) => cause,
-            GetCelebrityRecognitionError::InvalidParameter(ref cause) => cause,
-            GetCelebrityRecognitionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetCelebrityRecognitionError::ResourceNotFound(ref cause) => cause,
-            GetCelebrityRecognitionError::Throttling(ref cause) => cause,
+            GetCelebrityRecognitionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetCelebrityRecognitionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetCelebrityRecognitionError::InvalidPaginationToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetCelebrityRecognitionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetCelebrityRecognitionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetCelebrityRecognitionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetCelebrityRecognitionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCelebrityRecognitionError {}
 /// Errors returned by GetContentModeration
 #[derive(Debug, PartialEq)]
 pub enum GetContentModerationError {
@@ -3823,23 +3845,22 @@ impl GetContentModerationError {
     }
 }
 impl fmt::Display for GetContentModerationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetContentModerationError {
-    fn description(&self) -> &str {
         match *self {
-            GetContentModerationError::AccessDenied(ref cause) => cause,
-            GetContentModerationError::InternalServerError(ref cause) => cause,
-            GetContentModerationError::InvalidPaginationToken(ref cause) => cause,
-            GetContentModerationError::InvalidParameter(ref cause) => cause,
-            GetContentModerationError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetContentModerationError::ResourceNotFound(ref cause) => cause,
-            GetContentModerationError::Throttling(ref cause) => cause,
+            GetContentModerationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetContentModerationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetContentModerationError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            GetContentModerationError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetContentModerationError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetContentModerationError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetContentModerationError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetContentModerationError {}
 /// Errors returned by GetFaceDetection
 #[derive(Debug, PartialEq)]
 pub enum GetFaceDetectionError {
@@ -3898,23 +3919,22 @@ impl GetFaceDetectionError {
     }
 }
 impl fmt::Display for GetFaceDetectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFaceDetectionError {
-    fn description(&self) -> &str {
         match *self {
-            GetFaceDetectionError::AccessDenied(ref cause) => cause,
-            GetFaceDetectionError::InternalServerError(ref cause) => cause,
-            GetFaceDetectionError::InvalidPaginationToken(ref cause) => cause,
-            GetFaceDetectionError::InvalidParameter(ref cause) => cause,
-            GetFaceDetectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetFaceDetectionError::ResourceNotFound(ref cause) => cause,
-            GetFaceDetectionError::Throttling(ref cause) => cause,
+            GetFaceDetectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetFaceDetectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetFaceDetectionError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            GetFaceDetectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetFaceDetectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetFaceDetectionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetFaceDetectionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFaceDetectionError {}
 /// Errors returned by GetFaceSearch
 #[derive(Debug, PartialEq)]
 pub enum GetFaceSearchError {
@@ -3971,23 +3991,20 @@ impl GetFaceSearchError {
     }
 }
 impl fmt::Display for GetFaceSearchError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFaceSearchError {
-    fn description(&self) -> &str {
         match *self {
-            GetFaceSearchError::AccessDenied(ref cause) => cause,
-            GetFaceSearchError::InternalServerError(ref cause) => cause,
-            GetFaceSearchError::InvalidPaginationToken(ref cause) => cause,
-            GetFaceSearchError::InvalidParameter(ref cause) => cause,
-            GetFaceSearchError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetFaceSearchError::ResourceNotFound(ref cause) => cause,
-            GetFaceSearchError::Throttling(ref cause) => cause,
+            GetFaceSearchError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetFaceSearchError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFaceSearchError {}
 /// Errors returned by GetLabelDetection
 #[derive(Debug, PartialEq)]
 pub enum GetLabelDetectionError {
@@ -4046,23 +4063,22 @@ impl GetLabelDetectionError {
     }
 }
 impl fmt::Display for GetLabelDetectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLabelDetectionError {
-    fn description(&self) -> &str {
         match *self {
-            GetLabelDetectionError::AccessDenied(ref cause) => cause,
-            GetLabelDetectionError::InternalServerError(ref cause) => cause,
-            GetLabelDetectionError::InvalidPaginationToken(ref cause) => cause,
-            GetLabelDetectionError::InvalidParameter(ref cause) => cause,
-            GetLabelDetectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetLabelDetectionError::ResourceNotFound(ref cause) => cause,
-            GetLabelDetectionError::Throttling(ref cause) => cause,
+            GetLabelDetectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetLabelDetectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetLabelDetectionError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            GetLabelDetectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLabelDetectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetLabelDetectionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetLabelDetectionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLabelDetectionError {}
 /// Errors returned by GetPersonTracking
 #[derive(Debug, PartialEq)]
 pub enum GetPersonTrackingError {
@@ -4121,23 +4137,22 @@ impl GetPersonTrackingError {
     }
 }
 impl fmt::Display for GetPersonTrackingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPersonTrackingError {
-    fn description(&self) -> &str {
         match *self {
-            GetPersonTrackingError::AccessDenied(ref cause) => cause,
-            GetPersonTrackingError::InternalServerError(ref cause) => cause,
-            GetPersonTrackingError::InvalidPaginationToken(ref cause) => cause,
-            GetPersonTrackingError::InvalidParameter(ref cause) => cause,
-            GetPersonTrackingError::ProvisionedThroughputExceeded(ref cause) => cause,
-            GetPersonTrackingError::ResourceNotFound(ref cause) => cause,
-            GetPersonTrackingError::Throttling(ref cause) => cause,
+            GetPersonTrackingError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            GetPersonTrackingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetPersonTrackingError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            GetPersonTrackingError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetPersonTrackingError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetPersonTrackingError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetPersonTrackingError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPersonTrackingError {}
 /// Errors returned by IndexFaces
 #[derive(Debug, PartialEq)]
 pub enum IndexFacesError {
@@ -4202,25 +4217,22 @@ impl IndexFacesError {
     }
 }
 impl fmt::Display for IndexFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for IndexFacesError {
-    fn description(&self) -> &str {
         match *self {
-            IndexFacesError::AccessDenied(ref cause) => cause,
-            IndexFacesError::ImageTooLarge(ref cause) => cause,
-            IndexFacesError::InternalServerError(ref cause) => cause,
-            IndexFacesError::InvalidImageFormat(ref cause) => cause,
-            IndexFacesError::InvalidParameter(ref cause) => cause,
-            IndexFacesError::InvalidS3Object(ref cause) => cause,
-            IndexFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            IndexFacesError::ResourceNotFound(ref cause) => cause,
-            IndexFacesError::Throttling(ref cause) => cause,
+            IndexFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            IndexFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for IndexFacesError {}
 /// Errors returned by ListCollections
 #[derive(Debug, PartialEq)]
 pub enum ListCollectionsError {
@@ -4277,23 +4289,22 @@ impl ListCollectionsError {
     }
 }
 impl fmt::Display for ListCollectionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCollectionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListCollectionsError::AccessDenied(ref cause) => cause,
-            ListCollectionsError::InternalServerError(ref cause) => cause,
-            ListCollectionsError::InvalidPaginationToken(ref cause) => cause,
-            ListCollectionsError::InvalidParameter(ref cause) => cause,
-            ListCollectionsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            ListCollectionsError::ResourceNotFound(ref cause) => cause,
-            ListCollectionsError::Throttling(ref cause) => cause,
+            ListCollectionsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListCollectionsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListCollectionsError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            ListCollectionsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListCollectionsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListCollectionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListCollectionsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCollectionsError {}
 /// Errors returned by ListFaces
 #[derive(Debug, PartialEq)]
 pub enum ListFacesError {
@@ -4348,23 +4359,20 @@ impl ListFacesError {
     }
 }
 impl fmt::Display for ListFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFacesError {
-    fn description(&self) -> &str {
         match *self {
-            ListFacesError::AccessDenied(ref cause) => cause,
-            ListFacesError::InternalServerError(ref cause) => cause,
-            ListFacesError::InvalidPaginationToken(ref cause) => cause,
-            ListFacesError::InvalidParameter(ref cause) => cause,
-            ListFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            ListFacesError::ResourceNotFound(ref cause) => cause,
-            ListFacesError::Throttling(ref cause) => cause,
+            ListFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListFacesError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            ListFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            ListFacesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFacesError {}
 /// Errors returned by ListStreamProcessors
 #[derive(Debug, PartialEq)]
 pub enum ListStreamProcessorsError {
@@ -4420,22 +4428,21 @@ impl ListStreamProcessorsError {
     }
 }
 impl fmt::Display for ListStreamProcessorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListStreamProcessorsError {
-    fn description(&self) -> &str {
         match *self {
-            ListStreamProcessorsError::AccessDenied(ref cause) => cause,
-            ListStreamProcessorsError::InternalServerError(ref cause) => cause,
-            ListStreamProcessorsError::InvalidPaginationToken(ref cause) => cause,
-            ListStreamProcessorsError::InvalidParameter(ref cause) => cause,
-            ListStreamProcessorsError::ProvisionedThroughputExceeded(ref cause) => cause,
-            ListStreamProcessorsError::Throttling(ref cause) => cause,
+            ListStreamProcessorsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListStreamProcessorsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListStreamProcessorsError::InvalidPaginationToken(ref cause) => write!(f, "{}", cause),
+            ListStreamProcessorsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListStreamProcessorsError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListStreamProcessorsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListStreamProcessorsError {}
 /// Errors returned by RecognizeCelebrities
 #[derive(Debug, PartialEq)]
 pub enum RecognizeCelebritiesError {
@@ -4503,24 +4510,23 @@ impl RecognizeCelebritiesError {
     }
 }
 impl fmt::Display for RecognizeCelebritiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RecognizeCelebritiesError {
-    fn description(&self) -> &str {
         match *self {
-            RecognizeCelebritiesError::AccessDenied(ref cause) => cause,
-            RecognizeCelebritiesError::ImageTooLarge(ref cause) => cause,
-            RecognizeCelebritiesError::InternalServerError(ref cause) => cause,
-            RecognizeCelebritiesError::InvalidImageFormat(ref cause) => cause,
-            RecognizeCelebritiesError::InvalidParameter(ref cause) => cause,
-            RecognizeCelebritiesError::InvalidS3Object(ref cause) => cause,
-            RecognizeCelebritiesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            RecognizeCelebritiesError::Throttling(ref cause) => cause,
+            RecognizeCelebritiesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            RecognizeCelebritiesError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RecognizeCelebritiesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RecognizeCelebritiesError {}
 /// Errors returned by SearchFaces
 #[derive(Debug, PartialEq)]
 pub enum SearchFacesError {
@@ -4570,22 +4576,19 @@ impl SearchFacesError {
     }
 }
 impl fmt::Display for SearchFacesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchFacesError {
-    fn description(&self) -> &str {
         match *self {
-            SearchFacesError::AccessDenied(ref cause) => cause,
-            SearchFacesError::InternalServerError(ref cause) => cause,
-            SearchFacesError::InvalidParameter(ref cause) => cause,
-            SearchFacesError::ProvisionedThroughputExceeded(ref cause) => cause,
-            SearchFacesError::ResourceNotFound(ref cause) => cause,
-            SearchFacesError::Throttling(ref cause) => cause,
+            SearchFacesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            SearchFacesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            SearchFacesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            SearchFacesError::ProvisionedThroughputExceeded(ref cause) => write!(f, "{}", cause),
+            SearchFacesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SearchFacesError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchFacesError {}
 /// Errors returned by SearchFacesByImage
 #[derive(Debug, PartialEq)]
 pub enum SearchFacesByImageError {
@@ -4654,25 +4657,24 @@ impl SearchFacesByImageError {
     }
 }
 impl fmt::Display for SearchFacesByImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchFacesByImageError {
-    fn description(&self) -> &str {
         match *self {
-            SearchFacesByImageError::AccessDenied(ref cause) => cause,
-            SearchFacesByImageError::ImageTooLarge(ref cause) => cause,
-            SearchFacesByImageError::InternalServerError(ref cause) => cause,
-            SearchFacesByImageError::InvalidImageFormat(ref cause) => cause,
-            SearchFacesByImageError::InvalidParameter(ref cause) => cause,
-            SearchFacesByImageError::InvalidS3Object(ref cause) => cause,
-            SearchFacesByImageError::ProvisionedThroughputExceeded(ref cause) => cause,
-            SearchFacesByImageError::ResourceNotFound(ref cause) => cause,
-            SearchFacesByImageError::Throttling(ref cause) => cause,
+            SearchFacesByImageError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::ImageTooLarge(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::InvalidImageFormat(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SearchFacesByImageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SearchFacesByImageError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchFacesByImageError {}
 /// Errors returned by StartCelebrityRecognition
 #[derive(Debug, PartialEq)]
 pub enum StartCelebrityRecognitionError {
@@ -4753,25 +4755,28 @@ impl StartCelebrityRecognitionError {
     }
 }
 impl fmt::Display for StartCelebrityRecognitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartCelebrityRecognitionError {
-    fn description(&self) -> &str {
         match *self {
-            StartCelebrityRecognitionError::AccessDenied(ref cause) => cause,
-            StartCelebrityRecognitionError::IdempotentParameterMismatch(ref cause) => cause,
-            StartCelebrityRecognitionError::InternalServerError(ref cause) => cause,
-            StartCelebrityRecognitionError::InvalidParameter(ref cause) => cause,
-            StartCelebrityRecognitionError::InvalidS3Object(ref cause) => cause,
-            StartCelebrityRecognitionError::LimitExceeded(ref cause) => cause,
-            StartCelebrityRecognitionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartCelebrityRecognitionError::Throttling(ref cause) => cause,
-            StartCelebrityRecognitionError::VideoTooLarge(ref cause) => cause,
+            StartCelebrityRecognitionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartCelebrityRecognitionError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartCelebrityRecognitionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartCelebrityRecognitionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartCelebrityRecognitionError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartCelebrityRecognitionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartCelebrityRecognitionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartCelebrityRecognitionError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartCelebrityRecognitionError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartCelebrityRecognitionError {}
 /// Errors returned by StartContentModeration
 #[derive(Debug, PartialEq)]
 pub enum StartContentModerationError {
@@ -4848,25 +4853,26 @@ impl StartContentModerationError {
     }
 }
 impl fmt::Display for StartContentModerationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartContentModerationError {
-    fn description(&self) -> &str {
         match *self {
-            StartContentModerationError::AccessDenied(ref cause) => cause,
-            StartContentModerationError::IdempotentParameterMismatch(ref cause) => cause,
-            StartContentModerationError::InternalServerError(ref cause) => cause,
-            StartContentModerationError::InvalidParameter(ref cause) => cause,
-            StartContentModerationError::InvalidS3Object(ref cause) => cause,
-            StartContentModerationError::LimitExceeded(ref cause) => cause,
-            StartContentModerationError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartContentModerationError::Throttling(ref cause) => cause,
-            StartContentModerationError::VideoTooLarge(ref cause) => cause,
+            StartContentModerationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartContentModerationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartContentModerationError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartContentModerationError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartContentModerationError {}
 /// Errors returned by StartFaceDetection
 #[derive(Debug, PartialEq)]
 pub enum StartFaceDetectionError {
@@ -4935,25 +4941,26 @@ impl StartFaceDetectionError {
     }
 }
 impl fmt::Display for StartFaceDetectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartFaceDetectionError {
-    fn description(&self) -> &str {
         match *self {
-            StartFaceDetectionError::AccessDenied(ref cause) => cause,
-            StartFaceDetectionError::IdempotentParameterMismatch(ref cause) => cause,
-            StartFaceDetectionError::InternalServerError(ref cause) => cause,
-            StartFaceDetectionError::InvalidParameter(ref cause) => cause,
-            StartFaceDetectionError::InvalidS3Object(ref cause) => cause,
-            StartFaceDetectionError::LimitExceeded(ref cause) => cause,
-            StartFaceDetectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartFaceDetectionError::Throttling(ref cause) => cause,
-            StartFaceDetectionError::VideoTooLarge(ref cause) => cause,
+            StartFaceDetectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartFaceDetectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartFaceDetectionError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartFaceDetectionError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartFaceDetectionError {}
 /// Errors returned by StartFaceSearch
 #[derive(Debug, PartialEq)]
 pub enum StartFaceSearchError {
@@ -5025,26 +5032,25 @@ impl StartFaceSearchError {
     }
 }
 impl fmt::Display for StartFaceSearchError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartFaceSearchError {
-    fn description(&self) -> &str {
         match *self {
-            StartFaceSearchError::AccessDenied(ref cause) => cause,
-            StartFaceSearchError::IdempotentParameterMismatch(ref cause) => cause,
-            StartFaceSearchError::InternalServerError(ref cause) => cause,
-            StartFaceSearchError::InvalidParameter(ref cause) => cause,
-            StartFaceSearchError::InvalidS3Object(ref cause) => cause,
-            StartFaceSearchError::LimitExceeded(ref cause) => cause,
-            StartFaceSearchError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartFaceSearchError::ResourceNotFound(ref cause) => cause,
-            StartFaceSearchError::Throttling(ref cause) => cause,
-            StartFaceSearchError::VideoTooLarge(ref cause) => cause,
+            StartFaceSearchError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::IdempotentParameterMismatch(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartFaceSearchError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartFaceSearchError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartFaceSearchError {}
 /// Errors returned by StartLabelDetection
 #[derive(Debug, PartialEq)]
 pub enum StartLabelDetectionError {
@@ -5115,25 +5121,26 @@ impl StartLabelDetectionError {
     }
 }
 impl fmt::Display for StartLabelDetectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartLabelDetectionError {
-    fn description(&self) -> &str {
         match *self {
-            StartLabelDetectionError::AccessDenied(ref cause) => cause,
-            StartLabelDetectionError::IdempotentParameterMismatch(ref cause) => cause,
-            StartLabelDetectionError::InternalServerError(ref cause) => cause,
-            StartLabelDetectionError::InvalidParameter(ref cause) => cause,
-            StartLabelDetectionError::InvalidS3Object(ref cause) => cause,
-            StartLabelDetectionError::LimitExceeded(ref cause) => cause,
-            StartLabelDetectionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartLabelDetectionError::Throttling(ref cause) => cause,
-            StartLabelDetectionError::VideoTooLarge(ref cause) => cause,
+            StartLabelDetectionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLabelDetectionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLabelDetectionError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartLabelDetectionError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartLabelDetectionError {}
 /// Errors returned by StartPersonTracking
 #[derive(Debug, PartialEq)]
 pub enum StartPersonTrackingError {
@@ -5204,25 +5211,26 @@ impl StartPersonTrackingError {
     }
 }
 impl fmt::Display for StartPersonTrackingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartPersonTrackingError {
-    fn description(&self) -> &str {
         match *self {
-            StartPersonTrackingError::AccessDenied(ref cause) => cause,
-            StartPersonTrackingError::IdempotentParameterMismatch(ref cause) => cause,
-            StartPersonTrackingError::InternalServerError(ref cause) => cause,
-            StartPersonTrackingError::InvalidParameter(ref cause) => cause,
-            StartPersonTrackingError::InvalidS3Object(ref cause) => cause,
-            StartPersonTrackingError::LimitExceeded(ref cause) => cause,
-            StartPersonTrackingError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartPersonTrackingError::Throttling(ref cause) => cause,
-            StartPersonTrackingError::VideoTooLarge(ref cause) => cause,
+            StartPersonTrackingError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartPersonTrackingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::InvalidS3Object(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartPersonTrackingError::Throttling(ref cause) => write!(f, "{}", cause),
+            StartPersonTrackingError::VideoTooLarge(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartPersonTrackingError {}
 /// Errors returned by StartProjectVersion
 #[derive(Debug, PartialEq)]
 pub enum StartProjectVersionError {
@@ -5288,24 +5296,23 @@ impl StartProjectVersionError {
     }
 }
 impl fmt::Display for StartProjectVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartProjectVersionError {
-    fn description(&self) -> &str {
         match *self {
-            StartProjectVersionError::AccessDenied(ref cause) => cause,
-            StartProjectVersionError::InternalServerError(ref cause) => cause,
-            StartProjectVersionError::InvalidParameter(ref cause) => cause,
-            StartProjectVersionError::LimitExceeded(ref cause) => cause,
-            StartProjectVersionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartProjectVersionError::ResourceInUse(ref cause) => cause,
-            StartProjectVersionError::ResourceNotFound(ref cause) => cause,
-            StartProjectVersionError::Throttling(ref cause) => cause,
+            StartProjectVersionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartProjectVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartProjectVersionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartProjectVersionError {}
 /// Errors returned by StartStreamProcessor
 #[derive(Debug, PartialEq)]
 pub enum StartStreamProcessorError {
@@ -5366,23 +5373,22 @@ impl StartStreamProcessorError {
     }
 }
 impl fmt::Display for StartStreamProcessorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartStreamProcessorError {
-    fn description(&self) -> &str {
         match *self {
-            StartStreamProcessorError::AccessDenied(ref cause) => cause,
-            StartStreamProcessorError::InternalServerError(ref cause) => cause,
-            StartStreamProcessorError::InvalidParameter(ref cause) => cause,
-            StartStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StartStreamProcessorError::ResourceInUse(ref cause) => cause,
-            StartStreamProcessorError::ResourceNotFound(ref cause) => cause,
-            StartStreamProcessorError::Throttling(ref cause) => cause,
+            StartStreamProcessorError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StartStreamProcessorError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartStreamProcessorError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartStreamProcessorError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StartStreamProcessorError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartStreamProcessorError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartStreamProcessorError {}
 /// Errors returned by StopProjectVersion
 #[derive(Debug, PartialEq)]
 pub enum StopProjectVersionError {
@@ -5439,23 +5445,22 @@ impl StopProjectVersionError {
     }
 }
 impl fmt::Display for StopProjectVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopProjectVersionError {
-    fn description(&self) -> &str {
         match *self {
-            StopProjectVersionError::AccessDenied(ref cause) => cause,
-            StopProjectVersionError::InternalServerError(ref cause) => cause,
-            StopProjectVersionError::InvalidParameter(ref cause) => cause,
-            StopProjectVersionError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StopProjectVersionError::ResourceInUse(ref cause) => cause,
-            StopProjectVersionError::ResourceNotFound(ref cause) => cause,
-            StopProjectVersionError::Throttling(ref cause) => cause,
+            StopProjectVersionError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StopProjectVersionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StopProjectVersionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StopProjectVersionError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StopProjectVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StopProjectVersionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StopProjectVersionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopProjectVersionError {}
 /// Errors returned by StopStreamProcessor
 #[derive(Debug, PartialEq)]
 pub enum StopStreamProcessorError {
@@ -5516,23 +5521,22 @@ impl StopStreamProcessorError {
     }
 }
 impl fmt::Display for StopStreamProcessorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopStreamProcessorError {
-    fn description(&self) -> &str {
         match *self {
-            StopStreamProcessorError::AccessDenied(ref cause) => cause,
-            StopStreamProcessorError::InternalServerError(ref cause) => cause,
-            StopStreamProcessorError::InvalidParameter(ref cause) => cause,
-            StopStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => cause,
-            StopStreamProcessorError::ResourceInUse(ref cause) => cause,
-            StopStreamProcessorError::ResourceNotFound(ref cause) => cause,
-            StopStreamProcessorError::Throttling(ref cause) => cause,
+            StopStreamProcessorError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            StopStreamProcessorError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StopStreamProcessorError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StopStreamProcessorError::ProvisionedThroughputExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StopStreamProcessorError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            StopStreamProcessorError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StopStreamProcessorError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopStreamProcessorError {}
 /// Trait representing the capabilities of the Amazon Rekognition API. Amazon Rekognition clients implement this trait.
 #[async_trait]
 pub trait Rekognition {

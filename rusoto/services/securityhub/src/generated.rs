@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptInvitationRequest {
     /// <p>The ID of the invitation sent from the Security Hub master account.</p>
     #[serde(rename = "InvitationId")]
@@ -36,11 +38,12 @@ pub struct AcceptInvitationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptInvitationResponse {}
 
 /// <p>The details of an AWS account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AccountDetails {
     /// <p>The ID of an AWS account.</p>
     #[serde(rename = "AccountId")]
@@ -54,7 +57,7 @@ pub struct AccountDetails {
 
 /// <p>An <code>ActionTarget</code> object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ActionTarget {
     /// <p>The ARN for the target action.</p>
     #[serde(rename = "ActionTargetArn")]
@@ -1020,6 +1023,7 @@ pub struct AwsSqsQueueDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDisableStandardsRequest {
     /// <p>The ARNs of the standards subscriptions to disable.</p>
     #[serde(rename = "StandardsSubscriptionArns")]
@@ -1027,7 +1031,7 @@ pub struct BatchDisableStandardsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDisableStandardsResponse {
     /// <p>The details of the standards subscriptions that were disabled.</p>
     #[serde(rename = "StandardsSubscriptions")]
@@ -1036,6 +1040,7 @@ pub struct BatchDisableStandardsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchEnableStandardsRequest {
     /// <p><p>The list of standards compliance checks to enable.</p> <important> <p>In this release, Security Hub supports only the CIS AWS Foundations standard.</p> <p>The ARN for the standard is <code>arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0</code>.</p> </important></p>
     #[serde(rename = "StandardsSubscriptionRequests")]
@@ -1043,7 +1048,7 @@ pub struct BatchEnableStandardsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchEnableStandardsResponse {
     /// <p>The details of the standards subscriptions that were enabled.</p>
     #[serde(rename = "StandardsSubscriptions")]
@@ -1052,6 +1057,7 @@ pub struct BatchEnableStandardsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchImportFindingsRequest {
     /// <p>A list of findings to import. To successfully import a finding, it must follow the <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html">AWS Security Finding Format</a>. Maximum of 100 findings per request.</p>
     #[serde(rename = "Findings")]
@@ -1059,7 +1065,7 @@ pub struct BatchImportFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchImportFindingsResponse {
     /// <p>The number of findings that failed to import.</p>
     #[serde(rename = "FailedCount")]
@@ -1104,6 +1110,7 @@ pub struct ContainerDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateActionTargetRequest {
     /// <p>The description for the custom action target.</p>
     #[serde(rename = "Description")]
@@ -1117,7 +1124,7 @@ pub struct CreateActionTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateActionTargetResponse {
     /// <p>The ARN for the custom action target.</p>
     #[serde(rename = "ActionTargetArn")]
@@ -1125,6 +1132,7 @@ pub struct CreateActionTargetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateInsightRequest {
     /// <p>One or more attributes used to filter the findings included in the insight. Only findings that match the criteria defined in the filters are included in the insight.</p>
     #[serde(rename = "Filters")]
@@ -1138,7 +1146,7 @@ pub struct CreateInsightRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateInsightResponse {
     /// <p>The ARN of the insight created.</p>
     #[serde(rename = "InsightArn")]
@@ -1146,6 +1154,7 @@ pub struct CreateInsightResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMembersRequest {
     /// <p>A list of account ID and email address pairs of the accounts to associate with the Security Hub master account.</p>
     #[serde(rename = "AccountDetails")]
@@ -1154,7 +1163,7 @@ pub struct CreateMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMembersResponse {
     /// <p>A list of account ID and email address pairs of the AWS accounts that weren't processed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1193,6 +1202,7 @@ pub struct DateRange {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeclineInvitationsRequest {
     /// <p>A list of account IDs that specify the accounts that invitations to Security Hub are declined from.</p>
     #[serde(rename = "AccountIds")]
@@ -1200,7 +1210,7 @@ pub struct DeclineInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeclineInvitationsResponse {
     /// <p>A list of account ID and email address pairs of the AWS accounts that weren't processed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1209,6 +1219,7 @@ pub struct DeclineInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteActionTargetRequest {
     /// <p>The ARN of the custom action target to delete.</p>
     #[serde(rename = "ActionTargetArn")]
@@ -1216,7 +1227,7 @@ pub struct DeleteActionTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteActionTargetResponse {
     /// <p>The ARN of the custom action target that was deleted.</p>
     #[serde(rename = "ActionTargetArn")]
@@ -1224,6 +1235,7 @@ pub struct DeleteActionTargetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInsightRequest {
     /// <p>The ARN of the insight to delete.</p>
     #[serde(rename = "InsightArn")]
@@ -1231,7 +1243,7 @@ pub struct DeleteInsightRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInsightResponse {
     /// <p>The ARN of the insight that was deleted.</p>
     #[serde(rename = "InsightArn")]
@@ -1239,6 +1251,7 @@ pub struct DeleteInsightResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInvitationsRequest {
     /// <p>A list of the account IDs that sent the invitations to delete.</p>
     #[serde(rename = "AccountIds")]
@@ -1246,7 +1259,7 @@ pub struct DeleteInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInvitationsResponse {
     /// <p>A list of account ID and email address pairs of the AWS accounts that invitations weren't deleted for.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1255,6 +1268,7 @@ pub struct DeleteInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMembersRequest {
     /// <p>A list of account IDs of the member accounts to delete.</p>
     #[serde(rename = "AccountIds")]
@@ -1263,7 +1277,7 @@ pub struct DeleteMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMembersResponse {
     /// <p>A list of account ID and email address pairs of the AWS accounts that weren't deleted.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1272,6 +1286,7 @@ pub struct DeleteMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeActionTargetsRequest {
     /// <p>A list of custom action target ARNs for the custom action targets to retrieve.</p>
     #[serde(rename = "ActionTargetArns")]
@@ -1288,7 +1303,7 @@ pub struct DescribeActionTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeActionTargetsResponse {
     /// <p>A list of <code>ActionTarget</code> objects. Each object includes the <code>ActionTargetArn</code>, <code>Description</code>, and <code>Name</code> of a custom action target available in Security Hub.</p>
     #[serde(rename = "ActionTargets")]
@@ -1300,6 +1315,7 @@ pub struct DescribeActionTargetsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeHubRequest {
     /// <p>The ARN of the Hub resource to retrieve.</p>
     #[serde(rename = "HubArn")]
@@ -1308,7 +1324,7 @@ pub struct DescribeHubRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHubResponse {
     /// <p>The ARN of the Hub resource retrieved.</p>
     #[serde(rename = "HubArn")]
@@ -1321,6 +1337,7 @@ pub struct DescribeHubResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductsRequest {
     /// <p>The maximum number of results to return.</p>
     #[serde(rename = "MaxResults")]
@@ -1333,7 +1350,7 @@ pub struct DescribeProductsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductsResponse {
     /// <p>The token that is required for pagination.</p>
     #[serde(rename = "NextToken")]
@@ -1345,6 +1362,7 @@ pub struct DescribeProductsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeStandardsControlsRequest {
     /// <p>The maximum number of compliance standard controls to return.</p>
     #[serde(rename = "MaxResults")]
@@ -1360,7 +1378,7 @@ pub struct DescribeStandardsControlsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeStandardsControlsResponse {
     /// <p>A list of compliance standards controls.</p>
     #[serde(rename = "Controls")]
@@ -1373,6 +1391,7 @@ pub struct DescribeStandardsControlsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableImportFindingsForProductRequest {
     /// <p>The ARN of the integrated product to disable the integration for.</p>
     #[serde(rename = "ProductSubscriptionArn")]
@@ -1380,24 +1399,27 @@ pub struct DisableImportFindingsForProductRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableImportFindingsForProductResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableSecurityHubRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableSecurityHubResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateFromMasterAccountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateFromMasterAccountResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateMembersRequest {
     /// <p>The account IDs of the member accounts to disassociate from the master account.</p>
     #[serde(rename = "AccountIds")]
@@ -1406,10 +1428,11 @@ pub struct DisassociateMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateMembersResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableImportFindingsForProductRequest {
     /// <p>The ARN of the product to enable the integration for.</p>
     #[serde(rename = "ProductArn")]
@@ -1417,7 +1440,7 @@ pub struct EnableImportFindingsForProductRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableImportFindingsForProductResponse {
     /// <p>The ARN of your subscription to the product to enable integrations for.</p>
     #[serde(rename = "ProductSubscriptionArn")]
@@ -1426,6 +1449,7 @@ pub struct EnableImportFindingsForProductResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableSecurityHubRequest {
     /// <p>The tags to add to the Hub resource when you enable Security Hub.</p>
     #[serde(rename = "Tags")]
@@ -1434,10 +1458,11 @@ pub struct EnableSecurityHubRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableSecurityHubResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetEnabledStandardsRequest {
     /// <p>The maximum number of results to return in the response.</p>
     #[serde(rename = "MaxResults")]
@@ -1454,7 +1479,7 @@ pub struct GetEnabledStandardsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetEnabledStandardsResponse {
     /// <p>The token that is required for pagination.</p>
     #[serde(rename = "NextToken")]
@@ -1467,6 +1492,7 @@ pub struct GetEnabledStandardsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFindingsRequest {
     /// <p>The findings attributes used to define a condition to filter the findings returned.</p>
     #[serde(rename = "Filters")]
@@ -1487,7 +1513,7 @@ pub struct GetFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFindingsResponse {
     /// <p>The findings that matched the filters specified in the request.</p>
     #[serde(rename = "Findings")]
@@ -1499,6 +1525,7 @@ pub struct GetFindingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInsightResultsRequest {
     /// <p>The ARN of the insight whose results you want to see.</p>
     #[serde(rename = "InsightArn")]
@@ -1506,7 +1533,7 @@ pub struct GetInsightResultsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInsightResultsResponse {
     /// <p>The insight results returned by the operation.</p>
     #[serde(rename = "InsightResults")]
@@ -1514,6 +1541,7 @@ pub struct GetInsightResultsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInsightsRequest {
     /// <p>The ARNs of the insights that you want to describe.</p>
     #[serde(rename = "InsightArns")]
@@ -1530,7 +1558,7 @@ pub struct GetInsightsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInsightsResponse {
     /// <p>The insights returned by the operation.</p>
     #[serde(rename = "Insights")]
@@ -1542,10 +1570,11 @@ pub struct GetInsightsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInvitationsCountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInvitationsCountResponse {
     /// <p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation. </p>
     #[serde(rename = "InvitationsCount")]
@@ -1554,10 +1583,11 @@ pub struct GetInvitationsCountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMasterAccountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMasterAccountResponse {
     /// <p>A list of details about the Security Hub master account for the current member account. </p>
     #[serde(rename = "Master")]
@@ -1566,6 +1596,7 @@ pub struct GetMasterAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMembersRequest {
     /// <p>A list of account IDs for the Security Hub member accounts that you want to return the details for. </p>
     #[serde(rename = "AccountIds")]
@@ -1573,7 +1604,7 @@ pub struct GetMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMembersResponse {
     /// <p>A list of details about the Security Hub member accounts.</p>
     #[serde(rename = "Members")]
@@ -1587,7 +1618,7 @@ pub struct GetMembersResponse {
 
 /// <p>Includes details of the list of the findings that can't be imported.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportFindingsError {
     /// <p>The code of the error made during the <code>BatchImportFindings</code> operation.</p>
     #[serde(rename = "ErrorCode")]
@@ -1602,7 +1633,7 @@ pub struct ImportFindingsError {
 
 /// <p>Contains information about a Security Hub insight.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Insight {
     /// <p>One or more attributes used to filter the findings included in the insight. Only findings that match the criteria defined in the filters are included in the insight.</p>
     #[serde(rename = "Filters")]
@@ -1620,7 +1651,7 @@ pub struct Insight {
 
 /// <p>The insight result values returned by the <code>GetInsightResults</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InsightResultValue {
     /// <p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>
     #[serde(rename = "Count")]
@@ -1632,7 +1663,7 @@ pub struct InsightResultValue {
 
 /// <p>The insight results returned by the <code>GetInsightResults</code> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InsightResults {
     /// <p>The attribute that the findings are grouped by for the insight whose results are returned by the <code>GetInsightResults</code> operation.</p>
     #[serde(rename = "GroupByAttribute")]
@@ -1647,7 +1678,7 @@ pub struct InsightResults {
 
 /// <p>Details about an invitation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Invitation {
     /// <p>The account ID of the Security Hub master account that the invitation was sent from.</p>
     #[serde(rename = "AccountId")]
@@ -1668,6 +1699,7 @@ pub struct Invitation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InviteMembersRequest {
     /// <p>A list of IDs of the AWS accounts that you want to invite to Security Hub as members. </p>
     #[serde(rename = "AccountIds")]
@@ -1676,7 +1708,7 @@ pub struct InviteMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InviteMembersResponse {
     /// <p>A list of account ID and email address pairs of the AWS accounts that couldn't be processed. </p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1703,6 +1735,7 @@ pub struct KeywordFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEnabledProductsForImportRequest {
     /// <p>The maximum number of items that you want in the response.</p>
     #[serde(rename = "MaxResults")]
@@ -1715,7 +1748,7 @@ pub struct ListEnabledProductsForImportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEnabledProductsForImportResponse {
     /// <p>The token that is required for pagination.</p>
     #[serde(rename = "NextToken")]
@@ -1728,6 +1761,7 @@ pub struct ListEnabledProductsForImportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInvitationsRequest {
     /// <p>The maximum number of items that you want in the response. </p>
     #[serde(rename = "MaxResults")]
@@ -1740,7 +1774,7 @@ pub struct ListInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInvitationsResponse {
     /// <p>The details of the invitations returned by the operation.</p>
     #[serde(rename = "Invitations")]
@@ -1753,6 +1787,7 @@ pub struct ListInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMembersRequest {
     /// <p>The maximum number of items that you want in the response. </p>
     #[serde(rename = "MaxResults")]
@@ -1769,7 +1804,7 @@ pub struct ListMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMembersResponse {
     /// <p>Member details returned by the operation.</p>
     #[serde(rename = "Members")]
@@ -1782,6 +1817,7 @@ pub struct ListMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The ARN of the resource to retrieve tags for.</p>
     #[serde(rename = "ResourceArn")]
@@ -1789,7 +1825,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags associated with a resource.</p>
     #[serde(rename = "Tags")]
@@ -1849,7 +1885,7 @@ pub struct MapFilter {
 
 /// <p>The details about a member account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Member {
     /// <p>The AWS account ID of the member account.</p>
     #[serde(rename = "AccountId")]
@@ -1942,6 +1978,7 @@ pub struct Note {
 
 /// <p>The updated note.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NoteUpdate {
     /// <p>The updated note text.</p>
     #[serde(rename = "Text")]
@@ -1999,7 +2036,7 @@ pub struct ProcessDetails {
 
 /// <p>Contains details about a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Product {
     /// <p>The URL used to activate the product.</p>
     #[serde(rename = "ActivationUrl")]
@@ -2149,7 +2186,7 @@ pub struct ResourceDetails {
 
 /// <p>Details about the account that wasn't processed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SecurityHubResult {
     /// <p>An AWS account ID of the account that wasn't be processed.</p>
     #[serde(rename = "AccountId")]
@@ -2175,6 +2212,7 @@ pub struct Severity {
 
 /// <p>A collection of finding attributes used to sort findings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SortCriterion {
     /// <p>The finding attribute used to sort findings.</p>
     #[serde(rename = "Field")]
@@ -2188,7 +2226,7 @@ pub struct SortCriterion {
 
 /// <p>Details for an individual compliance standard control.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StandardsControl {
     /// <p>The identifier of the compliance standard control.</p>
     #[serde(rename = "ControlId")]
@@ -2230,7 +2268,7 @@ pub struct StandardsControl {
 
 /// <p>A resource that represents your subscription to a supported standard.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StandardsSubscription {
     /// <p>The ARN of a standard.</p> <p>In this release, Security Hub supports only the CIS AWS Foundations standard, which uses the following ARN: <code>arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0.</code> </p>
     #[serde(rename = "StandardsArn")]
@@ -2248,6 +2286,7 @@ pub struct StandardsSubscription {
 
 /// <p>The standard that you want to enable.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StandardsSubscriptionRequest {
     /// <p><p>The ARN of the standard that you want to enable.</p> <important> <p>In this release, Security Hub only supports the CIS AWS Foundations standard. </p> <p>Its ARN is <code>arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0</code>.</p> </important></p>
     #[serde(rename = "StandardsArn")]
@@ -2272,6 +2311,7 @@ pub struct StringFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the resource to apply the tags to.</p>
     #[serde(rename = "ResourceArn")]
@@ -2282,7 +2322,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Details about the threat intel related to a finding.</p>
@@ -2315,6 +2355,7 @@ pub struct ThreatIntelIndicator {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ARN of the resource to remove the tags from.</p>
     #[serde(rename = "ResourceArn")]
@@ -2325,10 +2366,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateActionTargetRequest {
     /// <p>The ARN of the custom action target to update.</p>
     #[serde(rename = "ActionTargetArn")]
@@ -2344,10 +2386,11 @@ pub struct UpdateActionTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateActionTargetResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFindingsRequest {
     /// <p>A collection of attributes that specify which findings you want to update.</p>
     #[serde(rename = "Filters")]
@@ -2363,10 +2406,11 @@ pub struct UpdateFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFindingsResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateInsightRequest {
     /// <p>The updated filters that define this insight.</p>
     #[serde(rename = "Filters")]
@@ -2386,10 +2430,11 @@ pub struct UpdateInsightRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateInsightResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateStandardsControlRequest {
     /// <p>The updated status of the compliance standard control.</p>
     #[serde(rename = "ControlStatus")]
@@ -2405,7 +2450,7 @@ pub struct UpdateStandardsControlRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateStandardsControlResponse {}
 
 /// Errors returned by AcceptInvitation
@@ -2450,21 +2495,18 @@ impl AcceptInvitationError {
     }
 }
 impl fmt::Display for AcceptInvitationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptInvitationError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptInvitationError::Internal(ref cause) => cause,
-            AcceptInvitationError::InvalidAccess(ref cause) => cause,
-            AcceptInvitationError::InvalidInput(ref cause) => cause,
-            AcceptInvitationError::LimitExceeded(ref cause) => cause,
-            AcceptInvitationError::ResourceNotFound(ref cause) => cause,
+            AcceptInvitationError::Internal(ref cause) => write!(f, "{}", cause),
+            AcceptInvitationError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            AcceptInvitationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            AcceptInvitationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AcceptInvitationError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptInvitationError {}
 /// Errors returned by BatchDisableStandards
 #[derive(Debug, PartialEq)]
 pub enum BatchDisableStandardsError {
@@ -2502,20 +2544,17 @@ impl BatchDisableStandardsError {
     }
 }
 impl fmt::Display for BatchDisableStandardsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDisableStandardsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDisableStandardsError::Internal(ref cause) => cause,
-            BatchDisableStandardsError::InvalidAccess(ref cause) => cause,
-            BatchDisableStandardsError::InvalidInput(ref cause) => cause,
-            BatchDisableStandardsError::LimitExceeded(ref cause) => cause,
+            BatchDisableStandardsError::Internal(ref cause) => write!(f, "{}", cause),
+            BatchDisableStandardsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            BatchDisableStandardsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchDisableStandardsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDisableStandardsError {}
 /// Errors returned by BatchEnableStandards
 #[derive(Debug, PartialEq)]
 pub enum BatchEnableStandardsError {
@@ -2553,20 +2592,17 @@ impl BatchEnableStandardsError {
     }
 }
 impl fmt::Display for BatchEnableStandardsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchEnableStandardsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchEnableStandardsError::Internal(ref cause) => cause,
-            BatchEnableStandardsError::InvalidAccess(ref cause) => cause,
-            BatchEnableStandardsError::InvalidInput(ref cause) => cause,
-            BatchEnableStandardsError::LimitExceeded(ref cause) => cause,
+            BatchEnableStandardsError::Internal(ref cause) => write!(f, "{}", cause),
+            BatchEnableStandardsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            BatchEnableStandardsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchEnableStandardsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchEnableStandardsError {}
 /// Errors returned by BatchImportFindings
 #[derive(Debug, PartialEq)]
 pub enum BatchImportFindingsError {
@@ -2604,20 +2640,17 @@ impl BatchImportFindingsError {
     }
 }
 impl fmt::Display for BatchImportFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchImportFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchImportFindingsError::Internal(ref cause) => cause,
-            BatchImportFindingsError::InvalidAccess(ref cause) => cause,
-            BatchImportFindingsError::InvalidInput(ref cause) => cause,
-            BatchImportFindingsError::LimitExceeded(ref cause) => cause,
+            BatchImportFindingsError::Internal(ref cause) => write!(f, "{}", cause),
+            BatchImportFindingsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            BatchImportFindingsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            BatchImportFindingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchImportFindingsError {}
 /// Errors returned by CreateActionTarget
 #[derive(Debug, PartialEq)]
 pub enum CreateActionTargetError {
@@ -2660,21 +2693,18 @@ impl CreateActionTargetError {
     }
 }
 impl fmt::Display for CreateActionTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateActionTargetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateActionTargetError::Internal(ref cause) => cause,
-            CreateActionTargetError::InvalidAccess(ref cause) => cause,
-            CreateActionTargetError::InvalidInput(ref cause) => cause,
-            CreateActionTargetError::LimitExceeded(ref cause) => cause,
-            CreateActionTargetError::ResourceConflict(ref cause) => cause,
+            CreateActionTargetError::Internal(ref cause) => write!(f, "{}", cause),
+            CreateActionTargetError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            CreateActionTargetError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateActionTargetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateActionTargetError::ResourceConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateActionTargetError {}
 /// Errors returned by CreateInsight
 #[derive(Debug, PartialEq)]
 pub enum CreateInsightError {
@@ -2717,21 +2747,18 @@ impl CreateInsightError {
     }
 }
 impl fmt::Display for CreateInsightError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateInsightError {
-    fn description(&self) -> &str {
         match *self {
-            CreateInsightError::Internal(ref cause) => cause,
-            CreateInsightError::InvalidAccess(ref cause) => cause,
-            CreateInsightError::InvalidInput(ref cause) => cause,
-            CreateInsightError::LimitExceeded(ref cause) => cause,
-            CreateInsightError::ResourceConflict(ref cause) => cause,
+            CreateInsightError::Internal(ref cause) => write!(f, "{}", cause),
+            CreateInsightError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            CreateInsightError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateInsightError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateInsightError::ResourceConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateInsightError {}
 /// Errors returned by CreateMembers
 #[derive(Debug, PartialEq)]
 pub enum CreateMembersError {
@@ -2774,21 +2801,18 @@ impl CreateMembersError {
     }
 }
 impl fmt::Display for CreateMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMembersError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMembersError::Internal(ref cause) => cause,
-            CreateMembersError::InvalidAccess(ref cause) => cause,
-            CreateMembersError::InvalidInput(ref cause) => cause,
-            CreateMembersError::LimitExceeded(ref cause) => cause,
-            CreateMembersError::ResourceConflict(ref cause) => cause,
+            CreateMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            CreateMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            CreateMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateMembersError::ResourceConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMembersError {}
 /// Errors returned by DeclineInvitations
 #[derive(Debug, PartialEq)]
 pub enum DeclineInvitationsError {
@@ -2826,20 +2850,17 @@ impl DeclineInvitationsError {
     }
 }
 impl fmt::Display for DeclineInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeclineInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            DeclineInvitationsError::Internal(ref cause) => cause,
-            DeclineInvitationsError::InvalidAccess(ref cause) => cause,
-            DeclineInvitationsError::InvalidInput(ref cause) => cause,
-            DeclineInvitationsError::ResourceNotFound(ref cause) => cause,
+            DeclineInvitationsError::Internal(ref cause) => write!(f, "{}", cause),
+            DeclineInvitationsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DeclineInvitationsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeclineInvitationsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeclineInvitationsError {}
 /// Errors returned by DeleteActionTarget
 #[derive(Debug, PartialEq)]
 pub enum DeleteActionTargetError {
@@ -2877,20 +2898,17 @@ impl DeleteActionTargetError {
     }
 }
 impl fmt::Display for DeleteActionTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteActionTargetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteActionTargetError::Internal(ref cause) => cause,
-            DeleteActionTargetError::InvalidAccess(ref cause) => cause,
-            DeleteActionTargetError::InvalidInput(ref cause) => cause,
-            DeleteActionTargetError::ResourceNotFound(ref cause) => cause,
+            DeleteActionTargetError::Internal(ref cause) => write!(f, "{}", cause),
+            DeleteActionTargetError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DeleteActionTargetError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteActionTargetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteActionTargetError {}
 /// Errors returned by DeleteInsight
 #[derive(Debug, PartialEq)]
 pub enum DeleteInsightError {
@@ -2933,21 +2951,18 @@ impl DeleteInsightError {
     }
 }
 impl fmt::Display for DeleteInsightError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInsightError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInsightError::Internal(ref cause) => cause,
-            DeleteInsightError::InvalidAccess(ref cause) => cause,
-            DeleteInsightError::InvalidInput(ref cause) => cause,
-            DeleteInsightError::LimitExceeded(ref cause) => cause,
-            DeleteInsightError::ResourceNotFound(ref cause) => cause,
+            DeleteInsightError::Internal(ref cause) => write!(f, "{}", cause),
+            DeleteInsightError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DeleteInsightError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteInsightError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteInsightError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInsightError {}
 /// Errors returned by DeleteInvitations
 #[derive(Debug, PartialEq)]
 pub enum DeleteInvitationsError {
@@ -2990,21 +3005,18 @@ impl DeleteInvitationsError {
     }
 }
 impl fmt::Display for DeleteInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInvitationsError::Internal(ref cause) => cause,
-            DeleteInvitationsError::InvalidAccess(ref cause) => cause,
-            DeleteInvitationsError::InvalidInput(ref cause) => cause,
-            DeleteInvitationsError::LimitExceeded(ref cause) => cause,
-            DeleteInvitationsError::ResourceNotFound(ref cause) => cause,
+            DeleteInvitationsError::Internal(ref cause) => write!(f, "{}", cause),
+            DeleteInvitationsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DeleteInvitationsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteInvitationsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteInvitationsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInvitationsError {}
 /// Errors returned by DeleteMembers
 #[derive(Debug, PartialEq)]
 pub enum DeleteMembersError {
@@ -3047,21 +3059,18 @@ impl DeleteMembersError {
     }
 }
 impl fmt::Display for DeleteMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMembersError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMembersError::Internal(ref cause) => cause,
-            DeleteMembersError::InvalidAccess(ref cause) => cause,
-            DeleteMembersError::InvalidInput(ref cause) => cause,
-            DeleteMembersError::LimitExceeded(ref cause) => cause,
-            DeleteMembersError::ResourceNotFound(ref cause) => cause,
+            DeleteMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            DeleteMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DeleteMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteMembersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMembersError {}
 /// Errors returned by DescribeActionTargets
 #[derive(Debug, PartialEq)]
 pub enum DescribeActionTargetsError {
@@ -3101,20 +3110,17 @@ impl DescribeActionTargetsError {
     }
 }
 impl fmt::Display for DescribeActionTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeActionTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeActionTargetsError::Internal(ref cause) => cause,
-            DescribeActionTargetsError::InvalidAccess(ref cause) => cause,
-            DescribeActionTargetsError::InvalidInput(ref cause) => cause,
-            DescribeActionTargetsError::ResourceNotFound(ref cause) => cause,
+            DescribeActionTargetsError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeActionTargetsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DescribeActionTargetsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeActionTargetsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeActionTargetsError {}
 /// Errors returned by DescribeHub
 #[derive(Debug, PartialEq)]
 pub enum DescribeHubError {
@@ -3157,21 +3163,18 @@ impl DescribeHubError {
     }
 }
 impl fmt::Display for DescribeHubError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeHubError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeHubError::Internal(ref cause) => cause,
-            DescribeHubError::InvalidAccess(ref cause) => cause,
-            DescribeHubError::InvalidInput(ref cause) => cause,
-            DescribeHubError::LimitExceeded(ref cause) => cause,
-            DescribeHubError::ResourceNotFound(ref cause) => cause,
+            DescribeHubError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeHubError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DescribeHubError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeHubError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DescribeHubError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeHubError {}
 /// Errors returned by DescribeProducts
 #[derive(Debug, PartialEq)]
 pub enum DescribeProductsError {
@@ -3209,20 +3212,17 @@ impl DescribeProductsError {
     }
 }
 impl fmt::Display for DescribeProductsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProductsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProductsError::Internal(ref cause) => cause,
-            DescribeProductsError::InvalidAccess(ref cause) => cause,
-            DescribeProductsError::InvalidInput(ref cause) => cause,
-            DescribeProductsError::LimitExceeded(ref cause) => cause,
+            DescribeProductsError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeProductsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DescribeProductsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeProductsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProductsError {}
 /// Errors returned by DescribeStandardsControls
 #[derive(Debug, PartialEq)]
 pub enum DescribeStandardsControlsError {
@@ -3266,20 +3266,17 @@ impl DescribeStandardsControlsError {
     }
 }
 impl fmt::Display for DescribeStandardsControlsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeStandardsControlsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeStandardsControlsError::Internal(ref cause) => cause,
-            DescribeStandardsControlsError::InvalidAccess(ref cause) => cause,
-            DescribeStandardsControlsError::InvalidInput(ref cause) => cause,
-            DescribeStandardsControlsError::ResourceNotFound(ref cause) => cause,
+            DescribeStandardsControlsError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeStandardsControlsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DescribeStandardsControlsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeStandardsControlsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeStandardsControlsError {}
 /// Errors returned by DisableImportFindingsForProduct
 #[derive(Debug, PartialEq)]
 pub enum DisableImportFindingsForProductError {
@@ -3334,21 +3331,24 @@ impl DisableImportFindingsForProductError {
     }
 }
 impl fmt::Display for DisableImportFindingsForProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableImportFindingsForProductError {
-    fn description(&self) -> &str {
         match *self {
-            DisableImportFindingsForProductError::Internal(ref cause) => cause,
-            DisableImportFindingsForProductError::InvalidAccess(ref cause) => cause,
-            DisableImportFindingsForProductError::InvalidInput(ref cause) => cause,
-            DisableImportFindingsForProductError::LimitExceeded(ref cause) => cause,
-            DisableImportFindingsForProductError::ResourceNotFound(ref cause) => cause,
+            DisableImportFindingsForProductError::Internal(ref cause) => write!(f, "{}", cause),
+            DisableImportFindingsForProductError::InvalidAccess(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisableImportFindingsForProductError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DisableImportFindingsForProductError::LimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisableImportFindingsForProductError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisableImportFindingsForProductError {}
 /// Errors returned by DisableSecurityHub
 #[derive(Debug, PartialEq)]
 pub enum DisableSecurityHubError {
@@ -3386,20 +3386,17 @@ impl DisableSecurityHubError {
     }
 }
 impl fmt::Display for DisableSecurityHubError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableSecurityHubError {
-    fn description(&self) -> &str {
         match *self {
-            DisableSecurityHubError::Internal(ref cause) => cause,
-            DisableSecurityHubError::InvalidAccess(ref cause) => cause,
-            DisableSecurityHubError::LimitExceeded(ref cause) => cause,
-            DisableSecurityHubError::ResourceNotFound(ref cause) => cause,
+            DisableSecurityHubError::Internal(ref cause) => write!(f, "{}", cause),
+            DisableSecurityHubError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DisableSecurityHubError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DisableSecurityHubError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableSecurityHubError {}
 /// Errors returned by DisassociateFromMasterAccount
 #[derive(Debug, PartialEq)]
 pub enum DisassociateFromMasterAccountError {
@@ -3454,21 +3451,20 @@ impl DisassociateFromMasterAccountError {
     }
 }
 impl fmt::Display for DisassociateFromMasterAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateFromMasterAccountError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateFromMasterAccountError::Internal(ref cause) => cause,
-            DisassociateFromMasterAccountError::InvalidAccess(ref cause) => cause,
-            DisassociateFromMasterAccountError::InvalidInput(ref cause) => cause,
-            DisassociateFromMasterAccountError::LimitExceeded(ref cause) => cause,
-            DisassociateFromMasterAccountError::ResourceNotFound(ref cause) => cause,
+            DisassociateFromMasterAccountError::Internal(ref cause) => write!(f, "{}", cause),
+            DisassociateFromMasterAccountError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DisassociateFromMasterAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DisassociateFromMasterAccountError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DisassociateFromMasterAccountError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateFromMasterAccountError {}
 /// Errors returned by DisassociateMembers
 #[derive(Debug, PartialEq)]
 pub enum DisassociateMembersError {
@@ -3513,21 +3509,18 @@ impl DisassociateMembersError {
     }
 }
 impl fmt::Display for DisassociateMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateMembersError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateMembersError::Internal(ref cause) => cause,
-            DisassociateMembersError::InvalidAccess(ref cause) => cause,
-            DisassociateMembersError::InvalidInput(ref cause) => cause,
-            DisassociateMembersError::LimitExceeded(ref cause) => cause,
-            DisassociateMembersError::ResourceNotFound(ref cause) => cause,
+            DisassociateMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            DisassociateMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            DisassociateMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DisassociateMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DisassociateMembersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateMembersError {}
 /// Errors returned by EnableImportFindingsForProduct
 #[derive(Debug, PartialEq)]
 pub enum EnableImportFindingsForProductError {
@@ -3582,21 +3575,20 @@ impl EnableImportFindingsForProductError {
     }
 }
 impl fmt::Display for EnableImportFindingsForProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableImportFindingsForProductError {
-    fn description(&self) -> &str {
         match *self {
-            EnableImportFindingsForProductError::Internal(ref cause) => cause,
-            EnableImportFindingsForProductError::InvalidAccess(ref cause) => cause,
-            EnableImportFindingsForProductError::InvalidInput(ref cause) => cause,
-            EnableImportFindingsForProductError::LimitExceeded(ref cause) => cause,
-            EnableImportFindingsForProductError::ResourceConflict(ref cause) => cause,
+            EnableImportFindingsForProductError::Internal(ref cause) => write!(f, "{}", cause),
+            EnableImportFindingsForProductError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            EnableImportFindingsForProductError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            EnableImportFindingsForProductError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            EnableImportFindingsForProductError::ResourceConflict(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for EnableImportFindingsForProductError {}
 /// Errors returned by EnableSecurityHub
 #[derive(Debug, PartialEq)]
 pub enum EnableSecurityHubError {
@@ -3639,21 +3631,18 @@ impl EnableSecurityHubError {
     }
 }
 impl fmt::Display for EnableSecurityHubError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableSecurityHubError {
-    fn description(&self) -> &str {
         match *self {
-            EnableSecurityHubError::AccessDenied(ref cause) => cause,
-            EnableSecurityHubError::Internal(ref cause) => cause,
-            EnableSecurityHubError::InvalidAccess(ref cause) => cause,
-            EnableSecurityHubError::LimitExceeded(ref cause) => cause,
-            EnableSecurityHubError::ResourceConflict(ref cause) => cause,
+            EnableSecurityHubError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            EnableSecurityHubError::Internal(ref cause) => write!(f, "{}", cause),
+            EnableSecurityHubError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            EnableSecurityHubError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            EnableSecurityHubError::ResourceConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableSecurityHubError {}
 /// Errors returned by GetEnabledStandards
 #[derive(Debug, PartialEq)]
 pub enum GetEnabledStandardsError {
@@ -3691,20 +3680,17 @@ impl GetEnabledStandardsError {
     }
 }
 impl fmt::Display for GetEnabledStandardsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetEnabledStandardsError {
-    fn description(&self) -> &str {
         match *self {
-            GetEnabledStandardsError::Internal(ref cause) => cause,
-            GetEnabledStandardsError::InvalidAccess(ref cause) => cause,
-            GetEnabledStandardsError::InvalidInput(ref cause) => cause,
-            GetEnabledStandardsError::LimitExceeded(ref cause) => cause,
+            GetEnabledStandardsError::Internal(ref cause) => write!(f, "{}", cause),
+            GetEnabledStandardsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetEnabledStandardsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetEnabledStandardsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetEnabledStandardsError {}
 /// Errors returned by GetFindings
 #[derive(Debug, PartialEq)]
 pub enum GetFindingsError {
@@ -3742,20 +3728,17 @@ impl GetFindingsError {
     }
 }
 impl fmt::Display for GetFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            GetFindingsError::Internal(ref cause) => cause,
-            GetFindingsError::InvalidAccess(ref cause) => cause,
-            GetFindingsError::InvalidInput(ref cause) => cause,
-            GetFindingsError::LimitExceeded(ref cause) => cause,
+            GetFindingsError::Internal(ref cause) => write!(f, "{}", cause),
+            GetFindingsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetFindingsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetFindingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFindingsError {}
 /// Errors returned by GetInsightResults
 #[derive(Debug, PartialEq)]
 pub enum GetInsightResultsError {
@@ -3798,21 +3781,18 @@ impl GetInsightResultsError {
     }
 }
 impl fmt::Display for GetInsightResultsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInsightResultsError {
-    fn description(&self) -> &str {
         match *self {
-            GetInsightResultsError::Internal(ref cause) => cause,
-            GetInsightResultsError::InvalidAccess(ref cause) => cause,
-            GetInsightResultsError::InvalidInput(ref cause) => cause,
-            GetInsightResultsError::LimitExceeded(ref cause) => cause,
-            GetInsightResultsError::ResourceNotFound(ref cause) => cause,
+            GetInsightResultsError::Internal(ref cause) => write!(f, "{}", cause),
+            GetInsightResultsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetInsightResultsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetInsightResultsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetInsightResultsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInsightResultsError {}
 /// Errors returned by GetInsights
 #[derive(Debug, PartialEq)]
 pub enum GetInsightsError {
@@ -3855,21 +3835,18 @@ impl GetInsightsError {
     }
 }
 impl fmt::Display for GetInsightsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInsightsError {
-    fn description(&self) -> &str {
         match *self {
-            GetInsightsError::Internal(ref cause) => cause,
-            GetInsightsError::InvalidAccess(ref cause) => cause,
-            GetInsightsError::InvalidInput(ref cause) => cause,
-            GetInsightsError::LimitExceeded(ref cause) => cause,
-            GetInsightsError::ResourceNotFound(ref cause) => cause,
+            GetInsightsError::Internal(ref cause) => write!(f, "{}", cause),
+            GetInsightsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetInsightsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetInsightsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetInsightsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInsightsError {}
 /// Errors returned by GetInvitationsCount
 #[derive(Debug, PartialEq)]
 pub enum GetInvitationsCountError {
@@ -3907,20 +3884,17 @@ impl GetInvitationsCountError {
     }
 }
 impl fmt::Display for GetInvitationsCountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInvitationsCountError {
-    fn description(&self) -> &str {
         match *self {
-            GetInvitationsCountError::Internal(ref cause) => cause,
-            GetInvitationsCountError::InvalidAccess(ref cause) => cause,
-            GetInvitationsCountError::InvalidInput(ref cause) => cause,
-            GetInvitationsCountError::LimitExceeded(ref cause) => cause,
+            GetInvitationsCountError::Internal(ref cause) => write!(f, "{}", cause),
+            GetInvitationsCountError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetInvitationsCountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetInvitationsCountError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInvitationsCountError {}
 /// Errors returned by GetMasterAccount
 #[derive(Debug, PartialEq)]
 pub enum GetMasterAccountError {
@@ -3963,21 +3937,18 @@ impl GetMasterAccountError {
     }
 }
 impl fmt::Display for GetMasterAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMasterAccountError {
-    fn description(&self) -> &str {
         match *self {
-            GetMasterAccountError::Internal(ref cause) => cause,
-            GetMasterAccountError::InvalidAccess(ref cause) => cause,
-            GetMasterAccountError::InvalidInput(ref cause) => cause,
-            GetMasterAccountError::LimitExceeded(ref cause) => cause,
-            GetMasterAccountError::ResourceNotFound(ref cause) => cause,
+            GetMasterAccountError::Internal(ref cause) => write!(f, "{}", cause),
+            GetMasterAccountError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetMasterAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMasterAccountError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetMasterAccountError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMasterAccountError {}
 /// Errors returned by GetMembers
 #[derive(Debug, PartialEq)]
 pub enum GetMembersError {
@@ -4020,21 +3991,18 @@ impl GetMembersError {
     }
 }
 impl fmt::Display for GetMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMembersError {
-    fn description(&self) -> &str {
         match *self {
-            GetMembersError::Internal(ref cause) => cause,
-            GetMembersError::InvalidAccess(ref cause) => cause,
-            GetMembersError::InvalidInput(ref cause) => cause,
-            GetMembersError::LimitExceeded(ref cause) => cause,
-            GetMembersError::ResourceNotFound(ref cause) => cause,
+            GetMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            GetMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            GetMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            GetMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetMembersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMembersError {}
 /// Errors returned by InviteMembers
 #[derive(Debug, PartialEq)]
 pub enum InviteMembersError {
@@ -4077,21 +4045,18 @@ impl InviteMembersError {
     }
 }
 impl fmt::Display for InviteMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InviteMembersError {
-    fn description(&self) -> &str {
         match *self {
-            InviteMembersError::Internal(ref cause) => cause,
-            InviteMembersError::InvalidAccess(ref cause) => cause,
-            InviteMembersError::InvalidInput(ref cause) => cause,
-            InviteMembersError::LimitExceeded(ref cause) => cause,
-            InviteMembersError::ResourceNotFound(ref cause) => cause,
+            InviteMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            InviteMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            InviteMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            InviteMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            InviteMembersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InviteMembersError {}
 /// Errors returned by ListEnabledProductsForImport
 #[derive(Debug, PartialEq)]
 pub enum ListEnabledProductsForImportError {
@@ -4132,19 +4097,16 @@ impl ListEnabledProductsForImportError {
     }
 }
 impl fmt::Display for ListEnabledProductsForImportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListEnabledProductsForImportError {
-    fn description(&self) -> &str {
         match *self {
-            ListEnabledProductsForImportError::Internal(ref cause) => cause,
-            ListEnabledProductsForImportError::InvalidAccess(ref cause) => cause,
-            ListEnabledProductsForImportError::LimitExceeded(ref cause) => cause,
+            ListEnabledProductsForImportError::Internal(ref cause) => write!(f, "{}", cause),
+            ListEnabledProductsForImportError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            ListEnabledProductsForImportError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListEnabledProductsForImportError {}
 /// Errors returned by ListInvitations
 #[derive(Debug, PartialEq)]
 pub enum ListInvitationsError {
@@ -4182,20 +4144,17 @@ impl ListInvitationsError {
     }
 }
 impl fmt::Display for ListInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListInvitationsError::Internal(ref cause) => cause,
-            ListInvitationsError::InvalidAccess(ref cause) => cause,
-            ListInvitationsError::InvalidInput(ref cause) => cause,
-            ListInvitationsError::LimitExceeded(ref cause) => cause,
+            ListInvitationsError::Internal(ref cause) => write!(f, "{}", cause),
+            ListInvitationsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            ListInvitationsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListInvitationsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInvitationsError {}
 /// Errors returned by ListMembers
 #[derive(Debug, PartialEq)]
 pub enum ListMembersError {
@@ -4233,20 +4192,17 @@ impl ListMembersError {
     }
 }
 impl fmt::Display for ListMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMembersError {
-    fn description(&self) -> &str {
         match *self {
-            ListMembersError::Internal(ref cause) => cause,
-            ListMembersError::InvalidAccess(ref cause) => cause,
-            ListMembersError::InvalidInput(ref cause) => cause,
-            ListMembersError::LimitExceeded(ref cause) => cause,
+            ListMembersError::Internal(ref cause) => write!(f, "{}", cause),
+            ListMembersError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            ListMembersError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListMembersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMembersError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -4281,19 +4237,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::Internal(ref cause) => cause,
-            ListTagsForResourceError::InvalidInput(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -4326,19 +4279,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::Internal(ref cause) => cause,
-            TagResourceError::InvalidInput(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -4371,19 +4321,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::Internal(ref cause) => cause,
-            UntagResourceError::InvalidInput(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateActionTarget
 #[derive(Debug, PartialEq)]
 pub enum UpdateActionTargetError {
@@ -4421,20 +4368,17 @@ impl UpdateActionTargetError {
     }
 }
 impl fmt::Display for UpdateActionTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateActionTargetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateActionTargetError::Internal(ref cause) => cause,
-            UpdateActionTargetError::InvalidAccess(ref cause) => cause,
-            UpdateActionTargetError::InvalidInput(ref cause) => cause,
-            UpdateActionTargetError::ResourceNotFound(ref cause) => cause,
+            UpdateActionTargetError::Internal(ref cause) => write!(f, "{}", cause),
+            UpdateActionTargetError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            UpdateActionTargetError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateActionTargetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateActionTargetError {}
 /// Errors returned by UpdateFindings
 #[derive(Debug, PartialEq)]
 pub enum UpdateFindingsError {
@@ -4477,21 +4421,18 @@ impl UpdateFindingsError {
     }
 }
 impl fmt::Display for UpdateFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFindingsError::Internal(ref cause) => cause,
-            UpdateFindingsError::InvalidAccess(ref cause) => cause,
-            UpdateFindingsError::InvalidInput(ref cause) => cause,
-            UpdateFindingsError::LimitExceeded(ref cause) => cause,
-            UpdateFindingsError::ResourceNotFound(ref cause) => cause,
+            UpdateFindingsError::Internal(ref cause) => write!(f, "{}", cause),
+            UpdateFindingsError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            UpdateFindingsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateFindingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFindingsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFindingsError {}
 /// Errors returned by UpdateInsight
 #[derive(Debug, PartialEq)]
 pub enum UpdateInsightError {
@@ -4534,21 +4475,18 @@ impl UpdateInsightError {
     }
 }
 impl fmt::Display for UpdateInsightError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateInsightError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateInsightError::Internal(ref cause) => cause,
-            UpdateInsightError::InvalidAccess(ref cause) => cause,
-            UpdateInsightError::InvalidInput(ref cause) => cause,
-            UpdateInsightError::LimitExceeded(ref cause) => cause,
-            UpdateInsightError::ResourceNotFound(ref cause) => cause,
+            UpdateInsightError::Internal(ref cause) => write!(f, "{}", cause),
+            UpdateInsightError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            UpdateInsightError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateInsightError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateInsightError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateInsightError {}
 /// Errors returned by UpdateStandardsControl
 #[derive(Debug, PartialEq)]
 pub enum UpdateStandardsControlError {
@@ -4590,20 +4528,17 @@ impl UpdateStandardsControlError {
     }
 }
 impl fmt::Display for UpdateStandardsControlError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateStandardsControlError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateStandardsControlError::Internal(ref cause) => cause,
-            UpdateStandardsControlError::InvalidAccess(ref cause) => cause,
-            UpdateStandardsControlError::InvalidInput(ref cause) => cause,
-            UpdateStandardsControlError::ResourceNotFound(ref cause) => cause,
+            UpdateStandardsControlError::Internal(ref cause) => write!(f, "{}", cause),
+            UpdateStandardsControlError::InvalidAccess(ref cause) => write!(f, "{}", cause),
+            UpdateStandardsControlError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateStandardsControlError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateStandardsControlError {}
 /// Trait representing the capabilities of the AWS SecurityHub API. AWS SecurityHub clients implement this trait.
 #[async_trait]
 pub trait SecurityHub {

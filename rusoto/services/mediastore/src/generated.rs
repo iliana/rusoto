@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>This section describes operations that you can perform on an AWS Elemental MediaStore container.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Container {
     /// <p>The Amazon Resource Name (ARN) of the container. The ARN has the following format:</p> <p>arn:aws:&lt;region&gt;:&lt;account that owns this container&gt;:container/&lt;name of container&gt; </p> <p>For example: arn:aws:mediastore:us-west-2:111122223333:container/movies </p>
     #[serde(rename = "ARN")]
@@ -78,6 +79,7 @@ pub struct CorsRule {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateContainerInput {
     /// <p>The name for the container. The name must be from 1 to 255 characters. Container names must be unique to your AWS account within a specific region. As an example, you could create a container named <code>movies</code> in every region, as long as you don’t have an existing container with that name.</p>
     #[serde(rename = "ContainerName")]
@@ -89,7 +91,7 @@ pub struct CreateContainerInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateContainerOutput {
     /// <p>ContainerARN: The Amazon Resource Name (ARN) of the newly created container. The ARN has the following format: arn:aws:&lt;region&gt;:&lt;account that owns this container&gt;:container/&lt;name of container&gt;. For example: arn:aws:mediastore:us-west-2:111122223333:container/movies </p> <p>ContainerName: The container name as specified in the request.</p> <p>CreationTime: Unix time stamp.</p> <p>Status: The status of container creation or deletion. The status is one of the following: <code>CREATING</code>, <code>ACTIVE</code>, or <code>DELETING</code>. While the service is creating the container, the status is <code>CREATING</code>. When an endpoint is available, the status changes to <code>ACTIVE</code>.</p> <p>The return value does not include the container's endpoint. To make downstream requests, you must obtain this value by using <a>DescribeContainer</a> or <a>ListContainers</a>.</p>
     #[serde(rename = "Container")]
@@ -97,6 +99,7 @@ pub struct CreateContainerOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteContainerInput {
     /// <p>The name of the container to delete. </p>
     #[serde(rename = "ContainerName")]
@@ -104,10 +107,11 @@ pub struct DeleteContainerInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteContainerOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteContainerPolicyInput {
     /// <p>The name of the container that holds the policy.</p>
     #[serde(rename = "ContainerName")]
@@ -115,10 +119,11 @@ pub struct DeleteContainerPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteContainerPolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCorsPolicyInput {
     /// <p>The name of the container to remove the policy from.</p>
     #[serde(rename = "ContainerName")]
@@ -126,10 +131,11 @@ pub struct DeleteCorsPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteCorsPolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLifecyclePolicyInput {
     /// <p>The name of the container that holds the object lifecycle policy.</p>
     #[serde(rename = "ContainerName")]
@@ -137,10 +143,11 @@ pub struct DeleteLifecyclePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLifecyclePolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeContainerInput {
     /// <p>The name of the container to query.</p>
     #[serde(rename = "ContainerName")]
@@ -149,7 +156,7 @@ pub struct DescribeContainerInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeContainerOutput {
     /// <p>The name of the queried container.</p>
     #[serde(rename = "Container")]
@@ -158,6 +165,7 @@ pub struct DescribeContainerOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetContainerPolicyInput {
     /// <p>The name of the container. </p>
     #[serde(rename = "ContainerName")]
@@ -165,7 +173,7 @@ pub struct GetContainerPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetContainerPolicyOutput {
     /// <p>The contents of the access policy.</p>
     #[serde(rename = "Policy")]
@@ -173,6 +181,7 @@ pub struct GetContainerPolicyOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCorsPolicyInput {
     /// <p>The name of the container that the policy is assigned to.</p>
     #[serde(rename = "ContainerName")]
@@ -180,7 +189,7 @@ pub struct GetCorsPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCorsPolicyOutput {
     /// <p>The CORS policy assigned to the container.</p>
     #[serde(rename = "CorsPolicy")]
@@ -188,6 +197,7 @@ pub struct GetCorsPolicyOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLifecyclePolicyInput {
     /// <p>The name of the container that the object lifecycle policy is assigned to.</p>
     #[serde(rename = "ContainerName")]
@@ -195,7 +205,7 @@ pub struct GetLifecyclePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLifecyclePolicyOutput {
     /// <p>The object lifecycle policy that is assigned to the container.</p>
     #[serde(rename = "LifecyclePolicy")]
@@ -203,6 +213,7 @@ pub struct GetLifecyclePolicyOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListContainersInput {
     /// <p>Enter the maximum number of containers in the response. Use from 1 to 255 characters. </p>
     #[serde(rename = "MaxResults")]
@@ -215,7 +226,7 @@ pub struct ListContainersInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListContainersOutput {
     /// <p>The names of the containers.</p>
     #[serde(rename = "Containers")]
@@ -227,6 +238,7 @@ pub struct ListContainersOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container.</p>
     #[serde(rename = "Resource")]
@@ -234,7 +246,7 @@ pub struct ListTagsForResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>An array of key:value pairs that are assigned to the container.</p>
     #[serde(rename = "Tags")]
@@ -243,6 +255,7 @@ pub struct ListTagsForResourceOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutContainerPolicyInput {
     /// <p>The name of the container.</p>
     #[serde(rename = "ContainerName")]
@@ -253,10 +266,11 @@ pub struct PutContainerPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutContainerPolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutCorsPolicyInput {
     /// <p>The name of the container that you want to assign the CORS policy to.</p>
     #[serde(rename = "ContainerName")]
@@ -267,10 +281,11 @@ pub struct PutCorsPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutCorsPolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLifecyclePolicyInput {
     /// <p>The name of the container that you want to assign the object lifecycle policy to.</p>
     #[serde(rename = "ContainerName")]
@@ -281,10 +296,11 @@ pub struct PutLifecyclePolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLifecyclePolicyOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartAccessLoggingInput {
     /// <p>The name of the container that you want to start access logging on.</p>
     #[serde(rename = "ContainerName")]
@@ -292,10 +308,11 @@ pub struct StartAccessLoggingInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartAccessLoggingOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopAccessLoggingInput {
     /// <p>The name of the container that you want to stop access logging on.</p>
     #[serde(rename = "ContainerName")]
@@ -303,7 +320,7 @@ pub struct StopAccessLoggingInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopAccessLoggingOutput {}
 
 /// <p>A collection of tags associated with a container. Each tag consists of a key:value pair, which can be anything you define. Typically, the tag key represents a category (such as "environment") and the tag value represents a specific value within that category (such as "test," "development," or "production"). You can add up to 50 tags to each container. For more information about tagging, including naming and usage conventions, see <a href="https://docs.aws.amazon.com/mediastore/latest/ug/tagging.html">Tagging Resources in MediaStore</a>.</p>
@@ -319,6 +336,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container. </p>
     #[serde(rename = "Resource")]
@@ -329,10 +347,11 @@ pub struct TagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container.</p>
     #[serde(rename = "Resource")]
@@ -343,7 +362,7 @@ pub struct UntagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceOutput {}
 
 /// Errors returned by CreateContainer
@@ -378,19 +397,16 @@ impl CreateContainerError {
     }
 }
 impl fmt::Display for CreateContainerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateContainerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateContainerError::ContainerInUse(ref cause) => cause,
-            CreateContainerError::InternalServerError(ref cause) => cause,
-            CreateContainerError::LimitExceeded(ref cause) => cause,
+            CreateContainerError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            CreateContainerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateContainerError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateContainerError {}
 /// Errors returned by DeleteContainer
 #[derive(Debug, PartialEq)]
 pub enum DeleteContainerError {
@@ -423,19 +439,16 @@ impl DeleteContainerError {
     }
 }
 impl fmt::Display for DeleteContainerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteContainerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteContainerError::ContainerInUse(ref cause) => cause,
-            DeleteContainerError::ContainerNotFound(ref cause) => cause,
-            DeleteContainerError::InternalServerError(ref cause) => cause,
+            DeleteContainerError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            DeleteContainerError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteContainerError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteContainerError {}
 /// Errors returned by DeleteContainerPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteContainerPolicyError {
@@ -481,20 +494,17 @@ impl DeleteContainerPolicyError {
     }
 }
 impl fmt::Display for DeleteContainerPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteContainerPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteContainerPolicyError::ContainerInUse(ref cause) => cause,
-            DeleteContainerPolicyError::ContainerNotFound(ref cause) => cause,
-            DeleteContainerPolicyError::InternalServerError(ref cause) => cause,
-            DeleteContainerPolicyError::PolicyNotFound(ref cause) => cause,
+            DeleteContainerPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            DeleteContainerPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteContainerPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteContainerPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteContainerPolicyError {}
 /// Errors returned by DeleteCorsPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteCorsPolicyError {
@@ -534,20 +544,17 @@ impl DeleteCorsPolicyError {
     }
 }
 impl fmt::Display for DeleteCorsPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCorsPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCorsPolicyError::ContainerInUse(ref cause) => cause,
-            DeleteCorsPolicyError::ContainerNotFound(ref cause) => cause,
-            DeleteCorsPolicyError::CorsPolicyNotFound(ref cause) => cause,
-            DeleteCorsPolicyError::InternalServerError(ref cause) => cause,
+            DeleteCorsPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            DeleteCorsPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteCorsPolicyError::CorsPolicyNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteCorsPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCorsPolicyError {}
 /// Errors returned by DeleteLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteLifecyclePolicyError {
@@ -593,20 +600,17 @@ impl DeleteLifecyclePolicyError {
     }
 }
 impl fmt::Display for DeleteLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLifecyclePolicyError::ContainerInUse(ref cause) => cause,
-            DeleteLifecyclePolicyError::ContainerNotFound(ref cause) => cause,
-            DeleteLifecyclePolicyError::InternalServerError(ref cause) => cause,
-            DeleteLifecyclePolicyError::PolicyNotFound(ref cause) => cause,
+            DeleteLifecyclePolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            DeleteLifecyclePolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLifecyclePolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteLifecyclePolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLifecyclePolicyError {}
 /// Errors returned by DescribeContainer
 #[derive(Debug, PartialEq)]
 pub enum DescribeContainerError {
@@ -636,18 +640,15 @@ impl DescribeContainerError {
     }
 }
 impl fmt::Display for DescribeContainerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeContainerError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeContainerError::ContainerNotFound(ref cause) => cause,
-            DescribeContainerError::InternalServerError(ref cause) => cause,
+            DescribeContainerError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeContainerError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeContainerError {}
 /// Errors returned by GetContainerPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetContainerPolicyError {
@@ -689,20 +690,17 @@ impl GetContainerPolicyError {
     }
 }
 impl fmt::Display for GetContainerPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetContainerPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetContainerPolicyError::ContainerInUse(ref cause) => cause,
-            GetContainerPolicyError::ContainerNotFound(ref cause) => cause,
-            GetContainerPolicyError::InternalServerError(ref cause) => cause,
-            GetContainerPolicyError::PolicyNotFound(ref cause) => cause,
+            GetContainerPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            GetContainerPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            GetContainerPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetContainerPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetContainerPolicyError {}
 /// Errors returned by GetCorsPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetCorsPolicyError {
@@ -740,20 +738,17 @@ impl GetCorsPolicyError {
     }
 }
 impl fmt::Display for GetCorsPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCorsPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetCorsPolicyError::ContainerInUse(ref cause) => cause,
-            GetCorsPolicyError::ContainerNotFound(ref cause) => cause,
-            GetCorsPolicyError::CorsPolicyNotFound(ref cause) => cause,
-            GetCorsPolicyError::InternalServerError(ref cause) => cause,
+            GetCorsPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            GetCorsPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            GetCorsPolicyError::CorsPolicyNotFound(ref cause) => write!(f, "{}", cause),
+            GetCorsPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCorsPolicyError {}
 /// Errors returned by GetLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum GetLifecyclePolicyError {
@@ -795,20 +790,17 @@ impl GetLifecyclePolicyError {
     }
 }
 impl fmt::Display for GetLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetLifecyclePolicyError::ContainerInUse(ref cause) => cause,
-            GetLifecyclePolicyError::ContainerNotFound(ref cause) => cause,
-            GetLifecyclePolicyError::InternalServerError(ref cause) => cause,
-            GetLifecyclePolicyError::PolicyNotFound(ref cause) => cause,
+            GetLifecyclePolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLifecyclePolicyError {}
 /// Errors returned by ListContainers
 #[derive(Debug, PartialEq)]
 pub enum ListContainersError {
@@ -831,17 +823,14 @@ impl ListContainersError {
     }
 }
 impl fmt::Display for ListContainersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListContainersError {
-    fn description(&self) -> &str {
         match *self {
-            ListContainersError::InternalServerError(ref cause) => cause,
+            ListContainersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListContainersError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -878,19 +867,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::ContainerInUse(ref cause) => cause,
-            ListTagsForResourceError::ContainerNotFound(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
+            ListTagsForResourceError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PutContainerPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutContainerPolicyError {
@@ -927,19 +913,16 @@ impl PutContainerPolicyError {
     }
 }
 impl fmt::Display for PutContainerPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutContainerPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutContainerPolicyError::ContainerInUse(ref cause) => cause,
-            PutContainerPolicyError::ContainerNotFound(ref cause) => cause,
-            PutContainerPolicyError::InternalServerError(ref cause) => cause,
+            PutContainerPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            PutContainerPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            PutContainerPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutContainerPolicyError {}
 /// Errors returned by PutCorsPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutCorsPolicyError {
@@ -972,19 +955,16 @@ impl PutCorsPolicyError {
     }
 }
 impl fmt::Display for PutCorsPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutCorsPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutCorsPolicyError::ContainerInUse(ref cause) => cause,
-            PutCorsPolicyError::ContainerNotFound(ref cause) => cause,
-            PutCorsPolicyError::InternalServerError(ref cause) => cause,
+            PutCorsPolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            PutCorsPolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            PutCorsPolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutCorsPolicyError {}
 /// Errors returned by PutLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutLifecyclePolicyError {
@@ -1021,19 +1001,16 @@ impl PutLifecyclePolicyError {
     }
 }
 impl fmt::Display for PutLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutLifecyclePolicyError::ContainerInUse(ref cause) => cause,
-            PutLifecyclePolicyError::ContainerNotFound(ref cause) => cause,
-            PutLifecyclePolicyError::InternalServerError(ref cause) => cause,
+            PutLifecyclePolicyError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            PutLifecyclePolicyError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            PutLifecyclePolicyError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutLifecyclePolicyError {}
 /// Errors returned by StartAccessLogging
 #[derive(Debug, PartialEq)]
 pub enum StartAccessLoggingError {
@@ -1070,19 +1047,16 @@ impl StartAccessLoggingError {
     }
 }
 impl fmt::Display for StartAccessLoggingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartAccessLoggingError {
-    fn description(&self) -> &str {
         match *self {
-            StartAccessLoggingError::ContainerInUse(ref cause) => cause,
-            StartAccessLoggingError::ContainerNotFound(ref cause) => cause,
-            StartAccessLoggingError::InternalServerError(ref cause) => cause,
+            StartAccessLoggingError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            StartAccessLoggingError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            StartAccessLoggingError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartAccessLoggingError {}
 /// Errors returned by StopAccessLogging
 #[derive(Debug, PartialEq)]
 pub enum StopAccessLoggingError {
@@ -1117,19 +1091,16 @@ impl StopAccessLoggingError {
     }
 }
 impl fmt::Display for StopAccessLoggingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopAccessLoggingError {
-    fn description(&self) -> &str {
         match *self {
-            StopAccessLoggingError::ContainerInUse(ref cause) => cause,
-            StopAccessLoggingError::ContainerNotFound(ref cause) => cause,
-            StopAccessLoggingError::InternalServerError(ref cause) => cause,
+            StopAccessLoggingError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            StopAccessLoggingError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            StopAccessLoggingError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopAccessLoggingError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1162,19 +1133,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::ContainerInUse(ref cause) => cause,
-            TagResourceError::ContainerNotFound(ref cause) => cause,
-            TagResourceError::InternalServerError(ref cause) => cause,
+            TagResourceError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1207,19 +1175,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::ContainerInUse(ref cause) => cause,
-            UntagResourceError::ContainerNotFound(ref cause) => cause,
-            UntagResourceError::InternalServerError(ref cause) => cause,
+            UntagResourceError::ContainerInUse(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ContainerNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Trait representing the capabilities of the MediaStore API. MediaStore clients implement this trait.
 #[async_trait]
 pub trait MediaStore {

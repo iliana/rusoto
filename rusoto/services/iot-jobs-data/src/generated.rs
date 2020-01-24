@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobExecutionRequest {
     /// <p>Optional. A number that identifies a particular job execution on a particular device. If not specified, the latest job execution is returned.</p>
     #[serde(rename = "executionNumber")]
@@ -44,7 +46,7 @@ pub struct DescribeJobExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJobExecutionResponse {
     /// <p>Contains data about a job execution.</p>
     #[serde(rename = "execution")]
@@ -53,6 +55,7 @@ pub struct DescribeJobExecutionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPendingJobExecutionsRequest {
     /// <p>The name of the thing that is executing the job.</p>
     #[serde(rename = "thingName")]
@@ -60,7 +63,7 @@ pub struct GetPendingJobExecutionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPendingJobExecutionsResponse {
     /// <p>A list of JobExecutionSummary objects with status IN_PROGRESS.</p>
     #[serde(rename = "inProgressJobs")]
@@ -74,7 +77,7 @@ pub struct GetPendingJobExecutionsResponse {
 
 /// <p>Contains data about a job execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobExecution {
     /// <p>The estimated number of seconds that remain before the job execution status will be changed to <code>TIMED_OUT</code>.</p>
     #[serde(rename = "approximateSecondsBeforeTimedOut")]
@@ -124,7 +127,7 @@ pub struct JobExecution {
 
 /// <p>Contains data about the state of a job execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobExecutionState {
     /// <p>The status of the job execution. Can be one of: "QUEUED", "IN_PROGRESS", "FAILED", "SUCCESS", "CANCELED", "REJECTED", or "REMOVED".</p>
     #[serde(rename = "status")]
@@ -142,7 +145,7 @@ pub struct JobExecutionState {
 
 /// <p>Contains a subset of information about a job execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobExecutionSummary {
     /// <p>A number that identifies a particular job execution on a particular device.</p>
     #[serde(rename = "executionNumber")]
@@ -171,6 +174,7 @@ pub struct JobExecutionSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartNextPendingJobExecutionRequest {
     /// <p>A collection of name/value pairs that describe the status of the job execution. If not specified, the statusDetails are unchanged.</p>
     #[serde(rename = "statusDetails")]
@@ -186,7 +190,7 @@ pub struct StartNextPendingJobExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartNextPendingJobExecutionResponse {
     /// <p>A JobExecution object.</p>
     #[serde(rename = "execution")]
@@ -195,6 +199,7 @@ pub struct StartNextPendingJobExecutionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobExecutionRequest {
     /// <p>Optional. A number that identifies a particular job execution on a particular device.</p>
     #[serde(rename = "executionNumber")]
@@ -232,7 +237,7 @@ pub struct UpdateJobExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobExecutionResponse {
     /// <p>A JobExecutionState object.</p>
     #[serde(rename = "executionState")]
@@ -297,22 +302,19 @@ impl DescribeJobExecutionError {
     }
 }
 impl fmt::Display for DescribeJobExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobExecutionError::CertificateValidation(ref cause) => cause,
-            DescribeJobExecutionError::InvalidRequest(ref cause) => cause,
-            DescribeJobExecutionError::ResourceNotFound(ref cause) => cause,
-            DescribeJobExecutionError::ServiceUnavailable(ref cause) => cause,
-            DescribeJobExecutionError::TerminalState(ref cause) => cause,
-            DescribeJobExecutionError::Throttling(ref cause) => cause,
+            DescribeJobExecutionError::CertificateValidation(ref cause) => write!(f, "{}", cause),
+            DescribeJobExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeJobExecutionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeJobExecutionError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeJobExecutionError::TerminalState(ref cause) => write!(f, "{}", cause),
+            DescribeJobExecutionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobExecutionError {}
 /// Errors returned by GetPendingJobExecutions
 #[derive(Debug, PartialEq)]
 pub enum GetPendingJobExecutionsError {
@@ -363,21 +365,20 @@ impl GetPendingJobExecutionsError {
     }
 }
 impl fmt::Display for GetPendingJobExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPendingJobExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            GetPendingJobExecutionsError::CertificateValidation(ref cause) => cause,
-            GetPendingJobExecutionsError::InvalidRequest(ref cause) => cause,
-            GetPendingJobExecutionsError::ResourceNotFound(ref cause) => cause,
-            GetPendingJobExecutionsError::ServiceUnavailable(ref cause) => cause,
-            GetPendingJobExecutionsError::Throttling(ref cause) => cause,
+            GetPendingJobExecutionsError::CertificateValidation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetPendingJobExecutionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetPendingJobExecutionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetPendingJobExecutionsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            GetPendingJobExecutionsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPendingJobExecutionsError {}
 /// Errors returned by StartNextPendingJobExecution
 #[derive(Debug, PartialEq)]
 pub enum StartNextPendingJobExecutionError {
@@ -432,21 +433,24 @@ impl StartNextPendingJobExecutionError {
     }
 }
 impl fmt::Display for StartNextPendingJobExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartNextPendingJobExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StartNextPendingJobExecutionError::CertificateValidation(ref cause) => cause,
-            StartNextPendingJobExecutionError::InvalidRequest(ref cause) => cause,
-            StartNextPendingJobExecutionError::ResourceNotFound(ref cause) => cause,
-            StartNextPendingJobExecutionError::ServiceUnavailable(ref cause) => cause,
-            StartNextPendingJobExecutionError::Throttling(ref cause) => cause,
+            StartNextPendingJobExecutionError::CertificateValidation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartNextPendingJobExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartNextPendingJobExecutionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartNextPendingJobExecutionError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartNextPendingJobExecutionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartNextPendingJobExecutionError {}
 /// Errors returned by UpdateJobExecution
 #[derive(Debug, PartialEq)]
 pub enum UpdateJobExecutionError {
@@ -500,22 +504,19 @@ impl UpdateJobExecutionError {
     }
 }
 impl fmt::Display for UpdateJobExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateJobExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateJobExecutionError::CertificateValidation(ref cause) => cause,
-            UpdateJobExecutionError::InvalidRequest(ref cause) => cause,
-            UpdateJobExecutionError::InvalidStateTransition(ref cause) => cause,
-            UpdateJobExecutionError::ResourceNotFound(ref cause) => cause,
-            UpdateJobExecutionError::ServiceUnavailable(ref cause) => cause,
-            UpdateJobExecutionError::Throttling(ref cause) => cause,
+            UpdateJobExecutionError::CertificateValidation(ref cause) => write!(f, "{}", cause),
+            UpdateJobExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateJobExecutionError::InvalidStateTransition(ref cause) => write!(f, "{}", cause),
+            UpdateJobExecutionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateJobExecutionError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateJobExecutionError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateJobExecutionError {}
 /// Trait representing the capabilities of the AWS IoT Jobs Data Plane API. AWS IoT Jobs Data Plane clients implement this trait.
 #[async_trait]
 pub trait IotJobsData {

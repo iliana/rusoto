@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Describes an interface VPC endpoint (interface endpoint) that lets you create a private connection between the virtual private cloud (VPC) that you specify and AppStream 2.0. When you specify an interface endpoint for a stack, users of the stack can connect to AppStream 2.0 only through that endpoint. When you specify an interface endpoint for an image builder, administrators can connect to the image builder only through that endpoint.</p>
@@ -38,7 +39,7 @@ pub struct AccessEndpoint {
 
 /// <p>Describes an application in the application catalog.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Application {
     /// <p>The application name to display.</p>
     #[serde(rename = "DisplayName")]
@@ -72,6 +73,7 @@ pub struct Application {
 
 /// <p>The persistent application settings for users of a stack.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ApplicationSettings {
     /// <p>Enables or disables persistent application settings for users during their streaming sessions. </p>
     #[serde(rename = "Enabled")]
@@ -84,7 +86,7 @@ pub struct ApplicationSettings {
 
 /// <p>Describes the persistent application settings for users of a stack.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ApplicationSettingsResponse {
     /// <p>Specifies whether persistent application settings are enabled for users during their streaming sessions.</p>
     #[serde(rename = "Enabled")]
@@ -101,6 +103,7 @@ pub struct ApplicationSettingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateFleetRequest {
     /// <p>The name of the fleet. </p>
     #[serde(rename = "FleetName")]
@@ -111,10 +114,11 @@ pub struct AssociateFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateFleetResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchAssociateUserStackRequest {
     /// <p>The list of UserStackAssociation objects.</p>
     #[serde(rename = "UserStackAssociations")]
@@ -122,7 +126,7 @@ pub struct BatchAssociateUserStackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchAssociateUserStackResult {
     /// <p>The list of UserStackAssociationError objects.</p>
     #[serde(rename = "errors")]
@@ -131,6 +135,7 @@ pub struct BatchAssociateUserStackResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDisassociateUserStackRequest {
     /// <p>The list of UserStackAssociation objects.</p>
     #[serde(rename = "UserStackAssociations")]
@@ -138,7 +143,7 @@ pub struct BatchDisassociateUserStackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDisassociateUserStackResult {
     /// <p>The list of UserStackAssociationError objects.</p>
     #[serde(rename = "errors")]
@@ -148,6 +153,7 @@ pub struct BatchDisassociateUserStackResult {
 
 /// <p>Describes the capacity for a fleet.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComputeCapacity {
     /// <p>The desired number of streaming instances.</p>
     #[serde(rename = "DesiredInstances")]
@@ -156,7 +162,7 @@ pub struct ComputeCapacity {
 
 /// <p>Describes the capacity status for a fleet.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComputeCapacityStatus {
     /// <p>The number of currently available instances that can be used to stream sessions.</p>
     #[serde(rename = "Available")]
@@ -176,6 +182,7 @@ pub struct ComputeCapacityStatus {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CopyImageRequest {
     /// <p>The description that the image will have when it is copied to the destination.</p>
     #[serde(rename = "DestinationImageDescription")]
@@ -193,7 +200,7 @@ pub struct CopyImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CopyImageResponse {
     /// <p>The name of the destination image.</p>
     #[serde(rename = "DestinationImageName")]
@@ -202,6 +209,7 @@ pub struct CopyImageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDirectoryConfigRequest {
     /// <p>The fully qualified name of the directory (for example, corp.example.com).</p>
     #[serde(rename = "DirectoryName")]
@@ -215,7 +223,7 @@ pub struct CreateDirectoryConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDirectoryConfigResult {
     /// <p>Information about the directory configuration.</p>
     #[serde(rename = "DirectoryConfig")]
@@ -224,6 +232,7 @@ pub struct CreateDirectoryConfigResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFleetRequest {
     /// <p>The desired capacity for the fleet.</p>
     #[serde(rename = "ComputeCapacity")]
@@ -289,7 +298,7 @@ pub struct CreateFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFleetResult {
     /// <p>Information about the fleet.</p>
     #[serde(rename = "Fleet")]
@@ -298,6 +307,7 @@ pub struct CreateFleetResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateImageBuilderRequest {
     /// <p>The list of interface VPC endpoint (interface endpoint) objects. Administrators can connect to the image builder only through the specified endpoints.</p>
     #[serde(rename = "AccessEndpoints")]
@@ -352,7 +362,7 @@ pub struct CreateImageBuilderRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateImageBuilderResult {
     /// <p>Information about the image builder.</p>
     #[serde(rename = "ImageBuilder")]
@@ -361,6 +371,7 @@ pub struct CreateImageBuilderResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateImageBuilderStreamingURLRequest {
     /// <p>The name of the image builder.</p>
     #[serde(rename = "Name")]
@@ -372,7 +383,7 @@ pub struct CreateImageBuilderStreamingURLRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateImageBuilderStreamingURLResult {
     /// <p>The elapsed time, in seconds after the Unix epoch, when this URL expires.</p>
     #[serde(rename = "Expires")]
@@ -385,6 +396,7 @@ pub struct CreateImageBuilderStreamingURLResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateStackRequest {
     /// <p>The list of interface VPC endpoint (interface endpoint) objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints.</p>
     #[serde(rename = "AccessEndpoints")]
@@ -432,7 +444,7 @@ pub struct CreateStackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateStackResult {
     /// <p>Information about the stack.</p>
     #[serde(rename = "Stack")]
@@ -441,6 +453,7 @@ pub struct CreateStackResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateStreamingURLRequest {
     /// <p>The name of the application to launch after the session starts. This is the name that you specified as <b>Name</b> in the Image Assistant.</p>
     #[serde(rename = "ApplicationId")]
@@ -466,7 +479,7 @@ pub struct CreateStreamingURLRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateStreamingURLResult {
     /// <p>The elapsed time, in seconds after the Unix epoch, when this URL expires.</p>
     #[serde(rename = "Expires")]
@@ -479,10 +492,11 @@ pub struct CreateStreamingURLResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUsageReportSubscriptionRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUsageReportSubscriptionResult {
     /// <p>The Amazon S3 bucket where generated reports are stored.</p> <p>If you enabled on-instance session scripts and Amazon S3 logging for your session script configuration, AppStream 2.0 created an S3 bucket to store the script output. The bucket is unique to your account and Region. When you enable usage reporting in this case, AppStream 2.0 uses the same bucket to store your usage reports. If you haven't already enabled on-instance session scripts, when you enable usage reports, AppStream 2.0 creates a new S3 bucket.</p>
     #[serde(rename = "S3BucketName")]
@@ -495,6 +509,7 @@ pub struct CreateUsageReportSubscriptionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUserRequest {
     /// <p>The authentication type for the user. You must specify USERPOOL. </p>
     #[serde(rename = "AuthenticationType")]
@@ -517,10 +532,11 @@ pub struct CreateUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUserResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDirectoryConfigRequest {
     /// <p>The name of the directory configuration.</p>
     #[serde(rename = "DirectoryName")]
@@ -528,10 +544,11 @@ pub struct DeleteDirectoryConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDirectoryConfigResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFleetRequest {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "Name")]
@@ -539,10 +556,11 @@ pub struct DeleteFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteFleetResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteImageBuilderRequest {
     /// <p>The name of the image builder.</p>
     #[serde(rename = "Name")]
@@ -550,7 +568,7 @@ pub struct DeleteImageBuilderRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteImageBuilderResult {
     /// <p>Information about the image builder.</p>
     #[serde(rename = "ImageBuilder")]
@@ -559,6 +577,7 @@ pub struct DeleteImageBuilderResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteImagePermissionsRequest {
     /// <p>The name of the private image.</p>
     #[serde(rename = "Name")]
@@ -569,10 +588,11 @@ pub struct DeleteImagePermissionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteImagePermissionsResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteImageRequest {
     /// <p>The name of the image.</p>
     #[serde(rename = "Name")]
@@ -580,7 +600,7 @@ pub struct DeleteImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteImageResult {
     /// <p>Information about the image.</p>
     #[serde(rename = "Image")]
@@ -589,6 +609,7 @@ pub struct DeleteImageResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteStackRequest {
     /// <p>The name of the stack.</p>
     #[serde(rename = "Name")]
@@ -596,17 +617,19 @@ pub struct DeleteStackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteStackResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUsageReportSubscriptionRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUsageReportSubscriptionResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUserRequest {
     /// <p>The authentication type for the user. You must specify USERPOOL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -617,10 +640,11 @@ pub struct DeleteUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUserResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDirectoryConfigsRequest {
     /// <p>The directory names.</p>
     #[serde(rename = "DirectoryNames")]
@@ -637,7 +661,7 @@ pub struct DescribeDirectoryConfigsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDirectoryConfigsResult {
     /// <p>Information about the directory configurations. Note that although the response syntax in this topic includes the account password, this password is not returned in the actual response. </p>
     #[serde(rename = "DirectoryConfigs")]
@@ -650,6 +674,7 @@ pub struct DescribeDirectoryConfigsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetsRequest {
     /// <p>The names of the fleets to describe.</p>
     #[serde(rename = "Names")]
@@ -662,7 +687,7 @@ pub struct DescribeFleetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetsResult {
     /// <p>Information about the fleets.</p>
     #[serde(rename = "Fleets")]
@@ -675,6 +700,7 @@ pub struct DescribeFleetsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImageBuildersRequest {
     /// <p>The maximum size of each page of results.</p>
     #[serde(rename = "MaxResults")]
@@ -691,7 +717,7 @@ pub struct DescribeImageBuildersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeImageBuildersResult {
     /// <p>Information about the image builders.</p>
     #[serde(rename = "ImageBuilders")]
@@ -704,6 +730,7 @@ pub struct DescribeImageBuildersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImagePermissionsRequest {
     /// <p>The maximum size of each page of results.</p>
     #[serde(rename = "MaxResults")]
@@ -723,7 +750,7 @@ pub struct DescribeImagePermissionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeImagePermissionsResult {
     /// <p>The name of the private image.</p>
     #[serde(rename = "Name")]
@@ -740,6 +767,7 @@ pub struct DescribeImagePermissionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImagesRequest {
     /// <p>The ARNs of the public, private, and shared images to describe.</p>
     #[serde(rename = "Arns")]
@@ -764,7 +792,7 @@ pub struct DescribeImagesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeImagesResult {
     /// <p>Information about the images.</p>
     #[serde(rename = "Images")]
@@ -777,6 +805,7 @@ pub struct DescribeImagesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSessionsRequest {
     /// <p>The authentication method. Specify <code>API</code> for a user authenticated using a streaming URL or <code>SAML</code> for a SAML federated user. The default is to authenticate users using a streaming URL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -803,7 +832,7 @@ pub struct DescribeSessionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSessionsResult {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>
     #[serde(rename = "NextToken")]
@@ -816,6 +845,7 @@ pub struct DescribeSessionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeStacksRequest {
     /// <p>The names of the stacks to describe.</p>
     #[serde(rename = "Names")]
@@ -828,7 +858,7 @@ pub struct DescribeStacksRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeStacksResult {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>
     #[serde(rename = "NextToken")]
@@ -841,6 +871,7 @@ pub struct DescribeStacksResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUsageReportSubscriptionsRequest {
     /// <p>The maximum size of each page of results.</p>
     #[serde(rename = "MaxResults")]
@@ -853,7 +884,7 @@ pub struct DescribeUsageReportSubscriptionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUsageReportSubscriptionsResult {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>
     #[serde(rename = "NextToken")]
@@ -866,6 +897,7 @@ pub struct DescribeUsageReportSubscriptionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUserStackAssociationsRequest {
     /// <p>The authentication type for the user who is associated with the stack. You must specify USERPOOL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -890,7 +922,7 @@ pub struct DescribeUserStackAssociationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUserStackAssociationsResult {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>
     #[serde(rename = "NextToken")]
@@ -903,6 +935,7 @@ pub struct DescribeUserStackAssociationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUsersRequest {
     /// <p>The authentication type for the users in the user pool to describe. You must specify USERPOOL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -918,7 +951,7 @@ pub struct DescribeUsersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUsersResult {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>
     #[serde(rename = "NextToken")]
@@ -932,7 +965,7 @@ pub struct DescribeUsersResult {
 
 /// <p>Describes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DirectoryConfig {
     /// <p>The time the directory configuration was created.</p>
     #[serde(rename = "CreatedTime")]
@@ -952,6 +985,7 @@ pub struct DirectoryConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableUserRequest {
     /// <p>The authentication type for the user. You must specify USERPOOL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -962,10 +996,11 @@ pub struct DisableUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableUserResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateFleetRequest {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "FleetName")]
@@ -976,7 +1011,7 @@ pub struct DisassociateFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateFleetResult {}
 
 /// <p>Describes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.</p>
@@ -993,6 +1028,7 @@ pub struct DomainJoinInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableUserRequest {
     /// <p>The authentication type for the user. You must specify USERPOOL.</p>
     #[serde(rename = "AuthenticationType")]
@@ -1003,10 +1039,11 @@ pub struct EnableUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableUserResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExpireSessionRequest {
     /// <p>The identifier of the streaming session.</p>
     #[serde(rename = "SessionId")]
@@ -1014,12 +1051,12 @@ pub struct ExpireSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExpireSessionResult {}
 
 /// <p>Describes a fleet.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Fleet {
     /// <p>The Amazon Resource Name (ARN) for the fleet.</p>
     #[serde(rename = "Arn")]
@@ -1096,7 +1133,7 @@ pub struct Fleet {
 
 /// <p>Describes a fleet error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FleetError {
     /// <p>The error code.</p>
     #[serde(rename = "ErrorCode")]
@@ -1110,7 +1147,7 @@ pub struct FleetError {
 
 /// <p>Describes an image.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Image {
     /// <p>The applications associated with the image.</p>
     #[serde(rename = "Applications")]
@@ -1179,7 +1216,7 @@ pub struct Image {
 
 /// <p>Describes a virtual machine that is used to create an image. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageBuilder {
     /// <p>The list of virtual private cloud (VPC) interface endpoint objects. Administrators can connect to the image builder only through the specified endpoints.</p>
     #[serde(rename = "AccessEndpoints")]
@@ -1255,7 +1292,7 @@ pub struct ImageBuilder {
 
 /// <p>Describes the reason why the last image builder state change occurred.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageBuilderStateChangeReason {
     /// <p>The state change reason code.</p>
     #[serde(rename = "Code")]
@@ -1282,7 +1319,7 @@ pub struct ImagePermissions {
 
 /// <p>Describes the reason why the last image state change occurred.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageStateChangeReason {
     /// <p>The state change reason code.</p>
     #[serde(rename = "Code")]
@@ -1296,7 +1333,7 @@ pub struct ImageStateChangeReason {
 
 /// <p>Describes the error that is returned when a usage report can't be generated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LastReportGenerationExecutionError {
     /// <p>The error code for the error that is returned when a usage report can't be generated.</p>
     #[serde(rename = "ErrorCode")]
@@ -1309,6 +1346,7 @@ pub struct LastReportGenerationExecutionError {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAssociatedFleetsRequest {
     /// <p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>
     #[serde(rename = "NextToken")]
@@ -1320,7 +1358,7 @@ pub struct ListAssociatedFleetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAssociatedFleetsResult {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "Names")]
@@ -1333,6 +1371,7 @@ pub struct ListAssociatedFleetsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAssociatedStacksRequest {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "FleetName")]
@@ -1344,7 +1383,7 @@ pub struct ListAssociatedStacksRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAssociatedStacksResult {
     /// <p>The name of the stack.</p>
     #[serde(rename = "Names")]
@@ -1357,6 +1396,7 @@ pub struct ListAssociatedStacksResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -1364,7 +1404,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The information about the tags.</p>
     #[serde(rename = "Tags")]
@@ -1374,7 +1414,7 @@ pub struct ListTagsForResourceResponse {
 
 /// <p>Describes the network details of the fleet or image builder instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkAccessConfiguration {
     /// <p>The resource identifier of the elastic network interface that is attached to instances in your VPC. All network interfaces have the eni-xxxxxxxx resource identifier.</p>
     #[serde(rename = "EniId")]
@@ -1388,7 +1428,7 @@ pub struct NetworkAccessConfiguration {
 
 /// <p>Describes a resource error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceError {
     /// <p>The error code.</p>
     #[serde(rename = "ErrorCode")]
@@ -1417,7 +1457,7 @@ pub struct ServiceAccountCredentials {
 
 /// <p>Describes a streaming session.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Session {
     /// <p>The authentication method. The user is authenticated using a streaming URL (<code>API</code>) or SAML 2.0 federation (<code>SAML</code>).</p>
     #[serde(rename = "AuthenticationType")]
@@ -1458,7 +1498,7 @@ pub struct Session {
 
 /// <p>Describes the permissions that are available to the specified AWS account for a shared image.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SharedImagePermissions {
     /// <p>Describes the permissions for a shared image.</p>
     #[serde(rename = "imagePermissions")]
@@ -1470,7 +1510,7 @@ pub struct SharedImagePermissions {
 
 /// <p>Describes a stack.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Stack {
     /// <p>The list of virtual private cloud (VPC) interface endpoint objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints. </p>
     #[serde(rename = "AccessEndpoints")]
@@ -1527,7 +1567,7 @@ pub struct Stack {
 
 /// <p>Describes a stack error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StackError {
     /// <p>The error code.</p>
     #[serde(rename = "ErrorCode")]
@@ -1540,6 +1580,7 @@ pub struct StackError {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartFleetRequest {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "Name")]
@@ -1547,10 +1588,11 @@ pub struct StartFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartFleetResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartImageBuilderRequest {
     /// <p>The version of the AppStream 2.0 agent to use for this image builder. To use the latest version of the AppStream 2.0 agent, specify [LATEST]. </p>
     #[serde(rename = "AppstreamAgentVersion")]
@@ -1562,7 +1604,7 @@ pub struct StartImageBuilderRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartImageBuilderResult {
     /// <p>Information about the image builder.</p>
     #[serde(rename = "ImageBuilder")]
@@ -1571,6 +1613,7 @@ pub struct StartImageBuilderResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopFleetRequest {
     /// <p>The name of the fleet.</p>
     #[serde(rename = "Name")]
@@ -1578,10 +1621,11 @@ pub struct StopFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopFleetResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopImageBuilderRequest {
     /// <p>The name of the image builder.</p>
     #[serde(rename = "Name")]
@@ -1589,7 +1633,7 @@ pub struct StopImageBuilderRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopImageBuilderResult {
     /// <p>Information about the image builder.</p>
     #[serde(rename = "ImageBuilder")]
@@ -1614,6 +1658,7 @@ pub struct StorageConnector {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -1624,10 +1669,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -1638,10 +1684,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDirectoryConfigRequest {
     /// <p>The name of the Directory Config object.</p>
     #[serde(rename = "DirectoryName")]
@@ -1657,7 +1704,7 @@ pub struct UpdateDirectoryConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDirectoryConfigResult {
     /// <p>Information about the Directory Config object.</p>
     #[serde(rename = "DirectoryConfig")]
@@ -1666,6 +1713,7 @@ pub struct UpdateDirectoryConfigResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFleetRequest {
     /// <p>The fleet attributes to delete.</p>
     #[serde(rename = "AttributesToDelete")]
@@ -1730,7 +1778,7 @@ pub struct UpdateFleetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFleetResult {
     /// <p>Information about the fleet.</p>
     #[serde(rename = "Fleet")]
@@ -1739,6 +1787,7 @@ pub struct UpdateFleetResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateImagePermissionsRequest {
     /// <p>The permissions for the image.</p>
     #[serde(rename = "ImagePermissions")]
@@ -1752,10 +1801,11 @@ pub struct UpdateImagePermissionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateImagePermissionsResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateStackRequest {
     /// <p>The list of interface VPC endpoint (interface endpoint) objects. Users of the stack can connect to AppStream 2.0 only through the specified endpoints.</p>
     #[serde(rename = "AccessEndpoints")]
@@ -1803,7 +1853,7 @@ pub struct UpdateStackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateStackResult {
     /// <p>Information about the stack.</p>
     #[serde(rename = "Stack")]
@@ -1813,7 +1863,7 @@ pub struct UpdateStackResult {
 
 /// <p>Describes information about the usage report subscription.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UsageReportSubscription {
     /// <p>The time when the last usage report was generated.</p>
     #[serde(rename = "LastGeneratedReportDate")]
@@ -1835,7 +1885,7 @@ pub struct UsageReportSubscription {
 
 /// <p>Describes a user in the user pool.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct User {
     /// <p>The ARN of the user.</p>
     #[serde(rename = "Arn")]
@@ -1901,7 +1951,7 @@ pub struct UserStackAssociation {
 
 /// <p>Describes the error that is returned when a user can’t be associated with or disassociated from a stack. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserStackAssociationError {
     /// <p>The error code for the error that is returned when a user can’t be associated with or disassociated from a stack.</p>
     #[serde(rename = "ErrorCode")]
@@ -1981,22 +2031,19 @@ impl AssociateFleetError {
     }
 }
 impl fmt::Display for AssociateFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateFleetError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateFleetError::ConcurrentModification(ref cause) => cause,
-            AssociateFleetError::IncompatibleImage(ref cause) => cause,
-            AssociateFleetError::InvalidAccountStatus(ref cause) => cause,
-            AssociateFleetError::LimitExceeded(ref cause) => cause,
-            AssociateFleetError::OperationNotPermitted(ref cause) => cause,
-            AssociateFleetError::ResourceNotFound(ref cause) => cause,
+            AssociateFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            AssociateFleetError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            AssociateFleetError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            AssociateFleetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AssociateFleetError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            AssociateFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateFleetError {}
 /// Errors returned by BatchAssociateUserStack
 #[derive(Debug, PartialEq)]
 pub enum BatchAssociateUserStackError {
@@ -2021,17 +2068,16 @@ impl BatchAssociateUserStackError {
     }
 }
 impl fmt::Display for BatchAssociateUserStackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchAssociateUserStackError {
-    fn description(&self) -> &str {
         match *self {
-            BatchAssociateUserStackError::OperationNotPermitted(ref cause) => cause,
+            BatchAssociateUserStackError::OperationNotPermitted(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchAssociateUserStackError {}
 /// Errors returned by BatchDisassociateUserStack
 #[derive(Debug, PartialEq)]
 pub enum BatchDisassociateUserStackError {}
@@ -2050,15 +2096,12 @@ impl BatchDisassociateUserStackError {
     }
 }
 impl fmt::Display for BatchDisassociateUserStackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDisassociateUserStackError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for BatchDisassociateUserStackError {}
 /// Errors returned by CopyImage
 #[derive(Debug, PartialEq)]
 pub enum CopyImageError {
@@ -2106,22 +2149,19 @@ impl CopyImageError {
     }
 }
 impl fmt::Display for CopyImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CopyImageError {
-    fn description(&self) -> &str {
         match *self {
-            CopyImageError::IncompatibleImage(ref cause) => cause,
-            CopyImageError::InvalidAccountStatus(ref cause) => cause,
-            CopyImageError::LimitExceeded(ref cause) => cause,
-            CopyImageError::ResourceAlreadyExists(ref cause) => cause,
-            CopyImageError::ResourceNotAvailable(ref cause) => cause,
-            CopyImageError::ResourceNotFound(ref cause) => cause,
+            CopyImageError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            CopyImageError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CopyImageError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CopyImageError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CopyImageError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            CopyImageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CopyImageError {}
 /// Errors returned by CreateDirectoryConfig
 #[derive(Debug, PartialEq)]
 pub enum CreateDirectoryConfigError {
@@ -2158,19 +2198,16 @@ impl CreateDirectoryConfigError {
     }
 }
 impl fmt::Display for CreateDirectoryConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDirectoryConfigError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDirectoryConfigError::InvalidAccountStatus(ref cause) => cause,
-            CreateDirectoryConfigError::LimitExceeded(ref cause) => cause,
-            CreateDirectoryConfigError::ResourceAlreadyExists(ref cause) => cause,
+            CreateDirectoryConfigError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CreateDirectoryConfigError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDirectoryConfigError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDirectoryConfigError {}
 /// Errors returned by CreateFleet
 #[derive(Debug, PartialEq)]
 pub enum CreateFleetError {
@@ -2240,26 +2277,23 @@ impl CreateFleetError {
     }
 }
 impl fmt::Display for CreateFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFleetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFleetError::ConcurrentModification(ref cause) => cause,
-            CreateFleetError::IncompatibleImage(ref cause) => cause,
-            CreateFleetError::InvalidAccountStatus(ref cause) => cause,
-            CreateFleetError::InvalidParameterCombination(ref cause) => cause,
-            CreateFleetError::InvalidRole(ref cause) => cause,
-            CreateFleetError::LimitExceeded(ref cause) => cause,
-            CreateFleetError::OperationNotPermitted(ref cause) => cause,
-            CreateFleetError::ResourceAlreadyExists(ref cause) => cause,
-            CreateFleetError::ResourceNotAvailable(ref cause) => cause,
-            CreateFleetError::ResourceNotFound(ref cause) => cause,
+            CreateFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFleetError {}
 /// Errors returned by CreateImageBuilder
 #[derive(Debug, PartialEq)]
 pub enum CreateImageBuilderError {
@@ -2341,26 +2375,25 @@ impl CreateImageBuilderError {
     }
 }
 impl fmt::Display for CreateImageBuilderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateImageBuilderError {
-    fn description(&self) -> &str {
         match *self {
-            CreateImageBuilderError::ConcurrentModification(ref cause) => cause,
-            CreateImageBuilderError::IncompatibleImage(ref cause) => cause,
-            CreateImageBuilderError::InvalidAccountStatus(ref cause) => cause,
-            CreateImageBuilderError::InvalidParameterCombination(ref cause) => cause,
-            CreateImageBuilderError::InvalidRole(ref cause) => cause,
-            CreateImageBuilderError::LimitExceeded(ref cause) => cause,
-            CreateImageBuilderError::OperationNotPermitted(ref cause) => cause,
-            CreateImageBuilderError::ResourceAlreadyExists(ref cause) => cause,
-            CreateImageBuilderError::ResourceNotAvailable(ref cause) => cause,
-            CreateImageBuilderError::ResourceNotFound(ref cause) => cause,
+            CreateImageBuilderError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::InvalidParameterCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateImageBuilderError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            CreateImageBuilderError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateImageBuilderError {}
 /// Errors returned by CreateImageBuilderStreamingURL
 #[derive(Debug, PartialEq)]
 pub enum CreateImageBuilderStreamingURLError {
@@ -2394,18 +2427,19 @@ impl CreateImageBuilderStreamingURLError {
     }
 }
 impl fmt::Display for CreateImageBuilderStreamingURLError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateImageBuilderStreamingURLError {
-    fn description(&self) -> &str {
         match *self {
-            CreateImageBuilderStreamingURLError::OperationNotPermitted(ref cause) => cause,
-            CreateImageBuilderStreamingURLError::ResourceNotFound(ref cause) => cause,
+            CreateImageBuilderStreamingURLError::OperationNotPermitted(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateImageBuilderStreamingURLError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateImageBuilderStreamingURLError {}
 /// Errors returned by CreateStack
 #[derive(Debug, PartialEq)]
 pub enum CreateStackError {
@@ -2460,23 +2494,20 @@ impl CreateStackError {
     }
 }
 impl fmt::Display for CreateStackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateStackError {
-    fn description(&self) -> &str {
         match *self {
-            CreateStackError::ConcurrentModification(ref cause) => cause,
-            CreateStackError::InvalidAccountStatus(ref cause) => cause,
-            CreateStackError::InvalidParameterCombination(ref cause) => cause,
-            CreateStackError::InvalidRole(ref cause) => cause,
-            CreateStackError::LimitExceeded(ref cause) => cause,
-            CreateStackError::ResourceAlreadyExists(ref cause) => cause,
-            CreateStackError::ResourceNotFound(ref cause) => cause,
+            CreateStackError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateStackError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CreateStackError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            CreateStackError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateStackError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateStackError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateStackError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateStackError {}
 /// Errors returned by CreateStreamingURL
 #[derive(Debug, PartialEq)]
 pub enum CreateStreamingURLError {
@@ -2520,20 +2551,19 @@ impl CreateStreamingURLError {
     }
 }
 impl fmt::Display for CreateStreamingURLError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateStreamingURLError {
-    fn description(&self) -> &str {
         match *self {
-            CreateStreamingURLError::InvalidParameterCombination(ref cause) => cause,
-            CreateStreamingURLError::OperationNotPermitted(ref cause) => cause,
-            CreateStreamingURLError::ResourceNotAvailable(ref cause) => cause,
-            CreateStreamingURLError::ResourceNotFound(ref cause) => cause,
+            CreateStreamingURLError::InvalidParameterCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateStreamingURLError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            CreateStreamingURLError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            CreateStreamingURLError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateStreamingURLError {}
 /// Errors returned by CreateUsageReportSubscription
 #[derive(Debug, PartialEq)]
 pub enum CreateUsageReportSubscriptionError {
@@ -2574,19 +2604,18 @@ impl CreateUsageReportSubscriptionError {
     }
 }
 impl fmt::Display for CreateUsageReportSubscriptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUsageReportSubscriptionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUsageReportSubscriptionError::InvalidAccountStatus(ref cause) => cause,
-            CreateUsageReportSubscriptionError::InvalidRole(ref cause) => cause,
-            CreateUsageReportSubscriptionError::LimitExceeded(ref cause) => cause,
+            CreateUsageReportSubscriptionError::InvalidAccountStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateUsageReportSubscriptionError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateUsageReportSubscriptionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateUsageReportSubscriptionError {}
 /// Errors returned by CreateUser
 #[derive(Debug, PartialEq)]
 pub enum CreateUserError {
@@ -2631,21 +2660,18 @@ impl CreateUserError {
     }
 }
 impl fmt::Display for CreateUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUserError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUserError::InvalidAccountStatus(ref cause) => cause,
-            CreateUserError::InvalidParameterCombination(ref cause) => cause,
-            CreateUserError::LimitExceeded(ref cause) => cause,
-            CreateUserError::OperationNotPermitted(ref cause) => cause,
-            CreateUserError::ResourceAlreadyExists(ref cause) => cause,
+            CreateUserError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            CreateUserError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            CreateUserError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateUserError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            CreateUserError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateUserError {}
 /// Errors returned by DeleteDirectoryConfig
 #[derive(Debug, PartialEq)]
 pub enum DeleteDirectoryConfigError {
@@ -2675,18 +2701,15 @@ impl DeleteDirectoryConfigError {
     }
 }
 impl fmt::Display for DeleteDirectoryConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDirectoryConfigError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDirectoryConfigError::ResourceInUse(ref cause) => cause,
-            DeleteDirectoryConfigError::ResourceNotFound(ref cause) => cause,
+            DeleteDirectoryConfigError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteDirectoryConfigError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDirectoryConfigError {}
 /// Errors returned by DeleteFleet
 #[derive(Debug, PartialEq)]
 pub enum DeleteFleetError {
@@ -2719,19 +2742,16 @@ impl DeleteFleetError {
     }
 }
 impl fmt::Display for DeleteFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFleetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFleetError::ConcurrentModification(ref cause) => cause,
-            DeleteFleetError::ResourceInUse(ref cause) => cause,
-            DeleteFleetError::ResourceNotFound(ref cause) => cause,
+            DeleteFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFleetError {}
 /// Errors returned by DeleteImage
 #[derive(Debug, PartialEq)]
 pub enum DeleteImageError {
@@ -2769,20 +2789,17 @@ impl DeleteImageError {
     }
 }
 impl fmt::Display for DeleteImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteImageError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteImageError::ConcurrentModification(ref cause) => cause,
-            DeleteImageError::OperationNotPermitted(ref cause) => cause,
-            DeleteImageError::ResourceInUse(ref cause) => cause,
-            DeleteImageError::ResourceNotFound(ref cause) => cause,
+            DeleteImageError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteImageError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            DeleteImageError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteImageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteImageError {}
 /// Errors returned by DeleteImageBuilder
 #[derive(Debug, PartialEq)]
 pub enum DeleteImageBuilderError {
@@ -2819,19 +2836,16 @@ impl DeleteImageBuilderError {
     }
 }
 impl fmt::Display for DeleteImageBuilderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteImageBuilderError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteImageBuilderError::ConcurrentModification(ref cause) => cause,
-            DeleteImageBuilderError::OperationNotPermitted(ref cause) => cause,
-            DeleteImageBuilderError::ResourceNotFound(ref cause) => cause,
+            DeleteImageBuilderError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteImageBuilderError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            DeleteImageBuilderError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteImageBuilderError {}
 /// Errors returned by DeleteImagePermissions
 #[derive(Debug, PartialEq)]
 pub enum DeleteImagePermissionsError {
@@ -2863,18 +2877,15 @@ impl DeleteImagePermissionsError {
     }
 }
 impl fmt::Display for DeleteImagePermissionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteImagePermissionsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteImagePermissionsError::ResourceNotAvailable(ref cause) => cause,
-            DeleteImagePermissionsError::ResourceNotFound(ref cause) => cause,
+            DeleteImagePermissionsError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            DeleteImagePermissionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteImagePermissionsError {}
 /// Errors returned by DeleteStack
 #[derive(Debug, PartialEq)]
 pub enum DeleteStackError {
@@ -2907,19 +2918,16 @@ impl DeleteStackError {
     }
 }
 impl fmt::Display for DeleteStackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteStackError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteStackError::ConcurrentModification(ref cause) => cause,
-            DeleteStackError::ResourceInUse(ref cause) => cause,
-            DeleteStackError::ResourceNotFound(ref cause) => cause,
+            DeleteStackError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteStackError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteStackError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteStackError {}
 /// Errors returned by DeleteUsageReportSubscription
 #[derive(Debug, PartialEq)]
 pub enum DeleteUsageReportSubscriptionError {
@@ -2953,18 +2961,19 @@ impl DeleteUsageReportSubscriptionError {
     }
 }
 impl fmt::Display for DeleteUsageReportSubscriptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUsageReportSubscriptionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUsageReportSubscriptionError::InvalidAccountStatus(ref cause) => cause,
-            DeleteUsageReportSubscriptionError::ResourceNotFound(ref cause) => cause,
+            DeleteUsageReportSubscriptionError::InvalidAccountStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteUsageReportSubscriptionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteUsageReportSubscriptionError {}
 /// Errors returned by DeleteUser
 #[derive(Debug, PartialEq)]
 pub enum DeleteUserError {
@@ -2987,17 +2996,14 @@ impl DeleteUserError {
     }
 }
 impl fmt::Display for DeleteUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUserError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUserError::ResourceNotFound(ref cause) => cause,
+            DeleteUserError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteUserError {}
 /// Errors returned by DescribeDirectoryConfigs
 #[derive(Debug, PartialEq)]
 pub enum DescribeDirectoryConfigsError {
@@ -3022,17 +3028,14 @@ impl DescribeDirectoryConfigsError {
     }
 }
 impl fmt::Display for DescribeDirectoryConfigsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDirectoryConfigsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDirectoryConfigsError::ResourceNotFound(ref cause) => cause,
+            DescribeDirectoryConfigsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDirectoryConfigsError {}
 /// Errors returned by DescribeFleets
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetsError {
@@ -3055,17 +3058,14 @@ impl DescribeFleetsError {
     }
 }
 impl fmt::Display for DescribeFleetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetsError::ResourceNotFound(ref cause) => cause,
+            DescribeFleetsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetsError {}
 /// Errors returned by DescribeImageBuilders
 #[derive(Debug, PartialEq)]
 pub enum DescribeImageBuildersError {
@@ -3090,17 +3090,14 @@ impl DescribeImageBuildersError {
     }
 }
 impl fmt::Display for DescribeImageBuildersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeImageBuildersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeImageBuildersError::ResourceNotFound(ref cause) => cause,
+            DescribeImageBuildersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeImageBuildersError {}
 /// Errors returned by DescribeImagePermissions
 #[derive(Debug, PartialEq)]
 pub enum DescribeImagePermissionsError {
@@ -3125,17 +3122,14 @@ impl DescribeImagePermissionsError {
     }
 }
 impl fmt::Display for DescribeImagePermissionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeImagePermissionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeImagePermissionsError::ResourceNotFound(ref cause) => cause,
+            DescribeImagePermissionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeImagePermissionsError {}
 /// Errors returned by DescribeImages
 #[derive(Debug, PartialEq)]
 pub enum DescribeImagesError {
@@ -3165,18 +3159,15 @@ impl DescribeImagesError {
     }
 }
 impl fmt::Display for DescribeImagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeImagesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeImagesError::InvalidParameterCombination(ref cause) => cause,
-            DescribeImagesError::ResourceNotFound(ref cause) => cause,
+            DescribeImagesError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            DescribeImagesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeImagesError {}
 /// Errors returned by DescribeSessions
 #[derive(Debug, PartialEq)]
 pub enum DescribeSessionsError {
@@ -3201,17 +3192,14 @@ impl DescribeSessionsError {
     }
 }
 impl fmt::Display for DescribeSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSessionsError::InvalidParameterCombination(ref cause) => cause,
+            DescribeSessionsError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeSessionsError {}
 /// Errors returned by DescribeStacks
 #[derive(Debug, PartialEq)]
 pub enum DescribeStacksError {
@@ -3234,17 +3222,14 @@ impl DescribeStacksError {
     }
 }
 impl fmt::Display for DescribeStacksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeStacksError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeStacksError::ResourceNotFound(ref cause) => cause,
+            DescribeStacksError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeStacksError {}
 /// Errors returned by DescribeUsageReportSubscriptions
 #[derive(Debug, PartialEq)]
 pub enum DescribeUsageReportSubscriptionsError {
@@ -3278,18 +3263,19 @@ impl DescribeUsageReportSubscriptionsError {
     }
 }
 impl fmt::Display for DescribeUsageReportSubscriptionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUsageReportSubscriptionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUsageReportSubscriptionsError::InvalidAccountStatus(ref cause) => cause,
-            DescribeUsageReportSubscriptionsError::ResourceNotFound(ref cause) => cause,
+            DescribeUsageReportSubscriptionsError::InvalidAccountStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeUsageReportSubscriptionsError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeUsageReportSubscriptionsError {}
 /// Errors returned by DescribeUserStackAssociations
 #[derive(Debug, PartialEq)]
 pub enum DescribeUserStackAssociationsError {
@@ -3316,17 +3302,16 @@ impl DescribeUserStackAssociationsError {
     }
 }
 impl fmt::Display for DescribeUserStackAssociationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUserStackAssociationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUserStackAssociationsError::InvalidParameterCombination(ref cause) => cause,
+            DescribeUserStackAssociationsError::InvalidParameterCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeUserStackAssociationsError {}
 /// Errors returned by DescribeUsers
 #[derive(Debug, PartialEq)]
 pub enum DescribeUsersError {
@@ -3356,18 +3341,15 @@ impl DescribeUsersError {
     }
 }
 impl fmt::Display for DescribeUsersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUsersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUsersError::InvalidParameterCombination(ref cause) => cause,
-            DescribeUsersError::ResourceNotFound(ref cause) => cause,
+            DescribeUsersError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            DescribeUsersError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeUsersError {}
 /// Errors returned by DisableUser
 #[derive(Debug, PartialEq)]
 pub enum DisableUserError {
@@ -3390,17 +3372,14 @@ impl DisableUserError {
     }
 }
 impl fmt::Display for DisableUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableUserError {
-    fn description(&self) -> &str {
         match *self {
-            DisableUserError::ResourceNotFound(ref cause) => cause,
+            DisableUserError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableUserError {}
 /// Errors returned by DisassociateFleet
 #[derive(Debug, PartialEq)]
 pub enum DisassociateFleetError {
@@ -3435,19 +3414,16 @@ impl DisassociateFleetError {
     }
 }
 impl fmt::Display for DisassociateFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateFleetError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateFleetError::ConcurrentModification(ref cause) => cause,
-            DisassociateFleetError::ResourceInUse(ref cause) => cause,
-            DisassociateFleetError::ResourceNotFound(ref cause) => cause,
+            DisassociateFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DisassociateFleetError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DisassociateFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateFleetError {}
 /// Errors returned by EnableUser
 #[derive(Debug, PartialEq)]
 pub enum EnableUserError {
@@ -3475,18 +3451,15 @@ impl EnableUserError {
     }
 }
 impl fmt::Display for EnableUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableUserError {
-    fn description(&self) -> &str {
         match *self {
-            EnableUserError::InvalidAccountStatus(ref cause) => cause,
-            EnableUserError::ResourceNotFound(ref cause) => cause,
+            EnableUserError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            EnableUserError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableUserError {}
 /// Errors returned by ExpireSession
 #[derive(Debug, PartialEq)]
 pub enum ExpireSessionError {}
@@ -3503,15 +3476,12 @@ impl ExpireSessionError {
     }
 }
 impl fmt::Display for ExpireSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExpireSessionError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ExpireSessionError {}
 /// Errors returned by ListAssociatedFleets
 #[derive(Debug, PartialEq)]
 pub enum ListAssociatedFleetsError {}
@@ -3528,15 +3498,12 @@ impl ListAssociatedFleetsError {
     }
 }
 impl fmt::Display for ListAssociatedFleetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAssociatedFleetsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListAssociatedFleetsError {}
 /// Errors returned by ListAssociatedStacks
 #[derive(Debug, PartialEq)]
 pub enum ListAssociatedStacksError {}
@@ -3553,15 +3520,12 @@ impl ListAssociatedStacksError {
     }
 }
 impl fmt::Display for ListAssociatedStacksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAssociatedStacksError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListAssociatedStacksError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -3586,17 +3550,14 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by StartFleet
 #[derive(Debug, PartialEq)]
 pub enum StartFleetError {
@@ -3649,23 +3610,20 @@ impl StartFleetError {
     }
 }
 impl fmt::Display for StartFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartFleetError {
-    fn description(&self) -> &str {
         match *self {
-            StartFleetError::ConcurrentModification(ref cause) => cause,
-            StartFleetError::InvalidAccountStatus(ref cause) => cause,
-            StartFleetError::InvalidRole(ref cause) => cause,
-            StartFleetError::LimitExceeded(ref cause) => cause,
-            StartFleetError::OperationNotPermitted(ref cause) => cause,
-            StartFleetError::ResourceNotAvailable(ref cause) => cause,
-            StartFleetError::ResourceNotFound(ref cause) => cause,
+            StartFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            StartFleetError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            StartFleetError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            StartFleetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            StartFleetError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            StartFleetError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            StartFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartFleetError {}
 /// Errors returned by StartImageBuilder
 #[derive(Debug, PartialEq)]
 pub enum StartImageBuilderError {
@@ -3714,21 +3672,18 @@ impl StartImageBuilderError {
     }
 }
 impl fmt::Display for StartImageBuilderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartImageBuilderError {
-    fn description(&self) -> &str {
         match *self {
-            StartImageBuilderError::ConcurrentModification(ref cause) => cause,
-            StartImageBuilderError::IncompatibleImage(ref cause) => cause,
-            StartImageBuilderError::InvalidAccountStatus(ref cause) => cause,
-            StartImageBuilderError::ResourceNotAvailable(ref cause) => cause,
-            StartImageBuilderError::ResourceNotFound(ref cause) => cause,
+            StartImageBuilderError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            StartImageBuilderError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            StartImageBuilderError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            StartImageBuilderError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            StartImageBuilderError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartImageBuilderError {}
 /// Errors returned by StopFleet
 #[derive(Debug, PartialEq)]
 pub enum StopFleetError {
@@ -3756,18 +3711,15 @@ impl StopFleetError {
     }
 }
 impl fmt::Display for StopFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopFleetError {
-    fn description(&self) -> &str {
         match *self {
-            StopFleetError::ConcurrentModification(ref cause) => cause,
-            StopFleetError::ResourceNotFound(ref cause) => cause,
+            StopFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            StopFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopFleetError {}
 /// Errors returned by StopImageBuilder
 #[derive(Debug, PartialEq)]
 pub enum StopImageBuilderError {
@@ -3804,19 +3756,16 @@ impl StopImageBuilderError {
     }
 }
 impl fmt::Display for StopImageBuilderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopImageBuilderError {
-    fn description(&self) -> &str {
         match *self {
-            StopImageBuilderError::ConcurrentModification(ref cause) => cause,
-            StopImageBuilderError::OperationNotPermitted(ref cause) => cause,
-            StopImageBuilderError::ResourceNotFound(ref cause) => cause,
+            StopImageBuilderError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            StopImageBuilderError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            StopImageBuilderError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopImageBuilderError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -3849,19 +3798,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InvalidAccountStatus(ref cause) => cause,
-            TagResourceError::LimitExceeded(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            TagResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -3884,17 +3830,14 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateDirectoryConfig
 #[derive(Debug, PartialEq)]
 pub enum UpdateDirectoryConfigError {
@@ -3931,19 +3874,16 @@ impl UpdateDirectoryConfigError {
     }
 }
 impl fmt::Display for UpdateDirectoryConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDirectoryConfigError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDirectoryConfigError::ConcurrentModification(ref cause) => cause,
-            UpdateDirectoryConfigError::ResourceInUse(ref cause) => cause,
-            UpdateDirectoryConfigError::ResourceNotFound(ref cause) => cause,
+            UpdateDirectoryConfigError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateDirectoryConfigError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateDirectoryConfigError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDirectoryConfigError {}
 /// Errors returned by UpdateFleet
 #[derive(Debug, PartialEq)]
 pub enum UpdateFleetError {
@@ -4013,26 +3953,23 @@ impl UpdateFleetError {
     }
 }
 impl fmt::Display for UpdateFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFleetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFleetError::ConcurrentModification(ref cause) => cause,
-            UpdateFleetError::IncompatibleImage(ref cause) => cause,
-            UpdateFleetError::InvalidAccountStatus(ref cause) => cause,
-            UpdateFleetError::InvalidParameterCombination(ref cause) => cause,
-            UpdateFleetError::InvalidRole(ref cause) => cause,
-            UpdateFleetError::LimitExceeded(ref cause) => cause,
-            UpdateFleetError::OperationNotPermitted(ref cause) => cause,
-            UpdateFleetError::ResourceInUse(ref cause) => cause,
-            UpdateFleetError::ResourceNotAvailable(ref cause) => cause,
-            UpdateFleetError::ResourceNotFound(ref cause) => cause,
+            UpdateFleetError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            UpdateFleetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFleetError {}
 /// Errors returned by UpdateImagePermissions
 #[derive(Debug, PartialEq)]
 pub enum UpdateImagePermissionsError {
@@ -4071,19 +4008,16 @@ impl UpdateImagePermissionsError {
     }
 }
 impl fmt::Display for UpdateImagePermissionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateImagePermissionsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateImagePermissionsError::LimitExceeded(ref cause) => cause,
-            UpdateImagePermissionsError::ResourceNotAvailable(ref cause) => cause,
-            UpdateImagePermissionsError::ResourceNotFound(ref cause) => cause,
+            UpdateImagePermissionsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateImagePermissionsError::ResourceNotAvailable(ref cause) => write!(f, "{}", cause),
+            UpdateImagePermissionsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateImagePermissionsError {}
 /// Errors returned by UpdateStack
 #[derive(Debug, PartialEq)]
 pub enum UpdateStackError {
@@ -4148,25 +4082,22 @@ impl UpdateStackError {
     }
 }
 impl fmt::Display for UpdateStackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateStackError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateStackError::ConcurrentModification(ref cause) => cause,
-            UpdateStackError::IncompatibleImage(ref cause) => cause,
-            UpdateStackError::InvalidAccountStatus(ref cause) => cause,
-            UpdateStackError::InvalidParameterCombination(ref cause) => cause,
-            UpdateStackError::InvalidRole(ref cause) => cause,
-            UpdateStackError::LimitExceeded(ref cause) => cause,
-            UpdateStackError::OperationNotPermitted(ref cause) => cause,
-            UpdateStackError::ResourceInUse(ref cause) => cause,
-            UpdateStackError::ResourceNotFound(ref cause) => cause,
+            UpdateStackError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::IncompatibleImage(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::InvalidAccountStatus(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateStackError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateStackError {}
 /// Trait representing the capabilities of the Amazon AppStream API. Amazon AppStream clients implement this trait.
 #[async_trait]
 pub trait AppStream {

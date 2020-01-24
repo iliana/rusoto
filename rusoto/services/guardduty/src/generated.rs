@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptInvitationRequest {
     /// <p>The unique ID of the detector of the GuardDuty member account.</p>
     #[serde(rename = "DetectorId")]
@@ -39,12 +41,12 @@ pub struct AcceptInvitationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptInvitationResponse {}
 
 /// <p>Contains information about the access keys.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccessKeyDetails {
     /// <p>Access key ID of the user.</p>
     #[serde(rename = "AccessKeyId")]
@@ -66,6 +68,7 @@ pub struct AccessKeyDetails {
 
 /// <p>Contains information about the account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AccountDetail {
     /// <p>Member account ID.</p>
     #[serde(rename = "AccountId")]
@@ -77,7 +80,7 @@ pub struct AccountDetail {
 
 /// <p>Contains information about action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Action {
     /// <p>GuardDuty Finding activity type.</p>
     #[serde(rename = "ActionType")]
@@ -102,6 +105,7 @@ pub struct Action {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ArchiveFindingsRequest {
     /// <p>The ID of the detector that specifies the GuardDuty service whose findings you want to archive.</p>
     #[serde(rename = "DetectorId")]
@@ -112,12 +116,12 @@ pub struct ArchiveFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArchiveFindingsResponse {}
 
 /// <p>Contains information about the API operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AwsApiCallAction {
     /// <p>AWS API name.</p>
     #[serde(rename = "Api")]
@@ -143,7 +147,7 @@ pub struct AwsApiCallAction {
 
 /// <p>Contains information about the city associated with the IP address.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct City {
     /// <p>City name of the remote IP address.</p>
     #[serde(rename = "CityName")]
@@ -182,7 +186,7 @@ pub struct Condition {
 
 /// <p>Contains information about the country in which the remote IP address is located.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Country {
     /// <p>Country code of the remote IP address.</p>
     #[serde(rename = "CountryCode")]
@@ -195,6 +199,7 @@ pub struct Country {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDetectorRequest {
     /// <p>The idempotency token for the create request.</p>
     #[serde(rename = "ClientToken")]
@@ -214,7 +219,7 @@ pub struct CreateDetectorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDetectorResponse {
     /// <p>The unique ID of the created detector.</p>
     #[serde(rename = "DetectorId")]
@@ -223,6 +228,7 @@ pub struct CreateDetectorResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFilterRequest {
     /// <p>Specifies the action that is to be applied to the findings that match the filter.</p>
     #[serde(rename = "Action")]
@@ -256,7 +262,7 @@ pub struct CreateFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFilterResponse {
     /// <p>The name of the successfully created filter.</p>
     #[serde(rename = "Name")]
@@ -264,6 +270,7 @@ pub struct CreateFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateIPSetRequest {
     /// <p>A boolean value that indicates whether GuardDuty is to start using the uploaded IPSet.</p>
     #[serde(rename = "Activate")]
@@ -291,7 +298,7 @@ pub struct CreateIPSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateIPSetResponse {
     /// <p>The ID of the IPSet resource.</p>
     #[serde(rename = "IpSetId")]
@@ -299,6 +306,7 @@ pub struct CreateIPSetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMembersRequest {
     /// <p>A list of account ID and email address pairs of the accounts that you want to associate with the master GuardDuty account.</p>
     #[serde(rename = "AccountDetails")]
@@ -309,7 +317,7 @@ pub struct CreateMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMembersResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -317,6 +325,7 @@ pub struct CreateMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePublishingDestinationRequest {
     /// <p>The idempotency token for the request.</p>
     #[serde(rename = "ClientToken")]
@@ -334,7 +343,7 @@ pub struct CreatePublishingDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePublishingDestinationResponse {
     /// <p>The ID of the publishing destination created.</p>
     #[serde(rename = "DestinationId")]
@@ -342,6 +351,7 @@ pub struct CreatePublishingDestinationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSampleFindingsRequest {
     /// <p>The ID of the detector to create sample findings for.</p>
     #[serde(rename = "DetectorId")]
@@ -353,10 +363,11 @@ pub struct CreateSampleFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSampleFindingsResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateThreatIntelSetRequest {
     /// <p>A boolean value that indicates whether GuardDuty is to start using the uploaded ThreatIntelSet.</p>
     #[serde(rename = "Activate")]
@@ -384,7 +395,7 @@ pub struct CreateThreatIntelSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateThreatIntelSetResponse {
     /// <p>The ID of the ThreatIntelSet resource.</p>
     #[serde(rename = "ThreatIntelSetId")]
@@ -392,6 +403,7 @@ pub struct CreateThreatIntelSetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeclineInvitationsRequest {
     /// <p>A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to decline invitations from.</p>
     #[serde(rename = "AccountIds")]
@@ -399,7 +411,7 @@ pub struct DeclineInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeclineInvitationsResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -407,6 +419,7 @@ pub struct DeclineInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDetectorRequest {
     /// <p>The unique ID of the detector that you want to delete.</p>
     #[serde(rename = "DetectorId")]
@@ -414,10 +427,11 @@ pub struct DeleteDetectorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDetectorResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFilterRequest {
     /// <p>The unique ID of the detector the filter is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -428,10 +442,11 @@ pub struct DeleteFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteFilterResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteIPSetRequest {
     /// <p>The unique ID of the detector associated with the IPSet.</p>
     #[serde(rename = "DetectorId")]
@@ -442,10 +457,11 @@ pub struct DeleteIPSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteIPSetResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInvitationsRequest {
     /// <p>A list of account IDs of the AWS accounts that sent invitations to the current member account that you want to delete invitations from.</p>
     #[serde(rename = "AccountIds")]
@@ -453,7 +469,7 @@ pub struct DeleteInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInvitationsResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -461,6 +477,7 @@ pub struct DeleteInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMembersRequest {
     /// <p>A list of account IDs of the GuardDuty member accounts that you want to delete.</p>
     #[serde(rename = "AccountIds")]
@@ -471,7 +488,7 @@ pub struct DeleteMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMembersResponse {
     /// <p>The accounts that could not be processed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -479,6 +496,7 @@ pub struct DeleteMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePublishingDestinationRequest {
     /// <p>The ID of the publishing destination to delete.</p>
     #[serde(rename = "DestinationId")]
@@ -489,10 +507,11 @@ pub struct DeletePublishingDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePublishingDestinationResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteThreatIntelSetRequest {
     /// <p>The unique ID of the detector the threatIntelSet is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -503,10 +522,11 @@ pub struct DeleteThreatIntelSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteThreatIntelSetResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePublishingDestinationRequest {
     /// <p>The ID of the publishing destination to retrieve.</p>
     #[serde(rename = "DestinationId")]
@@ -517,7 +537,7 @@ pub struct DescribePublishingDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePublishingDestinationResponse {
     /// <p>The ID of the publishing destination.</p>
     #[serde(rename = "DestinationId")]
@@ -538,7 +558,7 @@ pub struct DescribePublishingDestinationResponse {
 
 /// <p>Contains information about a publishing destination, including the ID, type, and status.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Destination {
     /// <p>The unique ID of the publishing destination.</p>
     #[serde(rename = "DestinationId")]
@@ -565,6 +585,7 @@ pub struct DestinationProperties {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateFromMasterAccountRequest {
     /// <p>The unique ID of the detector of the GuardDuty member account.</p>
     #[serde(rename = "DetectorId")]
@@ -572,10 +593,11 @@ pub struct DisassociateFromMasterAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateFromMasterAccountResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateMembersRequest {
     /// <p>A list of account IDs of the GuardDuty member accounts that you want to disassociate from master.</p>
     #[serde(rename = "AccountIds")]
@@ -586,7 +608,7 @@ pub struct DisassociateMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateMembersResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -595,7 +617,7 @@ pub struct DisassociateMembersResponse {
 
 /// <p>Contains information about the DNS_REQUEST action described in this finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DnsRequestAction {
     /// <p>Domain information for the API request.</p>
     #[serde(rename = "Domain")]
@@ -605,7 +627,7 @@ pub struct DnsRequestAction {
 
 /// <p>Contains information about the domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainDetails {
     /// <p>Domain information for the AWS API call.</p>
     #[serde(rename = "Domain")]
@@ -615,7 +637,7 @@ pub struct DomainDetails {
 
 /// <p>Contains information about the reason that the finding was generated.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Evidence {
     /// <p>A list of threat intelligence details related to the evidence.</p>
     #[serde(rename = "ThreatIntelligenceDetails")]
@@ -625,7 +647,7 @@ pub struct Evidence {
 
 /// <p>Contains information about the finding, which is generated when abnormal or suspicious activity is detected.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Finding {
     /// <p>The ID of the account in which the finding was generated.</p>
     #[serde(rename = "AccountId")]
@@ -688,7 +710,7 @@ pub struct FindingCriteria {
 
 /// <p>Contains information about finding statistics.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FindingStatistics {
     /// <p>Represents a map of severity to count statistic for a set of findings</p>
     #[serde(rename = "CountBySeverity")]
@@ -698,7 +720,7 @@ pub struct FindingStatistics {
 
 /// <p>Contains information about the location of the remote IP address.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GeoLocation {
     /// <p>Latitude information of remote IP address.</p>
     #[serde(rename = "Lat")]
@@ -711,6 +733,7 @@ pub struct GeoLocation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDetectorRequest {
     /// <p>The unique ID of the detector that you want to get.</p>
     #[serde(rename = "DetectorId")]
@@ -718,7 +741,7 @@ pub struct GetDetectorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDetectorResponse {
     /// <p>Detector creation timestamp.</p>
     #[serde(rename = "CreatedAt")]
@@ -745,6 +768,7 @@ pub struct GetDetectorResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFilterRequest {
     /// <p>The unique ID of the detector the filter is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -755,7 +779,7 @@ pub struct GetFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFilterResponse {
     /// <p>Specifies the action that is to be applied to the findings that match the filter.</p>
     #[serde(rename = "Action")]
@@ -781,6 +805,7 @@ pub struct GetFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFindingsRequest {
     /// <p>The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve.</p>
     #[serde(rename = "DetectorId")]
@@ -795,7 +820,7 @@ pub struct GetFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFindingsResponse {
     /// <p>A list of findings.</p>
     #[serde(rename = "Findings")]
@@ -803,6 +828,7 @@ pub struct GetFindingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFindingsStatisticsRequest {
     /// <p>The ID of the detector that specifies the GuardDuty service whose findings' statistics you want to retrieve.</p>
     #[serde(rename = "DetectorId")]
@@ -817,7 +843,7 @@ pub struct GetFindingsStatisticsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFindingsStatisticsResponse {
     /// <p>Finding statistics object.</p>
     #[serde(rename = "FindingStatistics")]
@@ -825,6 +851,7 @@ pub struct GetFindingsStatisticsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIPSetRequest {
     /// <p>The unique ID of the detector the ipSet is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -835,7 +862,7 @@ pub struct GetIPSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIPSetResponse {
     /// <p>The format of the file that contains the IPSet.</p>
     #[serde(rename = "Format")]
@@ -856,10 +883,11 @@ pub struct GetIPSetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInvitationsCountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInvitationsCountResponse {
     /// <p>The number of received invitations.</p>
     #[serde(rename = "InvitationsCount")]
@@ -868,6 +896,7 @@ pub struct GetInvitationsCountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMasterAccountRequest {
     /// <p>The unique ID of the detector of the GuardDuty member account.</p>
     #[serde(rename = "DetectorId")]
@@ -875,7 +904,7 @@ pub struct GetMasterAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMasterAccountResponse {
     /// <p>Master account details.</p>
     #[serde(rename = "Master")]
@@ -883,6 +912,7 @@ pub struct GetMasterAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMembersRequest {
     /// <p>A list of account IDs of the GuardDuty member accounts that you want to describe.</p>
     #[serde(rename = "AccountIds")]
@@ -893,7 +923,7 @@ pub struct GetMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMembersResponse {
     /// <p>A list of members.</p>
     #[serde(rename = "Members")]
@@ -904,6 +934,7 @@ pub struct GetMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetThreatIntelSetRequest {
     /// <p>The unique ID of the detector the threatIntelSet is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -914,7 +945,7 @@ pub struct GetThreatIntelSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetThreatIntelSetResponse {
     /// <p>The format of the threatIntelSet.</p>
     #[serde(rename = "Format")]
@@ -936,7 +967,7 @@ pub struct GetThreatIntelSetResponse {
 
 /// <p>Contains information about the EC2 instance profile.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IamInstanceProfile {
     /// <p>AWS EC2 instance profile ARN.</p>
     #[serde(rename = "Arn")]
@@ -950,7 +981,7 @@ pub struct IamInstanceProfile {
 
 /// <p>Contains information about the details of an instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceDetails {
     /// <p>The availability zone of the EC2 instance.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -1004,7 +1035,7 @@ pub struct InstanceDetails {
 
 /// <p>Contains information about the invitation to become a member account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Invitation {
     /// <p>The ID of the account from which the invitations was sent.</p>
     #[serde(rename = "AccountId")]
@@ -1025,6 +1056,7 @@ pub struct Invitation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InviteMembersRequest {
     /// <p>A list of account IDs of the accounts that you want to invite to GuardDuty as members.</p>
     #[serde(rename = "AccountIds")]
@@ -1043,7 +1075,7 @@ pub struct InviteMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InviteMembersResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1051,6 +1083,7 @@ pub struct InviteMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDetectorsRequest {
     /// <p>You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50. The maximum value is 50.</p>
     #[serde(rename = "MaxResults")]
@@ -1063,7 +1096,7 @@ pub struct ListDetectorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDetectorsResponse {
     /// <p>A list of detector Ids.</p>
     #[serde(rename = "DetectorIds")]
@@ -1075,6 +1108,7 @@ pub struct ListDetectorsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFiltersRequest {
     /// <p>The unique ID of the detector the filter is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -1090,7 +1124,7 @@ pub struct ListFiltersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFiltersResponse {
     /// <p>A list of filter names</p>
     #[serde(rename = "FilterNames")]
@@ -1102,6 +1136,7 @@ pub struct ListFiltersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFindingsRequest {
     /// <p>The ID of the detector that specifies the GuardDuty service whose findings you want to list.</p>
     #[serde(rename = "DetectorId")]
@@ -1125,7 +1160,7 @@ pub struct ListFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFindingsResponse {
     /// <p>The IDs of the findings you are listing.</p>
     #[serde(rename = "FindingIds")]
@@ -1137,6 +1172,7 @@ pub struct ListFindingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListIPSetsRequest {
     /// <p>The unique ID of the detector the ipSet is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -1152,7 +1188,7 @@ pub struct ListIPSetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListIPSetsResponse {
     /// <p>The IDs of the IPSet resources.</p>
     #[serde(rename = "IpSetIds")]
@@ -1164,6 +1200,7 @@ pub struct ListIPSetsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInvitationsRequest {
     /// <p>You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50. The maximum value is 50.</p>
     #[serde(rename = "MaxResults")]
@@ -1176,7 +1213,7 @@ pub struct ListInvitationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInvitationsResponse {
     /// <p>A list of invitation descriptions.</p>
     #[serde(rename = "Invitations")]
@@ -1189,6 +1226,7 @@ pub struct ListInvitationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMembersRequest {
     /// <p>The unique ID of the detector the member is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -1208,7 +1246,7 @@ pub struct ListMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMembersResponse {
     /// <p>A list of members.</p>
     #[serde(rename = "Members")]
@@ -1221,6 +1259,7 @@ pub struct ListMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPublishingDestinationsRequest {
     /// <p>The ID of the detector to retrieve publishing destinations for.</p>
     #[serde(rename = "DetectorId")]
@@ -1236,7 +1275,7 @@ pub struct ListPublishingDestinationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPublishingDestinationsResponse {
     /// <p>A <code>Destinations</code> obect that includes information about each publishing destination returned.</p>
     #[serde(rename = "Destinations")]
@@ -1248,6 +1287,7 @@ pub struct ListPublishingDestinationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) for the given GuardDuty resource </p>
     #[serde(rename = "ResourceArn")]
@@ -1255,7 +1295,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags associated with the resource.</p>
     #[serde(rename = "Tags")]
@@ -1264,6 +1304,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListThreatIntelSetsRequest {
     /// <p>The unique ID of the detector the threatIntelSet is associated with.</p>
     #[serde(rename = "DetectorId")]
@@ -1279,7 +1320,7 @@ pub struct ListThreatIntelSetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListThreatIntelSetsResponse {
     /// <p>Pagination parameter to be used on the next list operation to retrieve more items.</p>
     #[serde(rename = "NextToken")]
@@ -1292,7 +1333,7 @@ pub struct ListThreatIntelSetsResponse {
 
 /// <p>Contains information about the port for the local connection.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LocalPortDetails {
     /// <p>Port number of the local connection.</p>
     #[serde(rename = "Port")]
@@ -1306,7 +1347,7 @@ pub struct LocalPortDetails {
 
 /// <p>Contains information about the Master account and invitation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Master {
     /// <p>The ID of the account used as the Master account.</p>
     #[serde(rename = "AccountId")]
@@ -1328,7 +1369,7 @@ pub struct Master {
 
 /// <p>Continas information about the member account </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Member {
     /// <p>Member account ID.</p>
     #[serde(rename = "AccountId")]
@@ -1357,7 +1398,7 @@ pub struct Member {
 
 /// <p>Contains information about the NETWORK_CONNECTION action described in the finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkConnectionAction {
     /// <p>Network connection blocked information.</p>
     #[serde(rename = "Blocked")]
@@ -1387,7 +1428,7 @@ pub struct NetworkConnectionAction {
 
 /// <p>Contains information about the network interface of the Ec2 instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NetworkInterface {
     /// <p>A list of EC2 instance IPv6 address information.</p>
     #[serde(rename = "Ipv6Addresses")]
@@ -1433,7 +1474,7 @@ pub struct NetworkInterface {
 
 /// <p>Continas information about the ISP organization of the remote IP address.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Organization {
     /// <p>Autonomous system number of the internet provider of the remote IP address.</p>
     #[serde(rename = "Asn")]
@@ -1455,7 +1496,7 @@ pub struct Organization {
 
 /// <p>Contains information about the PORT_PROBE action described in the finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PortProbeAction {
     /// <p>Port probe blocked information.</p>
     #[serde(rename = "Blocked")]
@@ -1469,7 +1510,7 @@ pub struct PortProbeAction {
 
 /// <p>Contains information about the port probe details.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PortProbeDetail {
     /// <p>Local port information of the connection.</p>
     #[serde(rename = "LocalPortDetails")]
@@ -1483,7 +1524,7 @@ pub struct PortProbeDetail {
 
 /// <p>Contains other private IP address information of the EC2 instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PrivateIpAddressDetails {
     /// <p>Private DNS name of the EC2 instance.</p>
     #[serde(rename = "PrivateDnsName")]
@@ -1497,7 +1538,7 @@ pub struct PrivateIpAddressDetails {
 
 /// <p>Contains information about the product code for the Ec2 instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductCode {
     /// <p>Product code information.</p>
     #[serde(rename = "Code")]
@@ -1511,7 +1552,7 @@ pub struct ProductCode {
 
 /// <p>Continas information about the remote IP address of the connection.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoteIpDetails {
     /// <p>City information of the remote IP address.</p>
     #[serde(rename = "City")]
@@ -1537,7 +1578,7 @@ pub struct RemoteIpDetails {
 
 /// <p>Contains information about the remote port.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemotePortDetails {
     /// <p>Port number of the remote connection.</p>
     #[serde(rename = "Port")]
@@ -1551,7 +1592,7 @@ pub struct RemotePortDetails {
 
 /// <p>Contains information about the AWS resource associated with the activity that prompted GuardDuty to generate a finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Resource {
     /// <p>The IAM access key details (IAM user information) of a user that engaged in the activity that prompted GuardDuty to generate a finding.</p>
     #[serde(rename = "AccessKeyDetails")]
@@ -1569,7 +1610,7 @@ pub struct Resource {
 
 /// <p>Contains information about the security groups associated with the EC2 instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SecurityGroup {
     /// <p>EC2 instance's security group ID.</p>
     #[serde(rename = "GroupId")]
@@ -1583,7 +1624,7 @@ pub struct SecurityGroup {
 
 /// <p>Contains additional information about the generated finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Service {
     /// <p>Information about the activity described in a finding.</p>
     #[serde(rename = "Action")]
@@ -1629,6 +1670,7 @@ pub struct Service {
 
 /// <p>Contains information about the criteria used for sorting findings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SortCriteria {
     /// <p>Represents the finding attribute (for example, accountId) by which to sort findings.</p>
     #[serde(rename = "AttributeName")]
@@ -1641,6 +1683,7 @@ pub struct SortCriteria {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMonitoringMembersRequest {
     /// <p>A list of account IDs of the GuardDuty member accounts to start monitoring.</p>
     #[serde(rename = "AccountIds")]
@@ -1651,7 +1694,7 @@ pub struct StartMonitoringMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMonitoringMembersResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1659,6 +1702,7 @@ pub struct StartMonitoringMembersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopMonitoringMembersRequest {
     /// <p>A list of account IDs of the GuardDuty member accounts whose findings you want the master account to stop monitoring.</p>
     #[serde(rename = "AccountIds")]
@@ -1669,7 +1713,7 @@ pub struct StopMonitoringMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopMonitoringMembersResponse {
     /// <p>A list of objects containing the unprocessed account and a result string explaining why it was unprocessed.</p>
     #[serde(rename = "UnprocessedAccounts")]
@@ -1678,7 +1722,7 @@ pub struct StopMonitoringMembersResponse {
 
 /// <p>Contains information about a tag associated with the Ec2 instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Tag {
     /// <p>EC2 instance tag key.</p>
     #[serde(rename = "Key")]
@@ -1691,6 +1735,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) for the GuardDuty resource to apply a tag to.</p>
     #[serde(rename = "ResourceArn")]
@@ -1701,12 +1746,12 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>An instance of a threat intelligence detail that constitutes evidence for the finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ThreatIntelligenceDetail {
     /// <p>The name of the threat intelligence list that triggered the finding.</p>
     #[serde(rename = "ThreatListName")]
@@ -1719,6 +1764,7 @@ pub struct ThreatIntelligenceDetail {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UnarchiveFindingsRequest {
     /// <p>The ID of the detector associated with the findings to unarchive.</p>
     #[serde(rename = "DetectorId")]
@@ -1729,12 +1775,12 @@ pub struct UnarchiveFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnarchiveFindingsResponse {}
 
 /// <p>Contains information about the accounts that were not processed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnprocessedAccount {
     /// <p>AWS Account ID.</p>
     #[serde(rename = "AccountId")]
@@ -1745,6 +1791,7 @@ pub struct UnprocessedAccount {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) for the resource to remove tags from.</p>
     #[serde(rename = "ResourceArn")]
@@ -1755,10 +1802,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDetectorRequest {
     /// <p>The unique ID of the detector to update.</p>
     #[serde(rename = "DetectorId")]
@@ -1774,10 +1822,11 @@ pub struct UpdateDetectorRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDetectorResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFilterRequest {
     /// <p>Specifies the action that is to be applied to the findings that match the filter.</p>
     #[serde(rename = "Action")]
@@ -1804,7 +1853,7 @@ pub struct UpdateFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFilterResponse {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Name")]
@@ -1812,6 +1861,7 @@ pub struct UpdateFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFindingsFeedbackRequest {
     /// <p>Additional feedback about the GuardDuty findings.</p>
     #[serde(rename = "Comments")]
@@ -1829,10 +1879,11 @@ pub struct UpdateFindingsFeedbackRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFindingsFeedbackResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateIPSetRequest {
     /// <p>The updated boolean value that specifies whether the IPSet is active or not.</p>
     #[serde(rename = "Activate")]
@@ -1855,10 +1906,11 @@ pub struct UpdateIPSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateIPSetResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePublishingDestinationRequest {
     /// <p>The ID of the detector associated with the publishing destinations to update.</p>
     #[serde(rename = "DestinationId")]
@@ -1873,10 +1925,11 @@ pub struct UpdatePublishingDestinationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePublishingDestinationResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateThreatIntelSetRequest {
     /// <p>The updated boolean value that specifies whether the ThreateIntelSet is active or not.</p>
     #[serde(rename = "Activate")]
@@ -1899,7 +1952,7 @@ pub struct UpdateThreatIntelSetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateThreatIntelSetResponse {}
 
 /// Errors returned by AcceptInvitation
@@ -1931,18 +1984,15 @@ impl AcceptInvitationError {
     }
 }
 impl fmt::Display for AcceptInvitationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptInvitationError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptInvitationError::BadRequest(ref cause) => cause,
-            AcceptInvitationError::InternalServerError(ref cause) => cause,
+            AcceptInvitationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            AcceptInvitationError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptInvitationError {}
 /// Errors returned by ArchiveFindings
 #[derive(Debug, PartialEq)]
 pub enum ArchiveFindingsError {
@@ -1970,18 +2020,15 @@ impl ArchiveFindingsError {
     }
 }
 impl fmt::Display for ArchiveFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ArchiveFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            ArchiveFindingsError::BadRequest(ref cause) => cause,
-            ArchiveFindingsError::InternalServerError(ref cause) => cause,
+            ArchiveFindingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ArchiveFindingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ArchiveFindingsError {}
 /// Errors returned by CreateDetector
 #[derive(Debug, PartialEq)]
 pub enum CreateDetectorError {
@@ -2009,18 +2056,15 @@ impl CreateDetectorError {
     }
 }
 impl fmt::Display for CreateDetectorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDetectorError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDetectorError::BadRequest(ref cause) => cause,
-            CreateDetectorError::InternalServerError(ref cause) => cause,
+            CreateDetectorError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateDetectorError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDetectorError {}
 /// Errors returned by CreateFilter
 #[derive(Debug, PartialEq)]
 pub enum CreateFilterError {
@@ -2048,18 +2092,15 @@ impl CreateFilterError {
     }
 }
 impl fmt::Display for CreateFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFilterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFilterError::BadRequest(ref cause) => cause,
-            CreateFilterError::InternalServerError(ref cause) => cause,
+            CreateFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateFilterError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFilterError {}
 /// Errors returned by CreateIPSet
 #[derive(Debug, PartialEq)]
 pub enum CreateIPSetError {
@@ -2087,18 +2128,15 @@ impl CreateIPSetError {
     }
 }
 impl fmt::Display for CreateIPSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateIPSetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateIPSetError::BadRequest(ref cause) => cause,
-            CreateIPSetError::InternalServerError(ref cause) => cause,
+            CreateIPSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateIPSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateIPSetError {}
 /// Errors returned by CreateMembers
 #[derive(Debug, PartialEq)]
 pub enum CreateMembersError {
@@ -2126,18 +2164,15 @@ impl CreateMembersError {
     }
 }
 impl fmt::Display for CreateMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMembersError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMembersError::BadRequest(ref cause) => cause,
-            CreateMembersError::InternalServerError(ref cause) => cause,
+            CreateMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMembersError {}
 /// Errors returned by CreatePublishingDestination
 #[derive(Debug, PartialEq)]
 pub enum CreatePublishingDestinationError {
@@ -2171,18 +2206,17 @@ impl CreatePublishingDestinationError {
     }
 }
 impl fmt::Display for CreatePublishingDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePublishingDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePublishingDestinationError::BadRequest(ref cause) => cause,
-            CreatePublishingDestinationError::InternalServerError(ref cause) => cause,
+            CreatePublishingDestinationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreatePublishingDestinationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreatePublishingDestinationError {}
 /// Errors returned by CreateSampleFindings
 #[derive(Debug, PartialEq)]
 pub enum CreateSampleFindingsError {
@@ -2212,18 +2246,15 @@ impl CreateSampleFindingsError {
     }
 }
 impl fmt::Display for CreateSampleFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSampleFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSampleFindingsError::BadRequest(ref cause) => cause,
-            CreateSampleFindingsError::InternalServerError(ref cause) => cause,
+            CreateSampleFindingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateSampleFindingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSampleFindingsError {}
 /// Errors returned by CreateThreatIntelSet
 #[derive(Debug, PartialEq)]
 pub enum CreateThreatIntelSetError {
@@ -2253,18 +2284,15 @@ impl CreateThreatIntelSetError {
     }
 }
 impl fmt::Display for CreateThreatIntelSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateThreatIntelSetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateThreatIntelSetError::BadRequest(ref cause) => cause,
-            CreateThreatIntelSetError::InternalServerError(ref cause) => cause,
+            CreateThreatIntelSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateThreatIntelSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateThreatIntelSetError {}
 /// Errors returned by DeclineInvitations
 #[derive(Debug, PartialEq)]
 pub enum DeclineInvitationsError {
@@ -2294,18 +2322,15 @@ impl DeclineInvitationsError {
     }
 }
 impl fmt::Display for DeclineInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeclineInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            DeclineInvitationsError::BadRequest(ref cause) => cause,
-            DeclineInvitationsError::InternalServerError(ref cause) => cause,
+            DeclineInvitationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeclineInvitationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeclineInvitationsError {}
 /// Errors returned by DeleteDetector
 #[derive(Debug, PartialEq)]
 pub enum DeleteDetectorError {
@@ -2333,18 +2358,15 @@ impl DeleteDetectorError {
     }
 }
 impl fmt::Display for DeleteDetectorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDetectorError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDetectorError::BadRequest(ref cause) => cause,
-            DeleteDetectorError::InternalServerError(ref cause) => cause,
+            DeleteDetectorError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteDetectorError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDetectorError {}
 /// Errors returned by DeleteFilter
 #[derive(Debug, PartialEq)]
 pub enum DeleteFilterError {
@@ -2372,18 +2394,15 @@ impl DeleteFilterError {
     }
 }
 impl fmt::Display for DeleteFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFilterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFilterError::BadRequest(ref cause) => cause,
-            DeleteFilterError::InternalServerError(ref cause) => cause,
+            DeleteFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteFilterError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFilterError {}
 /// Errors returned by DeleteIPSet
 #[derive(Debug, PartialEq)]
 pub enum DeleteIPSetError {
@@ -2411,18 +2430,15 @@ impl DeleteIPSetError {
     }
 }
 impl fmt::Display for DeleteIPSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteIPSetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteIPSetError::BadRequest(ref cause) => cause,
-            DeleteIPSetError::InternalServerError(ref cause) => cause,
+            DeleteIPSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteIPSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteIPSetError {}
 /// Errors returned by DeleteInvitations
 #[derive(Debug, PartialEq)]
 pub enum DeleteInvitationsError {
@@ -2452,18 +2468,15 @@ impl DeleteInvitationsError {
     }
 }
 impl fmt::Display for DeleteInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInvitationsError::BadRequest(ref cause) => cause,
-            DeleteInvitationsError::InternalServerError(ref cause) => cause,
+            DeleteInvitationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteInvitationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInvitationsError {}
 /// Errors returned by DeleteMembers
 #[derive(Debug, PartialEq)]
 pub enum DeleteMembersError {
@@ -2491,18 +2504,15 @@ impl DeleteMembersError {
     }
 }
 impl fmt::Display for DeleteMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMembersError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMembersError::BadRequest(ref cause) => cause,
-            DeleteMembersError::InternalServerError(ref cause) => cause,
+            DeleteMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMembersError {}
 /// Errors returned by DeletePublishingDestination
 #[derive(Debug, PartialEq)]
 pub enum DeletePublishingDestinationError {
@@ -2536,18 +2546,17 @@ impl DeletePublishingDestinationError {
     }
 }
 impl fmt::Display for DeletePublishingDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePublishingDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePublishingDestinationError::BadRequest(ref cause) => cause,
-            DeletePublishingDestinationError::InternalServerError(ref cause) => cause,
+            DeletePublishingDestinationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeletePublishingDestinationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeletePublishingDestinationError {}
 /// Errors returned by DeleteThreatIntelSet
 #[derive(Debug, PartialEq)]
 pub enum DeleteThreatIntelSetError {
@@ -2577,18 +2586,15 @@ impl DeleteThreatIntelSetError {
     }
 }
 impl fmt::Display for DeleteThreatIntelSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteThreatIntelSetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteThreatIntelSetError::BadRequest(ref cause) => cause,
-            DeleteThreatIntelSetError::InternalServerError(ref cause) => cause,
+            DeleteThreatIntelSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteThreatIntelSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteThreatIntelSetError {}
 /// Errors returned by DescribePublishingDestination
 #[derive(Debug, PartialEq)]
 pub enum DescribePublishingDestinationError {
@@ -2622,18 +2628,17 @@ impl DescribePublishingDestinationError {
     }
 }
 impl fmt::Display for DescribePublishingDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePublishingDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePublishingDestinationError::BadRequest(ref cause) => cause,
-            DescribePublishingDestinationError::InternalServerError(ref cause) => cause,
+            DescribePublishingDestinationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribePublishingDestinationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribePublishingDestinationError {}
 /// Errors returned by DisassociateFromMasterAccount
 #[derive(Debug, PartialEq)]
 pub enum DisassociateFromMasterAccountError {
@@ -2667,18 +2672,17 @@ impl DisassociateFromMasterAccountError {
     }
 }
 impl fmt::Display for DisassociateFromMasterAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateFromMasterAccountError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateFromMasterAccountError::BadRequest(ref cause) => cause,
-            DisassociateFromMasterAccountError::InternalServerError(ref cause) => cause,
+            DisassociateFromMasterAccountError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DisassociateFromMasterAccountError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateFromMasterAccountError {}
 /// Errors returned by DisassociateMembers
 #[derive(Debug, PartialEq)]
 pub enum DisassociateMembersError {
@@ -2708,18 +2712,15 @@ impl DisassociateMembersError {
     }
 }
 impl fmt::Display for DisassociateMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateMembersError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateMembersError::BadRequest(ref cause) => cause,
-            DisassociateMembersError::InternalServerError(ref cause) => cause,
+            DisassociateMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DisassociateMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateMembersError {}
 /// Errors returned by GetDetector
 #[derive(Debug, PartialEq)]
 pub enum GetDetectorError {
@@ -2747,18 +2748,15 @@ impl GetDetectorError {
     }
 }
 impl fmt::Display for GetDetectorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDetectorError {
-    fn description(&self) -> &str {
         match *self {
-            GetDetectorError::BadRequest(ref cause) => cause,
-            GetDetectorError::InternalServerError(ref cause) => cause,
+            GetDetectorError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetDetectorError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDetectorError {}
 /// Errors returned by GetFilter
 #[derive(Debug, PartialEq)]
 pub enum GetFilterError {
@@ -2786,18 +2784,15 @@ impl GetFilterError {
     }
 }
 impl fmt::Display for GetFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFilterError {
-    fn description(&self) -> &str {
         match *self {
-            GetFilterError::BadRequest(ref cause) => cause,
-            GetFilterError::InternalServerError(ref cause) => cause,
+            GetFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetFilterError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFilterError {}
 /// Errors returned by GetFindings
 #[derive(Debug, PartialEq)]
 pub enum GetFindingsError {
@@ -2825,18 +2820,15 @@ impl GetFindingsError {
     }
 }
 impl fmt::Display for GetFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            GetFindingsError::BadRequest(ref cause) => cause,
-            GetFindingsError::InternalServerError(ref cause) => cause,
+            GetFindingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetFindingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFindingsError {}
 /// Errors returned by GetFindingsStatistics
 #[derive(Debug, PartialEq)]
 pub enum GetFindingsStatisticsError {
@@ -2866,18 +2858,15 @@ impl GetFindingsStatisticsError {
     }
 }
 impl fmt::Display for GetFindingsStatisticsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFindingsStatisticsError {
-    fn description(&self) -> &str {
         match *self {
-            GetFindingsStatisticsError::BadRequest(ref cause) => cause,
-            GetFindingsStatisticsError::InternalServerError(ref cause) => cause,
+            GetFindingsStatisticsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetFindingsStatisticsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFindingsStatisticsError {}
 /// Errors returned by GetIPSet
 #[derive(Debug, PartialEq)]
 pub enum GetIPSetError {
@@ -2905,18 +2894,15 @@ impl GetIPSetError {
     }
 }
 impl fmt::Display for GetIPSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIPSetError {
-    fn description(&self) -> &str {
         match *self {
-            GetIPSetError::BadRequest(ref cause) => cause,
-            GetIPSetError::InternalServerError(ref cause) => cause,
+            GetIPSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIPSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIPSetError {}
 /// Errors returned by GetInvitationsCount
 #[derive(Debug, PartialEq)]
 pub enum GetInvitationsCountError {
@@ -2946,18 +2932,15 @@ impl GetInvitationsCountError {
     }
 }
 impl fmt::Display for GetInvitationsCountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInvitationsCountError {
-    fn description(&self) -> &str {
         match *self {
-            GetInvitationsCountError::BadRequest(ref cause) => cause,
-            GetInvitationsCountError::InternalServerError(ref cause) => cause,
+            GetInvitationsCountError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetInvitationsCountError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInvitationsCountError {}
 /// Errors returned by GetMasterAccount
 #[derive(Debug, PartialEq)]
 pub enum GetMasterAccountError {
@@ -2987,18 +2970,15 @@ impl GetMasterAccountError {
     }
 }
 impl fmt::Display for GetMasterAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMasterAccountError {
-    fn description(&self) -> &str {
         match *self {
-            GetMasterAccountError::BadRequest(ref cause) => cause,
-            GetMasterAccountError::InternalServerError(ref cause) => cause,
+            GetMasterAccountError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetMasterAccountError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMasterAccountError {}
 /// Errors returned by GetMembers
 #[derive(Debug, PartialEq)]
 pub enum GetMembersError {
@@ -3026,18 +3006,15 @@ impl GetMembersError {
     }
 }
 impl fmt::Display for GetMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMembersError {
-    fn description(&self) -> &str {
         match *self {
-            GetMembersError::BadRequest(ref cause) => cause,
-            GetMembersError::InternalServerError(ref cause) => cause,
+            GetMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMembersError {}
 /// Errors returned by GetThreatIntelSet
 #[derive(Debug, PartialEq)]
 pub enum GetThreatIntelSetError {
@@ -3067,18 +3044,15 @@ impl GetThreatIntelSetError {
     }
 }
 impl fmt::Display for GetThreatIntelSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetThreatIntelSetError {
-    fn description(&self) -> &str {
         match *self {
-            GetThreatIntelSetError::BadRequest(ref cause) => cause,
-            GetThreatIntelSetError::InternalServerError(ref cause) => cause,
+            GetThreatIntelSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetThreatIntelSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetThreatIntelSetError {}
 /// Errors returned by InviteMembers
 #[derive(Debug, PartialEq)]
 pub enum InviteMembersError {
@@ -3106,18 +3080,15 @@ impl InviteMembersError {
     }
 }
 impl fmt::Display for InviteMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InviteMembersError {
-    fn description(&self) -> &str {
         match *self {
-            InviteMembersError::BadRequest(ref cause) => cause,
-            InviteMembersError::InternalServerError(ref cause) => cause,
+            InviteMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            InviteMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InviteMembersError {}
 /// Errors returned by ListDetectors
 #[derive(Debug, PartialEq)]
 pub enum ListDetectorsError {
@@ -3145,18 +3116,15 @@ impl ListDetectorsError {
     }
 }
 impl fmt::Display for ListDetectorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDetectorsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDetectorsError::BadRequest(ref cause) => cause,
-            ListDetectorsError::InternalServerError(ref cause) => cause,
+            ListDetectorsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListDetectorsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDetectorsError {}
 /// Errors returned by ListFilters
 #[derive(Debug, PartialEq)]
 pub enum ListFiltersError {
@@ -3184,18 +3152,15 @@ impl ListFiltersError {
     }
 }
 impl fmt::Display for ListFiltersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFiltersError {
-    fn description(&self) -> &str {
         match *self {
-            ListFiltersError::BadRequest(ref cause) => cause,
-            ListFiltersError::InternalServerError(ref cause) => cause,
+            ListFiltersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListFiltersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFiltersError {}
 /// Errors returned by ListFindings
 #[derive(Debug, PartialEq)]
 pub enum ListFindingsError {
@@ -3223,18 +3188,15 @@ impl ListFindingsError {
     }
 }
 impl fmt::Display for ListFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            ListFindingsError::BadRequest(ref cause) => cause,
-            ListFindingsError::InternalServerError(ref cause) => cause,
+            ListFindingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListFindingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFindingsError {}
 /// Errors returned by ListIPSets
 #[derive(Debug, PartialEq)]
 pub enum ListIPSetsError {
@@ -3262,18 +3224,15 @@ impl ListIPSetsError {
     }
 }
 impl fmt::Display for ListIPSetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListIPSetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListIPSetsError::BadRequest(ref cause) => cause,
-            ListIPSetsError::InternalServerError(ref cause) => cause,
+            ListIPSetsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListIPSetsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListIPSetsError {}
 /// Errors returned by ListInvitations
 #[derive(Debug, PartialEq)]
 pub enum ListInvitationsError {
@@ -3301,18 +3260,15 @@ impl ListInvitationsError {
     }
 }
 impl fmt::Display for ListInvitationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInvitationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListInvitationsError::BadRequest(ref cause) => cause,
-            ListInvitationsError::InternalServerError(ref cause) => cause,
+            ListInvitationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListInvitationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInvitationsError {}
 /// Errors returned by ListMembers
 #[derive(Debug, PartialEq)]
 pub enum ListMembersError {
@@ -3340,18 +3296,15 @@ impl ListMembersError {
     }
 }
 impl fmt::Display for ListMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMembersError {
-    fn description(&self) -> &str {
         match *self {
-            ListMembersError::BadRequest(ref cause) => cause,
-            ListMembersError::InternalServerError(ref cause) => cause,
+            ListMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMembersError {}
 /// Errors returned by ListPublishingDestinations
 #[derive(Debug, PartialEq)]
 pub enum ListPublishingDestinationsError {
@@ -3385,18 +3338,17 @@ impl ListPublishingDestinationsError {
     }
 }
 impl fmt::Display for ListPublishingDestinationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPublishingDestinationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPublishingDestinationsError::BadRequest(ref cause) => cause,
-            ListPublishingDestinationsError::InternalServerError(ref cause) => cause,
+            ListPublishingDestinationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListPublishingDestinationsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListPublishingDestinationsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -3426,18 +3378,15 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListThreatIntelSets
 #[derive(Debug, PartialEq)]
 pub enum ListThreatIntelSetsError {
@@ -3467,18 +3416,15 @@ impl ListThreatIntelSetsError {
     }
 }
 impl fmt::Display for ListThreatIntelSetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListThreatIntelSetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListThreatIntelSetsError::BadRequest(ref cause) => cause,
-            ListThreatIntelSetsError::InternalServerError(ref cause) => cause,
+            ListThreatIntelSetsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListThreatIntelSetsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListThreatIntelSetsError {}
 /// Errors returned by StartMonitoringMembers
 #[derive(Debug, PartialEq)]
 pub enum StartMonitoringMembersError {
@@ -3508,18 +3454,15 @@ impl StartMonitoringMembersError {
     }
 }
 impl fmt::Display for StartMonitoringMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMonitoringMembersError {
-    fn description(&self) -> &str {
         match *self {
-            StartMonitoringMembersError::BadRequest(ref cause) => cause,
-            StartMonitoringMembersError::InternalServerError(ref cause) => cause,
+            StartMonitoringMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StartMonitoringMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMonitoringMembersError {}
 /// Errors returned by StopMonitoringMembers
 #[derive(Debug, PartialEq)]
 pub enum StopMonitoringMembersError {
@@ -3549,18 +3492,15 @@ impl StopMonitoringMembersError {
     }
 }
 impl fmt::Display for StopMonitoringMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopMonitoringMembersError {
-    fn description(&self) -> &str {
         match *self {
-            StopMonitoringMembersError::BadRequest(ref cause) => cause,
-            StopMonitoringMembersError::InternalServerError(ref cause) => cause,
+            StopMonitoringMembersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StopMonitoringMembersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopMonitoringMembersError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -3588,18 +3528,15 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::InternalServerError(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UnarchiveFindings
 #[derive(Debug, PartialEq)]
 pub enum UnarchiveFindingsError {
@@ -3629,18 +3566,15 @@ impl UnarchiveFindingsError {
     }
 }
 impl fmt::Display for UnarchiveFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UnarchiveFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            UnarchiveFindingsError::BadRequest(ref cause) => cause,
-            UnarchiveFindingsError::InternalServerError(ref cause) => cause,
+            UnarchiveFindingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UnarchiveFindingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UnarchiveFindingsError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -3668,18 +3602,15 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::InternalServerError(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateDetector
 #[derive(Debug, PartialEq)]
 pub enum UpdateDetectorError {
@@ -3707,18 +3638,15 @@ impl UpdateDetectorError {
     }
 }
 impl fmt::Display for UpdateDetectorError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDetectorError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDetectorError::BadRequest(ref cause) => cause,
-            UpdateDetectorError::InternalServerError(ref cause) => cause,
+            UpdateDetectorError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateDetectorError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDetectorError {}
 /// Errors returned by UpdateFilter
 #[derive(Debug, PartialEq)]
 pub enum UpdateFilterError {
@@ -3746,18 +3674,15 @@ impl UpdateFilterError {
     }
 }
 impl fmt::Display for UpdateFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFilterError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFilterError::BadRequest(ref cause) => cause,
-            UpdateFilterError::InternalServerError(ref cause) => cause,
+            UpdateFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFilterError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFilterError {}
 /// Errors returned by UpdateFindingsFeedback
 #[derive(Debug, PartialEq)]
 pub enum UpdateFindingsFeedbackError {
@@ -3787,18 +3712,15 @@ impl UpdateFindingsFeedbackError {
     }
 }
 impl fmt::Display for UpdateFindingsFeedbackError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFindingsFeedbackError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFindingsFeedbackError::BadRequest(ref cause) => cause,
-            UpdateFindingsFeedbackError::InternalServerError(ref cause) => cause,
+            UpdateFindingsFeedbackError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFindingsFeedbackError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFindingsFeedbackError {}
 /// Errors returned by UpdateIPSet
 #[derive(Debug, PartialEq)]
 pub enum UpdateIPSetError {
@@ -3826,18 +3748,15 @@ impl UpdateIPSetError {
     }
 }
 impl fmt::Display for UpdateIPSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateIPSetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateIPSetError::BadRequest(ref cause) => cause,
-            UpdateIPSetError::InternalServerError(ref cause) => cause,
+            UpdateIPSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateIPSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateIPSetError {}
 /// Errors returned by UpdatePublishingDestination
 #[derive(Debug, PartialEq)]
 pub enum UpdatePublishingDestinationError {
@@ -3871,18 +3790,17 @@ impl UpdatePublishingDestinationError {
     }
 }
 impl fmt::Display for UpdatePublishingDestinationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePublishingDestinationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePublishingDestinationError::BadRequest(ref cause) => cause,
-            UpdatePublishingDestinationError::InternalServerError(ref cause) => cause,
+            UpdatePublishingDestinationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdatePublishingDestinationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdatePublishingDestinationError {}
 /// Errors returned by UpdateThreatIntelSet
 #[derive(Debug, PartialEq)]
 pub enum UpdateThreatIntelSetError {
@@ -3912,18 +3830,15 @@ impl UpdateThreatIntelSetError {
     }
 }
 impl fmt::Display for UpdateThreatIntelSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateThreatIntelSetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateThreatIntelSetError::BadRequest(ref cause) => cause,
-            UpdateThreatIntelSetError::InternalServerError(ref cause) => cause,
+            UpdateThreatIntelSetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateThreatIntelSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateThreatIntelSetError {}
 /// Trait representing the capabilities of the Amazon GuardDuty API. Amazon GuardDuty clients implement this trait.
 #[async_trait]
 pub trait GuardDuty {

@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelRotateSecretRequest {
     /// <p><p>Specifies the secret for which you want to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -32,7 +34,7 @@ pub struct CancelRotateSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelRotateSecretResponse {
     /// <p>The ARN of the secret for which rotation was canceled.</p>
     #[serde(rename = "ARN")]
@@ -49,6 +51,7 @@ pub struct CancelRotateSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSecretRequest {
     /// <p>(Optional) If you include <code>SecretString</code> or <code>SecretBinary</code>, then an initial version is created as part of the secret, and this parameter specifies a unique identifier for the new version. </p> <note> <p>If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes it as the value for this parameter in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a <code>ClientRequestToken</code> yourself for the new version and include that value in the request.</p> </note> <p>This value helps ensure idempotency. Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during a rotation. We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a> value to ensure uniqueness of your versions within the specified secret. </p> <ul> <li> <p>If the <code>ClientRequestToken</code> value isn't already associated with a version of the secret then a new version of the secret is created. </p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> and <code>SecretBinary</code> values are the same as those in the request, then the request is ignored (the operation is idempotent).</p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> and <code>SecretBinary</code> values are different from those in the request then the request fails because you cannot modify an existing version. Instead, use <a>PutSecretValue</a> to create a new version.</p> </li> </ul> <p>This value becomes the <code>VersionId</code> of the new version.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -85,7 +88,7 @@ pub struct CreateSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSecretResponse {
     /// <p><p>The Amazon Resource Name (ARN) of the secret that you just created.</p> <note> <p>Secrets Manager automatically adds several random characters to the name at the end of the ARN when you initially create a secret. This affects only the ARN and not the actual friendly name. This ensures that if you create a new secret with the same name as an old secret that you previously deleted, then users with access to the old secret <i>don&#39;t</i> automatically get access to the new secret because the ARNs are different.</p> </note></p>
     #[serde(rename = "ARN")]
@@ -102,6 +105,7 @@ pub struct CreateSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourcePolicyRequest {
     /// <p><p>Specifies the secret that you want to delete the attached resource-based policy for. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -109,7 +113,7 @@ pub struct DeleteResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteResourcePolicyResponse {
     /// <p>The ARN of the secret that the resource-based policy was deleted for.</p>
     #[serde(rename = "ARN")]
@@ -122,6 +126,7 @@ pub struct DeleteResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSecretRequest {
     /// <p><p>(Optional) Specifies that the secret is to be deleted without any recovery window. You can&#39;t use both this parameter and the <code>RecoveryWindowInDays</code> parameter in the same API call.</p> <p>An asynchronous background process performs the actual deletion, so there can be a short delay before the operation completes. If you write code to delete and then immediately recreate a secret with the same name, ensure that your code includes appropriate back off and retry logic.</p> <important> <p>Use this parameter with caution. This parameter causes the operation to skip the normal waiting period before the permanent deletion that AWS would normally impose with the <code>RecoveryWindowInDays</code> parameter. If you delete a secret with the <code>ForceDeleteWithouRecovery</code> parameter, then you have no opportunity to recover the secret. It is permanently lost.</p> </important></p>
     #[serde(rename = "ForceDeleteWithoutRecovery")]
@@ -137,7 +142,7 @@ pub struct DeleteSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSecretResponse {
     /// <p>The ARN of the secret that is now scheduled for deletion.</p>
     #[serde(rename = "ARN")]
@@ -154,6 +159,7 @@ pub struct DeleteSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSecretRequest {
     /// <p><p>The identifier of the secret whose details you want to retrieve. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -161,7 +167,7 @@ pub struct DescribeSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSecretResponse {
     /// <p>The ARN of the secret.</p>
     #[serde(rename = "ARN")]
@@ -221,6 +227,7 @@ pub struct DescribeSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRandomPasswordRequest {
     /// <p>A string that includes characters that should not be included in the generated password. The default is that all characters from the included sets can be used.</p>
     #[serde(rename = "ExcludeCharacters")]
@@ -257,7 +264,7 @@ pub struct GetRandomPasswordRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRandomPasswordResponse {
     /// <p>A string with the generated password.</p>
     #[serde(rename = "RandomPassword")]
@@ -266,6 +273,7 @@ pub struct GetRandomPasswordResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetResourcePolicyRequest {
     /// <p><p>Specifies the secret that you want to retrieve the attached resource-based policy for. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -273,7 +281,7 @@ pub struct GetResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetResourcePolicyResponse {
     /// <p>The ARN of the secret that the resource-based policy was retrieved for.</p>
     #[serde(rename = "ARN")]
@@ -290,6 +298,7 @@ pub struct GetResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSecretValueRequest {
     /// <p><p>Specifies the secret containing the version that you want to retrieve. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -305,7 +314,7 @@ pub struct GetSecretValueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSecretValueResponse {
     /// <p>The ARN of the secret.</p>
     #[serde(rename = "ARN")]
@@ -343,6 +352,7 @@ pub struct GetSecretValueResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSecretVersionIdsRequest {
     /// <p>(Optional) Specifies that you want the results to include versions that do not have any staging labels attached to them. Such versions are considered deprecated and are subject to deletion by Secrets Manager as needed.</p>
     #[serde(rename = "IncludeDeprecated")]
@@ -362,7 +372,7 @@ pub struct ListSecretVersionIdsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSecretVersionIdsResponse {
     /// <p><p>The Amazon Resource Name (ARN) for the secret.</p> <note> <p>Secrets Manager automatically adds several random characters to the name at the end of the ARN when you initially create a secret. This affects only the ARN and not the actual friendly name. This ensures that if you create a new secret with the same name as an old secret that you previously deleted, then users with access to the old secret <i>don&#39;t</i> automatically get access to the new secret because the ARNs are different.</p> </note></p>
     #[serde(rename = "ARN")]
@@ -383,6 +393,7 @@ pub struct ListSecretVersionIdsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSecretsRequest {
     /// <p>(Optional) Limits the number of results that you want to include in the response. If you don't include this parameter, it defaults to a value that's specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (isn't null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Secrets Manager might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -395,7 +406,7 @@ pub struct ListSecretsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSecretsResponse {
     /// <p>If present in the response, this value indicates that there's more output available than what's included in the current response. This can occur even when the response includes no values at all, such as when you ask for a filtered view of a very long list. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to continue processing and get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back empty (as <code>null</code>).</p>
     #[serde(rename = "NextToken")]
@@ -408,6 +419,7 @@ pub struct ListSecretsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutResourcePolicyRequest {
     /// <p>A JSON-formatted string that's constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json">Using JSON for Parameters</a> in the <i>AWS CLI User Guide</i>.</p>
     #[serde(rename = "ResourcePolicy")]
@@ -418,7 +430,7 @@ pub struct PutResourcePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutResourcePolicyResponse {
     /// <p>The ARN of the secret that the resource-based policy was retrieved for.</p>
     #[serde(rename = "ARN")]
@@ -431,6 +443,7 @@ pub struct PutResourcePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutSecretValueRequest {
     /// <p>(Optional) Specifies a unique identifier for the new version of the secret. </p> <note> <p>If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes that in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a <code>ClientRequestToken</code> yourself for new versions and include that value in the request. </p> </note> <p>This value helps ensure idempotency. Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during the Lambda rotation function's processing. We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a> value to ensure uniqueness within the specified secret. </p> <ul> <li> <p>If the <code>ClientRequestToken</code> value isn't already associated with a version of the secret then a new version of the secret is created. </p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> or <code>SecretBinary</code> values are the same as those in the request then the request is ignored (the operation is idempotent). </p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> and <code>SecretBinary</code> values are different from those in the request then the request fails because you cannot modify an existing secret version. You can only create new versions to store new secret values.</p> </li> </ul> <p>This value becomes the <code>VersionId</code> of the new version.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -459,7 +472,7 @@ pub struct PutSecretValueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutSecretValueResponse {
     /// <p>The Amazon Resource Name (ARN) for the secret for which you just created a version.</p>
     #[serde(rename = "ARN")]
@@ -480,6 +493,7 @@ pub struct PutSecretValueResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreSecretRequest {
     /// <p><p>Specifies the secret that you want to restore from a previously scheduled deletion. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -487,7 +501,7 @@ pub struct RestoreSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreSecretResponse {
     /// <p>The ARN of the secret that was restored.</p>
     #[serde(rename = "ARN")]
@@ -500,6 +514,7 @@ pub struct RestoreSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RotateSecretRequest {
     /// <p>(Optional) Specifies a unique identifier for the new version of the secret that helps ensure idempotency. </p> <p>If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes that in the request for this parameter. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a <code>ClientRequestToken</code> yourself for new versions and include that value in the request.</p> <p>You only need to specify your own value if you are implementing your own retry logic and want to ensure that a given secret is not created twice. We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a> value to ensure uniqueness within the specified secret. </p> <p>Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during the function's processing. This value becomes the <code>VersionId</code> of the new version.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -519,7 +534,7 @@ pub struct RotateSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RotateSecretResponse {
     /// <p>The ARN of the secret.</p>
     #[serde(rename = "ARN")]
@@ -546,7 +561,7 @@ pub struct RotationRulesType {
 
 /// <p>A structure that contains the details about a secret. It does not include the encrypted <code>SecretString</code> and <code>SecretBinary</code> values. To get those values, use the <a>GetSecretValue</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SecretListEntry {
     /// <p>The Amazon Resource Name (ARN) of the secret.</p> <p>For more information about ARNs in Secrets Manager, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#iam-resources">Policy Resources</a> in the <i>AWS Secrets Manager User Guide</i>.</p>
     #[serde(rename = "ARN")]
@@ -607,7 +622,7 @@ pub struct SecretListEntry {
 
 /// <p>A structure that contains information about one version of a secret.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SecretVersionsListEntry {
     /// <p>The date and time this version of the secret was created.</p>
     #[serde(rename = "CreatedDate")]
@@ -641,6 +656,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p><p>The identifier for the secret that you want to attach tags to. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -651,6 +667,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p><p>The identifier for the secret that you want to remove tags from. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.</p> <note> <p>If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too—for example, if you don’t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you’re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don’t create secret names that end with a hyphen followed by six characters.</p> </note></p>
     #[serde(rename = "SecretId")]
@@ -661,6 +678,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateSecretRequest {
     /// <p>(Optional) If you want to add a new version to the secret, this parameter specifies a unique identifier for the new version that helps ensure idempotency. </p> <p>If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes that in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a <code>ClientRequestToken</code> yourself for new versions and include that value in the request.</p> <p>You typically only need to interact with this value if you implement your own retry logic and want to ensure that a given secret is not created twice. We recommend that you generate a <a href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a> value to ensure uniqueness within the specified secret. </p> <p>Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during the Lambda rotation function's processing.</p> <ul> <li> <p>If the <code>ClientRequestToken</code> value isn't already associated with a version of the secret then a new version of the secret is created. </p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> and <code>SecretBinary</code> values are the same as those in the request then the request is ignored (the operation is idempotent). </p> </li> <li> <p>If a version with this value already exists and that version's <code>SecretString</code> and <code>SecretBinary</code> values are different from the request then an error occurs because you cannot modify an existing secret value.</p> </li> </ul> <p>This value becomes the <code>VersionId</code> of the new version.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -693,7 +711,7 @@ pub struct UpdateSecretRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateSecretResponse {
     /// <p><p>The ARN of the secret that was updated.</p> <note> <p>Secrets Manager automatically adds several random characters to the name at the end of the ARN when you initially create a secret. This affects only the ARN and not the actual friendly name. This ensures that if you create a new secret with the same name as an old secret that you previously deleted, then users with access to the old secret <i>don&#39;t</i> automatically get access to the new secret because the ARNs are different.</p> </note></p>
     #[serde(rename = "ARN")]
@@ -710,6 +728,7 @@ pub struct UpdateSecretResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateSecretVersionStageRequest {
     /// <p>(Optional) The secret version ID that you want to add the staging label to. If you want to remove a label from a version, then do not specify this parameter.</p> <p>If the staging label is already attached to a different version of the secret, then you must also specify the <code>RemoveFromVersionId</code> parameter. </p>
     #[serde(rename = "MoveToVersionId")]
@@ -728,7 +747,7 @@ pub struct UpdateSecretVersionStageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateSecretVersionStageResponse {
     /// <p>The ARN of the secret with the staging label that was modified.</p>
     #[serde(rename = "ARN")]
@@ -779,20 +798,17 @@ impl CancelRotateSecretError {
     }
 }
 impl fmt::Display for CancelRotateSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelRotateSecretError {
-    fn description(&self) -> &str {
         match *self {
-            CancelRotateSecretError::InternalServiceError(ref cause) => cause,
-            CancelRotateSecretError::InvalidParameter(ref cause) => cause,
-            CancelRotateSecretError::InvalidRequest(ref cause) => cause,
-            CancelRotateSecretError::ResourceNotFound(ref cause) => cause,
+            CancelRotateSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            CancelRotateSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CancelRotateSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CancelRotateSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelRotateSecretError {}
 /// Errors returned by CreateSecret
 #[derive(Debug, PartialEq)]
 pub enum CreateSecretError {
@@ -857,25 +873,22 @@ impl CreateSecretError {
     }
 }
 impl fmt::Display for CreateSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSecretError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSecretError::EncryptionFailure(ref cause) => cause,
-            CreateSecretError::InternalServiceError(ref cause) => cause,
-            CreateSecretError::InvalidParameter(ref cause) => cause,
-            CreateSecretError::InvalidRequest(ref cause) => cause,
-            CreateSecretError::LimitExceeded(ref cause) => cause,
-            CreateSecretError::MalformedPolicyDocument(ref cause) => cause,
-            CreateSecretError::PreconditionNotMet(ref cause) => cause,
-            CreateSecretError::ResourceExists(ref cause) => cause,
-            CreateSecretError::ResourceNotFound(ref cause) => cause,
+            CreateSecretError::EncryptionFailure(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::MalformedPolicyDocument(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::PreconditionNotMet(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::ResourceExists(ref cause) => write!(f, "{}", cause),
+            CreateSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSecretError {}
 /// Errors returned by DeleteResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourcePolicyError {
@@ -912,19 +925,16 @@ impl DeleteResourcePolicyError {
     }
 }
 impl fmt::Display for DeleteResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourcePolicyError::InternalServiceError(ref cause) => cause,
-            DeleteResourcePolicyError::InvalidRequest(ref cause) => cause,
-            DeleteResourcePolicyError::ResourceNotFound(ref cause) => cause,
+            DeleteResourcePolicyError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteResourcePolicyError {}
 /// Errors returned by DeleteSecret
 #[derive(Debug, PartialEq)]
 pub enum DeleteSecretError {
@@ -962,20 +972,17 @@ impl DeleteSecretError {
     }
 }
 impl fmt::Display for DeleteSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSecretError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSecretError::InternalServiceError(ref cause) => cause,
-            DeleteSecretError::InvalidParameter(ref cause) => cause,
-            DeleteSecretError::InvalidRequest(ref cause) => cause,
-            DeleteSecretError::ResourceNotFound(ref cause) => cause,
+            DeleteSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            DeleteSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSecretError {}
 /// Errors returned by DescribeSecret
 #[derive(Debug, PartialEq)]
 pub enum DescribeSecretError {
@@ -1003,18 +1010,15 @@ impl DescribeSecretError {
     }
 }
 impl fmt::Display for DescribeSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSecretError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSecretError::InternalServiceError(ref cause) => cause,
-            DescribeSecretError::ResourceNotFound(ref cause) => cause,
+            DescribeSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            DescribeSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeSecretError {}
 /// Errors returned by GetRandomPassword
 #[derive(Debug, PartialEq)]
 pub enum GetRandomPasswordError {
@@ -1049,19 +1053,16 @@ impl GetRandomPasswordError {
     }
 }
 impl fmt::Display for GetRandomPasswordError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRandomPasswordError {
-    fn description(&self) -> &str {
         match *self {
-            GetRandomPasswordError::InternalServiceError(ref cause) => cause,
-            GetRandomPasswordError::InvalidParameter(ref cause) => cause,
-            GetRandomPasswordError::InvalidRequest(ref cause) => cause,
+            GetRandomPasswordError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            GetRandomPasswordError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetRandomPasswordError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRandomPasswordError {}
 /// Errors returned by GetResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum GetResourcePolicyError {
@@ -1096,19 +1097,16 @@ impl GetResourcePolicyError {
     }
 }
 impl fmt::Display for GetResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetResourcePolicyError::InternalServiceError(ref cause) => cause,
-            GetResourcePolicyError::InvalidRequest(ref cause) => cause,
-            GetResourcePolicyError::ResourceNotFound(ref cause) => cause,
+            GetResourcePolicyError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetResourcePolicyError {}
 /// Errors returned by GetSecretValue
 #[derive(Debug, PartialEq)]
 pub enum GetSecretValueError {
@@ -1151,21 +1149,18 @@ impl GetSecretValueError {
     }
 }
 impl fmt::Display for GetSecretValueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSecretValueError {
-    fn description(&self) -> &str {
         match *self {
-            GetSecretValueError::DecryptionFailure(ref cause) => cause,
-            GetSecretValueError::InternalServiceError(ref cause) => cause,
-            GetSecretValueError::InvalidParameter(ref cause) => cause,
-            GetSecretValueError::InvalidRequest(ref cause) => cause,
-            GetSecretValueError::ResourceNotFound(ref cause) => cause,
+            GetSecretValueError::DecryptionFailure(ref cause) => write!(f, "{}", cause),
+            GetSecretValueError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            GetSecretValueError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetSecretValueError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetSecretValueError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSecretValueError {}
 /// Errors returned by ListSecretVersionIds
 #[derive(Debug, PartialEq)]
 pub enum ListSecretVersionIdsError {
@@ -1204,19 +1199,16 @@ impl ListSecretVersionIdsError {
     }
 }
 impl fmt::Display for ListSecretVersionIdsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSecretVersionIdsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSecretVersionIdsError::InternalServiceError(ref cause) => cause,
-            ListSecretVersionIdsError::InvalidNextToken(ref cause) => cause,
-            ListSecretVersionIdsError::ResourceNotFound(ref cause) => cause,
+            ListSecretVersionIdsError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            ListSecretVersionIdsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListSecretVersionIdsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSecretVersionIdsError {}
 /// Errors returned by ListSecrets
 #[derive(Debug, PartialEq)]
 pub enum ListSecretsError {
@@ -1249,19 +1241,16 @@ impl ListSecretsError {
     }
 }
 impl fmt::Display for ListSecretsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSecretsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSecretsError::InternalServiceError(ref cause) => cause,
-            ListSecretsError::InvalidNextToken(ref cause) => cause,
-            ListSecretsError::InvalidParameter(ref cause) => cause,
+            ListSecretsError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            ListSecretsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListSecretsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSecretsError {}
 /// Errors returned by PutResourcePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutResourcePolicyError {
@@ -1308,21 +1297,18 @@ impl PutResourcePolicyError {
     }
 }
 impl fmt::Display for PutResourcePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutResourcePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutResourcePolicyError::InternalServiceError(ref cause) => cause,
-            PutResourcePolicyError::InvalidParameter(ref cause) => cause,
-            PutResourcePolicyError::InvalidRequest(ref cause) => cause,
-            PutResourcePolicyError::MalformedPolicyDocument(ref cause) => cause,
-            PutResourcePolicyError::ResourceNotFound(ref cause) => cause,
+            PutResourcePolicyError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::MalformedPolicyDocument(ref cause) => write!(f, "{}", cause),
+            PutResourcePolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutResourcePolicyError {}
 /// Errors returned by PutSecretValue
 #[derive(Debug, PartialEq)]
 pub enum PutSecretValueError {
@@ -1375,23 +1361,20 @@ impl PutSecretValueError {
     }
 }
 impl fmt::Display for PutSecretValueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutSecretValueError {
-    fn description(&self) -> &str {
         match *self {
-            PutSecretValueError::EncryptionFailure(ref cause) => cause,
-            PutSecretValueError::InternalServiceError(ref cause) => cause,
-            PutSecretValueError::InvalidParameter(ref cause) => cause,
-            PutSecretValueError::InvalidRequest(ref cause) => cause,
-            PutSecretValueError::LimitExceeded(ref cause) => cause,
-            PutSecretValueError::ResourceExists(ref cause) => cause,
-            PutSecretValueError::ResourceNotFound(ref cause) => cause,
+            PutSecretValueError::EncryptionFailure(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::ResourceExists(ref cause) => write!(f, "{}", cause),
+            PutSecretValueError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutSecretValueError {}
 /// Errors returned by RestoreSecret
 #[derive(Debug, PartialEq)]
 pub enum RestoreSecretError {
@@ -1429,20 +1412,17 @@ impl RestoreSecretError {
     }
 }
 impl fmt::Display for RestoreSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreSecretError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreSecretError::InternalServiceError(ref cause) => cause,
-            RestoreSecretError::InvalidParameter(ref cause) => cause,
-            RestoreSecretError::InvalidRequest(ref cause) => cause,
-            RestoreSecretError::ResourceNotFound(ref cause) => cause,
+            RestoreSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            RestoreSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RestoreSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            RestoreSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreSecretError {}
 /// Errors returned by RotateSecret
 #[derive(Debug, PartialEq)]
 pub enum RotateSecretError {
@@ -1480,20 +1460,17 @@ impl RotateSecretError {
     }
 }
 impl fmt::Display for RotateSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RotateSecretError {
-    fn description(&self) -> &str {
         match *self {
-            RotateSecretError::InternalServiceError(ref cause) => cause,
-            RotateSecretError::InvalidParameter(ref cause) => cause,
-            RotateSecretError::InvalidRequest(ref cause) => cause,
-            RotateSecretError::ResourceNotFound(ref cause) => cause,
+            RotateSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            RotateSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RotateSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            RotateSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RotateSecretError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1531,20 +1508,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalServiceError(ref cause) => cause,
-            TagResourceError::InvalidParameter(ref cause) => cause,
-            TagResourceError::InvalidRequest(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1582,20 +1556,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalServiceError(ref cause) => cause,
-            UntagResourceError::InvalidParameter(ref cause) => cause,
-            UntagResourceError::InvalidRequest(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateSecret
 #[derive(Debug, PartialEq)]
 pub enum UpdateSecretError {
@@ -1660,25 +1631,22 @@ impl UpdateSecretError {
     }
 }
 impl fmt::Display for UpdateSecretError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateSecretError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateSecretError::EncryptionFailure(ref cause) => cause,
-            UpdateSecretError::InternalServiceError(ref cause) => cause,
-            UpdateSecretError::InvalidParameter(ref cause) => cause,
-            UpdateSecretError::InvalidRequest(ref cause) => cause,
-            UpdateSecretError::LimitExceeded(ref cause) => cause,
-            UpdateSecretError::MalformedPolicyDocument(ref cause) => cause,
-            UpdateSecretError::PreconditionNotMet(ref cause) => cause,
-            UpdateSecretError::ResourceExists(ref cause) => cause,
-            UpdateSecretError::ResourceNotFound(ref cause) => cause,
+            UpdateSecretError::EncryptionFailure(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::MalformedPolicyDocument(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::PreconditionNotMet(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::ResourceExists(ref cause) => write!(f, "{}", cause),
+            UpdateSecretError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateSecretError {}
 /// Errors returned by UpdateSecretVersionStage
 #[derive(Debug, PartialEq)]
 pub enum UpdateSecretVersionStageError {
@@ -1731,21 +1699,20 @@ impl UpdateSecretVersionStageError {
     }
 }
 impl fmt::Display for UpdateSecretVersionStageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateSecretVersionStageError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateSecretVersionStageError::InternalServiceError(ref cause) => cause,
-            UpdateSecretVersionStageError::InvalidParameter(ref cause) => cause,
-            UpdateSecretVersionStageError::InvalidRequest(ref cause) => cause,
-            UpdateSecretVersionStageError::LimitExceeded(ref cause) => cause,
-            UpdateSecretVersionStageError::ResourceNotFound(ref cause) => cause,
+            UpdateSecretVersionStageError::InternalServiceError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateSecretVersionStageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateSecretVersionStageError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateSecretVersionStageError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateSecretVersionStageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateSecretVersionStageError {}
 /// Trait representing the capabilities of the AWS Secrets Manager API. AWS Secrets Manager clients implement this trait.
 #[async_trait]
 pub trait SecretsManager {

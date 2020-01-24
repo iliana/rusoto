@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptHandshakeRequest {
     /// <p>The unique identifier (ID) of the handshake that you want to accept.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.</p>
     #[serde(rename = "HandshakeId")]
@@ -32,7 +34,7 @@ pub struct AcceptHandshakeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptHandshakeResponse {
     /// <p>A structure that contains details about the accepted handshake.</p>
     #[serde(rename = "Handshake")]
@@ -42,7 +44,7 @@ pub struct AcceptHandshakeResponse {
 
 /// <p>Contains information about an AWS account that is a member of an organization.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Account {
     /// <p>The Amazon Resource Name (ARN) of the account.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -75,6 +77,7 @@ pub struct Account {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AttachPolicyRequest {
     /// <p>The unique identifier (ID) of the policy that you want to attach to the target. You can get the ID for the policy by calling the <a>ListPolicies</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a policy ID string requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).</p>
     #[serde(rename = "PolicyId")]
@@ -85,6 +88,7 @@ pub struct AttachPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelHandshakeRequest {
     /// <p>The unique identifier (ID) of the handshake that you want to cancel. You can get the ID from the <a>ListHandshakesForOrganization</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.</p>
     #[serde(rename = "HandshakeId")]
@@ -92,7 +96,7 @@ pub struct CancelHandshakeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelHandshakeResponse {
     /// <p>A structure that contains details about the handshake that you canceled.</p>
     #[serde(rename = "Handshake")]
@@ -102,7 +106,7 @@ pub struct CancelHandshakeResponse {
 
 /// <p>Contains a list of child entities, either OUs or accounts.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Child {
     /// <p><p>The unique identifier (ID) of this child entity.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a child ID string requires one of the following:</p> <ul> <li> <p>Account: A string that consists of exactly 12 digits.</p> </li> <li> <p>Organizational unit (OU): A string that begins with &quot;ou-&quot; followed by from 4 to 32 lower-case letters or digits (the ID of the root that contains the OU). This string is followed by a second &quot;-&quot; dash and from 8 to 32 additional lower-case letters or digits.</p> </li> </ul></p>
     #[serde(rename = "Id")]
@@ -115,6 +119,7 @@ pub struct Child {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAccountRequest {
     /// <p>The friendly name of the member account.</p>
     #[serde(rename = "AccountName")]
@@ -133,7 +138,7 @@ pub struct CreateAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAccountResponse {
     /// <p>A structure that contains details about the request to create an account. This response structure might not be fully populated when you first receive it because account creation is an asynchronous process. You can pass the returned <code>CreateAccountStatus</code> ID as a parameter to <a>DescribeCreateAccountStatus</a> to get status about the progress of the request at later times. You can also check the AWS CloudTrail log for the <code>CreateAccountResult</code> event. For more information, see <a href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_monitoring.html">Monitoring the Activity in Your Organization</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "CreateAccountStatus")]
@@ -143,7 +148,7 @@ pub struct CreateAccountResponse {
 
 /// <p>Contains the status about a <a>CreateAccount</a> or <a>CreateGovCloudAccount</a> request to create an AWS account or an AWS GovCloud (US) account in an organization.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAccountStatus {
     /// <p>If the account was created successfully, the unique identifier (ID) of the new account.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an account ID string requires exactly 12 digits.</p>
     #[serde(rename = "AccountId")]
@@ -180,6 +185,7 @@ pub struct CreateAccountStatus {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGovCloudAccountRequest {
     /// <p>The friendly name of the member account.</p>
     #[serde(rename = "AccountName")]
@@ -198,7 +204,7 @@ pub struct CreateGovCloudAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGovCloudAccountResponse {
     #[serde(rename = "CreateAccountStatus")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -206,6 +212,7 @@ pub struct CreateGovCloudAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateOrganizationRequest {
     /// <p><p>Specifies the feature set supported by the new organization. Each feature set supports different levels of functionality.</p> <ul> <li> <p> <code>CONSOLIDATED<em>BILLING</code>: All member accounts have their bills consolidated to and paid by the master account. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/organizations/latest/userguide/orgs</em>getting-started<em>concepts.html#feature-set-cb-only&quot;&gt;Consolidated billing</a> in the <i>AWS Organizations User Guide.</i> </p> <p> The consolidated billing feature subset isn&#39;t available for organizations in the AWS GovCloud (US) Region.</p> </li> <li> <p> <code>ALL</code>: In addition to all the features that consolidated billing feature set supports, the master account can also apply any policy type to any member account in the organization. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/organizations/latest/userguide/orgs</em>getting-started_concepts.html#feature-set-all&quot;&gt;All features</a> in the <i>AWS Organizations User Guide.</i> </p> </li> </ul></p>
     #[serde(rename = "FeatureSet")]
@@ -214,7 +221,7 @@ pub struct CreateOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateOrganizationResponse {
     /// <p>A structure that contains details about the newly created organization.</p>
     #[serde(rename = "Organization")]
@@ -223,6 +230,7 @@ pub struct CreateOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateOrganizationalUnitRequest {
     /// <p>The friendly name to assign to the new OU.</p>
     #[serde(rename = "Name")]
@@ -233,7 +241,7 @@ pub struct CreateOrganizationalUnitRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateOrganizationalUnitResponse {
     /// <p>A structure that contains details about the newly created OU.</p>
     #[serde(rename = "OrganizationalUnit")]
@@ -242,6 +250,7 @@ pub struct CreateOrganizationalUnitResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePolicyRequest {
     /// <p>The policy content to add to the new policy. For example, you could create a <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html">service control policy</a> (SCP) that specifies the permissions that administrators in attached accounts can delegate to their users, groups, and roles. The string for this SCP must be JSON text. For more information about the SCP syntax, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html">Service Control Policy Syntax</a> in the <i>AWS Organizations User Guide.</i> </p>
     #[serde(rename = "Content")]
@@ -258,7 +267,7 @@ pub struct CreatePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePolicyResponse {
     /// <p>A structure that contains details about the newly created policy.</p>
     #[serde(rename = "Policy")]
@@ -267,6 +276,7 @@ pub struct CreatePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeclineHandshakeRequest {
     /// <p>The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the <a>ListHandshakesForAccount</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.</p>
     #[serde(rename = "HandshakeId")]
@@ -274,7 +284,7 @@ pub struct DeclineHandshakeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeclineHandshakeResponse {
     /// <p>A structure that contains details about the declined handshake. The state is updated to show the value <code>DECLINED</code>.</p>
     #[serde(rename = "Handshake")]
@@ -283,6 +293,7 @@ pub struct DeclineHandshakeResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteOrganizationalUnitRequest {
     /// <p>The unique identifier (ID) of the organizational unit that you want to delete. You can get the ID from the <a>ListOrganizationalUnitsForParent</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an organizational unit ID string requires "ou-" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second "-" dash and from 8 to 32 additional lowercase letters or digits.</p>
     #[serde(rename = "OrganizationalUnitId")]
@@ -290,6 +301,7 @@ pub struct DeleteOrganizationalUnitRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePolicyRequest {
     /// <p>The unique identifier (ID) of the policy that you want to delete. You can get the ID from the <a>ListPolicies</a> or <a>ListPoliciesForTarget</a> operations.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a policy ID string requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).</p>
     #[serde(rename = "PolicyId")]
@@ -297,6 +309,7 @@ pub struct DeletePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAccountRequest {
     /// <p>The unique identifier (ID) of the AWS account that you want information about. You can get the ID from the <a>ListAccounts</a> or <a>ListAccountsForParent</a> operations.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an account ID string requires exactly 12 digits.</p>
     #[serde(rename = "AccountId")]
@@ -304,7 +317,7 @@ pub struct DescribeAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAccountResponse {
     /// <p>A structure that contains information about the requested account.</p>
     #[serde(rename = "Account")]
@@ -313,6 +326,7 @@ pub struct DescribeAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCreateAccountStatusRequest {
     /// <p>Specifies the <code>operationId</code> that uniquely identifies the request. You can get the ID from the response to an earlier <a>CreateAccount</a> request, or from the <a>ListCreateAccountStatus</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a create account request ID string requires "car-" followed by from 8 to 32 lowercase letters or digits.</p>
     #[serde(rename = "CreateAccountRequestId")]
@@ -320,7 +334,7 @@ pub struct DescribeCreateAccountStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCreateAccountStatusResponse {
     /// <p>A structure that contains the current status of an account creation request.</p>
     #[serde(rename = "CreateAccountStatus")]
@@ -329,6 +343,7 @@ pub struct DescribeCreateAccountStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEffectivePolicyRequest {
     /// <p>The type of policy that you want information about.</p>
     #[serde(rename = "PolicyType")]
@@ -340,7 +355,7 @@ pub struct DescribeEffectivePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEffectivePolicyResponse {
     /// <p>The contents of the effective policy.</p>
     #[serde(rename = "EffectivePolicy")]
@@ -349,6 +364,7 @@ pub struct DescribeEffectivePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeHandshakeRequest {
     /// <p>The unique identifier (ID) of the handshake that you want information about. You can get the ID from the original call to <a>InviteAccountToOrganization</a>, or from a call to <a>ListHandshakesForAccount</a> or <a>ListHandshakesForOrganization</a>.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for handshake ID string requires "h-" followed by from 8 to 32 lowercase letters or digits.</p>
     #[serde(rename = "HandshakeId")]
@@ -356,7 +372,7 @@ pub struct DescribeHandshakeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHandshakeResponse {
     /// <p>A structure that contains information about the specified handshake.</p>
     #[serde(rename = "Handshake")]
@@ -365,7 +381,7 @@ pub struct DescribeHandshakeResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeOrganizationResponse {
     /// <p>A structure that contains information about the organization.</p>
     #[serde(rename = "Organization")]
@@ -374,6 +390,7 @@ pub struct DescribeOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeOrganizationalUnitRequest {
     /// <p>The unique identifier (ID) of the organizational unit that you want details about. You can get the ID from the <a>ListOrganizationalUnitsForParent</a> operation.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an organizational unit ID string requires "ou-" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second "-" dash and from 8 to 32 additional lowercase letters or digits.</p>
     #[serde(rename = "OrganizationalUnitId")]
@@ -381,7 +398,7 @@ pub struct DescribeOrganizationalUnitRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeOrganizationalUnitResponse {
     /// <p>A structure that contains details about the specified OU.</p>
     #[serde(rename = "OrganizationalUnit")]
@@ -390,6 +407,7 @@ pub struct DescribeOrganizationalUnitResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePolicyRequest {
     /// <p>The unique identifier (ID) of the policy that you want details about. You can get the ID from the <a>ListPolicies</a> or <a>ListPoliciesForTarget</a> operations.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a policy ID string requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).</p>
     #[serde(rename = "PolicyId")]
@@ -397,7 +415,7 @@ pub struct DescribePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePolicyResponse {
     /// <p>A structure that contains details about the specified policy.</p>
     #[serde(rename = "Policy")]
@@ -406,6 +424,7 @@ pub struct DescribePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetachPolicyRequest {
     /// <p>The unique identifier (ID) of the policy you want to detach. You can get the ID from the <a>ListPolicies</a> or <a>ListPoliciesForTarget</a> operations.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a policy ID string requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).</p>
     #[serde(rename = "PolicyId")]
@@ -416,6 +435,7 @@ pub struct DetachPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableAWSServiceAccessRequest {
     /// <p>The service principal name of the AWS service for which you want to disable integration with your organization. This is typically in the form of a URL, such as <code> <i>service-abbreviation</i>.amazonaws.com</code>.</p>
     #[serde(rename = "ServicePrincipal")]
@@ -423,6 +443,7 @@ pub struct DisableAWSServiceAccessRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisablePolicyTypeRequest {
     /// <p>The policy type that you want to disable in this root.</p>
     #[serde(rename = "PolicyType")]
@@ -433,7 +454,7 @@ pub struct DisablePolicyTypeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisablePolicyTypeResponse {
     /// <p>A structure that shows the root with the updated list of enabled policy types.</p>
     #[serde(rename = "Root")]
@@ -443,7 +464,7 @@ pub struct DisablePolicyTypeResponse {
 
 /// <p>Contains rules to be applied to the affected accounts. The effective policy is the aggregation of any policies the account inherits, plus any policy directly attached to the account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EffectivePolicy {
     /// <p>The time of the last update to this policy.</p>
     #[serde(rename = "LastUpdatedTimestamp")]
@@ -464,6 +485,7 @@ pub struct EffectivePolicy {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableAWSServiceAccessRequest {
     /// <p>The service principal name of the AWS service for which you want to enable integration with your organization. This is typically in the form of a URL, such as <code> <i>service-abbreviation</i>.amazonaws.com</code>.</p>
     #[serde(rename = "ServicePrincipal")]
@@ -471,10 +493,11 @@ pub struct EnableAWSServiceAccessRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableAllFeaturesRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableAllFeaturesResponse {
     /// <p>A structure that contains details about the handshake created to support this request to enable all features in the organization.</p>
     #[serde(rename = "Handshake")]
@@ -483,6 +506,7 @@ pub struct EnableAllFeaturesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnablePolicyTypeRequest {
     /// <p>The policy type that you want to enable.</p>
     #[serde(rename = "PolicyType")]
@@ -493,7 +517,7 @@ pub struct EnablePolicyTypeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnablePolicyTypeResponse {
     /// <p>A structure that shows the root with the updated list of enabled policy types.</p>
     #[serde(rename = "Root")]
@@ -503,7 +527,7 @@ pub struct EnablePolicyTypeResponse {
 
 /// <p>A structure that contains details of a service principal that is enabled to integrate with AWS Organizations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnabledServicePrincipal {
     /// <p>The date that the service principal was enabled for integration with AWS Organizations.</p>
     #[serde(rename = "DateEnabled")]
@@ -517,7 +541,7 @@ pub struct EnabledServicePrincipal {
 
 /// <p>Contains information that must be exchanged to securely establish a relationship between two accounts (an <i>originator</i> and a <i>recipient</i>). For example, assume that a master account (the originator) invites another account (the recipient) to join its organization. In that case, the two accounts exchange information as a series of handshake requests and responses.</p> <p> <b>Note:</b> Handshakes that are CANCELED, ACCEPTED, or DECLINED show up in lists for only 30 days after entering that state. After that, they are deleted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Handshake {
     /// <p><p>The type of handshake, indicating what action occurs when the recipient accepts the handshake. The following handshake types are supported:</p> <ul> <li> <p> <b>INVITE</b>: This type of handshake represents a request to join an organization. It is always sent from the master account to only non-member accounts.</p> </li> <li> <p> <b>ENABLE<em>ALL</em>FEATURES</b>: This type of handshake represents a request to enable all features in an organization. It is always sent from the master account to only <i>invited</i> member accounts. Created accounts do not receive this because those accounts were created by the organization&#39;s master account and approval is inferred.</p> </li> <li> <p> <b>APPROVE<em>ALL</em>FEATURES</b>: This type of handshake is sent from the Organizations service when all member accounts have approved the <code>ENABLE<em>ALL</em>FEATURES</code> invitation. It is sent only to the master account and signals the master that it can finalize the process to enable all features.</p> </li> </ul></p>
     #[serde(rename = "Action")]
@@ -555,6 +579,7 @@ pub struct Handshake {
 
 /// <p>Specifies the criteria that are used to select the handshakes for the operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HandshakeFilter {
     /// <p>Specifies the type of handshake action.</p> <p>If you specify <code>ActionType</code>, you cannot also specify <code>ParentHandshakeId</code>.</p>
     #[serde(rename = "ActionType")]
@@ -579,7 +604,7 @@ pub struct HandshakeParty {
 
 /// <p>Contains additional data that is needed to process a handshake.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HandshakeResource {
     /// <p>When needed, contains an additional array of <code>HandshakeResource</code> objects.</p>
     #[serde(rename = "Resources")]
@@ -596,6 +621,7 @@ pub struct HandshakeResource {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InviteAccountToOrganizationRequest {
     /// <p>Additional information that you want to include in the generated email to the recipient account owner.</p>
     #[serde(rename = "Notes")]
@@ -607,7 +633,7 @@ pub struct InviteAccountToOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InviteAccountToOrganizationResponse {
     /// <p>A structure that contains details about the handshake that is created to support this invitation request.</p>
     #[serde(rename = "Handshake")]
@@ -616,6 +642,7 @@ pub struct InviteAccountToOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAWSServiceAccessForOrganizationRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -628,7 +655,7 @@ pub struct ListAWSServiceAccessForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAWSServiceAccessForOrganizationResponse {
     /// <p>A list of the service principals for the services that are enabled to integrate with your organization. Each principal is a structure that includes the name and the date that it was enabled for integration with AWS Organizations.</p>
     #[serde(rename = "EnabledServicePrincipals")]
@@ -641,6 +668,7 @@ pub struct ListAWSServiceAccessForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAccountsForParentRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -656,7 +684,7 @@ pub struct ListAccountsForParentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAccountsForParentResponse {
     /// <p>A list of the accounts in the specified root or OU.</p>
     #[serde(rename = "Accounts")]
@@ -669,6 +697,7 @@ pub struct ListAccountsForParentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAccountsRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -681,7 +710,7 @@ pub struct ListAccountsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAccountsResponse {
     /// <p>A list of objects in the organization.</p>
     #[serde(rename = "Accounts")]
@@ -694,6 +723,7 @@ pub struct ListAccountsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListChildrenRequest {
     /// <p>Filters the output to include only the specified child type.</p>
     #[serde(rename = "ChildType")]
@@ -712,7 +742,7 @@ pub struct ListChildrenRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListChildrenResponse {
     /// <p>The list of children of the specified parent container.</p>
     #[serde(rename = "Children")]
@@ -725,6 +755,7 @@ pub struct ListChildrenResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCreateAccountStatusRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -741,7 +772,7 @@ pub struct ListCreateAccountStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCreateAccountStatusResponse {
     /// <p>A list of objects with details about the requests. Certain elements, such as the accountId number, are present in the output only after the account has been successfully created.</p>
     #[serde(rename = "CreateAccountStatuses")]
@@ -754,6 +785,7 @@ pub struct ListCreateAccountStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListHandshakesForAccountRequest {
     /// <p>Filters the handshakes that you want included in the response. The default is all types. Use the <code>ActionType</code> element to limit the output to only a specified type, such as <code>INVITE</code>, <code>ENABLE_ALL_FEATURES</code>, or <code>APPROVE_ALL_FEATURES</code>. Alternatively, you can specify the <code>ENABLE_ALL_FEATURES</code> handshake, which generates a separate child handshake for each member account. When you do specify <code>ParentHandshakeId</code> to see only the handshakes that were generated by that parent request.</p>
     #[serde(rename = "Filter")]
@@ -770,7 +802,7 @@ pub struct ListHandshakesForAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListHandshakesForAccountResponse {
     /// <p>A list of <a>Handshake</a> objects with details about each of the handshakes that is associated with the specified account.</p>
     #[serde(rename = "Handshakes")]
@@ -783,6 +815,7 @@ pub struct ListHandshakesForAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListHandshakesForOrganizationRequest {
     /// <p>A filter of the handshakes that you want included in the response. The default is all types. Use the <code>ActionType</code> element to limit the output to only a specified type, such as <code>INVITE</code>, <code>ENABLE-ALL-FEATURES</code>, or <code>APPROVE-ALL-FEATURES</code>. Alternatively, you can specify the <code>ENABLE-ALL-FEATURES</code> handshake, which generates a separate child handshake for each member account. When you do, specify the <code>ParentHandshakeId</code> to see only the handshakes that were generated by that parent request.</p>
     #[serde(rename = "Filter")]
@@ -799,7 +832,7 @@ pub struct ListHandshakesForOrganizationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListHandshakesForOrganizationResponse {
     /// <p>A list of <a>Handshake</a> objects with details about each of the handshakes that are associated with an organization.</p>
     #[serde(rename = "Handshakes")]
@@ -812,6 +845,7 @@ pub struct ListHandshakesForOrganizationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOrganizationalUnitsForParentRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -827,7 +861,7 @@ pub struct ListOrganizationalUnitsForParentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOrganizationalUnitsForParentResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -840,6 +874,7 @@ pub struct ListOrganizationalUnitsForParentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListParentsRequest {
     /// <p><p>The unique identifier (ID) of the OU or account whose parent containers you want to list. Don&#39;t specify a root.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a child ID string requires one of the following:</p> <ul> <li> <p> <b>Account</b> - A string that consists of exactly 12 digits.</p> </li> <li> <p> <b>Organizational unit (OU)</b> - A string that begins with &quot;ou-&quot; followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second &quot;-&quot; dash and from 8 to 32 additional lowercase letters or digits.</p> </li> </ul></p>
     #[serde(rename = "ChildId")]
@@ -855,7 +890,7 @@ pub struct ListParentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListParentsResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -868,6 +903,7 @@ pub struct ListParentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPoliciesForTargetRequest {
     /// <p>The type of policy that you want to include in the returned list.</p>
     #[serde(rename = "Filter")]
@@ -886,7 +922,7 @@ pub struct ListPoliciesForTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPoliciesForTargetResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -899,6 +935,7 @@ pub struct ListPoliciesForTargetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPoliciesRequest {
     /// <p>Specifies the type of policy that you want to include in the response.</p>
     #[serde(rename = "Filter")]
@@ -914,7 +951,7 @@ pub struct ListPoliciesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPoliciesResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -927,6 +964,7 @@ pub struct ListPoliciesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRootsRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -939,7 +977,7 @@ pub struct ListRootsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRootsResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -952,6 +990,7 @@ pub struct ListRootsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>Use this parameter if you receive a <code>NextToken</code> response in a previous request that indicates that there is more output available. Set it to the value of the previous call's <code>NextToken</code> response to indicate where the output should continue from.</p>
     #[serde(rename = "NextToken")]
@@ -963,7 +1002,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -976,6 +1015,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTargetsForPolicyRequest {
     /// <p>(Optional) Use this to limit the number of results you want included per page in the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code> response element is present and has a value (is not null). Include that value as the <code>NextToken</code> request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
     #[serde(rename = "MaxResults")]
@@ -991,7 +1031,7 @@ pub struct ListTargetsForPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTargetsForPolicyResponse {
     /// <p>If present, this value indicates that there is more output available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>.</p>
     #[serde(rename = "NextToken")]
@@ -1004,6 +1044,7 @@ pub struct ListTargetsForPolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MoveAccountRequest {
     /// <p>The unique identifier (ID) of the account that you want to move.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an account ID string requires exactly 12 digits.</p>
     #[serde(rename = "AccountId")]
@@ -1018,7 +1059,7 @@ pub struct MoveAccountRequest {
 
 /// <p>Contains details about an organization. An organization is a collection of accounts that are centrally managed together using consolidated billing, organized hierarchically with organizational units (OUs), and controlled with policies.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Organization {
     /// <p>The Amazon Resource Name (ARN) of an organization.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -1052,7 +1093,7 @@ pub struct Organization {
 
 /// <p>Contains details about an organizational unit (OU). An OU is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationalUnit {
     /// <p>The Amazon Resource Name (ARN) of this OU.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -1070,7 +1111,7 @@ pub struct OrganizationalUnit {
 
 /// <p>Contains information about either a root or an organizational unit (OU) that can contain OUs or accounts in an organization.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Parent {
     /// <p><p>The unique identifier (ID) of the parent entity.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for a parent ID string requires one of the following:</p> <ul> <li> <p>Root: A string that begins with &quot;r-&quot; followed by from 4 to 32 lower-case letters or digits.</p> </li> <li> <p>Organizational unit (OU): A string that begins with &quot;ou-&quot; followed by from 4 to 32 lower-case letters or digits (the ID of the root that the OU is in). This string is followed by a second &quot;-&quot; dash and from 8 to 32 additional lower-case letters or digits.</p> </li> </ul></p>
     #[serde(rename = "Id")]
@@ -1084,7 +1125,7 @@ pub struct Parent {
 
 /// <p>Contains rules to be applied to the affected accounts. Policies can be attached directly to accounts, or to roots and OUs to affect all accounts in those hierarchies.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Policy {
     /// <p>The text content of the policy.</p>
     #[serde(rename = "Content")]
@@ -1098,7 +1139,7 @@ pub struct Policy {
 
 /// <p>Contains information about a policy, but does not include the content. To see the content of a policy, see <a>DescribePolicy</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicySummary {
     /// <p>The Amazon Resource Name (ARN) of the policy.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -1128,7 +1169,7 @@ pub struct PolicySummary {
 
 /// <p>Contains information about a root, OU, or account that a policy is attached to.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicyTargetSummary {
     /// <p>The Amazon Resource Name (ARN) of the policy target.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -1150,7 +1191,7 @@ pub struct PolicyTargetSummary {
 
 /// <p>Contains information about a policy type and its status in the associated root.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PolicyTypeSummary {
     /// <p>The status of the policy type as it relates to the associated root. You can attach a policy of the specified type to a root or to an OU or account in that root. To do so, the policy must be available in the organization and enabled for that root.</p>
     #[serde(rename = "Status")]
@@ -1163,6 +1204,7 @@ pub struct PolicyTypeSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveAccountFromOrganizationRequest {
     /// <p>The unique identifier (ID) of the member account that you want to remove from the organization.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> for an account ID string requires exactly 12 digits.</p>
     #[serde(rename = "AccountId")]
@@ -1171,7 +1213,7 @@ pub struct RemoveAccountFromOrganizationRequest {
 
 /// <p>Contains details about a root. A root is a top-level parent node in the hierarchy of an organization that can contain organizational units (OUs) and accounts. Every root contains every AWS account in the organization. Each root enables the accounts to be organized in a different way and to have different policy types enabled for use in that root.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Root {
     /// <p>The Amazon Resource Name (ARN) of the root.</p> <p>For more information about ARNs in Organizations, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN Formats Supported by Organizations</a> in the <i>AWS Organizations User Guide</i>.</p>
     #[serde(rename = "Arn")]
@@ -1203,6 +1245,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ID of the resource to add a tag to.</p>
     #[serde(rename = "ResourceId")]
@@ -1213,6 +1256,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ID of the resource to remove the tag from.</p>
     #[serde(rename = "ResourceId")]
@@ -1223,6 +1267,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateOrganizationalUnitRequest {
     /// <p>The new name that you want to assign to the OU.</p> <p>The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> that is used to validate this parameter is a string of any of the characters in the ASCII character range.</p>
     #[serde(rename = "Name")]
@@ -1234,7 +1279,7 @@ pub struct UpdateOrganizationalUnitRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateOrganizationalUnitResponse {
     /// <p>A structure that contains the details about the specified OU, including its new name.</p>
     #[serde(rename = "OrganizationalUnit")]
@@ -1243,6 +1288,7 @@ pub struct UpdateOrganizationalUnitResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePolicyRequest {
     /// <p>If provided, the new content for the policy. The text must be correctly formatted JSON that complies with the syntax for the policy's type. For more information, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html">Service Control Policy Syntax</a> in the <i>AWS Organizations User Guide.</i> </p>
     #[serde(rename = "Content")]
@@ -1262,7 +1308,7 @@ pub struct UpdatePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePolicyResponse {
     /// <p>A structure that contains details about the updated policy, showing the requested changes.</p>
     #[serde(rename = "Policy")]
@@ -1354,27 +1400,24 @@ impl AcceptHandshakeError {
     }
 }
 impl fmt::Display for AcceptHandshakeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptHandshakeError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptHandshakeError::AWSOrganizationsNotInUse(ref cause) => cause,
-            AcceptHandshakeError::AccessDenied(ref cause) => cause,
-            AcceptHandshakeError::AccessDeniedForDependency(ref cause) => cause,
-            AcceptHandshakeError::ConcurrentModification(ref cause) => cause,
-            AcceptHandshakeError::HandshakeAlreadyInState(ref cause) => cause,
-            AcceptHandshakeError::HandshakeConstraintViolation(ref cause) => cause,
-            AcceptHandshakeError::HandshakeNotFound(ref cause) => cause,
-            AcceptHandshakeError::InvalidHandshakeTransition(ref cause) => cause,
-            AcceptHandshakeError::InvalidInput(ref cause) => cause,
-            AcceptHandshakeError::Service(ref cause) => cause,
-            AcceptHandshakeError::TooManyRequests(ref cause) => cause,
+            AcceptHandshakeError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::AccessDeniedForDependency(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::HandshakeAlreadyInState(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::HandshakeConstraintViolation(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::HandshakeNotFound(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::InvalidHandshakeTransition(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::Service(ref cause) => write!(f, "{}", cause),
+            AcceptHandshakeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptHandshakeError {}
 /// Errors returned by AttachPolicy
 #[derive(Debug, PartialEq)]
 pub enum AttachPolicyError {
@@ -1463,29 +1506,26 @@ impl AttachPolicyError {
     }
 }
 impl fmt::Display for AttachPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AttachPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            AttachPolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            AttachPolicyError::AccessDenied(ref cause) => cause,
-            AttachPolicyError::ConcurrentModification(ref cause) => cause,
-            AttachPolicyError::ConstraintViolation(ref cause) => cause,
-            AttachPolicyError::DuplicatePolicyAttachment(ref cause) => cause,
-            AttachPolicyError::InvalidInput(ref cause) => cause,
-            AttachPolicyError::PolicyChangesInProgress(ref cause) => cause,
-            AttachPolicyError::PolicyNotFound(ref cause) => cause,
-            AttachPolicyError::PolicyTypeNotEnabled(ref cause) => cause,
-            AttachPolicyError::Service(ref cause) => cause,
-            AttachPolicyError::TargetNotFound(ref cause) => cause,
-            AttachPolicyError::TooManyRequests(ref cause) => cause,
-            AttachPolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            AttachPolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::DuplicatePolicyAttachment(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::PolicyChangesInProgress(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::PolicyTypeNotEnabled(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::Service(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            AttachPolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AttachPolicyError {}
 /// Errors returned by CancelHandshake
 #[derive(Debug, PartialEq)]
 pub enum CancelHandshakeError {
@@ -1549,24 +1589,21 @@ impl CancelHandshakeError {
     }
 }
 impl fmt::Display for CancelHandshakeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelHandshakeError {
-    fn description(&self) -> &str {
         match *self {
-            CancelHandshakeError::AccessDenied(ref cause) => cause,
-            CancelHandshakeError::ConcurrentModification(ref cause) => cause,
-            CancelHandshakeError::HandshakeAlreadyInState(ref cause) => cause,
-            CancelHandshakeError::HandshakeNotFound(ref cause) => cause,
-            CancelHandshakeError::InvalidHandshakeTransition(ref cause) => cause,
-            CancelHandshakeError::InvalidInput(ref cause) => cause,
-            CancelHandshakeError::Service(ref cause) => cause,
-            CancelHandshakeError::TooManyRequests(ref cause) => cause,
+            CancelHandshakeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::HandshakeAlreadyInState(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::HandshakeNotFound(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::InvalidHandshakeTransition(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::Service(ref cause) => write!(f, "{}", cause),
+            CancelHandshakeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelHandshakeError {}
 /// Errors returned by CreateAccount
 #[derive(Debug, PartialEq)]
 pub enum CreateAccountError {
@@ -1637,25 +1674,22 @@ impl CreateAccountError {
     }
 }
 impl fmt::Display for CreateAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAccountError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAccountError::AWSOrganizationsNotInUse(ref cause) => cause,
-            CreateAccountError::AccessDenied(ref cause) => cause,
-            CreateAccountError::ConcurrentModification(ref cause) => cause,
-            CreateAccountError::ConstraintViolation(ref cause) => cause,
-            CreateAccountError::FinalizingOrganization(ref cause) => cause,
-            CreateAccountError::InvalidInput(ref cause) => cause,
-            CreateAccountError::Service(ref cause) => cause,
-            CreateAccountError::TooManyRequests(ref cause) => cause,
-            CreateAccountError::UnsupportedAPIEndpoint(ref cause) => cause,
+            CreateAccountError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::FinalizingOrganization(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::Service(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateAccountError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAccountError {}
 /// Errors returned by CreateGovCloudAccount
 #[derive(Debug, PartialEq)]
 pub enum CreateGovCloudAccountError {
@@ -1730,25 +1764,24 @@ impl CreateGovCloudAccountError {
     }
 }
 impl fmt::Display for CreateGovCloudAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGovCloudAccountError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGovCloudAccountError::AWSOrganizationsNotInUse(ref cause) => cause,
-            CreateGovCloudAccountError::AccessDenied(ref cause) => cause,
-            CreateGovCloudAccountError::ConcurrentModification(ref cause) => cause,
-            CreateGovCloudAccountError::ConstraintViolation(ref cause) => cause,
-            CreateGovCloudAccountError::FinalizingOrganization(ref cause) => cause,
-            CreateGovCloudAccountError::InvalidInput(ref cause) => cause,
-            CreateGovCloudAccountError::Service(ref cause) => cause,
-            CreateGovCloudAccountError::TooManyRequests(ref cause) => cause,
-            CreateGovCloudAccountError::UnsupportedAPIEndpoint(ref cause) => cause,
+            CreateGovCloudAccountError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateGovCloudAccountError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::FinalizingOrganization(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::Service(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateGovCloudAccountError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGovCloudAccountError {}
 /// Errors returned by CreateOrganization
 #[derive(Debug, PartialEq)]
 pub enum CreateOrganizationError {
@@ -1814,24 +1847,21 @@ impl CreateOrganizationError {
     }
 }
 impl fmt::Display for CreateOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateOrganizationError::AccessDenied(ref cause) => cause,
-            CreateOrganizationError::AccessDeniedForDependency(ref cause) => cause,
-            CreateOrganizationError::AlreadyInOrganization(ref cause) => cause,
-            CreateOrganizationError::ConcurrentModification(ref cause) => cause,
-            CreateOrganizationError::ConstraintViolation(ref cause) => cause,
-            CreateOrganizationError::InvalidInput(ref cause) => cause,
-            CreateOrganizationError::Service(ref cause) => cause,
-            CreateOrganizationError::TooManyRequests(ref cause) => cause,
+            CreateOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::AccessDeniedForDependency(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::AlreadyInOrganization(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateOrganizationError {}
 /// Errors returned by CreateOrganizationalUnit
 #[derive(Debug, PartialEq)]
 pub enum CreateOrganizationalUnitError {
@@ -1910,25 +1940,28 @@ impl CreateOrganizationalUnitError {
     }
 }
 impl fmt::Display for CreateOrganizationalUnitError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateOrganizationalUnitError {
-    fn description(&self) -> &str {
         match *self {
-            CreateOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => cause,
-            CreateOrganizationalUnitError::AccessDenied(ref cause) => cause,
-            CreateOrganizationalUnitError::ConcurrentModification(ref cause) => cause,
-            CreateOrganizationalUnitError::ConstraintViolation(ref cause) => cause,
-            CreateOrganizationalUnitError::DuplicateOrganizationalUnit(ref cause) => cause,
-            CreateOrganizationalUnitError::InvalidInput(ref cause) => cause,
-            CreateOrganizationalUnitError::ParentNotFound(ref cause) => cause,
-            CreateOrganizationalUnitError::Service(ref cause) => cause,
-            CreateOrganizationalUnitError::TooManyRequests(ref cause) => cause,
+            CreateOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateOrganizationalUnitError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationalUnitError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateOrganizationalUnitError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationalUnitError::DuplicateOrganizationalUnit(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateOrganizationalUnitError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationalUnitError::ParentNotFound(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationalUnitError::Service(ref cause) => write!(f, "{}", cause),
+            CreateOrganizationalUnitError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateOrganizationalUnitError {}
 /// Errors returned by CreatePolicy
 #[derive(Debug, PartialEq)]
 pub enum CreatePolicyError {
@@ -2007,27 +2040,26 @@ impl CreatePolicyError {
     }
 }
 impl fmt::Display for CreatePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            CreatePolicyError::AccessDenied(ref cause) => cause,
-            CreatePolicyError::ConcurrentModification(ref cause) => cause,
-            CreatePolicyError::ConstraintViolation(ref cause) => cause,
-            CreatePolicyError::DuplicatePolicy(ref cause) => cause,
-            CreatePolicyError::InvalidInput(ref cause) => cause,
-            CreatePolicyError::MalformedPolicyDocument(ref cause) => cause,
-            CreatePolicyError::PolicyTypeNotAvailableForOrganization(ref cause) => cause,
-            CreatePolicyError::Service(ref cause) => cause,
-            CreatePolicyError::TooManyRequests(ref cause) => cause,
-            CreatePolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            CreatePolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::DuplicatePolicy(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::MalformedPolicyDocument(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::PolicyTypeNotAvailableForOrganization(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreatePolicyError::Service(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreatePolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePolicyError {}
 /// Errors returned by DeclineHandshake
 #[derive(Debug, PartialEq)]
 pub enum DeclineHandshakeError {
@@ -2091,24 +2123,21 @@ impl DeclineHandshakeError {
     }
 }
 impl fmt::Display for DeclineHandshakeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeclineHandshakeError {
-    fn description(&self) -> &str {
         match *self {
-            DeclineHandshakeError::AccessDenied(ref cause) => cause,
-            DeclineHandshakeError::ConcurrentModification(ref cause) => cause,
-            DeclineHandshakeError::HandshakeAlreadyInState(ref cause) => cause,
-            DeclineHandshakeError::HandshakeNotFound(ref cause) => cause,
-            DeclineHandshakeError::InvalidHandshakeTransition(ref cause) => cause,
-            DeclineHandshakeError::InvalidInput(ref cause) => cause,
-            DeclineHandshakeError::Service(ref cause) => cause,
-            DeclineHandshakeError::TooManyRequests(ref cause) => cause,
+            DeclineHandshakeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::HandshakeAlreadyInState(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::HandshakeNotFound(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::InvalidHandshakeTransition(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::Service(ref cause) => write!(f, "{}", cause),
+            DeclineHandshakeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeclineHandshakeError {}
 /// Errors returned by DeleteOrganization
 #[derive(Debug, PartialEq)]
 pub enum DeleteOrganizationError {
@@ -2167,23 +2196,20 @@ impl DeleteOrganizationError {
     }
 }
 impl fmt::Display for DeleteOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DeleteOrganizationError::AccessDenied(ref cause) => cause,
-            DeleteOrganizationError::ConcurrentModification(ref cause) => cause,
-            DeleteOrganizationError::InvalidInput(ref cause) => cause,
-            DeleteOrganizationError::OrganizationNotEmpty(ref cause) => cause,
-            DeleteOrganizationError::Service(ref cause) => cause,
-            DeleteOrganizationError::TooManyRequests(ref cause) => cause,
+            DeleteOrganizationError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::OrganizationNotEmpty(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteOrganizationError {}
 /// Errors returned by DeleteOrganizationalUnit
 #[derive(Debug, PartialEq)]
 pub enum DeleteOrganizationalUnitError {
@@ -2255,24 +2281,29 @@ impl DeleteOrganizationalUnitError {
     }
 }
 impl fmt::Display for DeleteOrganizationalUnitError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteOrganizationalUnitError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DeleteOrganizationalUnitError::AccessDenied(ref cause) => cause,
-            DeleteOrganizationalUnitError::ConcurrentModification(ref cause) => cause,
-            DeleteOrganizationalUnitError::InvalidInput(ref cause) => cause,
-            DeleteOrganizationalUnitError::OrganizationalUnitNotEmpty(ref cause) => cause,
-            DeleteOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => cause,
-            DeleteOrganizationalUnitError::Service(ref cause) => cause,
-            DeleteOrganizationalUnitError::TooManyRequests(ref cause) => cause,
+            DeleteOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteOrganizationalUnitError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationalUnitError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteOrganizationalUnitError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationalUnitError::OrganizationalUnitNotEmpty(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteOrganizationalUnitError::Service(ref cause) => write!(f, "{}", cause),
+            DeleteOrganizationalUnitError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteOrganizationalUnitError {}
 /// Errors returned by DeletePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeletePolicyError {
@@ -2337,25 +2368,22 @@ impl DeletePolicyError {
     }
 }
 impl fmt::Display for DeletePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DeletePolicyError::AccessDenied(ref cause) => cause,
-            DeletePolicyError::ConcurrentModification(ref cause) => cause,
-            DeletePolicyError::InvalidInput(ref cause) => cause,
-            DeletePolicyError::PolicyInUse(ref cause) => cause,
-            DeletePolicyError::PolicyNotFound(ref cause) => cause,
-            DeletePolicyError::Service(ref cause) => cause,
-            DeletePolicyError::TooManyRequests(ref cause) => cause,
-            DeletePolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DeletePolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::PolicyInUse(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::Service(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DeletePolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePolicyError {}
 /// Errors returned by DescribeAccount
 #[derive(Debug, PartialEq)]
 pub enum DescribeAccountError {
@@ -2405,22 +2433,19 @@ impl DescribeAccountError {
     }
 }
 impl fmt::Display for DescribeAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAccountError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAccountError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribeAccountError::AccessDenied(ref cause) => cause,
-            DescribeAccountError::AccountNotFound(ref cause) => cause,
-            DescribeAccountError::InvalidInput(ref cause) => cause,
-            DescribeAccountError::Service(ref cause) => cause,
-            DescribeAccountError::TooManyRequests(ref cause) => cause,
+            DescribeAccountError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DescribeAccountError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeAccountError::AccountNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeAccountError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeAccountError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAccountError {}
 /// Errors returned by DescribeCreateAccountStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribeCreateAccountStatusError {
@@ -2487,23 +2512,26 @@ impl DescribeCreateAccountStatusError {
     }
 }
 impl fmt::Display for DescribeCreateAccountStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCreateAccountStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCreateAccountStatusError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribeCreateAccountStatusError::AccessDenied(ref cause) => cause,
-            DescribeCreateAccountStatusError::CreateAccountStatusNotFound(ref cause) => cause,
-            DescribeCreateAccountStatusError::InvalidInput(ref cause) => cause,
-            DescribeCreateAccountStatusError::Service(ref cause) => cause,
-            DescribeCreateAccountStatusError::TooManyRequests(ref cause) => cause,
-            DescribeCreateAccountStatusError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DescribeCreateAccountStatusError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeCreateAccountStatusError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeCreateAccountStatusError::CreateAccountStatusNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeCreateAccountStatusError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeCreateAccountStatusError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeCreateAccountStatusError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeCreateAccountStatusError::UnsupportedAPIEndpoint(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeCreateAccountStatusError {}
 /// Errors returned by DescribeEffectivePolicy
 #[derive(Debug, PartialEq)]
 pub enum DescribeEffectivePolicyError {
@@ -2582,25 +2610,28 @@ impl DescribeEffectivePolicyError {
     }
 }
 impl fmt::Display for DescribeEffectivePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEffectivePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEffectivePolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribeEffectivePolicyError::AccessDenied(ref cause) => cause,
-            DescribeEffectivePolicyError::ConstraintViolation(ref cause) => cause,
-            DescribeEffectivePolicyError::EffectivePolicyNotFound(ref cause) => cause,
-            DescribeEffectivePolicyError::InvalidInput(ref cause) => cause,
-            DescribeEffectivePolicyError::Service(ref cause) => cause,
-            DescribeEffectivePolicyError::TargetNotFound(ref cause) => cause,
-            DescribeEffectivePolicyError::TooManyRequests(ref cause) => cause,
-            DescribeEffectivePolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DescribeEffectivePolicyError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectivePolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::EffectivePolicyNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectivePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribeEffectivePolicyError::UnsupportedAPIEndpoint(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEffectivePolicyError {}
 /// Errors returned by DescribeHandshake
 #[derive(Debug, PartialEq)]
 pub enum DescribeHandshakeError {
@@ -2650,22 +2681,19 @@ impl DescribeHandshakeError {
     }
 }
 impl fmt::Display for DescribeHandshakeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeHandshakeError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeHandshakeError::AccessDenied(ref cause) => cause,
-            DescribeHandshakeError::ConcurrentModification(ref cause) => cause,
-            DescribeHandshakeError::HandshakeNotFound(ref cause) => cause,
-            DescribeHandshakeError::InvalidInput(ref cause) => cause,
-            DescribeHandshakeError::Service(ref cause) => cause,
-            DescribeHandshakeError::TooManyRequests(ref cause) => cause,
+            DescribeHandshakeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeHandshakeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DescribeHandshakeError::HandshakeNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeHandshakeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeHandshakeError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeHandshakeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeHandshakeError {}
 /// Errors returned by DescribeOrganization
 #[derive(Debug, PartialEq)]
 pub enum DescribeOrganizationError {
@@ -2714,21 +2742,20 @@ impl DescribeOrganizationError {
     }
 }
 impl fmt::Display for DescribeOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribeOrganizationError::AccessDenied(ref cause) => cause,
-            DescribeOrganizationError::ConcurrentModification(ref cause) => cause,
-            DescribeOrganizationError::Service(ref cause) => cause,
-            DescribeOrganizationError::TooManyRequests(ref cause) => cause,
+            DescribeOrganizationError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeOrganizationError {}
 /// Errors returned by DescribeOrganizationalUnit
 #[derive(Debug, PartialEq)]
 pub enum DescribeOrganizationalUnitError {
@@ -2788,22 +2815,23 @@ impl DescribeOrganizationalUnitError {
     }
 }
 impl fmt::Display for DescribeOrganizationalUnitError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeOrganizationalUnitError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribeOrganizationalUnitError::AccessDenied(ref cause) => cause,
-            DescribeOrganizationalUnitError::InvalidInput(ref cause) => cause,
-            DescribeOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => cause,
-            DescribeOrganizationalUnitError::Service(ref cause) => cause,
-            DescribeOrganizationalUnitError::TooManyRequests(ref cause) => cause,
+            DescribeOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeOrganizationalUnitError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationalUnitError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeOrganizationalUnitError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeOrganizationalUnitError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeOrganizationalUnitError {}
 /// Errors returned by DescribePolicy
 #[derive(Debug, PartialEq)]
 pub enum DescribePolicyError {
@@ -2860,23 +2888,20 @@ impl DescribePolicyError {
     }
 }
 impl fmt::Display for DescribePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DescribePolicyError::AccessDenied(ref cause) => cause,
-            DescribePolicyError::InvalidInput(ref cause) => cause,
-            DescribePolicyError::PolicyNotFound(ref cause) => cause,
-            DescribePolicyError::Service(ref cause) => cause,
-            DescribePolicyError::TooManyRequests(ref cause) => cause,
-            DescribePolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DescribePolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::Service(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DescribePolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePolicyError {}
 /// Errors returned by DetachPolicy
 #[derive(Debug, PartialEq)]
 pub enum DetachPolicyError {
@@ -2958,28 +2983,25 @@ impl DetachPolicyError {
     }
 }
 impl fmt::Display for DetachPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetachPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DetachPolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DetachPolicyError::AccessDenied(ref cause) => cause,
-            DetachPolicyError::ConcurrentModification(ref cause) => cause,
-            DetachPolicyError::ConstraintViolation(ref cause) => cause,
-            DetachPolicyError::InvalidInput(ref cause) => cause,
-            DetachPolicyError::PolicyChangesInProgress(ref cause) => cause,
-            DetachPolicyError::PolicyNotAttached(ref cause) => cause,
-            DetachPolicyError::PolicyNotFound(ref cause) => cause,
-            DetachPolicyError::Service(ref cause) => cause,
-            DetachPolicyError::TargetNotFound(ref cause) => cause,
-            DetachPolicyError::TooManyRequests(ref cause) => cause,
-            DetachPolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DetachPolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::PolicyChangesInProgress(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::PolicyNotAttached(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::Service(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DetachPolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetachPolicyError {}
 /// Errors returned by DisableAWSServiceAccess
 #[derive(Debug, PartialEq)]
 pub enum DisableAWSServiceAccessError {
@@ -3044,23 +3066,24 @@ impl DisableAWSServiceAccessError {
     }
 }
 impl fmt::Display for DisableAWSServiceAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableAWSServiceAccessError {
-    fn description(&self) -> &str {
         match *self {
-            DisableAWSServiceAccessError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DisableAWSServiceAccessError::AccessDenied(ref cause) => cause,
-            DisableAWSServiceAccessError::ConcurrentModification(ref cause) => cause,
-            DisableAWSServiceAccessError::ConstraintViolation(ref cause) => cause,
-            DisableAWSServiceAccessError::InvalidInput(ref cause) => cause,
-            DisableAWSServiceAccessError::Service(ref cause) => cause,
-            DisableAWSServiceAccessError::TooManyRequests(ref cause) => cause,
+            DisableAWSServiceAccessError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisableAWSServiceAccessError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DisableAWSServiceAccessError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisableAWSServiceAccessError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            DisableAWSServiceAccessError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DisableAWSServiceAccessError::Service(ref cause) => write!(f, "{}", cause),
+            DisableAWSServiceAccessError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableAWSServiceAccessError {}
 /// Errors returned by DisablePolicyType
 #[derive(Debug, PartialEq)]
 pub enum DisablePolicyTypeError {
@@ -3145,27 +3168,24 @@ impl DisablePolicyTypeError {
     }
 }
 impl fmt::Display for DisablePolicyTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisablePolicyTypeError {
-    fn description(&self) -> &str {
         match *self {
-            DisablePolicyTypeError::AWSOrganizationsNotInUse(ref cause) => cause,
-            DisablePolicyTypeError::AccessDenied(ref cause) => cause,
-            DisablePolicyTypeError::ConcurrentModification(ref cause) => cause,
-            DisablePolicyTypeError::ConstraintViolation(ref cause) => cause,
-            DisablePolicyTypeError::InvalidInput(ref cause) => cause,
-            DisablePolicyTypeError::PolicyChangesInProgress(ref cause) => cause,
-            DisablePolicyTypeError::PolicyTypeNotEnabled(ref cause) => cause,
-            DisablePolicyTypeError::RootNotFound(ref cause) => cause,
-            DisablePolicyTypeError::Service(ref cause) => cause,
-            DisablePolicyTypeError::TooManyRequests(ref cause) => cause,
-            DisablePolicyTypeError::UnsupportedAPIEndpoint(ref cause) => cause,
+            DisablePolicyTypeError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::PolicyChangesInProgress(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::PolicyTypeNotEnabled(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::RootNotFound(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::Service(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            DisablePolicyTypeError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisablePolicyTypeError {}
 /// Errors returned by EnableAWSServiceAccess
 #[derive(Debug, PartialEq)]
 pub enum EnableAWSServiceAccessError {
@@ -3226,23 +3246,24 @@ impl EnableAWSServiceAccessError {
     }
 }
 impl fmt::Display for EnableAWSServiceAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableAWSServiceAccessError {
-    fn description(&self) -> &str {
         match *self {
-            EnableAWSServiceAccessError::AWSOrganizationsNotInUse(ref cause) => cause,
-            EnableAWSServiceAccessError::AccessDenied(ref cause) => cause,
-            EnableAWSServiceAccessError::ConcurrentModification(ref cause) => cause,
-            EnableAWSServiceAccessError::ConstraintViolation(ref cause) => cause,
-            EnableAWSServiceAccessError::InvalidInput(ref cause) => cause,
-            EnableAWSServiceAccessError::Service(ref cause) => cause,
-            EnableAWSServiceAccessError::TooManyRequests(ref cause) => cause,
+            EnableAWSServiceAccessError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            EnableAWSServiceAccessError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            EnableAWSServiceAccessError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            EnableAWSServiceAccessError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            EnableAWSServiceAccessError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            EnableAWSServiceAccessError::Service(ref cause) => write!(f, "{}", cause),
+            EnableAWSServiceAccessError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableAWSServiceAccessError {}
 /// Errors returned by EnableAllFeatures
 #[derive(Debug, PartialEq)]
 pub enum EnableAllFeaturesError {
@@ -3301,23 +3322,22 @@ impl EnableAllFeaturesError {
     }
 }
 impl fmt::Display for EnableAllFeaturesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableAllFeaturesError {
-    fn description(&self) -> &str {
         match *self {
-            EnableAllFeaturesError::AWSOrganizationsNotInUse(ref cause) => cause,
-            EnableAllFeaturesError::AccessDenied(ref cause) => cause,
-            EnableAllFeaturesError::ConcurrentModification(ref cause) => cause,
-            EnableAllFeaturesError::HandshakeConstraintViolation(ref cause) => cause,
-            EnableAllFeaturesError::InvalidInput(ref cause) => cause,
-            EnableAllFeaturesError::Service(ref cause) => cause,
-            EnableAllFeaturesError::TooManyRequests(ref cause) => cause,
+            EnableAllFeaturesError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            EnableAllFeaturesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            EnableAllFeaturesError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            EnableAllFeaturesError::HandshakeConstraintViolation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            EnableAllFeaturesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            EnableAllFeaturesError::Service(ref cause) => write!(f, "{}", cause),
+            EnableAllFeaturesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableAllFeaturesError {}
 /// Errors returned by EnablePolicyType
 #[derive(Debug, PartialEq)]
 pub enum EnablePolicyTypeError {
@@ -3409,28 +3429,27 @@ impl EnablePolicyTypeError {
     }
 }
 impl fmt::Display for EnablePolicyTypeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnablePolicyTypeError {
-    fn description(&self) -> &str {
         match *self {
-            EnablePolicyTypeError::AWSOrganizationsNotInUse(ref cause) => cause,
-            EnablePolicyTypeError::AccessDenied(ref cause) => cause,
-            EnablePolicyTypeError::ConcurrentModification(ref cause) => cause,
-            EnablePolicyTypeError::ConstraintViolation(ref cause) => cause,
-            EnablePolicyTypeError::InvalidInput(ref cause) => cause,
-            EnablePolicyTypeError::PolicyChangesInProgress(ref cause) => cause,
-            EnablePolicyTypeError::PolicyTypeAlreadyEnabled(ref cause) => cause,
-            EnablePolicyTypeError::PolicyTypeNotAvailableForOrganization(ref cause) => cause,
-            EnablePolicyTypeError::RootNotFound(ref cause) => cause,
-            EnablePolicyTypeError::Service(ref cause) => cause,
-            EnablePolicyTypeError::TooManyRequests(ref cause) => cause,
-            EnablePolicyTypeError::UnsupportedAPIEndpoint(ref cause) => cause,
+            EnablePolicyTypeError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::PolicyChangesInProgress(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::PolicyTypeAlreadyEnabled(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::PolicyTypeNotAvailableForOrganization(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            EnablePolicyTypeError::RootNotFound(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::Service(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            EnablePolicyTypeError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnablePolicyTypeError {}
 /// Errors returned by InviteAccountToOrganization
 #[derive(Debug, PartialEq)]
 pub enum InviteAccountToOrganizationError {
@@ -3518,26 +3537,35 @@ impl InviteAccountToOrganizationError {
     }
 }
 impl fmt::Display for InviteAccountToOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InviteAccountToOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            InviteAccountToOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            InviteAccountToOrganizationError::AccessDenied(ref cause) => cause,
-            InviteAccountToOrganizationError::AccountOwnerNotVerified(ref cause) => cause,
-            InviteAccountToOrganizationError::ConcurrentModification(ref cause) => cause,
-            InviteAccountToOrganizationError::DuplicateHandshake(ref cause) => cause,
-            InviteAccountToOrganizationError::FinalizingOrganization(ref cause) => cause,
-            InviteAccountToOrganizationError::HandshakeConstraintViolation(ref cause) => cause,
-            InviteAccountToOrganizationError::InvalidInput(ref cause) => cause,
-            InviteAccountToOrganizationError::Service(ref cause) => cause,
-            InviteAccountToOrganizationError::TooManyRequests(ref cause) => cause,
+            InviteAccountToOrganizationError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            InviteAccountToOrganizationError::AccountOwnerNotVerified(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::DuplicateHandshake(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::FinalizingOrganization(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::HandshakeConstraintViolation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InviteAccountToOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            InviteAccountToOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            InviteAccountToOrganizationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InviteAccountToOrganizationError {}
 /// Errors returned by LeaveOrganization
 #[derive(Debug, PartialEq)]
 pub enum LeaveOrganizationError {
@@ -3608,25 +3636,24 @@ impl LeaveOrganizationError {
     }
 }
 impl fmt::Display for LeaveOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for LeaveOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            LeaveOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            LeaveOrganizationError::AccessDenied(ref cause) => cause,
-            LeaveOrganizationError::AccountNotFound(ref cause) => cause,
-            LeaveOrganizationError::ConcurrentModification(ref cause) => cause,
-            LeaveOrganizationError::ConstraintViolation(ref cause) => cause,
-            LeaveOrganizationError::InvalidInput(ref cause) => cause,
-            LeaveOrganizationError::MasterCannotLeaveOrganization(ref cause) => cause,
-            LeaveOrganizationError::Service(ref cause) => cause,
-            LeaveOrganizationError::TooManyRequests(ref cause) => cause,
+            LeaveOrganizationError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::AccountNotFound(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::MasterCannotLeaveOrganization(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            LeaveOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            LeaveOrganizationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for LeaveOrganizationError {}
 /// Errors returned by ListAWSServiceAccessForOrganization
 #[derive(Debug, PartialEq)]
 pub enum ListAWSServiceAccessForOrganizationError {
@@ -3688,22 +3715,29 @@ impl ListAWSServiceAccessForOrganizationError {
     }
 }
 impl fmt::Display for ListAWSServiceAccessForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAWSServiceAccessForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            ListAWSServiceAccessForOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListAWSServiceAccessForOrganizationError::AccessDenied(ref cause) => cause,
-            ListAWSServiceAccessForOrganizationError::ConstraintViolation(ref cause) => cause,
-            ListAWSServiceAccessForOrganizationError::InvalidInput(ref cause) => cause,
-            ListAWSServiceAccessForOrganizationError::Service(ref cause) => cause,
-            ListAWSServiceAccessForOrganizationError::TooManyRequests(ref cause) => cause,
+            ListAWSServiceAccessForOrganizationError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAWSServiceAccessForOrganizationError::AccessDenied(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAWSServiceAccessForOrganizationError::ConstraintViolation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAWSServiceAccessForOrganizationError::InvalidInput(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAWSServiceAccessForOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            ListAWSServiceAccessForOrganizationError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListAWSServiceAccessForOrganizationError {}
 /// Errors returned by ListAccounts
 #[derive(Debug, PartialEq)]
 pub enum ListAccountsError {
@@ -3748,21 +3782,18 @@ impl ListAccountsError {
     }
 }
 impl fmt::Display for ListAccountsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAccountsError {
-    fn description(&self) -> &str {
         match *self {
-            ListAccountsError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListAccountsError::AccessDenied(ref cause) => cause,
-            ListAccountsError::InvalidInput(ref cause) => cause,
-            ListAccountsError::Service(ref cause) => cause,
-            ListAccountsError::TooManyRequests(ref cause) => cause,
+            ListAccountsError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListAccountsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListAccountsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListAccountsError::Service(ref cause) => write!(f, "{}", cause),
+            ListAccountsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListAccountsError {}
 /// Errors returned by ListAccountsForParent
 #[derive(Debug, PartialEq)]
 pub enum ListAccountsForParentError {
@@ -3816,22 +3847,21 @@ impl ListAccountsForParentError {
     }
 }
 impl fmt::Display for ListAccountsForParentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAccountsForParentError {
-    fn description(&self) -> &str {
         match *self {
-            ListAccountsForParentError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListAccountsForParentError::AccessDenied(ref cause) => cause,
-            ListAccountsForParentError::InvalidInput(ref cause) => cause,
-            ListAccountsForParentError::ParentNotFound(ref cause) => cause,
-            ListAccountsForParentError::Service(ref cause) => cause,
-            ListAccountsForParentError::TooManyRequests(ref cause) => cause,
+            ListAccountsForParentError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAccountsForParentError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListAccountsForParentError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListAccountsForParentError::ParentNotFound(ref cause) => write!(f, "{}", cause),
+            ListAccountsForParentError::Service(ref cause) => write!(f, "{}", cause),
+            ListAccountsForParentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListAccountsForParentError {}
 /// Errors returned by ListChildren
 #[derive(Debug, PartialEq)]
 pub enum ListChildrenError {
@@ -3881,22 +3911,19 @@ impl ListChildrenError {
     }
 }
 impl fmt::Display for ListChildrenError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListChildrenError {
-    fn description(&self) -> &str {
         match *self {
-            ListChildrenError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListChildrenError::AccessDenied(ref cause) => cause,
-            ListChildrenError::InvalidInput(ref cause) => cause,
-            ListChildrenError::ParentNotFound(ref cause) => cause,
-            ListChildrenError::Service(ref cause) => cause,
-            ListChildrenError::TooManyRequests(ref cause) => cause,
+            ListChildrenError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListChildrenError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListChildrenError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListChildrenError::ParentNotFound(ref cause) => write!(f, "{}", cause),
+            ListChildrenError::Service(ref cause) => write!(f, "{}", cause),
+            ListChildrenError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListChildrenError {}
 /// Errors returned by ListCreateAccountStatus
 #[derive(Debug, PartialEq)]
 pub enum ListCreateAccountStatusError {
@@ -3954,22 +3981,23 @@ impl ListCreateAccountStatusError {
     }
 }
 impl fmt::Display for ListCreateAccountStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCreateAccountStatusError {
-    fn description(&self) -> &str {
         match *self {
-            ListCreateAccountStatusError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListCreateAccountStatusError::AccessDenied(ref cause) => cause,
-            ListCreateAccountStatusError::InvalidInput(ref cause) => cause,
-            ListCreateAccountStatusError::Service(ref cause) => cause,
-            ListCreateAccountStatusError::TooManyRequests(ref cause) => cause,
-            ListCreateAccountStatusError::UnsupportedAPIEndpoint(ref cause) => cause,
+            ListCreateAccountStatusError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListCreateAccountStatusError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListCreateAccountStatusError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListCreateAccountStatusError::Service(ref cause) => write!(f, "{}", cause),
+            ListCreateAccountStatusError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListCreateAccountStatusError::UnsupportedAPIEndpoint(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListCreateAccountStatusError {}
 /// Errors returned by ListHandshakesForAccount
 #[derive(Debug, PartialEq)]
 pub enum ListHandshakesForAccountError {
@@ -4020,21 +4048,20 @@ impl ListHandshakesForAccountError {
     }
 }
 impl fmt::Display for ListHandshakesForAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListHandshakesForAccountError {
-    fn description(&self) -> &str {
         match *self {
-            ListHandshakesForAccountError::AccessDenied(ref cause) => cause,
-            ListHandshakesForAccountError::ConcurrentModification(ref cause) => cause,
-            ListHandshakesForAccountError::InvalidInput(ref cause) => cause,
-            ListHandshakesForAccountError::Service(ref cause) => cause,
-            ListHandshakesForAccountError::TooManyRequests(ref cause) => cause,
+            ListHandshakesForAccountError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForAccountError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListHandshakesForAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForAccountError::Service(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForAccountError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListHandshakesForAccountError {}
 /// Errors returned by ListHandshakesForOrganization
 #[derive(Debug, PartialEq)]
 pub enum ListHandshakesForOrganizationError {
@@ -4096,22 +4123,25 @@ impl ListHandshakesForOrganizationError {
     }
 }
 impl fmt::Display for ListHandshakesForOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListHandshakesForOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            ListHandshakesForOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListHandshakesForOrganizationError::AccessDenied(ref cause) => cause,
-            ListHandshakesForOrganizationError::ConcurrentModification(ref cause) => cause,
-            ListHandshakesForOrganizationError::InvalidInput(ref cause) => cause,
-            ListHandshakesForOrganizationError::Service(ref cause) => cause,
-            ListHandshakesForOrganizationError::TooManyRequests(ref cause) => cause,
+            ListHandshakesForOrganizationError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListHandshakesForOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForOrganizationError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListHandshakesForOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            ListHandshakesForOrganizationError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListHandshakesForOrganizationError {}
 /// Errors returned by ListOrganizationalUnitsForParent
 #[derive(Debug, PartialEq)]
 pub enum ListOrganizationalUnitsForParentError {
@@ -4173,22 +4203,29 @@ impl ListOrganizationalUnitsForParentError {
     }
 }
 impl fmt::Display for ListOrganizationalUnitsForParentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOrganizationalUnitsForParentError {
-    fn description(&self) -> &str {
         match *self {
-            ListOrganizationalUnitsForParentError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListOrganizationalUnitsForParentError::AccessDenied(ref cause) => cause,
-            ListOrganizationalUnitsForParentError::InvalidInput(ref cause) => cause,
-            ListOrganizationalUnitsForParentError::ParentNotFound(ref cause) => cause,
-            ListOrganizationalUnitsForParentError::Service(ref cause) => cause,
-            ListOrganizationalUnitsForParentError::TooManyRequests(ref cause) => cause,
+            ListOrganizationalUnitsForParentError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationalUnitsForParentError::AccessDenied(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationalUnitsForParentError::InvalidInput(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationalUnitsForParentError::ParentNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationalUnitsForParentError::Service(ref cause) => write!(f, "{}", cause),
+            ListOrganizationalUnitsForParentError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListOrganizationalUnitsForParentError {}
 /// Errors returned by ListParents
 #[derive(Debug, PartialEq)]
 pub enum ListParentsError {
@@ -4238,22 +4275,19 @@ impl ListParentsError {
     }
 }
 impl fmt::Display for ListParentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListParentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListParentsError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListParentsError::AccessDenied(ref cause) => cause,
-            ListParentsError::ChildNotFound(ref cause) => cause,
-            ListParentsError::InvalidInput(ref cause) => cause,
-            ListParentsError::Service(ref cause) => cause,
-            ListParentsError::TooManyRequests(ref cause) => cause,
+            ListParentsError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListParentsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListParentsError::ChildNotFound(ref cause) => write!(f, "{}", cause),
+            ListParentsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListParentsError::Service(ref cause) => write!(f, "{}", cause),
+            ListParentsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListParentsError {}
 /// Errors returned by ListPolicies
 #[derive(Debug, PartialEq)]
 pub enum ListPoliciesError {
@@ -4303,22 +4337,19 @@ impl ListPoliciesError {
     }
 }
 impl fmt::Display for ListPoliciesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPoliciesError {
-    fn description(&self) -> &str {
         match *self {
-            ListPoliciesError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListPoliciesError::AccessDenied(ref cause) => cause,
-            ListPoliciesError::InvalidInput(ref cause) => cause,
-            ListPoliciesError::Service(ref cause) => cause,
-            ListPoliciesError::TooManyRequests(ref cause) => cause,
-            ListPoliciesError::UnsupportedAPIEndpoint(ref cause) => cause,
+            ListPoliciesError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::Service(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListPoliciesError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPoliciesError {}
 /// Errors returned by ListPoliciesForTarget
 #[derive(Debug, PartialEq)]
 pub enum ListPoliciesForTargetError {
@@ -4379,23 +4410,22 @@ impl ListPoliciesForTargetError {
     }
 }
 impl fmt::Display for ListPoliciesForTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPoliciesForTargetError {
-    fn description(&self) -> &str {
         match *self {
-            ListPoliciesForTargetError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListPoliciesForTargetError::AccessDenied(ref cause) => cause,
-            ListPoliciesForTargetError::InvalidInput(ref cause) => cause,
-            ListPoliciesForTargetError::Service(ref cause) => cause,
-            ListPoliciesForTargetError::TargetNotFound(ref cause) => cause,
-            ListPoliciesForTargetError::TooManyRequests(ref cause) => cause,
-            ListPoliciesForTargetError::UnsupportedAPIEndpoint(ref cause) => cause,
+            ListPoliciesForTargetError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListPoliciesForTargetError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListPoliciesForTargetError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListPoliciesForTargetError::Service(ref cause) => write!(f, "{}", cause),
+            ListPoliciesForTargetError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            ListPoliciesForTargetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListPoliciesForTargetError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPoliciesForTargetError {}
 /// Errors returned by ListRoots
 #[derive(Debug, PartialEq)]
 pub enum ListRootsError {
@@ -4438,21 +4468,18 @@ impl ListRootsError {
     }
 }
 impl fmt::Display for ListRootsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRootsError {
-    fn description(&self) -> &str {
         match *self {
-            ListRootsError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListRootsError::AccessDenied(ref cause) => cause,
-            ListRootsError::InvalidInput(ref cause) => cause,
-            ListRootsError::Service(ref cause) => cause,
-            ListRootsError::TooManyRequests(ref cause) => cause,
+            ListRootsError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListRootsError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListRootsError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListRootsError::Service(ref cause) => write!(f, "{}", cause),
+            ListRootsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRootsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -4502,22 +4529,19 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListTagsForResourceError::AccessDenied(ref cause) => cause,
-            ListTagsForResourceError::InvalidInput(ref cause) => cause,
-            ListTagsForResourceError::Service(ref cause) => cause,
-            ListTagsForResourceError::TargetNotFound(ref cause) => cause,
-            ListTagsForResourceError::TooManyRequests(ref cause) => cause,
+            ListTagsForResourceError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Service(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListTargetsForPolicy
 #[derive(Debug, PartialEq)]
 pub enum ListTargetsForPolicyError {
@@ -4576,23 +4600,22 @@ impl ListTargetsForPolicyError {
     }
 }
 impl fmt::Display for ListTargetsForPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTargetsForPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            ListTargetsForPolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            ListTargetsForPolicyError::AccessDenied(ref cause) => cause,
-            ListTargetsForPolicyError::InvalidInput(ref cause) => cause,
-            ListTargetsForPolicyError::PolicyNotFound(ref cause) => cause,
-            ListTargetsForPolicyError::Service(ref cause) => cause,
-            ListTargetsForPolicyError::TooManyRequests(ref cause) => cause,
-            ListTargetsForPolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            ListTargetsForPolicyError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListTargetsForPolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ListTargetsForPolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            ListTargetsForPolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            ListTargetsForPolicyError::Service(ref cause) => write!(f, "{}", cause),
+            ListTargetsForPolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            ListTargetsForPolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTargetsForPolicyError {}
 /// Errors returned by MoveAccount
 #[derive(Debug, PartialEq)]
 pub enum MoveAccountError {
@@ -4664,26 +4687,23 @@ impl MoveAccountError {
     }
 }
 impl fmt::Display for MoveAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for MoveAccountError {
-    fn description(&self) -> &str {
         match *self {
-            MoveAccountError::AWSOrganizationsNotInUse(ref cause) => cause,
-            MoveAccountError::AccessDenied(ref cause) => cause,
-            MoveAccountError::AccountNotFound(ref cause) => cause,
-            MoveAccountError::ConcurrentModification(ref cause) => cause,
-            MoveAccountError::DestinationParentNotFound(ref cause) => cause,
-            MoveAccountError::DuplicateAccount(ref cause) => cause,
-            MoveAccountError::InvalidInput(ref cause) => cause,
-            MoveAccountError::Service(ref cause) => cause,
-            MoveAccountError::SourceParentNotFound(ref cause) => cause,
-            MoveAccountError::TooManyRequests(ref cause) => cause,
+            MoveAccountError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::AccountNotFound(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::DestinationParentNotFound(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::DuplicateAccount(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::Service(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::SourceParentNotFound(ref cause) => write!(f, "{}", cause),
+            MoveAccountError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for MoveAccountError {}
 /// Errors returned by RemoveAccountFromOrganization
 #[derive(Debug, PartialEq)]
 pub enum RemoveAccountFromOrganizationError {
@@ -4766,25 +4786,34 @@ impl RemoveAccountFromOrganizationError {
     }
 }
 impl fmt::Display for RemoveAccountFromOrganizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveAccountFromOrganizationError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveAccountFromOrganizationError::AWSOrganizationsNotInUse(ref cause) => cause,
-            RemoveAccountFromOrganizationError::AccessDenied(ref cause) => cause,
-            RemoveAccountFromOrganizationError::AccountNotFound(ref cause) => cause,
-            RemoveAccountFromOrganizationError::ConcurrentModification(ref cause) => cause,
-            RemoveAccountFromOrganizationError::ConstraintViolation(ref cause) => cause,
-            RemoveAccountFromOrganizationError::InvalidInput(ref cause) => cause,
-            RemoveAccountFromOrganizationError::MasterCannotLeaveOrganization(ref cause) => cause,
-            RemoveAccountFromOrganizationError::Service(ref cause) => cause,
-            RemoveAccountFromOrganizationError::TooManyRequests(ref cause) => cause,
+            RemoveAccountFromOrganizationError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveAccountFromOrganizationError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            RemoveAccountFromOrganizationError::AccountNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveAccountFromOrganizationError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveAccountFromOrganizationError::ConstraintViolation(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveAccountFromOrganizationError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            RemoveAccountFromOrganizationError::MasterCannotLeaveOrganization(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveAccountFromOrganizationError::Service(ref cause) => write!(f, "{}", cause),
+            RemoveAccountFromOrganizationError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RemoveAccountFromOrganizationError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -4844,24 +4873,21 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::AWSOrganizationsNotInUse(ref cause) => cause,
-            TagResourceError::AccessDenied(ref cause) => cause,
-            TagResourceError::ConcurrentModification(ref cause) => cause,
-            TagResourceError::ConstraintViolation(ref cause) => cause,
-            TagResourceError::InvalidInput(ref cause) => cause,
-            TagResourceError::Service(ref cause) => cause,
-            TagResourceError::TargetNotFound(ref cause) => cause,
-            TagResourceError::TooManyRequests(ref cause) => cause,
+            TagResourceError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            TagResourceError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Service(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -4923,24 +4949,21 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::AWSOrganizationsNotInUse(ref cause) => cause,
-            UntagResourceError::AccessDenied(ref cause) => cause,
-            UntagResourceError::ConcurrentModification(ref cause) => cause,
-            UntagResourceError::ConstraintViolation(ref cause) => cause,
-            UntagResourceError::InvalidInput(ref cause) => cause,
-            UntagResourceError::Service(ref cause) => cause,
-            UntagResourceError::TargetNotFound(ref cause) => cause,
-            UntagResourceError::TooManyRequests(ref cause) => cause,
+            UntagResourceError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Service(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TargetNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateOrganizationalUnit
 #[derive(Debug, PartialEq)]
 pub enum UpdateOrganizationalUnitError {
@@ -5012,24 +5035,29 @@ impl UpdateOrganizationalUnitError {
     }
 }
 impl fmt::Display for UpdateOrganizationalUnitError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateOrganizationalUnitError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => cause,
-            UpdateOrganizationalUnitError::AccessDenied(ref cause) => cause,
-            UpdateOrganizationalUnitError::ConcurrentModification(ref cause) => cause,
-            UpdateOrganizationalUnitError::DuplicateOrganizationalUnit(ref cause) => cause,
-            UpdateOrganizationalUnitError::InvalidInput(ref cause) => cause,
-            UpdateOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => cause,
-            UpdateOrganizationalUnitError::Service(ref cause) => cause,
-            UpdateOrganizationalUnitError::TooManyRequests(ref cause) => cause,
+            UpdateOrganizationalUnitError::AWSOrganizationsNotInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateOrganizationalUnitError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            UpdateOrganizationalUnitError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateOrganizationalUnitError::DuplicateOrganizationalUnit(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateOrganizationalUnitError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateOrganizationalUnitError::OrganizationalUnitNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateOrganizationalUnitError::Service(ref cause) => write!(f, "{}", cause),
+            UpdateOrganizationalUnitError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateOrganizationalUnitError {}
 /// Errors returned by UpdatePolicy
 #[derive(Debug, PartialEq)]
 pub enum UpdatePolicyError {
@@ -5113,28 +5141,25 @@ impl UpdatePolicyError {
     }
 }
 impl fmt::Display for UpdatePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePolicyError::AWSOrganizationsNotInUse(ref cause) => cause,
-            UpdatePolicyError::AccessDenied(ref cause) => cause,
-            UpdatePolicyError::ConcurrentModification(ref cause) => cause,
-            UpdatePolicyError::ConstraintViolation(ref cause) => cause,
-            UpdatePolicyError::DuplicatePolicy(ref cause) => cause,
-            UpdatePolicyError::InvalidInput(ref cause) => cause,
-            UpdatePolicyError::MalformedPolicyDocument(ref cause) => cause,
-            UpdatePolicyError::PolicyChangesInProgress(ref cause) => cause,
-            UpdatePolicyError::PolicyNotFound(ref cause) => cause,
-            UpdatePolicyError::Service(ref cause) => cause,
-            UpdatePolicyError::TooManyRequests(ref cause) => cause,
-            UpdatePolicyError::UnsupportedAPIEndpoint(ref cause) => cause,
+            UpdatePolicyError::AWSOrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::ConstraintViolation(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::DuplicatePolicy(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::MalformedPolicyDocument(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::PolicyChangesInProgress(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::PolicyNotFound(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::Service(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            UpdatePolicyError::UnsupportedAPIEndpoint(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePolicyError {}
 /// Trait representing the capabilities of the Organizations API. Organizations clients implement this trait.
 #[async_trait]
 pub trait Organizations {

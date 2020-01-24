@@ -23,13 +23,15 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Attributes {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ClaimDevicesByClaimCodeRequest {
     /// <p>The claim code, starting with "C-", as provided by the device manufacturer.</p>
     #[serde(rename = "ClaimCode")]
@@ -37,7 +39,7 @@ pub struct ClaimDevicesByClaimCodeRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClaimDevicesByClaimCodeResponse {
     /// <p>The claim code provided by the device manufacturer.</p>
     #[serde(rename = "ClaimCode")]
@@ -51,6 +53,7 @@ pub struct ClaimDevicesByClaimCodeResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDeviceRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -58,7 +61,7 @@ pub struct DescribeDeviceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDeviceResponse {
     /// <p>Device details.</p>
     #[serde(rename = "DeviceDescription")]
@@ -67,7 +70,7 @@ pub struct DescribeDeviceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Device {
     /// <p>The user specified attributes associated with the device for an event.</p>
     #[serde(rename = "Attributes")]
@@ -84,7 +87,7 @@ pub struct Device {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeviceDescription {
     /// <p>The ARN of the device.</p>
     #[serde(rename = "Arn")]
@@ -119,7 +122,7 @@ pub struct DeviceDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeviceEvent {
     /// <p>An object representing the device associated with the event.</p>
     #[serde(rename = "Device")]
@@ -144,6 +147,7 @@ pub struct DeviceMethod {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct FinalizeDeviceClaimRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -159,7 +163,7 @@ pub struct FinalizeDeviceClaimRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FinalizeDeviceClaimResponse {
     /// <p>The device's final claim state.</p>
     #[serde(rename = "State")]
@@ -168,6 +172,7 @@ pub struct FinalizeDeviceClaimResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeviceMethodsRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -175,7 +180,7 @@ pub struct GetDeviceMethodsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeviceMethodsResponse {
     /// <p>List of available device APIs.</p>
     #[serde(rename = "DeviceMethods")]
@@ -184,6 +189,7 @@ pub struct GetDeviceMethodsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitiateDeviceClaimRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -191,7 +197,7 @@ pub struct InitiateDeviceClaimRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitiateDeviceClaimResponse {
     /// <p>The device's final claim state.</p>
     #[serde(rename = "State")]
@@ -200,6 +206,7 @@ pub struct InitiateDeviceClaimResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InvokeDeviceMethodRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -215,7 +222,7 @@ pub struct InvokeDeviceMethodRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InvokeDeviceMethodResponse {
     /// <p>A JSON encoded string containing the device method response.</p>
     #[serde(rename = "DeviceMethodResponse")]
@@ -224,6 +231,7 @@ pub struct InvokeDeviceMethodResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeviceEventsRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -250,7 +258,7 @@ pub struct ListDeviceEventsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeviceEventsResponse {
     /// <p>An array of zero or more elements describing the event(s) associated with the
     /// device.</p>
@@ -264,6 +272,7 @@ pub struct ListDeviceEventsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDevicesRequest {
     /// <p>The type of the device, such as "button".</p>
     #[serde(rename = "DeviceType")]
@@ -281,7 +290,7 @@ pub struct ListDevicesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDevicesResponse {
     /// <p>A list of devices.</p>
     #[serde(rename = "Devices")]
@@ -294,6 +303,7 @@ pub struct ListDevicesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The ARN of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -301,7 +311,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>A collection of key/value pairs defining the resource tags. For example, {
     /// "tags": {"key1": "value1", "key2": "value2"} }. For more information, see <a href="https://aws.amazon.com/answers/account-management/aws-tagging-strategies/">AWS
@@ -314,6 +324,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -328,6 +339,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UnclaimDeviceRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -335,7 +347,7 @@ pub struct UnclaimDeviceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnclaimDeviceResponse {
     /// <p>The device's final claim state.</p>
     #[serde(rename = "State")]
@@ -344,6 +356,7 @@ pub struct UnclaimDeviceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ARN of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -354,6 +367,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDeviceStateRequest {
     /// <p>The unique identifier of the device.</p>
     #[serde(rename = "DeviceId")]
@@ -366,7 +380,7 @@ pub struct UpdateDeviceStateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDeviceStateResponse {}
 
 /// Errors returned by ClaimDevicesByClaimCode
@@ -404,19 +418,16 @@ impl ClaimDevicesByClaimCodeError {
     }
 }
 impl fmt::Display for ClaimDevicesByClaimCodeError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ClaimDevicesByClaimCodeError {
-    fn description(&self) -> &str {
         match *self {
-            ClaimDevicesByClaimCodeError::Forbidden(ref cause) => cause,
-            ClaimDevicesByClaimCodeError::InternalFailure(ref cause) => cause,
-            ClaimDevicesByClaimCodeError::InvalidRequest(ref cause) => cause,
+            ClaimDevicesByClaimCodeError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ClaimDevicesByClaimCodeError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ClaimDevicesByClaimCodeError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ClaimDevicesByClaimCodeError {}
 /// Errors returned by DescribeDevice
 #[derive(Debug, PartialEq)]
 pub enum DescribeDeviceError {
@@ -448,19 +459,16 @@ impl DescribeDeviceError {
     }
 }
 impl fmt::Display for DescribeDeviceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDeviceError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDeviceError::InternalFailure(ref cause) => cause,
-            DescribeDeviceError::InvalidRequest(ref cause) => cause,
-            DescribeDeviceError::ResourceNotFound(ref cause) => cause,
+            DescribeDeviceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeDeviceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeDeviceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDeviceError {}
 /// Errors returned by FinalizeDeviceClaim
 #[derive(Debug, PartialEq)]
 pub enum FinalizeDeviceClaimError {
@@ -508,21 +516,18 @@ impl FinalizeDeviceClaimError {
     }
 }
 impl fmt::Display for FinalizeDeviceClaimError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for FinalizeDeviceClaimError {
-    fn description(&self) -> &str {
         match *self {
-            FinalizeDeviceClaimError::InternalFailure(ref cause) => cause,
-            FinalizeDeviceClaimError::InvalidRequest(ref cause) => cause,
-            FinalizeDeviceClaimError::PreconditionFailed(ref cause) => cause,
-            FinalizeDeviceClaimError::ResourceConflict(ref cause) => cause,
-            FinalizeDeviceClaimError::ResourceNotFound(ref cause) => cause,
+            FinalizeDeviceClaimError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            FinalizeDeviceClaimError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            FinalizeDeviceClaimError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
+            FinalizeDeviceClaimError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            FinalizeDeviceClaimError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for FinalizeDeviceClaimError {}
 /// Errors returned by GetDeviceMethods
 #[derive(Debug, PartialEq)]
 pub enum GetDeviceMethodsError {
@@ -554,19 +559,16 @@ impl GetDeviceMethodsError {
     }
 }
 impl fmt::Display for GetDeviceMethodsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeviceMethodsError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeviceMethodsError::InternalFailure(ref cause) => cause,
-            GetDeviceMethodsError::InvalidRequest(ref cause) => cause,
-            GetDeviceMethodsError::ResourceNotFound(ref cause) => cause,
+            GetDeviceMethodsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetDeviceMethodsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetDeviceMethodsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeviceMethodsError {}
 /// Errors returned by InitiateDeviceClaim
 #[derive(Debug, PartialEq)]
 pub enum InitiateDeviceClaimError {
@@ -607,20 +609,17 @@ impl InitiateDeviceClaimError {
     }
 }
 impl fmt::Display for InitiateDeviceClaimError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitiateDeviceClaimError {
-    fn description(&self) -> &str {
         match *self {
-            InitiateDeviceClaimError::InternalFailure(ref cause) => cause,
-            InitiateDeviceClaimError::InvalidRequest(ref cause) => cause,
-            InitiateDeviceClaimError::ResourceConflict(ref cause) => cause,
-            InitiateDeviceClaimError::ResourceNotFound(ref cause) => cause,
+            InitiateDeviceClaimError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            InitiateDeviceClaimError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            InitiateDeviceClaimError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            InitiateDeviceClaimError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitiateDeviceClaimError {}
 /// Errors returned by InvokeDeviceMethod
 #[derive(Debug, PartialEq)]
 pub enum InvokeDeviceMethodError {
@@ -671,22 +670,19 @@ impl InvokeDeviceMethodError {
     }
 }
 impl fmt::Display for InvokeDeviceMethodError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InvokeDeviceMethodError {
-    fn description(&self) -> &str {
         match *self {
-            InvokeDeviceMethodError::InternalFailure(ref cause) => cause,
-            InvokeDeviceMethodError::InvalidRequest(ref cause) => cause,
-            InvokeDeviceMethodError::PreconditionFailed(ref cause) => cause,
-            InvokeDeviceMethodError::RangeNotSatisfiable(ref cause) => cause,
-            InvokeDeviceMethodError::ResourceConflict(ref cause) => cause,
-            InvokeDeviceMethodError::ResourceNotFound(ref cause) => cause,
+            InvokeDeviceMethodError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            InvokeDeviceMethodError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            InvokeDeviceMethodError::PreconditionFailed(ref cause) => write!(f, "{}", cause),
+            InvokeDeviceMethodError::RangeNotSatisfiable(ref cause) => write!(f, "{}", cause),
+            InvokeDeviceMethodError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            InvokeDeviceMethodError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InvokeDeviceMethodError {}
 /// Errors returned by ListDeviceEvents
 #[derive(Debug, PartialEq)]
 pub enum ListDeviceEventsError {
@@ -725,20 +721,17 @@ impl ListDeviceEventsError {
     }
 }
 impl fmt::Display for ListDeviceEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeviceEventsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeviceEventsError::InternalFailure(ref cause) => cause,
-            ListDeviceEventsError::InvalidRequest(ref cause) => cause,
-            ListDeviceEventsError::RangeNotSatisfiable(ref cause) => cause,
-            ListDeviceEventsError::ResourceNotFound(ref cause) => cause,
+            ListDeviceEventsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListDeviceEventsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListDeviceEventsError::RangeNotSatisfiable(ref cause) => write!(f, "{}", cause),
+            ListDeviceEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeviceEventsError {}
 /// Errors returned by ListDevices
 #[derive(Debug, PartialEq)]
 pub enum ListDevicesError {
@@ -770,19 +763,16 @@ impl ListDevicesError {
     }
 }
 impl fmt::Display for ListDevicesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDevicesError {
-    fn description(&self) -> &str {
         match *self {
-            ListDevicesError::InternalFailure(ref cause) => cause,
-            ListDevicesError::InvalidRequest(ref cause) => cause,
-            ListDevicesError::RangeNotSatisfiable(ref cause) => cause,
+            ListDevicesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListDevicesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListDevicesError::RangeNotSatisfiable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDevicesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -811,18 +801,15 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalFailure(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -854,19 +841,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalFailure(ref cause) => cause,
-            TagResourceError::InvalidRequest(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UnclaimDevice
 #[derive(Debug, PartialEq)]
 pub enum UnclaimDeviceError {
@@ -898,19 +882,16 @@ impl UnclaimDeviceError {
     }
 }
 impl fmt::Display for UnclaimDeviceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UnclaimDeviceError {
-    fn description(&self) -> &str {
         match *self {
-            UnclaimDeviceError::InternalFailure(ref cause) => cause,
-            UnclaimDeviceError::InvalidRequest(ref cause) => cause,
-            UnclaimDeviceError::ResourceNotFound(ref cause) => cause,
+            UnclaimDeviceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UnclaimDeviceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UnclaimDeviceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UnclaimDeviceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -942,19 +923,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalFailure(ref cause) => cause,
-            UntagResourceError::InvalidRequest(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateDeviceState
 #[derive(Debug, PartialEq)]
 pub enum UpdateDeviceStateError {
@@ -986,19 +964,16 @@ impl UpdateDeviceStateError {
     }
 }
 impl fmt::Display for UpdateDeviceStateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDeviceStateError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDeviceStateError::InternalFailure(ref cause) => cause,
-            UpdateDeviceStateError::InvalidRequest(ref cause) => cause,
-            UpdateDeviceStateError::ResourceNotFound(ref cause) => cause,
+            UpdateDeviceStateError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateDeviceStateError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateDeviceStateError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDeviceStateError {}
 /// Trait representing the capabilities of the AWS IoT 1-Click Devices Service API. AWS IoT 1-Click Devices Service clients implement this trait.
 #[async_trait]
 pub trait Iot1ClickDevices {

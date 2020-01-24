@@ -23,11 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Name of the availability zone.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AvailabilityZone {
     /// <p>Id for the availability zone.</p>
     #[serde(rename = "Name")]
@@ -37,7 +38,7 @@ pub struct AvailabilityZone {
 
 /// <p>Types of broker engines.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerEngineType {
     /// <p>The type of broker engine.</p>
     #[serde(rename = "EngineType")]
@@ -51,7 +52,7 @@ pub struct BrokerEngineType {
 
 /// <p>Returns information about all brokers.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerInstance {
     /// <p>The URL of the broker&#39;s ActiveMQ Web Console.</p>
     #[serde(rename = "ConsoleURL")]
@@ -69,7 +70,7 @@ pub struct BrokerInstance {
 
 /// <p>Option for host instance type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerInstanceOption {
     /// <p>The list of available az.</p>
     #[serde(rename = "AvailabilityZones")]
@@ -99,7 +100,7 @@ pub struct BrokerInstanceOption {
 
 /// <p>The Amazon Resource Name (ARN) of the broker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerSummary {
     /// <p>The Amazon Resource Name (ARN) of the broker.</p>
     #[serde(rename = "BrokerArn")]
@@ -133,7 +134,7 @@ pub struct BrokerSummary {
 
 /// <p>Returns information about all configurations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Configuration {
     /// <p>Required. The ARN of the configuration.</p>
     #[serde(rename = "Arn")]
@@ -188,7 +189,7 @@ pub struct ConfigurationId {
 
 /// <p>Returns information about the specified configuration revision.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConfigurationRevision {
     /// <p>Required. The date and time of the configuration revision.</p>
     #[serde(rename = "Created")]
@@ -206,7 +207,7 @@ pub struct ConfigurationRevision {
 
 /// <p>Broker configuration information</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Configurations {
     /// <p>The current configuration of the broker.</p>
     #[serde(rename = "Current")]
@@ -224,6 +225,7 @@ pub struct Configurations {
 
 /// <p>Creates a broker using the specified properties.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBrokerRequest {
     /// <p>Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.</p>
     #[serde(rename = "AutoMinorVersionUpgrade")]
@@ -296,7 +298,7 @@ pub struct CreateBrokerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBrokerResponse {
     /// <p>The Amazon Resource Name (ARN) of the broker.</p>
     #[serde(rename = "BrokerArn")]
@@ -310,6 +312,7 @@ pub struct CreateBrokerResponse {
 
 /// <p>Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConfigurationRequest {
     /// <p>Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.</p>
     #[serde(rename = "EngineType")]
@@ -330,7 +333,7 @@ pub struct CreateConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConfigurationResponse {
     /// <p>Required. The Amazon Resource Name (ARN) of the configuration.</p>
     #[serde(rename = "Arn")]
@@ -356,6 +359,7 @@ pub struct CreateConfigurationResponse {
 
 /// <p>A map of the key-value pairs for the resource tag.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTagsRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -368,6 +372,7 @@ pub struct CreateTagsRequest {
 
 /// <p>Creates a new ActiveMQ user.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUserRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -390,10 +395,11 @@ pub struct CreateUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUserResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBrokerRequest {
     /// <p>The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.</p>
     #[serde(rename = "BrokerId")]
@@ -401,7 +407,7 @@ pub struct DeleteBrokerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteBrokerResponse {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -410,6 +416,7 @@ pub struct DeleteBrokerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagsRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -420,6 +427,7 @@ pub struct DeleteTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUserRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -430,10 +438,11 @@ pub struct DeleteUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUserResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBrokerEngineTypesRequest {
     /// <p>Filter response by engine type.</p>
     #[serde(rename = "EngineType")]
@@ -450,7 +459,7 @@ pub struct DescribeBrokerEngineTypesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBrokerEngineTypesResponse {
     /// <p>List of available engine types and versions.</p>
     #[serde(rename = "BrokerEngineTypes")]
@@ -467,6 +476,7 @@ pub struct DescribeBrokerEngineTypesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBrokerInstanceOptionsRequest {
     /// <p>Filter response by engine type.</p>
     #[serde(rename = "EngineType")]
@@ -491,7 +501,7 @@ pub struct DescribeBrokerInstanceOptionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBrokerInstanceOptionsResponse {
     /// <p>List of available broker instance options.</p>
     #[serde(rename = "BrokerInstanceOptions")]
@@ -508,6 +518,7 @@ pub struct DescribeBrokerInstanceOptionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBrokerRequest {
     /// <p>The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.</p>
     #[serde(rename = "BrokerId")]
@@ -515,7 +526,7 @@ pub struct DescribeBrokerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBrokerResponse {
     /// <p>Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.</p>
     #[serde(rename = "AutoMinorVersionUpgrade")]
@@ -616,6 +627,7 @@ pub struct DescribeBrokerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRequest {
     /// <p>The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -623,7 +635,7 @@ pub struct DescribeConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationResponse {
     /// <p>Required. The ARN of the configuration.</p>
     #[serde(rename = "Arn")]
@@ -664,6 +676,7 @@ pub struct DescribeConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRevisionRequest {
     /// <p>The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -674,7 +687,7 @@ pub struct DescribeConfigurationRevisionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationRevisionResponse {
     /// <p>Required. The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -695,6 +708,7 @@ pub struct DescribeConfigurationRevisionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUserRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -705,7 +719,7 @@ pub struct DescribeUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUserResponse {
     /// <p>Required. The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -743,7 +757,7 @@ pub struct EncryptionOptions {
 
 /// <p>Id of the engine version.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EngineVersion {
     /// <p>Id for the version.</p>
     #[serde(rename = "Name")]
@@ -752,6 +766,7 @@ pub struct EngineVersion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBrokersRequest {
     /// <p>The maximum number of brokers that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.</p>
     #[serde(rename = "MaxResults")]
@@ -764,7 +779,7 @@ pub struct ListBrokersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBrokersResponse {
     /// <p>A list of information about all brokers.</p>
     #[serde(rename = "BrokerSummaries")]
@@ -777,6 +792,7 @@ pub struct ListBrokersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationRevisionsRequest {
     /// <p>The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -792,7 +808,7 @@ pub struct ListConfigurationRevisionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationRevisionsResponse {
     /// <p>The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -813,6 +829,7 @@ pub struct ListConfigurationRevisionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationsRequest {
     /// <p>The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.</p>
     #[serde(rename = "MaxResults")]
@@ -825,7 +842,7 @@ pub struct ListConfigurationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationsResponse {
     /// <p>The list of all revisions for the specified configuration.</p>
     #[serde(rename = "Configurations")]
@@ -842,6 +859,7 @@ pub struct ListConfigurationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -849,7 +867,7 @@ pub struct ListTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsResponse {
     /// <p>The key-value pair for the resource tag.</p>
     #[serde(rename = "Tags")]
@@ -858,6 +876,7 @@ pub struct ListTagsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUsersRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -873,7 +892,7 @@ pub struct ListUsersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUsersResponse {
     /// <p>Required. The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -908,7 +927,7 @@ pub struct Logs {
 
 /// <p>The list of information about logs currently enabled and pending to be deployed for the specified broker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogsSummary {
     /// <p>Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.</p>
     #[serde(rename = "Audit")]
@@ -934,7 +953,7 @@ pub struct LogsSummary {
 
 /// <p>The list of information about logs to be enabled for the specified broker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PendingLogs {
     /// <p>Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.</p>
     #[serde(rename = "Audit")]
@@ -947,6 +966,7 @@ pub struct PendingLogs {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RebootBrokerRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -954,12 +974,12 @@ pub struct RebootBrokerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RebootBrokerResponse {}
 
 /// <p>Returns information about the XML element or attribute that was sanitized in the configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SanitizationWarning {
     /// <p>The name of the XML attribute that has been sanitized.</p>
     #[serde(rename = "AttributeName")]
@@ -977,6 +997,7 @@ pub struct SanitizationWarning {
 
 /// <p>Updates the broker using the specified properties.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBrokerRequest {
     /// <p>Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.</p>
     #[serde(rename = "AutoMinorVersionUpgrade")]
@@ -1008,7 +1029,7 @@ pub struct UpdateBrokerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBrokerResponse {
     /// <p>The new value of automatic upgrades to new minor version for brokers.</p>
     #[serde(rename = "AutoMinorVersionUpgrade")]
@@ -1042,6 +1063,7 @@ pub struct UpdateBrokerResponse {
 
 /// <p>Updates the specified configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConfigurationRequest {
     /// <p>The unique ID that Amazon MQ generates for the configuration.</p>
     #[serde(rename = "ConfigurationId")]
@@ -1057,7 +1079,7 @@ pub struct UpdateConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConfigurationResponse {
     /// <p>Required. The Amazon Resource Name (ARN) of the configuration.</p>
     #[serde(rename = "Arn")]
@@ -1087,6 +1109,7 @@ pub struct UpdateConfigurationResponse {
 
 /// <p>Updates the information for an ActiveMQ user.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserRequest {
     /// <p>The unique ID that Amazon MQ generates for the broker.</p>
     #[serde(rename = "BrokerId")]
@@ -1109,11 +1132,12 @@ pub struct UpdateUserRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateUserResponse {}
 
 /// <p>An ActiveMQ user associated with the broker.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct User {
     /// <p>Enables access to the the ActiveMQ Web Console for the ActiveMQ user.</p>
     #[serde(rename = "ConsoleAccess")]
@@ -1135,7 +1159,7 @@ pub struct User {
 
 /// <p>Returns information about the status of the changes pending for the ActiveMQ user.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserPendingChanges {
     /// <p>Enables access to the the ActiveMQ Web Console for the ActiveMQ user.</p>
     #[serde(rename = "ConsoleAccess")]
@@ -1153,7 +1177,7 @@ pub struct UserPendingChanges {
 
 /// <p>Returns a list of all ActiveMQ users.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserSummary {
     /// <p>The type of change pending for the ActiveMQ user.</p>
     #[serde(rename = "PendingChange")]
@@ -1224,21 +1248,18 @@ impl CreateBrokerError {
     }
 }
 impl fmt::Display for CreateBrokerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateBrokerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateBrokerError::BadRequest(ref cause) => cause,
-            CreateBrokerError::Conflict(ref cause) => cause,
-            CreateBrokerError::Forbidden(ref cause) => cause,
-            CreateBrokerError::InternalServerError(ref cause) => cause,
-            CreateBrokerError::Unauthorized(ref cause) => cause,
+            CreateBrokerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateBrokerError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateBrokerError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateBrokerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateBrokerError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateBrokerError {}
 /// Errors returned by CreateConfiguration
 #[derive(Debug, PartialEq)]
 pub enum CreateConfigurationError {
@@ -1278,20 +1299,17 @@ impl CreateConfigurationError {
     }
 }
 impl fmt::Display for CreateConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConfigurationError::BadRequest(ref cause) => cause,
-            CreateConfigurationError::Conflict(ref cause) => cause,
-            CreateConfigurationError::Forbidden(ref cause) => cause,
-            CreateConfigurationError::InternalServerError(ref cause) => cause,
+            CreateConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConfigurationError {}
 /// Errors returned by CreateTags
 #[derive(Debug, PartialEq)]
 pub enum CreateTagsError {
@@ -1329,20 +1347,17 @@ impl CreateTagsError {
     }
 }
 impl fmt::Display for CreateTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTagsError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTagsError::BadRequest(ref cause) => cause,
-            CreateTagsError::Forbidden(ref cause) => cause,
-            CreateTagsError::InternalServerError(ref cause) => cause,
-            CreateTagsError::NotFound(ref cause) => cause,
+            CreateTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTagsError {}
 /// Errors returned by CreateUser
 #[derive(Debug, PartialEq)]
 pub enum CreateUserError {
@@ -1385,21 +1400,18 @@ impl CreateUserError {
     }
 }
 impl fmt::Display for CreateUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUserError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUserError::BadRequest(ref cause) => cause,
-            CreateUserError::Conflict(ref cause) => cause,
-            CreateUserError::Forbidden(ref cause) => cause,
-            CreateUserError::InternalServerError(ref cause) => cause,
-            CreateUserError::NotFound(ref cause) => cause,
+            CreateUserError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateUserError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateUserError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateUserError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateUserError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateUserError {}
 /// Errors returned by DeleteBroker
 #[derive(Debug, PartialEq)]
 pub enum DeleteBrokerError {
@@ -1437,20 +1449,17 @@ impl DeleteBrokerError {
     }
 }
 impl fmt::Display for DeleteBrokerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBrokerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBrokerError::BadRequest(ref cause) => cause,
-            DeleteBrokerError::Forbidden(ref cause) => cause,
-            DeleteBrokerError::InternalServerError(ref cause) => cause,
-            DeleteBrokerError::NotFound(ref cause) => cause,
+            DeleteBrokerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBrokerError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteBrokerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteBrokerError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBrokerError {}
 /// Errors returned by DeleteTags
 #[derive(Debug, PartialEq)]
 pub enum DeleteTagsError {
@@ -1488,20 +1497,17 @@ impl DeleteTagsError {
     }
 }
 impl fmt::Display for DeleteTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTagsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTagsError::BadRequest(ref cause) => cause,
-            DeleteTagsError::Forbidden(ref cause) => cause,
-            DeleteTagsError::InternalServerError(ref cause) => cause,
-            DeleteTagsError::NotFound(ref cause) => cause,
+            DeleteTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTagsError {}
 /// Errors returned by DeleteUser
 #[derive(Debug, PartialEq)]
 pub enum DeleteUserError {
@@ -1539,20 +1545,17 @@ impl DeleteUserError {
     }
 }
 impl fmt::Display for DeleteUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUserError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteUserError::BadRequest(ref cause) => cause,
-            DeleteUserError::Forbidden(ref cause) => cause,
-            DeleteUserError::InternalServerError(ref cause) => cause,
-            DeleteUserError::NotFound(ref cause) => cause,
+            DeleteUserError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteUserError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteUserError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteUserError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteUserError {}
 /// Errors returned by DescribeBroker
 #[derive(Debug, PartialEq)]
 pub enum DescribeBrokerError {
@@ -1590,20 +1593,17 @@ impl DescribeBrokerError {
     }
 }
 impl fmt::Display for DescribeBrokerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBrokerError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBrokerError::BadRequest(ref cause) => cause,
-            DescribeBrokerError::Forbidden(ref cause) => cause,
-            DescribeBrokerError::InternalServerError(ref cause) => cause,
-            DescribeBrokerError::NotFound(ref cause) => cause,
+            DescribeBrokerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBrokerError {}
 /// Errors returned by DescribeBrokerEngineTypes
 #[derive(Debug, PartialEq)]
 pub enum DescribeBrokerEngineTypesError {
@@ -1640,19 +1640,18 @@ impl DescribeBrokerEngineTypesError {
     }
 }
 impl fmt::Display for DescribeBrokerEngineTypesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBrokerEngineTypesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBrokerEngineTypesError::BadRequest(ref cause) => cause,
-            DescribeBrokerEngineTypesError::Forbidden(ref cause) => cause,
-            DescribeBrokerEngineTypesError::InternalServerError(ref cause) => cause,
+            DescribeBrokerEngineTypesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerEngineTypesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerEngineTypesError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeBrokerEngineTypesError {}
 /// Errors returned by DescribeBrokerInstanceOptions
 #[derive(Debug, PartialEq)]
 pub enum DescribeBrokerInstanceOptionsError {
@@ -1693,19 +1692,18 @@ impl DescribeBrokerInstanceOptionsError {
     }
 }
 impl fmt::Display for DescribeBrokerInstanceOptionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBrokerInstanceOptionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBrokerInstanceOptionsError::BadRequest(ref cause) => cause,
-            DescribeBrokerInstanceOptionsError::Forbidden(ref cause) => cause,
-            DescribeBrokerInstanceOptionsError::InternalServerError(ref cause) => cause,
+            DescribeBrokerInstanceOptionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerInstanceOptionsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeBrokerInstanceOptionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeBrokerInstanceOptionsError {}
 /// Errors returned by DescribeConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DescribeConfigurationError {
@@ -1745,20 +1743,17 @@ impl DescribeConfigurationError {
     }
 }
 impl fmt::Display for DescribeConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConfigurationError::BadRequest(ref cause) => cause,
-            DescribeConfigurationError::Forbidden(ref cause) => cause,
-            DescribeConfigurationError::InternalServerError(ref cause) => cause,
-            DescribeConfigurationError::NotFound(ref cause) => cause,
+            DescribeConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeConfigurationError {}
 /// Errors returned by DescribeConfigurationRevision
 #[derive(Debug, PartialEq)]
 pub enum DescribeConfigurationRevisionError {
@@ -1806,20 +1801,19 @@ impl DescribeConfigurationRevisionError {
     }
 }
 impl fmt::Display for DescribeConfigurationRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConfigurationRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConfigurationRevisionError::BadRequest(ref cause) => cause,
-            DescribeConfigurationRevisionError::Forbidden(ref cause) => cause,
-            DescribeConfigurationRevisionError::InternalServerError(ref cause) => cause,
-            DescribeConfigurationRevisionError::NotFound(ref cause) => cause,
+            DescribeConfigurationRevisionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationRevisionError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationRevisionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConfigurationRevisionError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeConfigurationRevisionError {}
 /// Errors returned by DescribeUser
 #[derive(Debug, PartialEq)]
 pub enum DescribeUserError {
@@ -1857,20 +1851,17 @@ impl DescribeUserError {
     }
 }
 impl fmt::Display for DescribeUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUserError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUserError::BadRequest(ref cause) => cause,
-            DescribeUserError::Forbidden(ref cause) => cause,
-            DescribeUserError::InternalServerError(ref cause) => cause,
-            DescribeUserError::NotFound(ref cause) => cause,
+            DescribeUserError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeUserError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeUserError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeUserError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeUserError {}
 /// Errors returned by ListBrokers
 #[derive(Debug, PartialEq)]
 pub enum ListBrokersError {
@@ -1903,19 +1894,16 @@ impl ListBrokersError {
     }
 }
 impl fmt::Display for ListBrokersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBrokersError {
-    fn description(&self) -> &str {
         match *self {
-            ListBrokersError::BadRequest(ref cause) => cause,
-            ListBrokersError::Forbidden(ref cause) => cause,
-            ListBrokersError::InternalServerError(ref cause) => cause,
+            ListBrokersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListBrokersError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListBrokersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBrokersError {}
 /// Errors returned by ListConfigurationRevisions
 #[derive(Debug, PartialEq)]
 pub enum ListConfigurationRevisionsError {
@@ -1961,20 +1949,19 @@ impl ListConfigurationRevisionsError {
     }
 }
 impl fmt::Display for ListConfigurationRevisionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConfigurationRevisionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListConfigurationRevisionsError::BadRequest(ref cause) => cause,
-            ListConfigurationRevisionsError::Forbidden(ref cause) => cause,
-            ListConfigurationRevisionsError::InternalServerError(ref cause) => cause,
-            ListConfigurationRevisionsError::NotFound(ref cause) => cause,
+            ListConfigurationRevisionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListConfigurationRevisionsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListConfigurationRevisionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListConfigurationRevisionsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConfigurationRevisionsError {}
 /// Errors returned by ListConfigurations
 #[derive(Debug, PartialEq)]
 pub enum ListConfigurationsError {
@@ -2009,19 +1996,16 @@ impl ListConfigurationsError {
     }
 }
 impl fmt::Display for ListConfigurationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConfigurationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListConfigurationsError::BadRequest(ref cause) => cause,
-            ListConfigurationsError::Forbidden(ref cause) => cause,
-            ListConfigurationsError::InternalServerError(ref cause) => cause,
+            ListConfigurationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConfigurationsError {}
 /// Errors returned by ListTags
 #[derive(Debug, PartialEq)]
 pub enum ListTagsError {
@@ -2059,20 +2043,17 @@ impl ListTagsError {
     }
 }
 impl fmt::Display for ListTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsError::BadRequest(ref cause) => cause,
-            ListTagsError::Forbidden(ref cause) => cause,
-            ListTagsError::InternalServerError(ref cause) => cause,
-            ListTagsError::NotFound(ref cause) => cause,
+            ListTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsError {}
 /// Errors returned by ListUsers
 #[derive(Debug, PartialEq)]
 pub enum ListUsersError {
@@ -2110,20 +2091,17 @@ impl ListUsersError {
     }
 }
 impl fmt::Display for ListUsersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListUsersError {
-    fn description(&self) -> &str {
         match *self {
-            ListUsersError::BadRequest(ref cause) => cause,
-            ListUsersError::Forbidden(ref cause) => cause,
-            ListUsersError::InternalServerError(ref cause) => cause,
-            ListUsersError::NotFound(ref cause) => cause,
+            ListUsersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListUsersError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListUsersError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListUsersError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListUsersError {}
 /// Errors returned by RebootBroker
 #[derive(Debug, PartialEq)]
 pub enum RebootBrokerError {
@@ -2161,20 +2139,17 @@ impl RebootBrokerError {
     }
 }
 impl fmt::Display for RebootBrokerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RebootBrokerError {
-    fn description(&self) -> &str {
         match *self {
-            RebootBrokerError::BadRequest(ref cause) => cause,
-            RebootBrokerError::Forbidden(ref cause) => cause,
-            RebootBrokerError::InternalServerError(ref cause) => cause,
-            RebootBrokerError::NotFound(ref cause) => cause,
+            RebootBrokerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            RebootBrokerError::Forbidden(ref cause) => write!(f, "{}", cause),
+            RebootBrokerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RebootBrokerError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RebootBrokerError {}
 /// Errors returned by UpdateBroker
 #[derive(Debug, PartialEq)]
 pub enum UpdateBrokerError {
@@ -2217,21 +2192,18 @@ impl UpdateBrokerError {
     }
 }
 impl fmt::Display for UpdateBrokerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateBrokerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateBrokerError::BadRequest(ref cause) => cause,
-            UpdateBrokerError::Conflict(ref cause) => cause,
-            UpdateBrokerError::Forbidden(ref cause) => cause,
-            UpdateBrokerError::InternalServerError(ref cause) => cause,
-            UpdateBrokerError::NotFound(ref cause) => cause,
+            UpdateBrokerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateBrokerError {}
 /// Errors returned by UpdateConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateConfigurationError {
@@ -2276,21 +2248,18 @@ impl UpdateConfigurationError {
     }
 }
 impl fmt::Display for UpdateConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConfigurationError::BadRequest(ref cause) => cause,
-            UpdateConfigurationError::Conflict(ref cause) => cause,
-            UpdateConfigurationError::Forbidden(ref cause) => cause,
-            UpdateConfigurationError::InternalServerError(ref cause) => cause,
-            UpdateConfigurationError::NotFound(ref cause) => cause,
+            UpdateConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateConfigurationError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateConfigurationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateConfigurationError {}
 /// Errors returned by UpdateUser
 #[derive(Debug, PartialEq)]
 pub enum UpdateUserError {
@@ -2333,21 +2302,18 @@ impl UpdateUserError {
     }
 }
 impl fmt::Display for UpdateUserError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateUserError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateUserError::BadRequest(ref cause) => cause,
-            UpdateUserError::Conflict(ref cause) => cause,
-            UpdateUserError::Forbidden(ref cause) => cause,
-            UpdateUserError::InternalServerError(ref cause) => cause,
-            UpdateUserError::NotFound(ref cause) => cause,
+            UpdateUserError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateUserError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateUserError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateUserError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateUserError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateUserError {}
 /// Trait representing the capabilities of the AmazonMQ API. AmazonMQ clients implement this trait.
 #[async_trait]
 pub trait MQ {

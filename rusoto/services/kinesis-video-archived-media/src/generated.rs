@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains the range of timestamps for the requested media, and the source of the timestamps. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DASHFragmentSelector {
     /// <p>The source of the timestamps for the requested media.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetDASHStreamingSessionURLInput$PlaybackMode</a> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment ingested with a producer timestamp within the specified <a>FragmentSelector$TimestampRange</a> is included in the media playlist. In addition, the fragments with producer timestamps within the <code>TimestampRange</code> ingested immediately following the first fragment (up to the <a>GetDASHStreamingSessionURLInput$MaxManifestFragmentResults</a> value) are included. </p> <p>Fragments that have duplicate producer timestamps are deduplicated. This means that if producers are producing a stream of fragments with producer timestamps that are approximately equal to the true clock time, the MPEG-DASH manifest will contain all of the fragments within the requested timestamp range. If some fragments are ingested within the same time range and very different points in time, only the oldest ingested collection of fragments are returned.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetDASHStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>, the producer timestamps are used in the MP4 fragments and for deduplication. But the most recently ingested fragments based on server timestamps are included in the MPEG-DASH manifest. This means that even if fragments ingested in the past have producer timestamps with values now, they are not included in the HLS media playlist.</p> <p>The default is <code>SERVER_TIMESTAMP</code>.</p>
     #[serde(rename = "FragmentSelectorType")]
@@ -39,6 +41,7 @@ pub struct DASHFragmentSelector {
 
 /// <p><p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>DASHimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DASHTimestampRange {
     /// <p><p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER<em>TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON</em>DEMAND</code> mode, but optional for <code>LIVE<em>REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE</em>REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note></p>
     #[serde(rename = "EndTimestamp")]
@@ -52,7 +55,7 @@ pub struct DASHTimestampRange {
 
 /// <p>Represents a segment of video or other time-delimited data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Fragment {
     /// <p>The playback duration or other time value associated with the fragment.</p>
     #[serde(rename = "FragmentLengthInMilliseconds")]
@@ -78,6 +81,7 @@ pub struct Fragment {
 
 /// <p>Describes the timestamp range and timestamp origin of a range of fragments.</p> <p>Only fragments with a start timestamp greater than or equal to the given start time and less than or equal to the end time are returned. For example, if a stream contains fragments with the following start timestamps: </p> <ul> <li> <p>00:00:00</p> </li> <li> <p>00:00:02</p> </li> <li> <p>00:00:04</p> </li> <li> <p>00:00:06</p> </li> </ul> <p> A fragment selector range with a start time of 00:00:01 and end time of 00:00:04 would return the fragments with start times of 00:00:02 and 00:00:04. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct FragmentSelector {
     /// <p>The origin of the timestamps to use (Server or Producer).</p>
     #[serde(rename = "FragmentSelectorType")]
@@ -88,6 +92,7 @@ pub struct FragmentSelector {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDASHStreamingSessionURLInput {
     /// <p>The time range of the requested fragment and the source of the timestamps.</p> <p>This parameter is required if <code>PlaybackMode</code> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This parameter is optional if PlaybackMode is<code/> <code>LIVE</code>. If <code>PlaybackMode</code> is <code>LIVE</code>, the <code>FragmentSelectorType</code> can be set, but the <code>TimestampRange</code> should not be set. If <code>PlaybackMode</code> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code> and <code>TimestampRange</code> must be set.</p>
     #[serde(rename = "DASHFragmentSelector")]
@@ -124,7 +129,7 @@ pub struct GetDASHStreamingSessionURLInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDASHStreamingSessionURLOutput {
     /// <p>The URL (containing the session token) that a media player can use to retrieve the MPEG-DASH manifest.</p>
     #[serde(rename = "DASHStreamingSessionURL")]
@@ -133,6 +138,7 @@ pub struct GetDASHStreamingSessionURLOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetHLSStreamingSessionURLInput {
     /// <p>Specifies which format should be used for packaging the media. Specifying the <code>FRAGMENTED_MP4</code> container format packages the media into MP4 fragments (fMP4 or CMAF). This is the recommended packaging because there is minimal packaging overhead. The other container format option is <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was released and is sometimes the only supported packaging on older HLS players. MPEG TS typically has a 5-25 percent packaging overhead. This means MPEG TS typically requires 5-25 percent more bandwidth and cost than fMP4.</p> <p>The default is <code>FRAGMENTED_MP4</code>.</p>
     #[serde(rename = "ContainerFormat")]
@@ -173,7 +179,7 @@ pub struct GetHLSStreamingSessionURLInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetHLSStreamingSessionURLOutput {
     /// <p>The URL (containing the session token) that a media player can use to retrieve the HLS master playlist.</p>
     #[serde(rename = "HLSStreamingSessionURL")]
@@ -182,6 +188,7 @@ pub struct GetHLSStreamingSessionURLOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMediaForFragmentListInput {
     /// <p>A list of the numbers of fragments for which to retrieve media. You retrieve these values with <a>ListFragments</a>.</p>
     #[serde(rename = "Fragments")]
@@ -201,6 +208,7 @@ pub struct GetMediaForFragmentListOutput {
 
 /// <p>Contains the range of timestamps for the requested media, and the source of the timestamps.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HLSFragmentSelector {
     /// <p>The source of the timestamps for the requested media.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment ingested with a producer timestamp within the specified <a>FragmentSelector$TimestampRange</a> is included in the media playlist. In addition, the fragments with producer timestamps within the <code>TimestampRange</code> ingested immediately following the first fragment (up to the <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a> value) are included. </p> <p>Fragments that have duplicate producer timestamps are deduplicated. This means that if producers are producing a stream of fragments with producer timestamps that are approximately equal to the true clock time, the HLS media playlists will contain all of the fragments within the requested timestamp range. If some fragments are ingested within the same time range and very different points in time, only the oldest ingested collection of fragments are returned.</p> <p>When <code>FragmentSelectorType</code> is set to <code>PRODUCER_TIMESTAMP</code> and <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>, the producer timestamps are used in the MP4 fragments and for deduplication. But the most recently ingested fragments based on server timestamps are included in the HLS media playlist. This means that even if fragments ingested in the past have producer timestamps with values now, they are not included in the HLS media playlist.</p> <p>The default is <code>SERVER_TIMESTAMP</code>.</p>
     #[serde(rename = "FragmentSelectorType")]
@@ -214,6 +222,7 @@ pub struct HLSFragmentSelector {
 
 /// <p><p>The start and end of the timestamp range for the requested media.</p> <p>This value should not be present if <code>PlaybackType</code> is <code>LIVE</code>.</p> <note> <p>The values in the <code>HLSTimestampRange</code> are inclusive. Fragments that begin before the start time but continue past it, or fragments that begin before the end time but continue past it, are included in the session.</p> </note></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HLSTimestampRange {
     /// <p><p>The end of the timestamp range for the requested media. This value must be within 3 hours of the specified <code>StartTimestamp</code>, and it must be later than the <code>StartTimestamp</code> value.</p> <p>If <code>FragmentSelectorType</code> for the request is <code>SERVER<em>TIMESTAMP</code>, this value must be in the past.</p> <p>The <code>EndTimestamp</code> value is required for <code>ON</em>DEMAND</code> mode, but optional for <code>LIVE<em>REPLAY</code> mode. If the <code>EndTimestamp</code> is not set for <code>LIVE</em>REPLAY</code> mode then the session will continue to include newly ingested fragments until the session expires.</p> <note> <p>This value is inclusive. The <code>EndTimestamp</code> is compared to the (starting) timestamp of the fragment. Fragments that start before the <code>EndTimestamp</code> value and continue past it are included in the session.</p> </note></p>
     #[serde(rename = "EndTimestamp")]
@@ -226,6 +235,7 @@ pub struct HLSTimestampRange {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFragmentsInput {
     /// <p>Describes the timestamp range and timestamp origin for the range of fragments to return.</p>
     #[serde(rename = "FragmentSelector")]
@@ -245,7 +255,7 @@ pub struct ListFragmentsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFragmentsOutput {
     /// <p>A list of archived <a>Fragment</a> objects from the stream that meet the selector criteria. Results are in no specific order, even across pages.</p>
     #[serde(rename = "Fragments")]
@@ -259,6 +269,7 @@ pub struct ListFragmentsOutput {
 
 /// <p>The range of timestamps for which to return fragments.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TimestampRange {
     /// <p>The ending timestamp in the range of timestamps for which to return fragments.</p>
     #[serde(rename = "EndTimestamp")]
@@ -343,24 +354,29 @@ impl GetDASHStreamingSessionURLError {
     }
 }
 impl fmt::Display for GetDASHStreamingSessionURLError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDASHStreamingSessionURLError {
-    fn description(&self) -> &str {
         match *self {
-            GetDASHStreamingSessionURLError::ClientLimitExceeded(ref cause) => cause,
-            GetDASHStreamingSessionURLError::InvalidArgument(ref cause) => cause,
-            GetDASHStreamingSessionURLError::InvalidCodecPrivateData(ref cause) => cause,
-            GetDASHStreamingSessionURLError::MissingCodecPrivateData(ref cause) => cause,
-            GetDASHStreamingSessionURLError::NoDataRetention(ref cause) => cause,
-            GetDASHStreamingSessionURLError::NotAuthorized(ref cause) => cause,
-            GetDASHStreamingSessionURLError::ResourceNotFound(ref cause) => cause,
-            GetDASHStreamingSessionURLError::UnsupportedStreamMediaType(ref cause) => cause,
+            GetDASHStreamingSessionURLError::ClientLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDASHStreamingSessionURLError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            GetDASHStreamingSessionURLError::InvalidCodecPrivateData(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDASHStreamingSessionURLError::MissingCodecPrivateData(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDASHStreamingSessionURLError::NoDataRetention(ref cause) => write!(f, "{}", cause),
+            GetDASHStreamingSessionURLError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetDASHStreamingSessionURLError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetDASHStreamingSessionURLError::UnsupportedStreamMediaType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetDASHStreamingSessionURLError {}
 /// Errors returned by GetHLSStreamingSessionURL
 #[derive(Debug, PartialEq)]
 pub enum GetHLSStreamingSessionURLError {
@@ -434,24 +450,29 @@ impl GetHLSStreamingSessionURLError {
     }
 }
 impl fmt::Display for GetHLSStreamingSessionURLError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetHLSStreamingSessionURLError {
-    fn description(&self) -> &str {
         match *self {
-            GetHLSStreamingSessionURLError::ClientLimitExceeded(ref cause) => cause,
-            GetHLSStreamingSessionURLError::InvalidArgument(ref cause) => cause,
-            GetHLSStreamingSessionURLError::InvalidCodecPrivateData(ref cause) => cause,
-            GetHLSStreamingSessionURLError::MissingCodecPrivateData(ref cause) => cause,
-            GetHLSStreamingSessionURLError::NoDataRetention(ref cause) => cause,
-            GetHLSStreamingSessionURLError::NotAuthorized(ref cause) => cause,
-            GetHLSStreamingSessionURLError::ResourceNotFound(ref cause) => cause,
-            GetHLSStreamingSessionURLError::UnsupportedStreamMediaType(ref cause) => cause,
+            GetHLSStreamingSessionURLError::ClientLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetHLSStreamingSessionURLError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            GetHLSStreamingSessionURLError::InvalidCodecPrivateData(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetHLSStreamingSessionURLError::MissingCodecPrivateData(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetHLSStreamingSessionURLError::NoDataRetention(ref cause) => write!(f, "{}", cause),
+            GetHLSStreamingSessionURLError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetHLSStreamingSessionURLError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetHLSStreamingSessionURLError::UnsupportedStreamMediaType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetHLSStreamingSessionURLError {}
 /// Errors returned by GetMediaForFragmentList
 #[derive(Debug, PartialEq)]
 pub enum GetMediaForFragmentListError {
@@ -497,20 +518,17 @@ impl GetMediaForFragmentListError {
     }
 }
 impl fmt::Display for GetMediaForFragmentListError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMediaForFragmentListError {
-    fn description(&self) -> &str {
         match *self {
-            GetMediaForFragmentListError::ClientLimitExceeded(ref cause) => cause,
-            GetMediaForFragmentListError::InvalidArgument(ref cause) => cause,
-            GetMediaForFragmentListError::NotAuthorized(ref cause) => cause,
-            GetMediaForFragmentListError::ResourceNotFound(ref cause) => cause,
+            GetMediaForFragmentListError::ClientLimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetMediaForFragmentListError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            GetMediaForFragmentListError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetMediaForFragmentListError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMediaForFragmentListError {}
 /// Errors returned by ListFragments
 #[derive(Debug, PartialEq)]
 pub enum ListFragmentsError {
@@ -548,20 +566,17 @@ impl ListFragmentsError {
     }
 }
 impl fmt::Display for ListFragmentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFragmentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListFragmentsError::ClientLimitExceeded(ref cause) => cause,
-            ListFragmentsError::InvalidArgument(ref cause) => cause,
-            ListFragmentsError::NotAuthorized(ref cause) => cause,
-            ListFragmentsError::ResourceNotFound(ref cause) => cause,
+            ListFragmentsError::ClientLimitExceeded(ref cause) => write!(f, "{}", cause),
+            ListFragmentsError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            ListFragmentsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            ListFragmentsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFragmentsError {}
 /// Trait representing the capabilities of the Kinesis Video Archived Media API. Kinesis Video Archived Media clients implement this trait.
 #[async_trait]
 pub trait KinesisVideoArchivedMedia {

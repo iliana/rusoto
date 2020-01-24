@@ -1,6 +1,7 @@
 use warp::{self, path, Filter};
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let instance_profile_role =
         path!("latest" / "meta-data" / "iam" / "security-credentials").map(|| "testrole");
     let instance_profile_creds =
@@ -16,9 +17,11 @@ fn main() {
 }"#
         });
 
-    let routes = warp::get2()
+    let routes = warp::get()
         .and(instance_profile_creds)
         .or(instance_profile_role);
 
-    warp::serve(routes).run(([127, 0, 0, 1], 8080));
+    warp::serve(routes)
+        .run(([127, 0, 0, 1], 8080))
+        .await;
 }

@@ -35,10 +35,10 @@ base64 = "0.11"
 hex = "0.4"
 serde = "1.0.2"
 sha2 = "0.8.0"
-time = "0.1.35"
+time = "0.2"
 pin-project = "0.4"
 percent-encoding = "2.1.0"
-tokio = "0.2.5"
+tokio = "0.2"
 
 [dependencies.rusoto_credential]
 path = "../credential"

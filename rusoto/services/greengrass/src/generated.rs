@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateRoleToGroupRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -36,7 +38,7 @@ pub struct AssociateRoleToGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateRoleToGroupResponse {
     /// <p>The time, in milliseconds since the epoch, when the role ARN was associated with the group.</p>
     #[serde(rename = "AssociatedAt")]
@@ -45,6 +47,7 @@ pub struct AssociateRoleToGroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateServiceRoleToAccountRequest {
     /// <p>The ARN of the service role you wish to associate with your account.</p>
     #[serde(rename = "RoleArn")]
@@ -52,7 +55,7 @@ pub struct AssociateServiceRoleToAccountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateServiceRoleToAccountResponse {
     /// <p>The time when the service role was associated with the account.</p>
     #[serde(rename = "AssociatedAt")]
@@ -62,7 +65,7 @@ pub struct AssociateServiceRoleToAccountResponse {
 
 /// <p>Information about a bulk deployment. You cannot start a new bulk deployment while another one is still running or in a non-terminal state.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BulkDeployment {
     /// <p>The ARN of the bulk deployment.</p>
     #[serde(rename = "BulkDeploymentArn")]
@@ -80,7 +83,7 @@ pub struct BulkDeployment {
 
 /// <p>Relevant metrics on input records processed during bulk deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BulkDeploymentMetrics {
     /// <p>The total number of records that returned a non-retryable error. For example, this can occur if a group record from the input file uses an invalid format or specifies a nonexistent group version, or if the execution role doesn&#39;t grant permission to deploy a group or group version.</p>
     #[serde(rename = "InvalidInputRecords")]
@@ -98,7 +101,7 @@ pub struct BulkDeploymentMetrics {
 
 /// <p>Information about an individual group deployment in a bulk deployment operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BulkDeploymentResult {
     /// <p>The time, in ISO format, when the deployment was created.</p>
     #[serde(rename = "CreatedAt")]
@@ -207,6 +210,7 @@ pub struct CoreDefinitionVersion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConnectorDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -227,7 +231,7 @@ pub struct CreateConnectorDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConnectorDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -260,6 +264,7 @@ pub struct CreateConnectorDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConnectorDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -275,7 +280,7 @@ pub struct CreateConnectorDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConnectorDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -297,6 +302,7 @@ pub struct CreateConnectorDefinitionVersionResponse {
 
 /// <p>Information needed to create a core definition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCoreDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -317,7 +323,7 @@ pub struct CreateCoreDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCoreDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -350,6 +356,7 @@ pub struct CreateCoreDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCoreDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -365,7 +372,7 @@ pub struct CreateCoreDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCoreDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -386,6 +393,7 @@ pub struct CreateCoreDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeploymentRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -408,7 +416,7 @@ pub struct CreateDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeploymentResponse {
     /// <p>The ARN of the deployment.</p>
     #[serde(rename = "DeploymentArn")]
@@ -421,6 +429,7 @@ pub struct CreateDeploymentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeviceDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -441,7 +450,7 @@ pub struct CreateDeviceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeviceDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -474,6 +483,7 @@ pub struct CreateDeviceDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeviceDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -489,7 +499,7 @@ pub struct CreateDeviceDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeviceDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -510,6 +520,7 @@ pub struct CreateDeviceDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFunctionDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -530,7 +541,7 @@ pub struct CreateFunctionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFunctionDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -564,6 +575,7 @@ pub struct CreateFunctionDefinitionResponse {
 
 /// <p>Information needed to create a function definition version.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFunctionDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -583,7 +595,7 @@ pub struct CreateFunctionDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFunctionDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -604,6 +616,7 @@ pub struct CreateFunctionDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGroupCertificateAuthorityRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -615,7 +628,7 @@ pub struct CreateGroupCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGroupCertificateAuthorityResponse {
     /// <p>The ARN of the group certificate authority.</p>
     #[serde(rename = "GroupCertificateAuthorityArn")]
@@ -624,6 +637,7 @@ pub struct CreateGroupCertificateAuthorityResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGroupRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -644,7 +658,7 @@ pub struct CreateGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGroupResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -677,6 +691,7 @@ pub struct CreateGroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGroupVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -716,7 +731,7 @@ pub struct CreateGroupVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGroupVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -737,6 +752,7 @@ pub struct CreateGroupVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLoggerDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -757,7 +773,7 @@ pub struct CreateLoggerDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateLoggerDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -790,6 +806,7 @@ pub struct CreateLoggerDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLoggerDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -805,7 +822,7 @@ pub struct CreateLoggerDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateLoggerDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -826,6 +843,7 @@ pub struct CreateLoggerDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateResourceDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -846,7 +864,7 @@ pub struct CreateResourceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateResourceDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -879,6 +897,7 @@ pub struct CreateResourceDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateResourceDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -894,7 +913,7 @@ pub struct CreateResourceDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateResourceDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -915,6 +934,7 @@ pub struct CreateResourceDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSoftwareUpdateJobRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -936,7 +956,7 @@ pub struct CreateSoftwareUpdateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSoftwareUpdateJobResponse {
     /// <p>The IoT Job ARN corresponding to this update.</p>
     #[serde(rename = "IotJobArn")]
@@ -953,6 +973,7 @@ pub struct CreateSoftwareUpdateJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSubscriptionDefinitionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -973,7 +994,7 @@ pub struct CreateSubscriptionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSubscriptionDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1006,6 +1027,7 @@ pub struct CreateSubscriptionDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSubscriptionDefinitionVersionRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -1021,7 +1043,7 @@ pub struct CreateSubscriptionDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSubscriptionDefinitionVersionResponse {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -1043,7 +1065,7 @@ pub struct CreateSubscriptionDefinitionVersionResponse {
 
 /// <p>Information about a definition.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DefinitionInformation {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1080,6 +1102,7 @@ pub struct DefinitionInformation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConnectorDefinitionRequest {
     /// <p>The ID of the connector definition.</p>
     #[serde(rename = "ConnectorDefinitionId")]
@@ -1087,10 +1110,11 @@ pub struct DeleteConnectorDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConnectorDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCoreDefinitionRequest {
     /// <p>The ID of the core definition.</p>
     #[serde(rename = "CoreDefinitionId")]
@@ -1098,10 +1122,11 @@ pub struct DeleteCoreDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteCoreDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDeviceDefinitionRequest {
     /// <p>The ID of the device definition.</p>
     #[serde(rename = "DeviceDefinitionId")]
@@ -1109,10 +1134,11 @@ pub struct DeleteDeviceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDeviceDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFunctionDefinitionRequest {
     /// <p>The ID of the Lambda function definition.</p>
     #[serde(rename = "FunctionDefinitionId")]
@@ -1120,10 +1146,11 @@ pub struct DeleteFunctionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteFunctionDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGroupRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1131,10 +1158,11 @@ pub struct DeleteGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteGroupResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLoggerDefinitionRequest {
     /// <p>The ID of the logger definition.</p>
     #[serde(rename = "LoggerDefinitionId")]
@@ -1142,10 +1170,11 @@ pub struct DeleteLoggerDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLoggerDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourceDefinitionRequest {
     /// <p>The ID of the resource definition.</p>
     #[serde(rename = "ResourceDefinitionId")]
@@ -1153,10 +1182,11 @@ pub struct DeleteResourceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteResourceDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSubscriptionDefinitionRequest {
     /// <p>The ID of the subscription definition.</p>
     #[serde(rename = "SubscriptionDefinitionId")]
@@ -1164,12 +1194,12 @@ pub struct DeleteSubscriptionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSubscriptionDefinitionResponse {}
 
 /// <p>Information about a deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Deployment {
     /// <p>The time, in milliseconds since the epoch, when the deployment was created.</p>
     #[serde(rename = "CreatedAt")]
@@ -1221,6 +1251,7 @@ pub struct DeviceDefinitionVersion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateRoleFromGroupRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1228,7 +1259,7 @@ pub struct DisassociateRoleFromGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateRoleFromGroupResponse {
     /// <p>The time, in milliseconds since the epoch, when the role was disassociated from the group.</p>
     #[serde(rename = "DisassociatedAt")]
@@ -1237,10 +1268,11 @@ pub struct DisassociateRoleFromGroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateServiceRoleFromAccountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateServiceRoleFromAccountResponse {
     /// <p>The time when the service role was disassociated from the account.</p>
     #[serde(rename = "DisassociatedAt")]
@@ -1250,7 +1282,7 @@ pub struct DisassociateServiceRoleFromAccountResponse {
 
 /// <p>Details about the error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorDetail {
     /// <p>A detailed error code.</p>
     #[serde(rename = "DetailedErrorCode")]
@@ -1389,6 +1421,7 @@ pub struct FunctionRunAsConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAssociatedRoleRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1396,7 +1429,7 @@ pub struct GetAssociatedRoleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAssociatedRoleResponse {
     /// <p>The time when the role was associated with the group.</p>
     #[serde(rename = "AssociatedAt")]
@@ -1409,6 +1442,7 @@ pub struct GetAssociatedRoleResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBulkDeploymentStatusRequest {
     /// <p>The ID of the bulk deployment.</p>
     #[serde(rename = "BulkDeploymentId")]
@@ -1416,7 +1450,7 @@ pub struct GetBulkDeploymentStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBulkDeploymentStatusResponse {
     /// <p>Relevant metrics on input records processed during bulk deployment.</p>
     #[serde(rename = "BulkDeploymentMetrics")]
@@ -1445,6 +1479,7 @@ pub struct GetBulkDeploymentStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectivityInfoRequest {
     /// <p>The thing name.</p>
     #[serde(rename = "ThingName")]
@@ -1452,7 +1487,7 @@ pub struct GetConnectivityInfoRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectivityInfoResponse {
     /// <p>Connectivity info list.</p>
     #[serde(rename = "ConnectivityInfo")]
@@ -1465,6 +1500,7 @@ pub struct GetConnectivityInfoResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectorDefinitionRequest {
     /// <p>The ID of the connector definition.</p>
     #[serde(rename = "ConnectorDefinitionId")]
@@ -1472,7 +1508,7 @@ pub struct GetConnectorDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectorDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1509,6 +1545,7 @@ pub struct GetConnectorDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectorDefinitionVersionRequest {
     /// <p>The ID of the connector definition.</p>
     #[serde(rename = "ConnectorDefinitionId")]
@@ -1523,7 +1560,7 @@ pub struct GetConnectorDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectorDefinitionVersionResponse {
     /// <p>The ARN of the connector definition version.</p>
     #[serde(rename = "Arn")]
@@ -1552,6 +1589,7 @@ pub struct GetConnectorDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCoreDefinitionRequest {
     /// <p>The ID of the core definition.</p>
     #[serde(rename = "CoreDefinitionId")]
@@ -1559,7 +1597,7 @@ pub struct GetCoreDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCoreDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1596,6 +1634,7 @@ pub struct GetCoreDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCoreDefinitionVersionRequest {
     /// <p>The ID of the core definition.</p>
     #[serde(rename = "CoreDefinitionId")]
@@ -1606,7 +1645,7 @@ pub struct GetCoreDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCoreDefinitionVersionResponse {
     /// <p>The ARN of the core definition version.</p>
     #[serde(rename = "Arn")]
@@ -1635,6 +1674,7 @@ pub struct GetCoreDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentStatusRequest {
     /// <p>The ID of the deployment.</p>
     #[serde(rename = "DeploymentId")]
@@ -1645,7 +1685,7 @@ pub struct GetDeploymentStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentStatusResponse {
     /// <p>The status of the deployment: &#39;&#39;InProgress&#39;&#39;, &#39;&#39;Building&#39;&#39;, &#39;&#39;Success&#39;&#39;, or &#39;&#39;Failure&#39;&#39;.</p>
     #[serde(rename = "DeploymentStatus")]
@@ -1670,6 +1710,7 @@ pub struct GetDeploymentStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeviceDefinitionRequest {
     /// <p>The ID of the device definition.</p>
     #[serde(rename = "DeviceDefinitionId")]
@@ -1677,7 +1718,7 @@ pub struct GetDeviceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeviceDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1714,6 +1755,7 @@ pub struct GetDeviceDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeviceDefinitionVersionRequest {
     /// <p>The ID of the device definition.</p>
     #[serde(rename = "DeviceDefinitionId")]
@@ -1728,7 +1770,7 @@ pub struct GetDeviceDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeviceDefinitionVersionResponse {
     /// <p>The ARN of the device definition version.</p>
     #[serde(rename = "Arn")]
@@ -1757,6 +1799,7 @@ pub struct GetDeviceDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFunctionDefinitionRequest {
     /// <p>The ID of the Lambda function definition.</p>
     #[serde(rename = "FunctionDefinitionId")]
@@ -1764,7 +1807,7 @@ pub struct GetFunctionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFunctionDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1801,6 +1844,7 @@ pub struct GetFunctionDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetFunctionDefinitionVersionRequest {
     /// <p>The ID of the Lambda function definition.</p>
     #[serde(rename = "FunctionDefinitionId")]
@@ -1815,7 +1859,7 @@ pub struct GetFunctionDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetFunctionDefinitionVersionResponse {
     /// <p>The ARN of the function definition version.</p>
     #[serde(rename = "Arn")]
@@ -1844,6 +1888,7 @@ pub struct GetFunctionDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupCertificateAuthorityRequest {
     /// <p>The ID of the certificate authority.</p>
     #[serde(rename = "CertificateAuthorityId")]
@@ -1854,7 +1899,7 @@ pub struct GetGroupCertificateAuthorityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupCertificateAuthorityResponse {
     /// <p>The ARN of the certificate authority for the group.</p>
     #[serde(rename = "GroupCertificateAuthorityArn")]
@@ -1871,6 +1916,7 @@ pub struct GetGroupCertificateAuthorityResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupCertificateConfigurationRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1878,7 +1924,7 @@ pub struct GetGroupCertificateConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupCertificateConfigurationResponse {
     /// <p>The amount of time remaining before the certificate authority expires, in milliseconds.</p>
     #[serde(rename = "CertificateAuthorityExpiryInMilliseconds")]
@@ -1895,6 +1941,7 @@ pub struct GetGroupCertificateConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1902,7 +1949,7 @@ pub struct GetGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -1939,6 +1986,7 @@ pub struct GetGroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGroupVersionRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -1949,7 +1997,7 @@ pub struct GetGroupVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGroupVersionResponse {
     /// <p>The ARN of the group version.</p>
     #[serde(rename = "Arn")]
@@ -1974,6 +2022,7 @@ pub struct GetGroupVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLoggerDefinitionRequest {
     /// <p>The ID of the logger definition.</p>
     #[serde(rename = "LoggerDefinitionId")]
@@ -1981,7 +2030,7 @@ pub struct GetLoggerDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLoggerDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -2018,6 +2067,7 @@ pub struct GetLoggerDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLoggerDefinitionVersionRequest {
     /// <p>The ID of the logger definition.</p>
     #[serde(rename = "LoggerDefinitionId")]
@@ -2032,7 +2082,7 @@ pub struct GetLoggerDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLoggerDefinitionVersionResponse {
     /// <p>The ARN of the logger definition version.</p>
     #[serde(rename = "Arn")]
@@ -2057,6 +2107,7 @@ pub struct GetLoggerDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetResourceDefinitionRequest {
     /// <p>The ID of the resource definition.</p>
     #[serde(rename = "ResourceDefinitionId")]
@@ -2064,7 +2115,7 @@ pub struct GetResourceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetResourceDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -2101,6 +2152,7 @@ pub struct GetResourceDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetResourceDefinitionVersionRequest {
     /// <p>The ID of the resource definition.</p>
     #[serde(rename = "ResourceDefinitionId")]
@@ -2111,7 +2163,7 @@ pub struct GetResourceDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetResourceDefinitionVersionResponse {
     /// <p>Arn of the resource definition version.</p>
     #[serde(rename = "Arn")]
@@ -2136,10 +2188,11 @@ pub struct GetResourceDefinitionVersionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetServiceRoleForAccountRequest {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetServiceRoleForAccountResponse {
     /// <p>The time when the service role was associated with the account.</p>
     #[serde(rename = "AssociatedAt")]
@@ -2152,6 +2205,7 @@ pub struct GetServiceRoleForAccountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSubscriptionDefinitionRequest {
     /// <p>The ID of the subscription definition.</p>
     #[serde(rename = "SubscriptionDefinitionId")]
@@ -2159,7 +2213,7 @@ pub struct GetSubscriptionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSubscriptionDefinitionResponse {
     /// <p>The ARN of the definition.</p>
     #[serde(rename = "Arn")]
@@ -2196,6 +2250,7 @@ pub struct GetSubscriptionDefinitionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSubscriptionDefinitionVersionRequest {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2210,7 +2265,7 @@ pub struct GetSubscriptionDefinitionVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSubscriptionDefinitionVersionResponse {
     /// <p>The ARN of the subscription definition version.</p>
     #[serde(rename = "Arn")]
@@ -2240,7 +2295,7 @@ pub struct GetSubscriptionDefinitionVersionResponse {
 
 /// <p>Information about a certificate authority for a group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GroupCertificateAuthorityProperties {
     /// <p>The ARN of the certificate authority for the group.</p>
     #[serde(rename = "GroupCertificateAuthorityArn")]
@@ -2254,7 +2309,7 @@ pub struct GroupCertificateAuthorityProperties {
 
 /// <p>Information about a group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GroupInformation {
     /// <p>The ARN of the group.</p>
     #[serde(rename = "Arn")]
@@ -2333,6 +2388,7 @@ pub struct GroupVersion {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBulkDeploymentDetailedReportsRequest {
     /// <p>The ID of the bulk deployment.</p>
     #[serde(rename = "BulkDeploymentId")]
@@ -2348,7 +2404,7 @@ pub struct ListBulkDeploymentDetailedReportsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBulkDeploymentDetailedReportsResponse {
     /// <p>A list of the individual group deployments in the bulk deployment operation.</p>
     #[serde(rename = "Deployments")]
@@ -2361,6 +2417,7 @@ pub struct ListBulkDeploymentDetailedReportsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBulkDeploymentsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2373,7 +2430,7 @@ pub struct ListBulkDeploymentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBulkDeploymentsResponse {
     /// <p>A list of bulk deployments.</p>
     #[serde(rename = "BulkDeployments")]
@@ -2386,6 +2443,7 @@ pub struct ListBulkDeploymentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConnectorDefinitionVersionsRequest {
     /// <p>The ID of the connector definition.</p>
     #[serde(rename = "ConnectorDefinitionId")]
@@ -2401,7 +2459,7 @@ pub struct ListConnectorDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConnectorDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2414,6 +2472,7 @@ pub struct ListConnectorDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConnectorDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2426,7 +2485,7 @@ pub struct ListConnectorDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConnectorDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2439,6 +2498,7 @@ pub struct ListConnectorDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCoreDefinitionVersionsRequest {
     /// <p>The ID of the core definition.</p>
     #[serde(rename = "CoreDefinitionId")]
@@ -2454,7 +2514,7 @@ pub struct ListCoreDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCoreDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2467,6 +2527,7 @@ pub struct ListCoreDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCoreDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2479,7 +2540,7 @@ pub struct ListCoreDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCoreDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2492,6 +2553,7 @@ pub struct ListCoreDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentsRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -2507,7 +2569,7 @@ pub struct ListDeploymentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentsResponse {
     /// <p>A list of deployments for the requested groups.</p>
     #[serde(rename = "Deployments")]
@@ -2520,6 +2582,7 @@ pub struct ListDeploymentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeviceDefinitionVersionsRequest {
     /// <p>The ID of the device definition.</p>
     #[serde(rename = "DeviceDefinitionId")]
@@ -2535,7 +2598,7 @@ pub struct ListDeviceDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeviceDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2548,6 +2611,7 @@ pub struct ListDeviceDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeviceDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2560,7 +2624,7 @@ pub struct ListDeviceDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeviceDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2573,6 +2637,7 @@ pub struct ListDeviceDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFunctionDefinitionVersionsRequest {
     /// <p>The ID of the Lambda function definition.</p>
     #[serde(rename = "FunctionDefinitionId")]
@@ -2588,7 +2653,7 @@ pub struct ListFunctionDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFunctionDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2601,6 +2666,7 @@ pub struct ListFunctionDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFunctionDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2613,7 +2679,7 @@ pub struct ListFunctionDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFunctionDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2626,6 +2692,7 @@ pub struct ListFunctionDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGroupCertificateAuthoritiesRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -2633,7 +2700,7 @@ pub struct ListGroupCertificateAuthoritiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGroupCertificateAuthoritiesResponse {
     /// <p>A list of certificate authorities associated with the group.</p>
     #[serde(rename = "GroupCertificateAuthorities")]
@@ -2642,6 +2709,7 @@ pub struct ListGroupCertificateAuthoritiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGroupVersionsRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -2657,7 +2725,7 @@ pub struct ListGroupVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGroupVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2670,6 +2738,7 @@ pub struct ListGroupVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGroupsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2682,7 +2751,7 @@ pub struct ListGroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGroupsResponse {
     /// <p>Information about a group.</p>
     #[serde(rename = "Groups")]
@@ -2695,6 +2764,7 @@ pub struct ListGroupsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLoggerDefinitionVersionsRequest {
     /// <p>The ID of the logger definition.</p>
     #[serde(rename = "LoggerDefinitionId")]
@@ -2710,7 +2780,7 @@ pub struct ListLoggerDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLoggerDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2723,6 +2793,7 @@ pub struct ListLoggerDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLoggerDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2735,7 +2806,7 @@ pub struct ListLoggerDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLoggerDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2748,6 +2819,7 @@ pub struct ListLoggerDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourceDefinitionVersionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2763,7 +2835,7 @@ pub struct ListResourceDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourceDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2776,6 +2848,7 @@ pub struct ListResourceDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourceDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2788,7 +2861,7 @@ pub struct ListResourceDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourceDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2801,6 +2874,7 @@ pub struct ListResourceDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSubscriptionDefinitionVersionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2816,7 +2890,7 @@ pub struct ListSubscriptionDefinitionVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSubscriptionDefinitionVersionsResponse {
     /// <p>The token for the next set of results, or &#39;&#39;null&#39;&#39; if there are no additional results.</p>
     #[serde(rename = "NextToken")]
@@ -2829,6 +2903,7 @@ pub struct ListSubscriptionDefinitionVersionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSubscriptionDefinitionsRequest {
     /// <p>The maximum number of results to be returned per request.</p>
     #[serde(rename = "MaxResults")]
@@ -2841,7 +2916,7 @@ pub struct ListSubscriptionDefinitionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSubscriptionDefinitionsResponse {
     /// <p>Information about a definition.</p>
     #[serde(rename = "Definitions")]
@@ -2854,6 +2929,7 @@ pub struct ListSubscriptionDefinitionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -2861,7 +2937,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     #[serde(rename = "tags")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2930,6 +3006,7 @@ pub struct LoggerDefinitionVersion {
 
 /// <p>Information needed to reset deployments.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetDeploymentsRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -2945,7 +3022,7 @@ pub struct ResetDeploymentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResetDeploymentsResponse {
     /// <p>The ARN of the deployment.</p>
     #[serde(rename = "DeploymentArn")]
@@ -3075,6 +3152,7 @@ pub struct SecretsManagerSecretResourceData {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartBulkDeploymentRequest {
     /// <p>A client token used to correlate requests and responses.</p>
     #[serde(rename = "AmznClientToken")]
@@ -3093,7 +3171,7 @@ pub struct StartBulkDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartBulkDeploymentResponse {
     /// <p>The ARN of the bulk deployment.</p>
     #[serde(rename = "BulkDeploymentArn")]
@@ -3106,6 +3184,7 @@ pub struct StartBulkDeploymentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopBulkDeploymentRequest {
     /// <p>The ID of the bulk deployment.</p>
     #[serde(rename = "BulkDeploymentId")]
@@ -3113,7 +3192,7 @@ pub struct StopBulkDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopBulkDeploymentResponse {}
 
 /// <p>Information about a subscription.</p>
@@ -3144,6 +3223,7 @@ pub struct SubscriptionDefinitionVersion {
 
 /// <p>A map of the key-value pairs for the resource tag.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -3154,6 +3234,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "ResourceArn")]
@@ -3165,6 +3246,7 @@ pub struct UntagResourceRequest {
 
 /// <p>Connectivity information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConnectivityInfoRequest {
     /// <p>A list of connectivity info.</p>
     #[serde(rename = "ConnectivityInfo")]
@@ -3176,7 +3258,7 @@ pub struct UpdateConnectivityInfoRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConnectivityInfoResponse {
     /// <p>A message about the connectivity info update request.</p>
     #[serde(rename = "Message")]
@@ -3189,6 +3271,7 @@ pub struct UpdateConnectivityInfoResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConnectorDefinitionRequest {
     /// <p>The ID of the connector definition.</p>
     #[serde(rename = "ConnectorDefinitionId")]
@@ -3200,10 +3283,11 @@ pub struct UpdateConnectorDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConnectorDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateCoreDefinitionRequest {
     /// <p>The ID of the core definition.</p>
     #[serde(rename = "CoreDefinitionId")]
@@ -3215,10 +3299,11 @@ pub struct UpdateCoreDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateCoreDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDeviceDefinitionRequest {
     /// <p>The ID of the device definition.</p>
     #[serde(rename = "DeviceDefinitionId")]
@@ -3230,10 +3315,11 @@ pub struct UpdateDeviceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDeviceDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFunctionDefinitionRequest {
     /// <p>The ID of the Lambda function definition.</p>
     #[serde(rename = "FunctionDefinitionId")]
@@ -3245,10 +3331,11 @@ pub struct UpdateFunctionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFunctionDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGroupCertificateConfigurationRequest {
     /// <p>The amount of time remaining before the certificate expires, in milliseconds.</p>
     #[serde(rename = "CertificateExpiryInMilliseconds")]
@@ -3260,7 +3347,7 @@ pub struct UpdateGroupCertificateConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGroupCertificateConfigurationResponse {
     /// <p>The amount of time remaining before the certificate authority expires, in milliseconds.</p>
     #[serde(rename = "CertificateAuthorityExpiryInMilliseconds")]
@@ -3277,6 +3364,7 @@ pub struct UpdateGroupCertificateConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGroupRequest {
     /// <p>The ID of the Greengrass group.</p>
     #[serde(rename = "GroupId")]
@@ -3288,10 +3376,11 @@ pub struct UpdateGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGroupResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateLoggerDefinitionRequest {
     /// <p>The ID of the logger definition.</p>
     #[serde(rename = "LoggerDefinitionId")]
@@ -3303,10 +3392,11 @@ pub struct UpdateLoggerDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateLoggerDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateResourceDefinitionRequest {
     /// <p>The name of the definition.</p>
     #[serde(rename = "Name")]
@@ -3318,10 +3408,11 @@ pub struct UpdateResourceDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateResourceDefinitionResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateSubscriptionDefinitionRequest {
     /// <p>The name of the definition.</p>
     #[serde(rename = "Name")]
@@ -3333,12 +3424,12 @@ pub struct UpdateSubscriptionDefinitionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateSubscriptionDefinitionResponse {}
 
 /// <p>Information about a version.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VersionInformation {
     /// <p>The ARN of the version.</p>
     #[serde(rename = "Arn")]
@@ -3387,18 +3478,15 @@ impl AssociateRoleToGroupError {
     }
 }
 impl fmt::Display for AssociateRoleToGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateRoleToGroupError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateRoleToGroupError::BadRequest(ref cause) => cause,
-            AssociateRoleToGroupError::InternalServerError(ref cause) => cause,
+            AssociateRoleToGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            AssociateRoleToGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateRoleToGroupError {}
 /// Errors returned by AssociateServiceRoleToAccount
 #[derive(Debug, PartialEq)]
 pub enum AssociateServiceRoleToAccountError {
@@ -3432,18 +3520,17 @@ impl AssociateServiceRoleToAccountError {
     }
 }
 impl fmt::Display for AssociateServiceRoleToAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateServiceRoleToAccountError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateServiceRoleToAccountError::BadRequest(ref cause) => cause,
-            AssociateServiceRoleToAccountError::InternalServerError(ref cause) => cause,
+            AssociateServiceRoleToAccountError::BadRequest(ref cause) => write!(f, "{}", cause),
+            AssociateServiceRoleToAccountError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociateServiceRoleToAccountError {}
 /// Errors returned by CreateConnectorDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateConnectorDefinitionError {
@@ -3468,17 +3555,14 @@ impl CreateConnectorDefinitionError {
     }
 }
 impl fmt::Display for CreateConnectorDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConnectorDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConnectorDefinitionError::BadRequest(ref cause) => cause,
+            CreateConnectorDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConnectorDefinitionError {}
 /// Errors returned by CreateConnectorDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateConnectorDefinitionVersionError {
@@ -3505,17 +3589,14 @@ impl CreateConnectorDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateConnectorDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConnectorDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConnectorDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateConnectorDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConnectorDefinitionVersionError {}
 /// Errors returned by CreateCoreDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateCoreDefinitionError {
@@ -3538,17 +3619,14 @@ impl CreateCoreDefinitionError {
     }
 }
 impl fmt::Display for CreateCoreDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCoreDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCoreDefinitionError::BadRequest(ref cause) => cause,
+            CreateCoreDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCoreDefinitionError {}
 /// Errors returned by CreateCoreDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateCoreDefinitionVersionError {
@@ -3575,17 +3653,14 @@ impl CreateCoreDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateCoreDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCoreDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCoreDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateCoreDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCoreDefinitionVersionError {}
 /// Errors returned by CreateDeployment
 #[derive(Debug, PartialEq)]
 pub enum CreateDeploymentError {
@@ -3608,17 +3683,14 @@ impl CreateDeploymentError {
     }
 }
 impl fmt::Display for CreateDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeploymentError::BadRequest(ref cause) => cause,
+            CreateDeploymentError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeploymentError {}
 /// Errors returned by CreateDeviceDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateDeviceDefinitionError {
@@ -3641,17 +3713,14 @@ impl CreateDeviceDefinitionError {
     }
 }
 impl fmt::Display for CreateDeviceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeviceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeviceDefinitionError::BadRequest(ref cause) => cause,
+            CreateDeviceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeviceDefinitionError {}
 /// Errors returned by CreateDeviceDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateDeviceDefinitionVersionError {
@@ -3678,17 +3747,14 @@ impl CreateDeviceDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateDeviceDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeviceDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeviceDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateDeviceDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeviceDefinitionVersionError {}
 /// Errors returned by CreateFunctionDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateFunctionDefinitionError {
@@ -3711,17 +3777,14 @@ impl CreateFunctionDefinitionError {
     }
 }
 impl fmt::Display for CreateFunctionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFunctionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFunctionDefinitionError::BadRequest(ref cause) => cause,
+            CreateFunctionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFunctionDefinitionError {}
 /// Errors returned by CreateFunctionDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateFunctionDefinitionVersionError {
@@ -3748,17 +3811,14 @@ impl CreateFunctionDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateFunctionDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFunctionDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFunctionDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateFunctionDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFunctionDefinitionVersionError {}
 /// Errors returned by CreateGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateGroupError {
@@ -3781,17 +3841,14 @@ impl CreateGroupError {
     }
 }
 impl fmt::Display for CreateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGroupError::BadRequest(ref cause) => cause,
+            CreateGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGroupError {}
 /// Errors returned by CreateGroupCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum CreateGroupCertificateAuthorityError {
@@ -3825,18 +3882,17 @@ impl CreateGroupCertificateAuthorityError {
     }
 }
 impl fmt::Display for CreateGroupCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGroupCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGroupCertificateAuthorityError::BadRequest(ref cause) => cause,
-            CreateGroupCertificateAuthorityError::InternalServerError(ref cause) => cause,
+            CreateGroupCertificateAuthorityError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateGroupCertificateAuthorityError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateGroupCertificateAuthorityError {}
 /// Errors returned by CreateGroupVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateGroupVersionError {
@@ -3859,17 +3915,14 @@ impl CreateGroupVersionError {
     }
 }
 impl fmt::Display for CreateGroupVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGroupVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGroupVersionError::BadRequest(ref cause) => cause,
+            CreateGroupVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGroupVersionError {}
 /// Errors returned by CreateLoggerDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateLoggerDefinitionError {
@@ -3892,17 +3945,14 @@ impl CreateLoggerDefinitionError {
     }
 }
 impl fmt::Display for CreateLoggerDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLoggerDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLoggerDefinitionError::BadRequest(ref cause) => cause,
+            CreateLoggerDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLoggerDefinitionError {}
 /// Errors returned by CreateLoggerDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateLoggerDefinitionVersionError {
@@ -3929,17 +3979,14 @@ impl CreateLoggerDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateLoggerDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLoggerDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLoggerDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateLoggerDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLoggerDefinitionVersionError {}
 /// Errors returned by CreateResourceDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateResourceDefinitionError {
@@ -3962,17 +4009,14 @@ impl CreateResourceDefinitionError {
     }
 }
 impl fmt::Display for CreateResourceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateResourceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateResourceDefinitionError::BadRequest(ref cause) => cause,
+            CreateResourceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateResourceDefinitionError {}
 /// Errors returned by CreateResourceDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateResourceDefinitionVersionError {
@@ -3999,17 +4043,14 @@ impl CreateResourceDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateResourceDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateResourceDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateResourceDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateResourceDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateResourceDefinitionVersionError {}
 /// Errors returned by CreateSoftwareUpdateJob
 #[derive(Debug, PartialEq)]
 pub enum CreateSoftwareUpdateJobError {
@@ -4039,18 +4080,15 @@ impl CreateSoftwareUpdateJobError {
     }
 }
 impl fmt::Display for CreateSoftwareUpdateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSoftwareUpdateJobError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSoftwareUpdateJobError::BadRequest(ref cause) => cause,
-            CreateSoftwareUpdateJobError::InternalServerError(ref cause) => cause,
+            CreateSoftwareUpdateJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateSoftwareUpdateJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSoftwareUpdateJobError {}
 /// Errors returned by CreateSubscriptionDefinition
 #[derive(Debug, PartialEq)]
 pub enum CreateSubscriptionDefinitionError {
@@ -4077,17 +4115,14 @@ impl CreateSubscriptionDefinitionError {
     }
 }
 impl fmt::Display for CreateSubscriptionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSubscriptionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSubscriptionDefinitionError::BadRequest(ref cause) => cause,
+            CreateSubscriptionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSubscriptionDefinitionError {}
 /// Errors returned by CreateSubscriptionDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum CreateSubscriptionDefinitionVersionError {
@@ -4114,17 +4149,16 @@ impl CreateSubscriptionDefinitionVersionError {
     }
 }
 impl fmt::Display for CreateSubscriptionDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSubscriptionDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSubscriptionDefinitionVersionError::BadRequest(ref cause) => cause,
+            CreateSubscriptionDefinitionVersionError::BadRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateSubscriptionDefinitionVersionError {}
 /// Errors returned by DeleteConnectorDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteConnectorDefinitionError {
@@ -4149,17 +4183,14 @@ impl DeleteConnectorDefinitionError {
     }
 }
 impl fmt::Display for DeleteConnectorDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteConnectorDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteConnectorDefinitionError::BadRequest(ref cause) => cause,
+            DeleteConnectorDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteConnectorDefinitionError {}
 /// Errors returned by DeleteCoreDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteCoreDefinitionError {
@@ -4182,17 +4213,14 @@ impl DeleteCoreDefinitionError {
     }
 }
 impl fmt::Display for DeleteCoreDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCoreDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCoreDefinitionError::BadRequest(ref cause) => cause,
+            DeleteCoreDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCoreDefinitionError {}
 /// Errors returned by DeleteDeviceDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteDeviceDefinitionError {
@@ -4215,17 +4243,14 @@ impl DeleteDeviceDefinitionError {
     }
 }
 impl fmt::Display for DeleteDeviceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDeviceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDeviceDefinitionError::BadRequest(ref cause) => cause,
+            DeleteDeviceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDeviceDefinitionError {}
 /// Errors returned by DeleteFunctionDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteFunctionDefinitionError {
@@ -4248,17 +4273,14 @@ impl DeleteFunctionDefinitionError {
     }
 }
 impl fmt::Display for DeleteFunctionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFunctionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFunctionDefinitionError::BadRequest(ref cause) => cause,
+            DeleteFunctionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFunctionDefinitionError {}
 /// Errors returned by DeleteGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteGroupError {
@@ -4281,17 +4303,14 @@ impl DeleteGroupError {
     }
 }
 impl fmt::Display for DeleteGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteGroupError::BadRequest(ref cause) => cause,
+            DeleteGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteGroupError {}
 /// Errors returned by DeleteLoggerDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteLoggerDefinitionError {
@@ -4314,17 +4333,14 @@ impl DeleteLoggerDefinitionError {
     }
 }
 impl fmt::Display for DeleteLoggerDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLoggerDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLoggerDefinitionError::BadRequest(ref cause) => cause,
+            DeleteLoggerDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLoggerDefinitionError {}
 /// Errors returned by DeleteResourceDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourceDefinitionError {
@@ -4347,17 +4363,14 @@ impl DeleteResourceDefinitionError {
     }
 }
 impl fmt::Display for DeleteResourceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourceDefinitionError::BadRequest(ref cause) => cause,
+            DeleteResourceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteResourceDefinitionError {}
 /// Errors returned by DeleteSubscriptionDefinition
 #[derive(Debug, PartialEq)]
 pub enum DeleteSubscriptionDefinitionError {
@@ -4384,17 +4397,14 @@ impl DeleteSubscriptionDefinitionError {
     }
 }
 impl fmt::Display for DeleteSubscriptionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSubscriptionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSubscriptionDefinitionError::BadRequest(ref cause) => cause,
+            DeleteSubscriptionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSubscriptionDefinitionError {}
 /// Errors returned by DisassociateRoleFromGroup
 #[derive(Debug, PartialEq)]
 pub enum DisassociateRoleFromGroupError {
@@ -4426,18 +4436,17 @@ impl DisassociateRoleFromGroupError {
     }
 }
 impl fmt::Display for DisassociateRoleFromGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateRoleFromGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateRoleFromGroupError::BadRequest(ref cause) => cause,
-            DisassociateRoleFromGroupError::InternalServerError(ref cause) => cause,
+            DisassociateRoleFromGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DisassociateRoleFromGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateRoleFromGroupError {}
 /// Errors returned by DisassociateServiceRoleFromAccount
 #[derive(Debug, PartialEq)]
 pub enum DisassociateServiceRoleFromAccountError {
@@ -4464,17 +4473,16 @@ impl DisassociateServiceRoleFromAccountError {
     }
 }
 impl fmt::Display for DisassociateServiceRoleFromAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateServiceRoleFromAccountError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateServiceRoleFromAccountError::InternalServerError(ref cause) => cause,
+            DisassociateServiceRoleFromAccountError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateServiceRoleFromAccountError {}
 /// Errors returned by GetAssociatedRole
 #[derive(Debug, PartialEq)]
 pub enum GetAssociatedRoleError {
@@ -4504,18 +4512,15 @@ impl GetAssociatedRoleError {
     }
 }
 impl fmt::Display for GetAssociatedRoleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAssociatedRoleError {
-    fn description(&self) -> &str {
         match *self {
-            GetAssociatedRoleError::BadRequest(ref cause) => cause,
-            GetAssociatedRoleError::InternalServerError(ref cause) => cause,
+            GetAssociatedRoleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetAssociatedRoleError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAssociatedRoleError {}
 /// Errors returned by GetBulkDeploymentStatus
 #[derive(Debug, PartialEq)]
 pub enum GetBulkDeploymentStatusError {
@@ -4538,17 +4543,14 @@ impl GetBulkDeploymentStatusError {
     }
 }
 impl fmt::Display for GetBulkDeploymentStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBulkDeploymentStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetBulkDeploymentStatusError::BadRequest(ref cause) => cause,
+            GetBulkDeploymentStatusError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBulkDeploymentStatusError {}
 /// Errors returned by GetConnectivityInfo
 #[derive(Debug, PartialEq)]
 pub enum GetConnectivityInfoError {
@@ -4578,18 +4580,15 @@ impl GetConnectivityInfoError {
     }
 }
 impl fmt::Display for GetConnectivityInfoError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectivityInfoError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectivityInfoError::BadRequest(ref cause) => cause,
-            GetConnectivityInfoError::InternalServerError(ref cause) => cause,
+            GetConnectivityInfoError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetConnectivityInfoError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectivityInfoError {}
 /// Errors returned by GetConnectorDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetConnectorDefinitionError {
@@ -4612,17 +4611,14 @@ impl GetConnectorDefinitionError {
     }
 }
 impl fmt::Display for GetConnectorDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectorDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectorDefinitionError::BadRequest(ref cause) => cause,
+            GetConnectorDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectorDefinitionError {}
 /// Errors returned by GetConnectorDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetConnectorDefinitionVersionError {
@@ -4649,17 +4645,14 @@ impl GetConnectorDefinitionVersionError {
     }
 }
 impl fmt::Display for GetConnectorDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectorDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectorDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetConnectorDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectorDefinitionVersionError {}
 /// Errors returned by GetCoreDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetCoreDefinitionError {
@@ -4682,17 +4675,14 @@ impl GetCoreDefinitionError {
     }
 }
 impl fmt::Display for GetCoreDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCoreDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetCoreDefinitionError::BadRequest(ref cause) => cause,
+            GetCoreDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCoreDefinitionError {}
 /// Errors returned by GetCoreDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetCoreDefinitionVersionError {
@@ -4715,17 +4705,14 @@ impl GetCoreDefinitionVersionError {
     }
 }
 impl fmt::Display for GetCoreDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCoreDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetCoreDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetCoreDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCoreDefinitionVersionError {}
 /// Errors returned by GetDeploymentStatus
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentStatusError {
@@ -4748,17 +4735,14 @@ impl GetDeploymentStatusError {
     }
 }
 impl fmt::Display for GetDeploymentStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentStatusError::BadRequest(ref cause) => cause,
+            GetDeploymentStatusError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentStatusError {}
 /// Errors returned by GetDeviceDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetDeviceDefinitionError {
@@ -4781,17 +4765,14 @@ impl GetDeviceDefinitionError {
     }
 }
 impl fmt::Display for GetDeviceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeviceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeviceDefinitionError::BadRequest(ref cause) => cause,
+            GetDeviceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeviceDefinitionError {}
 /// Errors returned by GetDeviceDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetDeviceDefinitionVersionError {
@@ -4818,17 +4799,14 @@ impl GetDeviceDefinitionVersionError {
     }
 }
 impl fmt::Display for GetDeviceDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeviceDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeviceDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetDeviceDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeviceDefinitionVersionError {}
 /// Errors returned by GetFunctionDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetFunctionDefinitionError {
@@ -4851,17 +4829,14 @@ impl GetFunctionDefinitionError {
     }
 }
 impl fmt::Display for GetFunctionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFunctionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetFunctionDefinitionError::BadRequest(ref cause) => cause,
+            GetFunctionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFunctionDefinitionError {}
 /// Errors returned by GetFunctionDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetFunctionDefinitionVersionError {
@@ -4888,17 +4863,14 @@ impl GetFunctionDefinitionVersionError {
     }
 }
 impl fmt::Display for GetFunctionDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetFunctionDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetFunctionDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetFunctionDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetFunctionDefinitionVersionError {}
 /// Errors returned by GetGroup
 #[derive(Debug, PartialEq)]
 pub enum GetGroupError {
@@ -4921,17 +4893,14 @@ impl GetGroupError {
     }
 }
 impl fmt::Display for GetGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupError::BadRequest(ref cause) => cause,
+            GetGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupError {}
 /// Errors returned by GetGroupCertificateAuthority
 #[derive(Debug, PartialEq)]
 pub enum GetGroupCertificateAuthorityError {
@@ -4965,18 +4934,17 @@ impl GetGroupCertificateAuthorityError {
     }
 }
 impl fmt::Display for GetGroupCertificateAuthorityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupCertificateAuthorityError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupCertificateAuthorityError::BadRequest(ref cause) => cause,
-            GetGroupCertificateAuthorityError::InternalServerError(ref cause) => cause,
+            GetGroupCertificateAuthorityError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupCertificateAuthorityError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetGroupCertificateAuthorityError {}
 /// Errors returned by GetGroupCertificateConfiguration
 #[derive(Debug, PartialEq)]
 pub enum GetGroupCertificateConfigurationError {
@@ -5010,18 +4978,17 @@ impl GetGroupCertificateConfigurationError {
     }
 }
 impl fmt::Display for GetGroupCertificateConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupCertificateConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupCertificateConfigurationError::BadRequest(ref cause) => cause,
-            GetGroupCertificateConfigurationError::InternalServerError(ref cause) => cause,
+            GetGroupCertificateConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetGroupCertificateConfigurationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetGroupCertificateConfigurationError {}
 /// Errors returned by GetGroupVersion
 #[derive(Debug, PartialEq)]
 pub enum GetGroupVersionError {
@@ -5044,17 +5011,14 @@ impl GetGroupVersionError {
     }
 }
 impl fmt::Display for GetGroupVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGroupVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetGroupVersionError::BadRequest(ref cause) => cause,
+            GetGroupVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGroupVersionError {}
 /// Errors returned by GetLoggerDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetLoggerDefinitionError {
@@ -5077,17 +5041,14 @@ impl GetLoggerDefinitionError {
     }
 }
 impl fmt::Display for GetLoggerDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLoggerDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetLoggerDefinitionError::BadRequest(ref cause) => cause,
+            GetLoggerDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLoggerDefinitionError {}
 /// Errors returned by GetLoggerDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetLoggerDefinitionVersionError {
@@ -5114,17 +5075,14 @@ impl GetLoggerDefinitionVersionError {
     }
 }
 impl fmt::Display for GetLoggerDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLoggerDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetLoggerDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetLoggerDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLoggerDefinitionVersionError {}
 /// Errors returned by GetResourceDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetResourceDefinitionError {
@@ -5147,17 +5105,14 @@ impl GetResourceDefinitionError {
     }
 }
 impl fmt::Display for GetResourceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetResourceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetResourceDefinitionError::BadRequest(ref cause) => cause,
+            GetResourceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetResourceDefinitionError {}
 /// Errors returned by GetResourceDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetResourceDefinitionVersionError {
@@ -5184,17 +5139,14 @@ impl GetResourceDefinitionVersionError {
     }
 }
 impl fmt::Display for GetResourceDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetResourceDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetResourceDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetResourceDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetResourceDefinitionVersionError {}
 /// Errors returned by GetServiceRoleForAccount
 #[derive(Debug, PartialEq)]
 pub enum GetServiceRoleForAccountError {
@@ -5219,17 +5171,14 @@ impl GetServiceRoleForAccountError {
     }
 }
 impl fmt::Display for GetServiceRoleForAccountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetServiceRoleForAccountError {
-    fn description(&self) -> &str {
         match *self {
-            GetServiceRoleForAccountError::InternalServerError(ref cause) => cause,
+            GetServiceRoleForAccountError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetServiceRoleForAccountError {}
 /// Errors returned by GetSubscriptionDefinition
 #[derive(Debug, PartialEq)]
 pub enum GetSubscriptionDefinitionError {
@@ -5254,17 +5203,14 @@ impl GetSubscriptionDefinitionError {
     }
 }
 impl fmt::Display for GetSubscriptionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSubscriptionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            GetSubscriptionDefinitionError::BadRequest(ref cause) => cause,
+            GetSubscriptionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSubscriptionDefinitionError {}
 /// Errors returned by GetSubscriptionDefinitionVersion
 #[derive(Debug, PartialEq)]
 pub enum GetSubscriptionDefinitionVersionError {
@@ -5291,17 +5237,14 @@ impl GetSubscriptionDefinitionVersionError {
     }
 }
 impl fmt::Display for GetSubscriptionDefinitionVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSubscriptionDefinitionVersionError {
-    fn description(&self) -> &str {
         match *self {
-            GetSubscriptionDefinitionVersionError::BadRequest(ref cause) => cause,
+            GetSubscriptionDefinitionVersionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSubscriptionDefinitionVersionError {}
 /// Errors returned by ListBulkDeploymentDetailedReports
 #[derive(Debug, PartialEq)]
 pub enum ListBulkDeploymentDetailedReportsError {
@@ -5328,17 +5271,14 @@ impl ListBulkDeploymentDetailedReportsError {
     }
 }
 impl fmt::Display for ListBulkDeploymentDetailedReportsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBulkDeploymentDetailedReportsError {
-    fn description(&self) -> &str {
         match *self {
-            ListBulkDeploymentDetailedReportsError::BadRequest(ref cause) => cause,
+            ListBulkDeploymentDetailedReportsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBulkDeploymentDetailedReportsError {}
 /// Errors returned by ListBulkDeployments
 #[derive(Debug, PartialEq)]
 pub enum ListBulkDeploymentsError {
@@ -5361,17 +5301,14 @@ impl ListBulkDeploymentsError {
     }
 }
 impl fmt::Display for ListBulkDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBulkDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListBulkDeploymentsError::BadRequest(ref cause) => cause,
+            ListBulkDeploymentsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBulkDeploymentsError {}
 /// Errors returned by ListConnectorDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListConnectorDefinitionVersionsError {
@@ -5398,17 +5335,14 @@ impl ListConnectorDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListConnectorDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConnectorDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListConnectorDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListConnectorDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConnectorDefinitionVersionsError {}
 /// Errors returned by ListConnectorDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListConnectorDefinitionsError {}
@@ -5425,15 +5359,12 @@ impl ListConnectorDefinitionsError {
     }
 }
 impl fmt::Display for ListConnectorDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConnectorDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListConnectorDefinitionsError {}
 /// Errors returned by ListCoreDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListCoreDefinitionVersionsError {
@@ -5460,17 +5391,14 @@ impl ListCoreDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListCoreDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCoreDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListCoreDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListCoreDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCoreDefinitionVersionsError {}
 /// Errors returned by ListCoreDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListCoreDefinitionsError {}
@@ -5487,15 +5415,12 @@ impl ListCoreDefinitionsError {
     }
 }
 impl fmt::Display for ListCoreDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCoreDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListCoreDefinitionsError {}
 /// Errors returned by ListDeployments
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentsError {
@@ -5518,17 +5443,14 @@ impl ListDeploymentsError {
     }
 }
 impl fmt::Display for ListDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentsError::BadRequest(ref cause) => cause,
+            ListDeploymentsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeploymentsError {}
 /// Errors returned by ListDeviceDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListDeviceDefinitionVersionsError {
@@ -5555,17 +5477,14 @@ impl ListDeviceDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListDeviceDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeviceDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeviceDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListDeviceDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeviceDefinitionVersionsError {}
 /// Errors returned by ListDeviceDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListDeviceDefinitionsError {}
@@ -5582,15 +5501,12 @@ impl ListDeviceDefinitionsError {
     }
 }
 impl fmt::Display for ListDeviceDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeviceDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListDeviceDefinitionsError {}
 /// Errors returned by ListFunctionDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListFunctionDefinitionVersionsError {
@@ -5617,17 +5533,14 @@ impl ListFunctionDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListFunctionDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFunctionDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListFunctionDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListFunctionDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFunctionDefinitionVersionsError {}
 /// Errors returned by ListFunctionDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListFunctionDefinitionsError {}
@@ -5644,15 +5557,12 @@ impl ListFunctionDefinitionsError {
     }
 }
 impl fmt::Display for ListFunctionDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFunctionDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListFunctionDefinitionsError {}
 /// Errors returned by ListGroupCertificateAuthorities
 #[derive(Debug, PartialEq)]
 pub enum ListGroupCertificateAuthoritiesError {
@@ -5686,18 +5596,17 @@ impl ListGroupCertificateAuthoritiesError {
     }
 }
 impl fmt::Display for ListGroupCertificateAuthoritiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGroupCertificateAuthoritiesError {
-    fn description(&self) -> &str {
         match *self {
-            ListGroupCertificateAuthoritiesError::BadRequest(ref cause) => cause,
-            ListGroupCertificateAuthoritiesError::InternalServerError(ref cause) => cause,
+            ListGroupCertificateAuthoritiesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListGroupCertificateAuthoritiesError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListGroupCertificateAuthoritiesError {}
 /// Errors returned by ListGroupVersions
 #[derive(Debug, PartialEq)]
 pub enum ListGroupVersionsError {
@@ -5720,17 +5629,14 @@ impl ListGroupVersionsError {
     }
 }
 impl fmt::Display for ListGroupVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGroupVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListGroupVersionsError::BadRequest(ref cause) => cause,
+            ListGroupVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListGroupVersionsError {}
 /// Errors returned by ListGroups
 #[derive(Debug, PartialEq)]
 pub enum ListGroupsError {}
@@ -5747,15 +5653,12 @@ impl ListGroupsError {
     }
 }
 impl fmt::Display for ListGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGroupsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListGroupsError {}
 /// Errors returned by ListLoggerDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListLoggerDefinitionVersionsError {
@@ -5782,17 +5685,14 @@ impl ListLoggerDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListLoggerDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLoggerDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListLoggerDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListLoggerDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListLoggerDefinitionVersionsError {}
 /// Errors returned by ListLoggerDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListLoggerDefinitionsError {}
@@ -5809,15 +5709,12 @@ impl ListLoggerDefinitionsError {
     }
 }
 impl fmt::Display for ListLoggerDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLoggerDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListLoggerDefinitionsError {}
 /// Errors returned by ListResourceDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListResourceDefinitionVersionsError {
@@ -5844,17 +5741,14 @@ impl ListResourceDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListResourceDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourceDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListResourceDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListResourceDefinitionVersionsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListResourceDefinitionVersionsError {}
 /// Errors returned by ListResourceDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListResourceDefinitionsError {}
@@ -5871,15 +5765,12 @@ impl ListResourceDefinitionsError {
     }
 }
 impl fmt::Display for ListResourceDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourceDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListResourceDefinitionsError {}
 /// Errors returned by ListSubscriptionDefinitionVersions
 #[derive(Debug, PartialEq)]
 pub enum ListSubscriptionDefinitionVersionsError {
@@ -5906,17 +5797,16 @@ impl ListSubscriptionDefinitionVersionsError {
     }
 }
 impl fmt::Display for ListSubscriptionDefinitionVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSubscriptionDefinitionVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSubscriptionDefinitionVersionsError::BadRequest(ref cause) => cause,
+            ListSubscriptionDefinitionVersionsError::BadRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListSubscriptionDefinitionVersionsError {}
 /// Errors returned by ListSubscriptionDefinitions
 #[derive(Debug, PartialEq)]
 pub enum ListSubscriptionDefinitionsError {}
@@ -5935,15 +5825,12 @@ impl ListSubscriptionDefinitionsError {
     }
 }
 impl fmt::Display for ListSubscriptionDefinitionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSubscriptionDefinitionsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListSubscriptionDefinitionsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -5966,17 +5853,14 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ResetDeployments
 #[derive(Debug, PartialEq)]
 pub enum ResetDeploymentsError {
@@ -5999,17 +5883,14 @@ impl ResetDeploymentsError {
     }
 }
 impl fmt::Display for ResetDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResetDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            ResetDeploymentsError::BadRequest(ref cause) => cause,
+            ResetDeploymentsError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResetDeploymentsError {}
 /// Errors returned by StartBulkDeployment
 #[derive(Debug, PartialEq)]
 pub enum StartBulkDeploymentError {
@@ -6032,17 +5913,14 @@ impl StartBulkDeploymentError {
     }
 }
 impl fmt::Display for StartBulkDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartBulkDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            StartBulkDeploymentError::BadRequest(ref cause) => cause,
+            StartBulkDeploymentError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartBulkDeploymentError {}
 /// Errors returned by StopBulkDeployment
 #[derive(Debug, PartialEq)]
 pub enum StopBulkDeploymentError {
@@ -6065,17 +5943,14 @@ impl StopBulkDeploymentError {
     }
 }
 impl fmt::Display for StopBulkDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopBulkDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            StopBulkDeploymentError::BadRequest(ref cause) => cause,
+            StopBulkDeploymentError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopBulkDeploymentError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -6098,17 +5973,14 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -6131,17 +6003,14 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateConnectivityInfo
 #[derive(Debug, PartialEq)]
 pub enum UpdateConnectivityInfoError {
@@ -6171,18 +6040,15 @@ impl UpdateConnectivityInfoError {
     }
 }
 impl fmt::Display for UpdateConnectivityInfoError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConnectivityInfoError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConnectivityInfoError::BadRequest(ref cause) => cause,
-            UpdateConnectivityInfoError::InternalServerError(ref cause) => cause,
+            UpdateConnectivityInfoError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateConnectivityInfoError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateConnectivityInfoError {}
 /// Errors returned by UpdateConnectorDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateConnectorDefinitionError {
@@ -6207,17 +6073,14 @@ impl UpdateConnectorDefinitionError {
     }
 }
 impl fmt::Display for UpdateConnectorDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConnectorDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConnectorDefinitionError::BadRequest(ref cause) => cause,
+            UpdateConnectorDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateConnectorDefinitionError {}
 /// Errors returned by UpdateCoreDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateCoreDefinitionError {
@@ -6240,17 +6103,14 @@ impl UpdateCoreDefinitionError {
     }
 }
 impl fmt::Display for UpdateCoreDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateCoreDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateCoreDefinitionError::BadRequest(ref cause) => cause,
+            UpdateCoreDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateCoreDefinitionError {}
 /// Errors returned by UpdateDeviceDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateDeviceDefinitionError {
@@ -6273,17 +6133,14 @@ impl UpdateDeviceDefinitionError {
     }
 }
 impl fmt::Display for UpdateDeviceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDeviceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDeviceDefinitionError::BadRequest(ref cause) => cause,
+            UpdateDeviceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDeviceDefinitionError {}
 /// Errors returned by UpdateFunctionDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateFunctionDefinitionError {
@@ -6306,17 +6163,14 @@ impl UpdateFunctionDefinitionError {
     }
 }
 impl fmt::Display for UpdateFunctionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFunctionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFunctionDefinitionError::BadRequest(ref cause) => cause,
+            UpdateFunctionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFunctionDefinitionError {}
 /// Errors returned by UpdateGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateGroupError {
@@ -6339,17 +6193,14 @@ impl UpdateGroupError {
     }
 }
 impl fmt::Display for UpdateGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGroupError::BadRequest(ref cause) => cause,
+            UpdateGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGroupError {}
 /// Errors returned by UpdateGroupCertificateConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateGroupCertificateConfigurationError {
@@ -6383,18 +6234,19 @@ impl UpdateGroupCertificateConfigurationError {
     }
 }
 impl fmt::Display for UpdateGroupCertificateConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGroupCertificateConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGroupCertificateConfigurationError::BadRequest(ref cause) => cause,
-            UpdateGroupCertificateConfigurationError::InternalServerError(ref cause) => cause,
+            UpdateGroupCertificateConfigurationError::BadRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateGroupCertificateConfigurationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateGroupCertificateConfigurationError {}
 /// Errors returned by UpdateLoggerDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateLoggerDefinitionError {
@@ -6417,17 +6269,14 @@ impl UpdateLoggerDefinitionError {
     }
 }
 impl fmt::Display for UpdateLoggerDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateLoggerDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateLoggerDefinitionError::BadRequest(ref cause) => cause,
+            UpdateLoggerDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateLoggerDefinitionError {}
 /// Errors returned by UpdateResourceDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateResourceDefinitionError {
@@ -6450,17 +6299,14 @@ impl UpdateResourceDefinitionError {
     }
 }
 impl fmt::Display for UpdateResourceDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateResourceDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateResourceDefinitionError::BadRequest(ref cause) => cause,
+            UpdateResourceDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateResourceDefinitionError {}
 /// Errors returned by UpdateSubscriptionDefinition
 #[derive(Debug, PartialEq)]
 pub enum UpdateSubscriptionDefinitionError {
@@ -6487,17 +6333,14 @@ impl UpdateSubscriptionDefinitionError {
     }
 }
 impl fmt::Display for UpdateSubscriptionDefinitionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateSubscriptionDefinitionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateSubscriptionDefinitionError::BadRequest(ref cause) => cause,
+            UpdateSubscriptionDefinitionError::BadRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateSubscriptionDefinitionError {}
 /// Trait representing the capabilities of the AWS Greengrass API. AWS Greengrass clients implement this trait.
 #[async_trait]
 pub trait GreenGrass {

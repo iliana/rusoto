@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents the input of, and adds tags to, an on-premises instance operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsToOnPremisesInstancesInput {
     /// <p>The names of the on-premises instances to which to add tags.</p>
     #[serde(rename = "instanceNames")]
@@ -76,7 +78,7 @@ pub struct AppSpecContent {
 
 /// <p>Information about an application.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ApplicationInfo {
     /// <p>The application ID.</p>
     #[serde(rename = "applicationId")]
@@ -119,7 +121,7 @@ pub struct AutoRollbackConfiguration {
 
 /// <p>Information about an Auto Scaling group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutoScalingGroup {
     /// <p>An Auto Scaling lifecycle event hook name.</p>
     #[serde(rename = "hook")]
@@ -133,6 +135,7 @@ pub struct AutoScalingGroup {
 
 /// <p>Represents the input of a BatchGetApplicationRevisions operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetApplicationRevisionsInput {
     /// <p>The name of an AWS CodeDeploy application about which to get revision information.</p>
     #[serde(rename = "applicationName")]
@@ -144,7 +147,7 @@ pub struct BatchGetApplicationRevisionsInput {
 
 /// <p>Represents the output of a BatchGetApplicationRevisions operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetApplicationRevisionsOutput {
     /// <p>The name of the application that corresponds to the revisions.</p>
     #[serde(rename = "applicationName")]
@@ -162,6 +165,7 @@ pub struct BatchGetApplicationRevisionsOutput {
 
 /// <p>Represents the input of a BatchGetApplications operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetApplicationsInput {
     /// <p>A list of application names separated by spaces. The maximum number of application names you can specify is 25.</p>
     #[serde(rename = "applicationNames")]
@@ -170,7 +174,7 @@ pub struct BatchGetApplicationsInput {
 
 /// <p>Represents the output of a BatchGetApplications operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetApplicationsOutput {
     /// <p>Information about the applications.</p>
     #[serde(rename = "applicationsInfo")]
@@ -180,6 +184,7 @@ pub struct BatchGetApplicationsOutput {
 
 /// <p>Represents the input of a BatchGetDeploymentGroups operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetDeploymentGroupsInput {
     /// <p>The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -191,7 +196,7 @@ pub struct BatchGetDeploymentGroupsInput {
 
 /// <p>Represents the output of a BatchGetDeploymentGroups operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetDeploymentGroupsOutput {
     /// <p>Information about the deployment groups.</p>
     #[serde(rename = "deploymentGroupsInfo")]
@@ -205,6 +210,7 @@ pub struct BatchGetDeploymentGroupsOutput {
 
 /// <p> Represents the input of a BatchGetDeploymentInstances operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetDeploymentInstancesInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -216,7 +222,7 @@ pub struct BatchGetDeploymentInstancesInput {
 
 /// <p>Represents the output of a BatchGetDeploymentInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetDeploymentInstancesOutput {
     /// <p>Information about errors that might have occurred during the API call.</p>
     #[serde(rename = "errorMessage")]
@@ -229,6 +235,7 @@ pub struct BatchGetDeploymentInstancesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetDeploymentTargetsInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -241,7 +248,7 @@ pub struct BatchGetDeploymentTargetsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetDeploymentTargetsOutput {
     /// <p><p> A list of target objects for a deployment. Each target object contains details about the target, such as its status and lifecycle events. The type of the target objects depends on the deployment&#39; compute platform. </p> <ul> <li> <p> <b>EC2/On-premises</b>: Each target object is an EC2 or on-premises instance. </p> </li> <li> <p> <b>AWS Lambda</b>: The target object is a specific version of an AWS Lambda function. </p> </li> <li> <p> <b>Amazon ECS</b>: The target object is an Amazon ECS service. </p> </li> </ul></p>
     #[serde(rename = "deploymentTargets")]
@@ -251,6 +258,7 @@ pub struct BatchGetDeploymentTargetsOutput {
 
 /// <p> Represents the input of a BatchGetDeployments operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetDeploymentsInput {
     /// <p> A list of deployment IDs, separated by spaces. The maximum number of deployment IDs you can specify is 25.</p>
     #[serde(rename = "deploymentIds")]
@@ -259,7 +267,7 @@ pub struct BatchGetDeploymentsInput {
 
 /// <p> Represents the output of a BatchGetDeployments operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetDeploymentsOutput {
     /// <p> Information about the deployments. </p>
     #[serde(rename = "deploymentsInfo")]
@@ -269,6 +277,7 @@ pub struct BatchGetDeploymentsOutput {
 
 /// <p>Represents the input of a BatchGetOnPremisesInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetOnPremisesInstancesInput {
     /// <p>The names of the on-premises instances about which to get information. The maximum number of instance names you can specify is 25.</p>
     #[serde(rename = "instanceNames")]
@@ -277,7 +286,7 @@ pub struct BatchGetOnPremisesInstancesInput {
 
 /// <p>Represents the output of a BatchGetOnPremisesInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetOnPremisesInstancesOutput {
     /// <p>Information about the on-premises instances.</p>
     #[serde(rename = "instanceInfos")]
@@ -316,6 +325,7 @@ pub struct BlueInstanceTerminationOption {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ContinueDeploymentInput {
     /// <p> The unique ID of a blue/green deployment for which you want to start rerouting traffic to the replacement environment. </p>
     #[serde(rename = "deploymentId")]
@@ -329,6 +339,7 @@ pub struct ContinueDeploymentInput {
 
 /// <p>Represents the input of a CreateApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateApplicationInput {
     /// <p>The name of the application. This name must be unique with the applicable IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -345,7 +356,7 @@ pub struct CreateApplicationInput {
 
 /// <p>Represents the output of a CreateApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateApplicationOutput {
     /// <p>A unique application ID.</p>
     #[serde(rename = "applicationId")]
@@ -355,6 +366,7 @@ pub struct CreateApplicationOutput {
 
 /// <p>Represents the input of a CreateDeploymentConfig operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeploymentConfigInput {
     /// <p>The destination platform type for the deployment (<code>Lambda</code>, <code>Server</code>, or <code>ECS</code>).</p>
     #[serde(rename = "computePlatform")]
@@ -375,7 +387,7 @@ pub struct CreateDeploymentConfigInput {
 
 /// <p>Represents the output of a CreateDeploymentConfig operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeploymentConfigOutput {
     /// <p>A unique deployment configuration ID.</p>
     #[serde(rename = "deploymentConfigId")]
@@ -385,6 +397,7 @@ pub struct CreateDeploymentConfigOutput {
 
 /// <p>Represents the input of a CreateDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeploymentGroupInput {
     /// <p>Information to add about Amazon CloudWatch alarms when the deployment group is created.</p>
     #[serde(rename = "alarmConfiguration")]
@@ -455,7 +468,7 @@ pub struct CreateDeploymentGroupInput {
 
 /// <p>Represents the output of a CreateDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeploymentGroupOutput {
     /// <p>A unique deployment group ID.</p>
     #[serde(rename = "deploymentGroupId")]
@@ -465,6 +478,7 @@ pub struct CreateDeploymentGroupOutput {
 
 /// <p>Represents the input of a CreateDeployment operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeploymentInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -509,7 +523,7 @@ pub struct CreateDeploymentInput {
 
 /// <p> Represents the output of a CreateDeployment operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeploymentOutput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -519,6 +533,7 @@ pub struct CreateDeploymentOutput {
 
 /// <p>Represents the input of a DeleteApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteApplicationInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -527,6 +542,7 @@ pub struct DeleteApplicationInput {
 
 /// <p>Represents the input of a DeleteDeploymentConfig operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDeploymentConfigInput {
     /// <p>The name of a deployment configuration associated with the IAM user or AWS account.</p>
     #[serde(rename = "deploymentConfigName")]
@@ -535,6 +551,7 @@ pub struct DeleteDeploymentConfigInput {
 
 /// <p>Represents the input of a DeleteDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDeploymentGroupInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -546,7 +563,7 @@ pub struct DeleteDeploymentGroupInput {
 
 /// <p>Represents the output of a DeleteDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDeploymentGroupOutput {
     /// <p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the Amazon EC2 instances in the Auto Scaling group. If the output contains data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the Amazon EC2 instances in the Auto Scaling group.</p>
     #[serde(rename = "hooksNotCleanedUp")]
@@ -556,6 +573,7 @@ pub struct DeleteDeploymentGroupOutput {
 
 /// <p>Represents the input of a DeleteGitHubAccount operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGitHubAccountTokenInput {
     /// <p>The name of the GitHub account connection to delete.</p>
     #[serde(rename = "tokenName")]
@@ -565,7 +583,7 @@ pub struct DeleteGitHubAccountTokenInput {
 
 /// <p>Represents the output of a DeleteGitHubAccountToken operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteGitHubAccountTokenOutput {
     /// <p>The name of the GitHub account connection that was deleted.</p>
     #[serde(rename = "tokenName")]
@@ -575,7 +593,7 @@ pub struct DeleteGitHubAccountTokenOutput {
 
 /// <p>Information about a deployment configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeploymentConfigInfo {
     /// <p>The destination platform type for the deployment (<code>Lambda</code>, <code>Server</code>, or <code>ECS</code>).</p>
     #[serde(rename = "computePlatform")]
@@ -605,7 +623,7 @@ pub struct DeploymentConfigInfo {
 
 /// <p>Information about a deployment group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeploymentGroupInfo {
     /// <p>A list of alarms associated with the deployment group.</p>
     #[serde(rename = "alarmConfiguration")]
@@ -695,7 +713,7 @@ pub struct DeploymentGroupInfo {
 
 /// <p>Information about a deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeploymentInfo {
     /// <p>Provides information about the results of a deployment, such as whether instances in the original environment in a blue/green deployment were not terminated.</p>
     #[serde(rename = "additionalDeploymentStatusInfo")]
@@ -809,7 +827,7 @@ pub struct DeploymentInfo {
 
 /// <p>Information about the deployment status of the instances in the deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeploymentOverview {
     /// <p>The number of instances in the deployment in a failed state.</p>
     #[serde(rename = "Failed")]
@@ -865,7 +883,7 @@ pub struct DeploymentStyle {
 
 /// <p> Information about the deployment target. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeploymentTarget {
     /// <p> The deployment type that is specific to the deployment's compute platform. </p>
     #[serde(rename = "deploymentTargetType")]
@@ -887,6 +905,7 @@ pub struct DeploymentTarget {
 
 /// <p>Represents the input of a DeregisterOnPremisesInstance operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterOnPremisesInstanceInput {
     /// <p>The name of the on-premises instance to deregister.</p>
     #[serde(rename = "instanceName")]
@@ -895,7 +914,7 @@ pub struct DeregisterOnPremisesInstanceInput {
 
 /// <p>Diagnostic information about executable scripts that are part of a deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Diagnostics {
     /// <p><p>The associated error code:</p> <ul> <li> <p>Success: The specified script ran.</p> </li> <li> <p>ScriptMissing: The specified script was not found in the specified location.</p> </li> <li> <p>ScriptNotExecutable: The specified script is not a recognized executable file type.</p> </li> <li> <p>ScriptTimedOut: The specified script did not finish running in the specified time period.</p> </li> <li> <p>ScriptFailed: The specified script failed to run as expected.</p> </li> <li> <p>UnknownError: The specified script did not run for an unknown reason.</p> </li> </ul></p>
     #[serde(rename = "errorCode")]
@@ -956,7 +975,7 @@ pub struct ECSService {
 
 /// <p> Information about the target of an Amazon ECS deployment. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ECSTarget {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -990,7 +1009,7 @@ pub struct ECSTarget {
 
 /// <p> Information about a set of Amazon ECS tasks in an AWS CodeDeploy deployment. An Amazon ECS task set includes details such as the desired number of tasks, how many tasks are running, and whether the task set serves production traffic. An AWS CodeDeploy application that uses the Amazon ECS compute platform deploys a containerized application in an Amazon ECS service as a task set. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ECSTaskSet {
     /// <p> The number of tasks in a task set. During a deployment that uses the Amazon ECS compute type, CodeDeploy instructs Amazon ECS to create a new task set and uses this value to determine how many tasks to create. After the updated task set is created, CodeDeploy shifts traffic to the new task set. </p>
     #[serde(rename = "desiredCount")]
@@ -1037,7 +1056,7 @@ pub struct ELBInfo {
 
 /// <p>Information about a deployment error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorInformation {
     /// <p><p>For more information, see <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/error-codes.html">Error Codes for AWS CodeDeploy</a> in the <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide">AWS CodeDeploy User Guide</a>.</p> <p>The error code:</p> <ul> <li> <p>APPLICATION<em>MISSING: The application was missing. This error code is most likely raised if the application is deleted after the deployment is created, but before it is started.</p> </li> <li> <p>DEPLOYMENT</em>GROUP<em>MISSING: The deployment group was missing. This error code is most likely raised if the deployment group is deleted after the deployment is created, but before it is started.</p> </li> <li> <p>HEALTH</em>CONSTRAINTS: The deployment failed on too many instances to be successfully deployed within the instance health constraints specified.</p> </li> <li> <p>HEALTH<em>CONSTRAINTS</em>INVALID: The revision cannot be successfully deployed within the instance health constraints specified.</p> </li> <li> <p>IAM<em>ROLE</em>MISSING: The service role cannot be accessed.</p> </li> <li> <p>IAM<em>ROLE</em>PERMISSIONS: The service role does not have the correct permissions.</p> </li> <li> <p>INTERNAL<em>ERROR: There was an internal error.</p> </li> <li> <p>NO</em>EC2<em>SUBSCRIPTION: The calling account is not subscribed to Amazon EC2.</p> </li> <li> <p>NO</em>INSTANCES: No instances were specified, or no instances can be found.</p> </li> <li> <p>OVER<em>MAX</em>INSTANCES: The maximum number of instances was exceeded.</p> </li> <li> <p>THROTTLED: The operation was throttled because the calling account exceeded the throttling limits of one or more AWS services.</p> </li> <li> <p>TIMEOUT: The deployment has timed out.</p> </li> <li> <p>REVISION_MISSING: The revision ID was missing. This error code is most likely raised if the revision is deleted after the deployment is created, but before it is started.</p> </li> </ul></p>
     #[serde(rename = "code")]
@@ -1051,7 +1070,7 @@ pub struct ErrorInformation {
 
 /// <p>Information about an application revision.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GenericRevisionInfo {
     /// <p>The deployment groups for which this is the current target revision.</p>
     #[serde(rename = "deploymentGroups")]
@@ -1077,6 +1096,7 @@ pub struct GenericRevisionInfo {
 
 /// <p>Represents the input of a GetApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApplicationInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -1085,7 +1105,7 @@ pub struct GetApplicationInput {
 
 /// <p>Represents the output of a GetApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApplicationOutput {
     /// <p>Information about the application.</p>
     #[serde(rename = "application")]
@@ -1095,6 +1115,7 @@ pub struct GetApplicationOutput {
 
 /// <p>Represents the input of a GetApplicationRevision operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApplicationRevisionInput {
     /// <p>The name of the application that corresponds to the revision.</p>
     #[serde(rename = "applicationName")]
@@ -1106,7 +1127,7 @@ pub struct GetApplicationRevisionInput {
 
 /// <p>Represents the output of a GetApplicationRevision operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApplicationRevisionOutput {
     /// <p>The name of the application that corresponds to the revision.</p>
     #[serde(rename = "applicationName")]
@@ -1124,6 +1145,7 @@ pub struct GetApplicationRevisionOutput {
 
 /// <p>Represents the input of a GetDeploymentConfig operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentConfigInput {
     /// <p>The name of a deployment configuration associated with the IAM user or AWS account.</p>
     #[serde(rename = "deploymentConfigName")]
@@ -1132,7 +1154,7 @@ pub struct GetDeploymentConfigInput {
 
 /// <p>Represents the output of a GetDeploymentConfig operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentConfigOutput {
     /// <p>Information about the deployment configuration.</p>
     #[serde(rename = "deploymentConfigInfo")]
@@ -1142,6 +1164,7 @@ pub struct GetDeploymentConfigOutput {
 
 /// <p>Represents the input of a GetDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentGroupInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -1153,7 +1176,7 @@ pub struct GetDeploymentGroupInput {
 
 /// <p>Represents the output of a GetDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentGroupOutput {
     /// <p>Information about the deployment group.</p>
     #[serde(rename = "deploymentGroupInfo")]
@@ -1163,6 +1186,7 @@ pub struct GetDeploymentGroupOutput {
 
 /// <p>Represents the input of a GetDeployment operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentInput {
     /// <p> The unique ID of a deployment associated with the IAM user or AWS account. </p>
     #[serde(rename = "deploymentId")]
@@ -1171,6 +1195,7 @@ pub struct GetDeploymentInput {
 
 /// <p> Represents the input of a GetDeploymentInstance operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentInstanceInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1182,7 +1207,7 @@ pub struct GetDeploymentInstanceInput {
 
 /// <p> Represents the output of a GetDeploymentInstance operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentInstanceOutput {
     /// <p> Information about the instance. </p>
     #[serde(rename = "instanceSummary")]
@@ -1192,7 +1217,7 @@ pub struct GetDeploymentInstanceOutput {
 
 /// <p>Represents the output of a GetDeployment operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentOutput {
     /// <p>Information about the deployment.</p>
     #[serde(rename = "deploymentInfo")]
@@ -1201,6 +1226,7 @@ pub struct GetDeploymentOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentTargetInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1213,7 +1239,7 @@ pub struct GetDeploymentTargetInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentTargetOutput {
     /// <p> A deployment target that contains information about a deployment such as its status, lifecyle events, and when it was last updated. It also contains metadata about the deployment target. The deployment target metadata depends on the deployment target's type (<code>instanceTarget</code>, <code>lambdaTarget</code>, or <code>ecsTarget</code>). </p>
     #[serde(rename = "deploymentTarget")]
@@ -1223,6 +1249,7 @@ pub struct GetDeploymentTargetOutput {
 
 /// <p> Represents the input of a GetOnPremisesInstance operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetOnPremisesInstanceInput {
     /// <p> The name of the on-premises instance about which to get information. </p>
     #[serde(rename = "instanceName")]
@@ -1231,7 +1258,7 @@ pub struct GetOnPremisesInstanceInput {
 
 /// <p> Represents the output of a GetOnPremisesInstance operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetOnPremisesInstanceOutput {
     /// <p> Information about the on-premises instance. </p>
     #[serde(rename = "instanceInfo")]
@@ -1263,7 +1290,7 @@ pub struct GreenFleetProvisioningOption {
 
 /// <p>Information about an on-premises instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceInfo {
     /// <p>If the on-premises instance was deregistered, the time at which the on-premises instance was deregistered.</p>
     #[serde(rename = "deregisterTime")]
@@ -1297,7 +1324,7 @@ pub struct InstanceInfo {
 
 /// <p>Information about an instance in a deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceSummary {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1327,7 +1354,7 @@ pub struct InstanceSummary {
 
 /// <p> A target Amazon EC2 or on-premises instance during a deployment that uses the EC2/On-premises compute platform. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceTarget {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1361,7 +1388,7 @@ pub struct InstanceTarget {
 
 /// <p> Information about a Lambda function specified in a deployment. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LambdaFunctionInfo {
     /// <p> The version of a Lambda function that production traffic points to. </p>
     #[serde(rename = "currentVersion")]
@@ -1387,7 +1414,7 @@ pub struct LambdaFunctionInfo {
 
 /// <p> Information about the target AWS Lambda function during an AWS Lambda deployment. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LambdaTarget {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1421,7 +1448,7 @@ pub struct LambdaTarget {
 
 /// <p>Information about the most recent attempted or successful deployment to a deployment group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LastDeploymentInfo {
     /// <p>A timestamp that indicates when the most recent deployment to the deployment group started.</p>
     #[serde(rename = "createTime")]
@@ -1443,7 +1470,7 @@ pub struct LastDeploymentInfo {
 
 /// <p>Information about a deployment lifecycle event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LifecycleEvent {
     /// <p>Diagnostic information about the deployment lifecycle event.</p>
     #[serde(rename = "diagnostics")]
@@ -1469,6 +1496,7 @@ pub struct LifecycleEvent {
 
 /// <p> Represents the input of a ListApplicationRevisions operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListApplicationRevisionsInput {
     /// <p> The name of an AWS CodeDeploy application associated with the IAM user or AWS account. </p>
     #[serde(rename = "applicationName")]
@@ -1501,7 +1529,7 @@ pub struct ListApplicationRevisionsInput {
 
 /// <p>Represents the output of a ListApplicationRevisions operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListApplicationRevisionsOutput {
     /// <p>If a large amount of information is returned, an identifier is also returned. It can be used in a subsequent list application revisions call to return the next set of application revisions in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1515,6 +1543,7 @@ pub struct ListApplicationRevisionsOutput {
 
 /// <p>Represents the input of a ListApplications operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListApplicationsInput {
     /// <p>An identifier returned from the previous list applications call. It can be used to return the next set of applications in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1524,7 +1553,7 @@ pub struct ListApplicationsInput {
 
 /// <p>Represents the output of a ListApplications operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListApplicationsOutput {
     /// <p>A list of application names.</p>
     #[serde(rename = "applications")]
@@ -1538,6 +1567,7 @@ pub struct ListApplicationsOutput {
 
 /// <p>Represents the input of a ListDeploymentConfigs operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentConfigsInput {
     /// <p>An identifier returned from the previous <code>ListDeploymentConfigs</code> call. It can be used to return the next set of deployment configurations in the list. </p>
     #[serde(rename = "nextToken")]
@@ -1547,7 +1577,7 @@ pub struct ListDeploymentConfigsInput {
 
 /// <p>Represents the output of a ListDeploymentConfigs operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentConfigsOutput {
     /// <p>A list of deployment configurations, including built-in configurations such as CodeDeployDefault.OneAtATime.</p>
     #[serde(rename = "deploymentConfigsList")]
@@ -1561,6 +1591,7 @@ pub struct ListDeploymentConfigsOutput {
 
 /// <p>Represents the input of a ListDeploymentGroups operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentGroupsInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -1573,7 +1604,7 @@ pub struct ListDeploymentGroupsInput {
 
 /// <p>Represents the output of a ListDeploymentGroups operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentGroupsOutput {
     /// <p>The application name.</p>
     #[serde(rename = "applicationName")]
@@ -1591,6 +1622,7 @@ pub struct ListDeploymentGroupsOutput {
 
 /// <p> Represents the input of a ListDeploymentInstances operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentInstancesInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1611,7 +1643,7 @@ pub struct ListDeploymentInstancesInput {
 
 /// <p>Represents the output of a ListDeploymentInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentInstancesOutput {
     /// <p>A list of instance IDs.</p>
     #[serde(rename = "instancesList")]
@@ -1624,6 +1656,7 @@ pub struct ListDeploymentInstancesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentTargetsInput {
     /// <p> The unique ID of a deployment. </p>
     #[serde(rename = "deploymentId")]
@@ -1640,7 +1673,7 @@ pub struct ListDeploymentTargetsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentTargetsOutput {
     /// <p> If a large amount of information is returned, a token identifier is also returned. It can be used in a subsequent <code>ListDeploymentTargets</code> call to return the next set of deployment targets in the list. </p>
     #[serde(rename = "nextToken")]
@@ -1654,6 +1687,7 @@ pub struct ListDeploymentTargetsOutput {
 
 /// <p>Represents the input of a ListDeployments operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDeploymentsInput {
     /// <p><p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p> <note> <p>If <code>applicationName</code> is specified, then <code>deploymentGroupName</code> must be specified. If it is not specified, then <code>deploymentGroupName</code> must not be specified. </p> </note></p>
     #[serde(rename = "applicationName")]
@@ -1679,7 +1713,7 @@ pub struct ListDeploymentsInput {
 
 /// <p>Represents the output of a ListDeployments operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDeploymentsOutput {
     /// <p>A list of deployment IDs.</p>
     #[serde(rename = "deployments")]
@@ -1693,6 +1727,7 @@ pub struct ListDeploymentsOutput {
 
 /// <p>Represents the input of a ListGitHubAccountTokenNames operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListGitHubAccountTokenNamesInput {
     /// <p>An identifier returned from the previous ListGitHubAccountTokenNames call. It can be used to return the next set of names in the list. </p>
     #[serde(rename = "nextToken")]
@@ -1702,7 +1737,7 @@ pub struct ListGitHubAccountTokenNamesInput {
 
 /// <p>Represents the output of a ListGitHubAccountTokenNames operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListGitHubAccountTokenNamesOutput {
     /// <p>If a large amount of information is returned, an identifier is also returned. It can be used in a subsequent ListGitHubAccountTokenNames call to return the next set of names in the list. </p>
     #[serde(rename = "nextToken")]
@@ -1716,6 +1751,7 @@ pub struct ListGitHubAccountTokenNamesOutput {
 
 /// <p>Represents the input of a ListOnPremisesInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOnPremisesInstancesInput {
     /// <p>An identifier returned from the previous list on-premises instances call. It can be used to return the next set of on-premises instances in the list.</p>
     #[serde(rename = "nextToken")]
@@ -1733,7 +1769,7 @@ pub struct ListOnPremisesInstancesInput {
 
 /// <p>Represents the output of the list on-premises instances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOnPremisesInstancesOutput {
     /// <p>The list of matching on-premises instance names.</p>
     #[serde(rename = "instanceNames")]
@@ -1746,6 +1782,7 @@ pub struct ListOnPremisesInstancesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>An identifier returned from the previous <code>ListTagsForResource</code> call. It can be used to return the next set of applications in the list.</p>
     #[serde(rename = "NextToken")]
@@ -1757,7 +1794,7 @@ pub struct ListTagsForResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>If a large amount of information is returned, an identifier is also returned. It can be used in a subsequent list application revisions call to return the next set of application revisions in the list.</p>
     #[serde(rename = "NextToken")]
@@ -1809,6 +1846,7 @@ pub struct OnPremisesTagSet {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLifecycleEventHookExecutionStatusInput {
     /// <p> The unique ID of a deployment. Pass this ID to a Lambda function that validates a deployment lifecycle event. </p>
     #[serde(rename = "deploymentId")]
@@ -1825,7 +1863,7 @@ pub struct PutLifecycleEventHookExecutionStatusInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLifecycleEventHookExecutionStatusOutput {
     /// <p>The execution ID of the lifecycle event hook. A hook is specified in the <code>hooks</code> section of the deployment's AppSpec file.</p>
     #[serde(rename = "lifecycleEventHookExecutionId")]
@@ -1848,6 +1886,7 @@ pub struct RawString {
 
 /// <p>Represents the input of a RegisterApplicationRevision operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterApplicationRevisionInput {
     /// <p>The name of an AWS CodeDeploy application associated with the IAM user or AWS account.</p>
     #[serde(rename = "applicationName")]
@@ -1863,6 +1902,7 @@ pub struct RegisterApplicationRevisionInput {
 
 /// <p>Represents the input of the register on-premises instance operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterOnPremisesInstanceInput {
     /// <p>The ARN of the IAM session to associate with the on-premises instance.</p>
     #[serde(rename = "iamSessionArn")]
@@ -1879,6 +1919,7 @@ pub struct RegisterOnPremisesInstanceInput {
 
 /// <p>Represents the input of a RemoveTagsFromOnPremisesInstances operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsFromOnPremisesInstancesInput {
     /// <p>The names of the on-premises instances from which to remove tags.</p>
     #[serde(rename = "instanceNames")]
@@ -1890,7 +1931,7 @@ pub struct RemoveTagsFromOnPremisesInstancesInput {
 
 /// <p>Information about an application revision.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RevisionInfo {
     /// <p>Information about an application revision, including usage details and associated deployment groups.</p>
     #[serde(rename = "genericRevisionInfo")]
@@ -1929,7 +1970,7 @@ pub struct RevisionLocation {
 
 /// <p>Information about a deployment rollback.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RollbackInfo {
     /// <p>The ID of the deployment rollback.</p>
     #[serde(rename = "rollbackDeploymentId")]
@@ -1971,6 +2012,7 @@ pub struct S3Location {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SkipWaitTimeForInstanceTerminationInput {
     /// <p> The unique ID of a blue/green deployment for which you want to skip the instance termination wait time. </p>
     #[serde(rename = "deploymentId")]
@@ -1980,6 +2022,7 @@ pub struct SkipWaitTimeForInstanceTerminationInput {
 
 /// <p> Represents the input of a StopDeployment operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopDeploymentInput {
     /// <p> Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision. </p>
     #[serde(rename = "autoRollbackEnabled")]
@@ -1992,7 +2035,7 @@ pub struct StopDeploymentInput {
 
 /// <p> Represents the output of a StopDeployment operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopDeploymentOutput {
     /// <p><p>The status of the stop deployment operation:</p> <ul> <li> <p>Pending: The stop operation is pending.</p> </li> <li> <p>Succeeded: The stop operation was successful.</p> </li> </ul></p>
     #[serde(rename = "status")]
@@ -2035,6 +2078,7 @@ pub struct TagFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p> The ARN of a resource, such as a CodeDeploy application or deployment group. </p>
     #[serde(rename = "ResourceArn")]
@@ -2045,7 +2089,7 @@ pub struct TagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceOutput {}
 
 /// <p>Information about a target group in Elastic Load Balancing to use in a deployment. Instances are registered as targets in a target group, and traffic is routed to the target group.</p>
@@ -2119,6 +2163,7 @@ pub struct TimeBasedLinear {
 
 /// <p>Information about a time range.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TimeRange {
     /// <p><p>The end time of the time range.</p> <note> <p>Specify null to leave the end time open-ended.</p> </note></p>
     #[serde(rename = "end")]
@@ -2174,6 +2219,7 @@ pub struct TriggerConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p> The ARN that specifies from which resource to disassociate the tags with the keys in the <code>TagKeys</code> input paramter. </p>
     #[serde(rename = "ResourceArn")]
@@ -2184,11 +2230,12 @@ pub struct UntagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceOutput {}
 
 /// <p>Represents the input of an UpdateApplication operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApplicationInput {
     /// <p>The current name of the application you want to change.</p>
     #[serde(rename = "applicationName")]
@@ -2202,6 +2249,7 @@ pub struct UpdateApplicationInput {
 
 /// <p>Represents the input of an UpdateDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDeploymentGroupInput {
     /// <p>Information to add or change about Amazon CloudWatch alarms when the deployment group is updated.</p>
     #[serde(rename = "alarmConfiguration")]
@@ -2273,7 +2321,7 @@ pub struct UpdateDeploymentGroupInput {
 
 /// <p>Represents the output of an UpdateDeploymentGroup operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDeploymentGroupOutput {
     /// <p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the AWS account. If the output contains data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the AWS account.</p>
     #[serde(rename = "hooksNotCleanedUp")]
@@ -2349,23 +2397,30 @@ impl AddTagsToOnPremisesInstancesError {
     }
 }
 impl fmt::Display for AddTagsToOnPremisesInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddTagsToOnPremisesInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            AddTagsToOnPremisesInstancesError::InstanceLimitExceeded(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::InstanceNameRequired(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::InstanceNotRegistered(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::InvalidInstanceName(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::InvalidTag(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::TagLimitExceeded(ref cause) => cause,
-            AddTagsToOnPremisesInstancesError::TagRequired(ref cause) => cause,
+            AddTagsToOnPremisesInstancesError::InstanceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddTagsToOnPremisesInstancesError::InstanceNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddTagsToOnPremisesInstancesError::InstanceNotRegistered(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddTagsToOnPremisesInstancesError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddTagsToOnPremisesInstancesError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            AddTagsToOnPremisesInstancesError::TagLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddTagsToOnPremisesInstancesError::TagRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddTagsToOnPremisesInstancesError {}
 /// Errors returned by BatchGetApplicationRevisions
 #[derive(Debug, PartialEq)]
 pub enum BatchGetApplicationRevisionsError {
@@ -2427,22 +2482,29 @@ impl BatchGetApplicationRevisionsError {
     }
 }
 impl fmt::Display for BatchGetApplicationRevisionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetApplicationRevisionsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetApplicationRevisionsError::ApplicationDoesNotExist(ref cause) => cause,
-            BatchGetApplicationRevisionsError::ApplicationNameRequired(ref cause) => cause,
-            BatchGetApplicationRevisionsError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetApplicationRevisionsError::InvalidApplicationName(ref cause) => cause,
-            BatchGetApplicationRevisionsError::InvalidRevision(ref cause) => cause,
-            BatchGetApplicationRevisionsError::RevisionRequired(ref cause) => cause,
+            BatchGetApplicationRevisionsError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetApplicationRevisionsError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetApplicationRevisionsError::BatchLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetApplicationRevisionsError::InvalidApplicationName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetApplicationRevisionsError::InvalidRevision(ref cause) => write!(f, "{}", cause),
+            BatchGetApplicationRevisionsError::RevisionRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchGetApplicationRevisionsError {}
 /// Errors returned by BatchGetApplications
 #[derive(Debug, PartialEq)]
 pub enum BatchGetApplicationsError {
@@ -2488,20 +2550,17 @@ impl BatchGetApplicationsError {
     }
 }
 impl fmt::Display for BatchGetApplicationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetApplicationsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetApplicationsError::ApplicationDoesNotExist(ref cause) => cause,
-            BatchGetApplicationsError::ApplicationNameRequired(ref cause) => cause,
-            BatchGetApplicationsError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetApplicationsError::InvalidApplicationName(ref cause) => cause,
+            BatchGetApplicationsError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            BatchGetApplicationsError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            BatchGetApplicationsError::BatchLimitExceeded(ref cause) => write!(f, "{}", cause),
+            BatchGetApplicationsError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetApplicationsError {}
 /// Errors returned by BatchGetDeploymentGroups
 #[derive(Debug, PartialEq)]
 pub enum BatchGetDeploymentGroupsError {
@@ -2568,23 +2627,32 @@ impl BatchGetDeploymentGroupsError {
     }
 }
 impl fmt::Display for BatchGetDeploymentGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetDeploymentGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetDeploymentGroupsError::ApplicationDoesNotExist(ref cause) => cause,
-            BatchGetDeploymentGroupsError::ApplicationNameRequired(ref cause) => cause,
-            BatchGetDeploymentGroupsError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetDeploymentGroupsError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            BatchGetDeploymentGroupsError::DeploymentGroupNameRequired(ref cause) => cause,
-            BatchGetDeploymentGroupsError::InvalidApplicationName(ref cause) => cause,
-            BatchGetDeploymentGroupsError::InvalidDeploymentGroupName(ref cause) => cause,
+            BatchGetDeploymentGroupsError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentGroupsError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentGroupsError::BatchLimitExceeded(ref cause) => write!(f, "{}", cause),
+            BatchGetDeploymentGroupsError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentGroupsError::DeploymentGroupNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentGroupsError::InvalidApplicationName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentGroupsError::InvalidDeploymentGroupName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchGetDeploymentGroupsError {}
 /// Errors returned by BatchGetDeploymentInstances
 #[derive(Debug, PartialEq)]
 pub enum BatchGetDeploymentInstancesError {
@@ -2653,23 +2721,34 @@ impl BatchGetDeploymentInstancesError {
     }
 }
 impl fmt::Display for BatchGetDeploymentInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetDeploymentInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetDeploymentInstancesError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetDeploymentInstancesError::DeploymentDoesNotExist(ref cause) => cause,
-            BatchGetDeploymentInstancesError::DeploymentIdRequired(ref cause) => cause,
-            BatchGetDeploymentInstancesError::InstanceIdRequired(ref cause) => cause,
-            BatchGetDeploymentInstancesError::InvalidComputePlatform(ref cause) => cause,
-            BatchGetDeploymentInstancesError::InvalidDeploymentId(ref cause) => cause,
-            BatchGetDeploymentInstancesError::InvalidInstanceName(ref cause) => cause,
+            BatchGetDeploymentInstancesError::BatchLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::DeploymentDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::DeploymentIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::InstanceIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::InvalidComputePlatform(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::InvalidDeploymentId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentInstancesError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchGetDeploymentInstancesError {}
 /// Errors returned by BatchGetDeploymentTargets
 #[derive(Debug, PartialEq)]
 pub enum BatchGetDeploymentTargetsError {
@@ -2743,24 +2822,37 @@ impl BatchGetDeploymentTargetsError {
     }
 }
 impl fmt::Display for BatchGetDeploymentTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetDeploymentTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetDeploymentTargetsError::DeploymentDoesNotExist(ref cause) => cause,
-            BatchGetDeploymentTargetsError::DeploymentIdRequired(ref cause) => cause,
-            BatchGetDeploymentTargetsError::DeploymentNotStarted(ref cause) => cause,
-            BatchGetDeploymentTargetsError::DeploymentTargetDoesNotExist(ref cause) => cause,
-            BatchGetDeploymentTargetsError::DeploymentTargetIdRequired(ref cause) => cause,
-            BatchGetDeploymentTargetsError::DeploymentTargetListSizeExceeded(ref cause) => cause,
-            BatchGetDeploymentTargetsError::InvalidDeploymentId(ref cause) => cause,
-            BatchGetDeploymentTargetsError::InvalidDeploymentTargetId(ref cause) => cause,
+            BatchGetDeploymentTargetsError::DeploymentDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::DeploymentIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::DeploymentNotStarted(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::DeploymentTargetDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::DeploymentTargetIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::DeploymentTargetListSizeExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::InvalidDeploymentId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetDeploymentTargetsError::InvalidDeploymentTargetId(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchGetDeploymentTargetsError {}
 /// Errors returned by BatchGetDeployments
 #[derive(Debug, PartialEq)]
 pub enum BatchGetDeploymentsError {
@@ -2799,19 +2891,16 @@ impl BatchGetDeploymentsError {
     }
 }
 impl fmt::Display for BatchGetDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetDeploymentsError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetDeploymentsError::DeploymentIdRequired(ref cause) => cause,
-            BatchGetDeploymentsError::InvalidDeploymentId(ref cause) => cause,
+            BatchGetDeploymentsError::BatchLimitExceeded(ref cause) => write!(f, "{}", cause),
+            BatchGetDeploymentsError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            BatchGetDeploymentsError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetDeploymentsError {}
 /// Errors returned by BatchGetOnPremisesInstances
 #[derive(Debug, PartialEq)]
 pub enum BatchGetOnPremisesInstancesError {
@@ -2852,19 +2941,22 @@ impl BatchGetOnPremisesInstancesError {
     }
 }
 impl fmt::Display for BatchGetOnPremisesInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetOnPremisesInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetOnPremisesInstancesError::BatchLimitExceeded(ref cause) => cause,
-            BatchGetOnPremisesInstancesError::InstanceNameRequired(ref cause) => cause,
-            BatchGetOnPremisesInstancesError::InvalidInstanceName(ref cause) => cause,
+            BatchGetOnPremisesInstancesError::BatchLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetOnPremisesInstancesError::InstanceNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchGetOnPremisesInstancesError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for BatchGetOnPremisesInstancesError {}
 /// Errors returned by ContinueDeployment
 #[derive(Debug, PartialEq)]
 pub enum ContinueDeploymentError {
@@ -2938,24 +3030,27 @@ impl ContinueDeploymentError {
     }
 }
 impl fmt::Display for ContinueDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ContinueDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            ContinueDeploymentError::DeploymentAlreadyCompleted(ref cause) => cause,
-            ContinueDeploymentError::DeploymentDoesNotExist(ref cause) => cause,
-            ContinueDeploymentError::DeploymentIdRequired(ref cause) => cause,
-            ContinueDeploymentError::DeploymentIsNotInReadyState(ref cause) => cause,
-            ContinueDeploymentError::InvalidDeploymentId(ref cause) => cause,
-            ContinueDeploymentError::InvalidDeploymentStatus(ref cause) => cause,
-            ContinueDeploymentError::InvalidDeploymentWaitType(ref cause) => cause,
-            ContinueDeploymentError::UnsupportedActionForDeploymentType(ref cause) => cause,
+            ContinueDeploymentError::DeploymentAlreadyCompleted(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ContinueDeploymentError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ContinueDeploymentError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            ContinueDeploymentError::DeploymentIsNotInReadyState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ContinueDeploymentError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
+            ContinueDeploymentError::InvalidDeploymentStatus(ref cause) => write!(f, "{}", cause),
+            ContinueDeploymentError::InvalidDeploymentWaitType(ref cause) => write!(f, "{}", cause),
+            ContinueDeploymentError::UnsupportedActionForDeploymentType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ContinueDeploymentError {}
 /// Errors returned by CreateApplication
 #[derive(Debug, PartialEq)]
 pub enum CreateApplicationError {
@@ -3013,22 +3108,19 @@ impl CreateApplicationError {
     }
 }
 impl fmt::Display for CreateApplicationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateApplicationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateApplicationError::ApplicationAlreadyExists(ref cause) => cause,
-            CreateApplicationError::ApplicationLimitExceeded(ref cause) => cause,
-            CreateApplicationError::ApplicationNameRequired(ref cause) => cause,
-            CreateApplicationError::InvalidApplicationName(ref cause) => cause,
-            CreateApplicationError::InvalidComputePlatform(ref cause) => cause,
-            CreateApplicationError::InvalidTagsToAdd(ref cause) => cause,
+            CreateApplicationError::ApplicationAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateApplicationError::ApplicationLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateApplicationError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            CreateApplicationError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            CreateApplicationError::InvalidComputePlatform(ref cause) => write!(f, "{}", cause),
+            CreateApplicationError::InvalidTagsToAdd(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateApplicationError {}
 /// Errors returned by CreateDeployment
 #[derive(Debug, PartialEq)]
 pub enum CreateDeploymentError {
@@ -3197,39 +3289,42 @@ impl CreateDeploymentError {
     }
 }
 impl fmt::Display for CreateDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeploymentError::ApplicationDoesNotExist(ref cause) => cause,
-            CreateDeploymentError::ApplicationNameRequired(ref cause) => cause,
-            CreateDeploymentError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            CreateDeploymentError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            CreateDeploymentError::DeploymentGroupNameRequired(ref cause) => cause,
-            CreateDeploymentError::DeploymentLimitExceeded(ref cause) => cause,
-            CreateDeploymentError::DescriptionTooLong(ref cause) => cause,
-            CreateDeploymentError::InvalidApplicationName(ref cause) => cause,
-            CreateDeploymentError::InvalidAutoRollbackConfig(ref cause) => cause,
-            CreateDeploymentError::InvalidAutoScalingGroup(ref cause) => cause,
-            CreateDeploymentError::InvalidDeploymentConfigName(ref cause) => cause,
-            CreateDeploymentError::InvalidDeploymentGroupName(ref cause) => cause,
-            CreateDeploymentError::InvalidFileExistsBehavior(ref cause) => cause,
-            CreateDeploymentError::InvalidGitHubAccountToken(ref cause) => cause,
-            CreateDeploymentError::InvalidIgnoreApplicationStopFailuresValue(ref cause) => cause,
-            CreateDeploymentError::InvalidLoadBalancerInfo(ref cause) => cause,
-            CreateDeploymentError::InvalidRevision(ref cause) => cause,
-            CreateDeploymentError::InvalidRole(ref cause) => cause,
-            CreateDeploymentError::InvalidTargetInstances(ref cause) => cause,
-            CreateDeploymentError::InvalidUpdateOutdatedInstancesOnlyValue(ref cause) => cause,
-            CreateDeploymentError::RevisionDoesNotExist(ref cause) => cause,
-            CreateDeploymentError::RevisionRequired(ref cause) => cause,
-            CreateDeploymentError::Throttling(ref cause) => cause,
+            CreateDeploymentError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentError::DeploymentGroupDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::DeploymentGroupNameRequired(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::DeploymentLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::DescriptionTooLong(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidAutoRollbackConfig(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidAutoScalingGroup(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidDeploymentConfigName(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidDeploymentGroupName(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidFileExistsBehavior(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidGitHubAccountToken(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidIgnoreApplicationStopFailuresValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentError::InvalidLoadBalancerInfo(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidRevision(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidTargetInstances(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::InvalidUpdateOutdatedInstancesOnlyValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentError::RevisionDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::RevisionRequired(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeploymentError {}
 /// Errors returned by CreateDeploymentConfig
 #[derive(Debug, PartialEq)]
 pub enum CreateDeploymentConfigError {
@@ -3296,23 +3391,34 @@ impl CreateDeploymentConfigError {
     }
 }
 impl fmt::Display for CreateDeploymentConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeploymentConfigError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeploymentConfigError::DeploymentConfigAlreadyExists(ref cause) => cause,
-            CreateDeploymentConfigError::DeploymentConfigLimitExceeded(ref cause) => cause,
-            CreateDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => cause,
-            CreateDeploymentConfigError::InvalidComputePlatform(ref cause) => cause,
-            CreateDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => cause,
-            CreateDeploymentConfigError::InvalidMinimumHealthyHostValue(ref cause) => cause,
-            CreateDeploymentConfigError::InvalidTrafficRoutingConfiguration(ref cause) => cause,
+            CreateDeploymentConfigError::DeploymentConfigAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::DeploymentConfigLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::InvalidComputePlatform(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::InvalidMinimumHealthyHostValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentConfigError::InvalidTrafficRoutingConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateDeploymentConfigError {}
 /// Errors returned by CreateDeploymentGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateDeploymentGroupError {
@@ -3544,48 +3650,81 @@ impl CreateDeploymentGroupError {
     }
 }
 impl fmt::Display for CreateDeploymentGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeploymentGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeploymentGroupError::AlarmsLimitExceeded(ref cause) => cause,
-            CreateDeploymentGroupError::ApplicationDoesNotExist(ref cause) => cause,
-            CreateDeploymentGroupError::ApplicationNameRequired(ref cause) => cause,
-            CreateDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            CreateDeploymentGroupError::DeploymentGroupAlreadyExists(ref cause) => cause,
-            CreateDeploymentGroupError::DeploymentGroupLimitExceeded(ref cause) => cause,
-            CreateDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => cause,
-            CreateDeploymentGroupError::ECSServiceMappingLimitExceeded(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidAlarmConfig(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidApplicationName(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidAutoRollbackConfig(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidAutoScalingGroup(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidBlueGreenDeploymentConfiguration(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidDeploymentConfigName(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidDeploymentStyle(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidEC2TagCombination(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidEC2Tag(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidECSService(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidInput(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidLoadBalancerInfo(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidOnPremisesTagCombination(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidRole(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidTag(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidTagsToAdd(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidTargetGroupPair(ref cause) => cause,
-            CreateDeploymentGroupError::InvalidTriggerConfig(ref cause) => cause,
-            CreateDeploymentGroupError::LifecycleHookLimitExceeded(ref cause) => cause,
-            CreateDeploymentGroupError::RoleRequired(ref cause) => cause,
-            CreateDeploymentGroupError::TagSetListLimitExceeded(ref cause) => cause,
-            CreateDeploymentGroupError::Throttling(ref cause) => cause,
-            CreateDeploymentGroupError::TriggerTargetsLimitExceeded(ref cause) => cause,
+            CreateDeploymentGroupError::AlarmsLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::DeploymentGroupAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::DeploymentGroupLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::ECSServiceMappingLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidAlarmConfig(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidAutoRollbackConfig(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidAutoScalingGroup(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidBlueGreenDeploymentConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidDeploymentConfigName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidDeploymentStyle(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidEC2TagCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidEC2Tag(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidECSService(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidLoadBalancerInfo(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidOnPremisesTagCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidTagsToAdd(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidTargetGroupPair(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::InvalidTriggerConfig(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::LifecycleHookLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::RoleRequired(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::TagSetListLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateDeploymentGroupError::Throttling(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentGroupError::TriggerTargetsLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateDeploymentGroupError {}
 /// Errors returned by DeleteApplication
 #[derive(Debug, PartialEq)]
 pub enum DeleteApplicationError {
@@ -3622,19 +3761,16 @@ impl DeleteApplicationError {
     }
 }
 impl fmt::Display for DeleteApplicationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteApplicationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteApplicationError::ApplicationNameRequired(ref cause) => cause,
-            DeleteApplicationError::InvalidApplicationName(ref cause) => cause,
-            DeleteApplicationError::InvalidRole(ref cause) => cause,
+            DeleteApplicationError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            DeleteApplicationError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            DeleteApplicationError::InvalidRole(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteApplicationError {}
 /// Errors returned by DeleteDeploymentConfig
 #[derive(Debug, PartialEq)]
 pub enum DeleteDeploymentConfigError {
@@ -3680,20 +3816,21 @@ impl DeleteDeploymentConfigError {
     }
 }
 impl fmt::Display for DeleteDeploymentConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDeploymentConfigError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDeploymentConfigError::DeploymentConfigInUse(ref cause) => cause,
-            DeleteDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => cause,
-            DeleteDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => cause,
-            DeleteDeploymentConfigError::InvalidOperation(ref cause) => cause,
+            DeleteDeploymentConfigError::DeploymentConfigInUse(ref cause) => write!(f, "{}", cause),
+            DeleteDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteDeploymentConfigError::InvalidOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDeploymentConfigError {}
 /// Errors returned by DeleteDeploymentGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteDeploymentGroupError {
@@ -3744,21 +3881,24 @@ impl DeleteDeploymentGroupError {
     }
 }
 impl fmt::Display for DeleteDeploymentGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDeploymentGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDeploymentGroupError::ApplicationNameRequired(ref cause) => cause,
-            DeleteDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => cause,
-            DeleteDeploymentGroupError::InvalidApplicationName(ref cause) => cause,
-            DeleteDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => cause,
-            DeleteDeploymentGroupError::InvalidRole(ref cause) => cause,
+            DeleteDeploymentGroupError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteDeploymentGroupError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            DeleteDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteDeploymentGroupError::InvalidRole(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDeploymentGroupError {}
 /// Errors returned by DeleteGitHubAccountToken
 #[derive(Debug, PartialEq)]
 pub enum DeleteGitHubAccountTokenError {
@@ -3811,21 +3951,26 @@ impl DeleteGitHubAccountTokenError {
     }
 }
 impl fmt::Display for DeleteGitHubAccountTokenError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteGitHubAccountTokenError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteGitHubAccountTokenError::GitHubAccountTokenDoesNotExist(ref cause) => cause,
-            DeleteGitHubAccountTokenError::GitHubAccountTokenNameRequired(ref cause) => cause,
-            DeleteGitHubAccountTokenError::InvalidGitHubAccountTokenName(ref cause) => cause,
-            DeleteGitHubAccountTokenError::OperationNotSupported(ref cause) => cause,
-            DeleteGitHubAccountTokenError::ResourceValidation(ref cause) => cause,
+            DeleteGitHubAccountTokenError::GitHubAccountTokenDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteGitHubAccountTokenError::GitHubAccountTokenNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteGitHubAccountTokenError::InvalidGitHubAccountTokenName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteGitHubAccountTokenError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteGitHubAccountTokenError::ResourceValidation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteGitHubAccountTokenError {}
 /// Errors returned by DeregisterOnPremisesInstance
 #[derive(Debug, PartialEq)]
 pub enum DeregisterOnPremisesInstanceError {
@@ -3859,18 +4004,19 @@ impl DeregisterOnPremisesInstanceError {
     }
 }
 impl fmt::Display for DeregisterOnPremisesInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterOnPremisesInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterOnPremisesInstanceError::InstanceNameRequired(ref cause) => cause,
-            DeregisterOnPremisesInstanceError::InvalidInstanceName(ref cause) => cause,
+            DeregisterOnPremisesInstanceError::InstanceNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterOnPremisesInstanceError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeregisterOnPremisesInstanceError {}
 /// Errors returned by GetApplication
 #[derive(Debug, PartialEq)]
 pub enum GetApplicationError {
@@ -3909,19 +4055,16 @@ impl GetApplicationError {
     }
 }
 impl fmt::Display for GetApplicationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApplicationError {
-    fn description(&self) -> &str {
         match *self {
-            GetApplicationError::ApplicationDoesNotExist(ref cause) => cause,
-            GetApplicationError::ApplicationNameRequired(ref cause) => cause,
-            GetApplicationError::InvalidApplicationName(ref cause) => cause,
+            GetApplicationError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetApplicationError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            GetApplicationError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApplicationError {}
 /// Errors returned by GetApplicationRevision
 #[derive(Debug, PartialEq)]
 pub enum GetApplicationRevisionError {
@@ -3981,22 +4124,25 @@ impl GetApplicationRevisionError {
     }
 }
 impl fmt::Display for GetApplicationRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApplicationRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            GetApplicationRevisionError::ApplicationDoesNotExist(ref cause) => cause,
-            GetApplicationRevisionError::ApplicationNameRequired(ref cause) => cause,
-            GetApplicationRevisionError::InvalidApplicationName(ref cause) => cause,
-            GetApplicationRevisionError::InvalidRevision(ref cause) => cause,
-            GetApplicationRevisionError::RevisionDoesNotExist(ref cause) => cause,
-            GetApplicationRevisionError::RevisionRequired(ref cause) => cause,
+            GetApplicationRevisionError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetApplicationRevisionError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetApplicationRevisionError::InvalidApplicationName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetApplicationRevisionError::InvalidRevision(ref cause) => write!(f, "{}", cause),
+            GetApplicationRevisionError::RevisionDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetApplicationRevisionError::RevisionRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApplicationRevisionError {}
 /// Errors returned by GetDeployment
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentError {
@@ -4031,19 +4177,16 @@ impl GetDeploymentError {
     }
 }
 impl fmt::Display for GetDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentError::DeploymentDoesNotExist(ref cause) => cause,
-            GetDeploymentError::DeploymentIdRequired(ref cause) => cause,
-            GetDeploymentError::InvalidDeploymentId(ref cause) => cause,
+            GetDeploymentError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDeploymentError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            GetDeploymentError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentError {}
 /// Errors returned by GetDeploymentConfig
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentConfigError {
@@ -4089,20 +4232,23 @@ impl GetDeploymentConfigError {
     }
 }
 impl fmt::Display for GetDeploymentConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentConfigError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentConfigError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            GetDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => cause,
-            GetDeploymentConfigError::InvalidComputePlatform(ref cause) => cause,
-            GetDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => cause,
+            GetDeploymentConfigError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentConfigError::DeploymentConfigNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentConfigError::InvalidComputePlatform(ref cause) => write!(f, "{}", cause),
+            GetDeploymentConfigError::InvalidDeploymentConfigName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetDeploymentConfigError {}
 /// Errors returned by GetDeploymentGroup
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentGroupError {
@@ -4169,23 +4315,28 @@ impl GetDeploymentGroupError {
     }
 }
 impl fmt::Display for GetDeploymentGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentGroupError::ApplicationDoesNotExist(ref cause) => cause,
-            GetDeploymentGroupError::ApplicationNameRequired(ref cause) => cause,
-            GetDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            GetDeploymentGroupError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            GetDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => cause,
-            GetDeploymentGroupError::InvalidApplicationName(ref cause) => cause,
-            GetDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => cause,
+            GetDeploymentGroupError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDeploymentGroupError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            GetDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentGroupError::DeploymentGroupDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentGroupError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            GetDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetDeploymentGroupError {}
 /// Errors returned by GetDeploymentInstance
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentInstanceError {
@@ -4252,23 +4403,20 @@ impl GetDeploymentInstanceError {
     }
 }
 impl fmt::Display for GetDeploymentInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentInstanceError::DeploymentDoesNotExist(ref cause) => cause,
-            GetDeploymentInstanceError::DeploymentIdRequired(ref cause) => cause,
-            GetDeploymentInstanceError::InstanceDoesNotExist(ref cause) => cause,
-            GetDeploymentInstanceError::InstanceIdRequired(ref cause) => cause,
-            GetDeploymentInstanceError::InvalidComputePlatform(ref cause) => cause,
-            GetDeploymentInstanceError::InvalidDeploymentId(ref cause) => cause,
-            GetDeploymentInstanceError::InvalidInstanceName(ref cause) => cause,
+            GetDeploymentInstanceError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::InstanceDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::InstanceIdRequired(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::InvalidComputePlatform(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
+            GetDeploymentInstanceError::InvalidInstanceName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentInstanceError {}
 /// Errors returned by GetDeploymentTarget
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentTargetError {
@@ -4342,24 +4490,27 @@ impl GetDeploymentTargetError {
     }
 }
 impl fmt::Display for GetDeploymentTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentTargetError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentTargetError::DeploymentDoesNotExist(ref cause) => cause,
-            GetDeploymentTargetError::DeploymentIdRequired(ref cause) => cause,
-            GetDeploymentTargetError::DeploymentNotStarted(ref cause) => cause,
-            GetDeploymentTargetError::DeploymentTargetDoesNotExist(ref cause) => cause,
-            GetDeploymentTargetError::DeploymentTargetIdRequired(ref cause) => cause,
-            GetDeploymentTargetError::InvalidDeploymentId(ref cause) => cause,
-            GetDeploymentTargetError::InvalidDeploymentTargetId(ref cause) => cause,
-            GetDeploymentTargetError::InvalidInstanceName(ref cause) => cause,
+            GetDeploymentTargetError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDeploymentTargetError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            GetDeploymentTargetError::DeploymentNotStarted(ref cause) => write!(f, "{}", cause),
+            GetDeploymentTargetError::DeploymentTargetDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentTargetError::DeploymentTargetIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentTargetError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
+            GetDeploymentTargetError::InvalidDeploymentTargetId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetDeploymentTargetError::InvalidInstanceName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentTargetError {}
 /// Errors returned by GetOnPremisesInstance
 #[derive(Debug, PartialEq)]
 pub enum GetOnPremisesInstanceError {
@@ -4398,19 +4549,16 @@ impl GetOnPremisesInstanceError {
     }
 }
 impl fmt::Display for GetOnPremisesInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetOnPremisesInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            GetOnPremisesInstanceError::InstanceNameRequired(ref cause) => cause,
-            GetOnPremisesInstanceError::InstanceNotRegistered(ref cause) => cause,
-            GetOnPremisesInstanceError::InvalidInstanceName(ref cause) => cause,
+            GetOnPremisesInstanceError::InstanceNameRequired(ref cause) => write!(f, "{}", cause),
+            GetOnPremisesInstanceError::InstanceNotRegistered(ref cause) => write!(f, "{}", cause),
+            GetOnPremisesInstanceError::InvalidInstanceName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetOnPremisesInstanceError {}
 /// Errors returned by ListApplicationRevisions
 #[derive(Debug, PartialEq)]
 pub enum ListApplicationRevisionsError {
@@ -4498,26 +4646,37 @@ impl ListApplicationRevisionsError {
     }
 }
 impl fmt::Display for ListApplicationRevisionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListApplicationRevisionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListApplicationRevisionsError::ApplicationDoesNotExist(ref cause) => cause,
-            ListApplicationRevisionsError::ApplicationNameRequired(ref cause) => cause,
-            ListApplicationRevisionsError::BucketNameFilterRequired(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidApplicationName(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidBucketNameFilter(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidDeployedStateFilter(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidKeyPrefixFilter(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidNextToken(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidSortBy(ref cause) => cause,
-            ListApplicationRevisionsError::InvalidSortOrder(ref cause) => cause,
+            ListApplicationRevisionsError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::BucketNameFilterRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::InvalidApplicationName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::InvalidBucketNameFilter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::InvalidDeployedStateFilter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::InvalidKeyPrefixFilter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListApplicationRevisionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListApplicationRevisionsError::InvalidSortBy(ref cause) => write!(f, "{}", cause),
+            ListApplicationRevisionsError::InvalidSortOrder(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListApplicationRevisionsError {}
 /// Errors returned by ListApplications
 #[derive(Debug, PartialEq)]
 pub enum ListApplicationsError {
@@ -4540,17 +4699,14 @@ impl ListApplicationsError {
     }
 }
 impl fmt::Display for ListApplicationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListApplicationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListApplicationsError::InvalidNextToken(ref cause) => cause,
+            ListApplicationsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListApplicationsError {}
 /// Errors returned by ListDeploymentConfigs
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentConfigsError {
@@ -4575,17 +4731,14 @@ impl ListDeploymentConfigsError {
     }
 }
 impl fmt::Display for ListDeploymentConfigsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentConfigsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentConfigsError::InvalidNextToken(ref cause) => cause,
+            ListDeploymentConfigsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeploymentConfigsError {}
 /// Errors returned by ListDeploymentGroups
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentGroupsError {
@@ -4631,20 +4784,17 @@ impl ListDeploymentGroupsError {
     }
 }
 impl fmt::Display for ListDeploymentGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentGroupsError::ApplicationDoesNotExist(ref cause) => cause,
-            ListDeploymentGroupsError::ApplicationNameRequired(ref cause) => cause,
-            ListDeploymentGroupsError::InvalidApplicationName(ref cause) => cause,
-            ListDeploymentGroupsError::InvalidNextToken(ref cause) => cause,
+            ListDeploymentGroupsError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListDeploymentGroupsError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            ListDeploymentGroupsError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            ListDeploymentGroupsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeploymentGroupsError {}
 /// Errors returned by ListDeploymentInstances
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentInstancesError {
@@ -4732,26 +4882,33 @@ impl ListDeploymentInstancesError {
     }
 }
 impl fmt::Display for ListDeploymentInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentInstancesError::DeploymentDoesNotExist(ref cause) => cause,
-            ListDeploymentInstancesError::DeploymentIdRequired(ref cause) => cause,
-            ListDeploymentInstancesError::DeploymentNotStarted(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidComputePlatform(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidDeploymentId(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidDeploymentInstanceType(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidInstanceStatus(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidInstanceType(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidNextToken(ref cause) => cause,
-            ListDeploymentInstancesError::InvalidTargetFilterName(ref cause) => cause,
+            ListDeploymentInstancesError::DeploymentDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListDeploymentInstancesError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            ListDeploymentInstancesError::DeploymentNotStarted(ref cause) => write!(f, "{}", cause),
+            ListDeploymentInstancesError::InvalidComputePlatform(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListDeploymentInstancesError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
+            ListDeploymentInstancesError::InvalidDeploymentInstanceType(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListDeploymentInstancesError::InvalidInstanceStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListDeploymentInstancesError::InvalidInstanceType(ref cause) => write!(f, "{}", cause),
+            ListDeploymentInstancesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListDeploymentInstancesError::InvalidTargetFilterName(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListDeploymentInstancesError {}
 /// Errors returned by ListDeploymentTargets
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentTargetsError {
@@ -4825,24 +4982,23 @@ impl ListDeploymentTargetsError {
     }
 }
 impl fmt::Display for ListDeploymentTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentTargetsError::DeploymentDoesNotExist(ref cause) => cause,
-            ListDeploymentTargetsError::DeploymentIdRequired(ref cause) => cause,
-            ListDeploymentTargetsError::DeploymentNotStarted(ref cause) => cause,
-            ListDeploymentTargetsError::InvalidDeploymentId(ref cause) => cause,
-            ListDeploymentTargetsError::InvalidDeploymentInstanceType(ref cause) => cause,
-            ListDeploymentTargetsError::InvalidInstanceStatus(ref cause) => cause,
-            ListDeploymentTargetsError::InvalidInstanceType(ref cause) => cause,
-            ListDeploymentTargetsError::InvalidNextToken(ref cause) => cause,
+            ListDeploymentTargetsError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::DeploymentNotStarted(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::InvalidDeploymentInstanceType(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListDeploymentTargetsError::InvalidInstanceStatus(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::InvalidInstanceType(ref cause) => write!(f, "{}", cause),
+            ListDeploymentTargetsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeploymentTargetsError {}
 /// Errors returned by ListDeployments
 #[derive(Debug, PartialEq)]
 pub enum ListDeploymentsError {
@@ -4919,25 +5075,22 @@ impl ListDeploymentsError {
     }
 }
 impl fmt::Display for ListDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDeploymentsError::ApplicationDoesNotExist(ref cause) => cause,
-            ListDeploymentsError::ApplicationNameRequired(ref cause) => cause,
-            ListDeploymentsError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            ListDeploymentsError::DeploymentGroupNameRequired(ref cause) => cause,
-            ListDeploymentsError::InvalidApplicationName(ref cause) => cause,
-            ListDeploymentsError::InvalidDeploymentGroupName(ref cause) => cause,
-            ListDeploymentsError::InvalidDeploymentStatus(ref cause) => cause,
-            ListDeploymentsError::InvalidNextToken(ref cause) => cause,
-            ListDeploymentsError::InvalidTimeRange(ref cause) => cause,
+            ListDeploymentsError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::DeploymentGroupDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::DeploymentGroupNameRequired(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::InvalidDeploymentGroupName(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::InvalidDeploymentStatus(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListDeploymentsError::InvalidTimeRange(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDeploymentsError {}
 /// Errors returned by ListGitHubAccountTokenNames
 #[derive(Debug, PartialEq)]
 pub enum ListGitHubAccountTokenNamesError {
@@ -4978,19 +5131,20 @@ impl ListGitHubAccountTokenNamesError {
     }
 }
 impl fmt::Display for ListGitHubAccountTokenNamesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListGitHubAccountTokenNamesError {
-    fn description(&self) -> &str {
         match *self {
-            ListGitHubAccountTokenNamesError::InvalidNextToken(ref cause) => cause,
-            ListGitHubAccountTokenNamesError::OperationNotSupported(ref cause) => cause,
-            ListGitHubAccountTokenNamesError::ResourceValidation(ref cause) => cause,
+            ListGitHubAccountTokenNamesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListGitHubAccountTokenNamesError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListGitHubAccountTokenNamesError::ResourceValidation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListGitHubAccountTokenNamesError {}
 /// Errors returned by ListOnPremisesInstances
 #[derive(Debug, PartialEq)]
 pub enum ListOnPremisesInstancesError {
@@ -5029,19 +5183,18 @@ impl ListOnPremisesInstancesError {
     }
 }
 impl fmt::Display for ListOnPremisesInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOnPremisesInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            ListOnPremisesInstancesError::InvalidNextToken(ref cause) => cause,
-            ListOnPremisesInstancesError::InvalidRegistrationStatus(ref cause) => cause,
-            ListOnPremisesInstancesError::InvalidTagFilter(ref cause) => cause,
+            ListOnPremisesInstancesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListOnPremisesInstancesError::InvalidRegistrationStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOnPremisesInstancesError::InvalidTagFilter(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOnPremisesInstancesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -5076,19 +5229,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::ArnNotSupported(ref cause) => cause,
-            ListTagsForResourceError::InvalidArn(ref cause) => cause,
-            ListTagsForResourceError::ResourceArnRequired(ref cause) => cause,
+            ListTagsForResourceError::ArnNotSupported(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceArnRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PutLifecycleEventHookExecutionStatus
 #[derive(Debug, PartialEq)]
 pub enum PutLifecycleEventHookExecutionStatusError {
@@ -5129,31 +5279,34 @@ _ => {}
     }
 }
 impl fmt::Display for PutLifecycleEventHookExecutionStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLifecycleEventHookExecutionStatusError {
-    fn description(&self) -> &str {
         match *self {
-            PutLifecycleEventHookExecutionStatusError::DeploymentDoesNotExist(ref cause) => cause,
-            PutLifecycleEventHookExecutionStatusError::DeploymentIdRequired(ref cause) => cause,
-            PutLifecycleEventHookExecutionStatusError::InvalidDeploymentId(ref cause) => cause,
+            PutLifecycleEventHookExecutionStatusError::DeploymentDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutLifecycleEventHookExecutionStatusError::DeploymentIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutLifecycleEventHookExecutionStatusError::InvalidDeploymentId(ref cause) => {
+                write!(f, "{}", cause)
+            }
             PutLifecycleEventHookExecutionStatusError::InvalidLifecycleEventHookExecutionId(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
             PutLifecycleEventHookExecutionStatusError::InvalidLifecycleEventHookExecutionStatus(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
             PutLifecycleEventHookExecutionStatusError::LifecycleEventAlreadyCompleted(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
             PutLifecycleEventHookExecutionStatusError::UnsupportedActionForDeploymentType(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutLifecycleEventHookExecutionStatusError {}
 /// Errors returned by RegisterApplicationRevision
 #[derive(Debug, PartialEq)]
 pub enum RegisterApplicationRevisionError {
@@ -5215,22 +5368,27 @@ impl RegisterApplicationRevisionError {
     }
 }
 impl fmt::Display for RegisterApplicationRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterApplicationRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterApplicationRevisionError::ApplicationDoesNotExist(ref cause) => cause,
-            RegisterApplicationRevisionError::ApplicationNameRequired(ref cause) => cause,
-            RegisterApplicationRevisionError::DescriptionTooLong(ref cause) => cause,
-            RegisterApplicationRevisionError::InvalidApplicationName(ref cause) => cause,
-            RegisterApplicationRevisionError::InvalidRevision(ref cause) => cause,
-            RegisterApplicationRevisionError::RevisionRequired(ref cause) => cause,
+            RegisterApplicationRevisionError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterApplicationRevisionError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterApplicationRevisionError::DescriptionTooLong(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterApplicationRevisionError::InvalidApplicationName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterApplicationRevisionError::InvalidRevision(ref cause) => write!(f, "{}", cause),
+            RegisterApplicationRevisionError::RevisionRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterApplicationRevisionError {}
 /// Errors returned by RegisterOnPremisesInstance
 #[derive(Debug, PartialEq)]
 pub enum RegisterOnPremisesInstanceError {
@@ -5320,26 +5478,39 @@ impl RegisterOnPremisesInstanceError {
     }
 }
 impl fmt::Display for RegisterOnPremisesInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterOnPremisesInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterOnPremisesInstanceError::IamArnRequired(ref cause) => cause,
-            RegisterOnPremisesInstanceError::IamSessionArnAlreadyRegistered(ref cause) => cause,
-            RegisterOnPremisesInstanceError::IamUserArnAlreadyRegistered(ref cause) => cause,
-            RegisterOnPremisesInstanceError::IamUserArnRequired(ref cause) => cause,
-            RegisterOnPremisesInstanceError::InstanceNameAlreadyRegistered(ref cause) => cause,
-            RegisterOnPremisesInstanceError::InstanceNameRequired(ref cause) => cause,
-            RegisterOnPremisesInstanceError::InvalidIamSessionArn(ref cause) => cause,
-            RegisterOnPremisesInstanceError::InvalidIamUserArn(ref cause) => cause,
-            RegisterOnPremisesInstanceError::InvalidInstanceName(ref cause) => cause,
-            RegisterOnPremisesInstanceError::MultipleIamArnsProvided(ref cause) => cause,
+            RegisterOnPremisesInstanceError::IamArnRequired(ref cause) => write!(f, "{}", cause),
+            RegisterOnPremisesInstanceError::IamSessionArnAlreadyRegistered(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::IamUserArnAlreadyRegistered(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::IamUserArnRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::InstanceNameAlreadyRegistered(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::InstanceNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::InvalidIamSessionArn(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::InvalidIamUserArn(ref cause) => write!(f, "{}", cause),
+            RegisterOnPremisesInstanceError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterOnPremisesInstanceError::MultipleIamArnsProvided(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterOnPremisesInstanceError {}
 /// Errors returned by RemoveTagsFromOnPremisesInstances
 #[derive(Debug, PartialEq)]
 pub enum RemoveTagsFromOnPremisesInstancesError {
@@ -5408,23 +5579,32 @@ impl RemoveTagsFromOnPremisesInstancesError {
     }
 }
 impl fmt::Display for RemoveTagsFromOnPremisesInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTagsFromOnPremisesInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTagsFromOnPremisesInstancesError::InstanceLimitExceeded(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::InstanceNameRequired(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::InstanceNotRegistered(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::InvalidInstanceName(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::InvalidTag(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::TagLimitExceeded(ref cause) => cause,
-            RemoveTagsFromOnPremisesInstancesError::TagRequired(ref cause) => cause,
+            RemoveTagsFromOnPremisesInstancesError::InstanceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveTagsFromOnPremisesInstancesError::InstanceNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveTagsFromOnPremisesInstancesError::InstanceNotRegistered(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveTagsFromOnPremisesInstancesError::InvalidInstanceName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveTagsFromOnPremisesInstancesError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromOnPremisesInstancesError::TagLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RemoveTagsFromOnPremisesInstancesError::TagRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RemoveTagsFromOnPremisesInstancesError {}
 /// Errors returned by SkipWaitTimeForInstanceTermination
 #[derive(Debug, PartialEq)]
 pub enum SkipWaitTimeForInstanceTerminationError {
@@ -5490,24 +5670,31 @@ impl SkipWaitTimeForInstanceTerminationError {
     }
 }
 impl fmt::Display for SkipWaitTimeForInstanceTerminationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SkipWaitTimeForInstanceTerminationError {
-    fn description(&self) -> &str {
         match *self {
-            SkipWaitTimeForInstanceTerminationError::DeploymentAlreadyCompleted(ref cause) => cause,
-            SkipWaitTimeForInstanceTerminationError::DeploymentDoesNotExist(ref cause) => cause,
-            SkipWaitTimeForInstanceTerminationError::DeploymentIdRequired(ref cause) => cause,
-            SkipWaitTimeForInstanceTerminationError::DeploymentNotStarted(ref cause) => cause,
-            SkipWaitTimeForInstanceTerminationError::InvalidDeploymentId(ref cause) => cause,
+            SkipWaitTimeForInstanceTerminationError::DeploymentAlreadyCompleted(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SkipWaitTimeForInstanceTerminationError::DeploymentDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SkipWaitTimeForInstanceTerminationError::DeploymentIdRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SkipWaitTimeForInstanceTerminationError::DeploymentNotStarted(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SkipWaitTimeForInstanceTerminationError::InvalidDeploymentId(ref cause) => {
+                write!(f, "{}", cause)
+            }
             SkipWaitTimeForInstanceTerminationError::UnsupportedActionForDeploymentType(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SkipWaitTimeForInstanceTerminationError {}
 /// Errors returned by StopDeployment
 #[derive(Debug, PartialEq)]
 pub enum StopDeploymentError {
@@ -5556,21 +5743,18 @@ impl StopDeploymentError {
     }
 }
 impl fmt::Display for StopDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            StopDeploymentError::DeploymentAlreadyCompleted(ref cause) => cause,
-            StopDeploymentError::DeploymentDoesNotExist(ref cause) => cause,
-            StopDeploymentError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            StopDeploymentError::DeploymentIdRequired(ref cause) => cause,
-            StopDeploymentError::InvalidDeploymentId(ref cause) => cause,
+            StopDeploymentError::DeploymentAlreadyCompleted(ref cause) => write!(f, "{}", cause),
+            StopDeploymentError::DeploymentDoesNotExist(ref cause) => write!(f, "{}", cause),
+            StopDeploymentError::DeploymentGroupDoesNotExist(ref cause) => write!(f, "{}", cause),
+            StopDeploymentError::DeploymentIdRequired(ref cause) => write!(f, "{}", cause),
+            StopDeploymentError::InvalidDeploymentId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopDeploymentError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -5632,24 +5816,21 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::ApplicationDoesNotExist(ref cause) => cause,
-            TagResourceError::ArnNotSupported(ref cause) => cause,
-            TagResourceError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            TagResourceError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            TagResourceError::InvalidArn(ref cause) => cause,
-            TagResourceError::InvalidTagsToAdd(ref cause) => cause,
-            TagResourceError::ResourceArnRequired(ref cause) => cause,
-            TagResourceError::TagRequired(ref cause) => cause,
+            TagResourceError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ArnNotSupported(ref cause) => write!(f, "{}", cause),
+            TagResourceError::DeploymentConfigDoesNotExist(ref cause) => write!(f, "{}", cause),
+            TagResourceError::DeploymentGroupDoesNotExist(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidTagsToAdd(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceArnRequired(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TagRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -5713,24 +5894,21 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::ApplicationDoesNotExist(ref cause) => cause,
-            UntagResourceError::ArnNotSupported(ref cause) => cause,
-            UntagResourceError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            UntagResourceError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            UntagResourceError::InvalidArn(ref cause) => cause,
-            UntagResourceError::InvalidTagsToAdd(ref cause) => cause,
-            UntagResourceError::ResourceArnRequired(ref cause) => cause,
-            UntagResourceError::TagRequired(ref cause) => cause,
+            UntagResourceError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ArnNotSupported(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::DeploymentConfigDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::DeploymentGroupDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidArn(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidTagsToAdd(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceArnRequired(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TagRequired(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateApplication
 #[derive(Debug, PartialEq)]
 pub enum UpdateApplicationError {
@@ -5776,20 +5954,17 @@ impl UpdateApplicationError {
     }
 }
 impl fmt::Display for UpdateApplicationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateApplicationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateApplicationError::ApplicationAlreadyExists(ref cause) => cause,
-            UpdateApplicationError::ApplicationDoesNotExist(ref cause) => cause,
-            UpdateApplicationError::ApplicationNameRequired(ref cause) => cause,
-            UpdateApplicationError::InvalidApplicationName(ref cause) => cause,
+            UpdateApplicationError::ApplicationAlreadyExists(ref cause) => write!(f, "{}", cause),
+            UpdateApplicationError::ApplicationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateApplicationError::ApplicationNameRequired(ref cause) => write!(f, "{}", cause),
+            UpdateApplicationError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateApplicationError {}
 /// Errors returned by UpdateDeploymentGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateDeploymentGroupError {
@@ -6009,46 +6184,79 @@ impl UpdateDeploymentGroupError {
     }
 }
 impl fmt::Display for UpdateDeploymentGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDeploymentGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDeploymentGroupError::AlarmsLimitExceeded(ref cause) => cause,
-            UpdateDeploymentGroupError::ApplicationDoesNotExist(ref cause) => cause,
-            UpdateDeploymentGroupError::ApplicationNameRequired(ref cause) => cause,
-            UpdateDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => cause,
-            UpdateDeploymentGroupError::DeploymentGroupAlreadyExists(ref cause) => cause,
-            UpdateDeploymentGroupError::DeploymentGroupDoesNotExist(ref cause) => cause,
-            UpdateDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => cause,
-            UpdateDeploymentGroupError::ECSServiceMappingLimitExceeded(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidAlarmConfig(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidApplicationName(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidAutoRollbackConfig(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidAutoScalingGroup(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidBlueGreenDeploymentConfiguration(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidDeploymentConfigName(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidDeploymentStyle(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidEC2TagCombination(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidEC2Tag(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidECSService(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidInput(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidLoadBalancerInfo(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidOnPremisesTagCombination(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidRole(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidTag(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidTargetGroupPair(ref cause) => cause,
-            UpdateDeploymentGroupError::InvalidTriggerConfig(ref cause) => cause,
-            UpdateDeploymentGroupError::LifecycleHookLimitExceeded(ref cause) => cause,
-            UpdateDeploymentGroupError::TagSetListLimitExceeded(ref cause) => cause,
-            UpdateDeploymentGroupError::Throttling(ref cause) => cause,
-            UpdateDeploymentGroupError::TriggerTargetsLimitExceeded(ref cause) => cause,
+            UpdateDeploymentGroupError::AlarmsLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::ApplicationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::ApplicationNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::DeploymentConfigDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::DeploymentGroupAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::DeploymentGroupDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::DeploymentGroupNameRequired(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::ECSServiceMappingLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidAlarmConfig(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidApplicationName(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidAutoRollbackConfig(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidAutoScalingGroup(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidBlueGreenDeploymentConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidDeploymentConfigName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidDeploymentGroupName(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidDeploymentStyle(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidEC2TagCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidEC2Tag(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidECSService(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidInput(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidLoadBalancerInfo(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidOnPremisesTagCombination(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidTag(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidTargetGroupPair(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::InvalidTriggerConfig(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::LifecycleHookLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::TagSetListLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDeploymentGroupError::Throttling(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentGroupError::TriggerTargetsLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateDeploymentGroupError {}
 /// Trait representing the capabilities of the CodeDeploy API. CodeDeploy clients implement this trait.
 #[async_trait]
 pub trait CodeDeploy {

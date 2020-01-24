@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetNamedQueryInput {
     /// <p>An array of query IDs.</p>
     #[serde(rename = "NamedQueryIds")]
@@ -32,7 +34,7 @@ pub struct BatchGetNamedQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetNamedQueryOutput {
     /// <p>Information about the named query IDs submitted.</p>
     #[serde(rename = "NamedQueries")]
@@ -45,6 +47,7 @@ pub struct BatchGetNamedQueryOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetQueryExecutionInput {
     /// <p>An array of query execution IDs.</p>
     #[serde(rename = "QueryExecutionIds")]
@@ -52,7 +55,7 @@ pub struct BatchGetQueryExecutionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetQueryExecutionOutput {
     /// <p>Information about a query execution.</p>
     #[serde(rename = "QueryExecutions")]
@@ -66,7 +69,7 @@ pub struct BatchGetQueryExecutionOutput {
 
 /// <p>Information about the columns in a query execution result.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ColumnInfo {
     /// <p>Indicates whether values in the column are case-sensitive.</p>
     #[serde(rename = "CaseSensitive")]
@@ -109,6 +112,7 @@ pub struct ColumnInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateNamedQueryInput {
     /// <p><p>A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another <code>CreateNamedQuery</code> request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the <code>QueryString</code>, an error is returned.</p> <important> <p>This token is listed as not required because AWS SDKs (for example the AWS SDK for Java) auto-generate the token for users. If you are not using the AWS SDK or the AWS CLI, you must provide this token or the action will fail.</p> </important></p>
     #[serde(rename = "ClientRequestToken")]
@@ -134,7 +138,7 @@ pub struct CreateNamedQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateNamedQueryOutput {
     /// <p>The unique ID of the query.</p>
     #[serde(rename = "NamedQueryId")]
@@ -143,6 +147,7 @@ pub struct CreateNamedQueryOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateWorkGroupInput {
     /// <p>The configuration for the workgroup, which includes the location in Amazon S3 where query results are stored, the encryption configuration, if any, used for encrypting query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, the limit for the amount of bytes scanned (cutoff) per query, if it is specified, and whether workgroup's settings (specified with EnforceWorkGroupConfiguration) in the WorkGroupConfiguration override client-side settings. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>
     #[serde(rename = "Configuration")]
@@ -162,12 +167,12 @@ pub struct CreateWorkGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateWorkGroupOutput {}
 
 /// <p>A piece of data (a field in the table).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Datum {
     /// <p>The value of the datum.</p>
     #[serde(rename = "VarCharValue")]
@@ -176,6 +181,7 @@ pub struct Datum {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteNamedQueryInput {
     /// <p>The unique ID of the query to delete.</p>
     #[serde(rename = "NamedQueryId")]
@@ -183,10 +189,11 @@ pub struct DeleteNamedQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteNamedQueryOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteWorkGroupInput {
     /// <p>The option to delete the workgroup and its contents even if the workgroup contains any named queries.</p>
     #[serde(rename = "RecursiveDeleteOption")]
@@ -198,7 +205,7 @@ pub struct DeleteWorkGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteWorkGroupOutput {}
 
 /// <p>If query results are encrypted in Amazon S3, indicates the encryption option used (for example, <code>SSE-KMS</code> or <code>CSE-KMS</code>) and key information.</p>
@@ -214,6 +221,7 @@ pub struct EncryptionConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetNamedQueryInput {
     /// <p>The unique ID of the query. Use <a>ListNamedQueries</a> to get query IDs.</p>
     #[serde(rename = "NamedQueryId")]
@@ -221,7 +229,7 @@ pub struct GetNamedQueryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetNamedQueryOutput {
     /// <p>Information about the query.</p>
     #[serde(rename = "NamedQuery")]
@@ -230,6 +238,7 @@ pub struct GetNamedQueryOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetQueryExecutionInput {
     /// <p>The unique ID of the query execution.</p>
     #[serde(rename = "QueryExecutionId")]
@@ -237,7 +246,7 @@ pub struct GetQueryExecutionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetQueryExecutionOutput {
     /// <p>Information about the query execution.</p>
     #[serde(rename = "QueryExecution")]
@@ -246,6 +255,7 @@ pub struct GetQueryExecutionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetQueryResultsInput {
     /// <p>The maximum number of results (rows) to return in this request.</p>
     #[serde(rename = "MaxResults")]
@@ -261,7 +271,7 @@ pub struct GetQueryResultsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetQueryResultsOutput {
     /// <p>A token to be used by the next request if this request is truncated.</p>
     #[serde(rename = "NextToken")]
@@ -278,6 +288,7 @@ pub struct GetQueryResultsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetWorkGroupInput {
     /// <p>The name of the workgroup.</p>
     #[serde(rename = "WorkGroup")]
@@ -285,7 +296,7 @@ pub struct GetWorkGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetWorkGroupOutput {
     /// <p>Information about the workgroup.</p>
     #[serde(rename = "WorkGroup")]
@@ -294,6 +305,7 @@ pub struct GetWorkGroupOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListNamedQueriesInput {
     /// <p>The maximum number of queries to return in this request.</p>
     #[serde(rename = "MaxResults")]
@@ -310,7 +322,7 @@ pub struct ListNamedQueriesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListNamedQueriesOutput {
     /// <p>The list of unique query IDs.</p>
     #[serde(rename = "NamedQueryIds")]
@@ -323,6 +335,7 @@ pub struct ListNamedQueriesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListQueryExecutionsInput {
     /// <p>The maximum number of query executions to return in this request.</p>
     #[serde(rename = "MaxResults")]
@@ -339,7 +352,7 @@ pub struct ListQueryExecutionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListQueryExecutionsOutput {
     /// <p>A token to be used by the next request if this request is truncated.</p>
     #[serde(rename = "NextToken")]
@@ -352,6 +365,7 @@ pub struct ListQueryExecutionsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>The maximum number of results to be returned per request that lists the tags for the workgroup resource.</p>
     #[serde(rename = "MaxResults")]
@@ -367,7 +381,7 @@ pub struct ListTagsForResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>A token to be used by the next request if this request is truncated.</p>
     #[serde(rename = "NextToken")]
@@ -380,6 +394,7 @@ pub struct ListTagsForResourceOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListWorkGroupsInput {
     /// <p>The maximum number of workgroups to return in this request.</p>
     #[serde(rename = "MaxResults")]
@@ -392,7 +407,7 @@ pub struct ListWorkGroupsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListWorkGroupsOutput {
     /// <p>A token to be used by the next request if this request is truncated.</p>
     #[serde(rename = "NextToken")]
@@ -406,7 +421,7 @@ pub struct ListWorkGroupsOutput {
 
 /// <p>A query, where <code>QueryString</code> is the list of SQL query statements that comprise the query.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NamedQuery {
     /// <p>The database to which the query belongs.</p>
     #[serde(rename = "Database")]
@@ -433,7 +448,7 @@ pub struct NamedQuery {
 
 /// <p>Information about a single instance of a query execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryExecution {
     /// <p>The SQL query statements which the query execution ran.</p>
     #[serde(rename = "Query")]
@@ -480,7 +495,7 @@ pub struct QueryExecutionContext {
 
 /// <p>The amount of data scanned during the query execution and the amount of time that it took to execute, and the type of statement that was run.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryExecutionStatistics {
     /// <p>The location and file name of a data manifest file. The manifest file is saved to the Athena query results location in Amazon S3. The manifest file tracks files that the query wrote to Amazon S3. If the query fails, the manifest file also tracks files that the query intended to write. The manifest is useful for identifying orphaned files resulting from a failed query. For more information, see <a href="https://docs.aws.amazon.com/athena/latest/ug/querying.html">Working with Query Results, Output Files, and Query History</a> in the <i>Amazon Athena User Guide</i>.</p>
     #[serde(rename = "DataManifestLocation")]
@@ -514,7 +529,7 @@ pub struct QueryExecutionStatistics {
 
 /// <p>The completion date, current state, submission time, and state change reason (if applicable) for the query execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryExecutionStatus {
     /// <p>The date and time that the query completed.</p>
     #[serde(rename = "CompletionDateTime")]
@@ -549,6 +564,7 @@ pub struct ResultConfiguration {
 
 /// <p>The information about the updates in the query results, such as output location and encryption configuration for the query results.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResultConfigurationUpdates {
     /// <p>The encryption configuration for the query results.</p>
     #[serde(rename = "EncryptionConfiguration")]
@@ -570,7 +586,7 @@ pub struct ResultConfigurationUpdates {
 
 /// <p>The metadata and rows that comprise a query result set. The metadata describes the column structure and data types.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResultSet {
     /// <p>The metadata that describes the column structure and data types of a table of query results.</p>
     #[serde(rename = "ResultSetMetadata")]
@@ -584,7 +600,7 @@ pub struct ResultSet {
 
 /// <p>The metadata that describes the column structure and data types of a table of query results. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResultSetMetadata {
     /// <p>Information about the columns returned in a query result metadata.</p>
     #[serde(rename = "ColumnInfo")]
@@ -594,7 +610,7 @@ pub struct ResultSetMetadata {
 
 /// <p>The rows that comprise a query result table.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Row {
     /// <p>The data that populates a row in a query result table.</p>
     #[serde(rename = "Data")]
@@ -603,6 +619,7 @@ pub struct Row {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartQueryExecutionInput {
     /// <p><p>A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another <code>StartQueryExecution</code> request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the <code>QueryString</code>, an error is returned.</p> <important> <p>This token is listed as not required because AWS SDKs (for example the AWS SDK for Java) auto-generate the token for users. If you are not using the AWS SDK or the AWS CLI, you must provide this token or the action will fail.</p> </important></p>
     #[serde(rename = "ClientRequestToken")]
@@ -626,7 +643,7 @@ pub struct StartQueryExecutionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartQueryExecutionOutput {
     /// <p>The unique ID of the query that ran as a result of this request.</p>
     #[serde(rename = "QueryExecutionId")]
@@ -635,6 +652,7 @@ pub struct StartQueryExecutionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopQueryExecutionInput {
     /// <p>The unique ID of the query execution to stop.</p>
     #[serde(rename = "QueryExecutionId")]
@@ -642,7 +660,7 @@ pub struct StopQueryExecutionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopQueryExecutionOutput {}
 
 /// <p>A tag that you can add to a resource. A tag is a label that you assign to an AWS Athena resource (a workgroup). Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize workgroups in Athena, for example, by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups in your account. The maximum tag key length is 128 Unicode characters in UTF-8. The maximum tag value length is 256 Unicode characters in UTF-8. You can use letters and numbers representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. </p>
@@ -659,6 +677,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>Requests that one or more tags are added to the resource (such as a workgroup) for the specified ARN.</p>
     #[serde(rename = "ResourceARN")]
@@ -669,12 +688,12 @@ pub struct TagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceOutput {}
 
 /// <p>Information about a named query ID that could not be processed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnprocessedNamedQueryId {
     /// <p>The error code returned when the processing request for the named query failed, if applicable.</p>
     #[serde(rename = "ErrorCode")]
@@ -692,7 +711,7 @@ pub struct UnprocessedNamedQueryId {
 
 /// <p>Describes a query execution that failed to process.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnprocessedQueryExecutionId {
     /// <p>The error code returned when the query execution failed to process, if applicable.</p>
     #[serde(rename = "ErrorCode")]
@@ -709,6 +728,7 @@ pub struct UnprocessedQueryExecutionId {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>Removes one or more tags from the workgroup resource for the specified ARN.</p>
     #[serde(rename = "ResourceARN")]
@@ -719,10 +739,11 @@ pub struct UntagResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateWorkGroupInput {
     /// <p>The workgroup configuration that will be updated for the given workgroup.</p>
     #[serde(rename = "ConfigurationUpdates")]
@@ -742,12 +763,12 @@ pub struct UpdateWorkGroupInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateWorkGroupOutput {}
 
 /// <p>A workgroup, which contains a name, description, creation time, state, and other configuration, listed under <a>WorkGroup$Configuration</a>. Each workgroup enables you to isolate queries for you or your group of users from other queries in the same account, to configure the query results location and the encryption configuration (known as workgroup settings), to enable sending query metrics to Amazon CloudWatch, and to establish per-query data usage control limits for all queries in a workgroup. The workgroup settings override is specified in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct WorkGroup {
     /// <p>The configuration of the workgroup, which includes the location in Amazon S3 where query results are stored, the encryption configuration, if any, used for query results; whether the Amazon CloudWatch Metrics are enabled for the workgroup; whether workgroup settings override client-side settings; and the data usage limits for the amount of data scanned per query or per workgroup. The workgroup settings override is specified in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>
     #[serde(rename = "Configuration")]
@@ -797,6 +818,7 @@ pub struct WorkGroupConfiguration {
 
 /// <p>The configuration information that will be updated for this workgroup, which includes the location in Amazon S3 where query results are stored, the encryption option, if any, used for query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, whether the workgroup settings override the client-side settings, and the data usage limit for the amount of bytes scanned per query, if it is specified.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct WorkGroupConfigurationUpdates {
     /// <p>The upper limit (cutoff) for the amount of bytes a single query in a workgroup is allowed to scan.</p>
     #[serde(rename = "BytesScannedCutoffPerQuery")]
@@ -826,7 +848,7 @@ pub struct WorkGroupConfigurationUpdates {
 
 /// <p>The summary information for the workgroup, which includes its name, state, description, and the date and time it was created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct WorkGroupSummary {
     /// <p>The workgroup creation date and time.</p>
     #[serde(rename = "CreationTime")]
@@ -873,18 +895,15 @@ impl BatchGetNamedQueryError {
     }
 }
 impl fmt::Display for BatchGetNamedQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetNamedQueryError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetNamedQueryError::InternalServer(ref cause) => cause,
-            BatchGetNamedQueryError::InvalidRequest(ref cause) => cause,
+            BatchGetNamedQueryError::InternalServer(ref cause) => write!(f, "{}", cause),
+            BatchGetNamedQueryError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetNamedQueryError {}
 /// Errors returned by BatchGetQueryExecution
 #[derive(Debug, PartialEq)]
 pub enum BatchGetQueryExecutionError {
@@ -916,18 +935,15 @@ impl BatchGetQueryExecutionError {
     }
 }
 impl fmt::Display for BatchGetQueryExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetQueryExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetQueryExecutionError::InternalServer(ref cause) => cause,
-            BatchGetQueryExecutionError::InvalidRequest(ref cause) => cause,
+            BatchGetQueryExecutionError::InternalServer(ref cause) => write!(f, "{}", cause),
+            BatchGetQueryExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetQueryExecutionError {}
 /// Errors returned by CreateNamedQuery
 #[derive(Debug, PartialEq)]
 pub enum CreateNamedQueryError {
@@ -955,18 +971,15 @@ impl CreateNamedQueryError {
     }
 }
 impl fmt::Display for CreateNamedQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateNamedQueryError {
-    fn description(&self) -> &str {
         match *self {
-            CreateNamedQueryError::InternalServer(ref cause) => cause,
-            CreateNamedQueryError::InvalidRequest(ref cause) => cause,
+            CreateNamedQueryError::InternalServer(ref cause) => write!(f, "{}", cause),
+            CreateNamedQueryError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateNamedQueryError {}
 /// Errors returned by CreateWorkGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateWorkGroupError {
@@ -994,18 +1007,15 @@ impl CreateWorkGroupError {
     }
 }
 impl fmt::Display for CreateWorkGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateWorkGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateWorkGroupError::InternalServer(ref cause) => cause,
-            CreateWorkGroupError::InvalidRequest(ref cause) => cause,
+            CreateWorkGroupError::InternalServer(ref cause) => write!(f, "{}", cause),
+            CreateWorkGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateWorkGroupError {}
 /// Errors returned by DeleteNamedQuery
 #[derive(Debug, PartialEq)]
 pub enum DeleteNamedQueryError {
@@ -1033,18 +1043,15 @@ impl DeleteNamedQueryError {
     }
 }
 impl fmt::Display for DeleteNamedQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteNamedQueryError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteNamedQueryError::InternalServer(ref cause) => cause,
-            DeleteNamedQueryError::InvalidRequest(ref cause) => cause,
+            DeleteNamedQueryError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DeleteNamedQueryError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteNamedQueryError {}
 /// Errors returned by DeleteWorkGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteWorkGroupError {
@@ -1072,18 +1079,15 @@ impl DeleteWorkGroupError {
     }
 }
 impl fmt::Display for DeleteWorkGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteWorkGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteWorkGroupError::InternalServer(ref cause) => cause,
-            DeleteWorkGroupError::InvalidRequest(ref cause) => cause,
+            DeleteWorkGroupError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DeleteWorkGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteWorkGroupError {}
 /// Errors returned by GetNamedQuery
 #[derive(Debug, PartialEq)]
 pub enum GetNamedQueryError {
@@ -1111,18 +1115,15 @@ impl GetNamedQueryError {
     }
 }
 impl fmt::Display for GetNamedQueryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetNamedQueryError {
-    fn description(&self) -> &str {
         match *self {
-            GetNamedQueryError::InternalServer(ref cause) => cause,
-            GetNamedQueryError::InvalidRequest(ref cause) => cause,
+            GetNamedQueryError::InternalServer(ref cause) => write!(f, "{}", cause),
+            GetNamedQueryError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetNamedQueryError {}
 /// Errors returned by GetQueryExecution
 #[derive(Debug, PartialEq)]
 pub enum GetQueryExecutionError {
@@ -1150,18 +1151,15 @@ impl GetQueryExecutionError {
     }
 }
 impl fmt::Display for GetQueryExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetQueryExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            GetQueryExecutionError::InternalServer(ref cause) => cause,
-            GetQueryExecutionError::InvalidRequest(ref cause) => cause,
+            GetQueryExecutionError::InternalServer(ref cause) => write!(f, "{}", cause),
+            GetQueryExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetQueryExecutionError {}
 /// Errors returned by GetQueryResults
 #[derive(Debug, PartialEq)]
 pub enum GetQueryResultsError {
@@ -1189,18 +1187,15 @@ impl GetQueryResultsError {
     }
 }
 impl fmt::Display for GetQueryResultsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetQueryResultsError {
-    fn description(&self) -> &str {
         match *self {
-            GetQueryResultsError::InternalServer(ref cause) => cause,
-            GetQueryResultsError::InvalidRequest(ref cause) => cause,
+            GetQueryResultsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            GetQueryResultsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetQueryResultsError {}
 /// Errors returned by GetWorkGroup
 #[derive(Debug, PartialEq)]
 pub enum GetWorkGroupError {
@@ -1228,18 +1223,15 @@ impl GetWorkGroupError {
     }
 }
 impl fmt::Display for GetWorkGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetWorkGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetWorkGroupError::InternalServer(ref cause) => cause,
-            GetWorkGroupError::InvalidRequest(ref cause) => cause,
+            GetWorkGroupError::InternalServer(ref cause) => write!(f, "{}", cause),
+            GetWorkGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetWorkGroupError {}
 /// Errors returned by ListNamedQueries
 #[derive(Debug, PartialEq)]
 pub enum ListNamedQueriesError {
@@ -1267,18 +1259,15 @@ impl ListNamedQueriesError {
     }
 }
 impl fmt::Display for ListNamedQueriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListNamedQueriesError {
-    fn description(&self) -> &str {
         match *self {
-            ListNamedQueriesError::InternalServer(ref cause) => cause,
-            ListNamedQueriesError::InvalidRequest(ref cause) => cause,
+            ListNamedQueriesError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListNamedQueriesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListNamedQueriesError {}
 /// Errors returned by ListQueryExecutions
 #[derive(Debug, PartialEq)]
 pub enum ListQueryExecutionsError {
@@ -1306,18 +1295,15 @@ impl ListQueryExecutionsError {
     }
 }
 impl fmt::Display for ListQueryExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListQueryExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListQueryExecutionsError::InternalServer(ref cause) => cause,
-            ListQueryExecutionsError::InvalidRequest(ref cause) => cause,
+            ListQueryExecutionsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListQueryExecutionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListQueryExecutionsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1352,19 +1338,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalServer(ref cause) => cause,
-            ListTagsForResourceError::InvalidRequest(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListWorkGroups
 #[derive(Debug, PartialEq)]
 pub enum ListWorkGroupsError {
@@ -1392,18 +1375,15 @@ impl ListWorkGroupsError {
     }
 }
 impl fmt::Display for ListWorkGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListWorkGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListWorkGroupsError::InternalServer(ref cause) => cause,
-            ListWorkGroupsError::InvalidRequest(ref cause) => cause,
+            ListWorkGroupsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListWorkGroupsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListWorkGroupsError {}
 /// Errors returned by StartQueryExecution
 #[derive(Debug, PartialEq)]
 pub enum StartQueryExecutionError {
@@ -1436,19 +1416,16 @@ impl StartQueryExecutionError {
     }
 }
 impl fmt::Display for StartQueryExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartQueryExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StartQueryExecutionError::InternalServer(ref cause) => cause,
-            StartQueryExecutionError::InvalidRequest(ref cause) => cause,
-            StartQueryExecutionError::TooManyRequests(ref cause) => cause,
+            StartQueryExecutionError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StartQueryExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartQueryExecutionError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartQueryExecutionError {}
 /// Errors returned by StopQueryExecution
 #[derive(Debug, PartialEq)]
 pub enum StopQueryExecutionError {
@@ -1476,18 +1453,15 @@ impl StopQueryExecutionError {
     }
 }
 impl fmt::Display for StopQueryExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopQueryExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StopQueryExecutionError::InternalServer(ref cause) => cause,
-            StopQueryExecutionError::InvalidRequest(ref cause) => cause,
+            StopQueryExecutionError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StopQueryExecutionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopQueryExecutionError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1520,19 +1494,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalServer(ref cause) => cause,
-            TagResourceError::InvalidRequest(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalServer(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1565,19 +1536,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalServer(ref cause) => cause,
-            UntagResourceError::InvalidRequest(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalServer(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateWorkGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateWorkGroupError {
@@ -1605,18 +1573,15 @@ impl UpdateWorkGroupError {
     }
 }
 impl fmt::Display for UpdateWorkGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateWorkGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateWorkGroupError::InternalServer(ref cause) => cause,
-            UpdateWorkGroupError::InvalidRequest(ref cause) => cause,
+            UpdateWorkGroupError::InternalServer(ref cause) => write!(f, "{}", cause),
+            UpdateWorkGroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateWorkGroupError {}
 /// Trait representing the capabilities of the Amazon Athena API. Amazon Athena clients implement this trait.
 #[async_trait]
 pub trait Athena {

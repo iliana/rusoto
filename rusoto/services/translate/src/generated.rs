@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The custom terminology applied to the input text by Amazon Translate for the translated text response. This is optional in the response and will only be present if you specified terminology input in the request. Currently, only one terminology can be applied per TranslateText request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AppliedTerminology {
     /// <p>The name of the custom terminology applied to the input text by Amazon Translate for the translated text response.</p>
     #[serde(rename = "Name")]
@@ -39,6 +40,7 @@ pub struct AppliedTerminology {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTerminologyRequest {
     /// <p>The name of the custom terminology being deleted. </p>
     #[serde(rename = "Name")]
@@ -46,6 +48,7 @@ pub struct DeleteTerminologyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTextTranslationJobRequest {
     /// <p>The identifier that Amazon Translate generated for the job. The <a>StartTextTranslationJob</a> operation returns this identifier in its response.</p>
     #[serde(rename = "JobId")]
@@ -53,7 +56,7 @@ pub struct DescribeTextTranslationJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTextTranslationJobResponse {
     /// <p>An object that contains the properties associated with an asynchronous batch translation job.</p>
     #[serde(rename = "TextTranslationJobProperties")]
@@ -73,6 +76,7 @@ pub struct EncryptionKey {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTerminologyRequest {
     /// <p>The name of the custom terminology being retrieved.</p>
     #[serde(rename = "Name")]
@@ -83,7 +87,7 @@ pub struct GetTerminologyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTerminologyResponse {
     /// <p>The data location of the custom terminology being retrieved. The custom terminology file is returned in a presigned url that has a 30 minute expiration.</p>
     #[serde(rename = "TerminologyDataLocation")]
@@ -96,6 +100,7 @@ pub struct GetTerminologyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportTerminologyRequest {
     /// <p>The description of the custom terminology being imported.</p>
     #[serde(rename = "Description")]
@@ -117,7 +122,7 @@ pub struct ImportTerminologyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportTerminologyResponse {
     /// <p>The properties of the custom terminology being imported.</p>
     #[serde(rename = "TerminologyProperties")]
@@ -138,7 +143,7 @@ pub struct InputDataConfig {
 
 /// <p>The number of documents successfully and unsuccessfully processed during a translation job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobDetails {
     /// <p>The number of documents that could not be processed during a translation job.</p>
     #[serde(rename = "DocumentsWithErrorsCount")]
@@ -155,6 +160,7 @@ pub struct JobDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTerminologiesRequest {
     /// <p>The maximum number of custom terminologies returned per list request.</p>
     #[serde(rename = "MaxResults")]
@@ -167,7 +173,7 @@ pub struct ListTerminologiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTerminologiesResponse {
     /// <p> If the response to the ListTerminologies was truncated, the NextToken fetches the next group of custom terminologies.</p>
     #[serde(rename = "NextToken")]
@@ -180,6 +186,7 @@ pub struct ListTerminologiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTextTranslationJobsRequest {
     /// <p>The parameters that specify which batch translation jobs to retrieve. Filters include job name, job status, and submission time. You can only set one filter at a time.</p>
     #[serde(rename = "Filter")]
@@ -196,7 +203,7 @@ pub struct ListTextTranslationJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTextTranslationJobsResponse {
     /// <p>The token to use to retreive the next page of results. This value is <code>null</code> when there are no more results to return.</p>
     #[serde(rename = "NextToken")]
@@ -217,6 +224,7 @@ pub struct OutputDataConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartTextTranslationJobRequest {
     /// <p>The client token of the EC2 instance calling the request. This token is auto-generated when using the Amazon Translate SDK. Otherwise, use the <a href="docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a> EC2 operation to retreive an instance's client token. For more information, see <a href="docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html#client-tokens">Client Tokens</a> in the EC2 User Guide.</p>
     #[serde(rename = "ClientToken")]
@@ -247,7 +255,7 @@ pub struct StartTextTranslationJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartTextTranslationJobResponse {
     /// <p>The identifier generated for the job. To get the status of a job, use this ID with the <a>DescribeTextTranslationJob</a> operation.</p>
     #[serde(rename = "JobId")]
@@ -260,6 +268,7 @@ pub struct StartTextTranslationJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopTextTranslationJobRequest {
     /// <p>The job ID of the job to be stopped.</p>
     #[serde(rename = "JobId")]
@@ -267,7 +276,7 @@ pub struct StopTextTranslationJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopTextTranslationJobResponse {
     /// <p>The job ID of the stopped batch translation job.</p>
     #[serde(rename = "JobId")]
@@ -281,7 +290,7 @@ pub struct StopTextTranslationJobResponse {
 
 /// <p>The term being translated by the custom terminology.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Term {
     /// <p>The source text of the term being translated by the custom terminology.</p>
     #[serde(rename = "SourceText")]
@@ -295,6 +304,7 @@ pub struct Term {
 
 /// <p>The data associated with the custom terminology.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminologyData {
     /// <p>The file containing the custom terminology data. Your version of the AWS SDK performs a Base64-encoding on this field before sending a request to the AWS service. Users of the SDK should not perform Base64-encoding themselves.</p>
     #[serde(rename = "File")]
@@ -311,7 +321,7 @@ pub struct TerminologyData {
 
 /// <p>The location of the custom terminology data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminologyDataLocation {
     /// <p>The location of the custom terminology data.</p>
     #[serde(rename = "Location")]
@@ -323,7 +333,7 @@ pub struct TerminologyDataLocation {
 
 /// <p>The properties of the custom terminology.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminologyProperties {
     /// <p> The Amazon Resource Name (ARN) of the custom terminology. </p>
     #[serde(rename = "Arn")]
@@ -369,6 +379,7 @@ pub struct TerminologyProperties {
 
 /// <p>Provides information for filtering a list of translation jobs. For more information, see <a>ListTextTranslationJobs</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TextTranslationJobFilter {
     /// <p>Filters the list of jobs by name.</p>
     #[serde(rename = "JobName")]
@@ -390,7 +401,7 @@ pub struct TextTranslationJobFilter {
 
 /// <p>Provides information about a translation job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TextTranslationJobProperties {
     /// <p>The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM) role that granted Amazon Translate read access to the job's input data.</p>
     #[serde(rename = "DataAccessRoleArn")]
@@ -447,6 +458,7 @@ pub struct TextTranslationJobProperties {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TranslateTextRequest {
     /// <p>The language code for the language of the source text. The language must be a language supported by Amazon Translate. For a list of language codes, see <a>what-is-languages</a>.</p> <p>To have Amazon Translate determine the source language of your text, you can specify <code>auto</code> in the <code>SourceLanguageCode</code> field. If you specify <code>auto</code>, Amazon Translate will call <a href="https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html">Amazon Comprehend</a> to determine the source language.</p>
     #[serde(rename = "SourceLanguageCode")]
@@ -464,7 +476,7 @@ pub struct TranslateTextRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TranslateTextResponse {
     /// <p>The names of the custom terminologies applied to the input text by Amazon Translate for the translated text response.</p>
     #[serde(rename = "AppliedTerminologies")]
@@ -513,19 +525,16 @@ impl DeleteTerminologyError {
     }
 }
 impl fmt::Display for DeleteTerminologyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTerminologyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTerminologyError::InternalServer(ref cause) => cause,
-            DeleteTerminologyError::ResourceNotFound(ref cause) => cause,
-            DeleteTerminologyError::TooManyRequests(ref cause) => cause,
+            DeleteTerminologyError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DeleteTerminologyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTerminologyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTerminologyError {}
 /// Errors returned by DescribeTextTranslationJob
 #[derive(Debug, PartialEq)]
 pub enum DescribeTextTranslationJobError {
@@ -566,19 +575,16 @@ impl DescribeTextTranslationJobError {
     }
 }
 impl fmt::Display for DescribeTextTranslationJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTextTranslationJobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTextTranslationJobError::InternalServer(ref cause) => cause,
-            DescribeTextTranslationJobError::ResourceNotFound(ref cause) => cause,
-            DescribeTextTranslationJobError::TooManyRequests(ref cause) => cause,
+            DescribeTextTranslationJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DescribeTextTranslationJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeTextTranslationJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTextTranslationJobError {}
 /// Errors returned by GetTerminology
 #[derive(Debug, PartialEq)]
 pub enum GetTerminologyError {
@@ -618,20 +624,17 @@ impl GetTerminologyError {
     }
 }
 impl fmt::Display for GetTerminologyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTerminologyError {
-    fn description(&self) -> &str {
         match *self {
-            GetTerminologyError::InternalServer(ref cause) => cause,
-            GetTerminologyError::InvalidParameterValue(ref cause) => cause,
-            GetTerminologyError::ResourceNotFound(ref cause) => cause,
-            GetTerminologyError::TooManyRequests(ref cause) => cause,
+            GetTerminologyError::InternalServer(ref cause) => write!(f, "{}", cause),
+            GetTerminologyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetTerminologyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetTerminologyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTerminologyError {}
 /// Errors returned by ImportTerminology
 #[derive(Debug, PartialEq)]
 pub enum ImportTerminologyError {
@@ -671,20 +674,17 @@ impl ImportTerminologyError {
     }
 }
 impl fmt::Display for ImportTerminologyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ImportTerminologyError {
-    fn description(&self) -> &str {
         match *self {
-            ImportTerminologyError::InternalServer(ref cause) => cause,
-            ImportTerminologyError::InvalidParameterValue(ref cause) => cause,
-            ImportTerminologyError::LimitExceeded(ref cause) => cause,
-            ImportTerminologyError::TooManyRequests(ref cause) => cause,
+            ImportTerminologyError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ImportTerminologyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ImportTerminologyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            ImportTerminologyError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ImportTerminologyError {}
 /// Errors returned by ListTerminologies
 #[derive(Debug, PartialEq)]
 pub enum ListTerminologiesError {
@@ -719,19 +719,16 @@ impl ListTerminologiesError {
     }
 }
 impl fmt::Display for ListTerminologiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTerminologiesError {
-    fn description(&self) -> &str {
         match *self {
-            ListTerminologiesError::InternalServer(ref cause) => cause,
-            ListTerminologiesError::InvalidParameterValue(ref cause) => cause,
-            ListTerminologiesError::TooManyRequests(ref cause) => cause,
+            ListTerminologiesError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListTerminologiesError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListTerminologiesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTerminologiesError {}
 /// Errors returned by ListTextTranslationJobs
 #[derive(Debug, PartialEq)]
 pub enum ListTextTranslationJobsError {
@@ -777,20 +774,17 @@ impl ListTextTranslationJobsError {
     }
 }
 impl fmt::Display for ListTextTranslationJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTextTranslationJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTextTranslationJobsError::InternalServer(ref cause) => cause,
-            ListTextTranslationJobsError::InvalidFilter(ref cause) => cause,
-            ListTextTranslationJobsError::InvalidRequest(ref cause) => cause,
-            ListTextTranslationJobsError::TooManyRequests(ref cause) => cause,
+            ListTextTranslationJobsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListTextTranslationJobsError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            ListTextTranslationJobsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListTextTranslationJobsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTextTranslationJobsError {}
 /// Errors returned by StartTextTranslationJob
 #[derive(Debug, PartialEq)]
 pub enum StartTextTranslationJobError {
@@ -843,21 +837,20 @@ impl StartTextTranslationJobError {
     }
 }
 impl fmt::Display for StartTextTranslationJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartTextTranslationJobError {
-    fn description(&self) -> &str {
         match *self {
-            StartTextTranslationJobError::InternalServer(ref cause) => cause,
-            StartTextTranslationJobError::InvalidRequest(ref cause) => cause,
-            StartTextTranslationJobError::ResourceNotFound(ref cause) => cause,
-            StartTextTranslationJobError::TooManyRequests(ref cause) => cause,
-            StartTextTranslationJobError::UnsupportedLanguagePair(ref cause) => cause,
+            StartTextTranslationJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StartTextTranslationJobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartTextTranslationJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartTextTranslationJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            StartTextTranslationJobError::UnsupportedLanguagePair(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StartTextTranslationJobError {}
 /// Errors returned by StopTextTranslationJob
 #[derive(Debug, PartialEq)]
 pub enum StopTextTranslationJobError {
@@ -896,19 +889,16 @@ impl StopTextTranslationJobError {
     }
 }
 impl fmt::Display for StopTextTranslationJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopTextTranslationJobError {
-    fn description(&self) -> &str {
         match *self {
-            StopTextTranslationJobError::InternalServer(ref cause) => cause,
-            StopTextTranslationJobError::ResourceNotFound(ref cause) => cause,
-            StopTextTranslationJobError::TooManyRequests(ref cause) => cause,
+            StopTextTranslationJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StopTextTranslationJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StopTextTranslationJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopTextTranslationJobError {}
 /// Errors returned by TranslateText
 #[derive(Debug, PartialEq)]
 pub enum TranslateTextError {
@@ -970,24 +960,21 @@ impl TranslateTextError {
     }
 }
 impl fmt::Display for TranslateTextError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TranslateTextError {
-    fn description(&self) -> &str {
         match *self {
-            TranslateTextError::DetectedLanguageLowConfidence(ref cause) => cause,
-            TranslateTextError::InternalServer(ref cause) => cause,
-            TranslateTextError::InvalidRequest(ref cause) => cause,
-            TranslateTextError::ResourceNotFound(ref cause) => cause,
-            TranslateTextError::ServiceUnavailable(ref cause) => cause,
-            TranslateTextError::TextSizeLimitExceeded(ref cause) => cause,
-            TranslateTextError::TooManyRequests(ref cause) => cause,
-            TranslateTextError::UnsupportedLanguagePair(ref cause) => cause,
+            TranslateTextError::DetectedLanguageLowConfidence(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::InternalServer(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            TranslateTextError::UnsupportedLanguagePair(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TranslateTextError {}
 /// Trait representing the capabilities of the Amazon Translate API. Amazon Translate clients implement this trait.
 #[async_trait]
 pub trait Translate {

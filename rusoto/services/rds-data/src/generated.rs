@@ -22,6 +22,7 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains an array.</p>
@@ -51,6 +52,7 @@ pub struct ArrayValue {
 
 /// <p>The request parameters represent the input of a SQL statement over an array of data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchExecuteStatementRequest {
     /// <p>The name of the database.</p>
     #[serde(rename = "database")]
@@ -81,7 +83,7 @@ pub struct BatchExecuteStatementRequest {
 
 /// <p>The response elements represent the output of a SQL statement over an array of data.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchExecuteStatementResponse {
     /// <p>The execution results of each batch entry.</p>
     #[serde(rename = "updateResults")]
@@ -91,6 +93,7 @@ pub struct BatchExecuteStatementResponse {
 
 /// <p>The request parameters represent the input of a request to start a SQL transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BeginTransactionRequest {
     /// <p>The name of the database.</p>
     #[serde(rename = "database")]
@@ -110,7 +113,7 @@ pub struct BeginTransactionRequest {
 
 /// <p>The response elements represent the output of a request to start a SQL transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BeginTransactionResponse {
     /// <p>The transaction ID of the transaction started by the call.</p>
     #[serde(rename = "transactionId")]
@@ -120,7 +123,7 @@ pub struct BeginTransactionResponse {
 
 /// <p>Contains the metadata for a column.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ColumnMetadata {
     /// <p>The type of the column.</p>
     #[serde(rename = "arrayBaseColumnType")]
@@ -182,6 +185,7 @@ pub struct ColumnMetadata {
 
 /// <p>The request parameters represent the input of a commit transaction request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CommitTransactionRequest {
     /// <p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>
     #[serde(rename = "resourceArn")]
@@ -196,7 +200,7 @@ pub struct CommitTransactionRequest {
 
 /// <p>The response elements represent the output of a commit transaction request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CommitTransactionResponse {
     /// <p>The status of the commit operation.</p>
     #[serde(rename = "transactionStatus")]
@@ -206,6 +210,7 @@ pub struct CommitTransactionResponse {
 
 /// <p>The request parameters represent the input of a request to run one or more SQL statements.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteSqlRequest {
     /// <p>The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster.</p>
     #[serde(rename = "awsSecretStoreArn")]
@@ -228,7 +233,7 @@ pub struct ExecuteSqlRequest {
 
 /// <p>The response elements represent the output of a request to run one or more SQL statements.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteSqlResponse {
     /// <p>The results of the SQL statement or statements.</p>
     #[serde(rename = "sqlStatementResults")]
@@ -238,6 +243,7 @@ pub struct ExecuteSqlResponse {
 
 /// <p>The request parameters represent the input of a request to run a SQL statement against a database.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteStatementRequest {
     /// <p><p>A value that indicates whether to continue running the statement after the call times out. By default, the statement stops running when the call times out.</p> <important> <p>For DDL statements, we recommend continuing to run the statement after the call times out. When a DDL statement terminates before it is finished running, it can result in errors and possibly corrupted data structures.</p> </important></p>
     #[serde(rename = "continueAfterTimeout")]
@@ -280,7 +286,7 @@ pub struct ExecuteStatementRequest {
 
 /// <p>The response elements represent the output of a request to run a SQL statement against a database.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteStatementResponse {
     /// <p>Metadata for the columns included in the results.</p>
     #[serde(rename = "columnMetadata")]
@@ -340,7 +346,7 @@ pub struct Field {
 
 /// <p>A record returned by a call.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Record {
     /// <p>The values returned in the record.</p>
     #[serde(rename = "values")]
@@ -350,7 +356,7 @@ pub struct Record {
 
 /// <p>The result set returned by a SQL statement.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResultFrame {
     /// <p>The records in the result set.</p>
     #[serde(rename = "records")]
@@ -364,7 +370,7 @@ pub struct ResultFrame {
 
 /// <p>The metadata of the result set returned by a SQL statement.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResultSetMetadata {
     /// <p>The number of columns in the result set.</p>
     #[serde(rename = "columnCount")]
@@ -378,6 +384,7 @@ pub struct ResultSetMetadata {
 
 /// <p>Options that control how the result set is returned.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResultSetOptions {
     /// <p><p>A value that indicates how a field of <code>DECIMAL</code> type is represented in the response. The value of <code>STRING</code>, the default, specifies that it is converted to a String value. The value of <code>DOUBLE<em>OR</em>LONG</code> specifies that it is converted to a Long value if its scale is 0, or to a Double value otherwise.</p> <important> <p>Conversion to Double or Long can result in roundoff errors due to precision loss. We recommend converting to String, especially when working with currency values.</p> </important></p>
     #[serde(rename = "decimalReturnType")]
@@ -387,6 +394,7 @@ pub struct ResultSetOptions {
 
 /// <p>The request parameters represent the input of a request to perform a rollback of a transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RollbackTransactionRequest {
     /// <p>The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.</p>
     #[serde(rename = "resourceArn")]
@@ -401,7 +409,7 @@ pub struct RollbackTransactionRequest {
 
 /// <p>The response elements represent the output of a request to perform a rollback of a transaction.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RollbackTransactionResponse {
     /// <p>The status of the rollback operation.</p>
     #[serde(rename = "transactionStatus")]
@@ -411,6 +419,7 @@ pub struct RollbackTransactionResponse {
 
 /// <p>A parameter used in a SQL statement.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SqlParameter {
     /// <p>The name of the parameter.</p>
     #[serde(rename = "name")]
@@ -428,7 +437,7 @@ pub struct SqlParameter {
 
 /// <p><p>The result of a SQL statement.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data type is deprecated.&lt;/p&gt; &lt;/important&gt; </code></pre></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SqlStatementResult {
     /// <p>The number of records updated by a SQL statement.</p>
     #[serde(rename = "numberOfRecordsUpdated")]
@@ -442,7 +451,7 @@ pub struct SqlStatementResult {
 
 /// <p>A structure value returned by a call.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StructValue {
     /// <p>The attributes returned in the record.</p>
     #[serde(rename = "attributes")]
@@ -452,7 +461,7 @@ pub struct StructValue {
 
 /// <p>The response elements represent the results of an update.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateResult {
     /// <p>Values for fields generated during the request.</p>
     #[serde(rename = "generatedFields")]
@@ -462,7 +471,7 @@ pub struct UpdateResult {
 
 /// <p><p>Contains the value of a column.</p> <pre><code> &lt;important&gt; &lt;p&gt;This data type is deprecated.&lt;/p&gt; &lt;/important&gt; </code></pre></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Value {
     /// <p>An array of column values.</p>
     #[serde(rename = "arrayValues")]
@@ -559,21 +568,20 @@ impl BatchExecuteStatementError {
     }
 }
 impl fmt::Display for BatchExecuteStatementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchExecuteStatementError {
-    fn description(&self) -> &str {
         match *self {
-            BatchExecuteStatementError::BadRequest(ref cause) => cause,
-            BatchExecuteStatementError::Forbidden(ref cause) => cause,
-            BatchExecuteStatementError::InternalServerError(ref cause) => cause,
-            BatchExecuteStatementError::ServiceUnavailableError(ref cause) => cause,
-            BatchExecuteStatementError::StatementTimeout(ref cause) => cause,
+            BatchExecuteStatementError::BadRequest(ref cause) => write!(f, "{}", cause),
+            BatchExecuteStatementError::Forbidden(ref cause) => write!(f, "{}", cause),
+            BatchExecuteStatementError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            BatchExecuteStatementError::ServiceUnavailableError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchExecuteStatementError::StatementTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchExecuteStatementError {}
 /// Errors returned by BeginTransaction
 #[derive(Debug, PartialEq)]
 pub enum BeginTransactionError {
@@ -620,21 +628,18 @@ impl BeginTransactionError {
     }
 }
 impl fmt::Display for BeginTransactionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BeginTransactionError {
-    fn description(&self) -> &str {
         match *self {
-            BeginTransactionError::BadRequest(ref cause) => cause,
-            BeginTransactionError::Forbidden(ref cause) => cause,
-            BeginTransactionError::InternalServerError(ref cause) => cause,
-            BeginTransactionError::ServiceUnavailableError(ref cause) => cause,
-            BeginTransactionError::StatementTimeout(ref cause) => cause,
+            BeginTransactionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            BeginTransactionError::Forbidden(ref cause) => write!(f, "{}", cause),
+            BeginTransactionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            BeginTransactionError::ServiceUnavailableError(ref cause) => write!(f, "{}", cause),
+            BeginTransactionError::StatementTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BeginTransactionError {}
 /// Errors returned by CommitTransaction
 #[derive(Debug, PartialEq)]
 pub enum CommitTransactionError {
@@ -686,22 +691,19 @@ impl CommitTransactionError {
     }
 }
 impl fmt::Display for CommitTransactionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CommitTransactionError {
-    fn description(&self) -> &str {
         match *self {
-            CommitTransactionError::BadRequest(ref cause) => cause,
-            CommitTransactionError::Forbidden(ref cause) => cause,
-            CommitTransactionError::InternalServerError(ref cause) => cause,
-            CommitTransactionError::NotFound(ref cause) => cause,
-            CommitTransactionError::ServiceUnavailableError(ref cause) => cause,
-            CommitTransactionError::StatementTimeout(ref cause) => cause,
+            CommitTransactionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CommitTransactionError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CommitTransactionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CommitTransactionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CommitTransactionError::ServiceUnavailableError(ref cause) => write!(f, "{}", cause),
+            CommitTransactionError::StatementTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CommitTransactionError {}
 /// Errors returned by ExecuteSql
 #[derive(Debug, PartialEq)]
 pub enum ExecuteSqlError {
@@ -739,20 +741,17 @@ impl ExecuteSqlError {
     }
 }
 impl fmt::Display for ExecuteSqlError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExecuteSqlError {
-    fn description(&self) -> &str {
         match *self {
-            ExecuteSqlError::BadRequest(ref cause) => cause,
-            ExecuteSqlError::Forbidden(ref cause) => cause,
-            ExecuteSqlError::InternalServerError(ref cause) => cause,
-            ExecuteSqlError::ServiceUnavailableError(ref cause) => cause,
+            ExecuteSqlError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ExecuteSqlError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ExecuteSqlError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ExecuteSqlError::ServiceUnavailableError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExecuteSqlError {}
 /// Errors returned by ExecuteStatement
 #[derive(Debug, PartialEq)]
 pub enum ExecuteStatementError {
@@ -799,21 +798,18 @@ impl ExecuteStatementError {
     }
 }
 impl fmt::Display for ExecuteStatementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExecuteStatementError {
-    fn description(&self) -> &str {
         match *self {
-            ExecuteStatementError::BadRequest(ref cause) => cause,
-            ExecuteStatementError::Forbidden(ref cause) => cause,
-            ExecuteStatementError::InternalServerError(ref cause) => cause,
-            ExecuteStatementError::ServiceUnavailableError(ref cause) => cause,
-            ExecuteStatementError::StatementTimeout(ref cause) => cause,
+            ExecuteStatementError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ExecuteStatementError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ExecuteStatementError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ExecuteStatementError::ServiceUnavailableError(ref cause) => write!(f, "{}", cause),
+            ExecuteStatementError::StatementTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExecuteStatementError {}
 /// Errors returned by RollbackTransaction
 #[derive(Debug, PartialEq)]
 pub enum RollbackTransactionError {
@@ -867,22 +863,19 @@ impl RollbackTransactionError {
     }
 }
 impl fmt::Display for RollbackTransactionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RollbackTransactionError {
-    fn description(&self) -> &str {
         match *self {
-            RollbackTransactionError::BadRequest(ref cause) => cause,
-            RollbackTransactionError::Forbidden(ref cause) => cause,
-            RollbackTransactionError::InternalServerError(ref cause) => cause,
-            RollbackTransactionError::NotFound(ref cause) => cause,
-            RollbackTransactionError::ServiceUnavailableError(ref cause) => cause,
-            RollbackTransactionError::StatementTimeout(ref cause) => cause,
+            RollbackTransactionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            RollbackTransactionError::Forbidden(ref cause) => write!(f, "{}", cause),
+            RollbackTransactionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RollbackTransactionError::NotFound(ref cause) => write!(f, "{}", cause),
+            RollbackTransactionError::ServiceUnavailableError(ref cause) => write!(f, "{}", cause),
+            RollbackTransactionError::StatementTimeout(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RollbackTransactionError {}
 /// Trait representing the capabilities of the AWS RDS DataService API. AWS RDS DataService clients implement this trait.
 #[async_trait]
 pub trait RdsData {

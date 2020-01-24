@@ -54,17 +54,14 @@ pub trait GenerateErrorTypes {
 
                 {error_from_body_impl}
                 impl fmt::Display for {type_name} {{
+                    #[allow(unused_variables)]
                     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {{
-                        write!(f, \"{{}}\", self.to_string())
-                    }}
-                }}
-                impl Error for {type_name} {{
-                    fn description(&self) -> &str {{
                         match *self {{
-                            {description_matchers}
+                            {display_matchers}
                         }}
                     }}
-                }}",
+                }}
+                impl Error for {type_name} {{}}",
             operation = operation_name,
             type_name = error_type_name(service, operation_name),
             error_from_body_impl =
@@ -72,8 +69,8 @@ pub trait GenerateErrorTypes {
             error_types = self
                 .generate_error_enum_types(operation, error_documentation, service)
                 .unwrap_or_else(|| String::from("")),
-            description_matchers = self
-                .generate_error_description_matchers(operation_name, operation, service)
+            display_matchers = self
+                .generate_error_display_matchers(operation_name, operation, service)
                 .unwrap_or_else(|| String::from(""))
         )
     }
@@ -111,8 +108,8 @@ pub trait GenerateErrorTypes {
         Some(enum_types.join(","))
     }
 
-    /// generate the matcher arms for an error type's implementation of Error.description()
-    fn generate_error_description_matchers(
+    /// generate the matcher arms for an error type's implementation of Error's Display
+    fn generate_error_display_matchers(
         &self,
         operation_name: &str,
         operation: &Operation,
@@ -130,7 +127,7 @@ pub trait GenerateErrorTypes {
                     || service.service_id() == Some("CloudSearch")
                 {
                     type_matchers.push(format!(
-                        "{error_type}::{error_shape}(ref cause) => cause",
+                        "{error_type}::{error_shape}(ref cause) => write!(f, \"{{}}\", cause)",
                         error_type = error_type_name(service, operation_name),
                         error_shape = error.idiomatic_error_name()
                     ))

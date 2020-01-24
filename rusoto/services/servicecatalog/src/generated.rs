@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptPortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -40,11 +42,12 @@ pub struct AcceptPortfolioShareInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptPortfolioShareOutput {}
 
 /// <p>The access level to use to filter results.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AccessLevelFilter {
     /// <p><p>The access level.</p> <ul> <li> <p> <code>Account</code> - Filter results based on the account.</p> </li> <li> <p> <code>Role</code> - Filter results based on the federated role of the specified user.</p> </li> <li> <p> <code>User</code> - Filter results based on the specified user.</p> </li> </ul></p>
     #[serde(rename = "Key")]
@@ -57,6 +60,7 @@ pub struct AccessLevelFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateBudgetWithResourceInput {
     /// <p>The name of the budget you want to associate.</p>
     #[serde(rename = "BudgetName")]
@@ -67,10 +71,11 @@ pub struct AssociateBudgetWithResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateBudgetWithResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociatePrincipalWithPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -88,10 +93,11 @@ pub struct AssociatePrincipalWithPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociatePrincipalWithPortfolioOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateProductWithPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -110,10 +116,11 @@ pub struct AssociateProductWithPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateProductWithPortfolioOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateServiceActionWithProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -131,10 +138,11 @@ pub struct AssociateServiceActionWithProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateServiceActionWithProvisioningArtifactOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateTagOptionWithResourceInput {
     /// <p>The resource identifier.</p>
     #[serde(rename = "ResourceId")]
@@ -145,10 +153,11 @@ pub struct AssociateTagOptionWithResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateTagOptionWithResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchAssociateServiceActionWithProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -160,7 +169,7 @@ pub struct BatchAssociateServiceActionWithProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchAssociateServiceActionWithProvisioningArtifactOutput {
     /// <p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>
     #[serde(rename = "FailedServiceActionAssociations")]
@@ -169,6 +178,7 @@ pub struct BatchAssociateServiceActionWithProvisioningArtifactOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDisassociateServiceActionFromProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -180,7 +190,7 @@ pub struct BatchDisassociateServiceActionFromProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDisassociateServiceActionFromProvisioningArtifactOutput {
     /// <p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>
     #[serde(rename = "FailedServiceActionAssociations")]
@@ -190,7 +200,7 @@ pub struct BatchDisassociateServiceActionFromProvisioningArtifactOutput {
 
 /// <p>Information about a budget.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BudgetDetail {
     /// <p>Name of the associated budget.</p>
     #[serde(rename = "BudgetName")]
@@ -200,7 +210,7 @@ pub struct BudgetDetail {
 
 /// <p>Information about a CloudWatch dashboard.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CloudWatchDashboard {
     /// <p>The name of the CloudWatch dashboard.</p>
     #[serde(rename = "Name")]
@@ -210,7 +220,7 @@ pub struct CloudWatchDashboard {
 
 /// <p>Information about a constraint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConstraintDetail {
     /// <p>The identifier of the constraint.</p>
     #[serde(rename = "ConstraintId")]
@@ -232,7 +242,7 @@ pub struct ConstraintDetail {
 
 /// <p>Summary information about a constraint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConstraintSummary {
     /// <p>The description of the constraint.</p>
     #[serde(rename = "Description")]
@@ -245,6 +255,7 @@ pub struct ConstraintSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CopyProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -276,7 +287,7 @@ pub struct CopyProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CopyProductOutput {
     /// <p>The token to use to track the progress of the operation.</p>
     #[serde(rename = "CopyProductToken")]
@@ -285,6 +296,7 @@ pub struct CopyProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -312,7 +324,7 @@ pub struct CreateConstraintInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConstraintOutput {
     /// <p>Information about the constraint.</p>
     #[serde(rename = "ConstraintDetail")]
@@ -329,6 +341,7 @@ pub struct CreateConstraintOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -354,7 +367,7 @@ pub struct CreatePortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePortfolioOutput {
     /// <p>Information about the portfolio.</p>
     #[serde(rename = "PortfolioDetail")]
@@ -367,6 +380,7 @@ pub struct CreatePortfolioOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -386,7 +400,7 @@ pub struct CreatePortfolioShareInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePortfolioShareOutput {
     /// <p>The portfolio share unique identifier. This will only be returned if portfolio is shared to an organization node.</p>
     #[serde(rename = "PortfolioShareToken")]
@@ -395,6 +409,7 @@ pub struct CreatePortfolioShareOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -442,7 +457,7 @@ pub struct CreateProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProductOutput {
     /// <p>Information about the product view.</p>
     #[serde(rename = "ProductViewDetail")]
@@ -459,6 +474,7 @@ pub struct CreateProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -501,7 +517,7 @@ pub struct CreateProvisionedProductPlanInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProvisionedProductPlanOutput {
     /// <p>The plan identifier.</p>
     #[serde(rename = "PlanId")]
@@ -526,6 +542,7 @@ pub struct CreateProvisionedProductPlanOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -543,7 +560,7 @@ pub struct CreateProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3, in JSON format.</p>
     #[serde(rename = "Info")]
@@ -560,6 +577,7 @@ pub struct CreateProvisioningArtifactOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -584,7 +602,7 @@ pub struct CreateServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateServiceActionOutput {
     /// <p>An object containing information about the self-service action.</p>
     #[serde(rename = "ServiceActionDetail")]
@@ -593,6 +611,7 @@ pub struct CreateServiceActionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTagOptionInput {
     /// <p>The TagOption key.</p>
     #[serde(rename = "Key")]
@@ -603,7 +622,7 @@ pub struct CreateTagOptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTagOptionOutput {
     /// <p>Information about the TagOption.</p>
     #[serde(rename = "TagOptionDetail")]
@@ -612,6 +631,7 @@ pub struct CreateTagOptionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -623,10 +643,11 @@ pub struct DeleteConstraintInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConstraintOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -638,10 +659,11 @@ pub struct DeletePortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePortfolioOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -661,7 +683,7 @@ pub struct DeletePortfolioShareInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePortfolioShareOutput {
     /// <p>The portfolio share unique identifier. This will only be returned if delete is made to an organization node.</p>
     #[serde(rename = "PortfolioShareToken")]
@@ -670,6 +692,7 @@ pub struct DeletePortfolioShareOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -681,10 +704,11 @@ pub struct DeleteProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProductOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -700,10 +724,11 @@ pub struct DeleteProvisionedProductPlanInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProvisionedProductPlanOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -718,10 +743,11 @@ pub struct DeleteProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProvisioningArtifactOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -733,10 +759,11 @@ pub struct DeleteServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteServiceActionOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagOptionInput {
     /// <p>The TagOption identifier.</p>
     #[serde(rename = "Id")]
@@ -744,10 +771,11 @@ pub struct DeleteTagOptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTagOptionOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -759,7 +787,7 @@ pub struct DescribeConstraintInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConstraintOutput {
     /// <p>Information about the constraint.</p>
     #[serde(rename = "ConstraintDetail")]
@@ -776,6 +804,7 @@ pub struct DescribeConstraintOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCopyProductStatusInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -787,7 +816,7 @@ pub struct DescribeCopyProductStatusInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCopyProductStatusOutput {
     /// <p>The status of the copy product operation.</p>
     #[serde(rename = "CopyProductStatus")]
@@ -804,6 +833,7 @@ pub struct DescribeCopyProductStatusOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -815,7 +845,7 @@ pub struct DescribePortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePortfolioOutput {
     /// <p>Information about the associated budgets.</p>
     #[serde(rename = "Budgets")]
@@ -836,6 +866,7 @@ pub struct DescribePortfolioOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePortfolioShareStatusInput {
     /// <p>The token for the portfolio share operation. This token is returned either by CreatePortfolioShare or by DeletePortfolioShare.</p>
     #[serde(rename = "PortfolioShareToken")]
@@ -843,7 +874,7 @@ pub struct DescribePortfolioShareStatusInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePortfolioShareStatusOutput {
     /// <p>Organization node identifier. It can be either account id, organizational unit id or organization id.</p>
     #[serde(rename = "OrganizationNodeValue")]
@@ -868,6 +899,7 @@ pub struct DescribePortfolioShareStatusOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductAsAdminInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -879,7 +911,7 @@ pub struct DescribeProductAsAdminInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductAsAdminOutput {
     /// <p>Information about the associated budgets.</p>
     #[serde(rename = "Budgets")]
@@ -904,6 +936,7 @@ pub struct DescribeProductAsAdminOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -915,7 +948,7 @@ pub struct DescribeProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductOutput {
     /// <p>Information about the associated budgets.</p>
     #[serde(rename = "Budgets")]
@@ -932,6 +965,7 @@ pub struct DescribeProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductViewInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -943,7 +977,7 @@ pub struct DescribeProductViewInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductViewOutput {
     /// <p>Summary information about the product.</p>
     #[serde(rename = "ProductViewSummary")]
@@ -956,6 +990,7 @@ pub struct DescribeProductViewOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -967,7 +1002,7 @@ pub struct DescribeProvisionedProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisionedProductOutput {
     /// <p>Any CloudWatch dashboards that were created when provisioning the product.</p>
     #[serde(rename = "CloudWatchDashboards")]
@@ -980,6 +1015,7 @@ pub struct DescribeProvisionedProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -999,7 +1035,7 @@ pub struct DescribeProvisionedProductPlanInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisionedProductPlanOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1016,6 +1052,7 @@ pub struct DescribeProvisionedProductPlanOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1034,7 +1071,7 @@ pub struct DescribeProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3.</p>
     #[serde(rename = "Info")]
@@ -1051,6 +1088,7 @@ pub struct DescribeProvisioningArtifactOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisioningParametersInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1069,7 +1107,7 @@ pub struct DescribeProvisioningParametersInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisioningParametersOutput {
     /// <p>Information about the constraints used to provision the product.</p>
     #[serde(rename = "ConstraintSummaries")]
@@ -1094,6 +1132,7 @@ pub struct DescribeProvisioningParametersOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRecordInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1113,7 +1152,7 @@ pub struct DescribeRecordInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRecordOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1130,6 +1169,7 @@ pub struct DescribeRecordOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServiceActionExecutionParametersInput {
     #[serde(rename = "AcceptLanguage")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1141,7 +1181,7 @@ pub struct DescribeServiceActionExecutionParametersInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServiceActionExecutionParametersOutput {
     #[serde(rename = "ServiceActionParameters")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1149,6 +1189,7 @@ pub struct DescribeServiceActionExecutionParametersOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1160,7 +1201,7 @@ pub struct DescribeServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServiceActionOutput {
     /// <p>Detailed information about the self-service action.</p>
     #[serde(rename = "ServiceActionDetail")]
@@ -1169,6 +1210,7 @@ pub struct DescribeServiceActionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTagOptionInput {
     /// <p>The TagOption identifier.</p>
     #[serde(rename = "Id")]
@@ -1176,7 +1218,7 @@ pub struct DescribeTagOptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTagOptionOutput {
     /// <p>Information about the TagOption.</p>
     #[serde(rename = "TagOptionDetail")]
@@ -1185,13 +1227,15 @@ pub struct DescribeTagOptionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableAWSOrganizationsAccessInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableAWSOrganizationsAccessOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateBudgetFromResourceInput {
     /// <p>The name of the budget you want to disassociate.</p>
     #[serde(rename = "BudgetName")]
@@ -1202,10 +1246,11 @@ pub struct DisassociateBudgetFromResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateBudgetFromResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociatePrincipalFromPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1220,10 +1265,11 @@ pub struct DisassociatePrincipalFromPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociatePrincipalFromPortfolioOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateProductFromPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1238,10 +1284,11 @@ pub struct DisassociateProductFromPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateProductFromPortfolioOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateServiceActionFromProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1259,10 +1306,11 @@ pub struct DisassociateServiceActionFromProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateServiceActionFromProvisioningArtifactOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateTagOptionFromResourceInput {
     /// <p>The resource identifier.</p>
     #[serde(rename = "ResourceId")]
@@ -1273,17 +1321,19 @@ pub struct DisassociateTagOptionFromResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateTagOptionFromResourceOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableAWSOrganizationsAccessInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableAWSOrganizationsAccessOutput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1298,7 +1348,7 @@ pub struct ExecuteProvisionedProductPlanInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteProvisionedProductPlanOutput {
     /// <p>Information about the result of provisioning the product.</p>
     #[serde(rename = "RecordDetail")]
@@ -1307,6 +1357,7 @@ pub struct ExecuteProvisionedProductPlanOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteProvisionedProductServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1327,7 +1378,7 @@ pub struct ExecuteProvisionedProductServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteProvisionedProductServiceActionOutput {
     /// <p>An object containing detailed information about the result of provisioning the product.</p>
     #[serde(rename = "RecordDetail")]
@@ -1336,7 +1387,7 @@ pub struct ExecuteProvisionedProductServiceActionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecutionParameter {
     #[serde(rename = "DefaultValues")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1351,7 +1402,7 @@ pub struct ExecutionParameter {
 
 /// <p>An object containing information about the error, along with identifying information about the self-service action and its associations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailedServiceActionAssociation {
     /// <p>The error code. Valid values are listed below.</p>
     #[serde(rename = "ErrorCode")]
@@ -1376,10 +1427,11 @@ pub struct FailedServiceActionAssociation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAWSOrganizationsAccessStatusInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAWSOrganizationsAccessStatusOutput {
     /// <p>The status of the portfolio share feature.</p>
     #[serde(rename = "AccessStatus")]
@@ -1389,7 +1441,7 @@ pub struct GetAWSOrganizationsAccessStatusOutput {
 
 /// <p>Summary information about a product path for a user.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LaunchPathSummary {
     /// <p>The constraints on the portfolio-product relationship.</p>
     #[serde(rename = "ConstraintSummaries")]
@@ -1410,6 +1462,7 @@ pub struct LaunchPathSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAcceptedPortfolioSharesInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1430,7 +1483,7 @@ pub struct ListAcceptedPortfolioSharesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAcceptedPortfolioSharesOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1443,6 +1496,7 @@ pub struct ListAcceptedPortfolioSharesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBudgetsForResourceInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1462,7 +1516,7 @@ pub struct ListBudgetsForResourceInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBudgetsForResourceOutput {
     /// <p>Information about the associated budgets.</p>
     #[serde(rename = "Budgets")]
@@ -1475,6 +1529,7 @@ pub struct ListBudgetsForResourceOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConstraintsForPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1498,7 +1553,7 @@ pub struct ListConstraintsForPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConstraintsForPortfolioOutput {
     /// <p>Information about the constraints.</p>
     #[serde(rename = "ConstraintDetails")]
@@ -1511,6 +1566,7 @@ pub struct ListConstraintsForPortfolioOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLaunchPathsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1530,7 +1586,7 @@ pub struct ListLaunchPathsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLaunchPathsOutput {
     /// <p>Information about the launch path.</p>
     #[serde(rename = "LaunchPathSummaries")]
@@ -1543,6 +1599,7 @@ pub struct ListLaunchPathsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOrganizationPortfolioAccessInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1565,7 +1622,7 @@ pub struct ListOrganizationPortfolioAccessInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOrganizationPortfolioAccessOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1578,6 +1635,7 @@ pub struct ListOrganizationPortfolioAccessOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfolioAccessInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1589,7 +1647,7 @@ pub struct ListPortfolioAccessInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfolioAccessOutput {
     /// <p>Information about the AWS accounts with access to the portfolio.</p>
     #[serde(rename = "AccountIds")]
@@ -1602,6 +1660,7 @@ pub struct ListPortfolioAccessOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfoliosForProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1621,7 +1680,7 @@ pub struct ListPortfoliosForProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfoliosForProductOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1634,6 +1693,7 @@ pub struct ListPortfoliosForProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfoliosInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1650,7 +1710,7 @@ pub struct ListPortfoliosInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfoliosOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1663,6 +1723,7 @@ pub struct ListPortfoliosOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPrincipalsForPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1682,7 +1743,7 @@ pub struct ListPrincipalsForPortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPrincipalsForPortfolioOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1695,6 +1756,7 @@ pub struct ListPrincipalsForPortfolioOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisionedProductPlansInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1719,7 +1781,7 @@ pub struct ListProvisionedProductPlansInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisionedProductPlansOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1732,6 +1794,7 @@ pub struct ListProvisionedProductPlansOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisioningArtifactsForServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1751,7 +1814,7 @@ pub struct ListProvisioningArtifactsForServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisioningArtifactsForServiceActionOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1764,6 +1827,7 @@ pub struct ListProvisioningArtifactsForServiceActionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisioningArtifactsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1775,7 +1839,7 @@ pub struct ListProvisioningArtifactsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisioningArtifactsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1788,6 +1852,7 @@ pub struct ListProvisioningArtifactsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecordHistoryInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1812,7 +1877,7 @@ pub struct ListRecordHistoryInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRecordHistoryOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1826,6 +1891,7 @@ pub struct ListRecordHistoryOutput {
 
 /// <p>The search filter to use when listing history records.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecordHistorySearchFilter {
     /// <p><p>The filter key.</p> <ul> <li> <p> <code>product</code> - Filter results based on the specified product identifier.</p> </li> <li> <p> <code>provisionedproduct</code> - Filter results based on the provisioned product identifier.</p> </li> </ul></p>
     #[serde(rename = "Key")]
@@ -1838,6 +1904,7 @@ pub struct ListRecordHistorySearchFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourcesForTagOptionInput {
     /// <p>The maximum number of items to return with this call.</p>
     #[serde(rename = "PageSize")]
@@ -1857,7 +1924,7 @@ pub struct ListResourcesForTagOptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourcesForTagOptionOutput {
     /// <p>The page token for the next set of results. To retrieve the first set of results, use null.</p>
     #[serde(rename = "PageToken")]
@@ -1870,6 +1937,7 @@ pub struct ListResourcesForTagOptionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListServiceActionsForProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1892,7 +1960,7 @@ pub struct ListServiceActionsForProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListServiceActionsForProvisioningArtifactOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1905,6 +1973,7 @@ pub struct ListServiceActionsForProvisioningArtifactOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListServiceActionsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1921,7 +1990,7 @@ pub struct ListServiceActionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListServiceActionsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1934,6 +2003,7 @@ pub struct ListServiceActionsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListStackInstancesForProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -1953,7 +2023,7 @@ pub struct ListStackInstancesForProvisionedProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListStackInstancesForProvisionedProductOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -1967,6 +2037,7 @@ pub struct ListStackInstancesForProvisionedProductOutput {
 
 /// <p>Filters to use when listing TagOptions.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagOptionsFilters {
     /// <p>The active state.</p>
     #[serde(rename = "Active")]
@@ -1983,6 +2054,7 @@ pub struct ListTagOptionsFilters {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagOptionsInput {
     /// <p>The search filters. If no search filters are specified, the output includes all TagOptions.</p>
     #[serde(rename = "Filters")]
@@ -1999,7 +2071,7 @@ pub struct ListTagOptionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagOptionsOutput {
     /// <p>The page token for the next set of results. To retrieve the first set of results, use null.</p>
     #[serde(rename = "PageToken")]
@@ -2026,7 +2098,7 @@ pub struct OrganizationNode {
 
 /// <p>The constraints that the administrator has put on the parameter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ParameterConstraints {
     /// <p>The values that the administrator has allowed for the parameter.</p>
     #[serde(rename = "AllowedValues")]
@@ -2036,7 +2108,7 @@ pub struct ParameterConstraints {
 
 /// <p>Information about a portfolio.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PortfolioDetail {
     /// <p>The ARN assigned to the portfolio.</p>
     #[serde(rename = "ARN")]
@@ -2066,7 +2138,7 @@ pub struct PortfolioDetail {
 
 /// <p>Information about a principal.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Principal {
     /// <p>The ARN of the principal (IAM user, role, or group).</p>
     #[serde(rename = "PrincipalARN")]
@@ -2080,7 +2152,7 @@ pub struct Principal {
 
 /// <p>A single product view aggregation value/count pair, containing metadata about each product to which the calling user has access.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewAggregationValue {
     /// <p>An approximate count of the products that match the value.</p>
     #[serde(rename = "ApproximateCount")]
@@ -2094,7 +2166,7 @@ pub struct ProductViewAggregationValue {
 
 /// <p>Information about a product view.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewDetail {
     /// <p>The UTC time stamp of the creation time.</p>
     #[serde(rename = "CreatedTime")]
@@ -2116,7 +2188,7 @@ pub struct ProductViewDetail {
 
 /// <p>Summary information about a product view.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewSummary {
     /// <p>The distributor of the product. Contact the product administrator for the significance of this value.</p>
     #[serde(rename = "Distributor")]
@@ -2165,6 +2237,7 @@ pub struct ProductViewSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisionProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -2205,7 +2278,7 @@ pub struct ProvisionProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionProductOutput {
     /// <p>Information about the result of provisioning the product.</p>
     #[serde(rename = "RecordDetail")]
@@ -2215,7 +2288,7 @@ pub struct ProvisionProductOutput {
 
 /// <p>Information about a provisioned product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductAttribute {
     /// <p>The ARN of the provisioned product.</p>
     #[serde(rename = "Arn")]
@@ -2281,7 +2354,7 @@ pub struct ProvisionedProductAttribute {
 
 /// <p>Information about a provisioned product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductDetail {
     /// <p>The ARN of the provisioned product.</p>
     #[serde(rename = "Arn")]
@@ -2331,7 +2404,7 @@ pub struct ProvisionedProductDetail {
 
 /// <p>Information about a plan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductPlanDetails {
     /// <p>The UTC time stamp of the creation time.</p>
     #[serde(rename = "CreatedTime")]
@@ -2397,7 +2470,7 @@ pub struct ProvisionedProductPlanDetails {
 
 /// <p>Summary information about a plan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductPlanSummary {
     /// <p>The plan identifier.</p>
     #[serde(rename = "PlanId")]
@@ -2427,7 +2500,7 @@ pub struct ProvisionedProductPlanSummary {
 
 /// <p>Information about a provisioning artifact. A provisioning artifact is also known as a product version.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifact {
     /// <p>The UTC time stamp of the creation time.</p>
     #[serde(rename = "CreatedTime")]
@@ -2453,7 +2526,7 @@ pub struct ProvisioningArtifact {
 
 /// <p>Information about a provisioning artifact (also known as a version) for a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactDetail {
     /// <p>Indicates whether the product version is active.</p>
     #[serde(rename = "Active")]
@@ -2487,7 +2560,7 @@ pub struct ProvisioningArtifactDetail {
 
 /// <p>Information about a parameter used to provision a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactParameter {
     /// <p>The default value.</p>
     #[serde(rename = "DefaultValue")]
@@ -2517,7 +2590,7 @@ pub struct ProvisioningArtifactParameter {
 
 /// <p>The user-defined preferences that will be applied during product provisioning, unless overridden by <code>ProvisioningPreferences</code> or <code>UpdateProvisioningPreferences</code>.</p> <p>For more information on maximum concurrent accounts and failure tolerance, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options">Stack set operation options</a> in the <i>AWS CloudFormation User Guide</i>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactPreferences {
     /// <p>One or more AWS accounts where stack instances are deployed from the stack set. These accounts can be scoped in <code>ProvisioningPreferences$StackSetAccounts</code> and <code>UpdateProvisioningPreferences$StackSetAccounts</code>.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p>
     #[serde(rename = "StackSetAccounts")]
@@ -2531,6 +2604,7 @@ pub struct ProvisioningArtifactPreferences {
 
 /// <p>Information about a provisioning artifact (also known as a version) for a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningArtifactProperties {
     /// <p>The description of the provisioning artifact, including how it differs from the previous provisioning artifact.</p>
     #[serde(rename = "Description")]
@@ -2555,7 +2629,7 @@ pub struct ProvisioningArtifactProperties {
 
 /// <p>Summary information about a provisioning artifact (also known as a version) for a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactSummary {
     /// <p>The UTC time stamp of the creation time.</p>
     #[serde(rename = "CreatedTime")]
@@ -2581,7 +2655,7 @@ pub struct ProvisioningArtifactSummary {
 
 /// <p>An object that contains summary information about a product view and a provisioning artifact.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactView {
     /// <p>Summary information about a product view.</p>
     #[serde(rename = "ProductViewSummary")]
@@ -2595,6 +2669,7 @@ pub struct ProvisioningArtifactView {
 
 /// <p>Information about a parameter used to provision a product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningParameter {
     /// <p>The parameter key.</p>
     #[serde(rename = "Key")]
@@ -2608,6 +2683,7 @@ pub struct ProvisioningParameter {
 
 /// <p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product types.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningPreferences {
     /// <p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>
     #[serde(rename = "StackSetAccounts")]
@@ -2637,7 +2713,7 @@ pub struct ProvisioningPreferences {
 
 /// <p>Information about a request operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordDetail {
     /// <p>The UTC time stamp of the creation time.</p>
     #[serde(rename = "CreatedTime")]
@@ -2695,7 +2771,7 @@ pub struct RecordDetail {
 
 /// <p>The error code and description resulting from an operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordError {
     /// <p>The numeric value of the error.</p>
     #[serde(rename = "Code")]
@@ -2709,7 +2785,7 @@ pub struct RecordError {
 
 /// <p>The output for the product created as the result of a request. For example, the output for a CloudFormation-backed product that creates an S3 bucket would include the S3 bucket URL.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordOutput {
     /// <p>The description of the output.</p>
     #[serde(rename = "Description")]
@@ -2727,7 +2803,7 @@ pub struct RecordOutput {
 
 /// <p>Information about a tag, which is a key-value pair.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordTag {
     /// <p>The key for this tag.</p>
     #[serde(rename = "Key")]
@@ -2740,6 +2816,7 @@ pub struct RecordTag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RejectPortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -2755,12 +2832,12 @@ pub struct RejectPortfolioShareInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RejectPortfolioShareOutput {}
 
 /// <p>Information about a resource change that will occur when a plan is executed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceChange {
     /// <p>The change action.</p>
     #[serde(rename = "Action")]
@@ -2794,7 +2871,7 @@ pub struct ResourceChange {
 
 /// <p>Information about a change to a resource attribute.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceChangeDetail {
     /// <p>The ID of the entity that caused the change.</p>
     #[serde(rename = "CausingEntity")]
@@ -2812,7 +2889,7 @@ pub struct ResourceChangeDetail {
 
 /// <p>Information about a resource.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceDetail {
     /// <p>The ARN of the resource.</p>
     #[serde(rename = "ARN")]
@@ -2838,7 +2915,7 @@ pub struct ResourceDetail {
 
 /// <p>Information about a change to a resource attribute.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceTargetDefinition {
     /// <p>The attribute to be changed.</p>
     #[serde(rename = "Attribute")]
@@ -2855,6 +2932,7 @@ pub struct ResourceTargetDefinition {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScanProvisionedProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -2875,7 +2953,7 @@ pub struct ScanProvisionedProductsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScanProvisionedProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -2888,6 +2966,7 @@ pub struct ScanProvisionedProductsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProductsAsAdminInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -2924,7 +3003,7 @@ pub struct SearchProductsAsAdminInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProductsAsAdminOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -2937,6 +3016,7 @@ pub struct SearchProductsAsAdminOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -2965,7 +3045,7 @@ pub struct SearchProductsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -2983,6 +3063,7 @@ pub struct SearchProductsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProvisionedProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3015,7 +3096,7 @@ pub struct SearchProvisionedProductsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProvisionedProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
     #[serde(rename = "NextPageToken")]
@@ -3033,6 +3114,7 @@ pub struct SearchProvisionedProductsOutput {
 
 /// <p>A self-service action association consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ServiceActionAssociation {
     /// <p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>
     #[serde(rename = "ProductId")]
@@ -3047,7 +3129,7 @@ pub struct ServiceActionAssociation {
 
 /// <p>An object containing detailed information about the self-service action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceActionDetail {
     /// <p>A map that defines the self-service action.</p>
     #[serde(rename = "Definition")]
@@ -3061,7 +3143,7 @@ pub struct ServiceActionDetail {
 
 /// <p>Detailed information about the self-service action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceActionSummary {
     /// <p>The self-service action definition type. For example, <code>SSM_AUTOMATION</code>.</p>
     #[serde(rename = "DefinitionType")]
@@ -3083,7 +3165,7 @@ pub struct ServiceActionSummary {
 
 /// <p>Information about the portfolio share operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShareDetails {
     /// <p>List of errors.</p>
     #[serde(rename = "ShareErrors")]
@@ -3097,7 +3179,7 @@ pub struct ShareDetails {
 
 /// <p>Errors that occurred during the portfolio share operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShareError {
     /// <p>List of accounts impacted by the error.</p>
     #[serde(rename = "Accounts")]
@@ -3115,7 +3197,7 @@ pub struct ShareError {
 
 /// <p>An AWS CloudFormation stack, in a specific account and region, that's part of a stack set operation. A stack instance is a reference to an attempted or actual stack in a given account within a given region. A stack instance can exist without a stack—for example, if the stack couldn't be created for some reason. A stack instance is associated with only one stack set. Each stack instance contains the ID of its associated stack set, as well as the ID of the actual stack and the stack status. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StackInstance {
     /// <p>The name of the AWS account that the stack instance is associated with.</p>
     #[serde(rename = "Account")]
@@ -3144,7 +3226,7 @@ pub struct Tag {
 
 /// <p>Information about a TagOption.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagOptionDetail {
     /// <p>The TagOption active state.</p>
     #[serde(rename = "Active")]
@@ -3166,7 +3248,7 @@ pub struct TagOptionDetail {
 
 /// <p>Summary information about a TagOption.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagOptionSummary {
     /// <p>The TagOption key.</p>
     #[serde(rename = "Key")]
@@ -3179,6 +3261,7 @@ pub struct TagOptionSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminateProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3202,7 +3285,7 @@ pub struct TerminateProvisionedProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminateProvisionedProductOutput {
     /// <p>Information about the result of this request.</p>
     #[serde(rename = "RecordDetail")]
@@ -3211,6 +3294,7 @@ pub struct TerminateProvisionedProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3230,7 +3314,7 @@ pub struct UpdateConstraintInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConstraintOutput {
     /// <p>Information about the constraint.</p>
     #[serde(rename = "ConstraintDetail")]
@@ -3247,6 +3331,7 @@ pub struct UpdateConstraintOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3278,7 +3363,7 @@ pub struct UpdatePortfolioInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePortfolioOutput {
     /// <p>Information about the portfolio.</p>
     #[serde(rename = "PortfolioDetail")]
@@ -3291,6 +3376,7 @@ pub struct UpdatePortfolioOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3338,7 +3424,7 @@ pub struct UpdateProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProductOutput {
     /// <p>Information about the product view.</p>
     #[serde(rename = "ProductViewDetail")]
@@ -3351,6 +3437,7 @@ pub struct UpdateProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3394,7 +3481,7 @@ pub struct UpdateProvisionedProductInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisionedProductOutput {
     /// <p>Information about the result of the request.</p>
     #[serde(rename = "RecordDetail")]
@@ -3403,6 +3490,7 @@ pub struct UpdateProvisionedProductOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisionedProductPropertiesInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3420,7 +3508,7 @@ pub struct UpdateProvisionedProductPropertiesInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisionedProductPropertiesOutput {
     /// <p>The provisioned product identifier.</p>
     #[serde(rename = "ProvisionedProductId")]
@@ -3441,6 +3529,7 @@ pub struct UpdateProvisionedProductPropertiesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3471,7 +3560,7 @@ pub struct UpdateProvisioningArtifactInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3.</p>
     #[serde(rename = "Info")]
@@ -3506,6 +3595,7 @@ pub struct UpdateProvisioningParameter {
 
 /// <p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product types.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisioningPreferences {
     /// <p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>
     #[serde(rename = "StackSetAccounts")]
@@ -3538,6 +3628,7 @@ pub struct UpdateProvisioningPreferences {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
     #[serde(rename = "AcceptLanguage")]
@@ -3561,7 +3652,7 @@ pub struct UpdateServiceActionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateServiceActionOutput {
     /// <p>Detailed information about the self-service action.</p>
     #[serde(rename = "ServiceActionDetail")]
@@ -3570,6 +3661,7 @@ pub struct UpdateServiceActionOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTagOptionInput {
     /// <p>The updated active state.</p>
     #[serde(rename = "Active")]
@@ -3585,7 +3677,7 @@ pub struct UpdateTagOptionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTagOptionOutput {
     /// <p>Information about the TagOption.</p>
     #[serde(rename = "TagOptionDetail")]
@@ -3595,7 +3687,7 @@ pub struct UpdateTagOptionOutput {
 
 /// <p>Additional information provided by the administrator.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UsageInstruction {
     /// <p>The usage instruction type for the value.</p>
     #[serde(rename = "Type")]
@@ -3643,19 +3735,16 @@ impl AcceptPortfolioShareError {
     }
 }
 impl fmt::Display for AcceptPortfolioShareError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptPortfolioShareError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptPortfolioShareError::InvalidParameters(ref cause) => cause,
-            AcceptPortfolioShareError::LimitExceeded(ref cause) => cause,
-            AcceptPortfolioShareError::ResourceNotFound(ref cause) => cause,
+            AcceptPortfolioShareError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            AcceptPortfolioShareError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AcceptPortfolioShareError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptPortfolioShareError {}
 /// Errors returned by AssociateBudgetWithResource
 #[derive(Debug, PartialEq)]
 pub enum AssociateBudgetWithResourceError {
@@ -3703,20 +3792,21 @@ impl AssociateBudgetWithResourceError {
     }
 }
 impl fmt::Display for AssociateBudgetWithResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateBudgetWithResourceError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateBudgetWithResourceError::DuplicateResource(ref cause) => cause,
-            AssociateBudgetWithResourceError::InvalidParameters(ref cause) => cause,
-            AssociateBudgetWithResourceError::LimitExceeded(ref cause) => cause,
-            AssociateBudgetWithResourceError::ResourceNotFound(ref cause) => cause,
+            AssociateBudgetWithResourceError::DuplicateResource(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateBudgetWithResourceError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateBudgetWithResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AssociateBudgetWithResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateBudgetWithResourceError {}
 /// Errors returned by AssociatePrincipalWithPortfolio
 #[derive(Debug, PartialEq)]
 pub enum AssociatePrincipalWithPortfolioError {
@@ -3757,19 +3847,22 @@ impl AssociatePrincipalWithPortfolioError {
     }
 }
 impl fmt::Display for AssociatePrincipalWithPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociatePrincipalWithPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            AssociatePrincipalWithPortfolioError::InvalidParameters(ref cause) => cause,
-            AssociatePrincipalWithPortfolioError::LimitExceeded(ref cause) => cause,
-            AssociatePrincipalWithPortfolioError::ResourceNotFound(ref cause) => cause,
+            AssociatePrincipalWithPortfolioError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociatePrincipalWithPortfolioError::LimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociatePrincipalWithPortfolioError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociatePrincipalWithPortfolioError {}
 /// Errors returned by AssociateProductWithPortfolio
 #[derive(Debug, PartialEq)]
 pub enum AssociateProductWithPortfolioError {
@@ -3810,19 +3903,20 @@ impl AssociateProductWithPortfolioError {
     }
 }
 impl fmt::Display for AssociateProductWithPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateProductWithPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateProductWithPortfolioError::InvalidParameters(ref cause) => cause,
-            AssociateProductWithPortfolioError::LimitExceeded(ref cause) => cause,
-            AssociateProductWithPortfolioError::ResourceNotFound(ref cause) => cause,
+            AssociateProductWithPortfolioError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateProductWithPortfolioError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AssociateProductWithPortfolioError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociateProductWithPortfolioError {}
 /// Errors returned by AssociateServiceActionWithProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum AssociateServiceActionWithProvisioningArtifactError {
@@ -3867,23 +3961,22 @@ impl AssociateServiceActionWithProvisioningArtifactError {
     }
 }
 impl fmt::Display for AssociateServiceActionWithProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateServiceActionWithProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
             AssociateServiceActionWithProvisioningArtifactError::DuplicateResource(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
-            AssociateServiceActionWithProvisioningArtifactError::LimitExceeded(ref cause) => cause,
+            AssociateServiceActionWithProvisioningArtifactError::LimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
             AssociateServiceActionWithProvisioningArtifactError::ResourceNotFound(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for AssociateServiceActionWithProvisioningArtifactError {}
 /// Errors returned by AssociateTagOptionWithResource
 #[derive(Debug, PartialEq)]
 pub enum AssociateTagOptionWithResourceError {
@@ -3945,22 +4038,27 @@ impl AssociateTagOptionWithResourceError {
     }
 }
 impl fmt::Display for AssociateTagOptionWithResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateTagOptionWithResourceError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateTagOptionWithResourceError::DuplicateResource(ref cause) => cause,
-            AssociateTagOptionWithResourceError::InvalidParameters(ref cause) => cause,
-            AssociateTagOptionWithResourceError::InvalidState(ref cause) => cause,
-            AssociateTagOptionWithResourceError::LimitExceeded(ref cause) => cause,
-            AssociateTagOptionWithResourceError::ResourceNotFound(ref cause) => cause,
-            AssociateTagOptionWithResourceError::TagOptionNotMigrated(ref cause) => cause,
+            AssociateTagOptionWithResourceError::DuplicateResource(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateTagOptionWithResourceError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateTagOptionWithResourceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            AssociateTagOptionWithResourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AssociateTagOptionWithResourceError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateTagOptionWithResourceError::TagOptionNotMigrated(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociateTagOptionWithResourceError {}
 /// Errors returned by BatchAssociateServiceActionWithProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum BatchAssociateServiceActionWithProvisioningArtifactError {
@@ -3989,19 +4087,16 @@ impl BatchAssociateServiceActionWithProvisioningArtifactError {
     }
 }
 impl fmt::Display for BatchAssociateServiceActionWithProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchAssociateServiceActionWithProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
             BatchAssociateServiceActionWithProvisioningArtifactError::InvalidParameters(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchAssociateServiceActionWithProvisioningArtifactError {}
 /// Errors returned by BatchDisassociateServiceActionFromProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum BatchDisassociateServiceActionFromProvisioningArtifactError {
@@ -4028,19 +4123,16 @@ impl BatchDisassociateServiceActionFromProvisioningArtifactError {
     }
 }
 impl fmt::Display for BatchDisassociateServiceActionFromProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDisassociateServiceActionFromProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
             BatchDisassociateServiceActionFromProvisioningArtifactError::InvalidParameters(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDisassociateServiceActionFromProvisioningArtifactError {}
 /// Errors returned by CopyProduct
 #[derive(Debug, PartialEq)]
 pub enum CopyProductError {
@@ -4068,18 +4160,15 @@ impl CopyProductError {
     }
 }
 impl fmt::Display for CopyProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CopyProductError {
-    fn description(&self) -> &str {
         match *self {
-            CopyProductError::InvalidParameters(ref cause) => cause,
-            CopyProductError::ResourceNotFound(ref cause) => cause,
+            CopyProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CopyProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CopyProductError {}
 /// Errors returned by CreateConstraint
 #[derive(Debug, PartialEq)]
 pub enum CreateConstraintError {
@@ -4117,20 +4206,17 @@ impl CreateConstraintError {
     }
 }
 impl fmt::Display for CreateConstraintError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConstraintError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConstraintError::DuplicateResource(ref cause) => cause,
-            CreateConstraintError::InvalidParameters(ref cause) => cause,
-            CreateConstraintError::LimitExceeded(ref cause) => cause,
-            CreateConstraintError::ResourceNotFound(ref cause) => cause,
+            CreateConstraintError::DuplicateResource(ref cause) => write!(f, "{}", cause),
+            CreateConstraintError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateConstraintError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateConstraintError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConstraintError {}
 /// Errors returned by CreatePortfolio
 #[derive(Debug, PartialEq)]
 pub enum CreatePortfolioError {
@@ -4165,19 +4251,16 @@ impl CreatePortfolioError {
     }
 }
 impl fmt::Display for CreatePortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePortfolioError::InvalidParameters(ref cause) => cause,
-            CreatePortfolioError::LimitExceeded(ref cause) => cause,
-            CreatePortfolioError::TagOptionNotMigrated(ref cause) => cause,
+            CreatePortfolioError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePortfolioError {}
 /// Errors returned by CreatePortfolioShare
 #[derive(Debug, PartialEq)]
 pub enum CreatePortfolioShareError {
@@ -4226,21 +4309,18 @@ impl CreatePortfolioShareError {
     }
 }
 impl fmt::Display for CreatePortfolioShareError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePortfolioShareError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePortfolioShareError::InvalidParameters(ref cause) => cause,
-            CreatePortfolioShareError::InvalidState(ref cause) => cause,
-            CreatePortfolioShareError::LimitExceeded(ref cause) => cause,
-            CreatePortfolioShareError::OperationNotSupported(ref cause) => cause,
-            CreatePortfolioShareError::ResourceNotFound(ref cause) => cause,
+            CreatePortfolioShareError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioShareError::InvalidState(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioShareError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioShareError::OperationNotSupported(ref cause) => write!(f, "{}", cause),
+            CreatePortfolioShareError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePortfolioShareError {}
 /// Errors returned by CreateProduct
 #[derive(Debug, PartialEq)]
 pub enum CreateProductError {
@@ -4273,19 +4353,16 @@ impl CreateProductError {
     }
 }
 impl fmt::Display for CreateProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProductError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProductError::InvalidParameters(ref cause) => cause,
-            CreateProductError::LimitExceeded(ref cause) => cause,
-            CreateProductError::TagOptionNotMigrated(ref cause) => cause,
+            CreateProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateProductError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProductError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProductError {}
 /// Errors returned by CreateProvisionedProductPlan
 #[derive(Debug, PartialEq)]
 pub enum CreateProvisionedProductPlanError {
@@ -4326,19 +4403,20 @@ impl CreateProvisionedProductPlanError {
     }
 }
 impl fmt::Display for CreateProvisionedProductPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProvisionedProductPlanError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProvisionedProductPlanError::InvalidParameters(ref cause) => cause,
-            CreateProvisionedProductPlanError::InvalidState(ref cause) => cause,
-            CreateProvisionedProductPlanError::ResourceNotFound(ref cause) => cause,
+            CreateProvisionedProductPlanError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateProvisionedProductPlanError::InvalidState(ref cause) => write!(f, "{}", cause),
+            CreateProvisionedProductPlanError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateProvisionedProductPlanError {}
 /// Errors returned by CreateProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum CreateProvisioningArtifactError {
@@ -4379,19 +4457,16 @@ impl CreateProvisioningArtifactError {
     }
 }
 impl fmt::Display for CreateProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProvisioningArtifactError::InvalidParameters(ref cause) => cause,
-            CreateProvisioningArtifactError::LimitExceeded(ref cause) => cause,
-            CreateProvisioningArtifactError::ResourceNotFound(ref cause) => cause,
+            CreateProvisioningArtifactError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateProvisioningArtifactError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProvisioningArtifactError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProvisioningArtifactError {}
 /// Errors returned by CreateServiceAction
 #[derive(Debug, PartialEq)]
 pub enum CreateServiceActionError {
@@ -4421,18 +4496,15 @@ impl CreateServiceActionError {
     }
 }
 impl fmt::Display for CreateServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateServiceActionError::InvalidParameters(ref cause) => cause,
-            CreateServiceActionError::LimitExceeded(ref cause) => cause,
+            CreateServiceActionError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateServiceActionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateServiceActionError {}
 /// Errors returned by CreateTagOption
 #[derive(Debug, PartialEq)]
 pub enum CreateTagOptionError {
@@ -4467,19 +4539,16 @@ impl CreateTagOptionError {
     }
 }
 impl fmt::Display for CreateTagOptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTagOptionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTagOptionError::DuplicateResource(ref cause) => cause,
-            CreateTagOptionError::LimitExceeded(ref cause) => cause,
-            CreateTagOptionError::TagOptionNotMigrated(ref cause) => cause,
+            CreateTagOptionError::DuplicateResource(ref cause) => write!(f, "{}", cause),
+            CreateTagOptionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateTagOptionError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTagOptionError {}
 /// Errors returned by DeleteConstraint
 #[derive(Debug, PartialEq)]
 pub enum DeleteConstraintError {
@@ -4507,18 +4576,15 @@ impl DeleteConstraintError {
     }
 }
 impl fmt::Display for DeleteConstraintError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteConstraintError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteConstraintError::InvalidParameters(ref cause) => cause,
-            DeleteConstraintError::ResourceNotFound(ref cause) => cause,
+            DeleteConstraintError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DeleteConstraintError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteConstraintError {}
 /// Errors returned by DeletePortfolio
 #[derive(Debug, PartialEq)]
 pub enum DeletePortfolioError {
@@ -4558,20 +4624,17 @@ impl DeletePortfolioError {
     }
 }
 impl fmt::Display for DeletePortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePortfolioError::InvalidParameters(ref cause) => cause,
-            DeletePortfolioError::ResourceInUse(ref cause) => cause,
-            DeletePortfolioError::ResourceNotFound(ref cause) => cause,
-            DeletePortfolioError::TagOptionNotMigrated(ref cause) => cause,
+            DeletePortfolioError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePortfolioError {}
 /// Errors returned by DeletePortfolioShare
 #[derive(Debug, PartialEq)]
 pub enum DeletePortfolioShareError {
@@ -4615,20 +4678,17 @@ impl DeletePortfolioShareError {
     }
 }
 impl fmt::Display for DeletePortfolioShareError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePortfolioShareError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePortfolioShareError::InvalidParameters(ref cause) => cause,
-            DeletePortfolioShareError::InvalidState(ref cause) => cause,
-            DeletePortfolioShareError::OperationNotSupported(ref cause) => cause,
-            DeletePortfolioShareError::ResourceNotFound(ref cause) => cause,
+            DeletePortfolioShareError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioShareError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioShareError::OperationNotSupported(ref cause) => write!(f, "{}", cause),
+            DeletePortfolioShareError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePortfolioShareError {}
 /// Errors returned by DeleteProduct
 #[derive(Debug, PartialEq)]
 pub enum DeleteProductError {
@@ -4666,20 +4726,17 @@ impl DeleteProductError {
     }
 }
 impl fmt::Display for DeleteProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProductError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProductError::InvalidParameters(ref cause) => cause,
-            DeleteProductError::ResourceInUse(ref cause) => cause,
-            DeleteProductError::ResourceNotFound(ref cause) => cause,
-            DeleteProductError::TagOptionNotMigrated(ref cause) => cause,
+            DeleteProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DeleteProductError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteProductError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProductError {}
 /// Errors returned by DeleteProvisionedProductPlan
 #[derive(Debug, PartialEq)]
 pub enum DeleteProvisionedProductPlanError {
@@ -4713,18 +4770,19 @@ impl DeleteProvisionedProductPlanError {
     }
 }
 impl fmt::Display for DeleteProvisionedProductPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProvisionedProductPlanError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProvisionedProductPlanError::InvalidParameters(ref cause) => cause,
-            DeleteProvisionedProductPlanError::ResourceNotFound(ref cause) => cause,
+            DeleteProvisionedProductPlanError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteProvisionedProductPlanError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteProvisionedProductPlanError {}
 /// Errors returned by DeleteProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum DeleteProvisioningArtifactError {
@@ -4765,19 +4823,16 @@ impl DeleteProvisioningArtifactError {
     }
 }
 impl fmt::Display for DeleteProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProvisioningArtifactError::InvalidParameters(ref cause) => cause,
-            DeleteProvisioningArtifactError::ResourceInUse(ref cause) => cause,
-            DeleteProvisioningArtifactError::ResourceNotFound(ref cause) => cause,
+            DeleteProvisioningArtifactError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DeleteProvisioningArtifactError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteProvisioningArtifactError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProvisioningArtifactError {}
 /// Errors returned by DeleteServiceAction
 #[derive(Debug, PartialEq)]
 pub enum DeleteServiceActionError {
@@ -4807,18 +4862,15 @@ impl DeleteServiceActionError {
     }
 }
 impl fmt::Display for DeleteServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteServiceActionError::ResourceInUse(ref cause) => cause,
-            DeleteServiceActionError::ResourceNotFound(ref cause) => cause,
+            DeleteServiceActionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteServiceActionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteServiceActionError {}
 /// Errors returned by DeleteTagOption
 #[derive(Debug, PartialEq)]
 pub enum DeleteTagOptionError {
@@ -4853,19 +4905,16 @@ impl DeleteTagOptionError {
     }
 }
 impl fmt::Display for DeleteTagOptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTagOptionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTagOptionError::ResourceInUse(ref cause) => cause,
-            DeleteTagOptionError::ResourceNotFound(ref cause) => cause,
-            DeleteTagOptionError::TagOptionNotMigrated(ref cause) => cause,
+            DeleteTagOptionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteTagOptionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTagOptionError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTagOptionError {}
 /// Errors returned by DescribeConstraint
 #[derive(Debug, PartialEq)]
 pub enum DescribeConstraintError {
@@ -4888,17 +4937,14 @@ impl DescribeConstraintError {
     }
 }
 impl fmt::Display for DescribeConstraintError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConstraintError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConstraintError::ResourceNotFound(ref cause) => cause,
+            DescribeConstraintError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeConstraintError {}
 /// Errors returned by DescribeCopyProductStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribeCopyProductStatusError {
@@ -4923,17 +4969,14 @@ impl DescribeCopyProductStatusError {
     }
 }
 impl fmt::Display for DescribeCopyProductStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCopyProductStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCopyProductStatusError::ResourceNotFound(ref cause) => cause,
+            DescribeCopyProductStatusError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeCopyProductStatusError {}
 /// Errors returned by DescribePortfolio
 #[derive(Debug, PartialEq)]
 pub enum DescribePortfolioError {
@@ -4956,17 +4999,14 @@ impl DescribePortfolioError {
     }
 }
 impl fmt::Display for DescribePortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePortfolioError::ResourceNotFound(ref cause) => cause,
+            DescribePortfolioError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePortfolioError {}
 /// Errors returned by DescribePortfolioShareStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribePortfolioShareStatusError {
@@ -5007,19 +5047,22 @@ impl DescribePortfolioShareStatusError {
     }
 }
 impl fmt::Display for DescribePortfolioShareStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePortfolioShareStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePortfolioShareStatusError::InvalidParameters(ref cause) => cause,
-            DescribePortfolioShareStatusError::OperationNotSupported(ref cause) => cause,
-            DescribePortfolioShareStatusError::ResourceNotFound(ref cause) => cause,
+            DescribePortfolioShareStatusError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribePortfolioShareStatusError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribePortfolioShareStatusError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribePortfolioShareStatusError {}
 /// Errors returned by DescribeProduct
 #[derive(Debug, PartialEq)]
 pub enum DescribeProductError {
@@ -5047,18 +5090,15 @@ impl DescribeProductError {
     }
 }
 impl fmt::Display for DescribeProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProductError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProductError::InvalidParameters(ref cause) => cause,
-            DescribeProductError::ResourceNotFound(ref cause) => cause,
+            DescribeProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DescribeProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProductError {}
 /// Errors returned by DescribeProductAsAdmin
 #[derive(Debug, PartialEq)]
 pub enum DescribeProductAsAdminError {
@@ -5083,17 +5123,14 @@ impl DescribeProductAsAdminError {
     }
 }
 impl fmt::Display for DescribeProductAsAdminError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProductAsAdminError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProductAsAdminError::ResourceNotFound(ref cause) => cause,
+            DescribeProductAsAdminError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProductAsAdminError {}
 /// Errors returned by DescribeProductView
 #[derive(Debug, PartialEq)]
 pub enum DescribeProductViewError {
@@ -5125,18 +5162,15 @@ impl DescribeProductViewError {
     }
 }
 impl fmt::Display for DescribeProductViewError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProductViewError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProductViewError::InvalidParameters(ref cause) => cause,
-            DescribeProductViewError::ResourceNotFound(ref cause) => cause,
+            DescribeProductViewError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            DescribeProductViewError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProductViewError {}
 /// Errors returned by DescribeProvisionedProduct
 #[derive(Debug, PartialEq)]
 pub enum DescribeProvisionedProductError {
@@ -5163,17 +5197,14 @@ impl DescribeProvisionedProductError {
     }
 }
 impl fmt::Display for DescribeProvisionedProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProvisionedProductError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProvisionedProductError::ResourceNotFound(ref cause) => cause,
+            DescribeProvisionedProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProvisionedProductError {}
 /// Errors returned by DescribeProvisionedProductPlan
 #[derive(Debug, PartialEq)]
 pub enum DescribeProvisionedProductPlanError {
@@ -5207,18 +5238,19 @@ impl DescribeProvisionedProductPlanError {
     }
 }
 impl fmt::Display for DescribeProvisionedProductPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProvisionedProductPlanError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProvisionedProductPlanError::InvalidParameters(ref cause) => cause,
-            DescribeProvisionedProductPlanError::ResourceNotFound(ref cause) => cause,
+            DescribeProvisionedProductPlanError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeProvisionedProductPlanError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeProvisionedProductPlanError {}
 /// Errors returned by DescribeProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum DescribeProvisioningArtifactError {
@@ -5245,17 +5277,16 @@ impl DescribeProvisioningArtifactError {
     }
 }
 impl fmt::Display for DescribeProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProvisioningArtifactError::ResourceNotFound(ref cause) => cause,
+            DescribeProvisioningArtifactError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeProvisioningArtifactError {}
 /// Errors returned by DescribeProvisioningParameters
 #[derive(Debug, PartialEq)]
 pub enum DescribeProvisioningParametersError {
@@ -5289,18 +5320,19 @@ impl DescribeProvisioningParametersError {
     }
 }
 impl fmt::Display for DescribeProvisioningParametersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProvisioningParametersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProvisioningParametersError::InvalidParameters(ref cause) => cause,
-            DescribeProvisioningParametersError::ResourceNotFound(ref cause) => cause,
+            DescribeProvisioningParametersError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeProvisioningParametersError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeProvisioningParametersError {}
 /// Errors returned by DescribeRecord
 #[derive(Debug, PartialEq)]
 pub enum DescribeRecordError {
@@ -5323,17 +5355,14 @@ impl DescribeRecordError {
     }
 }
 impl fmt::Display for DescribeRecordError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeRecordError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeRecordError::ResourceNotFound(ref cause) => cause,
+            DescribeRecordError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeRecordError {}
 /// Errors returned by DescribeServiceAction
 #[derive(Debug, PartialEq)]
 pub enum DescribeServiceActionError {
@@ -5358,17 +5387,14 @@ impl DescribeServiceActionError {
     }
 }
 impl fmt::Display for DescribeServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeServiceActionError::ResourceNotFound(ref cause) => cause,
+            DescribeServiceActionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeServiceActionError {}
 /// Errors returned by DescribeServiceActionExecutionParameters
 #[derive(Debug, PartialEq)]
 pub enum DescribeServiceActionExecutionParametersError {
@@ -5402,18 +5428,19 @@ impl DescribeServiceActionExecutionParametersError {
     }
 }
 impl fmt::Display for DescribeServiceActionExecutionParametersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeServiceActionExecutionParametersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeServiceActionExecutionParametersError::InvalidParameters(ref cause) => cause,
-            DescribeServiceActionExecutionParametersError::ResourceNotFound(ref cause) => cause,
+            DescribeServiceActionExecutionParametersError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeServiceActionExecutionParametersError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeServiceActionExecutionParametersError {}
 /// Errors returned by DescribeTagOption
 #[derive(Debug, PartialEq)]
 pub enum DescribeTagOptionError {
@@ -5443,18 +5470,15 @@ impl DescribeTagOptionError {
     }
 }
 impl fmt::Display for DescribeTagOptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTagOptionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTagOptionError::ResourceNotFound(ref cause) => cause,
-            DescribeTagOptionError::TagOptionNotMigrated(ref cause) => cause,
+            DescribeTagOptionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeTagOptionError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTagOptionError {}
 /// Errors returned by DisableAWSOrganizationsAccess
 #[derive(Debug, PartialEq)]
 pub enum DisableAWSOrganizationsAccessError {
@@ -5495,19 +5519,20 @@ impl DisableAWSOrganizationsAccessError {
     }
 }
 impl fmt::Display for DisableAWSOrganizationsAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableAWSOrganizationsAccessError {
-    fn description(&self) -> &str {
         match *self {
-            DisableAWSOrganizationsAccessError::InvalidState(ref cause) => cause,
-            DisableAWSOrganizationsAccessError::OperationNotSupported(ref cause) => cause,
-            DisableAWSOrganizationsAccessError::ResourceNotFound(ref cause) => cause,
+            DisableAWSOrganizationsAccessError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DisableAWSOrganizationsAccessError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisableAWSOrganizationsAccessError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisableAWSOrganizationsAccessError {}
 /// Errors returned by DisassociateBudgetFromResource
 #[derive(Debug, PartialEq)]
 pub enum DisassociateBudgetFromResourceError {
@@ -5534,17 +5559,16 @@ impl DisassociateBudgetFromResourceError {
     }
 }
 impl fmt::Display for DisassociateBudgetFromResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateBudgetFromResourceError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateBudgetFromResourceError::ResourceNotFound(ref cause) => cause,
+            DisassociateBudgetFromResourceError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateBudgetFromResourceError {}
 /// Errors returned by DisassociatePrincipalFromPortfolio
 #[derive(Debug, PartialEq)]
 pub enum DisassociatePrincipalFromPortfolioError {
@@ -5578,18 +5602,19 @@ impl DisassociatePrincipalFromPortfolioError {
     }
 }
 impl fmt::Display for DisassociatePrincipalFromPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociatePrincipalFromPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociatePrincipalFromPortfolioError::InvalidParameters(ref cause) => cause,
-            DisassociatePrincipalFromPortfolioError::ResourceNotFound(ref cause) => cause,
+            DisassociatePrincipalFromPortfolioError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociatePrincipalFromPortfolioError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociatePrincipalFromPortfolioError {}
 /// Errors returned by DisassociateProductFromPortfolio
 #[derive(Debug, PartialEq)]
 pub enum DisassociateProductFromPortfolioError {
@@ -5630,19 +5655,22 @@ impl DisassociateProductFromPortfolioError {
     }
 }
 impl fmt::Display for DisassociateProductFromPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateProductFromPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateProductFromPortfolioError::InvalidParameters(ref cause) => cause,
-            DisassociateProductFromPortfolioError::ResourceInUse(ref cause) => cause,
-            DisassociateProductFromPortfolioError::ResourceNotFound(ref cause) => cause,
+            DisassociateProductFromPortfolioError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateProductFromPortfolioError::ResourceInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateProductFromPortfolioError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateProductFromPortfolioError {}
 /// Errors returned by DisassociateServiceActionFromProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum DisassociateServiceActionFromProvisioningArtifactError {
@@ -5671,19 +5699,16 @@ impl DisassociateServiceActionFromProvisioningArtifactError {
     }
 }
 impl fmt::Display for DisassociateServiceActionFromProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateServiceActionFromProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
             DisassociateServiceActionFromProvisioningArtifactError::ResourceNotFound(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for DisassociateServiceActionFromProvisioningArtifactError {}
 /// Errors returned by DisassociateTagOptionFromResource
 #[derive(Debug, PartialEq)]
 pub enum DisassociateTagOptionFromResourceError {
@@ -5717,18 +5742,19 @@ impl DisassociateTagOptionFromResourceError {
     }
 }
 impl fmt::Display for DisassociateTagOptionFromResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateTagOptionFromResourceError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateTagOptionFromResourceError::ResourceNotFound(ref cause) => cause,
-            DisassociateTagOptionFromResourceError::TagOptionNotMigrated(ref cause) => cause,
+            DisassociateTagOptionFromResourceError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateTagOptionFromResourceError::TagOptionNotMigrated(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateTagOptionFromResourceError {}
 /// Errors returned by EnableAWSOrganizationsAccess
 #[derive(Debug, PartialEq)]
 pub enum EnableAWSOrganizationsAccessError {
@@ -5769,19 +5795,20 @@ impl EnableAWSOrganizationsAccessError {
     }
 }
 impl fmt::Display for EnableAWSOrganizationsAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableAWSOrganizationsAccessError {
-    fn description(&self) -> &str {
         match *self {
-            EnableAWSOrganizationsAccessError::InvalidState(ref cause) => cause,
-            EnableAWSOrganizationsAccessError::OperationNotSupported(ref cause) => cause,
-            EnableAWSOrganizationsAccessError::ResourceNotFound(ref cause) => cause,
+            EnableAWSOrganizationsAccessError::InvalidState(ref cause) => write!(f, "{}", cause),
+            EnableAWSOrganizationsAccessError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            EnableAWSOrganizationsAccessError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for EnableAWSOrganizationsAccessError {}
 /// Errors returned by ExecuteProvisionedProductPlan
 #[derive(Debug, PartialEq)]
 pub enum ExecuteProvisionedProductPlanError {
@@ -5822,19 +5849,20 @@ impl ExecuteProvisionedProductPlanError {
     }
 }
 impl fmt::Display for ExecuteProvisionedProductPlanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExecuteProvisionedProductPlanError {
-    fn description(&self) -> &str {
         match *self {
-            ExecuteProvisionedProductPlanError::InvalidParameters(ref cause) => cause,
-            ExecuteProvisionedProductPlanError::InvalidState(ref cause) => cause,
-            ExecuteProvisionedProductPlanError::ResourceNotFound(ref cause) => cause,
+            ExecuteProvisionedProductPlanError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ExecuteProvisionedProductPlanError::InvalidState(ref cause) => write!(f, "{}", cause),
+            ExecuteProvisionedProductPlanError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ExecuteProvisionedProductPlanError {}
 /// Errors returned by ExecuteProvisionedProductServiceAction
 #[derive(Debug, PartialEq)]
 pub enum ExecuteProvisionedProductServiceActionError {
@@ -5875,19 +5903,22 @@ impl ExecuteProvisionedProductServiceActionError {
     }
 }
 impl fmt::Display for ExecuteProvisionedProductServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExecuteProvisionedProductServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            ExecuteProvisionedProductServiceActionError::InvalidParameters(ref cause) => cause,
-            ExecuteProvisionedProductServiceActionError::InvalidState(ref cause) => cause,
-            ExecuteProvisionedProductServiceActionError::ResourceNotFound(ref cause) => cause,
+            ExecuteProvisionedProductServiceActionError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ExecuteProvisionedProductServiceActionError::InvalidState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ExecuteProvisionedProductServiceActionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ExecuteProvisionedProductServiceActionError {}
 /// Errors returned by GetAWSOrganizationsAccessStatus
 #[derive(Debug, PartialEq)]
 pub enum GetAWSOrganizationsAccessStatusError {
@@ -5921,18 +5952,19 @@ impl GetAWSOrganizationsAccessStatusError {
     }
 }
 impl fmt::Display for GetAWSOrganizationsAccessStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAWSOrganizationsAccessStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetAWSOrganizationsAccessStatusError::OperationNotSupported(ref cause) => cause,
-            GetAWSOrganizationsAccessStatusError::ResourceNotFound(ref cause) => cause,
+            GetAWSOrganizationsAccessStatusError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetAWSOrganizationsAccessStatusError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetAWSOrganizationsAccessStatusError {}
 /// Errors returned by ListAcceptedPortfolioShares
 #[derive(Debug, PartialEq)]
 pub enum ListAcceptedPortfolioSharesError {
@@ -5966,18 +5998,19 @@ impl ListAcceptedPortfolioSharesError {
     }
 }
 impl fmt::Display for ListAcceptedPortfolioSharesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAcceptedPortfolioSharesError {
-    fn description(&self) -> &str {
         match *self {
-            ListAcceptedPortfolioSharesError::InvalidParameters(ref cause) => cause,
-            ListAcceptedPortfolioSharesError::OperationNotSupported(ref cause) => cause,
+            ListAcceptedPortfolioSharesError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAcceptedPortfolioSharesError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListAcceptedPortfolioSharesError {}
 /// Errors returned by ListBudgetsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListBudgetsForResourceError {
@@ -6009,18 +6042,15 @@ impl ListBudgetsForResourceError {
     }
 }
 impl fmt::Display for ListBudgetsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBudgetsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListBudgetsForResourceError::InvalidParameters(ref cause) => cause,
-            ListBudgetsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListBudgetsForResourceError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListBudgetsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBudgetsForResourceError {}
 /// Errors returned by ListConstraintsForPortfolio
 #[derive(Debug, PartialEq)]
 pub enum ListConstraintsForPortfolioError {
@@ -6054,18 +6084,17 @@ impl ListConstraintsForPortfolioError {
     }
 }
 impl fmt::Display for ListConstraintsForPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConstraintsForPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            ListConstraintsForPortfolioError::InvalidParameters(ref cause) => cause,
-            ListConstraintsForPortfolioError::ResourceNotFound(ref cause) => cause,
+            ListConstraintsForPortfolioError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListConstraintsForPortfolioError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConstraintsForPortfolioError {}
 /// Errors returned by ListLaunchPaths
 #[derive(Debug, PartialEq)]
 pub enum ListLaunchPathsError {
@@ -6093,18 +6122,15 @@ impl ListLaunchPathsError {
     }
 }
 impl fmt::Display for ListLaunchPathsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLaunchPathsError {
-    fn description(&self) -> &str {
         match *self {
-            ListLaunchPathsError::InvalidParameters(ref cause) => cause,
-            ListLaunchPathsError::ResourceNotFound(ref cause) => cause,
+            ListLaunchPathsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListLaunchPathsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListLaunchPathsError {}
 /// Errors returned by ListOrganizationPortfolioAccess
 #[derive(Debug, PartialEq)]
 pub enum ListOrganizationPortfolioAccessError {
@@ -6145,19 +6171,22 @@ impl ListOrganizationPortfolioAccessError {
     }
 }
 impl fmt::Display for ListOrganizationPortfolioAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOrganizationPortfolioAccessError {
-    fn description(&self) -> &str {
         match *self {
-            ListOrganizationPortfolioAccessError::InvalidParameters(ref cause) => cause,
-            ListOrganizationPortfolioAccessError::OperationNotSupported(ref cause) => cause,
-            ListOrganizationPortfolioAccessError::ResourceNotFound(ref cause) => cause,
+            ListOrganizationPortfolioAccessError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationPortfolioAccessError::OperationNotSupported(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListOrganizationPortfolioAccessError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListOrganizationPortfolioAccessError {}
 /// Errors returned by ListPortfolioAccess
 #[derive(Debug, PartialEq)]
 pub enum ListPortfolioAccessError {
@@ -6182,17 +6211,14 @@ impl ListPortfolioAccessError {
     }
 }
 impl fmt::Display for ListPortfolioAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPortfolioAccessError {
-    fn description(&self) -> &str {
         match *self {
-            ListPortfolioAccessError::ResourceNotFound(ref cause) => cause,
+            ListPortfolioAccessError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPortfolioAccessError {}
 /// Errors returned by ListPortfolios
 #[derive(Debug, PartialEq)]
 pub enum ListPortfoliosError {
@@ -6215,17 +6241,14 @@ impl ListPortfoliosError {
     }
 }
 impl fmt::Display for ListPortfoliosError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPortfoliosError {
-    fn description(&self) -> &str {
         match *self {
-            ListPortfoliosError::InvalidParameters(ref cause) => cause,
+            ListPortfoliosError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPortfoliosError {}
 /// Errors returned by ListPortfoliosForProduct
 #[derive(Debug, PartialEq)]
 pub enum ListPortfoliosForProductError {
@@ -6257,18 +6280,15 @@ impl ListPortfoliosForProductError {
     }
 }
 impl fmt::Display for ListPortfoliosForProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPortfoliosForProductError {
-    fn description(&self) -> &str {
         match *self {
-            ListPortfoliosForProductError::InvalidParameters(ref cause) => cause,
-            ListPortfoliosForProductError::ResourceNotFound(ref cause) => cause,
+            ListPortfoliosForProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListPortfoliosForProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPortfoliosForProductError {}
 /// Errors returned by ListPrincipalsForPortfolio
 #[derive(Debug, PartialEq)]
 pub enum ListPrincipalsForPortfolioError {
@@ -6302,18 +6322,15 @@ impl ListPrincipalsForPortfolioError {
     }
 }
 impl fmt::Display for ListPrincipalsForPortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPrincipalsForPortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            ListPrincipalsForPortfolioError::InvalidParameters(ref cause) => cause,
-            ListPrincipalsForPortfolioError::ResourceNotFound(ref cause) => cause,
+            ListPrincipalsForPortfolioError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListPrincipalsForPortfolioError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPrincipalsForPortfolioError {}
 /// Errors returned by ListProvisionedProductPlans
 #[derive(Debug, PartialEq)]
 pub enum ListProvisionedProductPlansError {
@@ -6347,18 +6364,17 @@ impl ListProvisionedProductPlansError {
     }
 }
 impl fmt::Display for ListProvisionedProductPlansError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProvisionedProductPlansError {
-    fn description(&self) -> &str {
         match *self {
-            ListProvisionedProductPlansError::InvalidParameters(ref cause) => cause,
-            ListProvisionedProductPlansError::ResourceNotFound(ref cause) => cause,
+            ListProvisionedProductPlansError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListProvisionedProductPlansError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProvisionedProductPlansError {}
 /// Errors returned by ListProvisioningArtifacts
 #[derive(Debug, PartialEq)]
 pub enum ListProvisioningArtifactsError {
@@ -6390,18 +6406,15 @@ impl ListProvisioningArtifactsError {
     }
 }
 impl fmt::Display for ListProvisioningArtifactsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProvisioningArtifactsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProvisioningArtifactsError::InvalidParameters(ref cause) => cause,
-            ListProvisioningArtifactsError::ResourceNotFound(ref cause) => cause,
+            ListProvisioningArtifactsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListProvisioningArtifactsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProvisioningArtifactsError {}
 /// Errors returned by ListProvisioningArtifactsForServiceAction
 #[derive(Debug, PartialEq)]
 pub enum ListProvisioningArtifactsForServiceActionError {
@@ -6435,18 +6448,19 @@ impl ListProvisioningArtifactsForServiceActionError {
     }
 }
 impl fmt::Display for ListProvisioningArtifactsForServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProvisioningArtifactsForServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            ListProvisioningArtifactsForServiceActionError::InvalidParameters(ref cause) => cause,
-            ListProvisioningArtifactsForServiceActionError::ResourceNotFound(ref cause) => cause,
+            ListProvisioningArtifactsForServiceActionError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListProvisioningArtifactsForServiceActionError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListProvisioningArtifactsForServiceActionError {}
 /// Errors returned by ListRecordHistory
 #[derive(Debug, PartialEq)]
 pub enum ListRecordHistoryError {
@@ -6469,17 +6483,14 @@ impl ListRecordHistoryError {
     }
 }
 impl fmt::Display for ListRecordHistoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRecordHistoryError {
-    fn description(&self) -> &str {
         match *self {
-            ListRecordHistoryError::InvalidParameters(ref cause) => cause,
+            ListRecordHistoryError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRecordHistoryError {}
 /// Errors returned by ListResourcesForTagOption
 #[derive(Debug, PartialEq)]
 pub enum ListResourcesForTagOptionError {
@@ -6518,19 +6529,18 @@ impl ListResourcesForTagOptionError {
     }
 }
 impl fmt::Display for ListResourcesForTagOptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourcesForTagOptionError {
-    fn description(&self) -> &str {
         match *self {
-            ListResourcesForTagOptionError::InvalidParameters(ref cause) => cause,
-            ListResourcesForTagOptionError::ResourceNotFound(ref cause) => cause,
-            ListResourcesForTagOptionError::TagOptionNotMigrated(ref cause) => cause,
+            ListResourcesForTagOptionError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListResourcesForTagOptionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListResourcesForTagOptionError::TagOptionNotMigrated(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListResourcesForTagOptionError {}
 /// Errors returned by ListServiceActions
 #[derive(Debug, PartialEq)]
 pub enum ListServiceActionsError {
@@ -6555,17 +6565,14 @@ impl ListServiceActionsError {
     }
 }
 impl fmt::Display for ListServiceActionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListServiceActionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListServiceActionsError::InvalidParameters(ref cause) => cause,
+            ListServiceActionsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListServiceActionsError {}
 /// Errors returned by ListServiceActionsForProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum ListServiceActionsForProvisioningArtifactError {
@@ -6599,18 +6606,19 @@ impl ListServiceActionsForProvisioningArtifactError {
     }
 }
 impl fmt::Display for ListServiceActionsForProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListServiceActionsForProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
-            ListServiceActionsForProvisioningArtifactError::InvalidParameters(ref cause) => cause,
-            ListServiceActionsForProvisioningArtifactError::ResourceNotFound(ref cause) => cause,
+            ListServiceActionsForProvisioningArtifactError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListServiceActionsForProvisioningArtifactError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListServiceActionsForProvisioningArtifactError {}
 /// Errors returned by ListStackInstancesForProvisionedProduct
 #[derive(Debug, PartialEq)]
 pub enum ListStackInstancesForProvisionedProductError {
@@ -6644,18 +6652,19 @@ impl ListStackInstancesForProvisionedProductError {
     }
 }
 impl fmt::Display for ListStackInstancesForProvisionedProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListStackInstancesForProvisionedProductError {
-    fn description(&self) -> &str {
         match *self {
-            ListStackInstancesForProvisionedProductError::InvalidParameters(ref cause) => cause,
-            ListStackInstancesForProvisionedProductError::ResourceNotFound(ref cause) => cause,
+            ListStackInstancesForProvisionedProductError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListStackInstancesForProvisionedProductError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListStackInstancesForProvisionedProductError {}
 /// Errors returned by ListTagOptions
 #[derive(Debug, PartialEq)]
 pub enum ListTagOptionsError {
@@ -6683,18 +6692,15 @@ impl ListTagOptionsError {
     }
 }
 impl fmt::Display for ListTagOptionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagOptionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagOptionsError::InvalidParameters(ref cause) => cause,
-            ListTagOptionsError::TagOptionNotMigrated(ref cause) => cause,
+            ListTagOptionsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ListTagOptionsError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagOptionsError {}
 /// Errors returned by ProvisionProduct
 #[derive(Debug, PartialEq)]
 pub enum ProvisionProductError {
@@ -6727,19 +6733,16 @@ impl ProvisionProductError {
     }
 }
 impl fmt::Display for ProvisionProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ProvisionProductError {
-    fn description(&self) -> &str {
         match *self {
-            ProvisionProductError::DuplicateResource(ref cause) => cause,
-            ProvisionProductError::InvalidParameters(ref cause) => cause,
-            ProvisionProductError::ResourceNotFound(ref cause) => cause,
+            ProvisionProductError::DuplicateResource(ref cause) => write!(f, "{}", cause),
+            ProvisionProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            ProvisionProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ProvisionProductError {}
 /// Errors returned by RejectPortfolioShare
 #[derive(Debug, PartialEq)]
 pub enum RejectPortfolioShareError {
@@ -6764,17 +6767,14 @@ impl RejectPortfolioShareError {
     }
 }
 impl fmt::Display for RejectPortfolioShareError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RejectPortfolioShareError {
-    fn description(&self) -> &str {
         match *self {
-            RejectPortfolioShareError::ResourceNotFound(ref cause) => cause,
+            RejectPortfolioShareError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RejectPortfolioShareError {}
 /// Errors returned by ScanProvisionedProducts
 #[derive(Debug, PartialEq)]
 pub enum ScanProvisionedProductsError {
@@ -6799,17 +6799,14 @@ impl ScanProvisionedProductsError {
     }
 }
 impl fmt::Display for ScanProvisionedProductsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ScanProvisionedProductsError {
-    fn description(&self) -> &str {
         match *self {
-            ScanProvisionedProductsError::InvalidParameters(ref cause) => cause,
+            ScanProvisionedProductsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ScanProvisionedProductsError {}
 /// Errors returned by SearchProducts
 #[derive(Debug, PartialEq)]
 pub enum SearchProductsError {
@@ -6832,17 +6829,14 @@ impl SearchProductsError {
     }
 }
 impl fmt::Display for SearchProductsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchProductsError {
-    fn description(&self) -> &str {
         match *self {
-            SearchProductsError::InvalidParameters(ref cause) => cause,
+            SearchProductsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchProductsError {}
 /// Errors returned by SearchProductsAsAdmin
 #[derive(Debug, PartialEq)]
 pub enum SearchProductsAsAdminError {
@@ -6874,18 +6868,15 @@ impl SearchProductsAsAdminError {
     }
 }
 impl fmt::Display for SearchProductsAsAdminError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchProductsAsAdminError {
-    fn description(&self) -> &str {
         match *self {
-            SearchProductsAsAdminError::InvalidParameters(ref cause) => cause,
-            SearchProductsAsAdminError::ResourceNotFound(ref cause) => cause,
+            SearchProductsAsAdminError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            SearchProductsAsAdminError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchProductsAsAdminError {}
 /// Errors returned by SearchProvisionedProducts
 #[derive(Debug, PartialEq)]
 pub enum SearchProvisionedProductsError {
@@ -6910,17 +6901,14 @@ impl SearchProvisionedProductsError {
     }
 }
 impl fmt::Display for SearchProvisionedProductsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchProvisionedProductsError {
-    fn description(&self) -> &str {
         match *self {
-            SearchProvisionedProductsError::InvalidParameters(ref cause) => cause,
+            SearchProvisionedProductsError::InvalidParameters(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchProvisionedProductsError {}
 /// Errors returned by TerminateProvisionedProduct
 #[derive(Debug, PartialEq)]
 pub enum TerminateProvisionedProductError {
@@ -6947,17 +6935,14 @@ impl TerminateProvisionedProductError {
     }
 }
 impl fmt::Display for TerminateProvisionedProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TerminateProvisionedProductError {
-    fn description(&self) -> &str {
         match *self {
-            TerminateProvisionedProductError::ResourceNotFound(ref cause) => cause,
+            TerminateProvisionedProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TerminateProvisionedProductError {}
 /// Errors returned by UpdateConstraint
 #[derive(Debug, PartialEq)]
 pub enum UpdateConstraintError {
@@ -6985,18 +6970,15 @@ impl UpdateConstraintError {
     }
 }
 impl fmt::Display for UpdateConstraintError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConstraintError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConstraintError::InvalidParameters(ref cause) => cause,
-            UpdateConstraintError::ResourceNotFound(ref cause) => cause,
+            UpdateConstraintError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateConstraintError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateConstraintError {}
 /// Errors returned by UpdatePortfolio
 #[derive(Debug, PartialEq)]
 pub enum UpdatePortfolioError {
@@ -7036,20 +7018,17 @@ impl UpdatePortfolioError {
     }
 }
 impl fmt::Display for UpdatePortfolioError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePortfolioError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePortfolioError::InvalidParameters(ref cause) => cause,
-            UpdatePortfolioError::LimitExceeded(ref cause) => cause,
-            UpdatePortfolioError::ResourceNotFound(ref cause) => cause,
-            UpdatePortfolioError::TagOptionNotMigrated(ref cause) => cause,
+            UpdatePortfolioError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdatePortfolioError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdatePortfolioError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdatePortfolioError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePortfolioError {}
 /// Errors returned by UpdateProduct
 #[derive(Debug, PartialEq)]
 pub enum UpdateProductError {
@@ -7082,19 +7061,16 @@ impl UpdateProductError {
     }
 }
 impl fmt::Display for UpdateProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProductError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProductError::InvalidParameters(ref cause) => cause,
-            UpdateProductError::ResourceNotFound(ref cause) => cause,
-            UpdateProductError::TagOptionNotMigrated(ref cause) => cause,
+            UpdateProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateProductError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProductError {}
 /// Errors returned by UpdateProvisionedProduct
 #[derive(Debug, PartialEq)]
 pub enum UpdateProvisionedProductError {
@@ -7126,18 +7102,15 @@ impl UpdateProvisionedProductError {
     }
 }
 impl fmt::Display for UpdateProvisionedProductError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProvisionedProductError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProvisionedProductError::InvalidParameters(ref cause) => cause,
-            UpdateProvisionedProductError::ResourceNotFound(ref cause) => cause,
+            UpdateProvisionedProductError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateProvisionedProductError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProvisionedProductError {}
 /// Errors returned by UpdateProvisionedProductProperties
 #[derive(Debug, PartialEq)]
 pub enum UpdateProvisionedProductPropertiesError {
@@ -7178,19 +7151,22 @@ impl UpdateProvisionedProductPropertiesError {
     }
 }
 impl fmt::Display for UpdateProvisionedProductPropertiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProvisionedProductPropertiesError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProvisionedProductPropertiesError::InvalidParameters(ref cause) => cause,
-            UpdateProvisionedProductPropertiesError::InvalidState(ref cause) => cause,
-            UpdateProvisionedProductPropertiesError::ResourceNotFound(ref cause) => cause,
+            UpdateProvisionedProductPropertiesError::InvalidParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateProvisionedProductPropertiesError::InvalidState(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateProvisionedProductPropertiesError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateProvisionedProductPropertiesError {}
 /// Errors returned by UpdateProvisioningArtifact
 #[derive(Debug, PartialEq)]
 pub enum UpdateProvisioningArtifactError {
@@ -7224,18 +7200,15 @@ impl UpdateProvisioningArtifactError {
     }
 }
 impl fmt::Display for UpdateProvisioningArtifactError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProvisioningArtifactError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProvisioningArtifactError::InvalidParameters(ref cause) => cause,
-            UpdateProvisioningArtifactError::ResourceNotFound(ref cause) => cause,
+            UpdateProvisioningArtifactError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateProvisioningArtifactError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProvisioningArtifactError {}
 /// Errors returned by UpdateServiceAction
 #[derive(Debug, PartialEq)]
 pub enum UpdateServiceActionError {
@@ -7267,18 +7240,15 @@ impl UpdateServiceActionError {
     }
 }
 impl fmt::Display for UpdateServiceActionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateServiceActionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateServiceActionError::InvalidParameters(ref cause) => cause,
-            UpdateServiceActionError::ResourceNotFound(ref cause) => cause,
+            UpdateServiceActionError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateServiceActionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateServiceActionError {}
 /// Errors returned by UpdateTagOption
 #[derive(Debug, PartialEq)]
 pub enum UpdateTagOptionError {
@@ -7318,20 +7288,17 @@ impl UpdateTagOptionError {
     }
 }
 impl fmt::Display for UpdateTagOptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTagOptionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTagOptionError::DuplicateResource(ref cause) => cause,
-            UpdateTagOptionError::InvalidParameters(ref cause) => cause,
-            UpdateTagOptionError::ResourceNotFound(ref cause) => cause,
-            UpdateTagOptionError::TagOptionNotMigrated(ref cause) => cause,
+            UpdateTagOptionError::DuplicateResource(ref cause) => write!(f, "{}", cause),
+            UpdateTagOptionError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateTagOptionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTagOptionError::TagOptionNotMigrated(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTagOptionError {}
 /// Trait representing the capabilities of the AWS Service Catalog API. AWS Service Catalog clients implement this trait.
 #[async_trait]
 pub trait ServiceCatalog {

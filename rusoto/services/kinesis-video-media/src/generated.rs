@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMediaInput {
     /// <p>Identifies the starting chunk to get from the specified stream. </p>
     #[serde(rename = "StartSelector")]
@@ -49,6 +51,7 @@ pub struct GetMediaOutput {
 
 /// <p><p>Identifies the chunk on the Kinesis video stream where you want the <code>GetMedia</code> API to start returning media data. You have the following options to identify the starting chunk: </p> <ul> <li> <p>Choose the latest (or oldest) chunk.</p> </li> <li> <p>Identify a specific chunk. You can identify a specific chunk either by providing a fragment number or timestamp (server or producer). </p> </li> <li> <p>Each chunk&#39;s metadata includes a continuation token as a Matroska (MKV) tag (<code>AWS<em>KINESISVIDEO</em>CONTINUATION_TOKEN</code>). If your previous <code>GetMedia</code> request terminated, you can use this tag value in your next <code>GetMedia</code> request. The API then starts returning chunks starting where the last API ended.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartSelector {
     /// <p>Specifies the fragment number from where you want the <code>GetMedia</code> API to start returning the fragments. </p>
     #[serde(rename = "AfterFragmentNumber")]
@@ -114,22 +117,19 @@ impl GetMediaError {
     }
 }
 impl fmt::Display for GetMediaError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMediaError {
-    fn description(&self) -> &str {
         match *self {
-            GetMediaError::ClientLimitExceeded(ref cause) => cause,
-            GetMediaError::ConnectionLimitExceeded(ref cause) => cause,
-            GetMediaError::InvalidArgument(ref cause) => cause,
-            GetMediaError::InvalidEndpoint(ref cause) => cause,
-            GetMediaError::NotAuthorized(ref cause) => cause,
-            GetMediaError::ResourceNotFound(ref cause) => cause,
+            GetMediaError::ClientLimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetMediaError::ConnectionLimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetMediaError::InvalidArgument(ref cause) => write!(f, "{}", cause),
+            GetMediaError::InvalidEndpoint(ref cause) => write!(f, "{}", cause),
+            GetMediaError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetMediaError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMediaError {}
 /// Trait representing the capabilities of the Kinesis Video Media API. Kinesis Video Media clients implement this trait.
 #[async_trait]
 pub trait KinesisVideoMedia {

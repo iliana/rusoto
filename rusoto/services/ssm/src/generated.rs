@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Information includes the AWS account ID where the current document is shared and the version shared with that account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccountSharingInfo {
     /// <p>The AWS account ID where the current document is shared.</p>
     #[serde(rename = "AccountId")]
@@ -40,7 +41,7 @@ pub struct AccountSharingInfo {
 
 /// <p>An activation registers one or more on-premises servers or virtual machines (VMs) with AWS so that you can configure those servers or VMs using Run Command. A server or VM that has been registered with AWS is called a managed instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Activation {
     /// <p>The ID created by Systems Manager when you submitted the activation.</p>
     #[serde(rename = "ActivationId")]
@@ -85,6 +86,7 @@ pub struct Activation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsToResourceRequest {
     /// <p><p>The resource ID you want to tag.</p> <p>Use the ID of the resource. Here are some examples:</p> <p>ManagedInstance: mi-012345abcde</p> <p>MaintenanceWindow: mw-012345abcde</p> <p>PatchBaseline: pb-012345abcde</p> <p>For the Document and Parameter values, use the name of the resource.</p> <note> <p>The ManagedInstance type for this API action is only for on-premises managed instances. You must specify the name of the managed instance in the following format: mi-ID_number. For example, mi-1a2b3c4d5e6f.</p> </note></p>
     #[serde(rename = "ResourceId")]
@@ -98,12 +100,12 @@ pub struct AddTagsToResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddTagsToResourceResult {}
 
 /// <p>Describes an association of a Systems Manager document and an instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Association {
     /// <p>The ID created by the system when you create an association. An association is a binding between a document and a set of targets with a schedule.</p>
     #[serde(rename = "AssociationId")]
@@ -149,7 +151,7 @@ pub struct Association {
 
 /// <p>Describes the parameters for a document.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociationDescription {
     /// <p>The association ID.</p>
     #[serde(rename = "AssociationId")]
@@ -235,7 +237,7 @@ pub struct AssociationDescription {
 
 /// <p>Includes information about the specified association.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociationExecution {
     /// <p>The association ID.</p>
     #[serde(rename = "AssociationId")]
@@ -273,6 +275,7 @@ pub struct AssociationExecution {
 
 /// <p>Filters used in the request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociationExecutionFilter {
     /// <p>The key value used in the request.</p>
     #[serde(rename = "Key")]
@@ -287,7 +290,7 @@ pub struct AssociationExecutionFilter {
 
 /// <p>Includes information about the specified association execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociationExecutionTarget {
     /// <p>The association ID.</p>
     #[serde(rename = "AssociationId")]
@@ -329,6 +332,7 @@ pub struct AssociationExecutionTarget {
 
 /// <p>Filters for the association execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociationExecutionTargetsFilter {
     /// <p>The key value used in the request.</p>
     #[serde(rename = "Key")]
@@ -340,6 +344,7 @@ pub struct AssociationExecutionTargetsFilter {
 
 /// <p>Describes a filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociationFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "key")]
@@ -351,7 +356,7 @@ pub struct AssociationFilter {
 
 /// <p>Information about the association.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociationOverview {
     /// <p>Returns the number of targets for the association status. For example, if you created an association with two instances, and one of them was successful, this would return the count of instances by status.</p>
     #[serde(rename = "AssociationStatusAggregatedCount")]
@@ -387,7 +392,7 @@ pub struct AssociationStatus {
 
 /// <p>Information about the association version.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociationVersionInfo {
     /// <p>The ID created by the system when the association was created.</p>
     #[serde(rename = "AssociationId")]
@@ -445,7 +450,7 @@ pub struct AssociationVersionInfo {
 
 /// <p>A structure that includes attributes that describe a document attachment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttachmentContent {
     /// <p>The cryptographic hash value of the document content.</p>
     #[serde(rename = "Hash")]
@@ -471,7 +476,7 @@ pub struct AttachmentContent {
 
 /// <p>An attribute of an attachment, such as the attachment name.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttachmentInformation {
     /// <p>The name of the attachment.</p>
     #[serde(rename = "Name")]
@@ -481,6 +486,7 @@ pub struct AttachmentInformation {
 
 /// <p>Identifying information about a document attachment, including the file name and a key-value pair that identifies the location of an attachment to a document.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AttachmentsSource {
     /// <p>The key of a key-value pair that identifies the location of an attachment to a document.</p>
     #[serde(rename = "Key")]
@@ -498,7 +504,7 @@ pub struct AttachmentsSource {
 
 /// <p>Detailed information about the current state of an individual Automation execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutomationExecution {
     /// <p>The execution ID.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -604,6 +610,7 @@ pub struct AutomationExecution {
 
 /// <p>A filter used to match specific automation executions. This is used to limit the scope of Automation execution information returned.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AutomationExecutionFilter {
     /// <p>One or more keys to limit the results. Valid filter keys include the following: DocumentNamePrefix, ExecutionStatus, ExecutionId, ParentExecutionId, CurrentAction, StartTimeBefore, StartTimeAfter.</p>
     #[serde(rename = "Key")]
@@ -615,7 +622,7 @@ pub struct AutomationExecutionFilter {
 
 /// <p>Details about a specific Automation execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutomationExecutionMetadata {
     /// <p>The execution ID.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -709,6 +716,7 @@ pub struct AutomationExecutionMetadata {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelCommandRequest {
     /// <p>The ID of the command you want to cancel.</p>
     #[serde(rename = "CommandId")]
@@ -721,10 +729,11 @@ pub struct CancelCommandRequest {
 
 /// <p>Whether or not the command was successfully canceled. There is no guarantee that a request can be canceled.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelCommandResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelMaintenanceWindowExecutionRequest {
     /// <p>The ID of the maintenance window execution to stop.</p>
     #[serde(rename = "WindowExecutionId")]
@@ -732,7 +741,7 @@ pub struct CancelMaintenanceWindowExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelMaintenanceWindowExecutionResult {
     /// <p>The ID of the maintenance window execution that has been stopped.</p>
     #[serde(rename = "WindowExecutionId")]
@@ -755,7 +764,7 @@ pub struct CloudWatchOutputConfig {
 
 /// <p>Describes a command request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Command {
     /// <p>CloudWatch Logs information where you want Systems Manager to send the command output.</p>
     #[serde(rename = "CloudWatchOutputConfig")]
@@ -853,6 +862,7 @@ pub struct Command {
 
 /// <p>Describes a command filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CommandFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "key")]
@@ -864,7 +874,7 @@ pub struct CommandFilter {
 
 /// <p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user runs SendCommand against three instances, then a command invocation is created for each requested instance ID. A command invocation returns status and detail information about a command you ran. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CommandInvocation {
     /// <p>CloudWatch Logs information where you want Systems Manager to send the command output.</p>
     #[serde(rename = "CloudWatchOutputConfig")]
@@ -933,7 +943,7 @@ pub struct CommandInvocation {
 
 /// <p>Describes plugin details.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CommandPlugin {
     /// <p>The name of the plugin. Must be one of the following: aws:updateAgent, aws:domainjoin, aws:applications, aws:runPowerShellScript, aws:psmodule, aws:cloudWatch, aws:runShellScript, or aws:updateSSMAgent. </p>
     #[serde(rename = "Name")]
@@ -1003,7 +1013,7 @@ pub struct ComplianceExecutionSummary {
 
 /// <p>Information about the compliance as defined by the resource type. For example, for a patch resource type, <code>Items</code> includes information about the PatchSeverity, Classification, etc.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComplianceItem {
     /// <p>The compliance type. For example, Association (for a State Manager association), Patch, or Custom:<code>string</code> are all valid compliance types.</p>
     #[serde(rename = "ComplianceType")]
@@ -1045,6 +1055,7 @@ pub struct ComplianceItem {
 
 /// <p>Information about a compliance item.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComplianceItemEntry {
     /// <p>A "Key": "Value" tag combination for the compliance item.</p>
     #[serde(rename = "Details")]
@@ -1068,6 +1079,7 @@ pub struct ComplianceItemEntry {
 
 /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComplianceStringFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -1085,7 +1097,7 @@ pub struct ComplianceStringFilter {
 
 /// <p>A summary of compliance information by compliance type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComplianceSummaryItem {
     /// <p>The type of compliance item. For example, the compliance type can be Association, Patch, or Custom:string.</p>
     #[serde(rename = "ComplianceType")]
@@ -1103,7 +1115,7 @@ pub struct ComplianceSummaryItem {
 
 /// <p>A summary of resources that are compliant. The summary is organized according to the resource count for each compliance type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompliantSummary {
     /// <p>The total number of resources that are compliant.</p>
     #[serde(rename = "CompliantCount")]
@@ -1116,6 +1128,7 @@ pub struct CompliantSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateActivationRequest {
     /// <p><p>The name of the registered, managed instance as it will appear in the Systems Manager console or when you use the AWS command line tools to list Systems Manager resources.</p> <important> <p>Do not enter personally identifiable information in this field.</p> </important></p>
     #[serde(rename = "DefaultInstanceName")]
@@ -1143,7 +1156,7 @@ pub struct CreateActivationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateActivationResult {
     /// <p>The code the system generates when it processes the activation. The activation code functions like a password to validate the activation ID. </p>
     #[serde(rename = "ActivationCode")]
@@ -1156,6 +1169,7 @@ pub struct CreateActivationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAssociationBatchRequest {
     /// <p>One or more associations.</p>
     #[serde(rename = "Entries")]
@@ -1215,7 +1229,7 @@ pub struct CreateAssociationBatchRequestEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAssociationBatchResult {
     /// <p>Information about the associations that failed.</p>
     #[serde(rename = "Failed")]
@@ -1228,6 +1242,7 @@ pub struct CreateAssociationBatchResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAssociationRequest {
     /// <p>Specify a descriptive name for the association.</p>
     #[serde(rename = "AssociationName")]
@@ -1279,7 +1294,7 @@ pub struct CreateAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAssociationResult {
     /// <p>Information about the association.</p>
     #[serde(rename = "AssociationDescription")]
@@ -1288,6 +1303,7 @@ pub struct CreateAssociationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDocumentRequest {
     /// <p>A list of key and value pairs that describe attachments to a version of a document.</p>
     #[serde(rename = "Attachments")]
@@ -1326,7 +1342,7 @@ pub struct CreateDocumentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDocumentResult {
     /// <p>Information about the Systems Manager document.</p>
     #[serde(rename = "DocumentDescription")]
@@ -1335,6 +1351,7 @@ pub struct CreateDocumentResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMaintenanceWindowRequest {
     /// <p>Enables a maintenance window task to run on managed instances, even if you have not registered those instances as targets. If enabled, then you must specify the unregistered instances (by instance ID) when you register a task with the maintenance window.</p> <p>If you don't enable this option, then you must specify previously-registered targets when you register a task with the maintenance window.</p>
     #[serde(rename = "AllowUnassociatedTargets")]
@@ -1378,7 +1395,7 @@ pub struct CreateMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMaintenanceWindowResult {
     /// <p>The ID of the created maintenance window.</p>
     #[serde(rename = "WindowId")]
@@ -1387,6 +1404,7 @@ pub struct CreateMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateOpsItemRequest {
     /// <p>Specify a category to assign to an OpsItem. </p>
     #[serde(rename = "Category")]
@@ -1428,7 +1446,7 @@ pub struct CreateOpsItemRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateOpsItemResponse {
     /// <p>The ID of the OpsItem.</p>
     #[serde(rename = "OpsItemId")]
@@ -1437,6 +1455,7 @@ pub struct CreateOpsItemResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePatchBaselineRequest {
     /// <p>A set of rules used to include patches in the baseline.</p>
     #[serde(rename = "ApprovalRules")]
@@ -1492,7 +1511,7 @@ pub struct CreatePatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePatchBaselineResult {
     /// <p>The ID of the created patch baseline.</p>
     #[serde(rename = "BaselineId")]
@@ -1501,6 +1520,7 @@ pub struct CreatePatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateResourceDataSyncRequest {
     /// <p>Amazon S3 configuration details for the sync.</p>
     #[serde(rename = "S3Destination")]
@@ -1520,10 +1540,11 @@ pub struct CreateResourceDataSyncRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateResourceDataSyncResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteActivationRequest {
     /// <p>The ID of the activation that you want to delete.</p>
     #[serde(rename = "ActivationId")]
@@ -1531,10 +1552,11 @@ pub struct DeleteActivationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteActivationResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAssociationRequest {
     /// <p>The association ID that you want to delete.</p>
     #[serde(rename = "AssociationId")]
@@ -1551,10 +1573,11 @@ pub struct DeleteAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteAssociationResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDocumentRequest {
     /// <p>The version of the document that you want to delete. If not provided, all versions of the document are deleted.</p>
     #[serde(rename = "DocumentVersion")]
@@ -1574,10 +1597,11 @@ pub struct DeleteDocumentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDocumentResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInventoryRequest {
     /// <p>User-provided idempotency token.</p>
     #[serde(rename = "ClientToken")]
@@ -1597,7 +1621,7 @@ pub struct DeleteInventoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInventoryResult {
     /// <p>Every <code>DeleteInventory</code> action is assigned a unique ID. This option returns a unique ID. You can use this ID to query the status of a delete operation. This option is useful for ensuring that a delete operation has completed before you begin other actions. </p>
     #[serde(rename = "DeletionId")]
@@ -1614,6 +1638,7 @@ pub struct DeleteInventoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMaintenanceWindowRequest {
     /// <p>The ID of the maintenance window to delete.</p>
     #[serde(rename = "WindowId")]
@@ -1621,7 +1646,7 @@ pub struct DeleteMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMaintenanceWindowResult {
     /// <p>The ID of the deleted maintenance window.</p>
     #[serde(rename = "WindowId")]
@@ -1630,6 +1655,7 @@ pub struct DeleteMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteParameterRequest {
     /// <p>The name of the parameter to delete.</p>
     #[serde(rename = "Name")]
@@ -1637,10 +1663,11 @@ pub struct DeleteParameterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteParameterResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteParametersRequest {
     /// <p>The names of the parameters to delete.</p>
     #[serde(rename = "Names")]
@@ -1648,7 +1675,7 @@ pub struct DeleteParametersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteParametersResult {
     /// <p>The names of the deleted parameters.</p>
     #[serde(rename = "DeletedParameters")]
@@ -1661,6 +1688,7 @@ pub struct DeleteParametersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePatchBaselineRequest {
     /// <p>The ID of the patch baseline to delete.</p>
     #[serde(rename = "BaselineId")]
@@ -1668,7 +1696,7 @@ pub struct DeletePatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePatchBaselineResult {
     /// <p>The ID of the deleted patch baseline.</p>
     #[serde(rename = "BaselineId")]
@@ -1677,6 +1705,7 @@ pub struct DeletePatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteResourceDataSyncRequest {
     /// <p>The name of the configuration to delete.</p>
     #[serde(rename = "SyncName")]
@@ -1688,10 +1717,11 @@ pub struct DeleteResourceDataSyncRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteResourceDataSyncResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterManagedInstanceRequest {
     /// <p>The ID assigned to the managed instance when you registered it using the activation process. </p>
     #[serde(rename = "InstanceId")]
@@ -1699,10 +1729,11 @@ pub struct DeregisterManagedInstanceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterManagedInstanceResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterPatchBaselineForPatchGroupRequest {
     /// <p>The ID of the patch baseline to deregister the patch group from.</p>
     #[serde(rename = "BaselineId")]
@@ -1713,7 +1744,7 @@ pub struct DeregisterPatchBaselineForPatchGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterPatchBaselineForPatchGroupResult {
     /// <p>The ID of the patch baseline the patch group was deregistered from.</p>
     #[serde(rename = "BaselineId")]
@@ -1726,6 +1757,7 @@ pub struct DeregisterPatchBaselineForPatchGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterTargetFromMaintenanceWindowRequest {
     /// <p>The system checks if the target is being referenced by a task. If the target is being referenced, the system returns an error and does not deregister the target from the maintenance window.</p>
     #[serde(rename = "Safe")]
@@ -1740,7 +1772,7 @@ pub struct DeregisterTargetFromMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterTargetFromMaintenanceWindowResult {
     /// <p>The ID of the maintenance window the target was removed from.</p>
     #[serde(rename = "WindowId")]
@@ -1753,6 +1785,7 @@ pub struct DeregisterTargetFromMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterTaskFromMaintenanceWindowRequest {
     /// <p>The ID of the maintenance window the task should be removed from.</p>
     #[serde(rename = "WindowId")]
@@ -1763,7 +1796,7 @@ pub struct DeregisterTaskFromMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterTaskFromMaintenanceWindowResult {
     /// <p>The ID of the maintenance window the task was removed from.</p>
     #[serde(rename = "WindowId")]
@@ -1777,6 +1810,7 @@ pub struct DeregisterTaskFromMaintenanceWindowResult {
 
 /// <p>Filter for the DescribeActivation API.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeActivationsFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "FilterKey")]
@@ -1789,6 +1823,7 @@ pub struct DescribeActivationsFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeActivationsRequest {
     /// <p>A filter to view information about your activations.</p>
     #[serde(rename = "Filters")]
@@ -1805,7 +1840,7 @@ pub struct DescribeActivationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeActivationsResult {
     /// <p>A list of activations for your AWS account.</p>
     #[serde(rename = "ActivationList")]
@@ -1818,6 +1853,7 @@ pub struct DescribeActivationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAssociationExecutionTargetsRequest {
     /// <p>The association ID that includes the execution for which you want to view details.</p>
     #[serde(rename = "AssociationId")]
@@ -1840,7 +1876,7 @@ pub struct DescribeAssociationExecutionTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAssociationExecutionTargetsResult {
     /// <p>Information about the execution.</p>
     #[serde(rename = "AssociationExecutionTargets")]
@@ -1853,6 +1889,7 @@ pub struct DescribeAssociationExecutionTargetsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAssociationExecutionsRequest {
     /// <p>The association ID for which you want to view execution history details.</p>
     #[serde(rename = "AssociationId")]
@@ -1872,7 +1909,7 @@ pub struct DescribeAssociationExecutionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAssociationExecutionsResult {
     /// <p>A list of the executions for the specified association ID.</p>
     #[serde(rename = "AssociationExecutions")]
@@ -1885,6 +1922,7 @@ pub struct DescribeAssociationExecutionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAssociationRequest {
     /// <p>The association ID for which you want information.</p>
     #[serde(rename = "AssociationId")]
@@ -1905,7 +1943,7 @@ pub struct DescribeAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAssociationResult {
     /// <p>Information about the association.</p>
     #[serde(rename = "AssociationDescription")]
@@ -1914,6 +1952,7 @@ pub struct DescribeAssociationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAutomationExecutionsRequest {
     /// <p>Filters used to limit the scope of executions that are requested.</p>
     #[serde(rename = "Filters")]
@@ -1930,7 +1969,7 @@ pub struct DescribeAutomationExecutionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAutomationExecutionsResult {
     /// <p>The list of details about each automation execution which has occurred which matches the filter specification, if any.</p>
     #[serde(rename = "AutomationExecutionMetadataList")]
@@ -1943,6 +1982,7 @@ pub struct DescribeAutomationExecutionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAutomationStepExecutionsRequest {
     /// <p>The Automation execution ID for which you want step execution descriptions.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -1966,7 +2006,7 @@ pub struct DescribeAutomationStepExecutionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAutomationStepExecutionsResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -1979,6 +2019,7 @@ pub struct DescribeAutomationStepExecutionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAvailablePatchesRequest {
     /// <p>Filters used to scope down the returned patches.</p>
     #[serde(rename = "Filters")]
@@ -1995,7 +2036,7 @@ pub struct DescribeAvailablePatchesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAvailablePatchesResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2008,6 +2049,7 @@ pub struct DescribeAvailablePatchesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDocumentPermissionRequest {
     /// <p>The name of the document for which you are the owner.</p>
     #[serde(rename = "Name")]
@@ -2018,7 +2060,7 @@ pub struct DescribeDocumentPermissionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDocumentPermissionResponse {
     /// <p>The account IDs that have permission to use this document. The ID can be either an AWS account or <i>All</i>.</p>
     #[serde(rename = "AccountIds")]
@@ -2031,6 +2073,7 @@ pub struct DescribeDocumentPermissionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDocumentRequest {
     /// <p>The document version for which you want information. Can be a specific version or the default version.</p>
     #[serde(rename = "DocumentVersion")]
@@ -2046,7 +2089,7 @@ pub struct DescribeDocumentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDocumentResult {
     /// <p>Information about the Systems Manager document.</p>
     #[serde(rename = "Document")]
@@ -2055,6 +2098,7 @@ pub struct DescribeDocumentResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEffectiveInstanceAssociationsRequest {
     /// <p>The instance ID for which you want to view all associations.</p>
     #[serde(rename = "InstanceId")]
@@ -2070,7 +2114,7 @@ pub struct DescribeEffectiveInstanceAssociationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEffectiveInstanceAssociationsResult {
     /// <p>The associations for the requested instance.</p>
     #[serde(rename = "Associations")]
@@ -2083,6 +2127,7 @@ pub struct DescribeEffectiveInstanceAssociationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEffectivePatchesForPatchBaselineRequest {
     /// <p>The ID of the patch baseline to retrieve the effective patches for.</p>
     #[serde(rename = "BaselineId")]
@@ -2098,7 +2143,7 @@ pub struct DescribeEffectivePatchesForPatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEffectivePatchesForPatchBaselineResult {
     /// <p>An array of patches and patch status.</p>
     #[serde(rename = "EffectivePatches")]
@@ -2111,6 +2156,7 @@ pub struct DescribeEffectivePatchesForPatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstanceAssociationsStatusRequest {
     /// <p>The instance IDs for which you want association status information.</p>
     #[serde(rename = "InstanceId")]
@@ -2126,7 +2172,7 @@ pub struct DescribeInstanceAssociationsStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstanceAssociationsStatusResult {
     /// <p>Status information about the association.</p>
     #[serde(rename = "InstanceAssociationStatusInfos")]
@@ -2139,6 +2185,7 @@ pub struct DescribeInstanceAssociationsStatusResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstanceInformationRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of instances. You can filter on Amazon EC2 tag. Specify tags by using a key-value mapping.</p>
     #[serde(rename = "Filters")]
@@ -2159,7 +2206,7 @@ pub struct DescribeInstanceInformationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstanceInformationResult {
     /// <p>The instance information list.</p>
     #[serde(rename = "InstanceInformationList")]
@@ -2172,6 +2219,7 @@ pub struct DescribeInstanceInformationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstancePatchStatesForPatchGroupRequest {
     /// <p>Each entry in the array is a structure containing:</p> <p>Key (string between 1 and 200 characters)</p> <p> Values (array containing a single string)</p> <p> Type (string "Equal", "NotEqual", "LessThan", "GreaterThan")</p>
     #[serde(rename = "Filters")]
@@ -2191,7 +2239,7 @@ pub struct DescribeInstancePatchStatesForPatchGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstancePatchStatesForPatchGroupResult {
     /// <p>The high-level patch state for the requested instances. </p>
     #[serde(rename = "InstancePatchStates")]
@@ -2204,6 +2252,7 @@ pub struct DescribeInstancePatchStatesForPatchGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstancePatchStatesRequest {
     /// <p>The ID of the instance whose patch state information should be retrieved.</p>
     #[serde(rename = "InstanceIds")]
@@ -2219,7 +2268,7 @@ pub struct DescribeInstancePatchStatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstancePatchStatesResult {
     /// <p>The high-level patch state for the requested instances.</p>
     #[serde(rename = "InstancePatchStates")]
@@ -2232,6 +2281,7 @@ pub struct DescribeInstancePatchStatesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstancePatchesRequest {
     /// <p>An array of structures. Each entry in the array is a structure containing a Key, Value combination. Valid values for Key are <code>Classification</code> | <code>KBId</code> | <code>Severity</code> | <code>State</code>.</p>
     #[serde(rename = "Filters")]
@@ -2251,7 +2301,7 @@ pub struct DescribeInstancePatchesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstancePatchesResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2264,6 +2314,7 @@ pub struct DescribeInstancePatchesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInventoryDeletionsRequest {
     /// <p>Specify the delete inventory ID for which you want information. This ID was returned by the <code>DeleteInventory</code> action.</p>
     #[serde(rename = "DeletionId")]
@@ -2280,7 +2331,7 @@ pub struct DescribeInventoryDeletionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInventoryDeletionsResult {
     /// <p>A list of status items for deleted inventory.</p>
     #[serde(rename = "InventoryDeletions")]
@@ -2293,6 +2344,7 @@ pub struct DescribeInventoryDeletionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowExecutionTaskInvocationsRequest {
     /// <p>Optional filters used to scope down the returned task invocations. The supported filter key is STATUS with the corresponding values PENDING, IN_PROGRESS, SUCCESS, FAILED, TIMED_OUT, CANCELLING, and CANCELLED.</p>
     #[serde(rename = "Filters")]
@@ -2315,7 +2367,7 @@ pub struct DescribeMaintenanceWindowExecutionTaskInvocationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowExecutionTaskInvocationsResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2329,6 +2381,7 @@ pub struct DescribeMaintenanceWindowExecutionTaskInvocationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowExecutionTasksRequest {
     /// <p>Optional filters used to scope down the returned tasks. The supported filter key is STATUS with the corresponding values PENDING, IN_PROGRESS, SUCCESS, FAILED, TIMED_OUT, CANCELLING, and CANCELLED. </p>
     #[serde(rename = "Filters")]
@@ -2348,7 +2401,7 @@ pub struct DescribeMaintenanceWindowExecutionTasksRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowExecutionTasksResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2361,6 +2414,7 @@ pub struct DescribeMaintenanceWindowExecutionTasksResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowExecutionsRequest {
     /// <p>Each entry in the array is a structure containing:</p> <p>Key (string, between 1 and 128 characters)</p> <p>Values (array of strings, each string is between 1 and 256 characters)</p> <p>The supported Keys are ExecutedBefore and ExecutedAfter with the value being a date/time string such as 2016-11-04T05:00:00Z.</p>
     #[serde(rename = "Filters")]
@@ -2380,7 +2434,7 @@ pub struct DescribeMaintenanceWindowExecutionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowExecutionsResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2393,6 +2447,7 @@ pub struct DescribeMaintenanceWindowExecutionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowScheduleRequest {
     /// <p>Filters used to limit the range of results. For example, you can limit maintenance window executions to only those scheduled before or after a certain date and time.</p>
     #[serde(rename = "Filters")]
@@ -2421,7 +2476,7 @@ pub struct DescribeMaintenanceWindowScheduleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowScheduleResult {
     /// <p>The token for the next set of items to return. (You use this token in the next call.)</p>
     #[serde(rename = "NextToken")]
@@ -2434,6 +2489,7 @@ pub struct DescribeMaintenanceWindowScheduleResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowTargetsRequest {
     /// <p>Optional filters that can be used to narrow down the scope of the returned window targets. The supported filter keys are Type, WindowTargetId and OwnerInformation.</p>
     #[serde(rename = "Filters")]
@@ -2453,7 +2509,7 @@ pub struct DescribeMaintenanceWindowTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowTargetsResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2466,6 +2522,7 @@ pub struct DescribeMaintenanceWindowTargetsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowTasksRequest {
     /// <p>Optional filters used to narrow down the scope of the returned tasks. The supported filter keys are WindowTaskId, TaskArn, Priority, and TaskType.</p>
     #[serde(rename = "Filters")]
@@ -2485,7 +2542,7 @@ pub struct DescribeMaintenanceWindowTasksRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowTasksResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2498,6 +2555,7 @@ pub struct DescribeMaintenanceWindowTasksResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowsForTargetRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -2516,7 +2574,7 @@ pub struct DescribeMaintenanceWindowsForTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowsForTargetResult {
     /// <p>The token for the next set of items to return. (You use this token in the next call.)</p>
     #[serde(rename = "NextToken")]
@@ -2529,6 +2587,7 @@ pub struct DescribeMaintenanceWindowsForTargetResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMaintenanceWindowsRequest {
     /// <p>Optional filters used to narrow down the scope of the returned maintenance windows. Supported filter keys are <b>Name</b> and <b>Enabled</b>.</p>
     #[serde(rename = "Filters")]
@@ -2545,7 +2604,7 @@ pub struct DescribeMaintenanceWindowsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMaintenanceWindowsResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2558,6 +2617,7 @@ pub struct DescribeMaintenanceWindowsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeOpsItemsRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -2574,7 +2634,7 @@ pub struct DescribeOpsItemsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeOpsItemsResponse {
     /// <p>The token for the next set of items to return. Use this token to get the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -2587,6 +2647,7 @@ pub struct DescribeOpsItemsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeParametersRequest {
     /// <p>This data type is deprecated. Instead, use <code>ParameterFilters</code>.</p>
     #[serde(rename = "Filters")]
@@ -2607,7 +2668,7 @@ pub struct DescribeParametersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeParametersResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -2620,6 +2681,7 @@ pub struct DescribeParametersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePatchBaselinesRequest {
     /// <p>Each element in the array is a structure containing: </p> <p>Key: (string, "NAME_PREFIX" or "OWNER")</p> <p>Value: (array of strings, exactly 1 entry, between 1 and 255 characters)</p>
     #[serde(rename = "Filters")]
@@ -2636,7 +2698,7 @@ pub struct DescribePatchBaselinesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePatchBaselinesResult {
     /// <p>An array of PatchBaselineIdentity elements.</p>
     #[serde(rename = "BaselineIdentities")]
@@ -2649,6 +2711,7 @@ pub struct DescribePatchBaselinesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePatchGroupStateRequest {
     /// <p>The name of the patch group whose patch snapshot should be retrieved.</p>
     #[serde(rename = "PatchGroup")]
@@ -2656,7 +2719,7 @@ pub struct DescribePatchGroupStateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePatchGroupStateResult {
     /// <p>The number of instances in the patch group.</p>
     #[serde(rename = "Instances")]
@@ -2697,6 +2760,7 @@ pub struct DescribePatchGroupStateResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePatchGroupsRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "Filters")]
@@ -2713,7 +2777,7 @@ pub struct DescribePatchGroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePatchGroupsResult {
     /// <p>Each entry in the array contains:</p> <p>PatchGroup: string (between 1 and 256 characters, Regex: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$)</p> <p>PatchBaselineIdentity: A PatchBaselineIdentity element. </p>
     #[serde(rename = "Mappings")]
@@ -2726,6 +2790,7 @@ pub struct DescribePatchGroupsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePatchPropertiesRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -2748,7 +2813,7 @@ pub struct DescribePatchPropertiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePatchPropertiesResult {
     /// <p>The token for the next set of items to return. (You use this token in the next call.)</p>
     #[serde(rename = "NextToken")]
@@ -2761,6 +2826,7 @@ pub struct DescribePatchPropertiesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSessionsRequest {
     /// <p>One or more filters to limit the type of sessions returned by the request.</p>
     #[serde(rename = "Filters")]
@@ -2780,7 +2846,7 @@ pub struct DescribeSessionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSessionsResponse {
     /// <p>The token for the next set of items to return. (You received this token from a previous call.)</p>
     #[serde(rename = "NextToken")]
@@ -2794,7 +2860,7 @@ pub struct DescribeSessionsResponse {
 
 /// <p>A default version of a document.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DocumentDefaultVersionDescription {
     /// <p>The default version of the document.</p>
     #[serde(rename = "DefaultVersion")]
@@ -2812,7 +2878,7 @@ pub struct DocumentDefaultVersionDescription {
 
 /// <p>Describes a Systems Manager document. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DocumentDescription {
     /// <p>Details about the document attachments, including names, locations, sizes, etc.</p>
     #[serde(rename = "AttachmentsInformation")]
@@ -2906,6 +2972,7 @@ pub struct DocumentDescription {
 
 /// <p>Describes a filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DocumentFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "key")]
@@ -2917,7 +2984,7 @@ pub struct DocumentFilter {
 
 /// <p>Describes the name of a Systems Manager document.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DocumentIdentifier {
     /// <p>The document format, either JSON or YAML.</p>
     #[serde(rename = "DocumentFormat")]
@@ -2967,6 +3034,7 @@ pub struct DocumentIdentifier {
 
 /// <p>One or more filters. Use a filter to return a more specific list of documents.</p> <p>For keys, you can specify one or more tags that have been applied to a document. </p> <p>Other valid values include Owner, Name, PlatformTypes, and DocumentType.</p> <p>Note that only one Owner can be specified in a request. For example: <code>Key=Owner,Values=Self</code>.</p> <p>If you use Name as a key, you can use a name prefix to return a list of documents. For example, in the AWS CLI, to return a list of all documents that begin with <code>Te</code>, run the following command:</p> <p> <code>aws ssm list-documents --filters Key=Name,Values=Te</code> </p> <p>If you specify more than two keys, only documents that are identified by all the tags are returned in the results. If you specify more than two values for a key, documents that are identified by any of the values are returned in the results.</p> <p>To specify a custom key and value pair, use the format <code>Key=tag:[tagName],Values=[valueName]</code>.</p> <p>For example, if you created a Key called region and are using the AWS CLI to call the <code>list-documents</code> command: </p> <p> <code>aws ssm list-documents --filters Key=tag:region,Values=east,west Key=Owner,Values=Self</code> </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DocumentKeyValuesFilter {
     /// <p>The name of the filter key.</p>
     #[serde(rename = "Key")]
@@ -2980,7 +3048,7 @@ pub struct DocumentKeyValuesFilter {
 
 /// <p>Parameters specified in a System Manager document that run on the server when the command is run. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DocumentParameter {
     /// <p>If specified, the default values for the parameters. Parameters without a default value are required. Parameters with a default value are optional.</p>
     #[serde(rename = "DefaultValue")]
@@ -3014,7 +3082,7 @@ pub struct DocumentRequires {
 
 /// <p>Version information about the document.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DocumentVersionInfo {
     /// <p>The date the document was created.</p>
     #[serde(rename = "CreatedDate")]
@@ -3052,7 +3120,7 @@ pub struct DocumentVersionInfo {
 
 /// <p>The EffectivePatch structure defines metadata about a patch along with the approval state of the patch in a particular patch baseline. The approval state includes information about whether the patch is currently approved, due to be approved by a rule, explicitly approved, or explicitly rejected and the date the patch was or will be approved.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EffectivePatch {
     /// <p>Provides metadata for a patch, including information such as the KB ID, severity, classification and a URL for where more information can be obtained about the patch.</p>
     #[serde(rename = "Patch")]
@@ -3066,7 +3134,7 @@ pub struct EffectivePatch {
 
 /// <p>Describes a failed association.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailedCreateAssociation {
     /// <p>The association.</p>
     #[serde(rename = "Entry")]
@@ -3084,7 +3152,7 @@ pub struct FailedCreateAssociation {
 
 /// <p>Information about an Automation failure.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailureDetails {
     /// <p>Detailed information about the Automation step failure.</p>
     #[serde(rename = "Details")]
@@ -3101,6 +3169,7 @@ pub struct FailureDetails {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAutomationExecutionRequest {
     /// <p>The unique identifier for an existing automation execution to examine. The execution ID is returned by StartAutomationExecution when the execution of an Automation document is initiated.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -3108,7 +3177,7 @@ pub struct GetAutomationExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAutomationExecutionResult {
     /// <p>Detailed information about the current state of an automation execution.</p>
     #[serde(rename = "AutomationExecution")]
@@ -3117,6 +3186,7 @@ pub struct GetAutomationExecutionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCalendarStateRequest {
     /// <p>(Optional) The specific time for which you want to get calendar state information, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format. If you do not add <code>AtTime</code>, the current time is assumed.</p>
     #[serde(rename = "AtTime")]
@@ -3128,7 +3198,7 @@ pub struct GetCalendarStateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCalendarStateResponse {
     /// <p>The time, as an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> string, that you specified in your command. If you did not specify a time, <code>GetCalendarState</code> uses the current time.</p>
     #[serde(rename = "AtTime")]
@@ -3145,6 +3215,7 @@ pub struct GetCalendarStateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCommandInvocationRequest {
     /// <p>(Required) The parent command ID of the invocation plugin.</p>
     #[serde(rename = "CommandId")]
@@ -3159,7 +3230,7 @@ pub struct GetCommandInvocationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCommandInvocationResult {
     /// <p>CloudWatch Logs information where Systems Manager sent the command output.</p>
     #[serde(rename = "CloudWatchOutputConfig")]
@@ -3232,6 +3303,7 @@ pub struct GetCommandInvocationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectionStatusRequest {
     /// <p>The ID of the instance.</p>
     #[serde(rename = "Target")]
@@ -3239,7 +3311,7 @@ pub struct GetConnectionStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectionStatusResponse {
     /// <p>The status of the connection to the instance. For example, 'Connected' or 'Not Connected'.</p>
     #[serde(rename = "Status")]
@@ -3252,6 +3324,7 @@ pub struct GetConnectionStatusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDefaultPatchBaselineRequest {
     /// <p>Returns the default patch baseline for the specified operating system.</p>
     #[serde(rename = "OperatingSystem")]
@@ -3260,7 +3333,7 @@ pub struct GetDefaultPatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDefaultPatchBaselineResult {
     /// <p>The ID of the default patch baseline.</p>
     #[serde(rename = "BaselineId")]
@@ -3273,6 +3346,7 @@ pub struct GetDefaultPatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeployablePatchSnapshotForInstanceRequest {
     /// <p>The ID of the instance for which the appropriate patch snapshot should be retrieved.</p>
     #[serde(rename = "InstanceId")]
@@ -3283,7 +3357,7 @@ pub struct GetDeployablePatchSnapshotForInstanceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeployablePatchSnapshotForInstanceResult {
     /// <p>The ID of the instance.</p>
     #[serde(rename = "InstanceId")]
@@ -3304,6 +3378,7 @@ pub struct GetDeployablePatchSnapshotForInstanceResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDocumentRequest {
     /// <p>Returns the document in the specified format. The document format can be either JSON or YAML. JSON is the default format.</p>
     #[serde(rename = "DocumentFormat")]
@@ -3323,7 +3398,7 @@ pub struct GetDocumentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDocumentResult {
     /// <p>A description of the document attachments, including names, locations, sizes, etc.</p>
     #[serde(rename = "AttachmentsContent")]
@@ -3368,6 +3443,7 @@ pub struct GetDocumentResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInventoryRequest {
     /// <p>Returns counts of inventory types based on one or more expressions. For example, if you aggregate by using an expression that uses the <code>AWS:InstanceInformation.PlatformType</code> type, you can see a count of how many Windows and Linux instances exist in your inventoried fleet.</p>
     #[serde(rename = "Aggregators")]
@@ -3392,7 +3468,7 @@ pub struct GetInventoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInventoryResult {
     /// <p>Collection of inventory entities such as a collection of instance inventory. </p>
     #[serde(rename = "Entities")]
@@ -3405,6 +3481,7 @@ pub struct GetInventoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInventorySchemaRequest {
     /// <p>Returns inventory schemas that support aggregation. For example, this call returns the <code>AWS:InstanceInformation</code> type, because it supports aggregation based on the <code>PlatformName</code>, <code>PlatformType</code>, and <code>PlatformVersion</code> attributes.</p>
     #[serde(rename = "Aggregator")]
@@ -3429,7 +3506,7 @@ pub struct GetInventorySchemaRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInventorySchemaResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -3442,6 +3519,7 @@ pub struct GetInventorySchemaResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMaintenanceWindowExecutionRequest {
     /// <p>The ID of the maintenance window execution that includes the task.</p>
     #[serde(rename = "WindowExecutionId")]
@@ -3449,7 +3527,7 @@ pub struct GetMaintenanceWindowExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMaintenanceWindowExecutionResult {
     /// <p>The time the maintenance window finished running.</p>
     #[serde(rename = "EndTime")]
@@ -3478,6 +3556,7 @@ pub struct GetMaintenanceWindowExecutionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMaintenanceWindowExecutionTaskInvocationRequest {
     /// <p>The invocation ID to retrieve.</p>
     #[serde(rename = "InvocationId")]
@@ -3491,7 +3570,7 @@ pub struct GetMaintenanceWindowExecutionTaskInvocationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMaintenanceWindowExecutionTaskInvocationResult {
     /// <p>The time that the task finished running on the target.</p>
     #[serde(rename = "EndTime")]
@@ -3544,6 +3623,7 @@ pub struct GetMaintenanceWindowExecutionTaskInvocationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMaintenanceWindowExecutionTaskRequest {
     /// <p>The ID of the specific task execution in the maintenance window task that should be retrieved.</p>
     #[serde(rename = "TaskId")]
@@ -3554,7 +3634,7 @@ pub struct GetMaintenanceWindowExecutionTaskRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMaintenanceWindowExecutionTaskResult {
     /// <p>The time the task execution completed.</p>
     #[serde(rename = "EndTime")]
@@ -3613,6 +3693,7 @@ pub struct GetMaintenanceWindowExecutionTaskResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMaintenanceWindowRequest {
     /// <p>The ID of the maintenance window for which you want to retrieve information.</p>
     #[serde(rename = "WindowId")]
@@ -3620,7 +3701,7 @@ pub struct GetMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMaintenanceWindowResult {
     /// <p>Whether targets must be registered with the maintenance window before tasks can be defined for those targets.</p>
     #[serde(rename = "AllowUnassociatedTargets")]
@@ -3681,6 +3762,7 @@ pub struct GetMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMaintenanceWindowTaskRequest {
     /// <p>The maintenance window ID that includes the task to retrieve.</p>
     #[serde(rename = "WindowId")]
@@ -3691,7 +3773,7 @@ pub struct GetMaintenanceWindowTaskRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMaintenanceWindowTaskResult {
     /// <p>The retrieved task description.</p>
     #[serde(rename = "Description")]
@@ -3753,6 +3835,7 @@ pub struct GetMaintenanceWindowTaskResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetOpsItemRequest {
     /// <p>The ID of the OpsItem that you want to get.</p>
     #[serde(rename = "OpsItemId")]
@@ -3760,7 +3843,7 @@ pub struct GetOpsItemRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetOpsItemResponse {
     /// <p>The OpsItem.</p>
     #[serde(rename = "OpsItem")]
@@ -3769,6 +3852,7 @@ pub struct GetOpsItemResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetOpsSummaryRequest {
     /// <p>Optional aggregators that return counts of OpsItems based on one or more expressions.</p>
     #[serde(rename = "Aggregators")]
@@ -3797,7 +3881,7 @@ pub struct GetOpsSummaryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetOpsSummaryResult {
     /// <p>The list of aggregated and filtered OpsItems.</p>
     #[serde(rename = "Entities")]
@@ -3810,6 +3894,7 @@ pub struct GetOpsSummaryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetParameterHistoryRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -3829,7 +3914,7 @@ pub struct GetParameterHistoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetParameterHistoryResult {
     /// <p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>
     #[serde(rename = "NextToken")]
@@ -3842,6 +3927,7 @@ pub struct GetParameterHistoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetParameterRequest {
     /// <p>The name of the parameter you want to query.</p>
     #[serde(rename = "Name")]
@@ -3853,7 +3939,7 @@ pub struct GetParameterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetParameterResult {
     /// <p>Information about a parameter.</p>
     #[serde(rename = "Parameter")]
@@ -3862,6 +3948,7 @@ pub struct GetParameterResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetParametersByPathRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -3889,7 +3976,7 @@ pub struct GetParametersByPathRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetParametersByPathResult {
     /// <p>The token for the next set of items to return. Use this token to get the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -3902,6 +3989,7 @@ pub struct GetParametersByPathResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetParametersRequest {
     /// <p>Names of the parameters for which you want to query information.</p>
     #[serde(rename = "Names")]
@@ -3913,7 +4001,7 @@ pub struct GetParametersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetParametersResult {
     /// <p>A list of parameters that are not formatted correctly or do not run during an execution.</p>
     #[serde(rename = "InvalidParameters")]
@@ -3926,6 +4014,7 @@ pub struct GetParametersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPatchBaselineForPatchGroupRequest {
     /// <p>Returns he operating system rule specified for patch groups using the patch baseline.</p>
     #[serde(rename = "OperatingSystem")]
@@ -3937,7 +4026,7 @@ pub struct GetPatchBaselineForPatchGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPatchBaselineForPatchGroupResult {
     /// <p>The ID of the patch baseline that should be used for the patch group.</p>
     #[serde(rename = "BaselineId")]
@@ -3954,6 +4043,7 @@ pub struct GetPatchBaselineForPatchGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPatchBaselineRequest {
     /// <p>The ID of the patch baseline to retrieve.</p>
     #[serde(rename = "BaselineId")]
@@ -3961,7 +4051,7 @@ pub struct GetPatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPatchBaselineResult {
     /// <p>A set of rules used to include patches in the baseline.</p>
     #[serde(rename = "ApprovalRules")]
@@ -4027,6 +4117,7 @@ pub struct GetPatchBaselineResult {
 
 /// <p>The request body of the GetServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetServiceSettingRequest {
     /// <p>The ID of the service setting to get.</p>
     #[serde(rename = "SettingId")]
@@ -4035,7 +4126,7 @@ pub struct GetServiceSettingRequest {
 
 /// <p>The query result body of the GetServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetServiceSettingResult {
     /// <p>The query result of the current service setting.</p>
     #[serde(rename = "ServiceSetting")]
@@ -4045,7 +4136,7 @@ pub struct GetServiceSettingResult {
 
 /// <p>Status information about the aggregated associations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceAggregatedAssociationOverview {
     /// <p>Detailed status information about the aggregated associations.</p>
     #[serde(rename = "DetailedStatus")]
@@ -4060,7 +4151,7 @@ pub struct InstanceAggregatedAssociationOverview {
 
 /// <p>One or more association documents on the instance. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceAssociation {
     /// <p>The association ID.</p>
     #[serde(rename = "AssociationId")]
@@ -4091,7 +4182,7 @@ pub struct InstanceAssociationOutputLocation {
 
 /// <p>The URL of Amazon S3 bucket where you want to store the results of this request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceAssociationOutputUrl {
     /// <p>The URL of Amazon S3 bucket where you want to store the results of this request.</p>
     #[serde(rename = "S3OutputUrl")]
@@ -4101,7 +4192,7 @@ pub struct InstanceAssociationOutputUrl {
 
 /// <p>Status information about the instance association.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceAssociationStatusInfo {
     /// <p>The association ID.</p>
     #[serde(rename = "AssociationId")]
@@ -4155,7 +4246,7 @@ pub struct InstanceAssociationStatusInfo {
 
 /// <p>Describes a filter for a specific list of instances. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceInformation {
     /// <p>The activation ID created by Systems Manager when the server or VM was registered.</p>
     #[serde(rename = "ActivationId")]
@@ -4237,6 +4328,7 @@ pub struct InstanceInformation {
 
 /// <p>Describes a filter for a specific list of instances. You can filter instances information by using tags. You specify tags by using a key-value mapping.</p> <p>Use this action instead of the <a>DescribeInstanceInformationRequest$InstanceInformationFilterList</a> method. The <code>InstanceInformationFilterList</code> method is a legacy method and does not support tags. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InstanceInformationFilter {
     /// <p>The name of the filter. </p>
     #[serde(rename = "key")]
@@ -4248,6 +4340,7 @@ pub struct InstanceInformationFilter {
 
 /// <p>The filters to describe or get information about your managed instances.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InstanceInformationStringFilter {
     /// <p>The filter key name to describe your instances. For example:</p> <p>"InstanceIds"|"AgentVersion"|"PingStatus"|"PlatformTypes"|"ActivationIds"|"IamRole"|"ResourceType"|"AssociationStatus"|"Tag Key"</p>
     #[serde(rename = "Key")]
@@ -4259,7 +4352,7 @@ pub struct InstanceInformationStringFilter {
 
 /// <p>Defines the high-level patch compliance state for a managed instance, providing information about the number of installed, missing, not applicable, and failed patches along with metadata about the operation when this information was gathered for the instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstancePatchState {
     /// <p>The ID of the patch baseline used to patch the instance.</p>
     #[serde(rename = "BaselineId")]
@@ -4335,6 +4428,7 @@ pub struct InstancePatchState {
 
 /// <p>Defines a filter used in DescribeInstancePatchStatesForPatchGroup used to scope down the information returned by the API.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InstancePatchStateFilter {
     /// <p>The key for the filter. Supported values are FailedCount, InstalledCount, InstalledOtherCount, MissingCount and NotApplicableCount.</p>
     #[serde(rename = "Key")]
@@ -4349,6 +4443,7 @@ pub struct InstancePatchStateFilter {
 
 /// <p>Specifies the inventory type and attribute for the aggregation execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InventoryAggregator {
     /// <p>Nested aggregators to further refine aggregation for an inventory type.</p>
     #[serde(rename = "Aggregators")]
@@ -4366,7 +4461,7 @@ pub struct InventoryAggregator {
 
 /// <p>Status information returned by the <code>DeleteInventory</code> action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryDeletionStatusItem {
     /// <p>The deletion ID returned by the <code>DeleteInventory</code> action.</p>
     #[serde(rename = "DeletionId")]
@@ -4400,7 +4495,7 @@ pub struct InventoryDeletionStatusItem {
 
 /// <p>Information about the delete operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryDeletionSummary {
     /// <p>Remaining number of items to delete.</p>
     #[serde(rename = "RemainingCount")]
@@ -4418,7 +4513,7 @@ pub struct InventoryDeletionSummary {
 
 /// <p>Either a count, remaining count, or a version number in a delete inventory summary.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryDeletionSummaryItem {
     /// <p>A count of the number of deleted items.</p>
     #[serde(rename = "Count")]
@@ -4436,6 +4531,7 @@ pub struct InventoryDeletionSummaryItem {
 
 /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InventoryFilter {
     /// <p>The name of the filter key.</p>
     #[serde(rename = "Key")]
@@ -4451,6 +4547,7 @@ pub struct InventoryFilter {
 
 /// <p>A user-defined set of one or more filters on which to aggregate inventory data. Groups return a count of resources that match and don't match the specified criteria.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InventoryGroup {
     /// <p>Filters define the criteria for the group. The <code>matchingCount</code> field displays the number of resources that match the criteria. The <code>notMatchingCount</code> field displays the number of resources that don't match the criteria. </p>
     #[serde(rename = "Filters")]
@@ -4462,6 +4559,7 @@ pub struct InventoryGroup {
 
 /// <p>Information collected from managed instances based on your inventory policy document</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InventoryItem {
     /// <p>The time the inventory information was collected.</p>
     #[serde(rename = "CaptureTime")]
@@ -4488,7 +4586,7 @@ pub struct InventoryItem {
 
 /// <p>Attributes are the entries within the inventory item content. It contains name and value.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryItemAttribute {
     /// <p>The data type of the inventory item attribute. </p>
     #[serde(rename = "DataType")]
@@ -4500,7 +4598,7 @@ pub struct InventoryItemAttribute {
 
 /// <p>The inventory item schema definition. Users can use this to compose inventory query filters.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryItemSchema {
     /// <p>The schema attributes for inventory. This contains data type and attribute name.</p>
     #[serde(rename = "Attributes")]
@@ -4520,7 +4618,7 @@ pub struct InventoryItemSchema {
 
 /// <p>Inventory query results.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryResultEntity {
     /// <p>The data section in the inventory result entity JSON.</p>
     #[serde(rename = "Data")]
@@ -4534,7 +4632,7 @@ pub struct InventoryResultEntity {
 
 /// <p>The inventory result item.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryResultItem {
     /// <p>The time inventory item data was captured.</p>
     #[serde(rename = "CaptureTime")]
@@ -4556,6 +4654,7 @@ pub struct InventoryResultItem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LabelParameterVersionRequest {
     /// <p>One or more labels to attach to the specified parameter version.</p>
     #[serde(rename = "Labels")]
@@ -4570,7 +4669,7 @@ pub struct LabelParameterVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LabelParameterVersionResult {
     /// <p>The label does not meet the requirements. For information about parameter label requirements, see <a href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html">Labeling Parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p>
     #[serde(rename = "InvalidLabels")]
@@ -4583,6 +4682,7 @@ pub struct LabelParameterVersionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAssociationVersionsRequest {
     /// <p>The association ID for which you want to view all versions.</p>
     #[serde(rename = "AssociationId")]
@@ -4598,7 +4698,7 @@ pub struct ListAssociationVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAssociationVersionsResult {
     /// <p>Information about all versions of the association for the specified association ID.</p>
     #[serde(rename = "AssociationVersions")]
@@ -4611,6 +4711,7 @@ pub struct ListAssociationVersionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAssociationsRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "AssociationFilterList")]
@@ -4627,7 +4728,7 @@ pub struct ListAssociationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAssociationsResult {
     /// <p>The associations.</p>
     #[serde(rename = "Associations")]
@@ -4640,6 +4741,7 @@ pub struct ListAssociationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCommandInvocationsRequest {
     /// <p>(Optional) The invocations for a specific command ID.</p>
     #[serde(rename = "CommandId")]
@@ -4668,7 +4770,7 @@ pub struct ListCommandInvocationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCommandInvocationsResult {
     /// <p>(Optional) A list of all invocations. </p>
     #[serde(rename = "CommandInvocations")]
@@ -4681,6 +4783,7 @@ pub struct ListCommandInvocationsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCommandsRequest {
     /// <p>(Optional) If provided, lists only the specified command.</p>
     #[serde(rename = "CommandId")]
@@ -4705,7 +4808,7 @@ pub struct ListCommandsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCommandsResult {
     /// <p>(Optional) The list of commands requested by the user. </p>
     #[serde(rename = "Commands")]
@@ -4718,6 +4821,7 @@ pub struct ListCommandsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListComplianceItemsRequest {
     /// <p>One or more compliance filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "Filters")]
@@ -4742,7 +4846,7 @@ pub struct ListComplianceItemsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListComplianceItemsResult {
     /// <p>A list of compliance information for the specified resource ID. </p>
     #[serde(rename = "ComplianceItems")]
@@ -4755,6 +4859,7 @@ pub struct ListComplianceItemsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListComplianceSummariesRequest {
     /// <p>One or more compliance or inventory filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "Filters")]
@@ -4771,7 +4876,7 @@ pub struct ListComplianceSummariesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListComplianceSummariesResult {
     /// <p>A list of compliant and non-compliant summary counts based on compliance types. For example, this call returns State Manager associations, patches, or custom compliance types according to the filter criteria that you specified.</p>
     #[serde(rename = "ComplianceSummaryItems")]
@@ -4784,6 +4889,7 @@ pub struct ListComplianceSummariesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDocumentVersionsRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -4799,7 +4905,7 @@ pub struct ListDocumentVersionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDocumentVersionsResult {
     /// <p>The document versions.</p>
     #[serde(rename = "DocumentVersions")]
@@ -4812,6 +4918,7 @@ pub struct ListDocumentVersionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDocumentsRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "DocumentFilterList")]
@@ -4832,7 +4939,7 @@ pub struct ListDocumentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDocumentsResult {
     /// <p>The names of the Systems Manager documents.</p>
     #[serde(rename = "DocumentIdentifiers")]
@@ -4845,6 +4952,7 @@ pub struct ListDocumentsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInventoryEntriesRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "Filters")]
@@ -4867,7 +4975,7 @@ pub struct ListInventoryEntriesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInventoryEntriesResult {
     /// <p>The time that inventory information was collected for the instance(s).</p>
     #[serde(rename = "CaptureTime")]
@@ -4896,6 +5004,7 @@ pub struct ListInventoryEntriesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourceComplianceSummariesRequest {
     /// <p>One or more filters. Use a filter to return a more specific list of results.</p>
     #[serde(rename = "Filters")]
@@ -4912,7 +5021,7 @@ pub struct ListResourceComplianceSummariesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourceComplianceSummariesResult {
     /// <p>The token for the next set of items to return. Use this token to get the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -4925,6 +5034,7 @@ pub struct ListResourceComplianceSummariesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourceDataSyncRequest {
     /// <p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>
     #[serde(rename = "MaxResults")]
@@ -4941,7 +5051,7 @@ pub struct ListResourceDataSyncRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourceDataSyncResult {
     /// <p>The token for the next set of items to return. Use this token to get the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -4954,6 +5064,7 @@ pub struct ListResourceDataSyncResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The resource ID for which you want to see a list of tags.</p>
     #[serde(rename = "ResourceId")]
@@ -4964,7 +5075,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResult {
     /// <p>A list of tags.</p>
     #[serde(rename = "TagList")]
@@ -5002,7 +5113,7 @@ pub struct MaintenanceWindowAutomationParameters {
 
 /// <p>Describes the information about an execution of a maintenance window. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowExecution {
     /// <p>The time the execution finished.</p>
     #[serde(rename = "EndTime")]
@@ -5032,7 +5143,7 @@ pub struct MaintenanceWindowExecution {
 
 /// <p>Information about a task execution performed as part of a maintenance window execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowExecutionTaskIdentity {
     /// <p>The time the task execution finished.</p>
     #[serde(rename = "EndTime")]
@@ -5070,7 +5181,7 @@ pub struct MaintenanceWindowExecutionTaskIdentity {
 
 /// <p>Describes the information about a task invocation for a particular target as part of a task execution performed as part of a maintenance window execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowExecutionTaskInvocationIdentity {
     /// <p>The time the invocation finished.</p>
     #[serde(rename = "EndTime")]
@@ -5124,6 +5235,7 @@ pub struct MaintenanceWindowExecutionTaskInvocationIdentity {
 
 /// <p>Filter used in the request. Supported filter keys are Name and Enabled.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MaintenanceWindowFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -5137,7 +5249,7 @@ pub struct MaintenanceWindowFilter {
 
 /// <p>Information about the maintenance window.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowIdentity {
     /// <p>The number of hours before the end of the maintenance window that Systems Manager stops scheduling new tasks for execution.</p>
     #[serde(rename = "Cutoff")]
@@ -5187,7 +5299,7 @@ pub struct MaintenanceWindowIdentity {
 
 /// <p>The maintenance window to which the specified target belongs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowIdentityForTarget {
     /// <p>The name of the maintenance window.</p>
     #[serde(rename = "Name")]
@@ -5284,7 +5396,7 @@ pub struct MaintenanceWindowStepFunctionsParameters {
 
 /// <p>The target registered with the maintenance window.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowTarget {
     /// <p>A description for the target.</p>
     #[serde(rename = "Description")]
@@ -5318,7 +5430,7 @@ pub struct MaintenanceWindowTarget {
 
 /// <p>Information about a task defined for a maintenance window.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MaintenanceWindowTask {
     /// <p>A description of the task.</p>
     #[serde(rename = "Description")]
@@ -5406,6 +5518,7 @@ pub struct MaintenanceWindowTaskParameterValueExpression {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyDocumentPermissionRequest {
     /// <p>The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or <i>All</i>.</p>
     #[serde(rename = "AccountIdsToAdd")]
@@ -5428,12 +5541,12 @@ pub struct ModifyDocumentPermissionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ModifyDocumentPermissionResponse {}
 
 /// <p>A summary of resources that are not compliant. The summary is organized according to resource type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NonCompliantSummary {
     /// <p>The total number of compliance items that are not compliant.</p>
     #[serde(rename = "NonCompliantCount")]
@@ -5464,6 +5577,7 @@ pub struct NotificationConfig {
 
 /// <p>One or more aggregators for viewing counts of OpsItems using different dimensions such as <code>Source</code>, <code>CreatedTime</code>, or <code>Source and CreatedTime</code>, to name a few.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpsAggregator {
     /// <p>Either a Range or Count aggregator for limiting an OpsItem summary.</p>
     #[serde(rename = "AggregatorType")]
@@ -5493,7 +5607,7 @@ pub struct OpsAggregator {
 
 /// <p>The result of the query.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpsEntity {
     /// <p>The data returned by the query.</p>
     #[serde(rename = "Data")]
@@ -5507,7 +5621,7 @@ pub struct OpsEntity {
 
 /// <p>The OpsItem summaries result item.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpsEntityItem {
     /// <p>The time OpsItem data was captured.</p>
     #[serde(rename = "CaptureTime")]
@@ -5521,6 +5635,7 @@ pub struct OpsEntityItem {
 
 /// <p>A filter for viewing OpsItem summaries.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpsFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -5536,7 +5651,7 @@ pub struct OpsFilter {
 
 /// <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href="http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpsItem {
     /// <p>An OpsItem category. Category options include: Availability, Cost, Performance, Recovery, Security.</p>
     #[serde(rename = "Category")]
@@ -5619,6 +5734,7 @@ pub struct OpsItemDataValue {
 
 /// <p>Describes an OpsItem filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpsItemFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -5642,7 +5758,7 @@ pub struct OpsItemNotification {
 
 /// <p>A count of OpsItems.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpsItemSummary {
     /// <p>A list of OpsItems by category.</p>
     #[serde(rename = "Category")]
@@ -5696,6 +5812,7 @@ pub struct OpsItemSummary {
 
 /// <p>The OpsItem data type to return.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpsResultAttribute {
     /// <p>Name of the data type. Valid value: AWS:OpsItem, AWS:EC2InstanceInformation, AWS:OpsItemTrendline, or AWS:ComplianceSummary.</p>
     #[serde(rename = "TypeName")]
@@ -5704,7 +5821,7 @@ pub struct OpsResultAttribute {
 
 /// <p>Information about the source where the association execution details are stored.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputSource {
     /// <p>The ID of the output source, for example the URL of an Amazon S3 bucket.</p>
     #[serde(rename = "OutputSourceId")]
@@ -5718,7 +5835,7 @@ pub struct OutputSource {
 
 /// <p>An Amazon EC2 Systems Manager parameter in Parameter Store.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Parameter {
     /// <p>The Amazon Resource Name (ARN) of the parameter.</p>
     #[serde(rename = "ARN")]
@@ -5756,7 +5873,7 @@ pub struct Parameter {
 
 /// <p>Information about parameter usage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ParameterHistory {
     /// <p>Parameter names can include the following letters and symbols.</p> <p>a-zA-Z0-9_.-</p>
     #[serde(rename = "AllowedPattern")]
@@ -5810,7 +5927,7 @@ pub struct ParameterHistory {
 
 /// <p>One or more policies assigned to a parameter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ParameterInlinePolicy {
     /// <p>The status of the policy. Policies report the following statuses: Pending (the policy has not been enforced or applied yet), Finished (the policy was applied), Failed (the policy was not applied), or InProgress (the policy is being applied now). </p>
     #[serde(rename = "PolicyStatus")]
@@ -5828,7 +5945,7 @@ pub struct ParameterInlinePolicy {
 
 /// <p>Metadata includes information like the ARN of the last user and the date/time the parameter was last used.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ParameterMetadata {
     /// <p>A parameter name can include only the following letters and symbols.</p> <p>a-zA-Z0-9_.-</p>
     #[serde(rename = "AllowedPattern")]
@@ -5874,6 +5991,7 @@ pub struct ParameterMetadata {
 
 /// <p><p>One or more filters. Use a filter to return a more specific list of results.</p> <important> <p>The <code>ParameterStringFilter</code> object is used by the <a>DescribeParameters</a> and <a>GetParametersByPath</a> API actions. However, not all of the pattern values listed for <code>Key</code> can be used with both actions.</p> <p>For <code>DescribeActions</code>, all of the listed patterns are valid, with the exception of <code>Label</code>.</p> <p>For <code>GetParametersByPath</code>, the following patterns listed for <code>Key</code> are not valid: <code>Name</code>, <code>Path</code>, and <code>Tier</code>.</p> <p>For examples of CLI commands demonstrating valid parameter filter constructions, see <a href="http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-search.html">Searching for Systems Manager Parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p> </important></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ParameterStringFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -5890,6 +6008,7 @@ pub struct ParameterStringFilter {
 
 /// <p>This data type is deprecated. Instead, use <a>ParameterStringFilter</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ParametersFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "Key")]
@@ -5901,7 +6020,7 @@ pub struct ParametersFilter {
 
 /// <p>Represents metadata about a patch.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Patch {
     /// <p>The classification of the patch (for example, SecurityUpdates, Updates, CriticalUpdates).</p>
     #[serde(rename = "Classification")]
@@ -5959,7 +6078,7 @@ pub struct Patch {
 
 /// <p>Defines the basic information about a patch baseline.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PatchBaselineIdentity {
     /// <p>The description of the patch baseline.</p>
     #[serde(rename = "BaselineDescription")]
@@ -5985,7 +6104,7 @@ pub struct PatchBaselineIdentity {
 
 /// <p>Information about the state of a patch on a particular instance as it relates to the patch baseline used to patch the instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PatchComplianceData {
     /// <p>The classification of the patch (for example, SecurityUpdates, Updates, CriticalUpdates).</p>
     #[serde(rename = "Classification")]
@@ -6028,7 +6147,7 @@ pub struct PatchFilterGroup {
 
 /// <p>The mapping between a patch group and the patch baseline the patch group is registered with.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PatchGroupPatchBaselineMapping {
     /// <p>The patch baseline the patch group is registered with.</p>
     #[serde(rename = "BaselineIdentity")]
@@ -6042,6 +6161,7 @@ pub struct PatchGroupPatchBaselineMapping {
 
 /// <p>Defines a filter used in Patch Manager APIs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PatchOrchestratorFilter {
     /// <p>The key for the filter.</p>
     #[serde(rename = "Key")]
@@ -6096,7 +6216,7 @@ pub struct PatchSource {
 
 /// <p>Information about the approval status of a patch.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PatchStatus {
     /// <p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>
     #[serde(rename = "ApprovalDate")]
@@ -6114,7 +6234,7 @@ pub struct PatchStatus {
 
 /// <p>An aggregate of step execution statuses displayed in the AWS Console for a multi-Region and multi-account Automation execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProgressCounters {
     /// <p>The total number of steps that the system cancelled in all specified AWS Regions and accounts for the current Automation execution.</p>
     #[serde(rename = "CancelledSteps")]
@@ -6139,6 +6259,7 @@ pub struct ProgressCounters {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutComplianceItemsRequest {
     /// <p>Specify the compliance type. For example, specify Association (for a State Manager association), Patch, or Custom:<code>string</code>.</p>
     #[serde(rename = "ComplianceType")]
@@ -6162,10 +6283,11 @@ pub struct PutComplianceItemsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutComplianceItemsResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutInventoryRequest {
     /// <p>An instance ID where you want to add or update inventory items.</p>
     #[serde(rename = "InstanceId")]
@@ -6176,7 +6298,7 @@ pub struct PutInventoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutInventoryResult {
     /// <p>Information about the request.</p>
     #[serde(rename = "Message")]
@@ -6185,6 +6307,7 @@ pub struct PutInventoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutParameterRequest {
     /// <p>A regular expression used to validate the parameter value. For example, for String types with values restricted to numbers, you can specify the following: AllowedPattern=^\d+$ </p>
     #[serde(rename = "AllowedPattern")]
@@ -6226,7 +6349,7 @@ pub struct PutParameterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutParameterResult {
     /// <p>The tier assigned to the parameter.</p>
     #[serde(rename = "Tier")]
@@ -6239,6 +6362,7 @@ pub struct PutParameterResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterDefaultPatchBaselineRequest {
     /// <p>The ID of the patch baseline that should be the default patch baseline.</p>
     #[serde(rename = "BaselineId")]
@@ -6246,7 +6370,7 @@ pub struct RegisterDefaultPatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterDefaultPatchBaselineResult {
     /// <p>The ID of the default patch baseline.</p>
     #[serde(rename = "BaselineId")]
@@ -6255,6 +6379,7 @@ pub struct RegisterDefaultPatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterPatchBaselineForPatchGroupRequest {
     /// <p>The ID of the patch baseline to register the patch group with.</p>
     #[serde(rename = "BaselineId")]
@@ -6265,7 +6390,7 @@ pub struct RegisterPatchBaselineForPatchGroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterPatchBaselineForPatchGroupResult {
     /// <p>The ID of the patch baseline the patch group was registered with.</p>
     #[serde(rename = "BaselineId")]
@@ -6278,6 +6403,7 @@ pub struct RegisterPatchBaselineForPatchGroupResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterTargetWithMaintenanceWindowRequest {
     /// <p>User-provided idempotency token.</p>
     #[serde(rename = "ClientToken")]
@@ -6307,7 +6433,7 @@ pub struct RegisterTargetWithMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterTargetWithMaintenanceWindowResult {
     /// <p>The ID of the target definition in this maintenance window.</p>
     #[serde(rename = "WindowTargetId")]
@@ -6316,6 +6442,7 @@ pub struct RegisterTargetWithMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterTaskWithMaintenanceWindowRequest {
     /// <p>User-provided idempotency token.</p>
     #[serde(rename = "ClientToken")]
@@ -6371,7 +6498,7 @@ pub struct RegisterTaskWithMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterTaskWithMaintenanceWindowResult {
     /// <p>The ID of the task in the maintenance window.</p>
     #[serde(rename = "WindowTaskId")]
@@ -6388,6 +6515,7 @@ pub struct RelatedOpsItem {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsFromResourceRequest {
     /// <p><p>The ID of the resource from which you want to remove tags. For example:</p> <p>ManagedInstance: mi-012345abcde</p> <p>MaintenanceWindow: mw-012345abcde</p> <p>PatchBaseline: pb-012345abcde</p> <p>For the Document and Parameter values, use the name of the resource.</p> <note> <p>The ManagedInstance type for this API action is only for on-premises managed instances. Specify the name of the managed instance in the following format: mi-ID_number. For example, mi-1a2b3c4d5e6f.</p> </note></p>
     #[serde(rename = "ResourceId")]
@@ -6401,11 +6529,12 @@ pub struct RemoveTagsFromResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveTagsFromResourceResult {}
 
 /// <p>The request body of the ResetServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetServiceSettingRequest {
     /// <p>The ID of the service setting to reset.</p>
     #[serde(rename = "SettingId")]
@@ -6414,7 +6543,7 @@ pub struct ResetServiceSettingRequest {
 
 /// <p>The result body of the ResetServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResetServiceSettingResult {
     /// <p>The current, effective service setting after calling the ResetServiceSetting API action.</p>
     #[serde(rename = "ServiceSetting")]
@@ -6424,7 +6553,7 @@ pub struct ResetServiceSettingResult {
 
 /// <p>Information about targets that resolved during the Automation execution.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResolvedTargets {
     /// <p>A list of parameter values sent to targets that resolved during the Automation execution.</p>
     #[serde(rename = "ParameterValues")]
@@ -6438,7 +6567,7 @@ pub struct ResolvedTargets {
 
 /// <p>Compliance summary information for a specific resource. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceComplianceSummaryItem {
     /// <p>The compliance type.</p>
     #[serde(rename = "ComplianceType")]
@@ -6488,7 +6617,7 @@ pub struct ResourceDataSyncAwsOrganizationsSource {
 
 /// <p>Information about a Resource Data Sync configuration, including its current status and last successful sync.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceDataSyncItem {
     /// <p>The status reported by the last sync.</p>
     #[serde(rename = "LastStatus")]
@@ -6565,6 +6694,7 @@ pub struct ResourceDataSyncS3Destination {
 
 /// <p>Information about the source of the data included in the resource data sync.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResourceDataSyncSource {
     /// <p>The field name in <code>SyncSource</code> for the <code>ResourceDataSyncAwsOrganizationsSource</code> type.</p>
     #[serde(rename = "AwsOrganizationsSource")]
@@ -6584,7 +6714,7 @@ pub struct ResourceDataSyncSource {
 
 /// <p>The data type name for including resource data sync state. There are four sync states:</p> <p> <code>OrganizationNotExists</code> (Your organization doesn't exist)</p> <p> <code>NoPermissions</code> (The system can't locate the service-linked role. This role is automatically created when a user creates a resource data sync in Explorer.)</p> <p> <code>InvalidOrganizationalUnit</code> (You specified or selected an invalid unit in the resource data sync configuration.)</p> <p> <code>TrustedAccessDisabled</code> (You disabled Systems Manager access in the organization in AWS Organizations.)</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceDataSyncSourceWithState {
     /// <p>The field name in <code>SyncSource</code> for the <code>ResourceDataSyncAwsOrganizationsSource</code> type.</p>
     #[serde(rename = "AwsOrganizationsSource")]
@@ -6610,6 +6740,7 @@ pub struct ResourceDataSyncSourceWithState {
 
 /// <p>The inventory item result attribute.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResultAttribute {
     /// <p>Name of the inventory item type. Valid value: AWS:InstanceInformation. Default Value: AWS:InstanceInformation.</p>
     #[serde(rename = "TypeName")]
@@ -6617,6 +6748,7 @@ pub struct ResultAttribute {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResumeSessionRequest {
     /// <p>The ID of the disconnected session to resume.</p>
     #[serde(rename = "SessionId")]
@@ -6624,7 +6756,7 @@ pub struct ResumeSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResumeSessionResponse {
     /// <p>The ID of the session.</p>
     #[serde(rename = "SessionId")]
@@ -6659,7 +6791,7 @@ pub struct S3OutputLocation {
 
 /// <p>A URL for the Amazon S3 bucket where you want to store the results of this request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct S3OutputUrl {
     /// <p>A URL for an Amazon S3 bucket where you want to store the results of this request.</p>
     #[serde(rename = "OutputUrl")]
@@ -6669,7 +6801,7 @@ pub struct S3OutputUrl {
 
 /// <p>Information about a scheduled execution for a maintenance window.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScheduledWindowExecution {
     /// <p>The time, in ISO-8601 Extended format, that the maintenance window is scheduled to be run.</p>
     #[serde(rename = "ExecutionTime")]
@@ -6686,6 +6818,7 @@ pub struct ScheduledWindowExecution {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SendAutomationSignalRequest {
     /// <p>The unique identifier for an existing Automation execution that you want to send the signal to.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -6700,10 +6833,11 @@ pub struct SendAutomationSignalRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SendAutomationSignalResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SendCommandRequest {
     /// <p>Enables Systems Manager to send Run Command output to Amazon CloudWatch Logs. </p>
     #[serde(rename = "CloudWatchOutputConfig")]
@@ -6775,7 +6909,7 @@ pub struct SendCommandRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SendCommandResult {
     /// <p>The request as it was received by Systems Manager. Also provides the command ID which can be used future references to this request.</p>
     #[serde(rename = "Command")]
@@ -6785,7 +6919,7 @@ pub struct SendCommandResult {
 
 /// <p>The service setting data structure.</p> <p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of "false". This means the user can't use this feature unless they change the setting to "true" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>UpdateServiceSetting</a> API action to change the default setting. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceSetting {
     /// <p>The ARN of the service setting.</p>
     #[serde(rename = "ARN")]
@@ -6815,7 +6949,7 @@ pub struct ServiceSetting {
 
 /// <p>Information about a Session Manager connection to an instance.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Session {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "Details")]
@@ -6857,6 +6991,7 @@ pub struct Session {
 
 /// <p>Describes a filter for Session Manager information.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SessionFilter {
     /// <p>The name of the filter.</p>
     #[serde(rename = "key")]
@@ -6868,7 +7003,7 @@ pub struct SessionFilter {
 
 /// <p>Reserved for future use.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SessionManagerOutputUrl {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "CloudWatchOutputUrl")]
@@ -6882,7 +7017,7 @@ pub struct SessionManagerOutputUrl {
 
 /// <p>The number of managed instances found for each patch severity level defined in the request filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SeveritySummary {
     /// <p>The total number of resources or compliance items that have a severity level of critical. Critical severity is determined by the organization that published the compliance items.</p>
     #[serde(rename = "CriticalCount")]
@@ -6911,6 +7046,7 @@ pub struct SeveritySummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartAssociationsOnceRequest {
     /// <p>The association IDs that you want to run immediately and only one time.</p>
     #[serde(rename = "AssociationIds")]
@@ -6918,10 +7054,11 @@ pub struct StartAssociationsOnceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartAssociationsOnceResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartAutomationExecutionRequest {
     /// <p>User-provided idempotency token. The token must be unique, is case insensitive, enforces the UUID format, and can't be reused.</p>
     #[serde(rename = "ClientToken")]
@@ -6973,7 +7110,7 @@ pub struct StartAutomationExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartAutomationExecutionResult {
     /// <p>The unique ID of a newly scheduled automation execution.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -6982,6 +7119,7 @@ pub struct StartAutomationExecutionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartSessionRequest {
     /// <p>The name of the SSM document to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>. If no document name is provided, a shell to the instance is launched by default.</p>
     #[serde(rename = "DocumentName")]
@@ -6997,7 +7135,7 @@ pub struct StartSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartSessionResponse {
     /// <p>The ID of the session.</p>
     #[serde(rename = "SessionId")]
@@ -7015,7 +7153,7 @@ pub struct StartSessionResponse {
 
 /// <p>Detailed information about an the execution state of an Automation step.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StepExecution {
     /// <p>The action this step performs. The action determines the behavior of the step.</p>
     #[serde(rename = "Action")]
@@ -7109,6 +7247,7 @@ pub struct StepExecution {
 
 /// <p>A filter to limit the amount of step execution information returned by the call.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StepExecutionFilter {
     /// <p>One or more keys to limit the results. Valid filter keys include the following: StepName, Action, StepExecutionId, StepExecutionStatus, StartTimeBefore, StartTimeAfter.</p>
     #[serde(rename = "Key")]
@@ -7119,6 +7258,7 @@ pub struct StepExecutionFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopAutomationExecutionRequest {
     /// <p>The execution ID of the Automation to stop.</p>
     #[serde(rename = "AutomationExecutionId")]
@@ -7130,7 +7270,7 @@ pub struct StopAutomationExecutionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopAutomationExecutionResult {}
 
 /// <p>Metadata that you assign to your AWS resources. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. In Systems Manager, you can apply tags to documents, managed instances, maintenance windows, Parameter Store parameters, and patch baselines.</p>
@@ -7183,6 +7323,7 @@ pub struct TargetLocation {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminateSessionRequest {
     /// <p>The ID of the session to terminate.</p>
     #[serde(rename = "SessionId")]
@@ -7190,7 +7331,7 @@ pub struct TerminateSessionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminateSessionResponse {
     /// <p>The ID of the session that has been terminated.</p>
     #[serde(rename = "SessionId")]
@@ -7199,6 +7340,7 @@ pub struct TerminateSessionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAssociationRequest {
     /// <p>The ID of the association you want to update. </p>
     #[serde(rename = "AssociationId")]
@@ -7254,7 +7396,7 @@ pub struct UpdateAssociationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAssociationResult {
     /// <p>The description of the association that was updated.</p>
     #[serde(rename = "AssociationDescription")]
@@ -7263,6 +7405,7 @@ pub struct UpdateAssociationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAssociationStatusRequest {
     /// <p>The association status.</p>
     #[serde(rename = "AssociationStatus")]
@@ -7276,7 +7419,7 @@ pub struct UpdateAssociationStatusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAssociationStatusResult {
     /// <p>Information about the association.</p>
     #[serde(rename = "AssociationDescription")]
@@ -7285,6 +7428,7 @@ pub struct UpdateAssociationStatusResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDocumentDefaultVersionRequest {
     /// <p>The version of a custom document that you want to set as the default version.</p>
     #[serde(rename = "DocumentVersion")]
@@ -7295,7 +7439,7 @@ pub struct UpdateDocumentDefaultVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDocumentDefaultVersionResult {
     /// <p>The description of a custom document that you want to set as the default version.</p>
     #[serde(rename = "Description")]
@@ -7304,6 +7448,7 @@ pub struct UpdateDocumentDefaultVersionResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDocumentRequest {
     /// <p>A list of key and value pairs that describe attachments to a version of a document.</p>
     #[serde(rename = "Attachments")]
@@ -7334,7 +7479,7 @@ pub struct UpdateDocumentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDocumentResult {
     /// <p>A description of the document that was updated.</p>
     #[serde(rename = "DocumentDescription")]
@@ -7343,6 +7488,7 @@ pub struct UpdateDocumentResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMaintenanceWindowRequest {
     /// <p>Whether targets must be registered with the maintenance window before tasks can be defined for those targets.</p>
     #[serde(rename = "AllowUnassociatedTargets")]
@@ -7394,7 +7540,7 @@ pub struct UpdateMaintenanceWindowRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMaintenanceWindowResult {
     /// <p>Whether targets must be registered with the maintenance window before tasks can be defined for those targets.</p>
     #[serde(rename = "AllowUnassociatedTargets")]
@@ -7443,6 +7589,7 @@ pub struct UpdateMaintenanceWindowResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMaintenanceWindowTargetRequest {
     /// <p>An optional description for the update.</p>
     #[serde(rename = "Description")]
@@ -7473,7 +7620,7 @@ pub struct UpdateMaintenanceWindowTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMaintenanceWindowTargetResult {
     /// <p>The updated description.</p>
     #[serde(rename = "Description")]
@@ -7502,6 +7649,7 @@ pub struct UpdateMaintenanceWindowTargetResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMaintenanceWindowTaskRequest {
     /// <p>The new task description to specify.</p>
     #[serde(rename = "Description")]
@@ -7561,7 +7709,7 @@ pub struct UpdateMaintenanceWindowTaskRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMaintenanceWindowTaskResult {
     /// <p>The updated task description.</p>
     #[serde(rename = "Description")]
@@ -7619,6 +7767,7 @@ pub struct UpdateMaintenanceWindowTaskResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateManagedInstanceRoleRequest {
     /// <p>The IAM role you want to assign or change.</p>
     #[serde(rename = "IamRole")]
@@ -7629,10 +7778,11 @@ pub struct UpdateManagedInstanceRoleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateManagedInstanceRoleResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateOpsItemRequest {
     /// <p>Specify a new category for an OpsItem.</p>
     #[serde(rename = "Category")]
@@ -7680,10 +7830,11 @@ pub struct UpdateOpsItemRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateOpsItemResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePatchBaselineRequest {
     /// <p>A set of rules used to include patches in the baseline.</p>
     #[serde(rename = "ApprovalRules")]
@@ -7735,7 +7886,7 @@ pub struct UpdatePatchBaselineRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePatchBaselineResult {
     /// <p>A set of rules used to include patches in the baseline.</p>
     #[serde(rename = "ApprovalRules")]
@@ -7796,6 +7947,7 @@ pub struct UpdatePatchBaselineResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateResourceDataSyncRequest {
     /// <p>The name of the resource data sync you want to update.</p>
     #[serde(rename = "SyncName")]
@@ -7809,11 +7961,12 @@ pub struct UpdateResourceDataSyncRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateResourceDataSyncResult {}
 
 /// <p>The request body of the UpdateServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateServiceSettingRequest {
     /// <p>The ID of the service setting to update.</p>
     #[serde(rename = "SettingId")]
@@ -7825,7 +7978,7 @@ pub struct UpdateServiceSettingRequest {
 
 /// <p>The result body of the UpdateServiceSetting API action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateServiceSettingResult {}
 
 /// Errors returned by AddTagsToResource
@@ -7874,21 +8027,18 @@ impl AddTagsToResourceError {
     }
 }
 impl fmt::Display for AddTagsToResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddTagsToResourceError {
-    fn description(&self) -> &str {
         match *self {
-            AddTagsToResourceError::InternalServerError(ref cause) => cause,
-            AddTagsToResourceError::InvalidResourceId(ref cause) => cause,
-            AddTagsToResourceError::InvalidResourceType(ref cause) => cause,
-            AddTagsToResourceError::TooManyTagsError(ref cause) => cause,
-            AddTagsToResourceError::TooManyUpdates(ref cause) => cause,
+            AddTagsToResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::InvalidResourceType(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::TooManyTagsError(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddTagsToResourceError {}
 /// Errors returned by CancelCommand
 #[derive(Debug, PartialEq)]
 pub enum CancelCommandError {
@@ -7926,20 +8076,17 @@ impl CancelCommandError {
     }
 }
 impl fmt::Display for CancelCommandError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelCommandError {
-    fn description(&self) -> &str {
         match *self {
-            CancelCommandError::DuplicateInstanceId(ref cause) => cause,
-            CancelCommandError::InternalServerError(ref cause) => cause,
-            CancelCommandError::InvalidCommandId(ref cause) => cause,
-            CancelCommandError::InvalidInstanceId(ref cause) => cause,
+            CancelCommandError::DuplicateInstanceId(ref cause) => write!(f, "{}", cause),
+            CancelCommandError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CancelCommandError::InvalidCommandId(ref cause) => write!(f, "{}", cause),
+            CancelCommandError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelCommandError {}
 /// Errors returned by CancelMaintenanceWindowExecution
 #[derive(Debug, PartialEq)]
 pub enum CancelMaintenanceWindowExecutionError {
@@ -7973,18 +8120,19 @@ impl CancelMaintenanceWindowExecutionError {
     }
 }
 impl fmt::Display for CancelMaintenanceWindowExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelMaintenanceWindowExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            CancelMaintenanceWindowExecutionError::DoesNotExist(ref cause) => cause,
-            CancelMaintenanceWindowExecutionError::InternalServerError(ref cause) => cause,
+            CancelMaintenanceWindowExecutionError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CancelMaintenanceWindowExecutionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CancelMaintenanceWindowExecutionError {}
 /// Errors returned by CreateActivation
 #[derive(Debug, PartialEq)]
 pub enum CreateActivationError {
@@ -8009,17 +8157,14 @@ impl CreateActivationError {
     }
 }
 impl fmt::Display for CreateActivationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateActivationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateActivationError::InternalServerError(ref cause) => cause,
+            CreateActivationError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateActivationError {}
 /// Errors returned by CreateAssociation
 #[derive(Debug, PartialEq)]
 pub enum CreateAssociationError {
@@ -8104,27 +8249,24 @@ impl CreateAssociationError {
     }
 }
 impl fmt::Display for CreateAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAssociationError::AssociationAlreadyExists(ref cause) => cause,
-            CreateAssociationError::AssociationLimitExceeded(ref cause) => cause,
-            CreateAssociationError::InternalServerError(ref cause) => cause,
-            CreateAssociationError::InvalidDocument(ref cause) => cause,
-            CreateAssociationError::InvalidDocumentVersion(ref cause) => cause,
-            CreateAssociationError::InvalidInstanceId(ref cause) => cause,
-            CreateAssociationError::InvalidOutputLocation(ref cause) => cause,
-            CreateAssociationError::InvalidParameters(ref cause) => cause,
-            CreateAssociationError::InvalidSchedule(ref cause) => cause,
-            CreateAssociationError::InvalidTarget(ref cause) => cause,
-            CreateAssociationError::UnsupportedPlatformType(ref cause) => cause,
+            CreateAssociationError::AssociationAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::AssociationLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidOutputLocation(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidSchedule(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::InvalidTarget(ref cause) => write!(f, "{}", cause),
+            CreateAssociationError::UnsupportedPlatformType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAssociationError {}
 /// Errors returned by CreateAssociationBatch
 #[derive(Debug, PartialEq)]
 pub enum CreateAssociationBatchError {
@@ -8219,27 +8361,30 @@ impl CreateAssociationBatchError {
     }
 }
 impl fmt::Display for CreateAssociationBatchError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAssociationBatchError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAssociationBatchError::AssociationLimitExceeded(ref cause) => cause,
-            CreateAssociationBatchError::DuplicateInstanceId(ref cause) => cause,
-            CreateAssociationBatchError::InternalServerError(ref cause) => cause,
-            CreateAssociationBatchError::InvalidDocument(ref cause) => cause,
-            CreateAssociationBatchError::InvalidDocumentVersion(ref cause) => cause,
-            CreateAssociationBatchError::InvalidInstanceId(ref cause) => cause,
-            CreateAssociationBatchError::InvalidOutputLocation(ref cause) => cause,
-            CreateAssociationBatchError::InvalidParameters(ref cause) => cause,
-            CreateAssociationBatchError::InvalidSchedule(ref cause) => cause,
-            CreateAssociationBatchError::InvalidTarget(ref cause) => cause,
-            CreateAssociationBatchError::UnsupportedPlatformType(ref cause) => cause,
+            CreateAssociationBatchError::AssociationLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateAssociationBatchError::DuplicateInstanceId(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidDocumentVersion(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateAssociationBatchError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidOutputLocation(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidSchedule(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::InvalidTarget(ref cause) => write!(f, "{}", cause),
+            CreateAssociationBatchError::UnsupportedPlatformType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateAssociationBatchError {}
 /// Errors returned by CreateDocument
 #[derive(Debug, PartialEq)]
 pub enum CreateDocumentError {
@@ -8297,22 +8442,19 @@ impl CreateDocumentError {
     }
 }
 impl fmt::Display for CreateDocumentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDocumentError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDocumentError::DocumentAlreadyExists(ref cause) => cause,
-            CreateDocumentError::DocumentLimitExceeded(ref cause) => cause,
-            CreateDocumentError::InternalServerError(ref cause) => cause,
-            CreateDocumentError::InvalidDocumentContent(ref cause) => cause,
-            CreateDocumentError::InvalidDocumentSchemaVersion(ref cause) => cause,
-            CreateDocumentError::MaxDocumentSizeExceeded(ref cause) => cause,
+            CreateDocumentError::DocumentAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateDocumentError::DocumentLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDocumentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateDocumentError::InvalidDocumentContent(ref cause) => write!(f, "{}", cause),
+            CreateDocumentError::InvalidDocumentSchemaVersion(ref cause) => write!(f, "{}", cause),
+            CreateDocumentError::MaxDocumentSizeExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDocumentError {}
 /// Errors returned by CreateMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum CreateMaintenanceWindowError {
@@ -8351,19 +8493,20 @@ impl CreateMaintenanceWindowError {
     }
 }
 impl fmt::Display for CreateMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateMaintenanceWindowError::InternalServerError(ref cause) => cause,
-            CreateMaintenanceWindowError::ResourceLimitExceeded(ref cause) => cause,
+            CreateMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMaintenanceWindowError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateMaintenanceWindowError::ResourceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateMaintenanceWindowError {}
 /// Errors returned by CreateOpsItem
 #[derive(Debug, PartialEq)]
 pub enum CreateOpsItemError {
@@ -8403,20 +8546,17 @@ impl CreateOpsItemError {
     }
 }
 impl fmt::Display for CreateOpsItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateOpsItemError {
-    fn description(&self) -> &str {
         match *self {
-            CreateOpsItemError::InternalServerError(ref cause) => cause,
-            CreateOpsItemError::OpsItemAlreadyExists(ref cause) => cause,
-            CreateOpsItemError::OpsItemInvalidParameter(ref cause) => cause,
-            CreateOpsItemError::OpsItemLimitExceeded(ref cause) => cause,
+            CreateOpsItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateOpsItemError::OpsItemAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateOpsItemError::OpsItemInvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateOpsItemError::OpsItemLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateOpsItemError {}
 /// Errors returned by CreatePatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum CreatePatchBaselineError {
@@ -8455,19 +8595,18 @@ impl CreatePatchBaselineError {
     }
 }
 impl fmt::Display for CreatePatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePatchBaselineError::IdempotentParameterMismatch(ref cause) => cause,
-            CreatePatchBaselineError::InternalServerError(ref cause) => cause,
-            CreatePatchBaselineError::ResourceLimitExceeded(ref cause) => cause,
+            CreatePatchBaselineError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreatePatchBaselineError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreatePatchBaselineError::ResourceLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePatchBaselineError {}
 /// Errors returned by CreateResourceDataSync
 #[derive(Debug, PartialEq)]
 pub enum CreateResourceDataSyncError {
@@ -8513,20 +8652,23 @@ impl CreateResourceDataSyncError {
     }
 }
 impl fmt::Display for CreateResourceDataSyncError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateResourceDataSyncError {
-    fn description(&self) -> &str {
         match *self {
-            CreateResourceDataSyncError::InternalServerError(ref cause) => cause,
-            CreateResourceDataSyncError::ResourceDataSyncAlreadyExists(ref cause) => cause,
-            CreateResourceDataSyncError::ResourceDataSyncCountExceeded(ref cause) => cause,
-            CreateResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => cause,
+            CreateResourceDataSyncError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateResourceDataSyncError::ResourceDataSyncAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateResourceDataSyncError::ResourceDataSyncCountExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateResourceDataSyncError {}
 /// Errors returned by DeleteActivation
 #[derive(Debug, PartialEq)]
 pub enum DeleteActivationError {
@@ -8568,20 +8710,17 @@ impl DeleteActivationError {
     }
 }
 impl fmt::Display for DeleteActivationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteActivationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteActivationError::InternalServerError(ref cause) => cause,
-            DeleteActivationError::InvalidActivation(ref cause) => cause,
-            DeleteActivationError::InvalidActivationId(ref cause) => cause,
-            DeleteActivationError::TooManyUpdates(ref cause) => cause,
+            DeleteActivationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteActivationError::InvalidActivation(ref cause) => write!(f, "{}", cause),
+            DeleteActivationError::InvalidActivationId(ref cause) => write!(f, "{}", cause),
+            DeleteActivationError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteActivationError {}
 /// Errors returned by DeleteAssociation
 #[derive(Debug, PartialEq)]
 pub enum DeleteAssociationError {
@@ -8628,21 +8767,18 @@ impl DeleteAssociationError {
     }
 }
 impl fmt::Display for DeleteAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteAssociationError::AssociationDoesNotExist(ref cause) => cause,
-            DeleteAssociationError::InternalServerError(ref cause) => cause,
-            DeleteAssociationError::InvalidDocument(ref cause) => cause,
-            DeleteAssociationError::InvalidInstanceId(ref cause) => cause,
-            DeleteAssociationError::TooManyUpdates(ref cause) => cause,
+            DeleteAssociationError::AssociationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeleteAssociationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteAssociationError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            DeleteAssociationError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            DeleteAssociationError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteAssociationError {}
 /// Errors returned by DeleteDocument
 #[derive(Debug, PartialEq)]
 pub enum DeleteDocumentError {
@@ -8682,20 +8818,17 @@ impl DeleteDocumentError {
     }
 }
 impl fmt::Display for DeleteDocumentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDocumentError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDocumentError::AssociatedInstances(ref cause) => cause,
-            DeleteDocumentError::InternalServerError(ref cause) => cause,
-            DeleteDocumentError::InvalidDocument(ref cause) => cause,
-            DeleteDocumentError::InvalidDocumentOperation(ref cause) => cause,
+            DeleteDocumentError::AssociatedInstances(ref cause) => write!(f, "{}", cause),
+            DeleteDocumentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteDocumentError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            DeleteDocumentError::InvalidDocumentOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDocumentError {}
 /// Errors returned by DeleteInventory
 #[derive(Debug, PartialEq)]
 pub enum DeleteInventoryError {
@@ -8742,21 +8875,20 @@ impl DeleteInventoryError {
     }
 }
 impl fmt::Display for DeleteInventoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInventoryError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInventoryError::InternalServerError(ref cause) => cause,
-            DeleteInventoryError::InvalidDeleteInventoryParameters(ref cause) => cause,
-            DeleteInventoryError::InvalidInventoryRequest(ref cause) => cause,
-            DeleteInventoryError::InvalidOption(ref cause) => cause,
-            DeleteInventoryError::InvalidTypeName(ref cause) => cause,
+            DeleteInventoryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteInventoryError::InvalidDeleteInventoryParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteInventoryError::InvalidInventoryRequest(ref cause) => write!(f, "{}", cause),
+            DeleteInventoryError::InvalidOption(ref cause) => write!(f, "{}", cause),
+            DeleteInventoryError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInventoryError {}
 /// Errors returned by DeleteMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum DeleteMaintenanceWindowError {
@@ -8781,17 +8913,14 @@ impl DeleteMaintenanceWindowError {
     }
 }
 impl fmt::Display for DeleteMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMaintenanceWindowError::InternalServerError(ref cause) => cause,
+            DeleteMaintenanceWindowError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMaintenanceWindowError {}
 /// Errors returned by DeleteParameter
 #[derive(Debug, PartialEq)]
 pub enum DeleteParameterError {
@@ -8819,18 +8948,15 @@ impl DeleteParameterError {
     }
 }
 impl fmt::Display for DeleteParameterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteParameterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteParameterError::InternalServerError(ref cause) => cause,
-            DeleteParameterError::ParameterNotFound(ref cause) => cause,
+            DeleteParameterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteParameterError::ParameterNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteParameterError {}
 /// Errors returned by DeleteParameters
 #[derive(Debug, PartialEq)]
 pub enum DeleteParametersError {
@@ -8855,17 +8981,14 @@ impl DeleteParametersError {
     }
 }
 impl fmt::Display for DeleteParametersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteParametersError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteParametersError::InternalServerError(ref cause) => cause,
+            DeleteParametersError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteParametersError {}
 /// Errors returned by DeletePatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum DeletePatchBaselineError {
@@ -8895,18 +9018,15 @@ impl DeletePatchBaselineError {
     }
 }
 impl fmt::Display for DeletePatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePatchBaselineError::InternalServerError(ref cause) => cause,
-            DeletePatchBaselineError::ResourceInUse(ref cause) => cause,
+            DeletePatchBaselineError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeletePatchBaselineError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePatchBaselineError {}
 /// Errors returned by DeleteResourceDataSync
 #[derive(Debug, PartialEq)]
 pub enum DeleteResourceDataSyncError {
@@ -8945,19 +9065,20 @@ impl DeleteResourceDataSyncError {
     }
 }
 impl fmt::Display for DeleteResourceDataSyncError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteResourceDataSyncError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteResourceDataSyncError::InternalServerError(ref cause) => cause,
-            DeleteResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => cause,
-            DeleteResourceDataSyncError::ResourceDataSyncNotFound(ref cause) => cause,
+            DeleteResourceDataSyncError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteResourceDataSyncError::ResourceDataSyncNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteResourceDataSyncError {}
 /// Errors returned by DeregisterManagedInstance
 #[derive(Debug, PartialEq)]
 pub enum DeregisterManagedInstanceError {
@@ -8989,18 +9110,17 @@ impl DeregisterManagedInstanceError {
     }
 }
 impl fmt::Display for DeregisterManagedInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterManagedInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterManagedInstanceError::InternalServerError(ref cause) => cause,
-            DeregisterManagedInstanceError::InvalidInstanceId(ref cause) => cause,
+            DeregisterManagedInstanceError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterManagedInstanceError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeregisterManagedInstanceError {}
 /// Errors returned by DeregisterPatchBaselineForPatchGroup
 #[derive(Debug, PartialEq)]
 pub enum DeregisterPatchBaselineForPatchGroupError {
@@ -9034,18 +9154,19 @@ impl DeregisterPatchBaselineForPatchGroupError {
     }
 }
 impl fmt::Display for DeregisterPatchBaselineForPatchGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterPatchBaselineForPatchGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterPatchBaselineForPatchGroupError::InternalServerError(ref cause) => cause,
-            DeregisterPatchBaselineForPatchGroupError::InvalidResourceId(ref cause) => cause,
+            DeregisterPatchBaselineForPatchGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterPatchBaselineForPatchGroupError::InvalidResourceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeregisterPatchBaselineForPatchGroupError {}
 /// Errors returned by DeregisterTargetFromMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum DeregisterTargetFromMaintenanceWindowError {
@@ -9086,19 +9207,22 @@ impl DeregisterTargetFromMaintenanceWindowError {
     }
 }
 impl fmt::Display for DeregisterTargetFromMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterTargetFromMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterTargetFromMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            DeregisterTargetFromMaintenanceWindowError::InternalServerError(ref cause) => cause,
-            DeregisterTargetFromMaintenanceWindowError::TargetInUse(ref cause) => cause,
+            DeregisterTargetFromMaintenanceWindowError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterTargetFromMaintenanceWindowError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterTargetFromMaintenanceWindowError::TargetInUse(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeregisterTargetFromMaintenanceWindowError {}
 /// Errors returned by DeregisterTaskFromMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum DeregisterTaskFromMaintenanceWindowError {
@@ -9132,18 +9256,19 @@ impl DeregisterTaskFromMaintenanceWindowError {
     }
 }
 impl fmt::Display for DeregisterTaskFromMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterTaskFromMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterTaskFromMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            DeregisterTaskFromMaintenanceWindowError::InternalServerError(ref cause) => cause,
+            DeregisterTaskFromMaintenanceWindowError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterTaskFromMaintenanceWindowError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeregisterTaskFromMaintenanceWindowError {}
 /// Errors returned by DescribeActivations
 #[derive(Debug, PartialEq)]
 pub enum DescribeActivationsError {
@@ -9180,19 +9305,16 @@ impl DescribeActivationsError {
     }
 }
 impl fmt::Display for DescribeActivationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeActivationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeActivationsError::InternalServerError(ref cause) => cause,
-            DescribeActivationsError::InvalidFilter(ref cause) => cause,
-            DescribeActivationsError::InvalidNextToken(ref cause) => cause,
+            DescribeActivationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeActivationsError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            DescribeActivationsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeActivationsError {}
 /// Errors returned by DescribeAssociation
 #[derive(Debug, PartialEq)]
 pub enum DescribeAssociationError {
@@ -9243,21 +9365,20 @@ impl DescribeAssociationError {
     }
 }
 impl fmt::Display for DescribeAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAssociationError::AssociationDoesNotExist(ref cause) => cause,
-            DescribeAssociationError::InternalServerError(ref cause) => cause,
-            DescribeAssociationError::InvalidAssociationVersion(ref cause) => cause,
-            DescribeAssociationError::InvalidDocument(ref cause) => cause,
-            DescribeAssociationError::InvalidInstanceId(ref cause) => cause,
+            DescribeAssociationError::AssociationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeAssociationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeAssociationError::InvalidAssociationVersion(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAssociationError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            DescribeAssociationError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAssociationError {}
 /// Errors returned by DescribeAssociationExecutionTargets
 #[derive(Debug, PartialEq)]
 pub enum DescribeAssociationExecutionTargetsError {
@@ -9307,22 +9428,25 @@ impl DescribeAssociationExecutionTargetsError {
     }
 }
 impl fmt::Display for DescribeAssociationExecutionTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAssociationExecutionTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAssociationExecutionTargetsError::AssociationDoesNotExist(ref cause) => cause,
+            DescribeAssociationExecutionTargetsError::AssociationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
             DescribeAssociationExecutionTargetsError::AssociationExecutionDoesNotExist(
                 ref cause,
-            ) => cause,
-            DescribeAssociationExecutionTargetsError::InternalServerError(ref cause) => cause,
-            DescribeAssociationExecutionTargetsError::InvalidNextToken(ref cause) => cause,
+            ) => write!(f, "{}", cause),
+            DescribeAssociationExecutionTargetsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAssociationExecutionTargetsError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeAssociationExecutionTargetsError {}
 /// Errors returned by DescribeAssociationExecutions
 #[derive(Debug, PartialEq)]
 pub enum DescribeAssociationExecutionsError {
@@ -9363,19 +9487,22 @@ impl DescribeAssociationExecutionsError {
     }
 }
 impl fmt::Display for DescribeAssociationExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAssociationExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAssociationExecutionsError::AssociationDoesNotExist(ref cause) => cause,
-            DescribeAssociationExecutionsError::InternalServerError(ref cause) => cause,
-            DescribeAssociationExecutionsError::InvalidNextToken(ref cause) => cause,
+            DescribeAssociationExecutionsError::AssociationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAssociationExecutionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAssociationExecutionsError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeAssociationExecutionsError {}
 /// Errors returned by DescribeAutomationExecutions
 #[derive(Debug, PartialEq)]
 pub enum DescribeAutomationExecutionsError {
@@ -9423,20 +9550,25 @@ impl DescribeAutomationExecutionsError {
     }
 }
 impl fmt::Display for DescribeAutomationExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAutomationExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAutomationExecutionsError::InternalServerError(ref cause) => cause,
-            DescribeAutomationExecutionsError::InvalidFilterKey(ref cause) => cause,
-            DescribeAutomationExecutionsError::InvalidFilterValue(ref cause) => cause,
-            DescribeAutomationExecutionsError::InvalidNextToken(ref cause) => cause,
+            DescribeAutomationExecutionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationExecutionsError::InvalidFilterKey(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationExecutionsError::InvalidFilterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationExecutionsError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeAutomationExecutionsError {}
 /// Errors returned by DescribeAutomationStepExecutions
 #[derive(Debug, PartialEq)]
 pub enum DescribeAutomationStepExecutionsError {
@@ -9491,21 +9623,28 @@ impl DescribeAutomationStepExecutionsError {
     }
 }
 impl fmt::Display for DescribeAutomationStepExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAutomationStepExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAutomationStepExecutionsError::AutomationExecutionNotFound(ref cause) => cause,
-            DescribeAutomationStepExecutionsError::InternalServerError(ref cause) => cause,
-            DescribeAutomationStepExecutionsError::InvalidFilterKey(ref cause) => cause,
-            DescribeAutomationStepExecutionsError::InvalidFilterValue(ref cause) => cause,
-            DescribeAutomationStepExecutionsError::InvalidNextToken(ref cause) => cause,
+            DescribeAutomationStepExecutionsError::AutomationExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationStepExecutionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationStepExecutionsError::InvalidFilterKey(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationStepExecutionsError::InvalidFilterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAutomationStepExecutionsError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeAutomationStepExecutionsError {}
 /// Errors returned by DescribeAvailablePatches
 #[derive(Debug, PartialEq)]
 pub enum DescribeAvailablePatchesError {
@@ -9530,17 +9669,14 @@ impl DescribeAvailablePatchesError {
     }
 }
 impl fmt::Display for DescribeAvailablePatchesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAvailablePatchesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAvailablePatchesError::InternalServerError(ref cause) => cause,
+            DescribeAvailablePatchesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAvailablePatchesError {}
 /// Errors returned by DescribeDocument
 #[derive(Debug, PartialEq)]
 pub enum DescribeDocumentError {
@@ -9577,19 +9713,16 @@ impl DescribeDocumentError {
     }
 }
 impl fmt::Display for DescribeDocumentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDocumentError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDocumentError::InternalServerError(ref cause) => cause,
-            DescribeDocumentError::InvalidDocument(ref cause) => cause,
-            DescribeDocumentError::InvalidDocumentVersion(ref cause) => cause,
+            DescribeDocumentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeDocumentError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            DescribeDocumentError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDocumentError {}
 /// Errors returned by DescribeDocumentPermission
 #[derive(Debug, PartialEq)]
 pub enum DescribeDocumentPermissionError {
@@ -9630,19 +9763,20 @@ impl DescribeDocumentPermissionError {
     }
 }
 impl fmt::Display for DescribeDocumentPermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDocumentPermissionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDocumentPermissionError::InternalServerError(ref cause) => cause,
-            DescribeDocumentPermissionError::InvalidDocument(ref cause) => cause,
-            DescribeDocumentPermissionError::InvalidPermissionType(ref cause) => cause,
+            DescribeDocumentPermissionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeDocumentPermissionError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            DescribeDocumentPermissionError::InvalidPermissionType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeDocumentPermissionError {}
 /// Errors returned by DescribeEffectiveInstanceAssociations
 #[derive(Debug, PartialEq)]
 pub enum DescribeEffectiveInstanceAssociationsError {
@@ -9683,19 +9817,22 @@ impl DescribeEffectiveInstanceAssociationsError {
     }
 }
 impl fmt::Display for DescribeEffectiveInstanceAssociationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEffectiveInstanceAssociationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEffectiveInstanceAssociationsError::InternalServerError(ref cause) => cause,
-            DescribeEffectiveInstanceAssociationsError::InvalidInstanceId(ref cause) => cause,
-            DescribeEffectiveInstanceAssociationsError::InvalidNextToken(ref cause) => cause,
+            DescribeEffectiveInstanceAssociationsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectiveInstanceAssociationsError::InvalidInstanceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectiveInstanceAssociationsError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEffectiveInstanceAssociationsError {}
 /// Errors returned by DescribeEffectivePatchesForPatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum DescribeEffectivePatchesForPatchBaselineError {
@@ -9745,22 +9882,25 @@ impl DescribeEffectivePatchesForPatchBaselineError {
     }
 }
 impl fmt::Display for DescribeEffectivePatchesForPatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEffectivePatchesForPatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEffectivePatchesForPatchBaselineError::DoesNotExist(ref cause) => cause,
-            DescribeEffectivePatchesForPatchBaselineError::InternalServerError(ref cause) => cause,
-            DescribeEffectivePatchesForPatchBaselineError::InvalidResourceId(ref cause) => cause,
+            DescribeEffectivePatchesForPatchBaselineError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectivePatchesForPatchBaselineError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEffectivePatchesForPatchBaselineError::InvalidResourceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
             DescribeEffectivePatchesForPatchBaselineError::UnsupportedOperatingSystem(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEffectivePatchesForPatchBaselineError {}
 /// Errors returned by DescribeInstanceAssociationsStatus
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstanceAssociationsStatusError {
@@ -9801,19 +9941,22 @@ impl DescribeInstanceAssociationsStatusError {
     }
 }
 impl fmt::Display for DescribeInstanceAssociationsStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstanceAssociationsStatusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstanceAssociationsStatusError::InternalServerError(ref cause) => cause,
-            DescribeInstanceAssociationsStatusError::InvalidInstanceId(ref cause) => cause,
-            DescribeInstanceAssociationsStatusError::InvalidNextToken(ref cause) => cause,
+            DescribeInstanceAssociationsStatusError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstanceAssociationsStatusError::InvalidInstanceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstanceAssociationsStatusError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeInstanceAssociationsStatusError {}
 /// Errors returned by DescribeInstanceInformation
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstanceInformationError {
@@ -9870,23 +10013,24 @@ impl DescribeInstanceInformationError {
     }
 }
 impl fmt::Display for DescribeInstanceInformationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstanceInformationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstanceInformationError::InternalServerError(ref cause) => cause,
-            DescribeInstanceInformationError::InvalidFilterKey(ref cause) => cause,
-            DescribeInstanceInformationError::InvalidInstanceId(ref cause) => cause,
-            DescribeInstanceInformationError::InvalidInstanceInformationFilterValue(ref cause) => {
-                cause
+            DescribeInstanceInformationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
             }
-            DescribeInstanceInformationError::InvalidNextToken(ref cause) => cause,
+            DescribeInstanceInformationError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            DescribeInstanceInformationError::InvalidInstanceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstanceInformationError::InvalidInstanceInformationFilterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstanceInformationError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInstanceInformationError {}
 /// Errors returned by DescribeInstancePatchStates
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstancePatchStatesError {
@@ -9920,18 +10064,17 @@ impl DescribeInstancePatchStatesError {
     }
 }
 impl fmt::Display for DescribeInstancePatchStatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstancePatchStatesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstancePatchStatesError::InternalServerError(ref cause) => cause,
-            DescribeInstancePatchStatesError::InvalidNextToken(ref cause) => cause,
+            DescribeInstancePatchStatesError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstancePatchStatesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInstancePatchStatesError {}
 /// Errors returned by DescribeInstancePatchStatesForPatchGroup
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstancePatchStatesForPatchGroupError {
@@ -9972,19 +10115,22 @@ impl DescribeInstancePatchStatesForPatchGroupError {
     }
 }
 impl fmt::Display for DescribeInstancePatchStatesForPatchGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstancePatchStatesForPatchGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstancePatchStatesForPatchGroupError::InternalServerError(ref cause) => cause,
-            DescribeInstancePatchStatesForPatchGroupError::InvalidFilter(ref cause) => cause,
-            DescribeInstancePatchStatesForPatchGroupError::InvalidNextToken(ref cause) => cause,
+            DescribeInstancePatchStatesForPatchGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstancePatchStatesForPatchGroupError::InvalidFilter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInstancePatchStatesForPatchGroupError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeInstancePatchStatesForPatchGroupError {}
 /// Errors returned by DescribeInstancePatches
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstancePatchesError {
@@ -10030,20 +10176,17 @@ impl DescribeInstancePatchesError {
     }
 }
 impl fmt::Display for DescribeInstancePatchesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstancePatchesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstancePatchesError::InternalServerError(ref cause) => cause,
-            DescribeInstancePatchesError::InvalidFilter(ref cause) => cause,
-            DescribeInstancePatchesError::InvalidInstanceId(ref cause) => cause,
-            DescribeInstancePatchesError::InvalidNextToken(ref cause) => cause,
+            DescribeInstancePatchesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeInstancePatchesError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            DescribeInstancePatchesError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            DescribeInstancePatchesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInstancePatchesError {}
 /// Errors returned by DescribeInventoryDeletions
 #[derive(Debug, PartialEq)]
 pub enum DescribeInventoryDeletionsError {
@@ -10084,19 +10227,18 @@ impl DescribeInventoryDeletionsError {
     }
 }
 impl fmt::Display for DescribeInventoryDeletionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInventoryDeletionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInventoryDeletionsError::InternalServerError(ref cause) => cause,
-            DescribeInventoryDeletionsError::InvalidDeletionId(ref cause) => cause,
-            DescribeInventoryDeletionsError::InvalidNextToken(ref cause) => cause,
+            DescribeInventoryDeletionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInventoryDeletionsError::InvalidDeletionId(ref cause) => write!(f, "{}", cause),
+            DescribeInventoryDeletionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInventoryDeletionsError {}
 /// Errors returned by DescribeMaintenanceWindowExecutionTaskInvocations
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowExecutionTaskInvocationsError {
@@ -10134,22 +10276,19 @@ impl DescribeMaintenanceWindowExecutionTaskInvocationsError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowExecutionTaskInvocationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowExecutionTaskInvocationsError {
-    fn description(&self) -> &str {
         match *self {
             DescribeMaintenanceWindowExecutionTaskInvocationsError::DoesNotExist(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
             DescribeMaintenanceWindowExecutionTaskInvocationsError::InternalServerError(
                 ref cause,
-            ) => cause,
+            ) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMaintenanceWindowExecutionTaskInvocationsError {}
 /// Errors returned by DescribeMaintenanceWindowExecutionTasks
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowExecutionTasksError {
@@ -10183,18 +10322,19 @@ impl DescribeMaintenanceWindowExecutionTasksError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowExecutionTasksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowExecutionTasksError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowExecutionTasksError::DoesNotExist(ref cause) => cause,
-            DescribeMaintenanceWindowExecutionTasksError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowExecutionTasksError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMaintenanceWindowExecutionTasksError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowExecutionTasksError {}
 /// Errors returned by DescribeMaintenanceWindowExecutions
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowExecutionsError {
@@ -10221,17 +10361,16 @@ impl DescribeMaintenanceWindowExecutionsError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowExecutionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowExecutionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowExecutionsError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowExecutionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowExecutionsError {}
 /// Errors returned by DescribeMaintenanceWindowSchedule
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowScheduleError {
@@ -10265,18 +10404,19 @@ impl DescribeMaintenanceWindowScheduleError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowScheduleError::DoesNotExist(ref cause) => cause,
-            DescribeMaintenanceWindowScheduleError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowScheduleError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMaintenanceWindowScheduleError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowScheduleError {}
 /// Errors returned by DescribeMaintenanceWindowTargets
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowTargetsError {
@@ -10310,18 +10450,19 @@ impl DescribeMaintenanceWindowTargetsError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowTargetsError::DoesNotExist(ref cause) => cause,
-            DescribeMaintenanceWindowTargetsError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowTargetsError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMaintenanceWindowTargetsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowTargetsError {}
 /// Errors returned by DescribeMaintenanceWindowTasks
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowTasksError {
@@ -10355,18 +10496,17 @@ impl DescribeMaintenanceWindowTasksError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowTasksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowTasksError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowTasksError::DoesNotExist(ref cause) => cause,
-            DescribeMaintenanceWindowTasksError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowTasksError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeMaintenanceWindowTasksError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowTasksError {}
 /// Errors returned by DescribeMaintenanceWindows
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowsError {
@@ -10393,17 +10533,16 @@ impl DescribeMaintenanceWindowsError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowsError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowsError {}
 /// Errors returned by DescribeMaintenanceWindowsForTarget
 #[derive(Debug, PartialEq)]
 pub enum DescribeMaintenanceWindowsForTargetError {
@@ -10430,17 +10569,16 @@ impl DescribeMaintenanceWindowsForTargetError {
     }
 }
 impl fmt::Display for DescribeMaintenanceWindowsForTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMaintenanceWindowsForTargetError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMaintenanceWindowsForTargetError::InternalServerError(ref cause) => cause,
+            DescribeMaintenanceWindowsForTargetError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMaintenanceWindowsForTargetError {}
 /// Errors returned by DescribeOpsItems
 #[derive(Debug, PartialEq)]
 pub enum DescribeOpsItemsError {
@@ -10465,17 +10603,14 @@ impl DescribeOpsItemsError {
     }
 }
 impl fmt::Display for DescribeOpsItemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeOpsItemsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeOpsItemsError::InternalServerError(ref cause) => cause,
+            DescribeOpsItemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeOpsItemsError {}
 /// Errors returned by DescribeParameters
 #[derive(Debug, PartialEq)]
 pub enum DescribeParametersError {
@@ -10524,21 +10659,18 @@ impl DescribeParametersError {
     }
 }
 impl fmt::Display for DescribeParametersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeParametersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeParametersError::InternalServerError(ref cause) => cause,
-            DescribeParametersError::InvalidFilterKey(ref cause) => cause,
-            DescribeParametersError::InvalidFilterOption(ref cause) => cause,
-            DescribeParametersError::InvalidFilterValue(ref cause) => cause,
-            DescribeParametersError::InvalidNextToken(ref cause) => cause,
+            DescribeParametersError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeParametersError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            DescribeParametersError::InvalidFilterOption(ref cause) => write!(f, "{}", cause),
+            DescribeParametersError::InvalidFilterValue(ref cause) => write!(f, "{}", cause),
+            DescribeParametersError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeParametersError {}
 /// Errors returned by DescribePatchBaselines
 #[derive(Debug, PartialEq)]
 pub enum DescribePatchBaselinesError {
@@ -10563,17 +10695,14 @@ impl DescribePatchBaselinesError {
     }
 }
 impl fmt::Display for DescribePatchBaselinesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePatchBaselinesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePatchBaselinesError::InternalServerError(ref cause) => cause,
+            DescribePatchBaselinesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePatchBaselinesError {}
 /// Errors returned by DescribePatchGroupState
 #[derive(Debug, PartialEq)]
 pub enum DescribePatchGroupStateError {
@@ -10605,18 +10734,15 @@ impl DescribePatchGroupStateError {
     }
 }
 impl fmt::Display for DescribePatchGroupStateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePatchGroupStateError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePatchGroupStateError::InternalServerError(ref cause) => cause,
-            DescribePatchGroupStateError::InvalidNextToken(ref cause) => cause,
+            DescribePatchGroupStateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribePatchGroupStateError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePatchGroupStateError {}
 /// Errors returned by DescribePatchGroups
 #[derive(Debug, PartialEq)]
 pub enum DescribePatchGroupsError {
@@ -10641,17 +10767,14 @@ impl DescribePatchGroupsError {
     }
 }
 impl fmt::Display for DescribePatchGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePatchGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePatchGroupsError::InternalServerError(ref cause) => cause,
+            DescribePatchGroupsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePatchGroupsError {}
 /// Errors returned by DescribePatchProperties
 #[derive(Debug, PartialEq)]
 pub enum DescribePatchPropertiesError {
@@ -10676,17 +10799,14 @@ impl DescribePatchPropertiesError {
     }
 }
 impl fmt::Display for DescribePatchPropertiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePatchPropertiesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePatchPropertiesError::InternalServerError(ref cause) => cause,
+            DescribePatchPropertiesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePatchPropertiesError {}
 /// Errors returned by DescribeSessions
 #[derive(Debug, PartialEq)]
 pub enum DescribeSessionsError {
@@ -10721,19 +10841,16 @@ impl DescribeSessionsError {
     }
 }
 impl fmt::Display for DescribeSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSessionsError::InternalServerError(ref cause) => cause,
-            DescribeSessionsError::InvalidFilterKey(ref cause) => cause,
-            DescribeSessionsError::InvalidNextToken(ref cause) => cause,
+            DescribeSessionsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeSessionsError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            DescribeSessionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeSessionsError {}
 /// Errors returned by GetAutomationExecution
 #[derive(Debug, PartialEq)]
 pub enum GetAutomationExecutionError {
@@ -10765,18 +10882,17 @@ impl GetAutomationExecutionError {
     }
 }
 impl fmt::Display for GetAutomationExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAutomationExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            GetAutomationExecutionError::AutomationExecutionNotFound(ref cause) => cause,
-            GetAutomationExecutionError::InternalServerError(ref cause) => cause,
+            GetAutomationExecutionError::AutomationExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetAutomationExecutionError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAutomationExecutionError {}
 /// Errors returned by GetCalendarState
 #[derive(Debug, PartialEq)]
 pub enum GetCalendarStateError {
@@ -10820,20 +10936,17 @@ impl GetCalendarStateError {
     }
 }
 impl fmt::Display for GetCalendarStateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCalendarStateError {
-    fn description(&self) -> &str {
         match *self {
-            GetCalendarStateError::InternalServerError(ref cause) => cause,
-            GetCalendarStateError::InvalidDocument(ref cause) => cause,
-            GetCalendarStateError::InvalidDocumentType(ref cause) => cause,
-            GetCalendarStateError::UnsupportedCalendar(ref cause) => cause,
+            GetCalendarStateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetCalendarStateError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            GetCalendarStateError::InvalidDocumentType(ref cause) => write!(f, "{}", cause),
+            GetCalendarStateError::UnsupportedCalendar(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCalendarStateError {}
 /// Errors returned by GetCommandInvocation
 #[derive(Debug, PartialEq)]
 pub enum GetCommandInvocationError {
@@ -10886,21 +10999,18 @@ impl GetCommandInvocationError {
     }
 }
 impl fmt::Display for GetCommandInvocationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCommandInvocationError {
-    fn description(&self) -> &str {
         match *self {
-            GetCommandInvocationError::InternalServerError(ref cause) => cause,
-            GetCommandInvocationError::InvalidCommandId(ref cause) => cause,
-            GetCommandInvocationError::InvalidInstanceId(ref cause) => cause,
-            GetCommandInvocationError::InvalidPluginName(ref cause) => cause,
-            GetCommandInvocationError::InvocationDoesNotExist(ref cause) => cause,
+            GetCommandInvocationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetCommandInvocationError::InvalidCommandId(ref cause) => write!(f, "{}", cause),
+            GetCommandInvocationError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            GetCommandInvocationError::InvalidPluginName(ref cause) => write!(f, "{}", cause),
+            GetCommandInvocationError::InvocationDoesNotExist(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCommandInvocationError {}
 /// Errors returned by GetConnectionStatus
 #[derive(Debug, PartialEq)]
 pub enum GetConnectionStatusError {
@@ -10925,17 +11035,14 @@ impl GetConnectionStatusError {
     }
 }
 impl fmt::Display for GetConnectionStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetConnectionStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetConnectionStatusError::InternalServerError(ref cause) => cause,
+            GetConnectionStatusError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetConnectionStatusError {}
 /// Errors returned by GetDefaultPatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum GetDefaultPatchBaselineError {
@@ -10960,17 +11067,14 @@ impl GetDefaultPatchBaselineError {
     }
 }
 impl fmt::Display for GetDefaultPatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDefaultPatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            GetDefaultPatchBaselineError::InternalServerError(ref cause) => cause,
+            GetDefaultPatchBaselineError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDefaultPatchBaselineError {}
 /// Errors returned by GetDeployablePatchSnapshotForInstance
 #[derive(Debug, PartialEq)]
 pub enum GetDeployablePatchSnapshotForInstanceError {
@@ -11015,23 +11119,22 @@ impl GetDeployablePatchSnapshotForInstanceError {
     }
 }
 impl fmt::Display for GetDeployablePatchSnapshotForInstanceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeployablePatchSnapshotForInstanceError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeployablePatchSnapshotForInstanceError::InternalServerError(ref cause) => cause,
+            GetDeployablePatchSnapshotForInstanceError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
             GetDeployablePatchSnapshotForInstanceError::UnsupportedFeatureRequired(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
             GetDeployablePatchSnapshotForInstanceError::UnsupportedOperatingSystem(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for GetDeployablePatchSnapshotForInstanceError {}
 /// Errors returned by GetDocument
 #[derive(Debug, PartialEq)]
 pub enum GetDocumentError {
@@ -11064,19 +11167,16 @@ impl GetDocumentError {
     }
 }
 impl fmt::Display for GetDocumentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDocumentError {
-    fn description(&self) -> &str {
         match *self {
-            GetDocumentError::InternalServerError(ref cause) => cause,
-            GetDocumentError::InvalidDocument(ref cause) => cause,
-            GetDocumentError::InvalidDocumentVersion(ref cause) => cause,
+            GetDocumentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetDocumentError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            GetDocumentError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDocumentError {}
 /// Errors returned by GetInventory
 #[derive(Debug, PartialEq)]
 pub enum GetInventoryError {
@@ -11129,23 +11229,20 @@ impl GetInventoryError {
     }
 }
 impl fmt::Display for GetInventoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInventoryError {
-    fn description(&self) -> &str {
         match *self {
-            GetInventoryError::InternalServerError(ref cause) => cause,
-            GetInventoryError::InvalidAggregator(ref cause) => cause,
-            GetInventoryError::InvalidFilter(ref cause) => cause,
-            GetInventoryError::InvalidInventoryGroup(ref cause) => cause,
-            GetInventoryError::InvalidNextToken(ref cause) => cause,
-            GetInventoryError::InvalidResultAttribute(ref cause) => cause,
-            GetInventoryError::InvalidTypeName(ref cause) => cause,
+            GetInventoryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidAggregator(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidInventoryGroup(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidResultAttribute(ref cause) => write!(f, "{}", cause),
+            GetInventoryError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInventoryError {}
 /// Errors returned by GetInventorySchema
 #[derive(Debug, PartialEq)]
 pub enum GetInventorySchemaError {
@@ -11180,19 +11277,16 @@ impl GetInventorySchemaError {
     }
 }
 impl fmt::Display for GetInventorySchemaError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInventorySchemaError {
-    fn description(&self) -> &str {
         match *self {
-            GetInventorySchemaError::InternalServerError(ref cause) => cause,
-            GetInventorySchemaError::InvalidNextToken(ref cause) => cause,
-            GetInventorySchemaError::InvalidTypeName(ref cause) => cause,
+            GetInventorySchemaError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetInventorySchemaError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetInventorySchemaError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInventorySchemaError {}
 /// Errors returned by GetMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum GetMaintenanceWindowError {
@@ -11222,18 +11316,15 @@ impl GetMaintenanceWindowError {
     }
 }
 impl fmt::Display for GetMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            GetMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            GetMaintenanceWindowError::InternalServerError(ref cause) => cause,
+            GetMaintenanceWindowError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetMaintenanceWindowError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMaintenanceWindowError {}
 /// Errors returned by GetMaintenanceWindowExecution
 #[derive(Debug, PartialEq)]
 pub enum GetMaintenanceWindowExecutionError {
@@ -11267,18 +11358,17 @@ impl GetMaintenanceWindowExecutionError {
     }
 }
 impl fmt::Display for GetMaintenanceWindowExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMaintenanceWindowExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            GetMaintenanceWindowExecutionError::DoesNotExist(ref cause) => cause,
-            GetMaintenanceWindowExecutionError::InternalServerError(ref cause) => cause,
+            GetMaintenanceWindowExecutionError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetMaintenanceWindowExecutionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetMaintenanceWindowExecutionError {}
 /// Errors returned by GetMaintenanceWindowExecutionTask
 #[derive(Debug, PartialEq)]
 pub enum GetMaintenanceWindowExecutionTaskError {
@@ -11312,18 +11402,19 @@ impl GetMaintenanceWindowExecutionTaskError {
     }
 }
 impl fmt::Display for GetMaintenanceWindowExecutionTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMaintenanceWindowExecutionTaskError {
-    fn description(&self) -> &str {
         match *self {
-            GetMaintenanceWindowExecutionTaskError::DoesNotExist(ref cause) => cause,
-            GetMaintenanceWindowExecutionTaskError::InternalServerError(ref cause) => cause,
+            GetMaintenanceWindowExecutionTaskError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetMaintenanceWindowExecutionTaskError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetMaintenanceWindowExecutionTaskError {}
 /// Errors returned by GetMaintenanceWindowExecutionTaskInvocation
 #[derive(Debug, PartialEq)]
 pub enum GetMaintenanceWindowExecutionTaskInvocationError {
@@ -11359,20 +11450,19 @@ impl GetMaintenanceWindowExecutionTaskInvocationError {
     }
 }
 impl fmt::Display for GetMaintenanceWindowExecutionTaskInvocationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMaintenanceWindowExecutionTaskInvocationError {
-    fn description(&self) -> &str {
         match *self {
-            GetMaintenanceWindowExecutionTaskInvocationError::DoesNotExist(ref cause) => cause,
+            GetMaintenanceWindowExecutionTaskInvocationError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
             GetMaintenanceWindowExecutionTaskInvocationError::InternalServerError(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for GetMaintenanceWindowExecutionTaskInvocationError {}
 /// Errors returned by GetMaintenanceWindowTask
 #[derive(Debug, PartialEq)]
 pub enum GetMaintenanceWindowTaskError {
@@ -11404,18 +11494,15 @@ impl GetMaintenanceWindowTaskError {
     }
 }
 impl fmt::Display for GetMaintenanceWindowTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetMaintenanceWindowTaskError {
-    fn description(&self) -> &str {
         match *self {
-            GetMaintenanceWindowTaskError::DoesNotExist(ref cause) => cause,
-            GetMaintenanceWindowTaskError::InternalServerError(ref cause) => cause,
+            GetMaintenanceWindowTaskError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetMaintenanceWindowTaskError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetMaintenanceWindowTaskError {}
 /// Errors returned by GetOpsItem
 #[derive(Debug, PartialEq)]
 pub enum GetOpsItemError {
@@ -11443,18 +11530,15 @@ impl GetOpsItemError {
     }
 }
 impl fmt::Display for GetOpsItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetOpsItemError {
-    fn description(&self) -> &str {
         match *self {
-            GetOpsItemError::InternalServerError(ref cause) => cause,
-            GetOpsItemError::OpsItemNotFound(ref cause) => cause,
+            GetOpsItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetOpsItemError::OpsItemNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetOpsItemError {}
 /// Errors returned by GetOpsSummary
 #[derive(Debug, PartialEq)]
 pub enum GetOpsSummaryError {
@@ -11504,22 +11588,19 @@ impl GetOpsSummaryError {
     }
 }
 impl fmt::Display for GetOpsSummaryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetOpsSummaryError {
-    fn description(&self) -> &str {
         match *self {
-            GetOpsSummaryError::InternalServerError(ref cause) => cause,
-            GetOpsSummaryError::InvalidAggregator(ref cause) => cause,
-            GetOpsSummaryError::InvalidFilter(ref cause) => cause,
-            GetOpsSummaryError::InvalidNextToken(ref cause) => cause,
-            GetOpsSummaryError::InvalidTypeName(ref cause) => cause,
-            GetOpsSummaryError::ResourceDataSyncNotFound(ref cause) => cause,
+            GetOpsSummaryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetOpsSummaryError::InvalidAggregator(ref cause) => write!(f, "{}", cause),
+            GetOpsSummaryError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            GetOpsSummaryError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetOpsSummaryError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
+            GetOpsSummaryError::ResourceDataSyncNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetOpsSummaryError {}
 /// Errors returned by GetParameter
 #[derive(Debug, PartialEq)]
 pub enum GetParameterError {
@@ -11559,20 +11640,17 @@ impl GetParameterError {
     }
 }
 impl fmt::Display for GetParameterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetParameterError {
-    fn description(&self) -> &str {
         match *self {
-            GetParameterError::InternalServerError(ref cause) => cause,
-            GetParameterError::InvalidKeyId(ref cause) => cause,
-            GetParameterError::ParameterNotFound(ref cause) => cause,
-            GetParameterError::ParameterVersionNotFound(ref cause) => cause,
+            GetParameterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetParameterError::InvalidKeyId(ref cause) => write!(f, "{}", cause),
+            GetParameterError::ParameterNotFound(ref cause) => write!(f, "{}", cause),
+            GetParameterError::ParameterVersionNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetParameterError {}
 /// Errors returned by GetParameterHistory
 #[derive(Debug, PartialEq)]
 pub enum GetParameterHistoryError {
@@ -11616,20 +11694,17 @@ impl GetParameterHistoryError {
     }
 }
 impl fmt::Display for GetParameterHistoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetParameterHistoryError {
-    fn description(&self) -> &str {
         match *self {
-            GetParameterHistoryError::InternalServerError(ref cause) => cause,
-            GetParameterHistoryError::InvalidKeyId(ref cause) => cause,
-            GetParameterHistoryError::InvalidNextToken(ref cause) => cause,
-            GetParameterHistoryError::ParameterNotFound(ref cause) => cause,
+            GetParameterHistoryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetParameterHistoryError::InvalidKeyId(ref cause) => write!(f, "{}", cause),
+            GetParameterHistoryError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            GetParameterHistoryError::ParameterNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetParameterHistoryError {}
 /// Errors returned by GetParameters
 #[derive(Debug, PartialEq)]
 pub enum GetParametersError {
@@ -11657,18 +11732,15 @@ impl GetParametersError {
     }
 }
 impl fmt::Display for GetParametersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetParametersError {
-    fn description(&self) -> &str {
         match *self {
-            GetParametersError::InternalServerError(ref cause) => cause,
-            GetParametersError::InvalidKeyId(ref cause) => cause,
+            GetParametersError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetParametersError::InvalidKeyId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetParametersError {}
 /// Errors returned by GetParametersByPath
 #[derive(Debug, PartialEq)]
 pub enum GetParametersByPathError {
@@ -11726,22 +11798,19 @@ impl GetParametersByPathError {
     }
 }
 impl fmt::Display for GetParametersByPathError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetParametersByPathError {
-    fn description(&self) -> &str {
         match *self {
-            GetParametersByPathError::InternalServerError(ref cause) => cause,
-            GetParametersByPathError::InvalidFilterKey(ref cause) => cause,
-            GetParametersByPathError::InvalidFilterOption(ref cause) => cause,
-            GetParametersByPathError::InvalidFilterValue(ref cause) => cause,
-            GetParametersByPathError::InvalidKeyId(ref cause) => cause,
-            GetParametersByPathError::InvalidNextToken(ref cause) => cause,
+            GetParametersByPathError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetParametersByPathError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            GetParametersByPathError::InvalidFilterOption(ref cause) => write!(f, "{}", cause),
+            GetParametersByPathError::InvalidFilterValue(ref cause) => write!(f, "{}", cause),
+            GetParametersByPathError::InvalidKeyId(ref cause) => write!(f, "{}", cause),
+            GetParametersByPathError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetParametersByPathError {}
 /// Errors returned by GetPatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum GetPatchBaselineError {
@@ -11776,19 +11845,16 @@ impl GetPatchBaselineError {
     }
 }
 impl fmt::Display for GetPatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            GetPatchBaselineError::DoesNotExist(ref cause) => cause,
-            GetPatchBaselineError::InternalServerError(ref cause) => cause,
-            GetPatchBaselineError::InvalidResourceId(ref cause) => cause,
+            GetPatchBaselineError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetPatchBaselineError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetPatchBaselineError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPatchBaselineError {}
 /// Errors returned by GetPatchBaselineForPatchGroup
 #[derive(Debug, PartialEq)]
 pub enum GetPatchBaselineForPatchGroupError {
@@ -11815,17 +11881,16 @@ impl GetPatchBaselineForPatchGroupError {
     }
 }
 impl fmt::Display for GetPatchBaselineForPatchGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPatchBaselineForPatchGroupError {
-    fn description(&self) -> &str {
         match *self {
-            GetPatchBaselineForPatchGroupError::InternalServerError(ref cause) => cause,
+            GetPatchBaselineForPatchGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for GetPatchBaselineForPatchGroupError {}
 /// Errors returned by GetServiceSetting
 #[derive(Debug, PartialEq)]
 pub enum GetServiceSettingError {
@@ -11857,18 +11922,15 @@ impl GetServiceSettingError {
     }
 }
 impl fmt::Display for GetServiceSettingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetServiceSettingError {
-    fn description(&self) -> &str {
         match *self {
-            GetServiceSettingError::InternalServerError(ref cause) => cause,
-            GetServiceSettingError::ServiceSettingNotFound(ref cause) => cause,
+            GetServiceSettingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetServiceSettingError::ServiceSettingNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetServiceSettingError {}
 /// Errors returned by LabelParameterVersion
 #[derive(Debug, PartialEq)]
 pub enum LabelParameterVersionError {
@@ -11921,21 +11983,22 @@ impl LabelParameterVersionError {
     }
 }
 impl fmt::Display for LabelParameterVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for LabelParameterVersionError {
-    fn description(&self) -> &str {
         match *self {
-            LabelParameterVersionError::InternalServerError(ref cause) => cause,
-            LabelParameterVersionError::ParameterNotFound(ref cause) => cause,
-            LabelParameterVersionError::ParameterVersionLabelLimitExceeded(ref cause) => cause,
-            LabelParameterVersionError::ParameterVersionNotFound(ref cause) => cause,
-            LabelParameterVersionError::TooManyUpdates(ref cause) => cause,
+            LabelParameterVersionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            LabelParameterVersionError::ParameterNotFound(ref cause) => write!(f, "{}", cause),
+            LabelParameterVersionError::ParameterVersionLabelLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            LabelParameterVersionError::ParameterVersionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            LabelParameterVersionError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for LabelParameterVersionError {}
 /// Errors returned by ListAssociationVersions
 #[derive(Debug, PartialEq)]
 pub enum ListAssociationVersionsError {
@@ -11974,19 +12037,18 @@ impl ListAssociationVersionsError {
     }
 }
 impl fmt::Display for ListAssociationVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAssociationVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListAssociationVersionsError::AssociationDoesNotExist(ref cause) => cause,
-            ListAssociationVersionsError::InternalServerError(ref cause) => cause,
-            ListAssociationVersionsError::InvalidNextToken(ref cause) => cause,
+            ListAssociationVersionsError::AssociationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListAssociationVersionsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListAssociationVersionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListAssociationVersionsError {}
 /// Errors returned by ListAssociations
 #[derive(Debug, PartialEq)]
 pub enum ListAssociationsError {
@@ -12016,18 +12078,15 @@ impl ListAssociationsError {
     }
 }
 impl fmt::Display for ListAssociationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAssociationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListAssociationsError::InternalServerError(ref cause) => cause,
-            ListAssociationsError::InvalidNextToken(ref cause) => cause,
+            ListAssociationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListAssociationsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListAssociationsError {}
 /// Errors returned by ListCommandInvocations
 #[derive(Debug, PartialEq)]
 pub enum ListCommandInvocationsError {
@@ -12080,21 +12139,18 @@ impl ListCommandInvocationsError {
     }
 }
 impl fmt::Display for ListCommandInvocationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCommandInvocationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListCommandInvocationsError::InternalServerError(ref cause) => cause,
-            ListCommandInvocationsError::InvalidCommandId(ref cause) => cause,
-            ListCommandInvocationsError::InvalidFilterKey(ref cause) => cause,
-            ListCommandInvocationsError::InvalidInstanceId(ref cause) => cause,
-            ListCommandInvocationsError::InvalidNextToken(ref cause) => cause,
+            ListCommandInvocationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListCommandInvocationsError::InvalidCommandId(ref cause) => write!(f, "{}", cause),
+            ListCommandInvocationsError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            ListCommandInvocationsError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            ListCommandInvocationsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCommandInvocationsError {}
 /// Errors returned by ListCommands
 #[derive(Debug, PartialEq)]
 pub enum ListCommandsError {
@@ -12137,21 +12193,18 @@ impl ListCommandsError {
     }
 }
 impl fmt::Display for ListCommandsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCommandsError {
-    fn description(&self) -> &str {
         match *self {
-            ListCommandsError::InternalServerError(ref cause) => cause,
-            ListCommandsError::InvalidCommandId(ref cause) => cause,
-            ListCommandsError::InvalidFilterKey(ref cause) => cause,
-            ListCommandsError::InvalidInstanceId(ref cause) => cause,
-            ListCommandsError::InvalidNextToken(ref cause) => cause,
+            ListCommandsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListCommandsError::InvalidCommandId(ref cause) => write!(f, "{}", cause),
+            ListCommandsError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            ListCommandsError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            ListCommandsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCommandsError {}
 /// Errors returned by ListComplianceItems
 #[derive(Debug, PartialEq)]
 pub enum ListComplianceItemsError {
@@ -12202,21 +12255,18 @@ impl ListComplianceItemsError {
     }
 }
 impl fmt::Display for ListComplianceItemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListComplianceItemsError {
-    fn description(&self) -> &str {
         match *self {
-            ListComplianceItemsError::InternalServerError(ref cause) => cause,
-            ListComplianceItemsError::InvalidFilter(ref cause) => cause,
-            ListComplianceItemsError::InvalidNextToken(ref cause) => cause,
-            ListComplianceItemsError::InvalidResourceId(ref cause) => cause,
-            ListComplianceItemsError::InvalidResourceType(ref cause) => cause,
+            ListComplianceItemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListComplianceItemsError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            ListComplianceItemsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListComplianceItemsError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
+            ListComplianceItemsError::InvalidResourceType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListComplianceItemsError {}
 /// Errors returned by ListComplianceSummaries
 #[derive(Debug, PartialEq)]
 pub enum ListComplianceSummariesError {
@@ -12255,19 +12305,16 @@ impl ListComplianceSummariesError {
     }
 }
 impl fmt::Display for ListComplianceSummariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListComplianceSummariesError {
-    fn description(&self) -> &str {
         match *self {
-            ListComplianceSummariesError::InternalServerError(ref cause) => cause,
-            ListComplianceSummariesError::InvalidFilter(ref cause) => cause,
-            ListComplianceSummariesError::InvalidNextToken(ref cause) => cause,
+            ListComplianceSummariesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListComplianceSummariesError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            ListComplianceSummariesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListComplianceSummariesError {}
 /// Errors returned by ListDocumentVersions
 #[derive(Debug, PartialEq)]
 pub enum ListDocumentVersionsError {
@@ -12306,19 +12353,16 @@ impl ListDocumentVersionsError {
     }
 }
 impl fmt::Display for ListDocumentVersionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDocumentVersionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDocumentVersionsError::InternalServerError(ref cause) => cause,
-            ListDocumentVersionsError::InvalidDocument(ref cause) => cause,
-            ListDocumentVersionsError::InvalidNextToken(ref cause) => cause,
+            ListDocumentVersionsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListDocumentVersionsError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            ListDocumentVersionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDocumentVersionsError {}
 /// Errors returned by ListDocuments
 #[derive(Debug, PartialEq)]
 pub enum ListDocumentsError {
@@ -12351,19 +12395,16 @@ impl ListDocumentsError {
     }
 }
 impl fmt::Display for ListDocumentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDocumentsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDocumentsError::InternalServerError(ref cause) => cause,
-            ListDocumentsError::InvalidFilterKey(ref cause) => cause,
-            ListDocumentsError::InvalidNextToken(ref cause) => cause,
+            ListDocumentsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListDocumentsError::InvalidFilterKey(ref cause) => write!(f, "{}", cause),
+            ListDocumentsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDocumentsError {}
 /// Errors returned by ListInventoryEntries
 #[derive(Debug, PartialEq)]
 pub enum ListInventoryEntriesError {
@@ -12414,21 +12455,18 @@ impl ListInventoryEntriesError {
     }
 }
 impl fmt::Display for ListInventoryEntriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInventoryEntriesError {
-    fn description(&self) -> &str {
         match *self {
-            ListInventoryEntriesError::InternalServerError(ref cause) => cause,
-            ListInventoryEntriesError::InvalidFilter(ref cause) => cause,
-            ListInventoryEntriesError::InvalidInstanceId(ref cause) => cause,
-            ListInventoryEntriesError::InvalidNextToken(ref cause) => cause,
-            ListInventoryEntriesError::InvalidTypeName(ref cause) => cause,
+            ListInventoryEntriesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListInventoryEntriesError::InvalidFilter(ref cause) => write!(f, "{}", cause),
+            ListInventoryEntriesError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            ListInventoryEntriesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListInventoryEntriesError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInventoryEntriesError {}
 /// Errors returned by ListResourceComplianceSummaries
 #[derive(Debug, PartialEq)]
 pub enum ListResourceComplianceSummariesError {
@@ -12469,19 +12507,22 @@ impl ListResourceComplianceSummariesError {
     }
 }
 impl fmt::Display for ListResourceComplianceSummariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourceComplianceSummariesError {
-    fn description(&self) -> &str {
         match *self {
-            ListResourceComplianceSummariesError::InternalServerError(ref cause) => cause,
-            ListResourceComplianceSummariesError::InvalidFilter(ref cause) => cause,
-            ListResourceComplianceSummariesError::InvalidNextToken(ref cause) => cause,
+            ListResourceComplianceSummariesError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListResourceComplianceSummariesError::InvalidFilter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListResourceComplianceSummariesError::InvalidNextToken(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListResourceComplianceSummariesError {}
 /// Errors returned by ListResourceDataSync
 #[derive(Debug, PartialEq)]
 pub enum ListResourceDataSyncError {
@@ -12520,19 +12561,18 @@ impl ListResourceDataSyncError {
     }
 }
 impl fmt::Display for ListResourceDataSyncError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourceDataSyncError {
-    fn description(&self) -> &str {
         match *self {
-            ListResourceDataSyncError::InternalServerError(ref cause) => cause,
-            ListResourceDataSyncError::InvalidNextToken(ref cause) => cause,
-            ListResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => cause,
+            ListResourceDataSyncError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListResourceDataSyncError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListResourceDataSyncError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -12571,19 +12611,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
-            ListTagsForResourceError::InvalidResourceId(ref cause) => cause,
-            ListTagsForResourceError::InvalidResourceType(ref cause) => cause,
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidResourceType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ModifyDocumentPermission
 #[derive(Debug, PartialEq)]
 pub enum ModifyDocumentPermissionError {
@@ -12636,21 +12673,24 @@ impl ModifyDocumentPermissionError {
     }
 }
 impl fmt::Display for ModifyDocumentPermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ModifyDocumentPermissionError {
-    fn description(&self) -> &str {
         match *self {
-            ModifyDocumentPermissionError::DocumentLimitExceeded(ref cause) => cause,
-            ModifyDocumentPermissionError::DocumentPermissionLimit(ref cause) => cause,
-            ModifyDocumentPermissionError::InternalServerError(ref cause) => cause,
-            ModifyDocumentPermissionError::InvalidDocument(ref cause) => cause,
-            ModifyDocumentPermissionError::InvalidPermissionType(ref cause) => cause,
+            ModifyDocumentPermissionError::DocumentLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyDocumentPermissionError::DocumentPermissionLimit(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ModifyDocumentPermissionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ModifyDocumentPermissionError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            ModifyDocumentPermissionError::InvalidPermissionType(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ModifyDocumentPermissionError {}
 /// Errors returned by PutComplianceItems
 #[derive(Debug, PartialEq)]
 pub enum PutComplianceItemsError {
@@ -12717,23 +12757,22 @@ impl PutComplianceItemsError {
     }
 }
 impl fmt::Display for PutComplianceItemsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutComplianceItemsError {
-    fn description(&self) -> &str {
         match *self {
-            PutComplianceItemsError::ComplianceTypeCountLimitExceeded(ref cause) => cause,
-            PutComplianceItemsError::InternalServerError(ref cause) => cause,
-            PutComplianceItemsError::InvalidItemContent(ref cause) => cause,
-            PutComplianceItemsError::InvalidResourceId(ref cause) => cause,
-            PutComplianceItemsError::InvalidResourceType(ref cause) => cause,
-            PutComplianceItemsError::ItemSizeLimitExceeded(ref cause) => cause,
-            PutComplianceItemsError::TotalSizeLimitExceeded(ref cause) => cause,
+            PutComplianceItemsError::ComplianceTypeCountLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutComplianceItemsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PutComplianceItemsError::InvalidItemContent(ref cause) => write!(f, "{}", cause),
+            PutComplianceItemsError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
+            PutComplianceItemsError::InvalidResourceType(ref cause) => write!(f, "{}", cause),
+            PutComplianceItemsError::ItemSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutComplianceItemsError::TotalSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutComplianceItemsError {}
 /// Errors returned by PutInventory
 #[derive(Debug, PartialEq)]
 pub enum PutInventoryError {
@@ -12821,28 +12860,27 @@ impl PutInventoryError {
     }
 }
 impl fmt::Display for PutInventoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutInventoryError {
-    fn description(&self) -> &str {
         match *self {
-            PutInventoryError::CustomSchemaCountLimitExceeded(ref cause) => cause,
-            PutInventoryError::InternalServerError(ref cause) => cause,
-            PutInventoryError::InvalidInstanceId(ref cause) => cause,
-            PutInventoryError::InvalidInventoryItemContext(ref cause) => cause,
-            PutInventoryError::InvalidItemContent(ref cause) => cause,
-            PutInventoryError::InvalidTypeName(ref cause) => cause,
-            PutInventoryError::ItemContentMismatch(ref cause) => cause,
-            PutInventoryError::ItemSizeLimitExceeded(ref cause) => cause,
-            PutInventoryError::SubTypeCountLimitExceeded(ref cause) => cause,
-            PutInventoryError::TotalSizeLimitExceeded(ref cause) => cause,
-            PutInventoryError::UnsupportedInventoryItemContext(ref cause) => cause,
-            PutInventoryError::UnsupportedInventorySchemaVersion(ref cause) => cause,
+            PutInventoryError::CustomSchemaCountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::InvalidInventoryItemContext(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::InvalidItemContent(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::InvalidTypeName(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::ItemContentMismatch(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::ItemSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::SubTypeCountLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::TotalSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::UnsupportedInventoryItemContext(ref cause) => write!(f, "{}", cause),
+            PutInventoryError::UnsupportedInventorySchemaVersion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PutInventoryError {}
 /// Errors returned by PutParameter
 #[derive(Debug, PartialEq)]
 pub enum PutParameterError {
@@ -12943,31 +12981,30 @@ impl PutParameterError {
     }
 }
 impl fmt::Display for PutParameterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutParameterError {
-    fn description(&self) -> &str {
         match *self {
-            PutParameterError::HierarchyLevelLimitExceeded(ref cause) => cause,
-            PutParameterError::HierarchyTypeMismatch(ref cause) => cause,
-            PutParameterError::IncompatiblePolicy(ref cause) => cause,
-            PutParameterError::InternalServerError(ref cause) => cause,
-            PutParameterError::InvalidAllowedPattern(ref cause) => cause,
-            PutParameterError::InvalidKeyId(ref cause) => cause,
-            PutParameterError::InvalidPolicyAttribute(ref cause) => cause,
-            PutParameterError::InvalidPolicyType(ref cause) => cause,
-            PutParameterError::ParameterAlreadyExists(ref cause) => cause,
-            PutParameterError::ParameterLimitExceeded(ref cause) => cause,
-            PutParameterError::ParameterMaxVersionLimitExceeded(ref cause) => cause,
-            PutParameterError::ParameterPatternMismatch(ref cause) => cause,
-            PutParameterError::PoliciesLimitExceeded(ref cause) => cause,
-            PutParameterError::TooManyUpdates(ref cause) => cause,
-            PutParameterError::UnsupportedParameterType(ref cause) => cause,
+            PutParameterError::HierarchyLevelLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutParameterError::HierarchyTypeMismatch(ref cause) => write!(f, "{}", cause),
+            PutParameterError::IncompatiblePolicy(ref cause) => write!(f, "{}", cause),
+            PutParameterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PutParameterError::InvalidAllowedPattern(ref cause) => write!(f, "{}", cause),
+            PutParameterError::InvalidKeyId(ref cause) => write!(f, "{}", cause),
+            PutParameterError::InvalidPolicyAttribute(ref cause) => write!(f, "{}", cause),
+            PutParameterError::InvalidPolicyType(ref cause) => write!(f, "{}", cause),
+            PutParameterError::ParameterAlreadyExists(ref cause) => write!(f, "{}", cause),
+            PutParameterError::ParameterLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutParameterError::ParameterMaxVersionLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutParameterError::ParameterPatternMismatch(ref cause) => write!(f, "{}", cause),
+            PutParameterError::PoliciesLimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutParameterError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
+            PutParameterError::UnsupportedParameterType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutParameterError {}
 /// Errors returned by RegisterDefaultPatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum RegisterDefaultPatchBaselineError {
@@ -13008,19 +13045,20 @@ impl RegisterDefaultPatchBaselineError {
     }
 }
 impl fmt::Display for RegisterDefaultPatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterDefaultPatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterDefaultPatchBaselineError::DoesNotExist(ref cause) => cause,
-            RegisterDefaultPatchBaselineError::InternalServerError(ref cause) => cause,
-            RegisterDefaultPatchBaselineError::InvalidResourceId(ref cause) => cause,
+            RegisterDefaultPatchBaselineError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            RegisterDefaultPatchBaselineError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterDefaultPatchBaselineError::InvalidResourceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterDefaultPatchBaselineError {}
 /// Errors returned by RegisterPatchBaselineForPatchGroup
 #[derive(Debug, PartialEq)]
 pub enum RegisterPatchBaselineForPatchGroupError {
@@ -13075,21 +13113,28 @@ impl RegisterPatchBaselineForPatchGroupError {
     }
 }
 impl fmt::Display for RegisterPatchBaselineForPatchGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterPatchBaselineForPatchGroupError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterPatchBaselineForPatchGroupError::AlreadyExists(ref cause) => cause,
-            RegisterPatchBaselineForPatchGroupError::DoesNotExist(ref cause) => cause,
-            RegisterPatchBaselineForPatchGroupError::InternalServerError(ref cause) => cause,
-            RegisterPatchBaselineForPatchGroupError::InvalidResourceId(ref cause) => cause,
-            RegisterPatchBaselineForPatchGroupError::ResourceLimitExceeded(ref cause) => cause,
+            RegisterPatchBaselineForPatchGroupError::AlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterPatchBaselineForPatchGroupError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterPatchBaselineForPatchGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterPatchBaselineForPatchGroupError::InvalidResourceId(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterPatchBaselineForPatchGroupError::ResourceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterPatchBaselineForPatchGroupError {}
 /// Errors returned by RegisterTargetWithMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum RegisterTargetWithMaintenanceWindowError {
@@ -13139,22 +13184,25 @@ impl RegisterTargetWithMaintenanceWindowError {
     }
 }
 impl fmt::Display for RegisterTargetWithMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterTargetWithMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterTargetWithMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            RegisterTargetWithMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => {
-                cause
+            RegisterTargetWithMaintenanceWindowError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
             }
-            RegisterTargetWithMaintenanceWindowError::InternalServerError(ref cause) => cause,
-            RegisterTargetWithMaintenanceWindowError::ResourceLimitExceeded(ref cause) => cause,
+            RegisterTargetWithMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTargetWithMaintenanceWindowError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTargetWithMaintenanceWindowError::ResourceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterTargetWithMaintenanceWindowError {}
 /// Errors returned by RegisterTaskWithMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum RegisterTaskWithMaintenanceWindowError {
@@ -13211,21 +13259,28 @@ impl RegisterTaskWithMaintenanceWindowError {
     }
 }
 impl fmt::Display for RegisterTaskWithMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterTaskWithMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterTaskWithMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            RegisterTaskWithMaintenanceWindowError::FeatureNotAvailable(ref cause) => cause,
-            RegisterTaskWithMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => cause,
-            RegisterTaskWithMaintenanceWindowError::InternalServerError(ref cause) => cause,
-            RegisterTaskWithMaintenanceWindowError::ResourceLimitExceeded(ref cause) => cause,
+            RegisterTaskWithMaintenanceWindowError::DoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTaskWithMaintenanceWindowError::FeatureNotAvailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTaskWithMaintenanceWindowError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTaskWithMaintenanceWindowError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            RegisterTaskWithMaintenanceWindowError::ResourceLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RegisterTaskWithMaintenanceWindowError {}
 /// Errors returned by RemoveTagsFromResource
 #[derive(Debug, PartialEq)]
 pub enum RemoveTagsFromResourceError {
@@ -13271,20 +13326,17 @@ impl RemoveTagsFromResourceError {
     }
 }
 impl fmt::Display for RemoveTagsFromResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTagsFromResourceError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTagsFromResourceError::InternalServerError(ref cause) => cause,
-            RemoveTagsFromResourceError::InvalidResourceId(ref cause) => cause,
-            RemoveTagsFromResourceError::InvalidResourceType(ref cause) => cause,
-            RemoveTagsFromResourceError::TooManyUpdates(ref cause) => cause,
+            RemoveTagsFromResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::InvalidResourceId(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::InvalidResourceType(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveTagsFromResourceError {}
 /// Errors returned by ResetServiceSetting
 #[derive(Debug, PartialEq)]
 pub enum ResetServiceSettingError {
@@ -13321,19 +13373,16 @@ impl ResetServiceSettingError {
     }
 }
 impl fmt::Display for ResetServiceSettingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResetServiceSettingError {
-    fn description(&self) -> &str {
         match *self {
-            ResetServiceSettingError::InternalServerError(ref cause) => cause,
-            ResetServiceSettingError::ServiceSettingNotFound(ref cause) => cause,
-            ResetServiceSettingError::TooManyUpdates(ref cause) => cause,
+            ResetServiceSettingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ResetServiceSettingError::ServiceSettingNotFound(ref cause) => write!(f, "{}", cause),
+            ResetServiceSettingError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResetServiceSettingError {}
 /// Errors returned by ResumeSession
 #[derive(Debug, PartialEq)]
 pub enum ResumeSessionError {
@@ -13361,18 +13410,15 @@ impl ResumeSessionError {
     }
 }
 impl fmt::Display for ResumeSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResumeSessionError {
-    fn description(&self) -> &str {
         match *self {
-            ResumeSessionError::DoesNotExist(ref cause) => cause,
-            ResumeSessionError::InternalServerError(ref cause) => cause,
+            ResumeSessionError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            ResumeSessionError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResumeSessionError {}
 /// Errors returned by SendAutomationSignal
 #[derive(Debug, PartialEq)]
 pub enum SendAutomationSignalError {
@@ -13418,20 +13464,19 @@ impl SendAutomationSignalError {
     }
 }
 impl fmt::Display for SendAutomationSignalError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SendAutomationSignalError {
-    fn description(&self) -> &str {
         match *self {
-            SendAutomationSignalError::AutomationExecutionNotFound(ref cause) => cause,
-            SendAutomationSignalError::AutomationStepNotFound(ref cause) => cause,
-            SendAutomationSignalError::InternalServerError(ref cause) => cause,
-            SendAutomationSignalError::InvalidAutomationSignal(ref cause) => cause,
+            SendAutomationSignalError::AutomationExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SendAutomationSignalError::AutomationStepNotFound(ref cause) => write!(f, "{}", cause),
+            SendAutomationSignalError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            SendAutomationSignalError::InvalidAutomationSignal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SendAutomationSignalError {}
 /// Errors returned by SendCommand
 #[derive(Debug, PartialEq)]
 pub enum SendCommandError {
@@ -13506,27 +13551,24 @@ impl SendCommandError {
     }
 }
 impl fmt::Display for SendCommandError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SendCommandError {
-    fn description(&self) -> &str {
         match *self {
-            SendCommandError::DuplicateInstanceId(ref cause) => cause,
-            SendCommandError::InternalServerError(ref cause) => cause,
-            SendCommandError::InvalidDocument(ref cause) => cause,
-            SendCommandError::InvalidDocumentVersion(ref cause) => cause,
-            SendCommandError::InvalidInstanceId(ref cause) => cause,
-            SendCommandError::InvalidNotificationConfig(ref cause) => cause,
-            SendCommandError::InvalidOutputFolder(ref cause) => cause,
-            SendCommandError::InvalidParameters(ref cause) => cause,
-            SendCommandError::InvalidRole(ref cause) => cause,
-            SendCommandError::MaxDocumentSizeExceeded(ref cause) => cause,
-            SendCommandError::UnsupportedPlatformType(ref cause) => cause,
+            SendCommandError::DuplicateInstanceId(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidNotificationConfig(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidOutputFolder(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            SendCommandError::InvalidRole(ref cause) => write!(f, "{}", cause),
+            SendCommandError::MaxDocumentSizeExceeded(ref cause) => write!(f, "{}", cause),
+            SendCommandError::UnsupportedPlatformType(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SendCommandError {}
 /// Errors returned by StartAssociationsOnce
 #[derive(Debug, PartialEq)]
 pub enum StartAssociationsOnceError {
@@ -13558,18 +13600,17 @@ impl StartAssociationsOnceError {
     }
 }
 impl fmt::Display for StartAssociationsOnceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartAssociationsOnceError {
-    fn description(&self) -> &str {
         match *self {
-            StartAssociationsOnceError::AssociationDoesNotExist(ref cause) => cause,
-            StartAssociationsOnceError::InvalidAssociation(ref cause) => cause,
+            StartAssociationsOnceError::AssociationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAssociationsOnceError::InvalidAssociation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartAssociationsOnceError {}
 /// Errors returned by StartAutomationExecution
 #[derive(Debug, PartialEq)]
 pub enum StartAutomationExecutionError {
@@ -13638,23 +13679,30 @@ impl StartAutomationExecutionError {
     }
 }
 impl fmt::Display for StartAutomationExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartAutomationExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StartAutomationExecutionError::AutomationDefinitionNotFound(ref cause) => cause,
-            StartAutomationExecutionError::AutomationDefinitionVersionNotFound(ref cause) => cause,
-            StartAutomationExecutionError::AutomationExecutionLimitExceeded(ref cause) => cause,
-            StartAutomationExecutionError::IdempotentParameterMismatch(ref cause) => cause,
-            StartAutomationExecutionError::InternalServerError(ref cause) => cause,
-            StartAutomationExecutionError::InvalidAutomationExecutionParameters(ref cause) => cause,
-            StartAutomationExecutionError::InvalidTarget(ref cause) => cause,
+            StartAutomationExecutionError::AutomationDefinitionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAutomationExecutionError::AutomationDefinitionVersionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAutomationExecutionError::AutomationExecutionLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAutomationExecutionError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAutomationExecutionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartAutomationExecutionError::InvalidAutomationExecutionParameters(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartAutomationExecutionError::InvalidTarget(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartAutomationExecutionError {}
 /// Errors returned by StartSession
 #[derive(Debug, PartialEq)]
 pub enum StartSessionError {
@@ -13687,19 +13735,16 @@ impl StartSessionError {
     }
 }
 impl fmt::Display for StartSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartSessionError {
-    fn description(&self) -> &str {
         match *self {
-            StartSessionError::InternalServerError(ref cause) => cause,
-            StartSessionError::InvalidDocument(ref cause) => cause,
-            StartSessionError::TargetNotConnected(ref cause) => cause,
+            StartSessionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartSessionError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            StartSessionError::TargetNotConnected(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartSessionError {}
 /// Errors returned by StopAutomationExecution
 #[derive(Debug, PartialEq)]
 pub enum StopAutomationExecutionError {
@@ -13738,19 +13783,20 @@ impl StopAutomationExecutionError {
     }
 }
 impl fmt::Display for StopAutomationExecutionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopAutomationExecutionError {
-    fn description(&self) -> &str {
         match *self {
-            StopAutomationExecutionError::AutomationExecutionNotFound(ref cause) => cause,
-            StopAutomationExecutionError::InternalServerError(ref cause) => cause,
-            StopAutomationExecutionError::InvalidAutomationStatusUpdate(ref cause) => cause,
+            StopAutomationExecutionError::AutomationExecutionNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StopAutomationExecutionError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StopAutomationExecutionError::InvalidAutomationStatusUpdate(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StopAutomationExecutionError {}
 /// Errors returned by TerminateSession
 #[derive(Debug, PartialEq)]
 pub enum TerminateSessionError {
@@ -13780,18 +13826,15 @@ impl TerminateSessionError {
     }
 }
 impl fmt::Display for TerminateSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TerminateSessionError {
-    fn description(&self) -> &str {
         match *self {
-            TerminateSessionError::DoesNotExist(ref cause) => cause,
-            TerminateSessionError::InternalServerError(ref cause) => cause,
+            TerminateSessionError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            TerminateSessionError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TerminateSessionError {}
 /// Errors returned by UpdateAssociation
 #[derive(Debug, PartialEq)]
 pub enum UpdateAssociationError {
@@ -13881,28 +13924,27 @@ impl UpdateAssociationError {
     }
 }
 impl fmt::Display for UpdateAssociationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateAssociationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateAssociationError::AssociationDoesNotExist(ref cause) => cause,
-            UpdateAssociationError::AssociationVersionLimitExceeded(ref cause) => cause,
-            UpdateAssociationError::InternalServerError(ref cause) => cause,
-            UpdateAssociationError::InvalidAssociationVersion(ref cause) => cause,
-            UpdateAssociationError::InvalidDocument(ref cause) => cause,
-            UpdateAssociationError::InvalidDocumentVersion(ref cause) => cause,
-            UpdateAssociationError::InvalidOutputLocation(ref cause) => cause,
-            UpdateAssociationError::InvalidParameters(ref cause) => cause,
-            UpdateAssociationError::InvalidSchedule(ref cause) => cause,
-            UpdateAssociationError::InvalidTarget(ref cause) => cause,
-            UpdateAssociationError::InvalidUpdate(ref cause) => cause,
-            UpdateAssociationError::TooManyUpdates(ref cause) => cause,
+            UpdateAssociationError::AssociationDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::AssociationVersionLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateAssociationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidAssociationVersion(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidOutputLocation(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidParameters(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidSchedule(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidTarget(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::InvalidUpdate(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateAssociationError {}
 /// Errors returned by UpdateAssociationStatus
 #[derive(Debug, PartialEq)]
 pub enum UpdateAssociationStatusError {
@@ -13962,22 +14004,21 @@ impl UpdateAssociationStatusError {
     }
 }
 impl fmt::Display for UpdateAssociationStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateAssociationStatusError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateAssociationStatusError::AssociationDoesNotExist(ref cause) => cause,
-            UpdateAssociationStatusError::InternalServerError(ref cause) => cause,
-            UpdateAssociationStatusError::InvalidDocument(ref cause) => cause,
-            UpdateAssociationStatusError::InvalidInstanceId(ref cause) => cause,
-            UpdateAssociationStatusError::StatusUnchanged(ref cause) => cause,
-            UpdateAssociationStatusError::TooManyUpdates(ref cause) => cause,
+            UpdateAssociationStatusError::AssociationDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateAssociationStatusError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationStatusError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationStatusError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationStatusError::StatusUnchanged(ref cause) => write!(f, "{}", cause),
+            UpdateAssociationStatusError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateAssociationStatusError {}
 /// Errors returned by UpdateDocument
 #[derive(Debug, PartialEq)]
 pub enum UpdateDocumentError {
@@ -14061,26 +14102,23 @@ impl UpdateDocumentError {
     }
 }
 impl fmt::Display for UpdateDocumentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDocumentError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDocumentError::DocumentVersionLimitExceeded(ref cause) => cause,
-            UpdateDocumentError::DuplicateDocumentContent(ref cause) => cause,
-            UpdateDocumentError::DuplicateDocumentVersionName(ref cause) => cause,
-            UpdateDocumentError::InternalServerError(ref cause) => cause,
-            UpdateDocumentError::InvalidDocument(ref cause) => cause,
-            UpdateDocumentError::InvalidDocumentContent(ref cause) => cause,
-            UpdateDocumentError::InvalidDocumentOperation(ref cause) => cause,
-            UpdateDocumentError::InvalidDocumentSchemaVersion(ref cause) => cause,
-            UpdateDocumentError::InvalidDocumentVersion(ref cause) => cause,
-            UpdateDocumentError::MaxDocumentSizeExceeded(ref cause) => cause,
+            UpdateDocumentError::DocumentVersionLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::DuplicateDocumentContent(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::DuplicateDocumentVersionName(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InvalidDocumentContent(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InvalidDocumentOperation(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InvalidDocumentSchemaVersion(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::InvalidDocumentVersion(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentError::MaxDocumentSizeExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDocumentError {}
 /// Errors returned by UpdateDocumentDefaultVersion
 #[derive(Debug, PartialEq)]
 pub enum UpdateDocumentDefaultVersionError {
@@ -14128,20 +14166,23 @@ impl UpdateDocumentDefaultVersionError {
     }
 }
 impl fmt::Display for UpdateDocumentDefaultVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDocumentDefaultVersionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDocumentDefaultVersionError::InternalServerError(ref cause) => cause,
-            UpdateDocumentDefaultVersionError::InvalidDocument(ref cause) => cause,
-            UpdateDocumentDefaultVersionError::InvalidDocumentSchemaVersion(ref cause) => cause,
-            UpdateDocumentDefaultVersionError::InvalidDocumentVersion(ref cause) => cause,
+            UpdateDocumentDefaultVersionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDocumentDefaultVersionError::InvalidDocument(ref cause) => write!(f, "{}", cause),
+            UpdateDocumentDefaultVersionError::InvalidDocumentSchemaVersion(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateDocumentDefaultVersionError::InvalidDocumentVersion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateDocumentDefaultVersionError {}
 /// Errors returned by UpdateMaintenanceWindow
 #[derive(Debug, PartialEq)]
 pub enum UpdateMaintenanceWindowError {
@@ -14173,18 +14214,15 @@ impl UpdateMaintenanceWindowError {
     }
 }
 impl fmt::Display for UpdateMaintenanceWindowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMaintenanceWindowError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMaintenanceWindowError::DoesNotExist(ref cause) => cause,
-            UpdateMaintenanceWindowError::InternalServerError(ref cause) => cause,
+            UpdateMaintenanceWindowError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateMaintenanceWindowError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateMaintenanceWindowError {}
 /// Errors returned by UpdateMaintenanceWindowTarget
 #[derive(Debug, PartialEq)]
 pub enum UpdateMaintenanceWindowTargetError {
@@ -14218,18 +14256,17 @@ impl UpdateMaintenanceWindowTargetError {
     }
 }
 impl fmt::Display for UpdateMaintenanceWindowTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMaintenanceWindowTargetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMaintenanceWindowTargetError::DoesNotExist(ref cause) => cause,
-            UpdateMaintenanceWindowTargetError::InternalServerError(ref cause) => cause,
+            UpdateMaintenanceWindowTargetError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateMaintenanceWindowTargetError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateMaintenanceWindowTargetError {}
 /// Errors returned by UpdateMaintenanceWindowTask
 #[derive(Debug, PartialEq)]
 pub enum UpdateMaintenanceWindowTaskError {
@@ -14263,18 +14300,17 @@ impl UpdateMaintenanceWindowTaskError {
     }
 }
 impl fmt::Display for UpdateMaintenanceWindowTaskError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMaintenanceWindowTaskError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMaintenanceWindowTaskError::DoesNotExist(ref cause) => cause,
-            UpdateMaintenanceWindowTaskError::InternalServerError(ref cause) => cause,
+            UpdateMaintenanceWindowTaskError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateMaintenanceWindowTaskError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateMaintenanceWindowTaskError {}
 /// Errors returned by UpdateManagedInstanceRole
 #[derive(Debug, PartialEq)]
 pub enum UpdateManagedInstanceRoleError {
@@ -14306,18 +14342,17 @@ impl UpdateManagedInstanceRoleError {
     }
 }
 impl fmt::Display for UpdateManagedInstanceRoleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateManagedInstanceRoleError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateManagedInstanceRoleError::InternalServerError(ref cause) => cause,
-            UpdateManagedInstanceRoleError::InvalidInstanceId(ref cause) => cause,
+            UpdateManagedInstanceRoleError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateManagedInstanceRoleError::InvalidInstanceId(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateManagedInstanceRoleError {}
 /// Errors returned by UpdateOpsItem
 #[derive(Debug, PartialEq)]
 pub enum UpdateOpsItemError {
@@ -14362,21 +14397,18 @@ impl UpdateOpsItemError {
     }
 }
 impl fmt::Display for UpdateOpsItemError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateOpsItemError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateOpsItemError::InternalServerError(ref cause) => cause,
-            UpdateOpsItemError::OpsItemAlreadyExists(ref cause) => cause,
-            UpdateOpsItemError::OpsItemInvalidParameter(ref cause) => cause,
-            UpdateOpsItemError::OpsItemLimitExceeded(ref cause) => cause,
-            UpdateOpsItemError::OpsItemNotFound(ref cause) => cause,
+            UpdateOpsItemError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateOpsItemError::OpsItemAlreadyExists(ref cause) => write!(f, "{}", cause),
+            UpdateOpsItemError::OpsItemInvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateOpsItemError::OpsItemLimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateOpsItemError::OpsItemNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateOpsItemError {}
 /// Errors returned by UpdatePatchBaseline
 #[derive(Debug, PartialEq)]
 pub enum UpdatePatchBaselineError {
@@ -14406,18 +14438,15 @@ impl UpdatePatchBaselineError {
     }
 }
 impl fmt::Display for UpdatePatchBaselineError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePatchBaselineError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePatchBaselineError::DoesNotExist(ref cause) => cause,
-            UpdatePatchBaselineError::InternalServerError(ref cause) => cause,
+            UpdatePatchBaselineError::DoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdatePatchBaselineError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePatchBaselineError {}
 /// Errors returned by UpdateResourceDataSync
 #[derive(Debug, PartialEq)]
 pub enum UpdateResourceDataSyncError {
@@ -14463,20 +14492,23 @@ impl UpdateResourceDataSyncError {
     }
 }
 impl fmt::Display for UpdateResourceDataSyncError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateResourceDataSyncError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateResourceDataSyncError::InternalServerError(ref cause) => cause,
-            UpdateResourceDataSyncError::ResourceDataSyncConflict(ref cause) => cause,
-            UpdateResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => cause,
-            UpdateResourceDataSyncError::ResourceDataSyncNotFound(ref cause) => cause,
+            UpdateResourceDataSyncError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateResourceDataSyncError::ResourceDataSyncConflict(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateResourceDataSyncError::ResourceDataSyncInvalidConfiguration(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateResourceDataSyncError::ResourceDataSyncNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateResourceDataSyncError {}
 /// Errors returned by UpdateServiceSetting
 #[derive(Debug, PartialEq)]
 pub enum UpdateServiceSettingError {
@@ -14513,19 +14545,16 @@ impl UpdateServiceSettingError {
     }
 }
 impl fmt::Display for UpdateServiceSettingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateServiceSettingError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateServiceSettingError::InternalServerError(ref cause) => cause,
-            UpdateServiceSettingError::ServiceSettingNotFound(ref cause) => cause,
-            UpdateServiceSettingError::TooManyUpdates(ref cause) => cause,
+            UpdateServiceSettingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateServiceSettingError::ServiceSettingNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateServiceSettingError::TooManyUpdates(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateServiceSettingError {}
 /// Trait representing the capabilities of the Amazon SSM API. Amazon SSM clients implement this trait.
 #[async_trait]
 pub trait Ssm {

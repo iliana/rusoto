@@ -23,6 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Settings for logging access in a stage.</p>
@@ -40,7 +41,7 @@ pub struct AccessLogSettings {
 
 /// <p>Represents an API.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Api {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -99,7 +100,7 @@ pub struct Api {
 
 /// <p>Represents an API mapping.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ApiMapping {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -119,7 +120,7 @@ pub struct ApiMapping {
 
 /// <p>Represents an authorizer.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Authorizer {
     /// <p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for REQUEST authorizers.</p>
     #[serde(rename = "AuthorizerCredentialsArn")]
@@ -190,6 +191,7 @@ pub struct Cors {
 
 /// <p>Creates a new ApiMapping resource to represent an API mapping.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateApiMappingRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -207,7 +209,7 @@ pub struct CreateApiMappingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateApiMappingResponse {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -229,6 +231,7 @@ pub struct CreateApiMappingResponse {
 
 /// <p>Creates a new Api resource to represent an API.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateApiRequest {
     /// <p>An API key selection expression. Supported only for WebSocket APIs. See <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions">API Key Selection Expressions</a>.</p>
     #[serde(rename = "ApiKeySelectionExpression")]
@@ -279,7 +282,7 @@ pub struct CreateApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateApiResponse {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -341,6 +344,7 @@ pub struct CreateApiResponse {
 
 /// <p>Creates a new Authorizer resource to represent an authorizer.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAuthorizerRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -378,7 +382,7 @@ pub struct CreateAuthorizerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAuthorizerResponse {
     /// <p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for REQUEST authorizers.</p>
     #[serde(rename = "AuthorizerCredentialsArn")]
@@ -421,6 +425,7 @@ pub struct CreateAuthorizerResponse {
 
 /// <p>Creates a new Deployment resource to represent a deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDeploymentRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -436,7 +441,7 @@ pub struct CreateDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDeploymentResponse {
     /// <p>Specifies whether a deployment was automatically released.</p>
     #[serde(rename = "AutoDeployed")]
@@ -466,6 +471,7 @@ pub struct CreateDeploymentResponse {
 
 /// <p>Creates a new DomainName resource to represent a domain name.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDomainNameRequest {
     /// <p>The domain name.</p>
     #[serde(rename = "DomainName")]
@@ -481,7 +487,7 @@ pub struct CreateDomainNameRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDomainNameResponse {
     /// <p>The API mapping selection expression.</p>
     #[serde(rename = "ApiMappingSelectionExpression")]
@@ -503,6 +509,7 @@ pub struct CreateDomainNameResponse {
 
 /// <p>Creates a new Integration resource to represent an integration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateIntegrationRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -571,6 +578,7 @@ pub struct CreateIntegrationRequest {
 
 /// <p>Creates a new IntegrationResponse resource to represent an integration response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateIntegrationResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -600,7 +608,7 @@ pub struct CreateIntegrationResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateIntegrationResponseResponse {
     /// <p>Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p> <p>CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p> <p>CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p> <p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>
     #[serde(rename = "ContentHandlingStrategy")]
@@ -629,7 +637,7 @@ pub struct CreateIntegrationResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateIntegrationResult {
     /// <p>Specifies whether an integration is managed by API Gateway. If you created an API using using quick create, the resulting integration is managed by API Gateway. You can update a managed integration, but you can't delete it.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -708,6 +716,7 @@ pub struct CreateIntegrationResult {
 
 /// <p>Creates a new Model.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateModelRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -729,7 +738,7 @@ pub struct CreateModelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateModelResponse {
     /// <p>The content-type for the model, for example, "application/json".</p>
     #[serde(rename = "ContentType")]
@@ -755,6 +764,7 @@ pub struct CreateModelResponse {
 
 /// <p>Creates a new Route resource to represent a route.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRouteRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -806,6 +816,7 @@ pub struct CreateRouteRequest {
 
 /// <p>Creates a new RouteResponse resource to represent a route response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRouteResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -831,7 +842,7 @@ pub struct CreateRouteResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRouteResponseResponse {
     /// <p>Represents the model selection expression of a route response. Supported only for WebSocket APIs.</p>
     #[serde(rename = "ModelSelectionExpression")]
@@ -856,7 +867,7 @@ pub struct CreateRouteResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRouteResult {
     /// <p>Specifies whether a route is managed by API Gateway. If you created an API using quick create, the $default route is managed by API Gateway. You can't modify the $default route key.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -914,6 +925,7 @@ pub struct CreateRouteResult {
 
 /// <p>Creates a new Stage resource to represent a stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateStageRequest {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -960,7 +972,7 @@ pub struct CreateStageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateStageResponse {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -1021,6 +1033,7 @@ pub struct CreateStageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteApiMappingRequest {
     /// <p>The API mapping identifier.</p>
     #[serde(rename = "ApiMappingId")]
@@ -1031,6 +1044,7 @@ pub struct DeleteApiMappingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteApiRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1038,6 +1052,7 @@ pub struct DeleteApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAuthorizerRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1048,6 +1063,7 @@ pub struct DeleteAuthorizerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCorsConfigurationRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1055,6 +1071,7 @@ pub struct DeleteCorsConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDeploymentRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1065,6 +1082,7 @@ pub struct DeleteDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDomainNameRequest {
     /// <p>The domain name.</p>
     #[serde(rename = "DomainName")]
@@ -1072,6 +1090,7 @@ pub struct DeleteDomainNameRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteIntegrationRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1082,6 +1101,7 @@ pub struct DeleteIntegrationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteIntegrationResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1095,6 +1115,7 @@ pub struct DeleteIntegrationResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteModelRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1105,6 +1126,7 @@ pub struct DeleteModelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRouteRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1115,6 +1137,7 @@ pub struct DeleteRouteRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRouteResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1128,6 +1151,7 @@ pub struct DeleteRouteResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRouteSettingsRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1141,6 +1165,7 @@ pub struct DeleteRouteSettingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteStageRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1152,7 +1177,7 @@ pub struct DeleteStageRequest {
 
 /// <p>An immutable representation of an API that can be called by users. A Deployment must be associated with a Stage for it to be callable over the internet.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Deployment {
     /// <p>Specifies whether a deployment was automatically released.</p>
     #[serde(rename = "AutoDeployed")]
@@ -1182,7 +1207,7 @@ pub struct Deployment {
 
 /// <p>Represents a domain name.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainName {
     /// <p>The API mapping selection expression.</p>
     #[serde(rename = "ApiMappingSelectionExpression")]
@@ -1243,6 +1268,7 @@ pub struct DomainNameConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApiMappingRequest {
     /// <p>The API mapping identifier.</p>
     #[serde(rename = "ApiMappingId")]
@@ -1253,7 +1279,7 @@ pub struct GetApiMappingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApiMappingResponse {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1274,6 +1300,7 @@ pub struct GetApiMappingResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApiMappingsRequest {
     /// <p>The domain name.</p>
     #[serde(rename = "DomainName")]
@@ -1289,7 +1316,7 @@ pub struct GetApiMappingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApiMappingsResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1302,6 +1329,7 @@ pub struct GetApiMappingsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApiRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1309,7 +1337,7 @@ pub struct GetApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApiResponse {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -1370,6 +1398,7 @@ pub struct GetApiResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetApisRequest {
     /// <p>The maximum number of elements to be returned for this resource.</p>
     #[serde(rename = "MaxResults")]
@@ -1382,7 +1411,7 @@ pub struct GetApisRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetApisResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1395,6 +1424,7 @@ pub struct GetApisResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAuthorizerRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1405,7 +1435,7 @@ pub struct GetAuthorizerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAuthorizerResponse {
     /// <p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for REQUEST authorizers.</p>
     #[serde(rename = "AuthorizerCredentialsArn")]
@@ -1447,6 +1477,7 @@ pub struct GetAuthorizerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAuthorizersRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1462,7 +1493,7 @@ pub struct GetAuthorizersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAuthorizersResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1475,6 +1506,7 @@ pub struct GetAuthorizersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1485,7 +1517,7 @@ pub struct GetDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentResponse {
     /// <p>Specifies whether a deployment was automatically released.</p>
     #[serde(rename = "AutoDeployed")]
@@ -1514,6 +1546,7 @@ pub struct GetDeploymentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDeploymentsRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1529,7 +1562,7 @@ pub struct GetDeploymentsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDeploymentsResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1542,6 +1575,7 @@ pub struct GetDeploymentsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDomainNameRequest {
     /// <p>The domain name.</p>
     #[serde(rename = "DomainName")]
@@ -1549,7 +1583,7 @@ pub struct GetDomainNameRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDomainNameResponse {
     /// <p>The API mapping selection expression.</p>
     #[serde(rename = "ApiMappingSelectionExpression")]
@@ -1570,6 +1604,7 @@ pub struct GetDomainNameResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDomainNamesRequest {
     /// <p>The maximum number of elements to be returned for this resource.</p>
     #[serde(rename = "MaxResults")]
@@ -1582,7 +1617,7 @@ pub struct GetDomainNamesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDomainNamesResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1595,6 +1630,7 @@ pub struct GetDomainNamesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntegrationRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1605,6 +1641,7 @@ pub struct GetIntegrationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntegrationResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1618,7 +1655,7 @@ pub struct GetIntegrationResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntegrationResponseResponse {
     /// <p>Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p> <p>CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p> <p>CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p> <p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>
     #[serde(rename = "ContentHandlingStrategy")]
@@ -1647,6 +1684,7 @@ pub struct GetIntegrationResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntegrationResponsesRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1665,7 +1703,7 @@ pub struct GetIntegrationResponsesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntegrationResponsesResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1678,7 +1716,7 @@ pub struct GetIntegrationResponsesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntegrationResult {
     /// <p>Specifies whether an integration is managed by API Gateway. If you created an API using using quick create, the resulting integration is managed by API Gateway. You can update a managed integration, but you can't delete it.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -1756,6 +1794,7 @@ pub struct GetIntegrationResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIntegrationsRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1771,7 +1810,7 @@ pub struct GetIntegrationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIntegrationsResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1784,6 +1823,7 @@ pub struct GetIntegrationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetModelRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1794,7 +1834,7 @@ pub struct GetModelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetModelResponse {
     /// <p>The content-type for the model, for example, "application/json".</p>
     #[serde(rename = "ContentType")]
@@ -1819,6 +1859,7 @@ pub struct GetModelResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetModelTemplateRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1829,7 +1870,7 @@ pub struct GetModelTemplateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetModelTemplateResponse {
     /// <p>The template value.</p>
     #[serde(rename = "Value")]
@@ -1838,6 +1879,7 @@ pub struct GetModelTemplateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetModelsRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1853,7 +1895,7 @@ pub struct GetModelsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetModelsResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1866,6 +1908,7 @@ pub struct GetModelsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRouteRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1876,6 +1919,7 @@ pub struct GetRouteRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRouteResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1889,7 +1933,7 @@ pub struct GetRouteResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRouteResponseResponse {
     /// <p>Represents the model selection expression of a route response. Supported only for WebSocket APIs.</p>
     #[serde(rename = "ModelSelectionExpression")]
@@ -1914,6 +1958,7 @@ pub struct GetRouteResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRouteResponsesRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -1932,7 +1977,7 @@ pub struct GetRouteResponsesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRouteResponsesResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -1945,7 +1990,7 @@ pub struct GetRouteResponsesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRouteResult {
     /// <p>Specifies whether a route is managed by API Gateway. If you created an API using quick create, the $default route is managed by API Gateway. You can't modify the $default route key.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -2002,6 +2047,7 @@ pub struct GetRouteResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRoutesRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2017,7 +2063,7 @@ pub struct GetRoutesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRoutesResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -2030,6 +2076,7 @@ pub struct GetRoutesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetStageRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2040,7 +2087,7 @@ pub struct GetStageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetStageResponse {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -2101,6 +2148,7 @@ pub struct GetStageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetStagesRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2116,7 +2164,7 @@ pub struct GetStagesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetStagesResponse {
     /// <p>The elements from this collection.</p>
     #[serde(rename = "Items")]
@@ -2129,6 +2177,7 @@ pub struct GetStagesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTagsRequest {
     /// <p>The resource ARN for the tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -2136,7 +2185,7 @@ pub struct GetTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTagsResponse {
     #[serde(rename = "Tags")]
     pub tags: ::std::collections::HashMap<String, String>,
@@ -2144,6 +2193,7 @@ pub struct GetTagsResponse {
 
 /// <p></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportApiRequest {
     /// <p>Represents the base path of the imported API. Supported only for HTTP APIs.</p>
     #[serde(rename = "Basepath")]
@@ -2159,7 +2209,7 @@ pub struct ImportApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportApiResponse {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -2221,7 +2271,7 @@ pub struct ImportApiResponse {
 
 /// <p>Represents an integration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Integration {
     /// <p>Specifies whether an integration is managed by API Gateway. If you created an API using using quick create, the resulting integration is managed by API Gateway. You can update a managed integration, but you can't delete it.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -2300,7 +2350,7 @@ pub struct Integration {
 
 /// <p>Represents an integration response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IntegrationResponse {
     /// <p>Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p> <p>CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p> <p>CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p> <p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>
     #[serde(rename = "ContentHandlingStrategy")]
@@ -2343,7 +2393,7 @@ pub struct JWTConfiguration {
 
 /// <p>Represents a data model for an API. Supported only for WebSocket APIs. See <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html">Create Models and Mapping Templates for Request and Response Mappings</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Model {
     /// <p>The content-type for the model, for example, "application/json".</p>
     #[serde(rename = "ContentType")]
@@ -2377,6 +2427,7 @@ pub struct ParameterConstraints {
 
 /// <p></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReimportApiRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2395,7 +2446,7 @@ pub struct ReimportApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReimportApiResponse {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -2457,7 +2508,7 @@ pub struct ReimportApiResponse {
 
 /// <p>Represents a route.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Route {
     /// <p>Specifies whether a route is managed by API Gateway. If you created an API using quick create, the $default route is managed by API Gateway. You can't modify the $default route key.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -2514,7 +2565,7 @@ pub struct Route {
 
 /// <p>Represents a route response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RouteResponse {
     /// <p>Represents the model selection expression of a route response. Supported only for WebSocket APIs.</p>
     #[serde(rename = "ModelSelectionExpression")]
@@ -2564,7 +2615,7 @@ pub struct RouteSettings {
 
 /// <p>Represents an API stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Stage {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -2625,6 +2676,7 @@ pub struct Stage {
 
 /// <p>Creates a new Tag resource to represent a tag.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The resource ARN for the tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -2636,10 +2688,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The resource ARN for the tag.</p>
     #[serde(rename = "ResourceArn")]
@@ -2652,6 +2705,7 @@ pub struct UntagResourceRequest {
 
 /// <p>Updates an ApiMapping.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApiMappingRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2673,7 +2727,7 @@ pub struct UpdateApiMappingRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateApiMappingResponse {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2695,6 +2749,7 @@ pub struct UpdateApiMappingResponse {
 
 /// <p>Updates an Api.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApiRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2742,7 +2797,7 @@ pub struct UpdateApiRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateApiResponse {
     /// <p>The URI of the API, of the form {api-id}.execute-api.{region}.amazonaws.com. The stage name is typically appended to this URI to form a complete path to a deployed API stage.</p>
     #[serde(rename = "ApiEndpoint")]
@@ -2804,6 +2859,7 @@ pub struct UpdateApiResponse {
 
 /// <p>Updates an Authorizer.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAuthorizerRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2847,7 +2903,7 @@ pub struct UpdateAuthorizerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAuthorizerResponse {
     /// <p>Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null. Supported only for REQUEST authorizers.</p>
     #[serde(rename = "AuthorizerCredentialsArn")]
@@ -2890,6 +2946,7 @@ pub struct UpdateAuthorizerResponse {
 
 /// <p>Updates a Deployment.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDeploymentRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -2904,7 +2961,7 @@ pub struct UpdateDeploymentRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDeploymentResponse {
     /// <p>Specifies whether a deployment was automatically released.</p>
     #[serde(rename = "AutoDeployed")]
@@ -2934,6 +2991,7 @@ pub struct UpdateDeploymentResponse {
 
 /// <p>Updates a DomainName.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDomainNameRequest {
     /// <p>The domain name.</p>
     #[serde(rename = "DomainName")]
@@ -2945,7 +3003,7 @@ pub struct UpdateDomainNameRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDomainNameResponse {
     /// <p>The API mapping selection expression.</p>
     #[serde(rename = "ApiMappingSelectionExpression")]
@@ -2967,6 +3025,7 @@ pub struct UpdateDomainNameResponse {
 
 /// <p>Updates an Integration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateIntegrationRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -3039,6 +3098,7 @@ pub struct UpdateIntegrationRequest {
 
 /// <p>Updates an IntegrationResponses.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateIntegrationResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -3079,7 +3139,7 @@ pub struct UpdateIntegrationResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateIntegrationResponseResponse {
     /// <p>Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:</p> <p>CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p> <p>CONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.</p> <p>If this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.</p>
     #[serde(rename = "ContentHandlingStrategy")]
@@ -3108,7 +3168,7 @@ pub struct UpdateIntegrationResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateIntegrationResult {
     /// <p>Specifies whether an integration is managed by API Gateway. If you created an API using using quick create, the resulting integration is managed by API Gateway. You can update a managed integration, but you can't delete it.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -3187,6 +3247,7 @@ pub struct UpdateIntegrationResult {
 
 /// <p>Updates a Model.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateModelRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -3213,7 +3274,7 @@ pub struct UpdateModelRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateModelResponse {
     /// <p>The content-type for the model, for example, "application/json".</p>
     #[serde(rename = "ContentType")]
@@ -3239,6 +3300,7 @@ pub struct UpdateModelResponse {
 
 /// <p>Updates a Route.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRouteRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -3294,6 +3356,7 @@ pub struct UpdateRouteRequest {
 
 /// <p>Updates a RouteResponse.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRouteResponseRequest {
     /// <p>The API identifier.</p>
     #[serde(rename = "ApiId")]
@@ -3323,7 +3386,7 @@ pub struct UpdateRouteResponseRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRouteResponseResponse {
     /// <p>Represents the model selection expression of a route response. Supported only for WebSocket APIs.</p>
     #[serde(rename = "ModelSelectionExpression")]
@@ -3348,7 +3411,7 @@ pub struct UpdateRouteResponseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRouteResult {
     /// <p>Specifies whether a route is managed by API Gateway. If you created an API using quick create, the $default route is managed by API Gateway. You can't modify the $default route key.</p>
     #[serde(rename = "ApiGatewayManaged")]
@@ -3406,6 +3469,7 @@ pub struct UpdateRouteResult {
 
 /// <p>Updates a Stage.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateStageRequest {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -3448,7 +3512,7 @@ pub struct UpdateStageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateStageResponse {
     /// <p>Settings for logging access in this stage.</p>
     #[serde(rename = "AccessLogSettings")]
@@ -3545,20 +3609,17 @@ impl CreateApiError {
     }
 }
 impl fmt::Display for CreateApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateApiError {
-    fn description(&self) -> &str {
         match *self {
-            CreateApiError::BadRequest(ref cause) => cause,
-            CreateApiError::Conflict(ref cause) => cause,
-            CreateApiError::NotFound(ref cause) => cause,
-            CreateApiError::TooManyRequests(ref cause) => cause,
+            CreateApiError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateApiError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateApiError {}
 /// Errors returned by CreateApiMapping
 #[derive(Debug, PartialEq)]
 pub enum CreateApiMappingError {
@@ -3596,20 +3657,17 @@ impl CreateApiMappingError {
     }
 }
 impl fmt::Display for CreateApiMappingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateApiMappingError {
-    fn description(&self) -> &str {
         match *self {
-            CreateApiMappingError::BadRequest(ref cause) => cause,
-            CreateApiMappingError::Conflict(ref cause) => cause,
-            CreateApiMappingError::NotFound(ref cause) => cause,
-            CreateApiMappingError::TooManyRequests(ref cause) => cause,
+            CreateApiMappingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateApiMappingError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateApiMappingError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateApiMappingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateApiMappingError {}
 /// Errors returned by CreateAuthorizer
 #[derive(Debug, PartialEq)]
 pub enum CreateAuthorizerError {
@@ -3647,20 +3705,17 @@ impl CreateAuthorizerError {
     }
 }
 impl fmt::Display for CreateAuthorizerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAuthorizerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAuthorizerError::BadRequest(ref cause) => cause,
-            CreateAuthorizerError::Conflict(ref cause) => cause,
-            CreateAuthorizerError::NotFound(ref cause) => cause,
-            CreateAuthorizerError::TooManyRequests(ref cause) => cause,
+            CreateAuthorizerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateAuthorizerError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateAuthorizerError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateAuthorizerError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAuthorizerError {}
 /// Errors returned by CreateDeployment
 #[derive(Debug, PartialEq)]
 pub enum CreateDeploymentError {
@@ -3698,20 +3753,17 @@ impl CreateDeploymentError {
     }
 }
 impl fmt::Display for CreateDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDeploymentError::BadRequest(ref cause) => cause,
-            CreateDeploymentError::Conflict(ref cause) => cause,
-            CreateDeploymentError::NotFound(ref cause) => cause,
-            CreateDeploymentError::TooManyRequests(ref cause) => cause,
+            CreateDeploymentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateDeploymentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDeploymentError {}
 /// Errors returned by CreateDomainName
 #[derive(Debug, PartialEq)]
 pub enum CreateDomainNameError {
@@ -3753,21 +3805,18 @@ impl CreateDomainNameError {
     }
 }
 impl fmt::Display for CreateDomainNameError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDomainNameError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDomainNameError::AccessDenied(ref cause) => cause,
-            CreateDomainNameError::BadRequest(ref cause) => cause,
-            CreateDomainNameError::Conflict(ref cause) => cause,
-            CreateDomainNameError::NotFound(ref cause) => cause,
-            CreateDomainNameError::TooManyRequests(ref cause) => cause,
+            CreateDomainNameError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateDomainNameError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateDomainNameError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateDomainNameError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateDomainNameError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDomainNameError {}
 /// Errors returned by CreateIntegration
 #[derive(Debug, PartialEq)]
 pub enum CreateIntegrationError {
@@ -3805,20 +3854,17 @@ impl CreateIntegrationError {
     }
 }
 impl fmt::Display for CreateIntegrationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateIntegrationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateIntegrationError::BadRequest(ref cause) => cause,
-            CreateIntegrationError::Conflict(ref cause) => cause,
-            CreateIntegrationError::NotFound(ref cause) => cause,
-            CreateIntegrationError::TooManyRequests(ref cause) => cause,
+            CreateIntegrationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateIntegrationError {}
 /// Errors returned by CreateIntegrationResponse
 #[derive(Debug, PartialEq)]
 pub enum CreateIntegrationResponseError {
@@ -3860,20 +3906,17 @@ impl CreateIntegrationResponseError {
     }
 }
 impl fmt::Display for CreateIntegrationResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateIntegrationResponseError {
-    fn description(&self) -> &str {
         match *self {
-            CreateIntegrationResponseError::BadRequest(ref cause) => cause,
-            CreateIntegrationResponseError::Conflict(ref cause) => cause,
-            CreateIntegrationResponseError::NotFound(ref cause) => cause,
-            CreateIntegrationResponseError::TooManyRequests(ref cause) => cause,
+            CreateIntegrationResponseError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationResponseError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateIntegrationResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateIntegrationResponseError {}
 /// Errors returned by CreateModel
 #[derive(Debug, PartialEq)]
 pub enum CreateModelError {
@@ -3911,20 +3954,17 @@ impl CreateModelError {
     }
 }
 impl fmt::Display for CreateModelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateModelError {
-    fn description(&self) -> &str {
         match *self {
-            CreateModelError::BadRequest(ref cause) => cause,
-            CreateModelError::Conflict(ref cause) => cause,
-            CreateModelError::NotFound(ref cause) => cause,
-            CreateModelError::TooManyRequests(ref cause) => cause,
+            CreateModelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateModelError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateModelError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateModelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateModelError {}
 /// Errors returned by CreateRoute
 #[derive(Debug, PartialEq)]
 pub enum CreateRouteError {
@@ -3962,20 +4002,17 @@ impl CreateRouteError {
     }
 }
 impl fmt::Display for CreateRouteError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateRouteError {
-    fn description(&self) -> &str {
         match *self {
-            CreateRouteError::BadRequest(ref cause) => cause,
-            CreateRouteError::Conflict(ref cause) => cause,
-            CreateRouteError::NotFound(ref cause) => cause,
-            CreateRouteError::TooManyRequests(ref cause) => cause,
+            CreateRouteError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateRouteError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateRouteError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateRouteError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateRouteError {}
 /// Errors returned by CreateRouteResponse
 #[derive(Debug, PartialEq)]
 pub enum CreateRouteResponseError {
@@ -4013,20 +4050,17 @@ impl CreateRouteResponseError {
     }
 }
 impl fmt::Display for CreateRouteResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateRouteResponseError {
-    fn description(&self) -> &str {
         match *self {
-            CreateRouteResponseError::BadRequest(ref cause) => cause,
-            CreateRouteResponseError::Conflict(ref cause) => cause,
-            CreateRouteResponseError::NotFound(ref cause) => cause,
-            CreateRouteResponseError::TooManyRequests(ref cause) => cause,
+            CreateRouteResponseError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateRouteResponseError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateRouteResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateRouteResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateRouteResponseError {}
 /// Errors returned by CreateStage
 #[derive(Debug, PartialEq)]
 pub enum CreateStageError {
@@ -4064,20 +4098,17 @@ impl CreateStageError {
     }
 }
 impl fmt::Display for CreateStageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateStageError {
-    fn description(&self) -> &str {
         match *self {
-            CreateStageError::BadRequest(ref cause) => cause,
-            CreateStageError::Conflict(ref cause) => cause,
-            CreateStageError::NotFound(ref cause) => cause,
-            CreateStageError::TooManyRequests(ref cause) => cause,
+            CreateStageError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateStageError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateStageError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateStageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateStageError {}
 /// Errors returned by DeleteApi
 #[derive(Debug, PartialEq)]
 pub enum DeleteApiError {
@@ -4105,18 +4136,15 @@ impl DeleteApiError {
     }
 }
 impl fmt::Display for DeleteApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteApiError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteApiError::NotFound(ref cause) => cause,
-            DeleteApiError::TooManyRequests(ref cause) => cause,
+            DeleteApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteApiError {}
 /// Errors returned by DeleteApiMapping
 #[derive(Debug, PartialEq)]
 pub enum DeleteApiMappingError {
@@ -4149,19 +4177,16 @@ impl DeleteApiMappingError {
     }
 }
 impl fmt::Display for DeleteApiMappingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteApiMappingError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteApiMappingError::BadRequest(ref cause) => cause,
-            DeleteApiMappingError::NotFound(ref cause) => cause,
-            DeleteApiMappingError::TooManyRequests(ref cause) => cause,
+            DeleteApiMappingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteApiMappingError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteApiMappingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteApiMappingError {}
 /// Errors returned by DeleteAuthorizer
 #[derive(Debug, PartialEq)]
 pub enum DeleteAuthorizerError {
@@ -4189,18 +4214,15 @@ impl DeleteAuthorizerError {
     }
 }
 impl fmt::Display for DeleteAuthorizerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteAuthorizerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteAuthorizerError::NotFound(ref cause) => cause,
-            DeleteAuthorizerError::TooManyRequests(ref cause) => cause,
+            DeleteAuthorizerError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteAuthorizerError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteAuthorizerError {}
 /// Errors returned by DeleteCorsConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DeleteCorsConfigurationError {
@@ -4230,18 +4252,15 @@ impl DeleteCorsConfigurationError {
     }
 }
 impl fmt::Display for DeleteCorsConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteCorsConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteCorsConfigurationError::NotFound(ref cause) => cause,
-            DeleteCorsConfigurationError::TooManyRequests(ref cause) => cause,
+            DeleteCorsConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteCorsConfigurationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteCorsConfigurationError {}
 /// Errors returned by DeleteDeployment
 #[derive(Debug, PartialEq)]
 pub enum DeleteDeploymentError {
@@ -4269,18 +4288,15 @@ impl DeleteDeploymentError {
     }
 }
 impl fmt::Display for DeleteDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDeploymentError::NotFound(ref cause) => cause,
-            DeleteDeploymentError::TooManyRequests(ref cause) => cause,
+            DeleteDeploymentError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDeploymentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDeploymentError {}
 /// Errors returned by DeleteDomainName
 #[derive(Debug, PartialEq)]
 pub enum DeleteDomainNameError {
@@ -4308,18 +4324,15 @@ impl DeleteDomainNameError {
     }
 }
 impl fmt::Display for DeleteDomainNameError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDomainNameError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDomainNameError::NotFound(ref cause) => cause,
-            DeleteDomainNameError::TooManyRequests(ref cause) => cause,
+            DeleteDomainNameError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDomainNameError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDomainNameError {}
 /// Errors returned by DeleteIntegration
 #[derive(Debug, PartialEq)]
 pub enum DeleteIntegrationError {
@@ -4347,18 +4360,15 @@ impl DeleteIntegrationError {
     }
 }
 impl fmt::Display for DeleteIntegrationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteIntegrationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteIntegrationError::NotFound(ref cause) => cause,
-            DeleteIntegrationError::TooManyRequests(ref cause) => cause,
+            DeleteIntegrationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteIntegrationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteIntegrationError {}
 /// Errors returned by DeleteIntegrationResponse
 #[derive(Debug, PartialEq)]
 pub enum DeleteIntegrationResponseError {
@@ -4388,18 +4398,15 @@ impl DeleteIntegrationResponseError {
     }
 }
 impl fmt::Display for DeleteIntegrationResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteIntegrationResponseError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteIntegrationResponseError::NotFound(ref cause) => cause,
-            DeleteIntegrationResponseError::TooManyRequests(ref cause) => cause,
+            DeleteIntegrationResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteIntegrationResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteIntegrationResponseError {}
 /// Errors returned by DeleteModel
 #[derive(Debug, PartialEq)]
 pub enum DeleteModelError {
@@ -4427,18 +4434,15 @@ impl DeleteModelError {
     }
 }
 impl fmt::Display for DeleteModelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteModelError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteModelError::NotFound(ref cause) => cause,
-            DeleteModelError::TooManyRequests(ref cause) => cause,
+            DeleteModelError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteModelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteModelError {}
 /// Errors returned by DeleteRoute
 #[derive(Debug, PartialEq)]
 pub enum DeleteRouteError {
@@ -4466,18 +4470,15 @@ impl DeleteRouteError {
     }
 }
 impl fmt::Display for DeleteRouteError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRouteError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRouteError::NotFound(ref cause) => cause,
-            DeleteRouteError::TooManyRequests(ref cause) => cause,
+            DeleteRouteError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRouteError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRouteError {}
 /// Errors returned by DeleteRouteResponse
 #[derive(Debug, PartialEq)]
 pub enum DeleteRouteResponseError {
@@ -4505,18 +4506,15 @@ impl DeleteRouteResponseError {
     }
 }
 impl fmt::Display for DeleteRouteResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRouteResponseError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRouteResponseError::NotFound(ref cause) => cause,
-            DeleteRouteResponseError::TooManyRequests(ref cause) => cause,
+            DeleteRouteResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRouteResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRouteResponseError {}
 /// Errors returned by DeleteRouteSettings
 #[derive(Debug, PartialEq)]
 pub enum DeleteRouteSettingsError {
@@ -4544,18 +4542,15 @@ impl DeleteRouteSettingsError {
     }
 }
 impl fmt::Display for DeleteRouteSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRouteSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRouteSettingsError::NotFound(ref cause) => cause,
-            DeleteRouteSettingsError::TooManyRequests(ref cause) => cause,
+            DeleteRouteSettingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRouteSettingsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRouteSettingsError {}
 /// Errors returned by DeleteStage
 #[derive(Debug, PartialEq)]
 pub enum DeleteStageError {
@@ -4583,18 +4578,15 @@ impl DeleteStageError {
     }
 }
 impl fmt::Display for DeleteStageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteStageError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteStageError::NotFound(ref cause) => cause,
-            DeleteStageError::TooManyRequests(ref cause) => cause,
+            DeleteStageError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteStageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteStageError {}
 /// Errors returned by GetApi
 #[derive(Debug, PartialEq)]
 pub enum GetApiError {
@@ -4620,18 +4612,15 @@ impl GetApiError {
     }
 }
 impl fmt::Display for GetApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApiError {
-    fn description(&self) -> &str {
         match *self {
-            GetApiError::NotFound(ref cause) => cause,
-            GetApiError::TooManyRequests(ref cause) => cause,
+            GetApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApiError {}
 /// Errors returned by GetApiMapping
 #[derive(Debug, PartialEq)]
 pub enum GetApiMappingError {
@@ -4664,19 +4653,16 @@ impl GetApiMappingError {
     }
 }
 impl fmt::Display for GetApiMappingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApiMappingError {
-    fn description(&self) -> &str {
         match *self {
-            GetApiMappingError::BadRequest(ref cause) => cause,
-            GetApiMappingError::NotFound(ref cause) => cause,
-            GetApiMappingError::TooManyRequests(ref cause) => cause,
+            GetApiMappingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetApiMappingError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetApiMappingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApiMappingError {}
 /// Errors returned by GetApiMappings
 #[derive(Debug, PartialEq)]
 pub enum GetApiMappingsError {
@@ -4709,19 +4695,16 @@ impl GetApiMappingsError {
     }
 }
 impl fmt::Display for GetApiMappingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApiMappingsError {
-    fn description(&self) -> &str {
         match *self {
-            GetApiMappingsError::BadRequest(ref cause) => cause,
-            GetApiMappingsError::NotFound(ref cause) => cause,
-            GetApiMappingsError::TooManyRequests(ref cause) => cause,
+            GetApiMappingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetApiMappingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetApiMappingsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApiMappingsError {}
 /// Errors returned by GetApis
 #[derive(Debug, PartialEq)]
 pub enum GetApisError {
@@ -4754,19 +4737,16 @@ impl GetApisError {
     }
 }
 impl fmt::Display for GetApisError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetApisError {
-    fn description(&self) -> &str {
         match *self {
-            GetApisError::BadRequest(ref cause) => cause,
-            GetApisError::NotFound(ref cause) => cause,
-            GetApisError::TooManyRequests(ref cause) => cause,
+            GetApisError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetApisError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetApisError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetApisError {}
 /// Errors returned by GetAuthorizer
 #[derive(Debug, PartialEq)]
 pub enum GetAuthorizerError {
@@ -4794,18 +4774,15 @@ impl GetAuthorizerError {
     }
 }
 impl fmt::Display for GetAuthorizerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAuthorizerError {
-    fn description(&self) -> &str {
         match *self {
-            GetAuthorizerError::NotFound(ref cause) => cause,
-            GetAuthorizerError::TooManyRequests(ref cause) => cause,
+            GetAuthorizerError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetAuthorizerError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAuthorizerError {}
 /// Errors returned by GetAuthorizers
 #[derive(Debug, PartialEq)]
 pub enum GetAuthorizersError {
@@ -4838,19 +4815,16 @@ impl GetAuthorizersError {
     }
 }
 impl fmt::Display for GetAuthorizersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAuthorizersError {
-    fn description(&self) -> &str {
         match *self {
-            GetAuthorizersError::BadRequest(ref cause) => cause,
-            GetAuthorizersError::NotFound(ref cause) => cause,
-            GetAuthorizersError::TooManyRequests(ref cause) => cause,
+            GetAuthorizersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetAuthorizersError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetAuthorizersError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAuthorizersError {}
 /// Errors returned by GetDeployment
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentError {
@@ -4878,18 +4852,15 @@ impl GetDeploymentError {
     }
 }
 impl fmt::Display for GetDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentError::NotFound(ref cause) => cause,
-            GetDeploymentError::TooManyRequests(ref cause) => cause,
+            GetDeploymentError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDeploymentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentError {}
 /// Errors returned by GetDeployments
 #[derive(Debug, PartialEq)]
 pub enum GetDeploymentsError {
@@ -4922,19 +4893,16 @@ impl GetDeploymentsError {
     }
 }
 impl fmt::Display for GetDeploymentsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDeploymentsError {
-    fn description(&self) -> &str {
         match *self {
-            GetDeploymentsError::BadRequest(ref cause) => cause,
-            GetDeploymentsError::NotFound(ref cause) => cause,
-            GetDeploymentsError::TooManyRequests(ref cause) => cause,
+            GetDeploymentsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetDeploymentsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDeploymentsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDeploymentsError {}
 /// Errors returned by GetDomainName
 #[derive(Debug, PartialEq)]
 pub enum GetDomainNameError {
@@ -4962,18 +4930,15 @@ impl GetDomainNameError {
     }
 }
 impl fmt::Display for GetDomainNameError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDomainNameError {
-    fn description(&self) -> &str {
         match *self {
-            GetDomainNameError::NotFound(ref cause) => cause,
-            GetDomainNameError::TooManyRequests(ref cause) => cause,
+            GetDomainNameError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDomainNameError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDomainNameError {}
 /// Errors returned by GetDomainNames
 #[derive(Debug, PartialEq)]
 pub enum GetDomainNamesError {
@@ -5006,19 +4971,16 @@ impl GetDomainNamesError {
     }
 }
 impl fmt::Display for GetDomainNamesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDomainNamesError {
-    fn description(&self) -> &str {
         match *self {
-            GetDomainNamesError::BadRequest(ref cause) => cause,
-            GetDomainNamesError::NotFound(ref cause) => cause,
-            GetDomainNamesError::TooManyRequests(ref cause) => cause,
+            GetDomainNamesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetDomainNamesError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetDomainNamesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDomainNamesError {}
 /// Errors returned by GetIntegration
 #[derive(Debug, PartialEq)]
 pub enum GetIntegrationError {
@@ -5046,18 +5008,15 @@ impl GetIntegrationError {
     }
 }
 impl fmt::Display for GetIntegrationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntegrationError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntegrationError::NotFound(ref cause) => cause,
-            GetIntegrationError::TooManyRequests(ref cause) => cause,
+            GetIntegrationError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetIntegrationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntegrationError {}
 /// Errors returned by GetIntegrationResponse
 #[derive(Debug, PartialEq)]
 pub enum GetIntegrationResponseError {
@@ -5087,18 +5046,15 @@ impl GetIntegrationResponseError {
     }
 }
 impl fmt::Display for GetIntegrationResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntegrationResponseError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntegrationResponseError::NotFound(ref cause) => cause,
-            GetIntegrationResponseError::TooManyRequests(ref cause) => cause,
+            GetIntegrationResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetIntegrationResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntegrationResponseError {}
 /// Errors returned by GetIntegrationResponses
 #[derive(Debug, PartialEq)]
 pub enum GetIntegrationResponsesError {
@@ -5133,19 +5089,16 @@ impl GetIntegrationResponsesError {
     }
 }
 impl fmt::Display for GetIntegrationResponsesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntegrationResponsesError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntegrationResponsesError::BadRequest(ref cause) => cause,
-            GetIntegrationResponsesError::NotFound(ref cause) => cause,
-            GetIntegrationResponsesError::TooManyRequests(ref cause) => cause,
+            GetIntegrationResponsesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIntegrationResponsesError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetIntegrationResponsesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntegrationResponsesError {}
 /// Errors returned by GetIntegrations
 #[derive(Debug, PartialEq)]
 pub enum GetIntegrationsError {
@@ -5178,19 +5131,16 @@ impl GetIntegrationsError {
     }
 }
 impl fmt::Display for GetIntegrationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIntegrationsError {
-    fn description(&self) -> &str {
         match *self {
-            GetIntegrationsError::BadRequest(ref cause) => cause,
-            GetIntegrationsError::NotFound(ref cause) => cause,
-            GetIntegrationsError::TooManyRequests(ref cause) => cause,
+            GetIntegrationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetIntegrationsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetIntegrationsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIntegrationsError {}
 /// Errors returned by GetModel
 #[derive(Debug, PartialEq)]
 pub enum GetModelError {
@@ -5218,18 +5168,15 @@ impl GetModelError {
     }
 }
 impl fmt::Display for GetModelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetModelError {
-    fn description(&self) -> &str {
         match *self {
-            GetModelError::NotFound(ref cause) => cause,
-            GetModelError::TooManyRequests(ref cause) => cause,
+            GetModelError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetModelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetModelError {}
 /// Errors returned by GetModelTemplate
 #[derive(Debug, PartialEq)]
 pub enum GetModelTemplateError {
@@ -5257,18 +5204,15 @@ impl GetModelTemplateError {
     }
 }
 impl fmt::Display for GetModelTemplateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetModelTemplateError {
-    fn description(&self) -> &str {
         match *self {
-            GetModelTemplateError::NotFound(ref cause) => cause,
-            GetModelTemplateError::TooManyRequests(ref cause) => cause,
+            GetModelTemplateError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetModelTemplateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetModelTemplateError {}
 /// Errors returned by GetModels
 #[derive(Debug, PartialEq)]
 pub enum GetModelsError {
@@ -5301,19 +5245,16 @@ impl GetModelsError {
     }
 }
 impl fmt::Display for GetModelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetModelsError {
-    fn description(&self) -> &str {
         match *self {
-            GetModelsError::BadRequest(ref cause) => cause,
-            GetModelsError::NotFound(ref cause) => cause,
-            GetModelsError::TooManyRequests(ref cause) => cause,
+            GetModelsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetModelsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetModelsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetModelsError {}
 /// Errors returned by GetRoute
 #[derive(Debug, PartialEq)]
 pub enum GetRouteError {
@@ -5341,18 +5282,15 @@ impl GetRouteError {
     }
 }
 impl fmt::Display for GetRouteError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRouteError {
-    fn description(&self) -> &str {
         match *self {
-            GetRouteError::NotFound(ref cause) => cause,
-            GetRouteError::TooManyRequests(ref cause) => cause,
+            GetRouteError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRouteError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRouteError {}
 /// Errors returned by GetRouteResponse
 #[derive(Debug, PartialEq)]
 pub enum GetRouteResponseError {
@@ -5380,18 +5318,15 @@ impl GetRouteResponseError {
     }
 }
 impl fmt::Display for GetRouteResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRouteResponseError {
-    fn description(&self) -> &str {
         match *self {
-            GetRouteResponseError::NotFound(ref cause) => cause,
-            GetRouteResponseError::TooManyRequests(ref cause) => cause,
+            GetRouteResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRouteResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRouteResponseError {}
 /// Errors returned by GetRouteResponses
 #[derive(Debug, PartialEq)]
 pub enum GetRouteResponsesError {
@@ -5424,19 +5359,16 @@ impl GetRouteResponsesError {
     }
 }
 impl fmt::Display for GetRouteResponsesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRouteResponsesError {
-    fn description(&self) -> &str {
         match *self {
-            GetRouteResponsesError::BadRequest(ref cause) => cause,
-            GetRouteResponsesError::NotFound(ref cause) => cause,
-            GetRouteResponsesError::TooManyRequests(ref cause) => cause,
+            GetRouteResponsesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetRouteResponsesError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRouteResponsesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRouteResponsesError {}
 /// Errors returned by GetRoutes
 #[derive(Debug, PartialEq)]
 pub enum GetRoutesError {
@@ -5469,19 +5401,16 @@ impl GetRoutesError {
     }
 }
 impl fmt::Display for GetRoutesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRoutesError {
-    fn description(&self) -> &str {
         match *self {
-            GetRoutesError::BadRequest(ref cause) => cause,
-            GetRoutesError::NotFound(ref cause) => cause,
-            GetRoutesError::TooManyRequests(ref cause) => cause,
+            GetRoutesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetRoutesError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetRoutesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRoutesError {}
 /// Errors returned by GetStage
 #[derive(Debug, PartialEq)]
 pub enum GetStageError {
@@ -5509,18 +5438,15 @@ impl GetStageError {
     }
 }
 impl fmt::Display for GetStageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetStageError {
-    fn description(&self) -> &str {
         match *self {
-            GetStageError::NotFound(ref cause) => cause,
-            GetStageError::TooManyRequests(ref cause) => cause,
+            GetStageError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetStageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetStageError {}
 /// Errors returned by GetStages
 #[derive(Debug, PartialEq)]
 pub enum GetStagesError {
@@ -5553,19 +5479,16 @@ impl GetStagesError {
     }
 }
 impl fmt::Display for GetStagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetStagesError {
-    fn description(&self) -> &str {
         match *self {
-            GetStagesError::BadRequest(ref cause) => cause,
-            GetStagesError::NotFound(ref cause) => cause,
-            GetStagesError::TooManyRequests(ref cause) => cause,
+            GetStagesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetStagesError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetStagesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetStagesError {}
 /// Errors returned by GetTags
 #[derive(Debug, PartialEq)]
 pub enum GetTagsError {
@@ -5603,20 +5526,17 @@ impl GetTagsError {
     }
 }
 impl fmt::Display for GetTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTagsError {
-    fn description(&self) -> &str {
         match *self {
-            GetTagsError::BadRequest(ref cause) => cause,
-            GetTagsError::Conflict(ref cause) => cause,
-            GetTagsError::NotFound(ref cause) => cause,
-            GetTagsError::TooManyRequests(ref cause) => cause,
+            GetTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetTagsError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetTagsError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetTagsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTagsError {}
 /// Errors returned by ImportApi
 #[derive(Debug, PartialEq)]
 pub enum ImportApiError {
@@ -5654,20 +5574,17 @@ impl ImportApiError {
     }
 }
 impl fmt::Display for ImportApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ImportApiError {
-    fn description(&self) -> &str {
         match *self {
-            ImportApiError::BadRequest(ref cause) => cause,
-            ImportApiError::Conflict(ref cause) => cause,
-            ImportApiError::NotFound(ref cause) => cause,
-            ImportApiError::TooManyRequests(ref cause) => cause,
+            ImportApiError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ImportApiError::Conflict(ref cause) => write!(f, "{}", cause),
+            ImportApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            ImportApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ImportApiError {}
 /// Errors returned by ReimportApi
 #[derive(Debug, PartialEq)]
 pub enum ReimportApiError {
@@ -5705,20 +5622,17 @@ impl ReimportApiError {
     }
 }
 impl fmt::Display for ReimportApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ReimportApiError {
-    fn description(&self) -> &str {
         match *self {
-            ReimportApiError::BadRequest(ref cause) => cause,
-            ReimportApiError::Conflict(ref cause) => cause,
-            ReimportApiError::NotFound(ref cause) => cause,
-            ReimportApiError::TooManyRequests(ref cause) => cause,
+            ReimportApiError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ReimportApiError::Conflict(ref cause) => write!(f, "{}", cause),
+            ReimportApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            ReimportApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ReimportApiError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -5756,20 +5670,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::Conflict(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
-            TagResourceError::TooManyRequests(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Conflict(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -5807,20 +5718,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::Conflict(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
-            UntagResourceError::TooManyRequests(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Conflict(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateApi
 #[derive(Debug, PartialEq)]
 pub enum UpdateApiError {
@@ -5858,20 +5766,17 @@ impl UpdateApiError {
     }
 }
 impl fmt::Display for UpdateApiError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateApiError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateApiError::BadRequest(ref cause) => cause,
-            UpdateApiError::Conflict(ref cause) => cause,
-            UpdateApiError::NotFound(ref cause) => cause,
-            UpdateApiError::TooManyRequests(ref cause) => cause,
+            UpdateApiError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateApiError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateApiError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateApiError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateApiError {}
 /// Errors returned by UpdateApiMapping
 #[derive(Debug, PartialEq)]
 pub enum UpdateApiMappingError {
@@ -5909,20 +5814,17 @@ impl UpdateApiMappingError {
     }
 }
 impl fmt::Display for UpdateApiMappingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateApiMappingError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateApiMappingError::BadRequest(ref cause) => cause,
-            UpdateApiMappingError::Conflict(ref cause) => cause,
-            UpdateApiMappingError::NotFound(ref cause) => cause,
-            UpdateApiMappingError::TooManyRequests(ref cause) => cause,
+            UpdateApiMappingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateApiMappingError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateApiMappingError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateApiMappingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateApiMappingError {}
 /// Errors returned by UpdateAuthorizer
 #[derive(Debug, PartialEq)]
 pub enum UpdateAuthorizerError {
@@ -5960,20 +5862,17 @@ impl UpdateAuthorizerError {
     }
 }
 impl fmt::Display for UpdateAuthorizerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateAuthorizerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateAuthorizerError::BadRequest(ref cause) => cause,
-            UpdateAuthorizerError::Conflict(ref cause) => cause,
-            UpdateAuthorizerError::NotFound(ref cause) => cause,
-            UpdateAuthorizerError::TooManyRequests(ref cause) => cause,
+            UpdateAuthorizerError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateAuthorizerError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateAuthorizerError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateAuthorizerError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateAuthorizerError {}
 /// Errors returned by UpdateDeployment
 #[derive(Debug, PartialEq)]
 pub enum UpdateDeploymentError {
@@ -6011,20 +5910,17 @@ impl UpdateDeploymentError {
     }
 }
 impl fmt::Display for UpdateDeploymentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDeploymentError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDeploymentError::BadRequest(ref cause) => cause,
-            UpdateDeploymentError::Conflict(ref cause) => cause,
-            UpdateDeploymentError::NotFound(ref cause) => cause,
-            UpdateDeploymentError::TooManyRequests(ref cause) => cause,
+            UpdateDeploymentError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDeploymentError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDeploymentError {}
 /// Errors returned by UpdateDomainName
 #[derive(Debug, PartialEq)]
 pub enum UpdateDomainNameError {
@@ -6062,20 +5958,17 @@ impl UpdateDomainNameError {
     }
 }
 impl fmt::Display for UpdateDomainNameError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateDomainNameError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateDomainNameError::BadRequest(ref cause) => cause,
-            UpdateDomainNameError::Conflict(ref cause) => cause,
-            UpdateDomainNameError::NotFound(ref cause) => cause,
-            UpdateDomainNameError::TooManyRequests(ref cause) => cause,
+            UpdateDomainNameError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateDomainNameError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateDomainNameError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateDomainNameError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateDomainNameError {}
 /// Errors returned by UpdateIntegration
 #[derive(Debug, PartialEq)]
 pub enum UpdateIntegrationError {
@@ -6113,20 +6006,17 @@ impl UpdateIntegrationError {
     }
 }
 impl fmt::Display for UpdateIntegrationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateIntegrationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateIntegrationError::BadRequest(ref cause) => cause,
-            UpdateIntegrationError::Conflict(ref cause) => cause,
-            UpdateIntegrationError::NotFound(ref cause) => cause,
-            UpdateIntegrationError::TooManyRequests(ref cause) => cause,
+            UpdateIntegrationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateIntegrationError {}
 /// Errors returned by UpdateIntegrationResponse
 #[derive(Debug, PartialEq)]
 pub enum UpdateIntegrationResponseError {
@@ -6168,20 +6058,17 @@ impl UpdateIntegrationResponseError {
     }
 }
 impl fmt::Display for UpdateIntegrationResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateIntegrationResponseError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateIntegrationResponseError::BadRequest(ref cause) => cause,
-            UpdateIntegrationResponseError::Conflict(ref cause) => cause,
-            UpdateIntegrationResponseError::NotFound(ref cause) => cause,
-            UpdateIntegrationResponseError::TooManyRequests(ref cause) => cause,
+            UpdateIntegrationResponseError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationResponseError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateIntegrationResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateIntegrationResponseError {}
 /// Errors returned by UpdateModel
 #[derive(Debug, PartialEq)]
 pub enum UpdateModelError {
@@ -6219,20 +6106,17 @@ impl UpdateModelError {
     }
 }
 impl fmt::Display for UpdateModelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateModelError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateModelError::BadRequest(ref cause) => cause,
-            UpdateModelError::Conflict(ref cause) => cause,
-            UpdateModelError::NotFound(ref cause) => cause,
-            UpdateModelError::TooManyRequests(ref cause) => cause,
+            UpdateModelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateModelError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateModelError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateModelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateModelError {}
 /// Errors returned by UpdateRoute
 #[derive(Debug, PartialEq)]
 pub enum UpdateRouteError {
@@ -6270,20 +6154,17 @@ impl UpdateRouteError {
     }
 }
 impl fmt::Display for UpdateRouteError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateRouteError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateRouteError::BadRequest(ref cause) => cause,
-            UpdateRouteError::Conflict(ref cause) => cause,
-            UpdateRouteError::NotFound(ref cause) => cause,
-            UpdateRouteError::TooManyRequests(ref cause) => cause,
+            UpdateRouteError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateRouteError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateRouteError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateRouteError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateRouteError {}
 /// Errors returned by UpdateRouteResponse
 #[derive(Debug, PartialEq)]
 pub enum UpdateRouteResponseError {
@@ -6321,20 +6202,17 @@ impl UpdateRouteResponseError {
     }
 }
 impl fmt::Display for UpdateRouteResponseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateRouteResponseError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateRouteResponseError::BadRequest(ref cause) => cause,
-            UpdateRouteResponseError::Conflict(ref cause) => cause,
-            UpdateRouteResponseError::NotFound(ref cause) => cause,
-            UpdateRouteResponseError::TooManyRequests(ref cause) => cause,
+            UpdateRouteResponseError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateRouteResponseError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateRouteResponseError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateRouteResponseError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateRouteResponseError {}
 /// Errors returned by UpdateStage
 #[derive(Debug, PartialEq)]
 pub enum UpdateStageError {
@@ -6372,20 +6250,17 @@ impl UpdateStageError {
     }
 }
 impl fmt::Display for UpdateStageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateStageError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateStageError::BadRequest(ref cause) => cause,
-            UpdateStageError::Conflict(ref cause) => cause,
-            UpdateStageError::NotFound(ref cause) => cause,
-            UpdateStageError::TooManyRequests(ref cause) => cause,
+            UpdateStageError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateStageError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateStageError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateStageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateStageError {}
 /// Trait representing the capabilities of the AmazonApiGatewayV2 API. AmazonApiGatewayV2 clients implement this trait.
 #[async_trait]
 pub trait ApiGatewayV2 {

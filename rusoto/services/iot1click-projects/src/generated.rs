@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateDeviceWithPlacementRequest {
     /// <p>The ID of the physical device to be associated with the given placement in the project. Note that a mandatory 4 character prefix is required for all <code>deviceId</code> values.</p>
     #[serde(rename = "deviceId")]
@@ -42,10 +44,11 @@ pub struct AssociateDeviceWithPlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateDeviceWithPlacementResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePlacementRequest {
     /// <p>Optional user-defined key/value pairs providing contextual data (such as location or function) for the placement.</p>
     #[serde(rename = "attributes")]
@@ -60,10 +63,11 @@ pub struct CreatePlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePlacementResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectRequest {
     /// <p>An optional description for the project.</p>
     #[serde(rename = "description")]
@@ -83,10 +87,11 @@ pub struct CreateProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePlacementRequest {
     /// <p>The name of the empty placement to delete.</p>
     #[serde(rename = "placementName")]
@@ -97,10 +102,11 @@ pub struct DeletePlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePlacementResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProjectRequest {
     /// <p>The name of the empty project to delete.</p>
     #[serde(rename = "projectName")]
@@ -108,10 +114,11 @@ pub struct DeleteProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProjectResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePlacementRequest {
     /// <p>The name of the placement within a project.</p>
     #[serde(rename = "placementName")]
@@ -122,7 +129,7 @@ pub struct DescribePlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePlacementResponse {
     /// <p>An object describing the placement.</p>
     #[serde(rename = "placement")]
@@ -130,6 +137,7 @@ pub struct DescribePlacementResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProjectRequest {
     /// <p>The name of the project to be described.</p>
     #[serde(rename = "projectName")]
@@ -137,7 +145,7 @@ pub struct DescribeProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProjectResponse {
     /// <p>An object describing the project.</p>
     #[serde(rename = "project")]
@@ -158,6 +166,7 @@ pub struct DeviceTemplate {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateDeviceFromPlacementRequest {
     /// <p>The device ID that should be removed from the placement.</p>
     #[serde(rename = "deviceTemplateName")]
@@ -171,10 +180,11 @@ pub struct DisassociateDeviceFromPlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateDeviceFromPlacementResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDevicesInPlacementRequest {
     /// <p>The name of the placement to get the devices from.</p>
     #[serde(rename = "placementName")]
@@ -185,7 +195,7 @@ pub struct GetDevicesInPlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDevicesInPlacementResponse {
     /// <p>An object containing the devices (zero or more) within the placement.</p>
     #[serde(rename = "devices")]
@@ -193,6 +203,7 @@ pub struct GetDevicesInPlacementResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPlacementsRequest {
     /// <p>The maximum number of results to return per request. If not set, a default value of 100 is used.</p>
     #[serde(rename = "maxResults")]
@@ -208,7 +219,7 @@ pub struct ListPlacementsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPlacementsResponse {
     /// <p>The token used to retrieve the next set of results - will be effectively empty if there are no further results.</p>
     #[serde(rename = "nextToken")]
@@ -220,6 +231,7 @@ pub struct ListPlacementsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProjectsRequest {
     /// <p>The maximum number of results to return per request. If not set, a default value of 100 is used.</p>
     #[serde(rename = "maxResults")]
@@ -232,7 +244,7 @@ pub struct ListProjectsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProjectsResponse {
     /// <p>The token used to retrieve the next set of results - will be effectively empty if there are no further results.</p>
     #[serde(rename = "nextToken")]
@@ -244,6 +256,7 @@ pub struct ListProjectsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The ARN of the resource whose tags you want to list.</p>
     #[serde(rename = "resourceArn")]
@@ -251,7 +264,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags (metadata key/value pairs) which you have assigned to the resource.</p>
     #[serde(rename = "tags")]
@@ -261,7 +274,7 @@ pub struct ListTagsForResourceResponse {
 
 /// <p>An object describing a project's placement.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PlacementDescription {
     /// <p>The user-defined attributes associated with the placement.</p>
     #[serde(rename = "attributes")]
@@ -282,7 +295,7 @@ pub struct PlacementDescription {
 
 /// <p>An object providing summary information for a particular placement.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PlacementSummary {
     /// <p>The date when the placement was originally created, in UNIX epoch time format.</p>
     #[serde(rename = "createdDate")]
@@ -313,7 +326,7 @@ pub struct PlacementTemplate {
 
 /// <p>An object providing detailed information for a particular project associated with an AWS account and region.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectDescription {
     /// <p>The ARN of the project.</p>
     #[serde(rename = "arn")]
@@ -344,7 +357,7 @@ pub struct ProjectDescription {
 
 /// <p>An object providing summary information for a particular project for an associated AWS account and region.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectSummary {
     /// <p>The ARN of the project.</p>
     #[serde(rename = "arn")]
@@ -366,6 +379,7 @@ pub struct ProjectSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the resouce for which tag(s) should be added or modified.</p>
     #[serde(rename = "resourceArn")]
@@ -376,10 +390,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ARN of the resource whose tag you want to remove.</p>
     #[serde(rename = "resourceArn")]
@@ -390,10 +405,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePlacementRequest {
     /// <p>The user-defined object of attributes used to update the placement. The maximum number of key/value pairs is 50.</p>
     #[serde(rename = "attributes")]
@@ -408,10 +424,11 @@ pub struct UpdatePlacementRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePlacementResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProjectRequest {
     /// <p>An optional user-defined description for the project.</p>
     #[serde(rename = "description")]
@@ -427,7 +444,7 @@ pub struct UpdateProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProjectResponse {}
 
 /// Errors returned by AssociateDeviceWithPlacement
@@ -477,20 +494,21 @@ impl AssociateDeviceWithPlacementError {
     }
 }
 impl fmt::Display for AssociateDeviceWithPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateDeviceWithPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateDeviceWithPlacementError::InternalFailure(ref cause) => cause,
-            AssociateDeviceWithPlacementError::InvalidRequest(ref cause) => cause,
-            AssociateDeviceWithPlacementError::ResourceConflict(ref cause) => cause,
-            AssociateDeviceWithPlacementError::ResourceNotFound(ref cause) => cause,
+            AssociateDeviceWithPlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            AssociateDeviceWithPlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            AssociateDeviceWithPlacementError::ResourceConflict(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AssociateDeviceWithPlacementError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociateDeviceWithPlacementError {}
 /// Errors returned by CreatePlacement
 #[derive(Debug, PartialEq)]
 pub enum CreatePlacementError {
@@ -528,20 +546,17 @@ impl CreatePlacementError {
     }
 }
 impl fmt::Display for CreatePlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePlacementError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePlacementError::InternalFailure(ref cause) => cause,
-            CreatePlacementError::InvalidRequest(ref cause) => cause,
-            CreatePlacementError::ResourceConflict(ref cause) => cause,
-            CreatePlacementError::ResourceNotFound(ref cause) => cause,
+            CreatePlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreatePlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreatePlacementError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            CreatePlacementError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePlacementError {}
 /// Errors returned by CreateProject
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectError {
@@ -574,19 +589,16 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::InternalFailure(ref cause) => cause,
-            CreateProjectError::InvalidRequest(ref cause) => cause,
-            CreateProjectError::ResourceConflict(ref cause) => cause,
+            CreateProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ResourceConflict(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by DeletePlacement
 #[derive(Debug, PartialEq)]
 pub enum DeletePlacementError {
@@ -624,20 +636,17 @@ impl DeletePlacementError {
     }
 }
 impl fmt::Display for DeletePlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePlacementError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePlacementError::InternalFailure(ref cause) => cause,
-            DeletePlacementError::InvalidRequest(ref cause) => cause,
-            DeletePlacementError::ResourceNotFound(ref cause) => cause,
-            DeletePlacementError::TooManyRequests(ref cause) => cause,
+            DeletePlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeletePlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeletePlacementError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeletePlacementError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePlacementError {}
 /// Errors returned by DeleteProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteProjectError {
@@ -675,20 +684,17 @@ impl DeleteProjectError {
     }
 }
 impl fmt::Display for DeleteProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProjectError::InternalFailure(ref cause) => cause,
-            DeleteProjectError::InvalidRequest(ref cause) => cause,
-            DeleteProjectError::ResourceNotFound(ref cause) => cause,
-            DeleteProjectError::TooManyRequests(ref cause) => cause,
+            DeleteProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProjectError {}
 /// Errors returned by DescribePlacement
 #[derive(Debug, PartialEq)]
 pub enum DescribePlacementError {
@@ -721,19 +727,16 @@ impl DescribePlacementError {
     }
 }
 impl fmt::Display for DescribePlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePlacementError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePlacementError::InternalFailure(ref cause) => cause,
-            DescribePlacementError::InvalidRequest(ref cause) => cause,
-            DescribePlacementError::ResourceNotFound(ref cause) => cause,
+            DescribePlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribePlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribePlacementError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePlacementError {}
 /// Errors returned by DescribeProject
 #[derive(Debug, PartialEq)]
 pub enum DescribeProjectError {
@@ -766,19 +769,16 @@ impl DescribeProjectError {
     }
 }
 impl fmt::Display for DescribeProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProjectError::InternalFailure(ref cause) => cause,
-            DescribeProjectError::InvalidRequest(ref cause) => cause,
-            DescribeProjectError::ResourceNotFound(ref cause) => cause,
+            DescribeProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProjectError {}
 /// Errors returned by DisassociateDeviceFromPlacement
 #[derive(Debug, PartialEq)]
 pub enum DisassociateDeviceFromPlacementError {
@@ -826,20 +826,25 @@ impl DisassociateDeviceFromPlacementError {
     }
 }
 impl fmt::Display for DisassociateDeviceFromPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateDeviceFromPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateDeviceFromPlacementError::InternalFailure(ref cause) => cause,
-            DisassociateDeviceFromPlacementError::InvalidRequest(ref cause) => cause,
-            DisassociateDeviceFromPlacementError::ResourceNotFound(ref cause) => cause,
-            DisassociateDeviceFromPlacementError::TooManyRequests(ref cause) => cause,
+            DisassociateDeviceFromPlacementError::InternalFailure(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateDeviceFromPlacementError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateDeviceFromPlacementError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateDeviceFromPlacementError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DisassociateDeviceFromPlacementError {}
 /// Errors returned by GetDevicesInPlacement
 #[derive(Debug, PartialEq)]
 pub enum GetDevicesInPlacementError {
@@ -878,19 +883,16 @@ impl GetDevicesInPlacementError {
     }
 }
 impl fmt::Display for GetDevicesInPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDevicesInPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            GetDevicesInPlacementError::InternalFailure(ref cause) => cause,
-            GetDevicesInPlacementError::InvalidRequest(ref cause) => cause,
-            GetDevicesInPlacementError::ResourceNotFound(ref cause) => cause,
+            GetDevicesInPlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetDevicesInPlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetDevicesInPlacementError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDevicesInPlacementError {}
 /// Errors returned by ListPlacements
 #[derive(Debug, PartialEq)]
 pub enum ListPlacementsError {
@@ -923,19 +925,16 @@ impl ListPlacementsError {
     }
 }
 impl fmt::Display for ListPlacementsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPlacementsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPlacementsError::InternalFailure(ref cause) => cause,
-            ListPlacementsError::InvalidRequest(ref cause) => cause,
-            ListPlacementsError::ResourceNotFound(ref cause) => cause,
+            ListPlacementsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListPlacementsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListPlacementsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPlacementsError {}
 /// Errors returned by ListProjects
 #[derive(Debug, PartialEq)]
 pub enum ListProjectsError {
@@ -963,18 +962,15 @@ impl ListProjectsError {
     }
 }
 impl fmt::Display for ListProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProjectsError::InternalFailure(ref cause) => cause,
-            ListProjectsError::InvalidRequest(ref cause) => cause,
+            ListProjectsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListProjectsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProjectsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1009,19 +1005,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalFailure(ref cause) => cause,
-            ListTagsForResourceError::InvalidRequest(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1054,19 +1047,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalFailure(ref cause) => cause,
-            TagResourceError::InvalidRequest(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1099,19 +1089,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalFailure(ref cause) => cause,
-            UntagResourceError::InvalidRequest(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdatePlacement
 #[derive(Debug, PartialEq)]
 pub enum UpdatePlacementError {
@@ -1149,20 +1136,17 @@ impl UpdatePlacementError {
     }
 }
 impl fmt::Display for UpdatePlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePlacementError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePlacementError::InternalFailure(ref cause) => cause,
-            UpdatePlacementError::InvalidRequest(ref cause) => cause,
-            UpdatePlacementError::ResourceNotFound(ref cause) => cause,
-            UpdatePlacementError::TooManyRequests(ref cause) => cause,
+            UpdatePlacementError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdatePlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdatePlacementError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdatePlacementError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePlacementError {}
 /// Errors returned by UpdateProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateProjectError {
@@ -1200,20 +1184,17 @@ impl UpdateProjectError {
     }
 }
 impl fmt::Display for UpdateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProjectError::InternalFailure(ref cause) => cause,
-            UpdateProjectError::InvalidRequest(ref cause) => cause,
-            UpdateProjectError::ResourceNotFound(ref cause) => cause,
-            UpdateProjectError::TooManyRequests(ref cause) => cause,
+            UpdateProjectError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateProjectError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProjectError {}
 /// Trait representing the capabilities of the AWS IoT 1-Click Projects API. AWS IoT 1-Click Projects clients implement this trait.
 #[async_trait]
 pub trait Iot1ClickProjects {

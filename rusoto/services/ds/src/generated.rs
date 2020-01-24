@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptSharedDirectoryRequest {
     /// <p>Identifier of the shared directory in the directory consumer account. This identifier is different for each directory owner account. </p>
     #[serde(rename = "SharedDirectoryId")]
@@ -32,7 +34,7 @@ pub struct AcceptSharedDirectoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptSharedDirectoryResult {
     /// <p>The shared directory in the directory consumer account.</p>
     #[serde(rename = "SharedDirectory")]
@@ -41,6 +43,7 @@ pub struct AcceptSharedDirectoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddIpRoutesRequest {
     /// <p>Identifier (ID) of the directory to which to add the address block.</p>
     #[serde(rename = "DirectoryId")]
@@ -55,10 +58,11 @@ pub struct AddIpRoutesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddIpRoutesResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsToResourceRequest {
     /// <p>Identifier (ID) for the directory to which to add the tag.</p>
     #[serde(rename = "ResourceId")]
@@ -69,7 +73,7 @@ pub struct AddTagsToResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddTagsToResourceResult {}
 
 /// <p>Represents a named directory attribute.</p>
@@ -86,6 +90,7 @@ pub struct Attribute {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelSchemaExtensionRequest {
     /// <p>The identifier of the directory whose schema extension will be canceled.</p>
     #[serde(rename = "DirectoryId")]
@@ -96,12 +101,12 @@ pub struct CancelSchemaExtensionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelSchemaExtensionResult {}
 
 /// <p>Information about the certificate.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Certificate {
     /// <p>The identifier of the certificate.</p>
     #[serde(rename = "CertificateId")]
@@ -131,7 +136,7 @@ pub struct Certificate {
 
 /// <p>Contains general information about a certificate.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CertificateInfo {
     /// <p>The identifier of the certificate.</p>
     #[serde(rename = "CertificateId")]
@@ -149,7 +154,7 @@ pub struct CertificateInfo {
 
 /// <p>Contains information about a computer account in a directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Computer {
     /// <p>An array of <a>Attribute</a> objects containing the LDAP attributes that belong to the computer account.</p>
     #[serde(rename = "ComputerAttributes")]
@@ -167,7 +172,7 @@ pub struct Computer {
 
 /// <p>Points to a remote domain with which you are setting up a trust relationship. Conditional forwarders are required in order to set up a trust relationship with another domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConditionalForwarder {
     /// <p>The IP addresses of the remote DNS server associated with RemoteDomainName. This is the IP address of the DNS server that your conditional forwarder points to.</p>
     #[serde(rename = "DnsIpAddrs")]
@@ -185,6 +190,7 @@ pub struct ConditionalForwarder {
 
 /// <p>Contains the inputs for the <a>ConnectDirectory</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConnectDirectoryRequest {
     /// <p>A <a>DirectoryConnectSettings</a> object that contains additional information for the operation.</p>
     #[serde(rename = "ConnectSettings")]
@@ -214,7 +220,7 @@ pub struct ConnectDirectoryRequest {
 
 /// <p>Contains the results of the <a>ConnectDirectory</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConnectDirectoryResult {
     /// <p>The identifier of the new directory.</p>
     #[serde(rename = "DirectoryId")]
@@ -224,6 +230,7 @@ pub struct ConnectDirectoryResult {
 
 /// <p>Contains the inputs for the <a>CreateAlias</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAliasRequest {
     /// <p>The requested alias.</p> <p>The alias must be unique amongst all aliases in AWS. This operation throws an <code>EntityAlreadyExistsException</code> error if the alias already exists.</p>
     #[serde(rename = "Alias")]
@@ -235,7 +242,7 @@ pub struct CreateAliasRequest {
 
 /// <p>Contains the results of the <a>CreateAlias</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAliasResult {
     /// <p>The alias for the directory.</p>
     #[serde(rename = "Alias")]
@@ -249,6 +256,7 @@ pub struct CreateAliasResult {
 
 /// <p>Contains the inputs for the <a>CreateComputer</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateComputerRequest {
     /// <p>An array of <a>Attribute</a> objects that contain any LDAP attributes to apply to the computer account.</p>
     #[serde(rename = "ComputerAttributes")]
@@ -271,7 +279,7 @@ pub struct CreateComputerRequest {
 
 /// <p>Contains the results for the <a>CreateComputer</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateComputerResult {
     /// <p>A <a>Computer</a> object that represents the computer account.</p>
     #[serde(rename = "Computer")]
@@ -281,6 +289,7 @@ pub struct CreateComputerResult {
 
 /// <p>Initiates the creation of a conditional forwarder for your AWS Directory Service for Microsoft Active Directory. Conditional forwarders are required in order to set up a trust relationship with another domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConditionalForwarderRequest {
     /// <p>The directory ID of the AWS directory for which you are creating the conditional forwarder.</p>
     #[serde(rename = "DirectoryId")]
@@ -295,11 +304,12 @@ pub struct CreateConditionalForwarderRequest {
 
 /// <p>The result of a CreateConditinalForwarder request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConditionalForwarderResult {}
 
 /// <p>Contains the inputs for the <a>CreateDirectory</a> operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDirectoryRequest {
     /// <p>A description for the directory.</p>
     #[serde(rename = "Description")]
@@ -330,7 +340,7 @@ pub struct CreateDirectoryRequest {
 
 /// <p>Contains the results of the <a>CreateDirectory</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDirectoryResult {
     /// <p>The identifier of the directory that was created.</p>
     #[serde(rename = "DirectoryId")]
@@ -339,6 +349,7 @@ pub struct CreateDirectoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLogSubscriptionRequest {
     /// <p>Identifier of the directory to which you want to subscribe and receive real-time logs to your specified CloudWatch log group.</p>
     #[serde(rename = "DirectoryId")]
@@ -349,11 +360,12 @@ pub struct CreateLogSubscriptionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateLogSubscriptionResult {}
 
 /// <p>Creates an AWS Managed Microsoft AD directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMicrosoftADRequest {
     /// <p>A description for the directory. This label will appear on the AWS console <code>Directory Details</code> page after the directory is created.</p>
     #[serde(rename = "Description")]
@@ -384,7 +396,7 @@ pub struct CreateMicrosoftADRequest {
 
 /// <p>Result of a CreateMicrosoftAD request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMicrosoftADResult {
     /// <p>The identifier of the directory that was created.</p>
     #[serde(rename = "DirectoryId")]
@@ -394,6 +406,7 @@ pub struct CreateMicrosoftADResult {
 
 /// <p>Contains the inputs for the <a>CreateSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSnapshotRequest {
     /// <p>The identifier of the directory of which to take a snapshot.</p>
     #[serde(rename = "DirectoryId")]
@@ -406,7 +419,7 @@ pub struct CreateSnapshotRequest {
 
 /// <p>Contains the results of the <a>CreateSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateSnapshotResult {
     /// <p>The identifier of the snapshot that was created.</p>
     #[serde(rename = "SnapshotId")]
@@ -416,6 +429,7 @@ pub struct CreateSnapshotResult {
 
 /// <p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your AWS Managed Microsoft AD directory, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p> <p>This action initiates the creation of the AWS side of a trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTrustRequest {
     /// <p>The IP addresses of the remote DNS server associated with RemoteDomainName.</p>
     #[serde(rename = "ConditionalForwarderIpAddrs")]
@@ -445,7 +459,7 @@ pub struct CreateTrustRequest {
 
 /// <p>The result of a CreateTrust request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTrustResult {
     /// <p>A unique identifier for the trust relationship that was created.</p>
     #[serde(rename = "TrustId")]
@@ -455,6 +469,7 @@ pub struct CreateTrustResult {
 
 /// <p>Deletes a conditional forwarder.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConditionalForwarderRequest {
     /// <p>The directory ID for which you are deleting the conditional forwarder.</p>
     #[serde(rename = "DirectoryId")]
@@ -466,11 +481,12 @@ pub struct DeleteConditionalForwarderRequest {
 
 /// <p>The result of a DeleteConditionalForwarder request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConditionalForwarderResult {}
 
 /// <p>Contains the inputs for the <a>DeleteDirectory</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDirectoryRequest {
     /// <p>The identifier of the directory to delete.</p>
     #[serde(rename = "DirectoryId")]
@@ -479,7 +495,7 @@ pub struct DeleteDirectoryRequest {
 
 /// <p>Contains the results of the <a>DeleteDirectory</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDirectoryResult {
     /// <p>The directory identifier.</p>
     #[serde(rename = "DirectoryId")]
@@ -488,6 +504,7 @@ pub struct DeleteDirectoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLogSubscriptionRequest {
     /// <p>Identifier of the directory whose log subscription you want to delete.</p>
     #[serde(rename = "DirectoryId")]
@@ -495,11 +512,12 @@ pub struct DeleteLogSubscriptionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLogSubscriptionResult {}
 
 /// <p>Contains the inputs for the <a>DeleteSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSnapshotRequest {
     /// <p>The identifier of the directory snapshot to be deleted.</p>
     #[serde(rename = "SnapshotId")]
@@ -508,7 +526,7 @@ pub struct DeleteSnapshotRequest {
 
 /// <p>Contains the results of the <a>DeleteSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteSnapshotResult {
     /// <p>The identifier of the directory snapshot that was deleted.</p>
     #[serde(rename = "SnapshotId")]
@@ -518,6 +536,7 @@ pub struct DeleteSnapshotResult {
 
 /// <p>Deletes the local side of an existing trust relationship between the AWS Managed Microsoft AD directory and the external domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTrustRequest {
     /// <p>Delete a conditional forwarder as part of a DeleteTrustRequest.</p>
     #[serde(rename = "DeleteAssociatedConditionalForwarder")]
@@ -530,7 +549,7 @@ pub struct DeleteTrustRequest {
 
 /// <p>The result of a DeleteTrust request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTrustResult {
     /// <p>The Trust ID of the trust relationship that was deleted.</p>
     #[serde(rename = "TrustId")]
@@ -539,6 +558,7 @@ pub struct DeleteTrustResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterCertificateRequest {
     /// <p>The identifier of the certificate.</p>
     #[serde(rename = "CertificateId")]
@@ -549,11 +569,12 @@ pub struct DeregisterCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterCertificateResult {}
 
 /// <p>Removes the specified directory as a publisher to the specified SNS topic.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeregisterEventTopicRequest {
     /// <p>The Directory ID to remove as a publisher. This directory will no longer send messages to the specified SNS topic.</p>
     #[serde(rename = "DirectoryId")]
@@ -565,10 +586,11 @@ pub struct DeregisterEventTopicRequest {
 
 /// <p>The result of a DeregisterEventTopic request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeregisterEventTopicResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCertificateRequest {
     /// <p>The identifier of the certificate.</p>
     #[serde(rename = "CertificateId")]
@@ -579,7 +601,7 @@ pub struct DescribeCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCertificateResult {
     /// <p>Information about the certificate, including registered date time, certificate state, the reason for the state, expiration date time, and certificate common name.</p>
     #[serde(rename = "Certificate")]
@@ -589,6 +611,7 @@ pub struct DescribeCertificateResult {
 
 /// <p>Describes a conditional forwarder.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConditionalForwardersRequest {
     /// <p>The directory ID for which to get the list of associated conditional forwarders.</p>
     #[serde(rename = "DirectoryId")]
@@ -601,7 +624,7 @@ pub struct DescribeConditionalForwardersRequest {
 
 /// <p>The result of a DescribeConditionalForwarder request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConditionalForwardersResult {
     /// <p>The list of conditional forwarders that have been created.</p>
     #[serde(rename = "ConditionalForwarders")]
@@ -611,6 +634,7 @@ pub struct DescribeConditionalForwardersResult {
 
 /// <p>Contains the inputs for the <a>DescribeDirectories</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDirectoriesRequest {
     /// <p>A list of identifiers of the directories for which to obtain the information. If this member is null, all directories that belong to the current account are returned.</p> <p>An empty list results in an <code>InvalidParameterException</code> being thrown.</p>
     #[serde(rename = "DirectoryIds")]
@@ -628,7 +652,7 @@ pub struct DescribeDirectoriesRequest {
 
 /// <p>Contains the results of the <a>DescribeDirectories</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDirectoriesResult {
     /// <p>The list of <a>DirectoryDescription</a> objects that were retrieved.</p> <p>It is possible that this list contains less than the number of items specified in the <code>Limit</code> member of the request. This occurs if there are less than the requested number of items left to retrieve, or if the limitations of the operation have been exceeded.</p>
     #[serde(rename = "DirectoryDescriptions")]
@@ -641,6 +665,7 @@ pub struct DescribeDirectoriesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDomainControllersRequest {
     /// <p>Identifier of the directory for which to retrieve the domain controller information.</p>
     #[serde(rename = "DirectoryId")]
@@ -660,7 +685,7 @@ pub struct DescribeDomainControllersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDomainControllersResult {
     /// <p>List of the <a>DomainController</a> objects that were retrieved.</p>
     #[serde(rename = "DomainControllers")]
@@ -674,6 +699,7 @@ pub struct DescribeDomainControllersResult {
 
 /// <p>Describes event topics.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventTopicsRequest {
     /// <p>The Directory ID for which to get the list of associated SNS topics. If this member is null, associations for all Directory IDs are returned.</p>
     #[serde(rename = "DirectoryId")]
@@ -687,7 +713,7 @@ pub struct DescribeEventTopicsRequest {
 
 /// <p>The result of a DescribeEventTopic request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventTopicsResult {
     /// <p>A list of SNS topic names that receive status messages from the specified Directory ID.</p>
     #[serde(rename = "EventTopics")]
@@ -696,6 +722,7 @@ pub struct DescribeEventTopicsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLDAPSSettingsRequest {
     /// <p>The identifier of the directory.</p>
     #[serde(rename = "DirectoryId")]
@@ -715,7 +742,7 @@ pub struct DescribeLDAPSSettingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLDAPSSettingsResult {
     /// <p>Information about LDAP security for the specified directory, including status of enablement, state last updated date time, and the reason for the state.</p>
     #[serde(rename = "LDAPSSettingsInfo")]
@@ -728,6 +755,7 @@ pub struct DescribeLDAPSSettingsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSharedDirectoriesRequest {
     /// <p>The number of shared directories to return in the response object.</p>
     #[serde(rename = "Limit")]
@@ -747,7 +775,7 @@ pub struct DescribeSharedDirectoriesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSharedDirectoriesResult {
     /// <p>If not null, token that indicates that more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeSharedDirectories</a> to retrieve the next set of items.</p>
     #[serde(rename = "NextToken")]
@@ -761,6 +789,7 @@ pub struct DescribeSharedDirectoriesResult {
 
 /// <p>Contains the inputs for the <a>DescribeSnapshots</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSnapshotsRequest {
     /// <p>The identifier of the directory for which to retrieve snapshot information.</p>
     #[serde(rename = "DirectoryId")]
@@ -782,7 +811,7 @@ pub struct DescribeSnapshotsRequest {
 
 /// <p>Contains the results of the <a>DescribeSnapshots</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSnapshotsResult {
     /// <p>If not null, more results are available. Pass this value in the <i>NextToken</i> member of a subsequent call to <a>DescribeSnapshots</a>.</p>
     #[serde(rename = "NextToken")]
@@ -796,6 +825,7 @@ pub struct DescribeSnapshotsResult {
 
 /// <p>Describes the trust relationships for a particular AWS Managed Microsoft AD directory. If no input parameters are are provided, such as directory ID or trust ID, this request describes all the trust relationships.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrustsRequest {
     /// <p>The Directory ID of the AWS directory that is a part of the requested trust relationship.</p>
     #[serde(rename = "DirectoryId")]
@@ -817,7 +847,7 @@ pub struct DescribeTrustsRequest {
 
 /// <p>The result of a DescribeTrust request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrustsResult {
     /// <p>If not null, more results are available. Pass this value for the <i>NextToken</i> parameter in a subsequent call to <a>DescribeTrusts</a> to retrieve the next set of items.</p>
     #[serde(rename = "NextToken")]
@@ -831,6 +861,7 @@ pub struct DescribeTrustsResult {
 
 /// <p>Contains information for the <a>ConnectDirectory</a> operation when an AD Connector directory is being created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DirectoryConnectSettings {
     /// <p>A list of one or more IP addresses of DNS servers or domain controllers in the on-premises directory.</p>
     #[serde(rename = "CustomerDnsIps")]
@@ -848,7 +879,7 @@ pub struct DirectoryConnectSettings {
 
 /// <p>Contains information about an AD Connector directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DirectoryConnectSettingsDescription {
     /// <p>A list of the Availability Zones that the directory is in.</p>
     #[serde(rename = "AvailabilityZones")]
@@ -878,7 +909,7 @@ pub struct DirectoryConnectSettingsDescription {
 
 /// <p>Contains information about an AWS Directory Service directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DirectoryDescription {
     /// <p>The access URL for the directory, such as <code>http://&lt;alias&gt;.awsapps.com</code>. If no alias has been created for the directory, <code>&lt;alias&gt;</code> is the directory identifier, such as <code>d-XXXXXXXXXX</code>.</p>
     #[serde(rename = "AccessUrl")]
@@ -980,7 +1011,7 @@ pub struct DirectoryDescription {
 
 /// <p>Contains directory limit information for a Region.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DirectoryLimits {
     /// <p>The current number of cloud directories in the Region.</p>
     #[serde(rename = "CloudOnlyDirectoriesCurrentCount")]
@@ -1022,6 +1053,7 @@ pub struct DirectoryLimits {
 
 /// <p>Contains VPC information for the <a>CreateDirectory</a> or <a>CreateMicrosoftAD</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DirectoryVpcSettings {
     /// <p>The identifiers of the subnets for the directory servers. The two subnets must be in different Availability Zones. AWS Directory Service creates a directory server and a DNS server in each of these subnets.</p>
     #[serde(rename = "SubnetIds")]
@@ -1033,7 +1065,7 @@ pub struct DirectoryVpcSettings {
 
 /// <p>Contains information about the directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DirectoryVpcSettingsDescription {
     /// <p>The list of Availability Zones that the directory is in.</p>
     #[serde(rename = "AvailabilityZones")]
@@ -1054,6 +1086,7 @@ pub struct DirectoryVpcSettingsDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableLDAPSRequest {
     /// <p>The identifier of the directory.</p>
     #[serde(rename = "DirectoryId")]
@@ -1064,11 +1097,12 @@ pub struct DisableLDAPSRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableLDAPSResult {}
 
 /// <p>Contains the inputs for the <a>DisableRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableRadiusRequest {
     /// <p>The identifier of the directory for which to disable MFA.</p>
     #[serde(rename = "DirectoryId")]
@@ -1077,11 +1111,12 @@ pub struct DisableRadiusRequest {
 
 /// <p>Contains the results of the <a>DisableRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableRadiusResult {}
 
 /// <p>Contains the inputs for the <a>DisableSso</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableSsoRequest {
     /// <p>The identifier of the directory for which to disable single-sign on.</p>
     #[serde(rename = "DirectoryId")]
@@ -1098,12 +1133,12 @@ pub struct DisableSsoRequest {
 
 /// <p>Contains the results of the <a>DisableSso</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableSsoResult {}
 
 /// <p>Contains information about the domain controllers for a specified directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainController {
     /// <p>The Availability Zone where the domain controller is located.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -1148,6 +1183,7 @@ pub struct DomainController {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableLDAPSRequest {
     /// <p>The identifier of the directory.</p>
     #[serde(rename = "DirectoryId")]
@@ -1158,11 +1194,12 @@ pub struct EnableLDAPSRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableLDAPSResult {}
 
 /// <p>Contains the inputs for the <a>EnableRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableRadiusRequest {
     /// <p>The identifier of the directory for which to enable MFA.</p>
     #[serde(rename = "DirectoryId")]
@@ -1174,11 +1211,12 @@ pub struct EnableRadiusRequest {
 
 /// <p>Contains the results of the <a>EnableRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableRadiusResult {}
 
 /// <p>Contains the inputs for the <a>EnableSso</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableSsoRequest {
     /// <p>The identifier of the directory for which to enable single-sign on.</p>
     #[serde(rename = "DirectoryId")]
@@ -1195,12 +1233,12 @@ pub struct EnableSsoRequest {
 
 /// <p>Contains the results of the <a>EnableSso</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableSsoResult {}
 
 /// <p>Information about SNS topic and AWS Directory Service directory associations.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventTopic {
     /// <p>The date and time of when you associated your directory with the SNS topic.</p>
     #[serde(rename = "CreatedDateTime")]
@@ -1226,11 +1264,12 @@ pub struct EventTopic {
 
 /// <p>Contains the inputs for the <a>GetDirectoryLimits</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDirectoryLimitsRequest {}
 
 /// <p>Contains the results of the <a>GetDirectoryLimits</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDirectoryLimitsResult {
     /// <p>A <a>DirectoryLimits</a> object that contains the directory limits for the current rRegion.</p>
     #[serde(rename = "DirectoryLimits")]
@@ -1240,6 +1279,7 @@ pub struct GetDirectoryLimitsResult {
 
 /// <p>Contains the inputs for the <a>GetSnapshotLimits</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetSnapshotLimitsRequest {
     /// <p>Contains the identifier of the directory to obtain the limits for.</p>
     #[serde(rename = "DirectoryId")]
@@ -1248,7 +1288,7 @@ pub struct GetSnapshotLimitsRequest {
 
 /// <p>Contains the results of the <a>GetSnapshotLimits</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSnapshotLimitsResult {
     /// <p>A <a>SnapshotLimits</a> object that contains the manual snapshot limits for the specified directory.</p>
     #[serde(rename = "SnapshotLimits")]
@@ -1258,6 +1298,7 @@ pub struct GetSnapshotLimitsResult {
 
 /// <p>IP address block. This is often the address block of the DNS server used for your on-premises domain. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct IpRoute {
     /// <p>IP address block using CIDR format, for example 10.0.0.0/24. This is often the address block of the DNS server used for your on-premises domain. For a single IP address use a CIDR address block with /32. For example 10.0.0.0/32.</p>
     #[serde(rename = "CidrIp")]
@@ -1271,7 +1312,7 @@ pub struct IpRoute {
 
 /// <p>Information about one or more IP address blocks.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IpRouteInfo {
     /// <p>The date and time the address block was added to the directory.</p>
     #[serde(rename = "AddedDateTime")]
@@ -1301,7 +1342,7 @@ pub struct IpRouteInfo {
 
 /// <p>Contains general information about the LDAPS settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LDAPSSettingInfo {
     /// <p>The state of the LDAPS settings.</p>
     #[serde(rename = "LDAPSStatus")]
@@ -1318,6 +1359,7 @@ pub struct LDAPSSettingInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCertificatesRequest {
     /// <p>The identifier of the directory.</p>
     #[serde(rename = "DirectoryId")]
@@ -1333,7 +1375,7 @@ pub struct ListCertificatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCertificatesResult {
     /// <p>A list of certificates with basic details including certificate ID, certificate common name, certificate state.</p>
     #[serde(rename = "CertificatesInfo")]
@@ -1346,6 +1388,7 @@ pub struct ListCertificatesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListIpRoutesRequest {
     /// <p>Identifier (ID) of the directory for which you want to retrieve the IP addresses.</p>
     #[serde(rename = "DirectoryId")]
@@ -1361,7 +1404,7 @@ pub struct ListIpRoutesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListIpRoutesResult {
     /// <p>A list of <a>IpRoute</a>s.</p>
     #[serde(rename = "IpRoutesInfo")]
@@ -1374,6 +1417,7 @@ pub struct ListIpRoutesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLogSubscriptionsRequest {
     /// <p>If a <i>DirectoryID</i> is provided, lists only the log subscription associated with that directory. If no <i>DirectoryId</i> is provided, lists all log subscriptions associated with your AWS account. If there are no log subscriptions for the AWS account or the directory, an empty list will be returned.</p>
     #[serde(rename = "DirectoryId")]
@@ -1390,7 +1434,7 @@ pub struct ListLogSubscriptionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLogSubscriptionsResult {
     /// <p>A list of active <a>LogSubscription</a> objects for calling the AWS account.</p>
     #[serde(rename = "LogSubscriptions")]
@@ -1403,6 +1447,7 @@ pub struct ListLogSubscriptionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListSchemaExtensionsRequest {
     /// <p>The identifier of the directory from which to retrieve the schema extension information.</p>
     #[serde(rename = "DirectoryId")]
@@ -1418,7 +1463,7 @@ pub struct ListSchemaExtensionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListSchemaExtensionsResult {
     /// <p>If not null, more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <code>ListSchemaExtensions</code> to retrieve the next set of items.</p>
     #[serde(rename = "NextToken")]
@@ -1431,6 +1476,7 @@ pub struct ListSchemaExtensionsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "Limit")]
@@ -1446,7 +1492,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResult {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "NextToken")]
@@ -1460,7 +1506,7 @@ pub struct ListTagsForResourceResult {
 
 /// <p>Represents a log subscription, which tracks real-time data from a chosen log group to a specified destination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogSubscription {
     /// <p>Identifier (ID) of the directory that you want to associate with the log subscription.</p>
     #[serde(rename = "DirectoryId")]
@@ -1478,7 +1524,7 @@ pub struct LogSubscription {
 
 /// <p>Describes the directory owner account details that have been shared to the directory consumer account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OwnerDirectoryDescription {
     /// <p>Identifier of the directory owner account.</p>
     #[serde(rename = "AccountId")]
@@ -1544,6 +1590,7 @@ pub struct RadiusSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterCertificateRequest {
     /// <p>The certificate PEM string that needs to be registered.</p>
     #[serde(rename = "CertificateData")]
@@ -1554,7 +1601,7 @@ pub struct RegisterCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterCertificateResult {
     /// <p>The identifier of the certificate.</p>
     #[serde(rename = "CertificateId")]
@@ -1564,6 +1611,7 @@ pub struct RegisterCertificateResult {
 
 /// <p>Registers a new event topic.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterEventTopicRequest {
     /// <p>The Directory ID that will publish status messages to the SNS topic.</p>
     #[serde(rename = "DirectoryId")]
@@ -1575,10 +1623,11 @@ pub struct RegisterEventTopicRequest {
 
 /// <p>The result of a RegisterEventTopic request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterEventTopicResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RejectSharedDirectoryRequest {
     /// <p>Identifier of the shared directory in the directory consumer account. This identifier is different for each directory owner account.</p>
     #[serde(rename = "SharedDirectoryId")]
@@ -1586,7 +1635,7 @@ pub struct RejectSharedDirectoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RejectSharedDirectoryResult {
     /// <p>Identifier of the shared directory in the directory consumer account.</p>
     #[serde(rename = "SharedDirectoryId")]
@@ -1595,6 +1644,7 @@ pub struct RejectSharedDirectoryResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveIpRoutesRequest {
     /// <p>IP address blocks that you want to remove.</p>
     #[serde(rename = "CidrIps")]
@@ -1605,10 +1655,11 @@ pub struct RemoveIpRoutesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveIpRoutesResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsFromResourceRequest {
     /// <p>Identifier (ID) of the directory from which to remove the tag.</p>
     #[serde(rename = "ResourceId")]
@@ -1619,10 +1670,11 @@ pub struct RemoveTagsFromResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveTagsFromResourceResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetUserPasswordRequest {
     /// <p>Identifier of the AWS Managed Microsoft AD or Simple AD directory in which the user resides.</p>
     #[serde(rename = "DirectoryId")]
@@ -1636,11 +1688,12 @@ pub struct ResetUserPasswordRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResetUserPasswordResult {}
 
 /// <p>An object representing the inputs for the <a>RestoreFromSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreFromSnapshotRequest {
     /// <p>The identifier of the snapshot to restore from.</p>
     #[serde(rename = "SnapshotId")]
@@ -1649,12 +1702,12 @@ pub struct RestoreFromSnapshotRequest {
 
 /// <p>Contains the results of the <a>RestoreFromSnapshot</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreFromSnapshotResult {}
 
 /// <p>Information about a schema extension.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SchemaExtensionInfo {
     /// <p>A description of the schema extension.</p>
     #[serde(rename = "Description")]
@@ -1687,6 +1740,7 @@ pub struct SchemaExtensionInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ShareDirectoryRequest {
     /// <p>Identifier of the AWS Managed Microsoft AD directory that you want to share with other AWS accounts.</p>
     #[serde(rename = "DirectoryId")]
@@ -1704,7 +1758,7 @@ pub struct ShareDirectoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShareDirectoryResult {
     /// <p>Identifier of the directory that is stored in the directory consumer account that is shared from the specified directory (<code>DirectoryId</code>).</p>
     #[serde(rename = "SharedDirectoryId")]
@@ -1714,6 +1768,7 @@ pub struct ShareDirectoryResult {
 
 /// <p>Identifier that contains details about the directory consumer account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ShareTarget {
     /// <p>Identifier of the directory consumer account.</p>
     #[serde(rename = "Id")]
@@ -1725,7 +1780,7 @@ pub struct ShareTarget {
 
 /// <p>Details about the shared directory in the directory owner account for which the share request in the directory consumer account has been accepted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SharedDirectory {
     /// <p>The date and time that the shared directory was created.</p>
     #[serde(rename = "CreatedDateTime")]
@@ -1767,7 +1822,7 @@ pub struct SharedDirectory {
 
 /// <p>Describes a directory snapshot.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Snapshot {
     /// <p>The directory identifier.</p>
     #[serde(rename = "DirectoryId")]
@@ -1797,7 +1852,7 @@ pub struct Snapshot {
 
 /// <p>Contains manual snapshot limit information for a directory.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SnapshotLimits {
     /// <p>The current number of manual snapshots of the directory.</p>
     #[serde(rename = "ManualSnapshotsCurrentCount")]
@@ -1814,6 +1869,7 @@ pub struct SnapshotLimits {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartSchemaExtensionRequest {
     /// <p>If true, creates a snapshot of the directory before applying the schema extension.</p>
     #[serde(rename = "CreateSnapshotBeforeSchemaExtension")]
@@ -1830,7 +1886,7 @@ pub struct StartSchemaExtensionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartSchemaExtensionResult {
     /// <p>The identifier of the schema extension that will be applied.</p>
     #[serde(rename = "SchemaExtensionId")]
@@ -1851,7 +1907,7 @@ pub struct Tag {
 
 /// <p>Describes a trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Trust {
     /// <p>The date and time that the trust relationship was created.</p>
     #[serde(rename = "CreatedDateTime")]
@@ -1900,6 +1956,7 @@ pub struct Trust {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UnshareDirectoryRequest {
     /// <p>The identifier of the AWS Managed Microsoft AD directory that you want to stop sharing.</p>
     #[serde(rename = "DirectoryId")]
@@ -1910,7 +1967,7 @@ pub struct UnshareDirectoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnshareDirectoryResult {
     /// <p>Identifier of the directory stored in the directory consumer account that is to be unshared from the specified directory (<code>DirectoryId</code>).</p>
     #[serde(rename = "SharedDirectoryId")]
@@ -1920,6 +1977,7 @@ pub struct UnshareDirectoryResult {
 
 /// <p>Identifier that contains details about the directory consumer account with whom the directory is being unshared.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UnshareTarget {
     /// <p>Identifier of the directory consumer account.</p>
     #[serde(rename = "Id")]
@@ -1931,6 +1989,7 @@ pub struct UnshareTarget {
 
 /// <p>Updates a conditional forwarder.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConditionalForwarderRequest {
     /// <p>The directory ID of the AWS directory for which to update the conditional forwarder.</p>
     #[serde(rename = "DirectoryId")]
@@ -1945,10 +2004,11 @@ pub struct UpdateConditionalForwarderRequest {
 
 /// <p>The result of an UpdateConditionalForwarder request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConditionalForwarderResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateNumberOfDomainControllersRequest {
     /// <p>The number of domain controllers desired in the directory.</p>
     #[serde(rename = "DesiredNumber")]
@@ -1959,11 +2019,12 @@ pub struct UpdateNumberOfDomainControllersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateNumberOfDomainControllersResult {}
 
 /// <p>Contains the inputs for the <a>UpdateRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRadiusRequest {
     /// <p>The identifier of the directory for which to update the RADIUS server information.</p>
     #[serde(rename = "DirectoryId")]
@@ -1975,10 +2036,11 @@ pub struct UpdateRadiusRequest {
 
 /// <p>Contains the results of the <a>UpdateRadius</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRadiusResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTrustRequest {
     /// <p>Updates selective authentication for the trust.</p>
     #[serde(rename = "SelectiveAuth")]
@@ -1990,7 +2052,7 @@ pub struct UpdateTrustRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTrustResult {
     #[serde(rename = "RequestId")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2003,6 +2065,7 @@ pub struct UpdateTrustResult {
 
 /// <p>Initiates the verification of an existing trust relationship between an AWS Managed Microsoft AD directory and an external domain.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct VerifyTrustRequest {
     /// <p>The unique Trust ID of the trust relationship to verify.</p>
     #[serde(rename = "TrustId")]
@@ -2011,7 +2074,7 @@ pub struct VerifyTrustRequest {
 
 /// <p>Result of a VerifyTrust request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VerifyTrustResult {
     /// <p>The unique Trust ID of the trust relationship that was verified.</p>
     #[serde(rename = "TrustId")]
@@ -2067,21 +2130,18 @@ impl AcceptSharedDirectoryError {
     }
 }
 impl fmt::Display for AcceptSharedDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptSharedDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptSharedDirectoryError::Client(ref cause) => cause,
-            AcceptSharedDirectoryError::DirectoryAlreadyShared(ref cause) => cause,
-            AcceptSharedDirectoryError::EntityDoesNotExist(ref cause) => cause,
-            AcceptSharedDirectoryError::InvalidParameter(ref cause) => cause,
-            AcceptSharedDirectoryError::Service(ref cause) => cause,
+            AcceptSharedDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            AcceptSharedDirectoryError::DirectoryAlreadyShared(ref cause) => write!(f, "{}", cause),
+            AcceptSharedDirectoryError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            AcceptSharedDirectoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            AcceptSharedDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptSharedDirectoryError {}
 /// Errors returned by AddIpRoutes
 #[derive(Debug, PartialEq)]
 pub enum AddIpRoutesError {
@@ -2134,23 +2194,20 @@ impl AddIpRoutesError {
     }
 }
 impl fmt::Display for AddIpRoutesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddIpRoutesError {
-    fn description(&self) -> &str {
         match *self {
-            AddIpRoutesError::Client(ref cause) => cause,
-            AddIpRoutesError::DirectoryUnavailable(ref cause) => cause,
-            AddIpRoutesError::EntityAlreadyExists(ref cause) => cause,
-            AddIpRoutesError::EntityDoesNotExist(ref cause) => cause,
-            AddIpRoutesError::InvalidParameter(ref cause) => cause,
-            AddIpRoutesError::IpRouteLimitExceeded(ref cause) => cause,
-            AddIpRoutesError::Service(ref cause) => cause,
+            AddIpRoutesError::Client(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::IpRouteLimitExceeded(ref cause) => write!(f, "{}", cause),
+            AddIpRoutesError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddIpRoutesError {}
 /// Errors returned by AddTagsToResource
 #[derive(Debug, PartialEq)]
 pub enum AddTagsToResourceError {
@@ -2195,21 +2252,18 @@ impl AddTagsToResourceError {
     }
 }
 impl fmt::Display for AddTagsToResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddTagsToResourceError {
-    fn description(&self) -> &str {
         match *self {
-            AddTagsToResourceError::Client(ref cause) => cause,
-            AddTagsToResourceError::EntityDoesNotExist(ref cause) => cause,
-            AddTagsToResourceError::InvalidParameter(ref cause) => cause,
-            AddTagsToResourceError::Service(ref cause) => cause,
-            AddTagsToResourceError::TagLimitExceeded(ref cause) => cause,
+            AddTagsToResourceError::Client(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::Service(ref cause) => write!(f, "{}", cause),
+            AddTagsToResourceError::TagLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddTagsToResourceError {}
 /// Errors returned by CancelSchemaExtension
 #[derive(Debug, PartialEq)]
 pub enum CancelSchemaExtensionError {
@@ -2244,19 +2298,16 @@ impl CancelSchemaExtensionError {
     }
 }
 impl fmt::Display for CancelSchemaExtensionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelSchemaExtensionError {
-    fn description(&self) -> &str {
         match *self {
-            CancelSchemaExtensionError::Client(ref cause) => cause,
-            CancelSchemaExtensionError::EntityDoesNotExist(ref cause) => cause,
-            CancelSchemaExtensionError::Service(ref cause) => cause,
+            CancelSchemaExtensionError::Client(ref cause) => write!(f, "{}", cause),
+            CancelSchemaExtensionError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CancelSchemaExtensionError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelSchemaExtensionError {}
 /// Errors returned by ConnectDirectory
 #[derive(Debug, PartialEq)]
 pub enum ConnectDirectoryError {
@@ -2296,20 +2347,17 @@ impl ConnectDirectoryError {
     }
 }
 impl fmt::Display for ConnectDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ConnectDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            ConnectDirectoryError::Client(ref cause) => cause,
-            ConnectDirectoryError::DirectoryLimitExceeded(ref cause) => cause,
-            ConnectDirectoryError::InvalidParameter(ref cause) => cause,
-            ConnectDirectoryError::Service(ref cause) => cause,
+            ConnectDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            ConnectDirectoryError::DirectoryLimitExceeded(ref cause) => write!(f, "{}", cause),
+            ConnectDirectoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ConnectDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ConnectDirectoryError {}
 /// Errors returned by CreateAlias
 #[derive(Debug, PartialEq)]
 pub enum CreateAliasError {
@@ -2352,21 +2400,18 @@ impl CreateAliasError {
     }
 }
 impl fmt::Display for CreateAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAliasError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAliasError::Client(ref cause) => cause,
-            CreateAliasError::EntityAlreadyExists(ref cause) => cause,
-            CreateAliasError::EntityDoesNotExist(ref cause) => cause,
-            CreateAliasError::InvalidParameter(ref cause) => cause,
-            CreateAliasError::Service(ref cause) => cause,
+            CreateAliasError::Client(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAliasError {}
 /// Errors returned by CreateComputer
 #[derive(Debug, PartialEq)]
 pub enum CreateComputerError {
@@ -2424,24 +2469,21 @@ impl CreateComputerError {
     }
 }
 impl fmt::Display for CreateComputerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateComputerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateComputerError::AuthenticationFailed(ref cause) => cause,
-            CreateComputerError::Client(ref cause) => cause,
-            CreateComputerError::DirectoryUnavailable(ref cause) => cause,
-            CreateComputerError::EntityAlreadyExists(ref cause) => cause,
-            CreateComputerError::EntityDoesNotExist(ref cause) => cause,
-            CreateComputerError::InvalidParameter(ref cause) => cause,
-            CreateComputerError::Service(ref cause) => cause,
-            CreateComputerError::UnsupportedOperation(ref cause) => cause,
+            CreateComputerError::AuthenticationFailed(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::Client(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::Service(ref cause) => write!(f, "{}", cause),
+            CreateComputerError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateComputerError {}
 /// Errors returned by CreateConditionalForwarder
 #[derive(Debug, PartialEq)]
 pub enum CreateConditionalForwarderError {
@@ -2506,23 +2548,28 @@ impl CreateConditionalForwarderError {
     }
 }
 impl fmt::Display for CreateConditionalForwarderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConditionalForwarderError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConditionalForwarderError::Client(ref cause) => cause,
-            CreateConditionalForwarderError::DirectoryUnavailable(ref cause) => cause,
-            CreateConditionalForwarderError::EntityAlreadyExists(ref cause) => cause,
-            CreateConditionalForwarderError::EntityDoesNotExist(ref cause) => cause,
-            CreateConditionalForwarderError::InvalidParameter(ref cause) => cause,
-            CreateConditionalForwarderError::Service(ref cause) => cause,
-            CreateConditionalForwarderError::UnsupportedOperation(ref cause) => cause,
+            CreateConditionalForwarderError::Client(ref cause) => write!(f, "{}", cause),
+            CreateConditionalForwarderError::DirectoryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateConditionalForwarderError::EntityAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateConditionalForwarderError::EntityDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateConditionalForwarderError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateConditionalForwarderError::Service(ref cause) => write!(f, "{}", cause),
+            CreateConditionalForwarderError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateConditionalForwarderError {}
 /// Errors returned by CreateDirectory
 #[derive(Debug, PartialEq)]
 pub enum CreateDirectoryError {
@@ -2562,20 +2609,17 @@ impl CreateDirectoryError {
     }
 }
 impl fmt::Display for CreateDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            CreateDirectoryError::Client(ref cause) => cause,
-            CreateDirectoryError::DirectoryLimitExceeded(ref cause) => cause,
-            CreateDirectoryError::InvalidParameter(ref cause) => cause,
-            CreateDirectoryError::Service(ref cause) => cause,
+            CreateDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            CreateDirectoryError::DirectoryLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateDirectoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateDirectoryError {}
 /// Errors returned by CreateLogSubscription
 #[derive(Debug, PartialEq)]
 pub enum CreateLogSubscriptionError {
@@ -2631,22 +2675,21 @@ impl CreateLogSubscriptionError {
     }
 }
 impl fmt::Display for CreateLogSubscriptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLogSubscriptionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLogSubscriptionError::Client(ref cause) => cause,
-            CreateLogSubscriptionError::EntityAlreadyExists(ref cause) => cause,
-            CreateLogSubscriptionError::EntityDoesNotExist(ref cause) => cause,
-            CreateLogSubscriptionError::InsufficientPermissions(ref cause) => cause,
-            CreateLogSubscriptionError::Service(ref cause) => cause,
-            CreateLogSubscriptionError::UnsupportedOperation(ref cause) => cause,
+            CreateLogSubscriptionError::Client(ref cause) => write!(f, "{}", cause),
+            CreateLogSubscriptionError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateLogSubscriptionError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateLogSubscriptionError::InsufficientPermissions(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateLogSubscriptionError::Service(ref cause) => write!(f, "{}", cause),
+            CreateLogSubscriptionError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLogSubscriptionError {}
 /// Errors returned by CreateMicrosoftAD
 #[derive(Debug, PartialEq)]
 pub enum CreateMicrosoftADError {
@@ -2693,21 +2736,18 @@ impl CreateMicrosoftADError {
     }
 }
 impl fmt::Display for CreateMicrosoftADError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMicrosoftADError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMicrosoftADError::Client(ref cause) => cause,
-            CreateMicrosoftADError::DirectoryLimitExceeded(ref cause) => cause,
-            CreateMicrosoftADError::InvalidParameter(ref cause) => cause,
-            CreateMicrosoftADError::Service(ref cause) => cause,
-            CreateMicrosoftADError::UnsupportedOperation(ref cause) => cause,
+            CreateMicrosoftADError::Client(ref cause) => write!(f, "{}", cause),
+            CreateMicrosoftADError::DirectoryLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateMicrosoftADError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateMicrosoftADError::Service(ref cause) => write!(f, "{}", cause),
+            CreateMicrosoftADError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMicrosoftADError {}
 /// Errors returned by CreateSnapshot
 #[derive(Debug, PartialEq)]
 pub enum CreateSnapshotError {
@@ -2752,21 +2792,18 @@ impl CreateSnapshotError {
     }
 }
 impl fmt::Display for CreateSnapshotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateSnapshotError {
-    fn description(&self) -> &str {
         match *self {
-            CreateSnapshotError::Client(ref cause) => cause,
-            CreateSnapshotError::EntityDoesNotExist(ref cause) => cause,
-            CreateSnapshotError::InvalidParameter(ref cause) => cause,
-            CreateSnapshotError::Service(ref cause) => cause,
-            CreateSnapshotError::SnapshotLimitExceeded(ref cause) => cause,
+            CreateSnapshotError::Client(ref cause) => write!(f, "{}", cause),
+            CreateSnapshotError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateSnapshotError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateSnapshotError::Service(ref cause) => write!(f, "{}", cause),
+            CreateSnapshotError::SnapshotLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateSnapshotError {}
 /// Errors returned by CreateTrust
 #[derive(Debug, PartialEq)]
 pub enum CreateTrustError {
@@ -2814,22 +2851,19 @@ impl CreateTrustError {
     }
 }
 impl fmt::Display for CreateTrustError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTrustError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTrustError::Client(ref cause) => cause,
-            CreateTrustError::EntityAlreadyExists(ref cause) => cause,
-            CreateTrustError::EntityDoesNotExist(ref cause) => cause,
-            CreateTrustError::InvalidParameter(ref cause) => cause,
-            CreateTrustError::Service(ref cause) => cause,
-            CreateTrustError::UnsupportedOperation(ref cause) => cause,
+            CreateTrustError::Client(ref cause) => write!(f, "{}", cause),
+            CreateTrustError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateTrustError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateTrustError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateTrustError::Service(ref cause) => write!(f, "{}", cause),
+            CreateTrustError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTrustError {}
 /// Errors returned by DeleteConditionalForwarder
 #[derive(Debug, PartialEq)]
 pub enum DeleteConditionalForwarderError {
@@ -2887,22 +2921,25 @@ impl DeleteConditionalForwarderError {
     }
 }
 impl fmt::Display for DeleteConditionalForwarderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteConditionalForwarderError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteConditionalForwarderError::Client(ref cause) => cause,
-            DeleteConditionalForwarderError::DirectoryUnavailable(ref cause) => cause,
-            DeleteConditionalForwarderError::EntityDoesNotExist(ref cause) => cause,
-            DeleteConditionalForwarderError::InvalidParameter(ref cause) => cause,
-            DeleteConditionalForwarderError::Service(ref cause) => cause,
-            DeleteConditionalForwarderError::UnsupportedOperation(ref cause) => cause,
+            DeleteConditionalForwarderError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteConditionalForwarderError::DirectoryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteConditionalForwarderError::EntityDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteConditionalForwarderError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteConditionalForwarderError::Service(ref cause) => write!(f, "{}", cause),
+            DeleteConditionalForwarderError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteConditionalForwarderError {}
 /// Errors returned by DeleteDirectory
 #[derive(Debug, PartialEq)]
 pub enum DeleteDirectoryError {
@@ -2935,19 +2972,16 @@ impl DeleteDirectoryError {
     }
 }
 impl fmt::Display for DeleteDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDirectoryError::Client(ref cause) => cause,
-            DeleteDirectoryError::EntityDoesNotExist(ref cause) => cause,
-            DeleteDirectoryError::Service(ref cause) => cause,
+            DeleteDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteDirectoryError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeleteDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDirectoryError {}
 /// Errors returned by DeleteLogSubscription
 #[derive(Debug, PartialEq)]
 pub enum DeleteLogSubscriptionError {
@@ -2989,20 +3023,17 @@ impl DeleteLogSubscriptionError {
     }
 }
 impl fmt::Display for DeleteLogSubscriptionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLogSubscriptionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLogSubscriptionError::Client(ref cause) => cause,
-            DeleteLogSubscriptionError::EntityDoesNotExist(ref cause) => cause,
-            DeleteLogSubscriptionError::Service(ref cause) => cause,
-            DeleteLogSubscriptionError::UnsupportedOperation(ref cause) => cause,
+            DeleteLogSubscriptionError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteLogSubscriptionError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeleteLogSubscriptionError::Service(ref cause) => write!(f, "{}", cause),
+            DeleteLogSubscriptionError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLogSubscriptionError {}
 /// Errors returned by DeleteSnapshot
 #[derive(Debug, PartialEq)]
 pub enum DeleteSnapshotError {
@@ -3040,20 +3071,17 @@ impl DeleteSnapshotError {
     }
 }
 impl fmt::Display for DeleteSnapshotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteSnapshotError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteSnapshotError::Client(ref cause) => cause,
-            DeleteSnapshotError::EntityDoesNotExist(ref cause) => cause,
-            DeleteSnapshotError::InvalidParameter(ref cause) => cause,
-            DeleteSnapshotError::Service(ref cause) => cause,
+            DeleteSnapshotError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteSnapshotError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeleteSnapshotError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteSnapshotError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteSnapshotError {}
 /// Errors returned by DeleteTrust
 #[derive(Debug, PartialEq)]
 pub enum DeleteTrustError {
@@ -3096,21 +3124,18 @@ impl DeleteTrustError {
     }
 }
 impl fmt::Display for DeleteTrustError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTrustError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTrustError::Client(ref cause) => cause,
-            DeleteTrustError::EntityDoesNotExist(ref cause) => cause,
-            DeleteTrustError::InvalidParameter(ref cause) => cause,
-            DeleteTrustError::Service(ref cause) => cause,
-            DeleteTrustError::UnsupportedOperation(ref cause) => cause,
+            DeleteTrustError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteTrustError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeleteTrustError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteTrustError::Service(ref cause) => write!(f, "{}", cause),
+            DeleteTrustError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTrustError {}
 /// Errors returned by DeregisterCertificate
 #[derive(Debug, PartialEq)]
 pub enum DeregisterCertificateError {
@@ -3180,24 +3205,23 @@ impl DeregisterCertificateError {
     }
 }
 impl fmt::Display for DeregisterCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterCertificateError::CertificateDoesNotExist(ref cause) => cause,
-            DeregisterCertificateError::CertificateInUse(ref cause) => cause,
-            DeregisterCertificateError::Client(ref cause) => cause,
-            DeregisterCertificateError::DirectoryDoesNotExist(ref cause) => cause,
-            DeregisterCertificateError::DirectoryUnavailable(ref cause) => cause,
-            DeregisterCertificateError::InvalidParameter(ref cause) => cause,
-            DeregisterCertificateError::Service(ref cause) => cause,
-            DeregisterCertificateError::UnsupportedOperation(ref cause) => cause,
+            DeregisterCertificateError::CertificateDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeregisterCertificateError::CertificateInUse(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::Client(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::Service(ref cause) => write!(f, "{}", cause),
+            DeregisterCertificateError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeregisterCertificateError {}
 /// Errors returned by DeregisterEventTopic
 #[derive(Debug, PartialEq)]
 pub enum DeregisterEventTopicError {
@@ -3239,20 +3263,17 @@ impl DeregisterEventTopicError {
     }
 }
 impl fmt::Display for DeregisterEventTopicError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeregisterEventTopicError {
-    fn description(&self) -> &str {
         match *self {
-            DeregisterEventTopicError::Client(ref cause) => cause,
-            DeregisterEventTopicError::EntityDoesNotExist(ref cause) => cause,
-            DeregisterEventTopicError::InvalidParameter(ref cause) => cause,
-            DeregisterEventTopicError::Service(ref cause) => cause,
+            DeregisterEventTopicError::Client(ref cause) => write!(f, "{}", cause),
+            DeregisterEventTopicError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DeregisterEventTopicError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeregisterEventTopicError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeregisterEventTopicError {}
 /// Errors returned by DescribeCertificate
 #[derive(Debug, PartialEq)]
 pub enum DescribeCertificateError {
@@ -3308,22 +3329,19 @@ impl DescribeCertificateError {
     }
 }
 impl fmt::Display for DescribeCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCertificateError::CertificateDoesNotExist(ref cause) => cause,
-            DescribeCertificateError::Client(ref cause) => cause,
-            DescribeCertificateError::DirectoryDoesNotExist(ref cause) => cause,
-            DescribeCertificateError::InvalidParameter(ref cause) => cause,
-            DescribeCertificateError::Service(ref cause) => cause,
-            DescribeCertificateError::UnsupportedOperation(ref cause) => cause,
+            DescribeCertificateError::CertificateDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeCertificateError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeCertificateError {}
 /// Errors returned by DescribeConditionalForwarders
 #[derive(Debug, PartialEq)]
 pub enum DescribeConditionalForwardersError {
@@ -3385,22 +3403,27 @@ impl DescribeConditionalForwardersError {
     }
 }
 impl fmt::Display for DescribeConditionalForwardersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConditionalForwardersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConditionalForwardersError::Client(ref cause) => cause,
-            DescribeConditionalForwardersError::DirectoryUnavailable(ref cause) => cause,
-            DescribeConditionalForwardersError::EntityDoesNotExist(ref cause) => cause,
-            DescribeConditionalForwardersError::InvalidParameter(ref cause) => cause,
-            DescribeConditionalForwardersError::Service(ref cause) => cause,
-            DescribeConditionalForwardersError::UnsupportedOperation(ref cause) => cause,
+            DescribeConditionalForwardersError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeConditionalForwardersError::DirectoryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConditionalForwardersError::EntityDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConditionalForwardersError::InvalidParameter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConditionalForwardersError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeConditionalForwardersError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeConditionalForwardersError {}
 /// Errors returned by DescribeDirectories
 #[derive(Debug, PartialEq)]
 pub enum DescribeDirectoriesError {
@@ -3449,21 +3472,18 @@ impl DescribeDirectoriesError {
     }
 }
 impl fmt::Display for DescribeDirectoriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDirectoriesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDirectoriesError::Client(ref cause) => cause,
-            DescribeDirectoriesError::EntityDoesNotExist(ref cause) => cause,
-            DescribeDirectoriesError::InvalidNextToken(ref cause) => cause,
-            DescribeDirectoriesError::InvalidParameter(ref cause) => cause,
-            DescribeDirectoriesError::Service(ref cause) => cause,
+            DescribeDirectoriesError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeDirectoriesError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeDirectoriesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeDirectoriesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeDirectoriesError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDirectoriesError {}
 /// Errors returned by DescribeDomainControllers
 #[derive(Debug, PartialEq)]
 pub enum DescribeDomainControllersError {
@@ -3519,22 +3539,21 @@ impl DescribeDomainControllersError {
     }
 }
 impl fmt::Display for DescribeDomainControllersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDomainControllersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDomainControllersError::Client(ref cause) => cause,
-            DescribeDomainControllersError::EntityDoesNotExist(ref cause) => cause,
-            DescribeDomainControllersError::InvalidNextToken(ref cause) => cause,
-            DescribeDomainControllersError::InvalidParameter(ref cause) => cause,
-            DescribeDomainControllersError::Service(ref cause) => cause,
-            DescribeDomainControllersError::UnsupportedOperation(ref cause) => cause,
+            DescribeDomainControllersError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeDomainControllersError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeDomainControllersError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeDomainControllersError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeDomainControllersError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeDomainControllersError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeDomainControllersError {}
 /// Errors returned by DescribeEventTopics
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventTopicsError {
@@ -3576,20 +3595,17 @@ impl DescribeEventTopicsError {
     }
 }
 impl fmt::Display for DescribeEventTopicsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventTopicsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventTopicsError::Client(ref cause) => cause,
-            DescribeEventTopicsError::EntityDoesNotExist(ref cause) => cause,
-            DescribeEventTopicsError::InvalidParameter(ref cause) => cause,
-            DescribeEventTopicsError::Service(ref cause) => cause,
+            DescribeEventTopicsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeEventTopicsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeEventTopicsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeEventTopicsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventTopicsError {}
 /// Errors returned by DescribeLDAPSSettings
 #[derive(Debug, PartialEq)]
 pub enum DescribeLDAPSSettingsError {
@@ -3645,22 +3661,19 @@ impl DescribeLDAPSSettingsError {
     }
 }
 impl fmt::Display for DescribeLDAPSSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLDAPSSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLDAPSSettingsError::Client(ref cause) => cause,
-            DescribeLDAPSSettingsError::DirectoryDoesNotExist(ref cause) => cause,
-            DescribeLDAPSSettingsError::InvalidNextToken(ref cause) => cause,
-            DescribeLDAPSSettingsError::InvalidParameter(ref cause) => cause,
-            DescribeLDAPSSettingsError::Service(ref cause) => cause,
-            DescribeLDAPSSettingsError::UnsupportedOperation(ref cause) => cause,
+            DescribeLDAPSSettingsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeLDAPSSettingsError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeLDAPSSettingsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeLDAPSSettingsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeLDAPSSettingsError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeLDAPSSettingsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeLDAPSSettingsError {}
 /// Errors returned by DescribeSharedDirectories
 #[derive(Debug, PartialEq)]
 pub enum DescribeSharedDirectoriesError {
@@ -3716,22 +3729,21 @@ impl DescribeSharedDirectoriesError {
     }
 }
 impl fmt::Display for DescribeSharedDirectoriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSharedDirectoriesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSharedDirectoriesError::Client(ref cause) => cause,
-            DescribeSharedDirectoriesError::EntityDoesNotExist(ref cause) => cause,
-            DescribeSharedDirectoriesError::InvalidNextToken(ref cause) => cause,
-            DescribeSharedDirectoriesError::InvalidParameter(ref cause) => cause,
-            DescribeSharedDirectoriesError::Service(ref cause) => cause,
-            DescribeSharedDirectoriesError::UnsupportedOperation(ref cause) => cause,
+            DescribeSharedDirectoriesError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeSharedDirectoriesError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeSharedDirectoriesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeSharedDirectoriesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeSharedDirectoriesError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeSharedDirectoriesError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeSharedDirectoriesError {}
 /// Errors returned by DescribeSnapshots
 #[derive(Debug, PartialEq)]
 pub enum DescribeSnapshotsError {
@@ -3776,21 +3788,18 @@ impl DescribeSnapshotsError {
     }
 }
 impl fmt::Display for DescribeSnapshotsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSnapshotsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSnapshotsError::Client(ref cause) => cause,
-            DescribeSnapshotsError::EntityDoesNotExist(ref cause) => cause,
-            DescribeSnapshotsError::InvalidNextToken(ref cause) => cause,
-            DescribeSnapshotsError::InvalidParameter(ref cause) => cause,
-            DescribeSnapshotsError::Service(ref cause) => cause,
+            DescribeSnapshotsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeSnapshotsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeSnapshotsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeSnapshotsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeSnapshotsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeSnapshotsError {}
 /// Errors returned by DescribeTrusts
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrustsError {
@@ -3838,22 +3847,19 @@ impl DescribeTrustsError {
     }
 }
 impl fmt::Display for DescribeTrustsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrustsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTrustsError::Client(ref cause) => cause,
-            DescribeTrustsError::EntityDoesNotExist(ref cause) => cause,
-            DescribeTrustsError::InvalidNextToken(ref cause) => cause,
-            DescribeTrustsError::InvalidParameter(ref cause) => cause,
-            DescribeTrustsError::Service(ref cause) => cause,
-            DescribeTrustsError::UnsupportedOperation(ref cause) => cause,
+            DescribeTrustsError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeTrustsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DescribeTrustsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            DescribeTrustsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeTrustsError::Service(ref cause) => write!(f, "{}", cause),
+            DescribeTrustsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTrustsError {}
 /// Errors returned by DisableLDAPS
 #[derive(Debug, PartialEq)]
 pub enum DisableLDAPSError {
@@ -3906,23 +3912,20 @@ impl DisableLDAPSError {
     }
 }
 impl fmt::Display for DisableLDAPSError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableLDAPSError {
-    fn description(&self) -> &str {
         match *self {
-            DisableLDAPSError::Client(ref cause) => cause,
-            DisableLDAPSError::DirectoryDoesNotExist(ref cause) => cause,
-            DisableLDAPSError::DirectoryUnavailable(ref cause) => cause,
-            DisableLDAPSError::InvalidLDAPSStatus(ref cause) => cause,
-            DisableLDAPSError::InvalidParameter(ref cause) => cause,
-            DisableLDAPSError::Service(ref cause) => cause,
-            DisableLDAPSError::UnsupportedOperation(ref cause) => cause,
+            DisableLDAPSError::Client(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::InvalidLDAPSStatus(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::Service(ref cause) => write!(f, "{}", cause),
+            DisableLDAPSError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableLDAPSError {}
 /// Errors returned by DisableRadius
 #[derive(Debug, PartialEq)]
 pub enum DisableRadiusError {
@@ -3955,19 +3958,16 @@ impl DisableRadiusError {
     }
 }
 impl fmt::Display for DisableRadiusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableRadiusError {
-    fn description(&self) -> &str {
         match *self {
-            DisableRadiusError::Client(ref cause) => cause,
-            DisableRadiusError::EntityDoesNotExist(ref cause) => cause,
-            DisableRadiusError::Service(ref cause) => cause,
+            DisableRadiusError::Client(ref cause) => write!(f, "{}", cause),
+            DisableRadiusError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DisableRadiusError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableRadiusError {}
 /// Errors returned by DisableSso
 #[derive(Debug, PartialEq)]
 pub enum DisableSsoError {
@@ -4008,21 +4008,18 @@ impl DisableSsoError {
     }
 }
 impl fmt::Display for DisableSsoError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableSsoError {
-    fn description(&self) -> &str {
         match *self {
-            DisableSsoError::AuthenticationFailed(ref cause) => cause,
-            DisableSsoError::Client(ref cause) => cause,
-            DisableSsoError::EntityDoesNotExist(ref cause) => cause,
-            DisableSsoError::InsufficientPermissions(ref cause) => cause,
-            DisableSsoError::Service(ref cause) => cause,
+            DisableSsoError::AuthenticationFailed(ref cause) => write!(f, "{}", cause),
+            DisableSsoError::Client(ref cause) => write!(f, "{}", cause),
+            DisableSsoError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            DisableSsoError::InsufficientPermissions(ref cause) => write!(f, "{}", cause),
+            DisableSsoError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableSsoError {}
 /// Errors returned by EnableLDAPS
 #[derive(Debug, PartialEq)]
 pub enum EnableLDAPSError {
@@ -4080,24 +4077,21 @@ impl EnableLDAPSError {
     }
 }
 impl fmt::Display for EnableLDAPSError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableLDAPSError {
-    fn description(&self) -> &str {
         match *self {
-            EnableLDAPSError::Client(ref cause) => cause,
-            EnableLDAPSError::DirectoryDoesNotExist(ref cause) => cause,
-            EnableLDAPSError::DirectoryUnavailable(ref cause) => cause,
-            EnableLDAPSError::InvalidLDAPSStatus(ref cause) => cause,
-            EnableLDAPSError::InvalidParameter(ref cause) => cause,
-            EnableLDAPSError::NoAvailableCertificate(ref cause) => cause,
-            EnableLDAPSError::Service(ref cause) => cause,
-            EnableLDAPSError::UnsupportedOperation(ref cause) => cause,
+            EnableLDAPSError::Client(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::InvalidLDAPSStatus(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::NoAvailableCertificate(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::Service(ref cause) => write!(f, "{}", cause),
+            EnableLDAPSError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableLDAPSError {}
 /// Errors returned by EnableRadius
 #[derive(Debug, PartialEq)]
 pub enum EnableRadiusError {
@@ -4140,21 +4134,18 @@ impl EnableRadiusError {
     }
 }
 impl fmt::Display for EnableRadiusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableRadiusError {
-    fn description(&self) -> &str {
         match *self {
-            EnableRadiusError::Client(ref cause) => cause,
-            EnableRadiusError::EntityAlreadyExists(ref cause) => cause,
-            EnableRadiusError::EntityDoesNotExist(ref cause) => cause,
-            EnableRadiusError::InvalidParameter(ref cause) => cause,
-            EnableRadiusError::Service(ref cause) => cause,
+            EnableRadiusError::Client(ref cause) => write!(f, "{}", cause),
+            EnableRadiusError::EntityAlreadyExists(ref cause) => write!(f, "{}", cause),
+            EnableRadiusError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            EnableRadiusError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            EnableRadiusError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableRadiusError {}
 /// Errors returned by EnableSso
 #[derive(Debug, PartialEq)]
 pub enum EnableSsoError {
@@ -4195,21 +4186,18 @@ impl EnableSsoError {
     }
 }
 impl fmt::Display for EnableSsoError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableSsoError {
-    fn description(&self) -> &str {
         match *self {
-            EnableSsoError::AuthenticationFailed(ref cause) => cause,
-            EnableSsoError::Client(ref cause) => cause,
-            EnableSsoError::EntityDoesNotExist(ref cause) => cause,
-            EnableSsoError::InsufficientPermissions(ref cause) => cause,
-            EnableSsoError::Service(ref cause) => cause,
+            EnableSsoError::AuthenticationFailed(ref cause) => write!(f, "{}", cause),
+            EnableSsoError::Client(ref cause) => write!(f, "{}", cause),
+            EnableSsoError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            EnableSsoError::InsufficientPermissions(ref cause) => write!(f, "{}", cause),
+            EnableSsoError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableSsoError {}
 /// Errors returned by GetDirectoryLimits
 #[derive(Debug, PartialEq)]
 pub enum GetDirectoryLimitsError {
@@ -4244,19 +4232,16 @@ impl GetDirectoryLimitsError {
     }
 }
 impl fmt::Display for GetDirectoryLimitsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDirectoryLimitsError {
-    fn description(&self) -> &str {
         match *self {
-            GetDirectoryLimitsError::Client(ref cause) => cause,
-            GetDirectoryLimitsError::EntityDoesNotExist(ref cause) => cause,
-            GetDirectoryLimitsError::Service(ref cause) => cause,
+            GetDirectoryLimitsError::Client(ref cause) => write!(f, "{}", cause),
+            GetDirectoryLimitsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetDirectoryLimitsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDirectoryLimitsError {}
 /// Errors returned by GetSnapshotLimits
 #[derive(Debug, PartialEq)]
 pub enum GetSnapshotLimitsError {
@@ -4291,19 +4276,16 @@ impl GetSnapshotLimitsError {
     }
 }
 impl fmt::Display for GetSnapshotLimitsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetSnapshotLimitsError {
-    fn description(&self) -> &str {
         match *self {
-            GetSnapshotLimitsError::Client(ref cause) => cause,
-            GetSnapshotLimitsError::EntityDoesNotExist(ref cause) => cause,
-            GetSnapshotLimitsError::Service(ref cause) => cause,
+            GetSnapshotLimitsError::Client(ref cause) => write!(f, "{}", cause),
+            GetSnapshotLimitsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            GetSnapshotLimitsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetSnapshotLimitsError {}
 /// Errors returned by ListCertificates
 #[derive(Debug, PartialEq)]
 pub enum ListCertificatesError {
@@ -4355,22 +4337,19 @@ impl ListCertificatesError {
     }
 }
 impl fmt::Display for ListCertificatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListCertificatesError {
-    fn description(&self) -> &str {
         match *self {
-            ListCertificatesError::Client(ref cause) => cause,
-            ListCertificatesError::DirectoryDoesNotExist(ref cause) => cause,
-            ListCertificatesError::InvalidNextToken(ref cause) => cause,
-            ListCertificatesError::InvalidParameter(ref cause) => cause,
-            ListCertificatesError::Service(ref cause) => cause,
-            ListCertificatesError::UnsupportedOperation(ref cause) => cause,
+            ListCertificatesError::Client(ref cause) => write!(f, "{}", cause),
+            ListCertificatesError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListCertificatesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListCertificatesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListCertificatesError::Service(ref cause) => write!(f, "{}", cause),
+            ListCertificatesError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListCertificatesError {}
 /// Errors returned by ListIpRoutes
 #[derive(Debug, PartialEq)]
 pub enum ListIpRoutesError {
@@ -4413,21 +4392,18 @@ impl ListIpRoutesError {
     }
 }
 impl fmt::Display for ListIpRoutesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListIpRoutesError {
-    fn description(&self) -> &str {
         match *self {
-            ListIpRoutesError::Client(ref cause) => cause,
-            ListIpRoutesError::EntityDoesNotExist(ref cause) => cause,
-            ListIpRoutesError::InvalidNextToken(ref cause) => cause,
-            ListIpRoutesError::InvalidParameter(ref cause) => cause,
-            ListIpRoutesError::Service(ref cause) => cause,
+            ListIpRoutesError::Client(ref cause) => write!(f, "{}", cause),
+            ListIpRoutesError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListIpRoutesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListIpRoutesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListIpRoutesError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListIpRoutesError {}
 /// Errors returned by ListLogSubscriptions
 #[derive(Debug, PartialEq)]
 pub enum ListLogSubscriptionsError {
@@ -4469,20 +4445,17 @@ impl ListLogSubscriptionsError {
     }
 }
 impl fmt::Display for ListLogSubscriptionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLogSubscriptionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListLogSubscriptionsError::Client(ref cause) => cause,
-            ListLogSubscriptionsError::EntityDoesNotExist(ref cause) => cause,
-            ListLogSubscriptionsError::InvalidNextToken(ref cause) => cause,
-            ListLogSubscriptionsError::Service(ref cause) => cause,
+            ListLogSubscriptionsError::Client(ref cause) => write!(f, "{}", cause),
+            ListLogSubscriptionsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListLogSubscriptionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListLogSubscriptionsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListLogSubscriptionsError {}
 /// Errors returned by ListSchemaExtensions
 #[derive(Debug, PartialEq)]
 pub enum ListSchemaExtensionsError {
@@ -4524,20 +4497,17 @@ impl ListSchemaExtensionsError {
     }
 }
 impl fmt::Display for ListSchemaExtensionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListSchemaExtensionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListSchemaExtensionsError::Client(ref cause) => cause,
-            ListSchemaExtensionsError::EntityDoesNotExist(ref cause) => cause,
-            ListSchemaExtensionsError::InvalidNextToken(ref cause) => cause,
-            ListSchemaExtensionsError::Service(ref cause) => cause,
+            ListSchemaExtensionsError::Client(ref cause) => write!(f, "{}", cause),
+            ListSchemaExtensionsError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListSchemaExtensionsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListSchemaExtensionsError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListSchemaExtensionsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -4586,21 +4556,18 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::Client(ref cause) => cause,
-            ListTagsForResourceError::EntityDoesNotExist(ref cause) => cause,
-            ListTagsForResourceError::InvalidNextToken(ref cause) => cause,
-            ListTagsForResourceError::InvalidParameter(ref cause) => cause,
-            ListTagsForResourceError::Service(ref cause) => cause,
+            ListTagsForResourceError::Client(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by RegisterCertificate
 #[derive(Debug, PartialEq)]
 pub enum RegisterCertificateError {
@@ -4677,25 +4644,22 @@ impl RegisterCertificateError {
     }
 }
 impl fmt::Display for RegisterCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterCertificateError::CertificateAlreadyExists(ref cause) => cause,
-            RegisterCertificateError::CertificateLimitExceeded(ref cause) => cause,
-            RegisterCertificateError::Client(ref cause) => cause,
-            RegisterCertificateError::DirectoryDoesNotExist(ref cause) => cause,
-            RegisterCertificateError::DirectoryUnavailable(ref cause) => cause,
-            RegisterCertificateError::InvalidCertificate(ref cause) => cause,
-            RegisterCertificateError::InvalidParameter(ref cause) => cause,
-            RegisterCertificateError::Service(ref cause) => cause,
-            RegisterCertificateError::UnsupportedOperation(ref cause) => cause,
+            RegisterCertificateError::CertificateAlreadyExists(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::CertificateLimitExceeded(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::Client(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::DirectoryDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::InvalidCertificate(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::Service(ref cause) => write!(f, "{}", cause),
+            RegisterCertificateError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterCertificateError {}
 /// Errors returned by RegisterEventTopic
 #[derive(Debug, PartialEq)]
 pub enum RegisterEventTopicError {
@@ -4735,20 +4699,17 @@ impl RegisterEventTopicError {
     }
 }
 impl fmt::Display for RegisterEventTopicError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterEventTopicError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterEventTopicError::Client(ref cause) => cause,
-            RegisterEventTopicError::EntityDoesNotExist(ref cause) => cause,
-            RegisterEventTopicError::InvalidParameter(ref cause) => cause,
-            RegisterEventTopicError::Service(ref cause) => cause,
+            RegisterEventTopicError::Client(ref cause) => write!(f, "{}", cause),
+            RegisterEventTopicError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RegisterEventTopicError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RegisterEventTopicError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterEventTopicError {}
 /// Errors returned by RejectSharedDirectory
 #[derive(Debug, PartialEq)]
 pub enum RejectSharedDirectoryError {
@@ -4797,21 +4758,18 @@ impl RejectSharedDirectoryError {
     }
 }
 impl fmt::Display for RejectSharedDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RejectSharedDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            RejectSharedDirectoryError::Client(ref cause) => cause,
-            RejectSharedDirectoryError::DirectoryAlreadyShared(ref cause) => cause,
-            RejectSharedDirectoryError::EntityDoesNotExist(ref cause) => cause,
-            RejectSharedDirectoryError::InvalidParameter(ref cause) => cause,
-            RejectSharedDirectoryError::Service(ref cause) => cause,
+            RejectSharedDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            RejectSharedDirectoryError::DirectoryAlreadyShared(ref cause) => write!(f, "{}", cause),
+            RejectSharedDirectoryError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RejectSharedDirectoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RejectSharedDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RejectSharedDirectoryError {}
 /// Errors returned by RemoveIpRoutes
 #[derive(Debug, PartialEq)]
 pub enum RemoveIpRoutesError {
@@ -4854,21 +4812,18 @@ impl RemoveIpRoutesError {
     }
 }
 impl fmt::Display for RemoveIpRoutesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveIpRoutesError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveIpRoutesError::Client(ref cause) => cause,
-            RemoveIpRoutesError::DirectoryUnavailable(ref cause) => cause,
-            RemoveIpRoutesError::EntityDoesNotExist(ref cause) => cause,
-            RemoveIpRoutesError::InvalidParameter(ref cause) => cause,
-            RemoveIpRoutesError::Service(ref cause) => cause,
+            RemoveIpRoutesError::Client(ref cause) => write!(f, "{}", cause),
+            RemoveIpRoutesError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            RemoveIpRoutesError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RemoveIpRoutesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RemoveIpRoutesError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveIpRoutesError {}
 /// Errors returned by RemoveTagsFromResource
 #[derive(Debug, PartialEq)]
 pub enum RemoveTagsFromResourceError {
@@ -4910,20 +4865,17 @@ impl RemoveTagsFromResourceError {
     }
 }
 impl fmt::Display for RemoveTagsFromResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTagsFromResourceError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTagsFromResourceError::Client(ref cause) => cause,
-            RemoveTagsFromResourceError::EntityDoesNotExist(ref cause) => cause,
-            RemoveTagsFromResourceError::InvalidParameter(ref cause) => cause,
-            RemoveTagsFromResourceError::Service(ref cause) => cause,
+            RemoveTagsFromResourceError::Client(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromResourceError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveTagsFromResourceError {}
 /// Errors returned by ResetUserPassword
 #[derive(Debug, PartialEq)]
 pub enum ResetUserPasswordError {
@@ -4982,23 +4934,20 @@ impl ResetUserPasswordError {
     }
 }
 impl fmt::Display for ResetUserPasswordError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResetUserPasswordError {
-    fn description(&self) -> &str {
         match *self {
-            ResetUserPasswordError::Client(ref cause) => cause,
-            ResetUserPasswordError::DirectoryUnavailable(ref cause) => cause,
-            ResetUserPasswordError::EntityDoesNotExist(ref cause) => cause,
-            ResetUserPasswordError::InvalidPassword(ref cause) => cause,
-            ResetUserPasswordError::Service(ref cause) => cause,
-            ResetUserPasswordError::UnsupportedOperation(ref cause) => cause,
-            ResetUserPasswordError::UserDoesNotExist(ref cause) => cause,
+            ResetUserPasswordError::Client(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::InvalidPassword(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::Service(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
+            ResetUserPasswordError::UserDoesNotExist(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResetUserPasswordError {}
 /// Errors returned by RestoreFromSnapshot
 #[derive(Debug, PartialEq)]
 pub enum RestoreFromSnapshotError {
@@ -5040,20 +4989,17 @@ impl RestoreFromSnapshotError {
     }
 }
 impl fmt::Display for RestoreFromSnapshotError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreFromSnapshotError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreFromSnapshotError::Client(ref cause) => cause,
-            RestoreFromSnapshotError::EntityDoesNotExist(ref cause) => cause,
-            RestoreFromSnapshotError::InvalidParameter(ref cause) => cause,
-            RestoreFromSnapshotError::Service(ref cause) => cause,
+            RestoreFromSnapshotError::Client(ref cause) => write!(f, "{}", cause),
+            RestoreFromSnapshotError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            RestoreFromSnapshotError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RestoreFromSnapshotError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreFromSnapshotError {}
 /// Errors returned by ShareDirectory
 #[derive(Debug, PartialEq)]
 pub enum ShareDirectoryError {
@@ -5123,26 +5069,23 @@ impl ShareDirectoryError {
     }
 }
 impl fmt::Display for ShareDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ShareDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            ShareDirectoryError::AccessDenied(ref cause) => cause,
-            ShareDirectoryError::Client(ref cause) => cause,
-            ShareDirectoryError::DirectoryAlreadyShared(ref cause) => cause,
-            ShareDirectoryError::EntityDoesNotExist(ref cause) => cause,
-            ShareDirectoryError::InvalidParameter(ref cause) => cause,
-            ShareDirectoryError::InvalidTarget(ref cause) => cause,
-            ShareDirectoryError::Organizations(ref cause) => cause,
-            ShareDirectoryError::Service(ref cause) => cause,
-            ShareDirectoryError::ShareLimitExceeded(ref cause) => cause,
-            ShareDirectoryError::UnsupportedOperation(ref cause) => cause,
+            ShareDirectoryError::AccessDenied(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::DirectoryAlreadyShared(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::InvalidTarget(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::Organizations(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::Service(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::ShareLimitExceeded(ref cause) => write!(f, "{}", cause),
+            ShareDirectoryError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ShareDirectoryError {}
 /// Errors returned by StartSchemaExtension
 #[derive(Debug, PartialEq)]
 pub enum StartSchemaExtensionError {
@@ -5198,22 +5141,19 @@ impl StartSchemaExtensionError {
     }
 }
 impl fmt::Display for StartSchemaExtensionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartSchemaExtensionError {
-    fn description(&self) -> &str {
         match *self {
-            StartSchemaExtensionError::Client(ref cause) => cause,
-            StartSchemaExtensionError::DirectoryUnavailable(ref cause) => cause,
-            StartSchemaExtensionError::EntityDoesNotExist(ref cause) => cause,
-            StartSchemaExtensionError::InvalidParameter(ref cause) => cause,
-            StartSchemaExtensionError::Service(ref cause) => cause,
-            StartSchemaExtensionError::SnapshotLimitExceeded(ref cause) => cause,
+            StartSchemaExtensionError::Client(ref cause) => write!(f, "{}", cause),
+            StartSchemaExtensionError::DirectoryUnavailable(ref cause) => write!(f, "{}", cause),
+            StartSchemaExtensionError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            StartSchemaExtensionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartSchemaExtensionError::Service(ref cause) => write!(f, "{}", cause),
+            StartSchemaExtensionError::SnapshotLimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartSchemaExtensionError {}
 /// Errors returned by UnshareDirectory
 #[derive(Debug, PartialEq)]
 pub enum UnshareDirectoryError {
@@ -5256,21 +5196,18 @@ impl UnshareDirectoryError {
     }
 }
 impl fmt::Display for UnshareDirectoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UnshareDirectoryError {
-    fn description(&self) -> &str {
         match *self {
-            UnshareDirectoryError::Client(ref cause) => cause,
-            UnshareDirectoryError::DirectoryNotShared(ref cause) => cause,
-            UnshareDirectoryError::EntityDoesNotExist(ref cause) => cause,
-            UnshareDirectoryError::InvalidTarget(ref cause) => cause,
-            UnshareDirectoryError::Service(ref cause) => cause,
+            UnshareDirectoryError::Client(ref cause) => write!(f, "{}", cause),
+            UnshareDirectoryError::DirectoryNotShared(ref cause) => write!(f, "{}", cause),
+            UnshareDirectoryError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UnshareDirectoryError::InvalidTarget(ref cause) => write!(f, "{}", cause),
+            UnshareDirectoryError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UnshareDirectoryError {}
 /// Errors returned by UpdateConditionalForwarder
 #[derive(Debug, PartialEq)]
 pub enum UpdateConditionalForwarderError {
@@ -5328,22 +5265,25 @@ impl UpdateConditionalForwarderError {
     }
 }
 impl fmt::Display for UpdateConditionalForwarderError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateConditionalForwarderError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateConditionalForwarderError::Client(ref cause) => cause,
-            UpdateConditionalForwarderError::DirectoryUnavailable(ref cause) => cause,
-            UpdateConditionalForwarderError::EntityDoesNotExist(ref cause) => cause,
-            UpdateConditionalForwarderError::InvalidParameter(ref cause) => cause,
-            UpdateConditionalForwarderError::Service(ref cause) => cause,
-            UpdateConditionalForwarderError::UnsupportedOperation(ref cause) => cause,
+            UpdateConditionalForwarderError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateConditionalForwarderError::DirectoryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateConditionalForwarderError::EntityDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateConditionalForwarderError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateConditionalForwarderError::Service(ref cause) => write!(f, "{}", cause),
+            UpdateConditionalForwarderError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateConditionalForwarderError {}
 /// Errors returned by UpdateNumberOfDomainControllers
 #[derive(Debug, PartialEq)]
 pub enum UpdateNumberOfDomainControllersError {
@@ -5414,23 +5354,30 @@ impl UpdateNumberOfDomainControllersError {
     }
 }
 impl fmt::Display for UpdateNumberOfDomainControllersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateNumberOfDomainControllersError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateNumberOfDomainControllersError::Client(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::DirectoryUnavailable(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::DomainControllerLimitExceeded(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::EntityDoesNotExist(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::InvalidParameter(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::Service(ref cause) => cause,
-            UpdateNumberOfDomainControllersError::UnsupportedOperation(ref cause) => cause,
+            UpdateNumberOfDomainControllersError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateNumberOfDomainControllersError::DirectoryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateNumberOfDomainControllersError::DomainControllerLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateNumberOfDomainControllersError::EntityDoesNotExist(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateNumberOfDomainControllersError::InvalidParameter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateNumberOfDomainControllersError::Service(ref cause) => write!(f, "{}", cause),
+            UpdateNumberOfDomainControllersError::UnsupportedOperation(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateNumberOfDomainControllersError {}
 /// Errors returned by UpdateRadius
 #[derive(Debug, PartialEq)]
 pub enum UpdateRadiusError {
@@ -5468,20 +5415,17 @@ impl UpdateRadiusError {
     }
 }
 impl fmt::Display for UpdateRadiusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateRadiusError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateRadiusError::Client(ref cause) => cause,
-            UpdateRadiusError::EntityDoesNotExist(ref cause) => cause,
-            UpdateRadiusError::InvalidParameter(ref cause) => cause,
-            UpdateRadiusError::Service(ref cause) => cause,
+            UpdateRadiusError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateRadiusError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateRadiusError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateRadiusError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateRadiusError {}
 /// Errors returned by UpdateTrust
 #[derive(Debug, PartialEq)]
 pub enum UpdateTrustError {
@@ -5519,20 +5463,17 @@ impl UpdateTrustError {
     }
 }
 impl fmt::Display for UpdateTrustError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTrustError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTrustError::Client(ref cause) => cause,
-            UpdateTrustError::EntityDoesNotExist(ref cause) => cause,
-            UpdateTrustError::InvalidParameter(ref cause) => cause,
-            UpdateTrustError::Service(ref cause) => cause,
+            UpdateTrustError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateTrustError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateTrustError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateTrustError::Service(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTrustError {}
 /// Errors returned by VerifyTrust
 #[derive(Debug, PartialEq)]
 pub enum VerifyTrustError {
@@ -5575,21 +5516,18 @@ impl VerifyTrustError {
     }
 }
 impl fmt::Display for VerifyTrustError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for VerifyTrustError {
-    fn description(&self) -> &str {
         match *self {
-            VerifyTrustError::Client(ref cause) => cause,
-            VerifyTrustError::EntityDoesNotExist(ref cause) => cause,
-            VerifyTrustError::InvalidParameter(ref cause) => cause,
-            VerifyTrustError::Service(ref cause) => cause,
-            VerifyTrustError::UnsupportedOperation(ref cause) => cause,
+            VerifyTrustError::Client(ref cause) => write!(f, "{}", cause),
+            VerifyTrustError::EntityDoesNotExist(ref cause) => write!(f, "{}", cause),
+            VerifyTrustError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            VerifyTrustError::Service(ref cause) => write!(f, "{}", cause),
+            VerifyTrustError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for VerifyTrustError {}
 /// Trait representing the capabilities of the Directory Service API. Directory Service clients implement this trait.
 #[async_trait]
 pub trait DirectoryService {

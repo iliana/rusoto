@@ -23,10 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The input for the BulkPublish operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BulkPublishRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityPoolId")]
@@ -35,7 +37,7 @@ pub struct BulkPublishRequest {
 
 /// <p>The output for the BulkPublish operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BulkPublishResponse {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityPoolId")]
@@ -62,7 +64,7 @@ pub struct CognitoStreams {
 
 /// <p>A collection of data for an identity pool. An identity pool can have multiple datasets. A dataset is per identity and can be general or associated with a particular entity in an application (like a saved game). Datasets are automatically created if they don&#39;t exist. Data is synced by dataset, and a dataset can hold up to 1MB of key-value pairs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Dataset {
     /// <p>Date on which the dataset was created.</p>
     #[serde(rename = "CreationDate")]
@@ -96,6 +98,7 @@ pub struct Dataset {
 
 /// <p>A request to delete the specific dataset.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDatasetRequest {
     /// <p>A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, &#39;_&#39; (underscore), &#39;-&#39; (dash), and &#39;.&#39; (dot).</p>
     #[serde(rename = "DatasetName")]
@@ -110,7 +113,7 @@ pub struct DeleteDatasetRequest {
 
 /// <p>Response to a successful DeleteDataset request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDatasetResponse {
     /// <p>A collection of data for an identity pool. An identity pool can have multiple datasets. A dataset is per identity and can be general or associated with a particular entity in an application (like a saved game). Datasets are automatically created if they don&#39;t exist. Data is synced by dataset, and a dataset can hold up to 1MB of key-value pairs.</p>
     #[serde(rename = "Dataset")]
@@ -120,6 +123,7 @@ pub struct DeleteDatasetResponse {
 
 /// <p>A request for meta data about a dataset (creation date, number of records, size) by owner and dataset name.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDatasetRequest {
     /// <p>A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, &#39;_&#39; (underscore), &#39;-&#39; (dash), and &#39;.&#39; (dot).</p>
     #[serde(rename = "DatasetName")]
@@ -134,7 +138,7 @@ pub struct DescribeDatasetRequest {
 
 /// <p>Response to a successful DescribeDataset request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDatasetResponse {
     /// <p>Meta data for a collection of data for an identity. An identity can have multiple datasets. A dataset can be general or associated with a particular entity in an application (like a saved game). Datasets are automatically created if they don&#39;t exist. Data is synced by dataset, and a dataset can hold up to 1MB of key-value pairs.</p>
     #[serde(rename = "Dataset")]
@@ -144,6 +148,7 @@ pub struct DescribeDatasetResponse {
 
 /// <p>A request for usage information about the identity pool.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeIdentityPoolUsageRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityPoolId")]
@@ -152,7 +157,7 @@ pub struct DescribeIdentityPoolUsageRequest {
 
 /// <p>Response to a successful DescribeIdentityPoolUsage request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeIdentityPoolUsageResponse {
     /// <p>Information about the usage of the identity pool.</p>
     #[serde(rename = "IdentityPoolUsage")]
@@ -162,6 +167,7 @@ pub struct DescribeIdentityPoolUsageResponse {
 
 /// <p>A request for information about the usage of an identity pool.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeIdentityUsageRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityId")]
@@ -173,7 +179,7 @@ pub struct DescribeIdentityUsageRequest {
 
 /// <p>The response to a successful DescribeIdentityUsage request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeIdentityUsageResponse {
     /// <p>Usage information for the identity.</p>
     #[serde(rename = "IdentityUsage")]
@@ -183,6 +189,7 @@ pub struct DescribeIdentityUsageResponse {
 
 /// <p>The input for the GetBulkPublishDetails operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBulkPublishDetailsRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityPoolId")]
@@ -191,7 +198,7 @@ pub struct GetBulkPublishDetailsRequest {
 
 /// <p>The output for the GetBulkPublishDetails operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBulkPublishDetailsResponse {
     /// <p>If BulkPublishStatus is SUCCEEDED, the time the last bulk publish operation completed.</p>
     #[serde(rename = "BulkPublishCompleteTime")]
@@ -217,6 +224,7 @@ pub struct GetBulkPublishDetailsResponse {
 
 /// <p>A request for a list of the configured Cognito Events</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCognitoEventsRequest {
     /// <p>The Cognito Identity Pool ID for the request</p>
     #[serde(rename = "IdentityPoolId")]
@@ -225,7 +233,7 @@ pub struct GetCognitoEventsRequest {
 
 /// <p>The response from the GetCognitoEvents request</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCognitoEventsResponse {
     /// <p>The Cognito Events returned from the GetCognitoEvents request</p>
     #[serde(rename = "Events")]
@@ -235,6 +243,7 @@ pub struct GetCognitoEventsResponse {
 
 /// <p>The input for the GetIdentityPoolConfiguration operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetIdentityPoolConfigurationRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. This is the ID of the pool for which to return a configuration.</p>
     #[serde(rename = "IdentityPoolId")]
@@ -243,7 +252,7 @@ pub struct GetIdentityPoolConfigurationRequest {
 
 /// <p>The output for the GetIdentityPoolConfiguration operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetIdentityPoolConfigurationResponse {
     /// <p>Options to apply to this identity pool for Amazon Cognito streams.</p>
     #[serde(rename = "CognitoStreams")]
@@ -261,7 +270,7 @@ pub struct GetIdentityPoolConfigurationResponse {
 
 /// <p>Usage information for the identity pool.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IdentityPoolUsage {
     /// <p>Data storage information for the identity pool.</p>
     #[serde(rename = "DataStorage")]
@@ -283,7 +292,7 @@ pub struct IdentityPoolUsage {
 
 /// <p>Usage information for the identity.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IdentityUsage {
     /// <p>Total data storage for this identity.</p>
     #[serde(rename = "DataStorage")]
@@ -309,6 +318,7 @@ pub struct IdentityUsage {
 
 /// <p>Request for a list of datasets for an identity.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDatasetsRequest {
     /// <p>A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE) created by Amazon Cognito. GUID generation is unique within a region.</p>
     #[serde(rename = "IdentityId")]
@@ -328,7 +338,7 @@ pub struct ListDatasetsRequest {
 
 /// <p>Returned for a successful ListDatasets request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDatasetsResponse {
     /// <p>Number of datasets returned.</p>
     #[serde(rename = "Count")]
@@ -346,6 +356,7 @@ pub struct ListDatasetsResponse {
 
 /// <p>A request for usage information on an identity pool.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListIdentityPoolUsageRequest {
     /// <p>The maximum number of results to be returned.</p>
     #[serde(rename = "MaxResults")]
@@ -359,7 +370,7 @@ pub struct ListIdentityPoolUsageRequest {
 
 /// <p>Returned for a successful ListIdentityPoolUsage request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListIdentityPoolUsageResponse {
     /// <p>Total number of identities for the identity pool.</p>
     #[serde(rename = "Count")]
@@ -381,6 +392,7 @@ pub struct ListIdentityPoolUsageResponse {
 
 /// <p>A request for a list of records.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecordsRequest {
     /// <p>A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, &#39;_&#39; (underscore), &#39;-&#39; (dash), and &#39;.&#39; (dot).</p>
     #[serde(rename = "DatasetName")]
@@ -411,7 +423,7 @@ pub struct ListRecordsRequest {
 
 /// <p>Returned for a successful ListRecordsRequest.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRecordsResponse {
     /// <p>Total number of records.</p>
     #[serde(rename = "Count")]
@@ -466,7 +478,7 @@ pub struct PushSync {
 
 /// <p>The basic data structure of a dataset.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Record {
     /// <p>The last modified date of the client device.</p>
     #[serde(rename = "DeviceLastModifiedDate")]
@@ -496,6 +508,7 @@ pub struct Record {
 
 /// <p>An update operation for a record.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RecordPatch {
     /// <p>The last modified date of the client device.</p>
     #[serde(rename = "DeviceLastModifiedDate")]
@@ -518,6 +531,7 @@ pub struct RecordPatch {
 
 /// <p>A request to RegisterDevice.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterDeviceRequest {
     /// <p>The unique ID for this identity.</p>
     #[serde(rename = "IdentityId")]
@@ -535,7 +549,7 @@ pub struct RegisterDeviceRequest {
 
 /// <p>Response to a RegisterDevice request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterDeviceResponse {
     /// <p>The unique ID generated for this device by Cognito.</p>
     #[serde(rename = "DeviceId")]
@@ -545,6 +559,7 @@ pub struct RegisterDeviceResponse {
 
 /// <p>A request to configure Cognito Events</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetCognitoEventsRequest {
     /// <p>The events to configure</p>
     #[serde(rename = "Events")]
@@ -556,6 +571,7 @@ pub struct SetCognitoEventsRequest {
 
 /// <p>The input for the SetIdentityPoolConfiguration operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetIdentityPoolConfigurationRequest {
     /// <p>Options to apply to this identity pool for Amazon Cognito streams.</p>
     #[serde(rename = "CognitoStreams")]
@@ -572,7 +588,7 @@ pub struct SetIdentityPoolConfigurationRequest {
 
 /// <p>The output for the SetIdentityPoolConfiguration operation</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SetIdentityPoolConfigurationResponse {
     /// <p>Options to apply to this identity pool for Amazon Cognito streams.</p>
     #[serde(rename = "CognitoStreams")]
@@ -590,6 +606,7 @@ pub struct SetIdentityPoolConfigurationResponse {
 
 /// <p>A request to SubscribeToDatasetRequest.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SubscribeToDatasetRequest {
     /// <p>The name of the dataset to subcribe to.</p>
     #[serde(rename = "DatasetName")]
@@ -607,11 +624,12 @@ pub struct SubscribeToDatasetRequest {
 
 /// <p>Response to a SubscribeToDataset request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SubscribeToDatasetResponse {}
 
 /// <p>A request to UnsubscribeFromDataset.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UnsubscribeFromDatasetRequest {
     /// <p>The name of the dataset from which to unsubcribe.</p>
     #[serde(rename = "DatasetName")]
@@ -629,11 +647,12 @@ pub struct UnsubscribeFromDatasetRequest {
 
 /// <p>Response to an UnsubscribeFromDataset request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnsubscribeFromDatasetResponse {}
 
 /// <p>A request to post updates to records or add and delete records for a dataset and user.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRecordsRequest {
     /// <p>Intended to supply a device ID that will populate the lastModifiedBy field referenced in other methods. The ClientContext field is not yet implemented.</p>
     #[serde(rename = "ClientContext")]
@@ -663,7 +682,7 @@ pub struct UpdateRecordsRequest {
 
 /// <p>Returned for a successful UpdateRecordsRequest.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRecordsResponse {
     /// <p>A list of records that have been updated.</p>
     #[serde(rename = "Records")]
@@ -718,22 +737,19 @@ impl BulkPublishError {
     }
 }
 impl fmt::Display for BulkPublishError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BulkPublishError {
-    fn description(&self) -> &str {
         match *self {
-            BulkPublishError::AlreadyStreamed(ref cause) => cause,
-            BulkPublishError::DuplicateRequest(ref cause) => cause,
-            BulkPublishError::InternalError(ref cause) => cause,
-            BulkPublishError::InvalidParameter(ref cause) => cause,
-            BulkPublishError::NotAuthorized(ref cause) => cause,
-            BulkPublishError::ResourceNotFound(ref cause) => cause,
+            BulkPublishError::AlreadyStreamed(ref cause) => write!(f, "{}", cause),
+            BulkPublishError::DuplicateRequest(ref cause) => write!(f, "{}", cause),
+            BulkPublishError::InternalError(ref cause) => write!(f, "{}", cause),
+            BulkPublishError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            BulkPublishError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            BulkPublishError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BulkPublishError {}
 /// Errors returned by DeleteDataset
 #[derive(Debug, PartialEq)]
 pub enum DeleteDatasetError {
@@ -781,22 +797,19 @@ impl DeleteDatasetError {
     }
 }
 impl fmt::Display for DeleteDatasetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteDatasetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteDatasetError::InternalError(ref cause) => cause,
-            DeleteDatasetError::InvalidParameter(ref cause) => cause,
-            DeleteDatasetError::NotAuthorized(ref cause) => cause,
-            DeleteDatasetError::ResourceConflict(ref cause) => cause,
-            DeleteDatasetError::ResourceNotFound(ref cause) => cause,
-            DeleteDatasetError::TooManyRequests(ref cause) => cause,
+            DeleteDatasetError::InternalError(ref cause) => write!(f, "{}", cause),
+            DeleteDatasetError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteDatasetError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            DeleteDatasetError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            DeleteDatasetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteDatasetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteDatasetError {}
 /// Errors returned by DescribeDataset
 #[derive(Debug, PartialEq)]
 pub enum DescribeDatasetError {
@@ -839,21 +852,18 @@ impl DescribeDatasetError {
     }
 }
 impl fmt::Display for DescribeDatasetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeDatasetError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeDatasetError::InternalError(ref cause) => cause,
-            DescribeDatasetError::InvalidParameter(ref cause) => cause,
-            DescribeDatasetError::NotAuthorized(ref cause) => cause,
-            DescribeDatasetError::ResourceNotFound(ref cause) => cause,
-            DescribeDatasetError::TooManyRequests(ref cause) => cause,
+            DescribeDatasetError::InternalError(ref cause) => write!(f, "{}", cause),
+            DescribeDatasetError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeDatasetError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            DescribeDatasetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeDatasetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeDatasetError {}
 /// Errors returned by DescribeIdentityPoolUsage
 #[derive(Debug, PartialEq)]
 pub enum DescribeIdentityPoolUsageError {
@@ -906,21 +916,18 @@ impl DescribeIdentityPoolUsageError {
     }
 }
 impl fmt::Display for DescribeIdentityPoolUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeIdentityPoolUsageError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeIdentityPoolUsageError::InternalError(ref cause) => cause,
-            DescribeIdentityPoolUsageError::InvalidParameter(ref cause) => cause,
-            DescribeIdentityPoolUsageError::NotAuthorized(ref cause) => cause,
-            DescribeIdentityPoolUsageError::ResourceNotFound(ref cause) => cause,
-            DescribeIdentityPoolUsageError::TooManyRequests(ref cause) => cause,
+            DescribeIdentityPoolUsageError::InternalError(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityPoolUsageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityPoolUsageError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityPoolUsageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityPoolUsageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeIdentityPoolUsageError {}
 /// Errors returned by DescribeIdentityUsage
 #[derive(Debug, PartialEq)]
 pub enum DescribeIdentityUsageError {
@@ -969,21 +976,18 @@ impl DescribeIdentityUsageError {
     }
 }
 impl fmt::Display for DescribeIdentityUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeIdentityUsageError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeIdentityUsageError::InternalError(ref cause) => cause,
-            DescribeIdentityUsageError::InvalidParameter(ref cause) => cause,
-            DescribeIdentityUsageError::NotAuthorized(ref cause) => cause,
-            DescribeIdentityUsageError::ResourceNotFound(ref cause) => cause,
-            DescribeIdentityUsageError::TooManyRequests(ref cause) => cause,
+            DescribeIdentityUsageError::InternalError(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityUsageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityUsageError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityUsageError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeIdentityUsageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeIdentityUsageError {}
 /// Errors returned by GetBulkPublishDetails
 #[derive(Debug, PartialEq)]
 pub enum GetBulkPublishDetailsError {
@@ -1025,20 +1029,17 @@ impl GetBulkPublishDetailsError {
     }
 }
 impl fmt::Display for GetBulkPublishDetailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBulkPublishDetailsError {
-    fn description(&self) -> &str {
         match *self {
-            GetBulkPublishDetailsError::InternalError(ref cause) => cause,
-            GetBulkPublishDetailsError::InvalidParameter(ref cause) => cause,
-            GetBulkPublishDetailsError::NotAuthorized(ref cause) => cause,
-            GetBulkPublishDetailsError::ResourceNotFound(ref cause) => cause,
+            GetBulkPublishDetailsError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetBulkPublishDetailsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetBulkPublishDetailsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetBulkPublishDetailsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBulkPublishDetailsError {}
 /// Errors returned by GetCognitoEvents
 #[derive(Debug, PartialEq)]
 pub enum GetCognitoEventsError {
@@ -1081,21 +1082,18 @@ impl GetCognitoEventsError {
     }
 }
 impl fmt::Display for GetCognitoEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetCognitoEventsError {
-    fn description(&self) -> &str {
         match *self {
-            GetCognitoEventsError::InternalError(ref cause) => cause,
-            GetCognitoEventsError::InvalidParameter(ref cause) => cause,
-            GetCognitoEventsError::NotAuthorized(ref cause) => cause,
-            GetCognitoEventsError::ResourceNotFound(ref cause) => cause,
-            GetCognitoEventsError::TooManyRequests(ref cause) => cause,
+            GetCognitoEventsError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetCognitoEventsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetCognitoEventsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetCognitoEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetCognitoEventsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetCognitoEventsError {}
 /// Errors returned by GetIdentityPoolConfiguration
 #[derive(Debug, PartialEq)]
 pub enum GetIdentityPoolConfigurationError {
@@ -1150,21 +1148,22 @@ impl GetIdentityPoolConfigurationError {
     }
 }
 impl fmt::Display for GetIdentityPoolConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetIdentityPoolConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            GetIdentityPoolConfigurationError::InternalError(ref cause) => cause,
-            GetIdentityPoolConfigurationError::InvalidParameter(ref cause) => cause,
-            GetIdentityPoolConfigurationError::NotAuthorized(ref cause) => cause,
-            GetIdentityPoolConfigurationError::ResourceNotFound(ref cause) => cause,
-            GetIdentityPoolConfigurationError::TooManyRequests(ref cause) => cause,
+            GetIdentityPoolConfigurationError::InternalError(ref cause) => write!(f, "{}", cause),
+            GetIdentityPoolConfigurationError::InvalidParameter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetIdentityPoolConfigurationError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            GetIdentityPoolConfigurationError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetIdentityPoolConfigurationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetIdentityPoolConfigurationError {}
 /// Errors returned by ListDatasets
 #[derive(Debug, PartialEq)]
 pub enum ListDatasetsError {
@@ -1202,20 +1201,17 @@ impl ListDatasetsError {
     }
 }
 impl fmt::Display for ListDatasetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListDatasetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListDatasetsError::InternalError(ref cause) => cause,
-            ListDatasetsError::InvalidParameter(ref cause) => cause,
-            ListDatasetsError::NotAuthorized(ref cause) => cause,
-            ListDatasetsError::TooManyRequests(ref cause) => cause,
+            ListDatasetsError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListDatasetsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListDatasetsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            ListDatasetsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListDatasetsError {}
 /// Errors returned by ListIdentityPoolUsage
 #[derive(Debug, PartialEq)]
 pub enum ListIdentityPoolUsageError {
@@ -1257,20 +1253,17 @@ impl ListIdentityPoolUsageError {
     }
 }
 impl fmt::Display for ListIdentityPoolUsageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListIdentityPoolUsageError {
-    fn description(&self) -> &str {
         match *self {
-            ListIdentityPoolUsageError::InternalError(ref cause) => cause,
-            ListIdentityPoolUsageError::InvalidParameter(ref cause) => cause,
-            ListIdentityPoolUsageError::NotAuthorized(ref cause) => cause,
-            ListIdentityPoolUsageError::TooManyRequests(ref cause) => cause,
+            ListIdentityPoolUsageError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListIdentityPoolUsageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListIdentityPoolUsageError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            ListIdentityPoolUsageError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListIdentityPoolUsageError {}
 /// Errors returned by ListRecords
 #[derive(Debug, PartialEq)]
 pub enum ListRecordsError {
@@ -1308,20 +1301,17 @@ impl ListRecordsError {
     }
 }
 impl fmt::Display for ListRecordsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRecordsError {
-    fn description(&self) -> &str {
         match *self {
-            ListRecordsError::InternalError(ref cause) => cause,
-            ListRecordsError::InvalidParameter(ref cause) => cause,
-            ListRecordsError::NotAuthorized(ref cause) => cause,
-            ListRecordsError::TooManyRequests(ref cause) => cause,
+            ListRecordsError::InternalError(ref cause) => write!(f, "{}", cause),
+            ListRecordsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListRecordsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            ListRecordsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRecordsError {}
 /// Errors returned by RegisterDevice
 #[derive(Debug, PartialEq)]
 pub enum RegisterDeviceError {
@@ -1369,22 +1359,19 @@ impl RegisterDeviceError {
     }
 }
 impl fmt::Display for RegisterDeviceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RegisterDeviceError {
-    fn description(&self) -> &str {
         match *self {
-            RegisterDeviceError::InternalError(ref cause) => cause,
-            RegisterDeviceError::InvalidConfiguration(ref cause) => cause,
-            RegisterDeviceError::InvalidParameter(ref cause) => cause,
-            RegisterDeviceError::NotAuthorized(ref cause) => cause,
-            RegisterDeviceError::ResourceNotFound(ref cause) => cause,
-            RegisterDeviceError::TooManyRequests(ref cause) => cause,
+            RegisterDeviceError::InternalError(ref cause) => write!(f, "{}", cause),
+            RegisterDeviceError::InvalidConfiguration(ref cause) => write!(f, "{}", cause),
+            RegisterDeviceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            RegisterDeviceError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            RegisterDeviceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            RegisterDeviceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RegisterDeviceError {}
 /// Errors returned by SetCognitoEvents
 #[derive(Debug, PartialEq)]
 pub enum SetCognitoEventsError {
@@ -1427,21 +1414,18 @@ impl SetCognitoEventsError {
     }
 }
 impl fmt::Display for SetCognitoEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetCognitoEventsError {
-    fn description(&self) -> &str {
         match *self {
-            SetCognitoEventsError::InternalError(ref cause) => cause,
-            SetCognitoEventsError::InvalidParameter(ref cause) => cause,
-            SetCognitoEventsError::NotAuthorized(ref cause) => cause,
-            SetCognitoEventsError::ResourceNotFound(ref cause) => cause,
-            SetCognitoEventsError::TooManyRequests(ref cause) => cause,
+            SetCognitoEventsError::InternalError(ref cause) => write!(f, "{}", cause),
+            SetCognitoEventsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            SetCognitoEventsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            SetCognitoEventsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SetCognitoEventsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetCognitoEventsError {}
 /// Errors returned by SetIdentityPoolConfiguration
 #[derive(Debug, PartialEq)]
 pub enum SetIdentityPoolConfigurationError {
@@ -1503,22 +1487,25 @@ impl SetIdentityPoolConfigurationError {
     }
 }
 impl fmt::Display for SetIdentityPoolConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetIdentityPoolConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            SetIdentityPoolConfigurationError::ConcurrentModification(ref cause) => cause,
-            SetIdentityPoolConfigurationError::InternalError(ref cause) => cause,
-            SetIdentityPoolConfigurationError::InvalidParameter(ref cause) => cause,
-            SetIdentityPoolConfigurationError::NotAuthorized(ref cause) => cause,
-            SetIdentityPoolConfigurationError::ResourceNotFound(ref cause) => cause,
-            SetIdentityPoolConfigurationError::TooManyRequests(ref cause) => cause,
+            SetIdentityPoolConfigurationError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SetIdentityPoolConfigurationError::InternalError(ref cause) => write!(f, "{}", cause),
+            SetIdentityPoolConfigurationError::InvalidParameter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SetIdentityPoolConfigurationError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            SetIdentityPoolConfigurationError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            SetIdentityPoolConfigurationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetIdentityPoolConfigurationError {}
 /// Errors returned by SubscribeToDataset
 #[derive(Debug, PartialEq)]
 pub enum SubscribeToDatasetError {
@@ -1568,22 +1555,19 @@ impl SubscribeToDatasetError {
     }
 }
 impl fmt::Display for SubscribeToDatasetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SubscribeToDatasetError {
-    fn description(&self) -> &str {
         match *self {
-            SubscribeToDatasetError::InternalError(ref cause) => cause,
-            SubscribeToDatasetError::InvalidConfiguration(ref cause) => cause,
-            SubscribeToDatasetError::InvalidParameter(ref cause) => cause,
-            SubscribeToDatasetError::NotAuthorized(ref cause) => cause,
-            SubscribeToDatasetError::ResourceNotFound(ref cause) => cause,
-            SubscribeToDatasetError::TooManyRequests(ref cause) => cause,
+            SubscribeToDatasetError::InternalError(ref cause) => write!(f, "{}", cause),
+            SubscribeToDatasetError::InvalidConfiguration(ref cause) => write!(f, "{}", cause),
+            SubscribeToDatasetError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            SubscribeToDatasetError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            SubscribeToDatasetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SubscribeToDatasetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SubscribeToDatasetError {}
 /// Errors returned by UnsubscribeFromDataset
 #[derive(Debug, PartialEq)]
 pub enum UnsubscribeFromDatasetError {
@@ -1643,22 +1627,19 @@ impl UnsubscribeFromDatasetError {
     }
 }
 impl fmt::Display for UnsubscribeFromDatasetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UnsubscribeFromDatasetError {
-    fn description(&self) -> &str {
         match *self {
-            UnsubscribeFromDatasetError::InternalError(ref cause) => cause,
-            UnsubscribeFromDatasetError::InvalidConfiguration(ref cause) => cause,
-            UnsubscribeFromDatasetError::InvalidParameter(ref cause) => cause,
-            UnsubscribeFromDatasetError::NotAuthorized(ref cause) => cause,
-            UnsubscribeFromDatasetError::ResourceNotFound(ref cause) => cause,
-            UnsubscribeFromDatasetError::TooManyRequests(ref cause) => cause,
+            UnsubscribeFromDatasetError::InternalError(ref cause) => write!(f, "{}", cause),
+            UnsubscribeFromDatasetError::InvalidConfiguration(ref cause) => write!(f, "{}", cause),
+            UnsubscribeFromDatasetError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UnsubscribeFromDatasetError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            UnsubscribeFromDatasetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UnsubscribeFromDatasetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UnsubscribeFromDatasetError {}
 /// Errors returned by UpdateRecords
 #[derive(Debug, PartialEq)]
 pub enum UpdateRecordsError {
@@ -1723,25 +1704,22 @@ impl UpdateRecordsError {
     }
 }
 impl fmt::Display for UpdateRecordsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateRecordsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateRecordsError::InternalError(ref cause) => cause,
-            UpdateRecordsError::InvalidLambdaFunctionOutput(ref cause) => cause,
-            UpdateRecordsError::InvalidParameter(ref cause) => cause,
-            UpdateRecordsError::LambdaThrottled(ref cause) => cause,
-            UpdateRecordsError::LimitExceeded(ref cause) => cause,
-            UpdateRecordsError::NotAuthorized(ref cause) => cause,
-            UpdateRecordsError::ResourceConflict(ref cause) => cause,
-            UpdateRecordsError::ResourceNotFound(ref cause) => cause,
-            UpdateRecordsError::TooManyRequests(ref cause) => cause,
+            UpdateRecordsError::InternalError(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::InvalidLambdaFunctionOutput(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::LambdaThrottled(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::NotAuthorized(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::ResourceConflict(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateRecordsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateRecordsError {}
 /// Trait representing the capabilities of the Amazon Cognito Sync API. Amazon Cognito Sync clients implement this trait.
 #[async_trait]
 pub trait CognitoSync {

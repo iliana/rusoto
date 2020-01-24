@@ -23,10 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Provides options to abort a multipart upload identified by the upload ID.</p> <p>For information about the underlying REST API, see <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html">Abort Multipart Upload</a>. For conceptual information, see <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html">Working with Archives in Amazon S3 Glacier</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AbortMultipartUploadInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -41,6 +43,7 @@ pub struct AbortMultipartUploadInput {
 
 /// <p>The input values for <code>AbortVaultLock</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AbortVaultLockInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -52,6 +55,7 @@ pub struct AbortVaultLockInput {
 
 /// <p>The input values for <code>AddTagsToVault</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsToVaultInput {
     /// <p>The tags to add to the vault. Each tag is composed of a key and a value. The value can be an empty string.</p>
     #[serde(rename = "Tags")]
@@ -67,7 +71,7 @@ pub struct AddTagsToVaultInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p> <p>For information about the underlying REST API, see <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html">Upload Archive</a>. For conceptual information, see <a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html">Working with Archives in Amazon S3 Glacier</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ArchiveCreationOutput {
     /// <p>The ID of the archive. This value is also included as part of the location.</p>
     #[serde(rename = "archiveId")]
@@ -139,6 +143,7 @@ pub struct CSVOutput {
 
 /// <p>Provides options to complete a multipart upload operation. This informs Amazon Glacier that all the archive parts have been uploaded and Amazon S3 Glacier (Glacier) can now assemble the archive from the uploaded parts. After assembling and saving the archive to the vault, Glacier returns the URI path of the newly created archive resource.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CompleteMultipartUploadInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -161,6 +166,7 @@ pub struct CompleteMultipartUploadInput {
 
 /// <p>The input values for <code>CompleteVaultLock</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CompleteVaultLockInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -175,6 +181,7 @@ pub struct CompleteVaultLockInput {
 
 /// <p>Provides options to create a vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVaultInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -186,7 +193,7 @@ pub struct CreateVaultInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVaultOutput {
     /// <p>The URI of the vault that was created.</p>
     #[serde(rename = "location")]
@@ -218,6 +225,7 @@ pub struct DataRetrievalRule {
 
 /// <p>Provides options for deleting an archive from an Amazon S3 Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteArchiveInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -232,6 +240,7 @@ pub struct DeleteArchiveInput {
 
 /// <p>DeleteVaultAccessPolicy input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVaultAccessPolicyInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -243,6 +252,7 @@ pub struct DeleteVaultAccessPolicyInput {
 
 /// <p>Provides options for deleting a vault from Amazon S3 Glacier.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVaultInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -254,6 +264,7 @@ pub struct DeleteVaultInput {
 
 /// <p>Provides options for deleting a vault notification configuration from an Amazon Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVaultNotificationsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -265,6 +276,7 @@ pub struct DeleteVaultNotificationsInput {
 
 /// <p>Provides options for retrieving a job description.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJobInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -279,6 +291,7 @@ pub struct DescribeJobInput {
 
 /// <p>Provides options for retrieving metadata for a specific vault in Amazon Glacier.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeVaultInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -290,7 +303,7 @@ pub struct DescribeVaultInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeVaultOutput {
     /// <p>The Universal Coordinated Time (UTC) date when the vault was created. This value should be a string in the ISO 8601 date format, for example <code>2012-03-20T17:03:43.221Z</code>.</p>
     #[serde(rename = "CreationDate")]
@@ -337,6 +350,7 @@ pub struct Encryption {
 
 /// <p>Input for GetDataRetrievalPolicy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDataRetrievalPolicyInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -345,7 +359,7 @@ pub struct GetDataRetrievalPolicyInput {
 
 /// <p>Contains the Amazon S3 Glacier response to the <code>GetDataRetrievalPolicy</code> request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDataRetrievalPolicyOutput {
     /// <p>Contains the returned data retrieval policy in JSON format.</p>
     #[serde(rename = "Policy")]
@@ -355,6 +369,7 @@ pub struct GetDataRetrievalPolicyOutput {
 
 /// <p>Provides options for downloading output of an Amazon S3 Glacier job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobOutputInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -392,6 +407,7 @@ pub struct GetJobOutputOutput {
 
 /// <p>Input for GetVaultAccessPolicy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVaultAccessPolicyInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -403,7 +419,7 @@ pub struct GetVaultAccessPolicyInput {
 
 /// <p>Output for GetVaultAccessPolicy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVaultAccessPolicyOutput {
     /// <p>Contains the returned vault access policy as a JSON string.</p>
     #[serde(rename = "policy")]
@@ -413,6 +429,7 @@ pub struct GetVaultAccessPolicyOutput {
 
 /// <p>The input values for <code>GetVaultLock</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVaultLockInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -424,7 +441,7 @@ pub struct GetVaultLockInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVaultLockOutput {
     /// <p>The UTC date and time at which the vault lock was put into the <code>InProgress</code> state.</p>
     #[serde(rename = "CreationDate")]
@@ -446,6 +463,7 @@ pub struct GetVaultLockOutput {
 
 /// <p>Provides options for retrieving the notification configuration set on an Amazon Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVaultNotificationsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -457,7 +475,7 @@ pub struct GetVaultNotificationsInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVaultNotificationsOutput {
     /// <p>Returns the notification configuration set on the vault.</p>
     #[serde(rename = "vaultNotificationConfig")]
@@ -467,7 +485,7 @@ pub struct GetVaultNotificationsOutput {
 
 /// <p>Contains the description of an Amazon S3 Glacier job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GlacierJobDescription {
     /// <p>The job type. This value is either <code>ArchiveRetrieval</code>, <code>InventoryRetrieval</code>, or <code>Select</code>. </p>
     #[serde(rename = "Action")]
@@ -594,6 +612,7 @@ pub struct Grantee {
 
 /// <p>Provides options for initiating an Amazon S3 Glacier job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitiateJobInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -609,7 +628,7 @@ pub struct InitiateJobInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitiateJobOutput {
     /// <p>The ID of the job.</p>
     #[serde(rename = "jobId")]
@@ -627,6 +646,7 @@ pub struct InitiateJobOutput {
 
 /// <p>Provides options for initiating a multipart upload to an Amazon S3 Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitiateMultipartUploadInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -646,7 +666,7 @@ pub struct InitiateMultipartUploadInput {
 
 /// <p>The Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitiateMultipartUploadOutput {
     /// <p>The relative URI path of the multipart upload ID Amazon S3 Glacier created.</p>
     #[serde(rename = "location")]
@@ -660,6 +680,7 @@ pub struct InitiateMultipartUploadOutput {
 
 /// <p>The input values for <code>InitiateVaultLock</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitiateVaultLockInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -675,7 +696,7 @@ pub struct InitiateVaultLockInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitiateVaultLockOutput {
     /// <p>The lock ID, which is used to complete the vault locking process.</p>
     #[serde(rename = "lockId")]
@@ -694,7 +715,7 @@ pub struct InputSerialization {
 
 /// <p>Describes the options for a range inventory retrieval job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InventoryRetrievalJobDescription {
     /// <p>The end of the date range in UTC for vault inventory retrieval that includes archives created before this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>.</p>
     #[serde(rename = "EndDate")]
@@ -720,6 +741,7 @@ pub struct InventoryRetrievalJobDescription {
 
 /// <p>Provides options for specifying a range inventory retrieval job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InventoryRetrievalJobInput {
     /// <p>The end of the date range in UTC for vault inventory retrieval that includes archives created before this date. This value should be a string in the ISO 8601 date format, for example <code>2013-03-20T17:03:43Z</code>.</p>
     #[serde(rename = "EndDate")]
@@ -741,6 +763,7 @@ pub struct InventoryRetrievalJobInput {
 
 /// <p>Provides options for defining a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct JobParameters {
     /// <p>The ID of the archive that you want to retrieve. This field is required only if <code>Type</code> is set to <code>select</code> or <code>archive-retrieval</code>code&gt;. An error occurs if you specify this request parameter for an inventory retrieval job request. </p>
     #[serde(rename = "ArchiveId")]
@@ -786,6 +809,7 @@ pub struct JobParameters {
 
 /// <p>Provides options for retrieving a job list for an Amazon S3 Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -813,7 +837,7 @@ pub struct ListJobsInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsOutput {
     /// <p>A list of job objects. Each job object contains metadata describing the job.</p>
     #[serde(rename = "JobList")]
@@ -827,6 +851,7 @@ pub struct ListJobsOutput {
 
 /// <p>Provides options for retrieving list of in-progress multipart uploads for an Amazon Glacier vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMultipartUploadsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -846,7 +871,7 @@ pub struct ListMultipartUploadsInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMultipartUploadsOutput {
     /// <p>An opaque string that represents where to continue pagination of the results. You use the marker in a new List Multipart Uploads request to obtain more uploads in the list. If there are no more uploads, this value is <code>null</code>.</p>
     #[serde(rename = "Marker")]
@@ -860,6 +885,7 @@ pub struct ListMultipartUploadsOutput {
 
 /// <p>Provides options for retrieving a list of parts of an archive that have been uploaded in a specific multipart upload.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPartsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -882,7 +908,7 @@ pub struct ListPartsInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPartsOutput {
     /// <p>The description of the archive that was specified in the Initiate Multipart Upload request.</p>
     #[serde(rename = "ArchiveDescription")]
@@ -915,6 +941,7 @@ pub struct ListPartsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisionedCapacityInput {
     /// <p>The AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '-' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, don't include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -922,7 +949,7 @@ pub struct ListProvisionedCapacityInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisionedCapacityOutput {
     /// <p>The response body contains the following JSON fields.</p>
     #[serde(rename = "ProvisionedCapacityList")]
@@ -932,6 +959,7 @@ pub struct ListProvisionedCapacityOutput {
 
 /// <p>The input value for <code>ListTagsForVaultInput</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForVaultInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -943,7 +971,7 @@ pub struct ListTagsForVaultInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForVaultOutput {
     /// <p>The tags attached to the vault. Each tag is composed of a key and a value.</p>
     #[serde(rename = "Tags")]
@@ -953,6 +981,7 @@ pub struct ListTagsForVaultOutput {
 
 /// <p>Provides options to retrieve the vault list owned by the calling user's account. The list provides metadata information for each vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVaultsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID. This value must match the AWS account ID associated with the credentials used to sign the request. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you specify your account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -969,7 +998,7 @@ pub struct ListVaultsInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVaultsOutput {
     /// <p>The vault ARN at which to continue pagination of the results. You use the marker in another List Vaults request to obtain more vaults in the list.</p>
     #[serde(rename = "Marker")]
@@ -1001,7 +1030,7 @@ pub struct OutputSerialization {
 
 /// <p>A list of the part sizes of the multipart upload.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PartListElement {
     /// <p>The byte range of a part, inclusive of the upper value of the range.</p>
     #[serde(rename = "RangeInBytes")]
@@ -1015,7 +1044,7 @@ pub struct PartListElement {
 
 /// <p>The definition for a provisioned capacity unit.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedCapacityDescription {
     /// <p>The ID that identifies the provisioned capacity unit.</p>
     #[serde(rename = "CapacityId")]
@@ -1032,6 +1061,7 @@ pub struct ProvisionedCapacityDescription {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PurchaseProvisionedCapacityInput {
     /// <p>The AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '-' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, don't include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -1039,7 +1069,7 @@ pub struct PurchaseProvisionedCapacityInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PurchaseProvisionedCapacityOutput {
     /// <p>The ID that identifies the provisioned capacity unit.</p>
     #[serde(rename = "capacityId")]
@@ -1049,6 +1079,7 @@ pub struct PurchaseProvisionedCapacityOutput {
 
 /// <p>The input value for <code>RemoveTagsFromVaultInput</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsFromVaultInput {
     /// <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
     #[serde(rename = "TagKeys")]
@@ -1122,6 +1153,7 @@ pub struct SelectParameters {
 
 /// <p>SetDataRetrievalPolicy input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetDataRetrievalPolicyInput {
     /// <p>The data retrieval policy in JSON format.</p>
     #[serde(rename = "Policy")]
@@ -1134,6 +1166,7 @@ pub struct SetDataRetrievalPolicyInput {
 
 /// <p>SetVaultAccessPolicy input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetVaultAccessPolicyInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -1149,6 +1182,7 @@ pub struct SetVaultAccessPolicyInput {
 
 /// <p>Provides options to configure notifications that will be sent when specific events happen to a vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetVaultNotificationsInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID.</p>
     #[serde(rename = "accountId")]
@@ -1164,6 +1198,7 @@ pub struct SetVaultNotificationsInput {
 
 /// <p>Provides options to add an archive to a vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UploadArchiveInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -1192,7 +1227,7 @@ pub struct UploadArchiveInput {
 
 /// <p>A list of in-progress multipart uploads for a vault.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UploadListElement {
     /// <p>The description of the archive that was specified in the Initiate Multipart Upload request.</p>
     #[serde(rename = "ArchiveDescription")]
@@ -1218,6 +1253,7 @@ pub struct UploadListElement {
 
 /// <p>Provides options to upload a part of an archive in a multipart upload operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UploadMultipartPartInput {
     /// <p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single '<code>-</code>' (hyphen), in which case Amazon S3 Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens ('-') in the ID. </p>
     #[serde(rename = "accountId")]
@@ -1249,7 +1285,7 @@ pub struct UploadMultipartPartInput {
 
 /// <p>Contains the Amazon S3 Glacier response to your request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UploadMultipartPartOutput {
     /// <p>The SHA256 tree hash that Amazon S3 Glacier computed for the uploaded part.</p>
     #[serde(rename = "checksum")]
@@ -1268,6 +1304,7 @@ pub struct VaultAccessPolicy {
 
 /// <p>Contains the vault lock policy.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct VaultLockPolicy {
     /// <p>The vault lock policy.</p>
     #[serde(rename = "Policy")]
@@ -1333,20 +1370,17 @@ impl AbortMultipartUploadError {
     }
 }
 impl fmt::Display for AbortMultipartUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AbortMultipartUploadError {
-    fn description(&self) -> &str {
         match *self {
-            AbortMultipartUploadError::InvalidParameterValue(ref cause) => cause,
-            AbortMultipartUploadError::MissingParameterValue(ref cause) => cause,
-            AbortMultipartUploadError::ResourceNotFound(ref cause) => cause,
-            AbortMultipartUploadError::ServiceUnavailable(ref cause) => cause,
+            AbortMultipartUploadError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            AbortMultipartUploadError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            AbortMultipartUploadError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            AbortMultipartUploadError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AbortMultipartUploadError {}
 /// Errors returned by AbortVaultLock
 #[derive(Debug, PartialEq)]
 pub enum AbortVaultLockError {
@@ -1388,20 +1422,17 @@ impl AbortVaultLockError {
     }
 }
 impl fmt::Display for AbortVaultLockError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AbortVaultLockError {
-    fn description(&self) -> &str {
         match *self {
-            AbortVaultLockError::InvalidParameterValue(ref cause) => cause,
-            AbortVaultLockError::MissingParameterValue(ref cause) => cause,
-            AbortVaultLockError::ResourceNotFound(ref cause) => cause,
-            AbortVaultLockError::ServiceUnavailable(ref cause) => cause,
+            AbortVaultLockError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            AbortVaultLockError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            AbortVaultLockError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            AbortVaultLockError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AbortVaultLockError {}
 /// Errors returned by AddTagsToVault
 #[derive(Debug, PartialEq)]
 pub enum AddTagsToVaultError {
@@ -1448,21 +1479,18 @@ impl AddTagsToVaultError {
     }
 }
 impl fmt::Display for AddTagsToVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddTagsToVaultError {
-    fn description(&self) -> &str {
         match *self {
-            AddTagsToVaultError::InvalidParameterValue(ref cause) => cause,
-            AddTagsToVaultError::LimitExceeded(ref cause) => cause,
-            AddTagsToVaultError::MissingParameterValue(ref cause) => cause,
-            AddTagsToVaultError::ResourceNotFound(ref cause) => cause,
-            AddTagsToVaultError::ServiceUnavailable(ref cause) => cause,
+            AddTagsToVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            AddTagsToVaultError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AddTagsToVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            AddTagsToVaultError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            AddTagsToVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddTagsToVaultError {}
 /// Errors returned by CompleteMultipartUpload
 #[derive(Debug, PartialEq)]
 pub enum CompleteMultipartUploadError {
@@ -1508,20 +1536,21 @@ impl CompleteMultipartUploadError {
     }
 }
 impl fmt::Display for CompleteMultipartUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CompleteMultipartUploadError {
-    fn description(&self) -> &str {
         match *self {
-            CompleteMultipartUploadError::InvalidParameterValue(ref cause) => cause,
-            CompleteMultipartUploadError::MissingParameterValue(ref cause) => cause,
-            CompleteMultipartUploadError::ResourceNotFound(ref cause) => cause,
-            CompleteMultipartUploadError::ServiceUnavailable(ref cause) => cause,
+            CompleteMultipartUploadError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CompleteMultipartUploadError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CompleteMultipartUploadError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CompleteMultipartUploadError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CompleteMultipartUploadError {}
 /// Errors returned by CompleteVaultLock
 #[derive(Debug, PartialEq)]
 pub enum CompleteVaultLockError {
@@ -1565,20 +1594,17 @@ impl CompleteVaultLockError {
     }
 }
 impl fmt::Display for CompleteVaultLockError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CompleteVaultLockError {
-    fn description(&self) -> &str {
         match *self {
-            CompleteVaultLockError::InvalidParameterValue(ref cause) => cause,
-            CompleteVaultLockError::MissingParameterValue(ref cause) => cause,
-            CompleteVaultLockError::ResourceNotFound(ref cause) => cause,
-            CompleteVaultLockError::ServiceUnavailable(ref cause) => cause,
+            CompleteVaultLockError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            CompleteVaultLockError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            CompleteVaultLockError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CompleteVaultLockError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CompleteVaultLockError {}
 /// Errors returned by CreateVault
 #[derive(Debug, PartialEq)]
 pub enum CreateVaultError {
@@ -1616,20 +1642,17 @@ impl CreateVaultError {
     }
 }
 impl fmt::Display for CreateVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVaultError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVaultError::InvalidParameterValue(ref cause) => cause,
-            CreateVaultError::LimitExceeded(ref cause) => cause,
-            CreateVaultError::MissingParameterValue(ref cause) => cause,
-            CreateVaultError::ServiceUnavailable(ref cause) => cause,
+            CreateVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            CreateVaultError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            CreateVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVaultError {}
 /// Errors returned by DeleteArchive
 #[derive(Debug, PartialEq)]
 pub enum DeleteArchiveError {
@@ -1667,20 +1690,17 @@ impl DeleteArchiveError {
     }
 }
 impl fmt::Display for DeleteArchiveError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteArchiveError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteArchiveError::InvalidParameterValue(ref cause) => cause,
-            DeleteArchiveError::MissingParameterValue(ref cause) => cause,
-            DeleteArchiveError::ResourceNotFound(ref cause) => cause,
-            DeleteArchiveError::ServiceUnavailable(ref cause) => cause,
+            DeleteArchiveError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            DeleteArchiveError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            DeleteArchiveError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteArchiveError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteArchiveError {}
 /// Errors returned by DeleteVault
 #[derive(Debug, PartialEq)]
 pub enum DeleteVaultError {
@@ -1718,20 +1738,17 @@ impl DeleteVaultError {
     }
 }
 impl fmt::Display for DeleteVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVaultError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVaultError::InvalidParameterValue(ref cause) => cause,
-            DeleteVaultError::MissingParameterValue(ref cause) => cause,
-            DeleteVaultError::ResourceNotFound(ref cause) => cause,
-            DeleteVaultError::ServiceUnavailable(ref cause) => cause,
+            DeleteVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            DeleteVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            DeleteVaultError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVaultError {}
 /// Errors returned by DeleteVaultAccessPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteVaultAccessPolicyError {
@@ -1777,20 +1794,21 @@ impl DeleteVaultAccessPolicyError {
     }
 }
 impl fmt::Display for DeleteVaultAccessPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVaultAccessPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVaultAccessPolicyError::InvalidParameterValue(ref cause) => cause,
-            DeleteVaultAccessPolicyError::MissingParameterValue(ref cause) => cause,
-            DeleteVaultAccessPolicyError::ResourceNotFound(ref cause) => cause,
-            DeleteVaultAccessPolicyError::ServiceUnavailable(ref cause) => cause,
+            DeleteVaultAccessPolicyError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteVaultAccessPolicyError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteVaultAccessPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVaultAccessPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVaultAccessPolicyError {}
 /// Errors returned by DeleteVaultNotifications
 #[derive(Debug, PartialEq)]
 pub enum DeleteVaultNotificationsError {
@@ -1836,20 +1854,21 @@ impl DeleteVaultNotificationsError {
     }
 }
 impl fmt::Display for DeleteVaultNotificationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVaultNotificationsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVaultNotificationsError::InvalidParameterValue(ref cause) => cause,
-            DeleteVaultNotificationsError::MissingParameterValue(ref cause) => cause,
-            DeleteVaultNotificationsError::ResourceNotFound(ref cause) => cause,
-            DeleteVaultNotificationsError::ServiceUnavailable(ref cause) => cause,
+            DeleteVaultNotificationsError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteVaultNotificationsError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteVaultNotificationsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVaultNotificationsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVaultNotificationsError {}
 /// Errors returned by DescribeJob
 #[derive(Debug, PartialEq)]
 pub enum DescribeJobError {
@@ -1887,20 +1906,17 @@ impl DescribeJobError {
     }
 }
 impl fmt::Display for DescribeJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJobError::InvalidParameterValue(ref cause) => cause,
-            DescribeJobError::MissingParameterValue(ref cause) => cause,
-            DescribeJobError::ResourceNotFound(ref cause) => cause,
-            DescribeJobError::ServiceUnavailable(ref cause) => cause,
+            DescribeJobError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            DescribeJobError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            DescribeJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeJobError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJobError {}
 /// Errors returned by DescribeVault
 #[derive(Debug, PartialEq)]
 pub enum DescribeVaultError {
@@ -1938,20 +1954,17 @@ impl DescribeVaultError {
     }
 }
 impl fmt::Display for DescribeVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeVaultError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeVaultError::InvalidParameterValue(ref cause) => cause,
-            DescribeVaultError::MissingParameterValue(ref cause) => cause,
-            DescribeVaultError::ResourceNotFound(ref cause) => cause,
-            DescribeVaultError::ServiceUnavailable(ref cause) => cause,
+            DescribeVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            DescribeVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            DescribeVaultError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeVaultError {}
 /// Errors returned by GetDataRetrievalPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetDataRetrievalPolicyError {
@@ -1990,19 +2003,16 @@ impl GetDataRetrievalPolicyError {
     }
 }
 impl fmt::Display for GetDataRetrievalPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDataRetrievalPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetDataRetrievalPolicyError::InvalidParameterValue(ref cause) => cause,
-            GetDataRetrievalPolicyError::MissingParameterValue(ref cause) => cause,
-            GetDataRetrievalPolicyError::ServiceUnavailable(ref cause) => cause,
+            GetDataRetrievalPolicyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetDataRetrievalPolicyError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            GetDataRetrievalPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDataRetrievalPolicyError {}
 /// Errors returned by GetJobOutput
 #[derive(Debug, PartialEq)]
 pub enum GetJobOutputError {
@@ -2040,20 +2050,17 @@ impl GetJobOutputError {
     }
 }
 impl fmt::Display for GetJobOutputError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobOutputError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobOutputError::InvalidParameterValue(ref cause) => cause,
-            GetJobOutputError::MissingParameterValue(ref cause) => cause,
-            GetJobOutputError::ResourceNotFound(ref cause) => cause,
-            GetJobOutputError::ServiceUnavailable(ref cause) => cause,
+            GetJobOutputError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetJobOutputError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            GetJobOutputError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetJobOutputError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobOutputError {}
 /// Errors returned by GetVaultAccessPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetVaultAccessPolicyError {
@@ -2099,20 +2106,17 @@ impl GetVaultAccessPolicyError {
     }
 }
 impl fmt::Display for GetVaultAccessPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVaultAccessPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetVaultAccessPolicyError::InvalidParameterValue(ref cause) => cause,
-            GetVaultAccessPolicyError::MissingParameterValue(ref cause) => cause,
-            GetVaultAccessPolicyError::ResourceNotFound(ref cause) => cause,
-            GetVaultAccessPolicyError::ServiceUnavailable(ref cause) => cause,
+            GetVaultAccessPolicyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultAccessPolicyError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultAccessPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetVaultAccessPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVaultAccessPolicyError {}
 /// Errors returned by GetVaultLock
 #[derive(Debug, PartialEq)]
 pub enum GetVaultLockError {
@@ -2150,20 +2154,17 @@ impl GetVaultLockError {
     }
 }
 impl fmt::Display for GetVaultLockError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVaultLockError {
-    fn description(&self) -> &str {
         match *self {
-            GetVaultLockError::InvalidParameterValue(ref cause) => cause,
-            GetVaultLockError::MissingParameterValue(ref cause) => cause,
-            GetVaultLockError::ResourceNotFound(ref cause) => cause,
-            GetVaultLockError::ServiceUnavailable(ref cause) => cause,
+            GetVaultLockError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultLockError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultLockError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetVaultLockError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVaultLockError {}
 /// Errors returned by GetVaultNotifications
 #[derive(Debug, PartialEq)]
 pub enum GetVaultNotificationsError {
@@ -2209,20 +2210,17 @@ impl GetVaultNotificationsError {
     }
 }
 impl fmt::Display for GetVaultNotificationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVaultNotificationsError {
-    fn description(&self) -> &str {
         match *self {
-            GetVaultNotificationsError::InvalidParameterValue(ref cause) => cause,
-            GetVaultNotificationsError::MissingParameterValue(ref cause) => cause,
-            GetVaultNotificationsError::ResourceNotFound(ref cause) => cause,
-            GetVaultNotificationsError::ServiceUnavailable(ref cause) => cause,
+            GetVaultNotificationsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultNotificationsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            GetVaultNotificationsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetVaultNotificationsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVaultNotificationsError {}
 /// Errors returned by InitiateJob
 #[derive(Debug, PartialEq)]
 pub enum InitiateJobError {
@@ -2270,22 +2268,19 @@ impl InitiateJobError {
     }
 }
 impl fmt::Display for InitiateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitiateJobError {
-    fn description(&self) -> &str {
         match *self {
-            InitiateJobError::InsufficientCapacity(ref cause) => cause,
-            InitiateJobError::InvalidParameterValue(ref cause) => cause,
-            InitiateJobError::MissingParameterValue(ref cause) => cause,
-            InitiateJobError::PolicyEnforced(ref cause) => cause,
-            InitiateJobError::ResourceNotFound(ref cause) => cause,
-            InitiateJobError::ServiceUnavailable(ref cause) => cause,
+            InitiateJobError::InsufficientCapacity(ref cause) => write!(f, "{}", cause),
+            InitiateJobError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            InitiateJobError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            InitiateJobError::PolicyEnforced(ref cause) => write!(f, "{}", cause),
+            InitiateJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            InitiateJobError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitiateJobError {}
 /// Errors returned by InitiateMultipartUpload
 #[derive(Debug, PartialEq)]
 pub enum InitiateMultipartUploadError {
@@ -2331,20 +2326,21 @@ impl InitiateMultipartUploadError {
     }
 }
 impl fmt::Display for InitiateMultipartUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitiateMultipartUploadError {
-    fn description(&self) -> &str {
         match *self {
-            InitiateMultipartUploadError::InvalidParameterValue(ref cause) => cause,
-            InitiateMultipartUploadError::MissingParameterValue(ref cause) => cause,
-            InitiateMultipartUploadError::ResourceNotFound(ref cause) => cause,
-            InitiateMultipartUploadError::ServiceUnavailable(ref cause) => cause,
+            InitiateMultipartUploadError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InitiateMultipartUploadError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            InitiateMultipartUploadError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            InitiateMultipartUploadError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitiateMultipartUploadError {}
 /// Errors returned by InitiateVaultLock
 #[derive(Debug, PartialEq)]
 pub enum InitiateVaultLockError {
@@ -2388,20 +2384,17 @@ impl InitiateVaultLockError {
     }
 }
 impl fmt::Display for InitiateVaultLockError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitiateVaultLockError {
-    fn description(&self) -> &str {
         match *self {
-            InitiateVaultLockError::InvalidParameterValue(ref cause) => cause,
-            InitiateVaultLockError::MissingParameterValue(ref cause) => cause,
-            InitiateVaultLockError::ResourceNotFound(ref cause) => cause,
-            InitiateVaultLockError::ServiceUnavailable(ref cause) => cause,
+            InitiateVaultLockError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            InitiateVaultLockError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            InitiateVaultLockError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            InitiateVaultLockError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitiateVaultLockError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -2439,20 +2432,17 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::InvalidParameterValue(ref cause) => cause,
-            ListJobsError::MissingParameterValue(ref cause) => cause,
-            ListJobsError::ResourceNotFound(ref cause) => cause,
-            ListJobsError::ServiceUnavailable(ref cause) => cause,
+            ListJobsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListJobsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            ListJobsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListJobsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by ListMultipartUploads
 #[derive(Debug, PartialEq)]
 pub enum ListMultipartUploadsError {
@@ -2498,20 +2488,17 @@ impl ListMultipartUploadsError {
     }
 }
 impl fmt::Display for ListMultipartUploadsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMultipartUploadsError {
-    fn description(&self) -> &str {
         match *self {
-            ListMultipartUploadsError::InvalidParameterValue(ref cause) => cause,
-            ListMultipartUploadsError::MissingParameterValue(ref cause) => cause,
-            ListMultipartUploadsError::ResourceNotFound(ref cause) => cause,
-            ListMultipartUploadsError::ServiceUnavailable(ref cause) => cause,
+            ListMultipartUploadsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListMultipartUploadsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            ListMultipartUploadsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListMultipartUploadsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMultipartUploadsError {}
 /// Errors returned by ListParts
 #[derive(Debug, PartialEq)]
 pub enum ListPartsError {
@@ -2549,20 +2536,17 @@ impl ListPartsError {
     }
 }
 impl fmt::Display for ListPartsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPartsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPartsError::InvalidParameterValue(ref cause) => cause,
-            ListPartsError::MissingParameterValue(ref cause) => cause,
-            ListPartsError::ResourceNotFound(ref cause) => cause,
-            ListPartsError::ServiceUnavailable(ref cause) => cause,
+            ListPartsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListPartsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            ListPartsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListPartsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPartsError {}
 /// Errors returned by ListProvisionedCapacity
 #[derive(Debug, PartialEq)]
 pub enum ListProvisionedCapacityError {
@@ -2601,19 +2585,20 @@ impl ListProvisionedCapacityError {
     }
 }
 impl fmt::Display for ListProvisionedCapacityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProvisionedCapacityError {
-    fn description(&self) -> &str {
         match *self {
-            ListProvisionedCapacityError::InvalidParameterValue(ref cause) => cause,
-            ListProvisionedCapacityError::MissingParameterValue(ref cause) => cause,
-            ListProvisionedCapacityError::ServiceUnavailable(ref cause) => cause,
+            ListProvisionedCapacityError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListProvisionedCapacityError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListProvisionedCapacityError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProvisionedCapacityError {}
 /// Errors returned by ListTagsForVault
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForVaultError {
@@ -2655,20 +2640,17 @@ impl ListTagsForVaultError {
     }
 }
 impl fmt::Display for ListTagsForVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForVaultError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForVaultError::InvalidParameterValue(ref cause) => cause,
-            ListTagsForVaultError::MissingParameterValue(ref cause) => cause,
-            ListTagsForVaultError::ResourceNotFound(ref cause) => cause,
-            ListTagsForVaultError::ServiceUnavailable(ref cause) => cause,
+            ListTagsForVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListTagsForVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            ListTagsForVaultError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForVaultError {}
 /// Errors returned by ListVaults
 #[derive(Debug, PartialEq)]
 pub enum ListVaultsError {
@@ -2706,20 +2688,17 @@ impl ListVaultsError {
     }
 }
 impl fmt::Display for ListVaultsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListVaultsError {
-    fn description(&self) -> &str {
         match *self {
-            ListVaultsError::InvalidParameterValue(ref cause) => cause,
-            ListVaultsError::MissingParameterValue(ref cause) => cause,
-            ListVaultsError::ResourceNotFound(ref cause) => cause,
-            ListVaultsError::ServiceUnavailable(ref cause) => cause,
+            ListVaultsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            ListVaultsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            ListVaultsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListVaultsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListVaultsError {}
 /// Errors returned by PurchaseProvisionedCapacity
 #[derive(Debug, PartialEq)]
 pub enum PurchaseProvisionedCapacityError {
@@ -2767,20 +2746,23 @@ impl PurchaseProvisionedCapacityError {
     }
 }
 impl fmt::Display for PurchaseProvisionedCapacityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PurchaseProvisionedCapacityError {
-    fn description(&self) -> &str {
         match *self {
-            PurchaseProvisionedCapacityError::InvalidParameterValue(ref cause) => cause,
-            PurchaseProvisionedCapacityError::LimitExceeded(ref cause) => cause,
-            PurchaseProvisionedCapacityError::MissingParameterValue(ref cause) => cause,
-            PurchaseProvisionedCapacityError::ServiceUnavailable(ref cause) => cause,
+            PurchaseProvisionedCapacityError::InvalidParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PurchaseProvisionedCapacityError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PurchaseProvisionedCapacityError::MissingParameterValue(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PurchaseProvisionedCapacityError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for PurchaseProvisionedCapacityError {}
 /// Errors returned by RemoveTagsFromVault
 #[derive(Debug, PartialEq)]
 pub enum RemoveTagsFromVaultError {
@@ -2826,20 +2808,17 @@ impl RemoveTagsFromVaultError {
     }
 }
 impl fmt::Display for RemoveTagsFromVaultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTagsFromVaultError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTagsFromVaultError::InvalidParameterValue(ref cause) => cause,
-            RemoveTagsFromVaultError::MissingParameterValue(ref cause) => cause,
-            RemoveTagsFromVaultError::ResourceNotFound(ref cause) => cause,
-            RemoveTagsFromVaultError::ServiceUnavailable(ref cause) => cause,
+            RemoveTagsFromVaultError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromVaultError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromVaultError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            RemoveTagsFromVaultError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveTagsFromVaultError {}
 /// Errors returned by SetDataRetrievalPolicy
 #[derive(Debug, PartialEq)]
 pub enum SetDataRetrievalPolicyError {
@@ -2878,19 +2857,16 @@ impl SetDataRetrievalPolicyError {
     }
 }
 impl fmt::Display for SetDataRetrievalPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetDataRetrievalPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            SetDataRetrievalPolicyError::InvalidParameterValue(ref cause) => cause,
-            SetDataRetrievalPolicyError::MissingParameterValue(ref cause) => cause,
-            SetDataRetrievalPolicyError::ServiceUnavailable(ref cause) => cause,
+            SetDataRetrievalPolicyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            SetDataRetrievalPolicyError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            SetDataRetrievalPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetDataRetrievalPolicyError {}
 /// Errors returned by SetVaultAccessPolicy
 #[derive(Debug, PartialEq)]
 pub enum SetVaultAccessPolicyError {
@@ -2936,20 +2912,17 @@ impl SetVaultAccessPolicyError {
     }
 }
 impl fmt::Display for SetVaultAccessPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetVaultAccessPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            SetVaultAccessPolicyError::InvalidParameterValue(ref cause) => cause,
-            SetVaultAccessPolicyError::MissingParameterValue(ref cause) => cause,
-            SetVaultAccessPolicyError::ResourceNotFound(ref cause) => cause,
-            SetVaultAccessPolicyError::ServiceUnavailable(ref cause) => cause,
+            SetVaultAccessPolicyError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            SetVaultAccessPolicyError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            SetVaultAccessPolicyError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SetVaultAccessPolicyError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetVaultAccessPolicyError {}
 /// Errors returned by SetVaultNotifications
 #[derive(Debug, PartialEq)]
 pub enum SetVaultNotificationsError {
@@ -2995,20 +2968,17 @@ impl SetVaultNotificationsError {
     }
 }
 impl fmt::Display for SetVaultNotificationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetVaultNotificationsError {
-    fn description(&self) -> &str {
         match *self {
-            SetVaultNotificationsError::InvalidParameterValue(ref cause) => cause,
-            SetVaultNotificationsError::MissingParameterValue(ref cause) => cause,
-            SetVaultNotificationsError::ResourceNotFound(ref cause) => cause,
-            SetVaultNotificationsError::ServiceUnavailable(ref cause) => cause,
+            SetVaultNotificationsError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            SetVaultNotificationsError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            SetVaultNotificationsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            SetVaultNotificationsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetVaultNotificationsError {}
 /// Errors returned by UploadArchive
 #[derive(Debug, PartialEq)]
 pub enum UploadArchiveError {
@@ -3051,21 +3021,18 @@ impl UploadArchiveError {
     }
 }
 impl fmt::Display for UploadArchiveError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UploadArchiveError {
-    fn description(&self) -> &str {
         match *self {
-            UploadArchiveError::InvalidParameterValue(ref cause) => cause,
-            UploadArchiveError::MissingParameterValue(ref cause) => cause,
-            UploadArchiveError::RequestTimeout(ref cause) => cause,
-            UploadArchiveError::ResourceNotFound(ref cause) => cause,
-            UploadArchiveError::ServiceUnavailable(ref cause) => cause,
+            UploadArchiveError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            UploadArchiveError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            UploadArchiveError::RequestTimeout(ref cause) => write!(f, "{}", cause),
+            UploadArchiveError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UploadArchiveError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UploadArchiveError {}
 /// Errors returned by UploadMultipartPart
 #[derive(Debug, PartialEq)]
 pub enum UploadMultipartPartError {
@@ -3116,21 +3083,18 @@ impl UploadMultipartPartError {
     }
 }
 impl fmt::Display for UploadMultipartPartError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UploadMultipartPartError {
-    fn description(&self) -> &str {
         match *self {
-            UploadMultipartPartError::InvalidParameterValue(ref cause) => cause,
-            UploadMultipartPartError::MissingParameterValue(ref cause) => cause,
-            UploadMultipartPartError::RequestTimeout(ref cause) => cause,
-            UploadMultipartPartError::ResourceNotFound(ref cause) => cause,
-            UploadMultipartPartError::ServiceUnavailable(ref cause) => cause,
+            UploadMultipartPartError::InvalidParameterValue(ref cause) => write!(f, "{}", cause),
+            UploadMultipartPartError::MissingParameterValue(ref cause) => write!(f, "{}", cause),
+            UploadMultipartPartError::RequestTimeout(ref cause) => write!(f, "{}", cause),
+            UploadMultipartPartError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UploadMultipartPartError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UploadMultipartPartError {}
 /// Trait representing the capabilities of the Amazon Glacier API. Amazon Glacier clients implement this trait.
 #[async_trait]
 pub trait Glacier {

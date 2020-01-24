@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateLedgerRequest {
     /// <p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>
     #[serde(rename = "DeletionProtection")]
@@ -44,7 +46,7 @@ pub struct CreateLedgerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateLedgerResponse {
     /// <p>The Amazon Resource Name (ARN) for the ledger.</p>
     #[serde(rename = "Arn")]
@@ -69,6 +71,7 @@ pub struct CreateLedgerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLedgerRequest {
     /// <p>The name of the ledger that you want to delete.</p>
     #[serde(rename = "Name")]
@@ -76,6 +79,7 @@ pub struct DeleteLedgerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeJournalS3ExportRequest {
     /// <p>The unique ID of the journal export job that you want to describe.</p>
     #[serde(rename = "ExportId")]
@@ -86,7 +90,7 @@ pub struct DescribeJournalS3ExportRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeJournalS3ExportResponse {
     /// <p>Information about the journal export job returned by a <code>DescribeJournalS3Export</code> request.</p>
     #[serde(rename = "ExportDescription")]
@@ -94,6 +98,7 @@ pub struct DescribeJournalS3ExportResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLedgerRequest {
     /// <p>The name of the ledger that you want to describe.</p>
     #[serde(rename = "Name")]
@@ -101,7 +106,7 @@ pub struct DescribeLedgerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLedgerResponse {
     /// <p>The Amazon Resource Name (ARN) for the ledger.</p>
     #[serde(rename = "Arn")]
@@ -126,6 +131,7 @@ pub struct DescribeLedgerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportJournalToS3Request {
     /// <p>The exclusive end date and time for the range of journal contents that you want to export.</p> <p>The <code>ExclusiveEndTime</code> must be in <code>ISO 8601</code> date and time format and in Universal Coordinated Time (UTC). For example: <code>2019-06-13T21:36:34Z</code> </p> <p>The <code>ExclusiveEndTime</code> must be less than or equal to the current UTC date and time.</p>
     #[serde(rename = "ExclusiveEndTime")]
@@ -145,7 +151,7 @@ pub struct ExportJournalToS3Request {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportJournalToS3Response {
     /// <p>The unique ID that QLDB assigns to each journal export job.</p> <p>To describe your export request and check the status of the job, you can use <code>ExportId</code> to call <code>DescribeJournalS3Export</code>.</p>
     #[serde(rename = "ExportId")]
@@ -153,6 +159,7 @@ pub struct ExportJournalToS3Response {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBlockRequest {
     /// <p>The location of the block that you want to request. An address is an Amazon Ion structure that has two fields: <code>strandId</code> and <code>sequenceNo</code>.</p> <p>For example: <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code> </p>
     #[serde(rename = "BlockAddress")]
@@ -167,7 +174,7 @@ pub struct GetBlockRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBlockResponse {
     /// <p>The block data object in Amazon Ion format.</p>
     #[serde(rename = "Block")]
@@ -179,6 +186,7 @@ pub struct GetBlockResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDigestRequest {
     /// <p>The name of the ledger.</p>
     #[serde(rename = "Name")]
@@ -186,7 +194,7 @@ pub struct GetDigestRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDigestResponse {
     /// <p>The 256-bit hash value representing the digest returned by a <code>GetDigest</code> request.</p>
     #[serde(rename = "Digest")]
@@ -202,6 +210,7 @@ pub struct GetDigestResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRevisionRequest {
     /// <p>The block location of the document revision to be verified. An address is an Amazon Ion structure that has two fields: <code>strandId</code> and <code>sequenceNo</code>.</p> <p>For example: <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code> </p>
     #[serde(rename = "BlockAddress")]
@@ -219,7 +228,7 @@ pub struct GetRevisionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRevisionResponse {
     /// <p>The proof object in Amazon Ion format returned by a <code>GetRevision</code> request. A proof contains the list of hash values that are required to recalculate the specified digest using a Merkle tree, starting with the specified document revision.</p>
     #[serde(rename = "Proof")]
@@ -232,7 +241,7 @@ pub struct GetRevisionResponse {
 
 /// <p>The information about a journal export job, including the ledger name, export ID, when it was created, current status, and its start and end time export parameters.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JournalS3ExportDescription {
     /// <p>The exclusive end date and time for the range of journal contents that are specified in the original export request.</p>
     #[serde(rename = "ExclusiveEndTime")]
@@ -261,7 +270,7 @@ pub struct JournalS3ExportDescription {
 
 /// <p>Information about a ledger, including its name, state, and when it was created.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LedgerSummary {
     /// <p>The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)</p>
     #[serde(rename = "CreationDateTime")]
@@ -278,6 +287,7 @@ pub struct LedgerSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJournalS3ExportsForLedgerRequest {
     /// <p>The maximum number of results to return in a single <code>ListJournalS3ExportsForLedger</code> request. (The actual number of results returned might be fewer.)</p>
     #[serde(rename = "MaxResults")]
@@ -293,7 +303,7 @@ pub struct ListJournalS3ExportsForLedgerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJournalS3ExportsForLedgerResponse {
     /// <p>The array of journal export job descriptions that are associated with the specified ledger.</p>
     #[serde(rename = "JournalS3Exports")]
@@ -306,6 +316,7 @@ pub struct ListJournalS3ExportsForLedgerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJournalS3ExportsRequest {
     /// <p>The maximum number of results to return in a single <code>ListJournalS3Exports</code> request. (The actual number of results returned might be fewer.)</p>
     #[serde(rename = "MaxResults")]
@@ -318,7 +329,7 @@ pub struct ListJournalS3ExportsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJournalS3ExportsResponse {
     /// <p>The array of journal export job descriptions for all ledgers that are associated with the current AWS account and Region.</p>
     #[serde(rename = "JournalS3Exports")]
@@ -331,6 +342,7 @@ pub struct ListJournalS3ExportsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLedgersRequest {
     /// <p>The maximum number of results to return in a single <code>ListLedgers</code> request. (The actual number of results returned might be fewer.)</p>
     #[serde(rename = "MaxResults")]
@@ -343,7 +355,7 @@ pub struct ListLedgersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLedgersResponse {
     /// <p>The array of ledger summaries that are associated with the current AWS account and Region.</p>
     #[serde(rename = "Ledgers")]
@@ -356,6 +368,7 @@ pub struct ListLedgersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) for which you want to list the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>
     #[serde(rename = "ResourceArn")]
@@ -363,7 +376,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags that are currently associated with the specified Amazon QLDB resource.</p>
     #[serde(rename = "Tags")]
@@ -398,6 +411,7 @@ pub struct S3ExportConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) to which you want to add the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>
     #[serde(rename = "ResourceArn")]
@@ -408,10 +422,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) from which you want to remove the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>
     #[serde(rename = "ResourceArn")]
@@ -422,10 +437,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateLedgerRequest {
     /// <p>The flag that prevents a ledger from being deleted by any user. If not provided on ledger creation, this feature is enabled (<code>true</code>) by default.</p> <p>If deletion protection is enabled, you must first disable it before you can delete the ledger using the QLDB API or the AWS Command Line Interface (AWS CLI). You can disable it by calling the <code>UpdateLedger</code> operation to set the flag to <code>false</code>. The QLDB console disables deletion protection for you when you use it to delete a ledger.</p>
     #[serde(rename = "DeletionProtection")]
@@ -437,7 +453,7 @@ pub struct UpdateLedgerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateLedgerResponse {
     /// <p>The Amazon Resource Name (ARN) for the ledger.</p>
     #[serde(rename = "Arn")]
@@ -507,20 +523,17 @@ impl CreateLedgerError {
     }
 }
 impl fmt::Display for CreateLedgerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateLedgerError {
-    fn description(&self) -> &str {
         match *self {
-            CreateLedgerError::InvalidParameter(ref cause) => cause,
-            CreateLedgerError::LimitExceeded(ref cause) => cause,
-            CreateLedgerError::ResourceAlreadyExists(ref cause) => cause,
-            CreateLedgerError::ResourceInUse(ref cause) => cause,
+            CreateLedgerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateLedgerError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateLedgerError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateLedgerError::ResourceInUse(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateLedgerError {}
 /// Errors returned by DeleteLedger
 #[derive(Debug, PartialEq)]
 pub enum DeleteLedgerError {
@@ -560,20 +573,17 @@ impl DeleteLedgerError {
     }
 }
 impl fmt::Display for DeleteLedgerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLedgerError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLedgerError::InvalidParameter(ref cause) => cause,
-            DeleteLedgerError::ResourceInUse(ref cause) => cause,
-            DeleteLedgerError::ResourceNotFound(ref cause) => cause,
-            DeleteLedgerError::ResourcePreconditionNotMet(ref cause) => cause,
+            DeleteLedgerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteLedgerError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteLedgerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLedgerError::ResourcePreconditionNotMet(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLedgerError {}
 /// Errors returned by DescribeJournalS3Export
 #[derive(Debug, PartialEq)]
 pub enum DescribeJournalS3ExportError {
@@ -598,17 +608,14 @@ impl DescribeJournalS3ExportError {
     }
 }
 impl fmt::Display for DescribeJournalS3ExportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeJournalS3ExportError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeJournalS3ExportError::ResourceNotFound(ref cause) => cause,
+            DescribeJournalS3ExportError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeJournalS3ExportError {}
 /// Errors returned by DescribeLedger
 #[derive(Debug, PartialEq)]
 pub enum DescribeLedgerError {
@@ -636,18 +643,15 @@ impl DescribeLedgerError {
     }
 }
 impl fmt::Display for DescribeLedgerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeLedgerError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeLedgerError::InvalidParameter(ref cause) => cause,
-            DescribeLedgerError::ResourceNotFound(ref cause) => cause,
+            DescribeLedgerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeLedgerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeLedgerError {}
 /// Errors returned by ExportJournalToS3
 #[derive(Debug, PartialEq)]
 pub enum ExportJournalToS3Error {
@@ -677,18 +681,15 @@ impl ExportJournalToS3Error {
     }
 }
 impl fmt::Display for ExportJournalToS3Error {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ExportJournalToS3Error {
-    fn description(&self) -> &str {
         match *self {
-            ExportJournalToS3Error::ResourceNotFound(ref cause) => cause,
-            ExportJournalToS3Error::ResourcePreconditionNotMet(ref cause) => cause,
+            ExportJournalToS3Error::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ExportJournalToS3Error::ResourcePreconditionNotMet(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ExportJournalToS3Error {}
 /// Errors returned by GetBlock
 #[derive(Debug, PartialEq)]
 pub enum GetBlockError {
@@ -721,19 +722,16 @@ impl GetBlockError {
     }
 }
 impl fmt::Display for GetBlockError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBlockError {
-    fn description(&self) -> &str {
         match *self {
-            GetBlockError::InvalidParameter(ref cause) => cause,
-            GetBlockError::ResourceNotFound(ref cause) => cause,
-            GetBlockError::ResourcePreconditionNotMet(ref cause) => cause,
+            GetBlockError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetBlockError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetBlockError::ResourcePreconditionNotMet(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBlockError {}
 /// Errors returned by GetDigest
 #[derive(Debug, PartialEq)]
 pub enum GetDigestError {
@@ -768,19 +766,16 @@ impl GetDigestError {
     }
 }
 impl fmt::Display for GetDigestError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDigestError {
-    fn description(&self) -> &str {
         match *self {
-            GetDigestError::InvalidParameter(ref cause) => cause,
-            GetDigestError::ResourceNotFound(ref cause) => cause,
-            GetDigestError::ResourcePreconditionNotMet(ref cause) => cause,
+            GetDigestError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetDigestError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetDigestError::ResourcePreconditionNotMet(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDigestError {}
 /// Errors returned by GetRevision
 #[derive(Debug, PartialEq)]
 pub enum GetRevisionError {
@@ -815,19 +810,16 @@ impl GetRevisionError {
     }
 }
 impl fmt::Display for GetRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            GetRevisionError::InvalidParameter(ref cause) => cause,
-            GetRevisionError::ResourceNotFound(ref cause) => cause,
-            GetRevisionError::ResourcePreconditionNotMet(ref cause) => cause,
+            GetRevisionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetRevisionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetRevisionError::ResourcePreconditionNotMet(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRevisionError {}
 /// Errors returned by ListJournalS3Exports
 #[derive(Debug, PartialEq)]
 pub enum ListJournalS3ExportsError {}
@@ -844,15 +836,12 @@ impl ListJournalS3ExportsError {
     }
 }
 impl fmt::Display for ListJournalS3ExportsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJournalS3ExportsError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListJournalS3ExportsError {}
 /// Errors returned by ListJournalS3ExportsForLedger
 #[derive(Debug, PartialEq)]
 pub enum ListJournalS3ExportsForLedgerError {}
@@ -871,15 +860,12 @@ impl ListJournalS3ExportsForLedgerError {
     }
 }
 impl fmt::Display for ListJournalS3ExportsForLedgerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJournalS3ExportsForLedgerError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListJournalS3ExportsForLedgerError {}
 /// Errors returned by ListLedgers
 #[derive(Debug, PartialEq)]
 pub enum ListLedgersError {}
@@ -896,15 +882,12 @@ impl ListLedgersError {
     }
 }
 impl fmt::Display for ListLedgersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListLedgersError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for ListLedgersError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -936,18 +919,15 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InvalidParameter(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -975,18 +955,15 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InvalidParameter(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1014,18 +991,15 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InvalidParameter(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateLedger
 #[derive(Debug, PartialEq)]
 pub enum UpdateLedgerError {
@@ -1053,18 +1027,15 @@ impl UpdateLedgerError {
     }
 }
 impl fmt::Display for UpdateLedgerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateLedgerError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateLedgerError::InvalidParameter(ref cause) => cause,
-            UpdateLedgerError::ResourceNotFound(ref cause) => cause,
+            UpdateLedgerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateLedgerError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateLedgerError {}
 /// Trait representing the capabilities of the QLDB API. QLDB clients implement this trait.
 #[async_trait]
 pub trait Qldb {

@@ -25,10 +25,11 @@ pub(crate) mod test_utils;
 
 use async_trait::async_trait;
 use std::collections::BTreeMap;
-use std::env::var as env_var;
+use std::env::{var as env_var, VarError};
 use std::error::Error;
 use std::fmt;
 use std::io::Error as IoError;
+use std::string::FromUtf8Error;
 use std::sync::Arc;
 use std::time::Duration;
 
@@ -161,11 +162,7 @@ impl fmt::Display for CredentialsError {
     }
 }
 
-impl Error for CredentialsError {
-    fn description(&self) -> &str {
-        &self.message
-    }
-}
+impl Error for CredentialsError {}
 
 impl From<ParseError> for CredentialsError {
     fn from(err: ParseError) -> CredentialsError {
@@ -187,6 +184,18 @@ impl From<HyperError> for CredentialsError {
 
 impl From<serde_json::Error> for CredentialsError {
     fn from(err: serde_json::Error) -> CredentialsError {
+        CredentialsError::new(err)
+    }
+}
+
+impl From<VarError> for CredentialsError {
+    fn from(err: VarError) -> CredentialsError {
+        CredentialsError::new(err)
+    }
+}
+
+impl From<FromUtf8Error> for CredentialsError {
+    fn from(err: FromUtf8Error) -> CredentialsError {
         CredentialsError::new(err)
     }
 }
@@ -218,10 +227,10 @@ impl<P: ProvideAwsCredentials + Send + Sync> ProvideAwsCredentials for Arc<P> {
 ///
 /// In order to access the wrapped provider, for instance to set a timeout, the `get_ref`
 /// and `get_mut` methods can be used.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct AutoRefreshingProvider<P: ProvideAwsCredentials + 'static> {
     credentials_provider: P,
-    current_credentials: Mutex<Option<Result<AwsCredentials, CredentialsError>>>,
+    current_credentials: Arc<Mutex<Option<Result<AwsCredentials, CredentialsError>>>>,
 }
 
 impl<P: ProvideAwsCredentials + 'static> AutoRefreshingProvider<P> {
@@ -229,7 +238,7 @@ impl<P: ProvideAwsCredentials + 'static> AutoRefreshingProvider<P> {
     pub fn new(provider: P) -> Result<AutoRefreshingProvider<P>, CredentialsError> {
         Ok(AutoRefreshingProvider {
             credentials_provider: provider,
-            current_credentials: Mutex::new(None),
+            current_credentials: Arc::new(Mutex::new(None)),
         })
     }
 
@@ -287,6 +296,7 @@ impl<P: ProvideAwsCredentials + Send + Sync + 'static> ProvideAwsCredentials
 /// is as locked down as possible using security best practices for your operating system.
 ///
 /// [credential_process]: https://docs.aws.amazon.com/cli/latest/topic/config-vars.html#sourcing-credentials-from-external-processes
+#[derive(Clone)]
 pub struct DefaultCredentialsProvider(AutoRefreshingProvider<ChainProvider>);
 
 impl DefaultCredentialsProvider {

@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p> An extracted segment of the text that is an attribute of an entity, or otherwise related to an entity, such as the dosage of a medication taken. It contains information about the attribute such as id, begin and end offset within the input text, and the segment of the input text. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Attribute {
     /// <p> The 0-based character offset in the input text that shows where the attribute begins. The offset returns the UTF-8 code point in the string. </p>
     #[serde(rename = "BeginOffset")]
@@ -64,6 +65,7 @@ pub struct Attribute {
 
 /// <p>Provides information for filtering a list of detection jobs.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComprehendMedicalAsyncJobFilter {
     /// <p>Filters on the name of the job.</p>
     #[serde(rename = "JobName")]
@@ -85,7 +87,7 @@ pub struct ComprehendMedicalAsyncJobFilter {
 
 /// <p>Provides information about a detection job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ComprehendMedicalAsyncJobProperties {
     /// <p>The Amazon Resource Name (ARN) that gives Amazon Comprehend Medical read access to your input data.</p>
     #[serde(rename = "DataAccessRoleArn")]
@@ -146,6 +148,7 @@ pub struct ComprehendMedicalAsyncJobProperties {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEntitiesDetectionV2JobRequest {
     /// <p>The identifier that Amazon Comprehend Medical generated for the job. The <code>StartEntitiesDetectionV2Job</code> operation returns this identifier in its response.</p>
     #[serde(rename = "JobId")]
@@ -153,7 +156,7 @@ pub struct DescribeEntitiesDetectionV2JobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEntitiesDetectionV2JobResponse {
     /// <p>An object that contains the properties associated with a detection job.</p>
     #[serde(rename = "ComprehendMedicalAsyncJobProperties")]
@@ -162,6 +165,7 @@ pub struct DescribeEntitiesDetectionV2JobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePHIDetectionJobRequest {
     /// <p>The identifier that Amazon Comprehend Medical generated for the job. The <code>StartPHIDetectionJob</code> operation returns this identifier in its response.</p>
     #[serde(rename = "JobId")]
@@ -169,7 +173,7 @@ pub struct DescribePHIDetectionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePHIDetectionJobResponse {
     /// <p>An object that contains the properties associated with a detection job.</p>
     #[serde(rename = "ComprehendMedicalAsyncJobProperties")]
@@ -178,6 +182,7 @@ pub struct DescribePHIDetectionJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectEntitiesRequest {
     /// <p> A UTF-8 text string containing the clinical content being examined for entities. Each string must contain fewer than 20,000 bytes of characters.</p>
     #[serde(rename = "Text")]
@@ -185,7 +190,7 @@ pub struct DetectEntitiesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectEntitiesResponse {
     /// <p> The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned.</p>
     #[serde(rename = "Entities")]
@@ -204,6 +209,7 @@ pub struct DetectEntitiesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectEntitiesV2Request {
     /// <p>A UTF-8 string containing the clinical content being examined for entities. Each string must contain fewer than 20,000 bytes of characters.</p>
     #[serde(rename = "Text")]
@@ -211,7 +217,7 @@ pub struct DetectEntitiesV2Request {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectEntitiesV2Response {
     /// <p>The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence in the detection and analysis. Attributes and traits of the entity are also returned.</p>
     #[serde(rename = "Entities")]
@@ -230,6 +236,7 @@ pub struct DetectEntitiesV2Response {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DetectPHIRequest {
     /// <p> A UTF-8 text string containing the clinical content being examined for PHI entities. Each string must contain fewer than 20,000 bytes of characters.</p>
     #[serde(rename = "Text")]
@@ -237,7 +244,7 @@ pub struct DetectPHIRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectPHIResponse {
     /// <p> The collection of PHI entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in its detection. </p>
     #[serde(rename = "Entities")]
@@ -253,7 +260,7 @@ pub struct DetectPHIResponse {
 
 /// <p> Provides information about an extracted medical entity.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Entity {
     /// <p> The extracted attributes that relate to this entity.</p>
     #[serde(rename = "Attributes")]
@@ -295,7 +302,7 @@ pub struct Entity {
 
 /// <p>The detected attributes that relate to an entity. This includes an extracted segment of the text that is an attribute of an entity, or otherwise related to an entity. InferICD10CM detects the following attributes: <code>Direction</code>, <code>System, Organ or Site</code>, and <code>Acuity</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ICD10CMAttribute {
     /// <p>The 0-based character offset in the input text that shows where the attribute begins. The offset returns the UTF-8 code point in the string.</p>
     #[serde(rename = "BeginOffset")]
@@ -333,7 +340,7 @@ pub struct ICD10CMAttribute {
 
 /// <p> The ICD-10-CM concepts that the entity could refer to, along with a score indicating the likelihood of the match.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ICD10CMConcept {
     /// <p>The ICD-10-CM code that identifies the concept found in the knowledge base from the Centers for Disease Control.</p>
     #[serde(rename = "Code")]
@@ -351,7 +358,7 @@ pub struct ICD10CMConcept {
 
 /// <p>The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ICD10CMEntity {
     /// <p>The detected attributes that relate to the entity. An extracted segment of the text that is an attribute of an entity, or otherwise related to an entity, such as the nature of a medical condition.</p>
     #[serde(rename = "Attributes")]
@@ -397,7 +404,7 @@ pub struct ICD10CMEntity {
 
 /// <p>Contextual information for the entity. The traits recognized by InferICD10CM are <code>DIAGNOSIS</code>, <code>SIGN</code>, <code>SYMPTOM</code>, and <code>NEGATION</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ICD10CMTrait {
     /// <p>Provides a name or contextual description about the trait.</p>
     #[serde(rename = "Name")]
@@ -410,6 +417,7 @@ pub struct ICD10CMTrait {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InferICD10CMRequest {
     /// <p>The input text used for analysis. The input for InferICD10CM is a string from 1 to 10000 characters.</p>
     #[serde(rename = "Text")]
@@ -417,7 +425,7 @@ pub struct InferICD10CMRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InferICD10CMResponse {
     /// <p>The medical conditions detected in the text linked to ICD-10-CM concepts. If the action is successful, the service sends back an HTTP 200 response, as well as the entities detected.</p>
     #[serde(rename = "Entities")]
@@ -433,6 +441,7 @@ pub struct InferICD10CMResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InferRxNormRequest {
     /// <p>The input text used for analysis. The input for InferRxNorm is a string from 1 to 10000 characters.</p>
     #[serde(rename = "Text")]
@@ -440,7 +449,7 @@ pub struct InferRxNormRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InferRxNormResponse {
     /// <p>The medication entities detected in the text linked to RxNorm concepts. If the action is successful, the service sends back an HTTP 200 response, as well as the entities detected.</p>
     #[serde(rename = "Entities")]
@@ -468,6 +477,7 @@ pub struct InputDataConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEntitiesDetectionV2JobsRequest {
     /// <p>Filters the jobs that are returned. You can filter jobs based on their names, status, or the date and time that they were submitted. You can only set one filter at a time.</p>
     #[serde(rename = "Filter")]
@@ -484,7 +494,7 @@ pub struct ListEntitiesDetectionV2JobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEntitiesDetectionV2JobsResponse {
     /// <p>A list containing the properties of each job returned.</p>
     #[serde(rename = "ComprehendMedicalAsyncJobPropertiesList")]
@@ -498,6 +508,7 @@ pub struct ListEntitiesDetectionV2JobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPHIDetectionJobsRequest {
     /// <p>Filters the jobs that are returned. You can filter jobs based on their names, status, or the date and time that they were submitted. You can only set one filter at a time.</p>
     #[serde(rename = "Filter")]
@@ -514,7 +525,7 @@ pub struct ListPHIDetectionJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPHIDetectionJobsResponse {
     /// <p>A list containing the properties of each job returned.</p>
     #[serde(rename = "ComprehendMedicalAsyncJobPropertiesList")]
@@ -541,7 +552,7 @@ pub struct OutputDataConfig {
 
 /// <p>The extracted attributes that relate to this entity. The attributes recognized by InferRxNorm are <code>DOSAGE</code>, <code>DURATION</code>, <code>FORM</code>, <code>FREQUENCY</code>, <code>RATE</code>, <code>ROUTE_OR_MODE</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RxNormAttribute {
     /// <p>The 0-based character offset in the input text that shows where the attribute begins. The offset returns the UTF-8 code point in the string.</p>
     #[serde(rename = "BeginOffset")]
@@ -579,7 +590,7 @@ pub struct RxNormAttribute {
 
 /// <p>The RxNorm concept that the entity could refer to, along with a score indicating the likelihood of the match.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RxNormConcept {
     /// <p>RxNorm concept ID, also known as the RxCUI.</p>
     #[serde(rename = "Code")]
@@ -597,7 +608,7 @@ pub struct RxNormConcept {
 
 /// <p>The collection of medical entities extracted from the input text and their associated information. For each entity, the response provides the entity text, the entity category, where the entity text begins and ends, and the level of confidence that Amazon Comprehend Medical has in the detection and analysis. Attributes and traits of the entity are also returned. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RxNormEntity {
     /// <p>The extracted attributes that relate to the entity. The attributes recognized by InferRxNorm are <code>DOSAGE</code>, <code>DURATION</code>, <code>FORM</code>, <code>FREQUENCY</code>, <code>RATE</code>, <code>ROUTE_OR_MODE</code>, and <code>STRENGTH</code>.</p>
     #[serde(rename = "Attributes")]
@@ -643,7 +654,7 @@ pub struct RxNormEntity {
 
 /// <p>The contextual information for the entity. InferRxNorm recognizes the trait <code>NEGATION</code>, which is any indication that the patient is not taking a medication. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RxNormTrait {
     /// <p>Provides a name or contextual description about the trait.</p>
     #[serde(rename = "Name")]
@@ -656,6 +667,7 @@ pub struct RxNormTrait {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartEntitiesDetectionV2JobRequest {
     /// <p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -684,7 +696,7 @@ pub struct StartEntitiesDetectionV2JobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartEntitiesDetectionV2JobResponse {
     /// <p>The identifier generated for the job. To get the status of a job, use this identifier with the <code>DescribeEntitiesDetectionV2Job</code> operation.</p>
     #[serde(rename = "JobId")]
@@ -693,6 +705,7 @@ pub struct StartEntitiesDetectionV2JobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartPHIDetectionJobRequest {
     /// <p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend Medical generates one.</p>
     #[serde(rename = "ClientRequestToken")]
@@ -721,7 +734,7 @@ pub struct StartPHIDetectionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartPHIDetectionJobResponse {
     /// <p>The identifier generated for the job. To get the status of a job, use this identifier with the <code>DescribePHIDetectionJob</code> operation.</p>
     #[serde(rename = "JobId")]
@@ -730,6 +743,7 @@ pub struct StartPHIDetectionJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopEntitiesDetectionV2JobRequest {
     /// <p>The identifier of the medical entities job to stop.</p>
     #[serde(rename = "JobId")]
@@ -737,7 +751,7 @@ pub struct StopEntitiesDetectionV2JobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopEntitiesDetectionV2JobResponse {
     /// <p>The identifier of the medical entities detection job that was stopped.</p>
     #[serde(rename = "JobId")]
@@ -746,6 +760,7 @@ pub struct StopEntitiesDetectionV2JobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopPHIDetectionJobRequest {
     /// <p>The identifier of the PHI detection job to stop.</p>
     #[serde(rename = "JobId")]
@@ -753,7 +768,7 @@ pub struct StopPHIDetectionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopPHIDetectionJobResponse {
     /// <p>The identifier of the PHI detection job that was stopped.</p>
     #[serde(rename = "JobId")]
@@ -763,7 +778,7 @@ pub struct StopPHIDetectionJobResponse {
 
 /// <p> Provides contextual information about the extracted entity. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Trait {
     /// <p> Provides a name or contextual description about the trait. </p>
     #[serde(rename = "Name")]
@@ -777,7 +792,7 @@ pub struct Trait {
 
 /// <p> An attribute that we extracted, but were unable to relate to an entity. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UnmappedAttribute {
     /// <p> The specific attribute that has been extracted but not mapped to an entity. </p>
     #[serde(rename = "Attribute")]
@@ -836,20 +851,25 @@ impl DescribeEntitiesDetectionV2JobError {
     }
 }
 impl fmt::Display for DescribeEntitiesDetectionV2JobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEntitiesDetectionV2JobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEntitiesDetectionV2JobError::InternalServer(ref cause) => cause,
-            DescribeEntitiesDetectionV2JobError::InvalidRequest(ref cause) => cause,
-            DescribeEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => cause,
-            DescribeEntitiesDetectionV2JobError::TooManyRequests(ref cause) => cause,
+            DescribeEntitiesDetectionV2JobError::InternalServer(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEntitiesDetectionV2JobError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeEntitiesDetectionV2JobError::TooManyRequests(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeEntitiesDetectionV2JobError {}
 /// Errors returned by DescribePHIDetectionJob
 #[derive(Debug, PartialEq)]
 pub enum DescribePHIDetectionJobError {
@@ -895,20 +915,17 @@ impl DescribePHIDetectionJobError {
     }
 }
 impl fmt::Display for DescribePHIDetectionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePHIDetectionJobError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePHIDetectionJobError::InternalServer(ref cause) => cause,
-            DescribePHIDetectionJobError::InvalidRequest(ref cause) => cause,
-            DescribePHIDetectionJobError::ResourceNotFound(ref cause) => cause,
-            DescribePHIDetectionJobError::TooManyRequests(ref cause) => cause,
+            DescribePHIDetectionJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DescribePHIDetectionJobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribePHIDetectionJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribePHIDetectionJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePHIDetectionJobError {}
 /// Errors returned by DetectEntities
 #[derive(Debug, PartialEq)]
 pub enum DetectEntitiesError {
@@ -958,22 +975,19 @@ impl DetectEntitiesError {
     }
 }
 impl fmt::Display for DetectEntitiesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectEntitiesError {
-    fn description(&self) -> &str {
         match *self {
-            DetectEntitiesError::InternalServer(ref cause) => cause,
-            DetectEntitiesError::InvalidEncoding(ref cause) => cause,
-            DetectEntitiesError::InvalidRequest(ref cause) => cause,
-            DetectEntitiesError::ServiceUnavailable(ref cause) => cause,
-            DetectEntitiesError::TextSizeLimitExceeded(ref cause) => cause,
-            DetectEntitiesError::TooManyRequests(ref cause) => cause,
+            DetectEntitiesError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesError::InvalidEncoding(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesError::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectEntitiesError {}
 /// Errors returned by DetectEntitiesV2
 #[derive(Debug, PartialEq)]
 pub enum DetectEntitiesV2Error {
@@ -1023,22 +1037,19 @@ impl DetectEntitiesV2Error {
     }
 }
 impl fmt::Display for DetectEntitiesV2Error {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectEntitiesV2Error {
-    fn description(&self) -> &str {
         match *self {
-            DetectEntitiesV2Error::InternalServer(ref cause) => cause,
-            DetectEntitiesV2Error::InvalidEncoding(ref cause) => cause,
-            DetectEntitiesV2Error::InvalidRequest(ref cause) => cause,
-            DetectEntitiesV2Error::ServiceUnavailable(ref cause) => cause,
-            DetectEntitiesV2Error::TextSizeLimitExceeded(ref cause) => cause,
-            DetectEntitiesV2Error::TooManyRequests(ref cause) => cause,
+            DetectEntitiesV2Error::InternalServer(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesV2Error::InvalidEncoding(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesV2Error::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesV2Error::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesV2Error::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            DetectEntitiesV2Error::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectEntitiesV2Error {}
 /// Errors returned by DetectPHI
 #[derive(Debug, PartialEq)]
 pub enum DetectPHIError {
@@ -1086,22 +1097,19 @@ impl DetectPHIError {
     }
 }
 impl fmt::Display for DetectPHIError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DetectPHIError {
-    fn description(&self) -> &str {
         match *self {
-            DetectPHIError::InternalServer(ref cause) => cause,
-            DetectPHIError::InvalidEncoding(ref cause) => cause,
-            DetectPHIError::InvalidRequest(ref cause) => cause,
-            DetectPHIError::ServiceUnavailable(ref cause) => cause,
-            DetectPHIError::TextSizeLimitExceeded(ref cause) => cause,
-            DetectPHIError::TooManyRequests(ref cause) => cause,
+            DetectPHIError::InternalServer(ref cause) => write!(f, "{}", cause),
+            DetectPHIError::InvalidEncoding(ref cause) => write!(f, "{}", cause),
+            DetectPHIError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DetectPHIError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DetectPHIError::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            DetectPHIError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DetectPHIError {}
 /// Errors returned by InferICD10CM
 #[derive(Debug, PartialEq)]
 pub enum InferICD10CMError {
@@ -1149,22 +1157,19 @@ impl InferICD10CMError {
     }
 }
 impl fmt::Display for InferICD10CMError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InferICD10CMError {
-    fn description(&self) -> &str {
         match *self {
-            InferICD10CMError::InternalServer(ref cause) => cause,
-            InferICD10CMError::InvalidEncoding(ref cause) => cause,
-            InferICD10CMError::InvalidRequest(ref cause) => cause,
-            InferICD10CMError::ServiceUnavailable(ref cause) => cause,
-            InferICD10CMError::TextSizeLimitExceeded(ref cause) => cause,
-            InferICD10CMError::TooManyRequests(ref cause) => cause,
+            InferICD10CMError::InternalServer(ref cause) => write!(f, "{}", cause),
+            InferICD10CMError::InvalidEncoding(ref cause) => write!(f, "{}", cause),
+            InferICD10CMError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            InferICD10CMError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            InferICD10CMError::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            InferICD10CMError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InferICD10CMError {}
 /// Errors returned by InferRxNorm
 #[derive(Debug, PartialEq)]
 pub enum InferRxNormError {
@@ -1212,22 +1217,19 @@ impl InferRxNormError {
     }
 }
 impl fmt::Display for InferRxNormError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InferRxNormError {
-    fn description(&self) -> &str {
         match *self {
-            InferRxNormError::InternalServer(ref cause) => cause,
-            InferRxNormError::InvalidEncoding(ref cause) => cause,
-            InferRxNormError::InvalidRequest(ref cause) => cause,
-            InferRxNormError::ServiceUnavailable(ref cause) => cause,
-            InferRxNormError::TextSizeLimitExceeded(ref cause) => cause,
-            InferRxNormError::TooManyRequests(ref cause) => cause,
+            InferRxNormError::InternalServer(ref cause) => write!(f, "{}", cause),
+            InferRxNormError::InvalidEncoding(ref cause) => write!(f, "{}", cause),
+            InferRxNormError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            InferRxNormError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            InferRxNormError::TextSizeLimitExceeded(ref cause) => write!(f, "{}", cause),
+            InferRxNormError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InferRxNormError {}
 /// Errors returned by ListEntitiesDetectionV2Jobs
 #[derive(Debug, PartialEq)]
 pub enum ListEntitiesDetectionV2JobsError {
@@ -1268,19 +1270,16 @@ impl ListEntitiesDetectionV2JobsError {
     }
 }
 impl fmt::Display for ListEntitiesDetectionV2JobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListEntitiesDetectionV2JobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListEntitiesDetectionV2JobsError::InternalServer(ref cause) => cause,
-            ListEntitiesDetectionV2JobsError::InvalidRequest(ref cause) => cause,
-            ListEntitiesDetectionV2JobsError::TooManyRequests(ref cause) => cause,
+            ListEntitiesDetectionV2JobsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListEntitiesDetectionV2JobsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListEntitiesDetectionV2JobsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListEntitiesDetectionV2JobsError {}
 /// Errors returned by ListPHIDetectionJobs
 #[derive(Debug, PartialEq)]
 pub enum ListPHIDetectionJobsError {
@@ -1315,19 +1314,16 @@ impl ListPHIDetectionJobsError {
     }
 }
 impl fmt::Display for ListPHIDetectionJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPHIDetectionJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPHIDetectionJobsError::InternalServer(ref cause) => cause,
-            ListPHIDetectionJobsError::InvalidRequest(ref cause) => cause,
-            ListPHIDetectionJobsError::TooManyRequests(ref cause) => cause,
+            ListPHIDetectionJobsError::InternalServer(ref cause) => write!(f, "{}", cause),
+            ListPHIDetectionJobsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListPHIDetectionJobsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPHIDetectionJobsError {}
 /// Errors returned by StartEntitiesDetectionV2Job
 #[derive(Debug, PartialEq)]
 pub enum StartEntitiesDetectionV2JobError {
@@ -1375,20 +1371,17 @@ impl StartEntitiesDetectionV2JobError {
     }
 }
 impl fmt::Display for StartEntitiesDetectionV2JobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartEntitiesDetectionV2JobError {
-    fn description(&self) -> &str {
         match *self {
-            StartEntitiesDetectionV2JobError::InternalServer(ref cause) => cause,
-            StartEntitiesDetectionV2JobError::InvalidRequest(ref cause) => cause,
-            StartEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => cause,
-            StartEntitiesDetectionV2JobError::TooManyRequests(ref cause) => cause,
+            StartEntitiesDetectionV2JobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StartEntitiesDetectionV2JobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartEntitiesDetectionV2JobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartEntitiesDetectionV2JobError {}
 /// Errors returned by StartPHIDetectionJob
 #[derive(Debug, PartialEq)]
 pub enum StartPHIDetectionJobError {
@@ -1430,20 +1423,17 @@ impl StartPHIDetectionJobError {
     }
 }
 impl fmt::Display for StartPHIDetectionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartPHIDetectionJobError {
-    fn description(&self) -> &str {
         match *self {
-            StartPHIDetectionJobError::InternalServer(ref cause) => cause,
-            StartPHIDetectionJobError::InvalidRequest(ref cause) => cause,
-            StartPHIDetectionJobError::ResourceNotFound(ref cause) => cause,
-            StartPHIDetectionJobError::TooManyRequests(ref cause) => cause,
+            StartPHIDetectionJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StartPHIDetectionJobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartPHIDetectionJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            StartPHIDetectionJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartPHIDetectionJobError {}
 /// Errors returned by StopEntitiesDetectionV2Job
 #[derive(Debug, PartialEq)]
 pub enum StopEntitiesDetectionV2JobError {
@@ -1484,19 +1474,16 @@ impl StopEntitiesDetectionV2JobError {
     }
 }
 impl fmt::Display for StopEntitiesDetectionV2JobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopEntitiesDetectionV2JobError {
-    fn description(&self) -> &str {
         match *self {
-            StopEntitiesDetectionV2JobError::InternalServer(ref cause) => cause,
-            StopEntitiesDetectionV2JobError::InvalidRequest(ref cause) => cause,
-            StopEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => cause,
+            StopEntitiesDetectionV2JobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StopEntitiesDetectionV2JobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StopEntitiesDetectionV2JobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopEntitiesDetectionV2JobError {}
 /// Errors returned by StopPHIDetectionJob
 #[derive(Debug, PartialEq)]
 pub enum StopPHIDetectionJobError {
@@ -1531,19 +1518,16 @@ impl StopPHIDetectionJobError {
     }
 }
 impl fmt::Display for StopPHIDetectionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopPHIDetectionJobError {
-    fn description(&self) -> &str {
         match *self {
-            StopPHIDetectionJobError::InternalServer(ref cause) => cause,
-            StopPHIDetectionJobError::InvalidRequest(ref cause) => cause,
-            StopPHIDetectionJobError::ResourceNotFound(ref cause) => cause,
+            StopPHIDetectionJobError::InternalServer(ref cause) => write!(f, "{}", cause),
+            StopPHIDetectionJobError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StopPHIDetectionJobError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopPHIDetectionJobError {}
 /// Trait representing the capabilities of the ComprehendMedical API. ComprehendMedical clients implement this trait.
 #[async_trait]
 pub trait ComprehendMedical {

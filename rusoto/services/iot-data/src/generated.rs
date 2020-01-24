@@ -23,9 +23,11 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 /// <p>The input for the DeleteThingShadow operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteThingShadowRequest {
     /// <p>The name of the thing.</p>
     #[serde(rename = "thingName")]
@@ -41,6 +43,7 @@ pub struct DeleteThingShadowResponse {
 
 /// <p>The input for the GetThingShadow operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetThingShadowRequest {
     /// <p>The name of the thing.</p>
     #[serde(rename = "thingName")]
@@ -56,6 +59,7 @@ pub struct GetThingShadowResponse {
 
 /// <p>The input for the Publish operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PublishRequest {
     /// <p>The state information, in JSON format.</p>
     #[serde(rename = "payload")]
@@ -77,6 +81,7 @@ pub struct PublishRequest {
 
 /// <p>The input for the UpdateThingShadow operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateThingShadowRequest {
     /// <p>The state information, in JSON format.</p>
     #[serde(rename = "payload")]
@@ -159,24 +164,23 @@ impl DeleteThingShadowError {
     }
 }
 impl fmt::Display for DeleteThingShadowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteThingShadowError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteThingShadowError::InternalFailure(ref cause) => cause,
-            DeleteThingShadowError::InvalidRequest(ref cause) => cause,
-            DeleteThingShadowError::MethodNotAllowed(ref cause) => cause,
-            DeleteThingShadowError::ResourceNotFound(ref cause) => cause,
-            DeleteThingShadowError::ServiceUnavailable(ref cause) => cause,
-            DeleteThingShadowError::Throttling(ref cause) => cause,
-            DeleteThingShadowError::Unauthorized(ref cause) => cause,
-            DeleteThingShadowError::UnsupportedDocumentEncoding(ref cause) => cause,
+            DeleteThingShadowError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::Throttling(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::Unauthorized(ref cause) => write!(f, "{}", cause),
+            DeleteThingShadowError::UnsupportedDocumentEncoding(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteThingShadowError {}
 /// Errors returned by GetThingShadow
 #[derive(Debug, PartialEq)]
 pub enum GetThingShadowError {
@@ -236,24 +240,21 @@ impl GetThingShadowError {
     }
 }
 impl fmt::Display for GetThingShadowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetThingShadowError {
-    fn description(&self) -> &str {
         match *self {
-            GetThingShadowError::InternalFailure(ref cause) => cause,
-            GetThingShadowError::InvalidRequest(ref cause) => cause,
-            GetThingShadowError::MethodNotAllowed(ref cause) => cause,
-            GetThingShadowError::ResourceNotFound(ref cause) => cause,
-            GetThingShadowError::ServiceUnavailable(ref cause) => cause,
-            GetThingShadowError::Throttling(ref cause) => cause,
-            GetThingShadowError::Unauthorized(ref cause) => cause,
-            GetThingShadowError::UnsupportedDocumentEncoding(ref cause) => cause,
+            GetThingShadowError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::Throttling(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::Unauthorized(ref cause) => write!(f, "{}", cause),
+            GetThingShadowError::UnsupportedDocumentEncoding(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetThingShadowError {}
 /// Errors returned by Publish
 #[derive(Debug, PartialEq)]
 pub enum PublishError {
@@ -291,20 +292,17 @@ impl PublishError {
     }
 }
 impl fmt::Display for PublishError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PublishError {
-    fn description(&self) -> &str {
         match *self {
-            PublishError::InternalFailure(ref cause) => cause,
-            PublishError::InvalidRequest(ref cause) => cause,
-            PublishError::MethodNotAllowed(ref cause) => cause,
-            PublishError::Unauthorized(ref cause) => cause,
+            PublishError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            PublishError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PublishError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            PublishError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PublishError {}
 /// Errors returned by UpdateThingShadow
 #[derive(Debug, PartialEq)]
 pub enum UpdateThingShadowError {
@@ -373,25 +371,24 @@ impl UpdateThingShadowError {
     }
 }
 impl fmt::Display for UpdateThingShadowError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateThingShadowError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateThingShadowError::Conflict(ref cause) => cause,
-            UpdateThingShadowError::InternalFailure(ref cause) => cause,
-            UpdateThingShadowError::InvalidRequest(ref cause) => cause,
-            UpdateThingShadowError::MethodNotAllowed(ref cause) => cause,
-            UpdateThingShadowError::RequestEntityTooLarge(ref cause) => cause,
-            UpdateThingShadowError::ServiceUnavailable(ref cause) => cause,
-            UpdateThingShadowError::Throttling(ref cause) => cause,
-            UpdateThingShadowError::Unauthorized(ref cause) => cause,
-            UpdateThingShadowError::UnsupportedDocumentEncoding(ref cause) => cause,
+            UpdateThingShadowError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::MethodNotAllowed(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::RequestEntityTooLarge(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::Throttling(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::Unauthorized(ref cause) => write!(f, "{}", cause),
+            UpdateThingShadowError::UnsupportedDocumentEncoding(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateThingShadowError {}
 /// Trait representing the capabilities of the AWS IoT Data Plane API. AWS IoT Data Plane clients implement this trait.
 #[async_trait]
 pub trait IotData {

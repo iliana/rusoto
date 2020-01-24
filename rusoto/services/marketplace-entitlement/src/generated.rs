@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An entitlement represents capacity in a product owned by the customer. For example, a customer might own some number of users or seats in an SaaS application or some amount of data capacity in a multi-tenant database.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Entitlement {
     /// <p>The customer identifier is a handle to each unique customer in an application. Customer identifiers are obtained through the ResolveCustomer operation in AWS Marketplace Metering Service.</p>
     #[serde(rename = "CustomerIdentifier")]
@@ -52,7 +53,7 @@ pub struct Entitlement {
 
 /// <p>The EntitlementValue represents the amount of capacity that the customer is entitled to for the product.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EntitlementValue {
     /// <p>The BooleanValue field will be populated with a boolean value when the entitlement is a boolean type. Otherwise, the field will not be set.</p>
     #[serde(rename = "BooleanValue")]
@@ -74,6 +75,7 @@ pub struct EntitlementValue {
 
 /// <p>The GetEntitlementsRequest contains parameters for the GetEntitlements operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetEntitlementsRequest {
     /// <p>Filter is used to return entitlements for a specific customer or for a specific dimension. Filters are described as keys mapped to a lists of values. Filtered requests are <i>unioned</i> for each value in the value list, and then <i>intersected</i> for each filter key.</p>
     #[serde(rename = "Filter")]
@@ -94,7 +96,7 @@ pub struct GetEntitlementsRequest {
 
 /// <p>The GetEntitlementsRequest contains results from the GetEntitlements operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetEntitlementsResult {
     /// <p>The set of entitlements found through the GetEntitlements operation. If the result contains an empty set of entitlements, NextToken might still be present and should be used.</p>
     #[serde(rename = "Entitlements")]
@@ -140,19 +142,16 @@ impl GetEntitlementsError {
     }
 }
 impl fmt::Display for GetEntitlementsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetEntitlementsError {
-    fn description(&self) -> &str {
         match *self {
-            GetEntitlementsError::InternalServiceError(ref cause) => cause,
-            GetEntitlementsError::InvalidParameter(ref cause) => cause,
-            GetEntitlementsError::Throttling(ref cause) => cause,
+            GetEntitlementsError::InternalServiceError(ref cause) => write!(f, "{}", cause),
+            GetEntitlementsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetEntitlementsError::Throttling(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetEntitlementsError {}
 /// Trait representing the capabilities of the AWS Marketplace Entitlement Service API. AWS Marketplace Entitlement Service clients implement this trait.
 #[async_trait]
 pub trait MarketplaceEntitlement {

@@ -23,6 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value AAC. The service accepts one of two mutually exclusive groups of AAC settings--VBR and CBR. To select one of these modes, set the value of Bitrate control mode (rateControlMode) to &quot;VBR&quot; or &quot;CBR&quot;.  In VBR mode, you control the audio quality with the setting VBR quality (vbrQuality). In CBR mode, you use the setting Bitrate (bitrate). Defaults and valid values depend on the rate control mode.</p>
@@ -146,6 +147,7 @@ pub struct AncillarySourceSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateCertificateRequest {
     /// <p>The ARN of the ACM certificate that you want to associate with your MediaConvert resource.</p>
     #[serde(rename = "Arn")]
@@ -153,7 +155,7 @@ pub struct AssociateCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateCertificateResponse {}
 
 /// <p>Audio codec settings (CodecSettings) under (AudioDescriptions) contains the group of settings related to audio encoding. The settings in this group vary depending on the value that you choose for Audio codec (Codec). For each codec enum that you choose, define the corresponding settings object. The following lists the codec enum, settings object pairs. * AAC, AacSettings * MP2, Mp2Settings * WAV, WavSettings * AIFF, AiffSettings * AC3, Ac3Settings * EAC3, Eac3Settings * EAC3_ATMOS, Eac3AtmosSettings</p>
@@ -408,6 +410,7 @@ pub struct BurninDestinationSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelJobRequest {
     /// <p>The Job ID of the job to be cancelled.</p>
     #[serde(rename = "Id")]
@@ -415,7 +418,7 @@ pub struct CancelJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelJobResponse {}
 
 /// <p>Description of Caption output</p>
@@ -742,6 +745,7 @@ pub struct ContainerSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
     #[serde(rename = "AccelerationSettings")]
@@ -792,7 +796,7 @@ pub struct CreateJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobResponse {
     /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
     #[serde(rename = "Job")]
@@ -801,6 +805,7 @@ pub struct CreateJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobTemplateRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
     #[serde(rename = "AccelerationSettings")]
@@ -839,7 +844,7 @@ pub struct CreateJobTemplateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
     #[serde(rename = "JobTemplate")]
@@ -848,6 +853,7 @@ pub struct CreateJobTemplateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePresetRequest {
     /// <p>Optional. A category for the preset you are creating.</p>
     #[serde(rename = "Category")]
@@ -870,7 +876,7 @@ pub struct CreatePresetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
     #[serde(rename = "Preset")]
@@ -879,6 +885,7 @@ pub struct CreatePresetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateQueueRequest {
     /// <p>Optional. A description of the queue that you are creating.</p>
     #[serde(rename = "Description")]
@@ -906,7 +913,7 @@ pub struct CreateQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
     #[serde(rename = "Queue")]
@@ -1013,6 +1020,7 @@ pub struct Deinterlacer {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteJobTemplateRequest {
     /// <p>The name of the job template to be deleted.</p>
     #[serde(rename = "Name")]
@@ -1020,10 +1028,11 @@ pub struct DeleteJobTemplateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteJobTemplateResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePresetRequest {
     /// <p>The name of the preset to be deleted.</p>
     #[serde(rename = "Name")]
@@ -1031,10 +1040,11 @@ pub struct DeletePresetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePresetResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteQueueRequest {
     /// <p>The name of the queue that you want to delete.</p>
     #[serde(rename = "Name")]
@@ -1042,11 +1052,12 @@ pub struct DeleteQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteQueueResponse {}
 
 /// <p>DescribeEndpointsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEndpointsRequest {
     /// <p>Optional. Max number of endpoints, up to twenty, that will be returned at one time.</p>
     #[serde(rename = "MaxResults")]
@@ -1063,7 +1074,7 @@ pub struct DescribeEndpointsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEndpointsResponse {
     /// <p>List of endpoints</p>
     #[serde(rename = "Endpoints")]
@@ -1085,6 +1096,7 @@ pub struct DestinationSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateCertificateRequest {
     /// <p>The ARN of the ACM certificate that you want to disassociate from your MediaConvert resource.</p>
     #[serde(rename = "Arn")]
@@ -1092,7 +1104,7 @@ pub struct DisassociateCertificateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateCertificateResponse {}
 
 /// <p>Settings for Dolby Vision</p>
@@ -1456,7 +1468,7 @@ pub struct EmbeddedSourceSettings {
 
 /// <p>Describes an account-specific API endpoint.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Endpoint {
     /// <p>URL of endpoint</p>
     #[serde(rename = "Url")]
@@ -1560,6 +1572,7 @@ pub struct FrameCaptureSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRequest {
     /// <p>the job ID of the job.</p>
     #[serde(rename = "Id")]
@@ -1567,7 +1580,7 @@ pub struct GetJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobResponse {
     /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
     #[serde(rename = "Job")]
@@ -1576,6 +1589,7 @@ pub struct GetJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobTemplateRequest {
     /// <p>The name of the job template.</p>
     #[serde(rename = "Name")]
@@ -1583,7 +1597,7 @@ pub struct GetJobTemplateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
     #[serde(rename = "JobTemplate")]
@@ -1592,6 +1606,7 @@ pub struct GetJobTemplateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPresetRequest {
     /// <p>The name of the preset.</p>
     #[serde(rename = "Name")]
@@ -1599,7 +1614,7 @@ pub struct GetPresetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
     #[serde(rename = "Preset")]
@@ -1608,6 +1623,7 @@ pub struct GetPresetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetQueueRequest {
     /// <p>The name of the queue that you want information about.</p>
     #[serde(rename = "Name")]
@@ -1615,7 +1631,7 @@ pub struct GetQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
     #[serde(rename = "Queue")]
@@ -2493,7 +2509,7 @@ pub struct InsertableImage {
 
 /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Job {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content.</p>
     #[serde(rename = "AccelerationSettings")]
@@ -2589,7 +2605,7 @@ pub struct Job {
 
 /// <p>Provides messages from the service about jobs that you have already successfully submitted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobMessages {
     /// <p>List of messages that are informational only and don&#39;t indicate a problem with your job.</p>
     #[serde(rename = "Info")]
@@ -2644,7 +2660,7 @@ pub struct JobSettings {
 
 /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobTemplate {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content.</p>
     #[serde(rename = "AccelerationSettings")]
@@ -2736,6 +2752,7 @@ pub struct JobTemplateSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobTemplatesRequest {
     /// <p>Optionally, specify a job template category to limit responses to only job templates from that category.</p>
     #[serde(rename = "Category")]
@@ -2760,7 +2777,7 @@ pub struct ListJobTemplatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobTemplatesResponse {
     /// <p>List of Job templates.</p>
     #[serde(rename = "JobTemplates")]
@@ -2773,6 +2790,7 @@ pub struct ListJobTemplatesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>Optional. Number of jobs, up to twenty, that will be returned at one time.</p>
     #[serde(rename = "MaxResults")]
@@ -2797,7 +2815,7 @@ pub struct ListJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResponse {
     /// <p>List of jobs</p>
     #[serde(rename = "Jobs")]
@@ -2810,6 +2828,7 @@ pub struct ListJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPresetsRequest {
     /// <p>Optionally, specify a preset category to limit responses to only presets from that category.</p>
     #[serde(rename = "Category")]
@@ -2834,7 +2853,7 @@ pub struct ListPresetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPresetsResponse {
     /// <p>Use this string to request the next batch of presets.</p>
     #[serde(rename = "NextToken")]
@@ -2847,6 +2866,7 @@ pub struct ListPresetsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListQueuesRequest {
     /// <p>Optional. When you request a list of queues, you can choose to list them alphabetically by NAME or chronologically by CREATION_DATE. If you don&#39;t specify, the service will list them by creation date.</p>
     #[serde(rename = "ListBy")]
@@ -2867,7 +2887,7 @@ pub struct ListQueuesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListQueuesResponse {
     /// <p>Use this string to request the next batch of queues.</p>
     #[serde(rename = "NextToken")]
@@ -2880,6 +2900,7 @@ pub struct ListQueuesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to list tags for. To get the ARN, send a GET request with the resource name.</p>
     #[serde(rename = "Arn")]
@@ -2887,7 +2908,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The Amazon Resource Name (ARN) and tags for an AWS Elemental MediaConvert resource.</p>
     #[serde(rename = "ResourceTags")]
@@ -3568,7 +3589,7 @@ pub struct OutputChannelMapping {
 
 /// <p>Details regarding output</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputDetail {
     /// <p>Duration in milliseconds</p>
     #[serde(rename = "DurationInMs")]
@@ -3603,7 +3624,7 @@ pub struct OutputGroup {
 
 /// <p>Contains details about the output groups specified in the job settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputGroupDetail {
     /// <p>Details about the output</p>
     #[serde(rename = "OutputDetails")]
@@ -3651,7 +3672,7 @@ pub struct OutputSettings {
 
 /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Preset {
     /// <p>An identifier for this resource that is unique within all of AWS.</p>
     #[serde(rename = "Arn")]
@@ -3759,7 +3780,7 @@ pub struct ProresSettings {
 
 /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Queue {
     /// <p>An identifier for this resource that is unique within all of AWS.</p>
     #[serde(rename = "Arn")]
@@ -3846,7 +3867,7 @@ pub struct RemixSettings {
 
 /// <p>Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReservationPlan {
     /// <p>The length of the term of your reserved queue pricing plan commitment.</p>
     #[serde(rename = "Commitment")]
@@ -3876,6 +3897,7 @@ pub struct ReservationPlan {
 
 /// <p>Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReservationPlanSettings {
     /// <p>The length of the term of your reserved queue pricing plan commitment.</p>
     #[serde(rename = "Commitment")]
@@ -3890,7 +3912,7 @@ pub struct ReservationPlanSettings {
 
 /// <p>The Amazon Resource Name (ARN) and tags for an AWS Elemental MediaConvert resource.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceTags {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "Arn")]
@@ -4015,6 +4037,7 @@ pub struct StaticKeyProvider {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to tag. To get the ARN, send a GET request with the resource name.</p>
     #[serde(rename = "Arn")]
@@ -4025,7 +4048,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Settings for Teletext caption output</p>
@@ -4099,7 +4122,7 @@ pub struct TimedMetadataInsertion {
 
 /// <p>Information about when jobs are submitted, started, and finished is specified in Unix epoch format in seconds.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Timing {
     /// <p>The time, in Unix epoch format, that the transcoding job finished</p>
     #[serde(rename = "FinishTime")]
@@ -4134,6 +4157,7 @@ pub struct TtmlDestinationSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to remove tags from. To get the ARN, send a GET request with the resource name.</p>
     #[serde(rename = "Arn")]
@@ -4145,10 +4169,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobTemplateRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
     #[serde(rename = "AccelerationSettings")]
@@ -4184,7 +4209,7 @@ pub struct UpdateJobTemplateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
     #[serde(rename = "JobTemplate")]
@@ -4193,6 +4218,7 @@ pub struct UpdateJobTemplateResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePresetRequest {
     /// <p>The new category for the preset, if you are changing it.</p>
     #[serde(rename = "Category")]
@@ -4212,7 +4238,7 @@ pub struct UpdatePresetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
     #[serde(rename = "Preset")]
@@ -4221,6 +4247,7 @@ pub struct UpdatePresetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateQueueRequest {
     /// <p>The new description for the queue, if you are changing it.</p>
     #[serde(rename = "Description")]
@@ -4240,7 +4267,7 @@ pub struct UpdateQueueRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
     #[serde(rename = "Queue")]
@@ -4344,7 +4371,7 @@ pub struct VideoDescription {
 
 /// <p>Contains details about the output&#39;s video stream</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VideoDetail {
     /// <p>Height in pixels for the output</p>
     #[serde(rename = "HeightInPx")]
@@ -4490,22 +4517,19 @@ impl AssociateCertificateError {
     }
 }
 impl fmt::Display for AssociateCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateCertificateError::BadRequest(ref cause) => cause,
-            AssociateCertificateError::Conflict(ref cause) => cause,
-            AssociateCertificateError::Forbidden(ref cause) => cause,
-            AssociateCertificateError::InternalServerError(ref cause) => cause,
-            AssociateCertificateError::NotFound(ref cause) => cause,
-            AssociateCertificateError::TooManyRequests(ref cause) => cause,
+            AssociateCertificateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            AssociateCertificateError::Conflict(ref cause) => write!(f, "{}", cause),
+            AssociateCertificateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            AssociateCertificateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            AssociateCertificateError::NotFound(ref cause) => write!(f, "{}", cause),
+            AssociateCertificateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AssociateCertificateError {}
 /// Errors returned by CancelJob
 #[derive(Debug, PartialEq)]
 pub enum CancelJobError {
@@ -4553,22 +4577,19 @@ impl CancelJobError {
     }
 }
 impl fmt::Display for CancelJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CancelJobError {
-    fn description(&self) -> &str {
         match *self {
-            CancelJobError::BadRequest(ref cause) => cause,
-            CancelJobError::Conflict(ref cause) => cause,
-            CancelJobError::Forbidden(ref cause) => cause,
-            CancelJobError::InternalServerError(ref cause) => cause,
-            CancelJobError::NotFound(ref cause) => cause,
-            CancelJobError::TooManyRequests(ref cause) => cause,
+            CancelJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CancelJobError::Conflict(ref cause) => write!(f, "{}", cause),
+            CancelJobError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CancelJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CancelJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            CancelJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CancelJobError {}
 /// Errors returned by CreateJob
 #[derive(Debug, PartialEq)]
 pub enum CreateJobError {
@@ -4616,22 +4637,19 @@ impl CreateJobError {
     }
 }
 impl fmt::Display for CreateJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateJobError {
-    fn description(&self) -> &str {
         match *self {
-            CreateJobError::BadRequest(ref cause) => cause,
-            CreateJobError::Conflict(ref cause) => cause,
-            CreateJobError::Forbidden(ref cause) => cause,
-            CreateJobError::InternalServerError(ref cause) => cause,
-            CreateJobError::NotFound(ref cause) => cause,
-            CreateJobError::TooManyRequests(ref cause) => cause,
+            CreateJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateJobError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateJobError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateJobError {}
 /// Errors returned by CreateJobTemplate
 #[derive(Debug, PartialEq)]
 pub enum CreateJobTemplateError {
@@ -4681,22 +4699,19 @@ impl CreateJobTemplateError {
     }
 }
 impl fmt::Display for CreateJobTemplateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateJobTemplateError {
-    fn description(&self) -> &str {
         match *self {
-            CreateJobTemplateError::BadRequest(ref cause) => cause,
-            CreateJobTemplateError::Conflict(ref cause) => cause,
-            CreateJobTemplateError::Forbidden(ref cause) => cause,
-            CreateJobTemplateError::InternalServerError(ref cause) => cause,
-            CreateJobTemplateError::NotFound(ref cause) => cause,
-            CreateJobTemplateError::TooManyRequests(ref cause) => cause,
+            CreateJobTemplateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateJobTemplateError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateJobTemplateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateJobTemplateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateJobTemplateError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateJobTemplateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateJobTemplateError {}
 /// Errors returned by CreatePreset
 #[derive(Debug, PartialEq)]
 pub enum CreatePresetError {
@@ -4744,22 +4759,19 @@ impl CreatePresetError {
     }
 }
 impl fmt::Display for CreatePresetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePresetError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePresetError::BadRequest(ref cause) => cause,
-            CreatePresetError::Conflict(ref cause) => cause,
-            CreatePresetError::Forbidden(ref cause) => cause,
-            CreatePresetError::InternalServerError(ref cause) => cause,
-            CreatePresetError::NotFound(ref cause) => cause,
-            CreatePresetError::TooManyRequests(ref cause) => cause,
+            CreatePresetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreatePresetError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreatePresetError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreatePresetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreatePresetError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreatePresetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePresetError {}
 /// Errors returned by CreateQueue
 #[derive(Debug, PartialEq)]
 pub enum CreateQueueError {
@@ -4807,22 +4819,19 @@ impl CreateQueueError {
     }
 }
 impl fmt::Display for CreateQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateQueueError {
-    fn description(&self) -> &str {
         match *self {
-            CreateQueueError::BadRequest(ref cause) => cause,
-            CreateQueueError::Conflict(ref cause) => cause,
-            CreateQueueError::Forbidden(ref cause) => cause,
-            CreateQueueError::InternalServerError(ref cause) => cause,
-            CreateQueueError::NotFound(ref cause) => cause,
-            CreateQueueError::TooManyRequests(ref cause) => cause,
+            CreateQueueError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateQueueError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateQueueError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateQueueError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateQueueError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateQueueError {}
 /// Errors returned by DeleteJobTemplate
 #[derive(Debug, PartialEq)]
 pub enum DeleteJobTemplateError {
@@ -4872,22 +4881,19 @@ impl DeleteJobTemplateError {
     }
 }
 impl fmt::Display for DeleteJobTemplateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteJobTemplateError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteJobTemplateError::BadRequest(ref cause) => cause,
-            DeleteJobTemplateError::Conflict(ref cause) => cause,
-            DeleteJobTemplateError::Forbidden(ref cause) => cause,
-            DeleteJobTemplateError::InternalServerError(ref cause) => cause,
-            DeleteJobTemplateError::NotFound(ref cause) => cause,
-            DeleteJobTemplateError::TooManyRequests(ref cause) => cause,
+            DeleteJobTemplateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteJobTemplateError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteJobTemplateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteJobTemplateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteJobTemplateError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteJobTemplateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteJobTemplateError {}
 /// Errors returned by DeletePreset
 #[derive(Debug, PartialEq)]
 pub enum DeletePresetError {
@@ -4935,22 +4941,19 @@ impl DeletePresetError {
     }
 }
 impl fmt::Display for DeletePresetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePresetError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePresetError::BadRequest(ref cause) => cause,
-            DeletePresetError::Conflict(ref cause) => cause,
-            DeletePresetError::Forbidden(ref cause) => cause,
-            DeletePresetError::InternalServerError(ref cause) => cause,
-            DeletePresetError::NotFound(ref cause) => cause,
-            DeletePresetError::TooManyRequests(ref cause) => cause,
+            DeletePresetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeletePresetError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeletePresetError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeletePresetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeletePresetError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeletePresetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePresetError {}
 /// Errors returned by DeleteQueue
 #[derive(Debug, PartialEq)]
 pub enum DeleteQueueError {
@@ -4998,22 +5001,19 @@ impl DeleteQueueError {
     }
 }
 impl fmt::Display for DeleteQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteQueueError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteQueueError::BadRequest(ref cause) => cause,
-            DeleteQueueError::Conflict(ref cause) => cause,
-            DeleteQueueError::Forbidden(ref cause) => cause,
-            DeleteQueueError::InternalServerError(ref cause) => cause,
-            DeleteQueueError::NotFound(ref cause) => cause,
-            DeleteQueueError::TooManyRequests(ref cause) => cause,
+            DeleteQueueError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteQueueError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteQueueError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteQueueError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteQueueError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteQueueError {}
 /// Errors returned by DescribeEndpoints
 #[derive(Debug, PartialEq)]
 pub enum DescribeEndpointsError {
@@ -5063,22 +5063,19 @@ impl DescribeEndpointsError {
     }
 }
 impl fmt::Display for DescribeEndpointsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEndpointsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEndpointsError::BadRequest(ref cause) => cause,
-            DescribeEndpointsError::Conflict(ref cause) => cause,
-            DescribeEndpointsError::Forbidden(ref cause) => cause,
-            DescribeEndpointsError::InternalServerError(ref cause) => cause,
-            DescribeEndpointsError::NotFound(ref cause) => cause,
-            DescribeEndpointsError::TooManyRequests(ref cause) => cause,
+            DescribeEndpointsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeEndpointsError::Conflict(ref cause) => write!(f, "{}", cause),
+            DescribeEndpointsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeEndpointsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeEndpointsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeEndpointsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEndpointsError {}
 /// Errors returned by DisassociateCertificate
 #[derive(Debug, PartialEq)]
 pub enum DisassociateCertificateError {
@@ -5130,22 +5127,19 @@ impl DisassociateCertificateError {
     }
 }
 impl fmt::Display for DisassociateCertificateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateCertificateError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateCertificateError::BadRequest(ref cause) => cause,
-            DisassociateCertificateError::Conflict(ref cause) => cause,
-            DisassociateCertificateError::Forbidden(ref cause) => cause,
-            DisassociateCertificateError::InternalServerError(ref cause) => cause,
-            DisassociateCertificateError::NotFound(ref cause) => cause,
-            DisassociateCertificateError::TooManyRequests(ref cause) => cause,
+            DisassociateCertificateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DisassociateCertificateError::Conflict(ref cause) => write!(f, "{}", cause),
+            DisassociateCertificateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DisassociateCertificateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DisassociateCertificateError::NotFound(ref cause) => write!(f, "{}", cause),
+            DisassociateCertificateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateCertificateError {}
 /// Errors returned by GetJob
 #[derive(Debug, PartialEq)]
 pub enum GetJobError {
@@ -5189,22 +5183,19 @@ impl GetJobError {
     }
 }
 impl fmt::Display for GetJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobError::BadRequest(ref cause) => cause,
-            GetJobError::Conflict(ref cause) => cause,
-            GetJobError::Forbidden(ref cause) => cause,
-            GetJobError::InternalServerError(ref cause) => cause,
-            GetJobError::NotFound(ref cause) => cause,
-            GetJobError::TooManyRequests(ref cause) => cause,
+            GetJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetJobError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetJobError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetJobError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetJobError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetJobError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobError {}
 /// Errors returned by GetJobTemplate
 #[derive(Debug, PartialEq)]
 pub enum GetJobTemplateError {
@@ -5252,22 +5243,19 @@ impl GetJobTemplateError {
     }
 }
 impl fmt::Display for GetJobTemplateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetJobTemplateError {
-    fn description(&self) -> &str {
         match *self {
-            GetJobTemplateError::BadRequest(ref cause) => cause,
-            GetJobTemplateError::Conflict(ref cause) => cause,
-            GetJobTemplateError::Forbidden(ref cause) => cause,
-            GetJobTemplateError::InternalServerError(ref cause) => cause,
-            GetJobTemplateError::NotFound(ref cause) => cause,
-            GetJobTemplateError::TooManyRequests(ref cause) => cause,
+            GetJobTemplateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetJobTemplateError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetJobTemplateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetJobTemplateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetJobTemplateError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetJobTemplateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetJobTemplateError {}
 /// Errors returned by GetPreset
 #[derive(Debug, PartialEq)]
 pub enum GetPresetError {
@@ -5315,22 +5303,19 @@ impl GetPresetError {
     }
 }
 impl fmt::Display for GetPresetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetPresetError {
-    fn description(&self) -> &str {
         match *self {
-            GetPresetError::BadRequest(ref cause) => cause,
-            GetPresetError::Conflict(ref cause) => cause,
-            GetPresetError::Forbidden(ref cause) => cause,
-            GetPresetError::InternalServerError(ref cause) => cause,
-            GetPresetError::NotFound(ref cause) => cause,
-            GetPresetError::TooManyRequests(ref cause) => cause,
+            GetPresetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetPresetError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetPresetError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetPresetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetPresetError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetPresetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetPresetError {}
 /// Errors returned by GetQueue
 #[derive(Debug, PartialEq)]
 pub enum GetQueueError {
@@ -5378,22 +5363,19 @@ impl GetQueueError {
     }
 }
 impl fmt::Display for GetQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetQueueError {
-    fn description(&self) -> &str {
         match *self {
-            GetQueueError::BadRequest(ref cause) => cause,
-            GetQueueError::Conflict(ref cause) => cause,
-            GetQueueError::Forbidden(ref cause) => cause,
-            GetQueueError::InternalServerError(ref cause) => cause,
-            GetQueueError::NotFound(ref cause) => cause,
-            GetQueueError::TooManyRequests(ref cause) => cause,
+            GetQueueError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetQueueError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetQueueError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetQueueError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetQueueError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetQueueError {}
 /// Errors returned by ListJobTemplates
 #[derive(Debug, PartialEq)]
 pub enum ListJobTemplatesError {
@@ -5443,22 +5425,19 @@ impl ListJobTemplatesError {
     }
 }
 impl fmt::Display for ListJobTemplatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobTemplatesError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobTemplatesError::BadRequest(ref cause) => cause,
-            ListJobTemplatesError::Conflict(ref cause) => cause,
-            ListJobTemplatesError::Forbidden(ref cause) => cause,
-            ListJobTemplatesError::InternalServerError(ref cause) => cause,
-            ListJobTemplatesError::NotFound(ref cause) => cause,
-            ListJobTemplatesError::TooManyRequests(ref cause) => cause,
+            ListJobTemplatesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListJobTemplatesError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListJobTemplatesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListJobTemplatesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListJobTemplatesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListJobTemplatesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobTemplatesError {}
 /// Errors returned by ListJobs
 #[derive(Debug, PartialEq)]
 pub enum ListJobsError {
@@ -5506,22 +5485,19 @@ impl ListJobsError {
     }
 }
 impl fmt::Display for ListJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListJobsError::BadRequest(ref cause) => cause,
-            ListJobsError::Conflict(ref cause) => cause,
-            ListJobsError::Forbidden(ref cause) => cause,
-            ListJobsError::InternalServerError(ref cause) => cause,
-            ListJobsError::NotFound(ref cause) => cause,
-            ListJobsError::TooManyRequests(ref cause) => cause,
+            ListJobsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListJobsError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListJobsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListJobsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListJobsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListJobsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListJobsError {}
 /// Errors returned by ListPresets
 #[derive(Debug, PartialEq)]
 pub enum ListPresetsError {
@@ -5569,22 +5545,19 @@ impl ListPresetsError {
     }
 }
 impl fmt::Display for ListPresetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPresetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPresetsError::BadRequest(ref cause) => cause,
-            ListPresetsError::Conflict(ref cause) => cause,
-            ListPresetsError::Forbidden(ref cause) => cause,
-            ListPresetsError::InternalServerError(ref cause) => cause,
-            ListPresetsError::NotFound(ref cause) => cause,
-            ListPresetsError::TooManyRequests(ref cause) => cause,
+            ListPresetsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListPresetsError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListPresetsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListPresetsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListPresetsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListPresetsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPresetsError {}
 /// Errors returned by ListQueues
 #[derive(Debug, PartialEq)]
 pub enum ListQueuesError {
@@ -5632,22 +5605,19 @@ impl ListQueuesError {
     }
 }
 impl fmt::Display for ListQueuesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListQueuesError {
-    fn description(&self) -> &str {
         match *self {
-            ListQueuesError::BadRequest(ref cause) => cause,
-            ListQueuesError::Conflict(ref cause) => cause,
-            ListQueuesError::Forbidden(ref cause) => cause,
-            ListQueuesError::InternalServerError(ref cause) => cause,
-            ListQueuesError::NotFound(ref cause) => cause,
-            ListQueuesError::TooManyRequests(ref cause) => cause,
+            ListQueuesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListQueuesError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListQueuesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListQueuesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListQueuesError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListQueuesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListQueuesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -5697,22 +5667,19 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::Conflict(ref cause) => cause,
-            ListTagsForResourceError::Forbidden(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
-            ListTagsForResourceError::TooManyRequests(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Conflict(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -5760,22 +5727,19 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::Conflict(ref cause) => cause,
-            TagResourceError::Forbidden(ref cause) => cause,
-            TagResourceError::InternalServerError(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
-            TagResourceError::TooManyRequests(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Conflict(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Forbidden(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -5823,22 +5787,19 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::Conflict(ref cause) => cause,
-            UntagResourceError::Forbidden(ref cause) => cause,
-            UntagResourceError::InternalServerError(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
-            UntagResourceError::TooManyRequests(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Conflict(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateJobTemplate
 #[derive(Debug, PartialEq)]
 pub enum UpdateJobTemplateError {
@@ -5888,22 +5849,19 @@ impl UpdateJobTemplateError {
     }
 }
 impl fmt::Display for UpdateJobTemplateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateJobTemplateError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateJobTemplateError::BadRequest(ref cause) => cause,
-            UpdateJobTemplateError::Conflict(ref cause) => cause,
-            UpdateJobTemplateError::Forbidden(ref cause) => cause,
-            UpdateJobTemplateError::InternalServerError(ref cause) => cause,
-            UpdateJobTemplateError::NotFound(ref cause) => cause,
-            UpdateJobTemplateError::TooManyRequests(ref cause) => cause,
+            UpdateJobTemplateError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateJobTemplateError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateJobTemplateError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateJobTemplateError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateJobTemplateError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateJobTemplateError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateJobTemplateError {}
 /// Errors returned by UpdatePreset
 #[derive(Debug, PartialEq)]
 pub enum UpdatePresetError {
@@ -5951,22 +5909,19 @@ impl UpdatePresetError {
     }
 }
 impl fmt::Display for UpdatePresetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdatePresetError {
-    fn description(&self) -> &str {
         match *self {
-            UpdatePresetError::BadRequest(ref cause) => cause,
-            UpdatePresetError::Conflict(ref cause) => cause,
-            UpdatePresetError::Forbidden(ref cause) => cause,
-            UpdatePresetError::InternalServerError(ref cause) => cause,
-            UpdatePresetError::NotFound(ref cause) => cause,
-            UpdatePresetError::TooManyRequests(ref cause) => cause,
+            UpdatePresetError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdatePresetError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdatePresetError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdatePresetError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdatePresetError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdatePresetError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdatePresetError {}
 /// Errors returned by UpdateQueue
 #[derive(Debug, PartialEq)]
 pub enum UpdateQueueError {
@@ -6014,22 +5969,19 @@ impl UpdateQueueError {
     }
 }
 impl fmt::Display for UpdateQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateQueueError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateQueueError::BadRequest(ref cause) => cause,
-            UpdateQueueError::Conflict(ref cause) => cause,
-            UpdateQueueError::Forbidden(ref cause) => cause,
-            UpdateQueueError::InternalServerError(ref cause) => cause,
-            UpdateQueueError::NotFound(ref cause) => cause,
-            UpdateQueueError::TooManyRequests(ref cause) => cause,
+            UpdateQueueError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateQueueError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateQueueError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateQueueError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateQueueError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateQueueError {}
 /// Trait representing the capabilities of the MediaConvert API. MediaConvert clients implement this trait.
 #[async_trait]
 pub trait MediaConvert {

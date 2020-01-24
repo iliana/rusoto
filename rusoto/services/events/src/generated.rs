@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ActivateEventSourceRequest {
     /// <p>The name of the partner event source to activate.</p>
     #[serde(rename = "Name")]
@@ -86,6 +88,7 @@ pub struct BatchRetryStrategy {
 
 /// <p>A JSON string that you can use to limit the event bus permissions that you're granting to only accounts that fulfill the condition. Currently, the only supported condition is membership in a certain AWS organization. The string must contain <code>Type</code>, <code>Key</code>, and <code>Value</code> fields. The <code>Value</code> field specifies the ID of the AWS organization. The following is an example value for <code>Condition</code>:</p> <p> <code>'{"Type" : "StringEquals", "Key": "aws:PrincipalOrgID", "Value": "o-1234567890"}'</code> </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Condition {
     /// <p>The key for the condition. Currently, the only supported key is <code>aws:PrincipalOrgID</code>.</p>
     #[serde(rename = "Key")]
@@ -99,6 +102,7 @@ pub struct Condition {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEventBusRequest {
     /// <p>If you're creating a partner event bus, this specifies the partner event source that the new event bus will be matched with.</p>
     #[serde(rename = "EventSourceName")]
@@ -110,7 +114,7 @@ pub struct CreateEventBusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEventBusResponse {
     /// <p>The ARN of the new event bus.</p>
     #[serde(rename = "EventBusArn")]
@@ -119,6 +123,7 @@ pub struct CreateEventBusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePartnerEventSourceRequest {
     /// <p>The AWS account ID of the customer who is permitted to create a matching partner event bus for this partner event source.</p>
     #[serde(rename = "Account")]
@@ -129,7 +134,7 @@ pub struct CreatePartnerEventSourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePartnerEventSourceResponse {
     /// <p>The ARN of the partner event source.</p>
     #[serde(rename = "EventSourceArn")]
@@ -138,6 +143,7 @@ pub struct CreatePartnerEventSourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeactivateEventSourceRequest {
     /// <p>The name of the partner event source to deactivate.</p>
     #[serde(rename = "Name")]
@@ -145,6 +151,7 @@ pub struct DeactivateEventSourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEventBusRequest {
     /// <p>The name of the event bus to delete.</p>
     #[serde(rename = "Name")]
@@ -152,6 +159,7 @@ pub struct DeleteEventBusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePartnerEventSourceRequest {
     /// <p>The AWS account ID of the AWS customer that the event source was created for.</p>
     #[serde(rename = "Account")]
@@ -162,6 +170,7 @@ pub struct DeletePartnerEventSourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRuleRequest {
     /// <p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -177,6 +186,7 @@ pub struct DeleteRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventBusRequest {
     /// <p>The name of the event bus to show details for. If you omit this, the default event bus is displayed.</p>
     #[serde(rename = "Name")]
@@ -185,7 +195,7 @@ pub struct DescribeEventBusRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventBusResponse {
     /// <p>The Amazon Resource Name (ARN) of the account permitted to write events to the current account.</p>
     #[serde(rename = "Arn")]
@@ -202,6 +212,7 @@ pub struct DescribeEventBusResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventSourceRequest {
     /// <p>The name of the partner event source to display the details of.</p>
     #[serde(rename = "Name")]
@@ -209,7 +220,7 @@ pub struct DescribeEventSourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventSourceResponse {
     /// <p>The ARN of the partner event source.</p>
     #[serde(rename = "Arn")]
@@ -238,6 +249,7 @@ pub struct DescribeEventSourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePartnerEventSourceRequest {
     /// <p>The name of the event source to display.</p>
     #[serde(rename = "Name")]
@@ -245,7 +257,7 @@ pub struct DescribePartnerEventSourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePartnerEventSourceResponse {
     /// <p>The ARN of the event source.</p>
     #[serde(rename = "Arn")]
@@ -258,6 +270,7 @@ pub struct DescribePartnerEventSourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRuleRequest {
     /// <p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -269,7 +282,7 @@ pub struct DescribeRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRuleResponse {
     /// <p>The Amazon Resource Name (ARN) of the rule.</p>
     #[serde(rename = "Arn")]
@@ -310,6 +323,7 @@ pub struct DescribeRuleResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableRuleRequest {
     /// <p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -349,6 +363,7 @@ pub struct EcsParameters {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableRuleRequest {
     /// <p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -361,7 +376,7 @@ pub struct EnableRuleRequest {
 
 /// <p>An event bus receives events from a source and routes them to rules associated with that event bus. Your account's default event bus receives rules from AWS services. A custom event bus can receive rules from AWS services as well as your custom applications and services. A partner event bus receives events from an event source created by an SaaS partner. These events come from the partners services or applications.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventBus {
     /// <p>The ARN of the event bus.</p>
     #[serde(rename = "Arn")]
@@ -379,7 +394,7 @@ pub struct EventBus {
 
 /// <p>A partner event source is created by an SaaS partner. If a customer creates a partner event bus that matches this event source, that AWS account can receive events from the partner's applications or services.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventSource {
     /// <p>The ARN of the event source.</p>
     #[serde(rename = "Arn")]
@@ -428,6 +443,7 @@ pub struct KinesisParameters {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEventBusesRequest {
     /// <p>Specifying this limits the number of results returned by this operation. The operation also returns a <code>NextToken</code> that you can use in a subsequent operation to retrieve the next set of results.</p>
     #[serde(rename = "Limit")]
@@ -444,7 +460,7 @@ pub struct ListEventBusesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEventBusesResponse {
     /// <p>This list of event buses.</p>
     #[serde(rename = "EventBuses")]
@@ -457,6 +473,7 @@ pub struct ListEventBusesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEventSourcesRequest {
     /// <p>Specifying this limits the number of results returned by this operation. The operation also returns a <code>NextToken</code> that you can use in a subsequent operation to retrieve the next set of results.</p>
     #[serde(rename = "Limit")]
@@ -473,7 +490,7 @@ pub struct ListEventSourcesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEventSourcesResponse {
     /// <p>The list of event sources.</p>
     #[serde(rename = "EventSources")]
@@ -486,6 +503,7 @@ pub struct ListEventSourcesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPartnerEventSourceAccountsRequest {
     /// <p>The name of the partner event source to display account information about.</p>
     #[serde(rename = "EventSourceName")]
@@ -501,7 +519,7 @@ pub struct ListPartnerEventSourceAccountsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPartnerEventSourceAccountsResponse {
     /// <p>A token you can use in a subsequent operation to retrieve the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -514,6 +532,7 @@ pub struct ListPartnerEventSourceAccountsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPartnerEventSourcesRequest {
     /// <p>pecifying this limits the number of results returned by this operation. The operation also returns a <code>NextToken</code> that you can use in a subsequent operation to retrieve the next set of results.</p>
     #[serde(rename = "Limit")]
@@ -529,7 +548,7 @@ pub struct ListPartnerEventSourcesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPartnerEventSourcesResponse {
     /// <p>A token you can use in a subsequent operation to retrieve the next set of results.</p>
     #[serde(rename = "NextToken")]
@@ -542,6 +561,7 @@ pub struct ListPartnerEventSourcesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRuleNamesByTargetRequest {
     /// <p>Limits the results to show only the rules associated with the specified event bus.</p>
     #[serde(rename = "EventBusName")]
@@ -561,7 +581,7 @@ pub struct ListRuleNamesByTargetRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRuleNamesByTargetResponse {
     /// <p>Indicates whether there are additional results to retrieve. If there are no more results, the value is null.</p>
     #[serde(rename = "NextToken")]
@@ -574,6 +594,7 @@ pub struct ListRuleNamesByTargetResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRulesRequest {
     /// <p>Limits the results to show only the rules associated with the specified event bus.</p>
     #[serde(rename = "EventBusName")]
@@ -594,7 +615,7 @@ pub struct ListRulesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRulesResponse {
     /// <p>Indicates whether there are additional results to retrieve. If there are no more results, the value is null.</p>
     #[serde(rename = "NextToken")]
@@ -607,6 +628,7 @@ pub struct ListRulesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The ARN of the rule for which you want to view tags.</p>
     #[serde(rename = "ResourceARN")]
@@ -614,7 +636,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The list of tag keys and values associated with the rule that you specified.</p>
     #[serde(rename = "Tags")]
@@ -623,6 +645,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTargetsByRuleRequest {
     /// <p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -642,7 +665,7 @@ pub struct ListTargetsByRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTargetsByRuleResponse {
     /// <p>Indicates whether there are additional results to retrieve. If there are no more results, the value is null.</p>
     #[serde(rename = "NextToken")]
@@ -665,7 +688,7 @@ pub struct NetworkConfiguration {
 
 /// <p>A partner event source is created by an SaaS partner. If a customer creates a partner event bus that matches this event source, that AWS account can receive events from the partner's applications or services.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PartnerEventSource {
     /// <p>The ARN of the partner event source.</p>
     #[serde(rename = "Arn")]
@@ -679,7 +702,7 @@ pub struct PartnerEventSource {
 
 /// <p>The AWS account that a partner event source has been offered to.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PartnerEventSourceAccount {
     /// <p>The AWS account ID that the partner event source was offered to.</p>
     #[serde(rename = "Account")]
@@ -700,6 +723,7 @@ pub struct PartnerEventSourceAccount {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutEventsRequest {
     /// <p>The entry that defines an event in your system. You can specify several parameters for the entry such as the source and type of the event, resources associated with the event, and so on.</p>
     #[serde(rename = "Entries")]
@@ -708,6 +732,7 @@ pub struct PutEventsRequest {
 
 /// <p>Represents an event to be submitted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutEventsRequestEntry {
     /// <p>A valid JSON object. There is no other schema imposed. The JSON object can contain fields and nested subobjects.</p> <p>This field is required.</p>
     #[serde(rename = "Detail")]
@@ -736,7 +761,7 @@ pub struct PutEventsRequestEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutEventsResponse {
     /// <p>The successfully and unsuccessfully ingested events results. If the ingestion was successful, the entry has the event ID in it. Otherwise, you can use the error code and error message to identify the problem with the entry.</p>
     #[serde(rename = "Entries")]
@@ -750,7 +775,7 @@ pub struct PutEventsResponse {
 
 /// <p>Represents an event that failed to be submitted.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutEventsResultEntry {
     /// <p>The error code that indicates why the event submission failed.</p>
     #[serde(rename = "ErrorCode")]
@@ -767,6 +792,7 @@ pub struct PutEventsResultEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutPartnerEventsRequest {
     /// <p>The list of events to write to the event bus.</p>
     #[serde(rename = "Entries")]
@@ -775,6 +801,7 @@ pub struct PutPartnerEventsRequest {
 
 /// <p>The details about an event generated by an SaaS partner.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutPartnerEventsRequestEntry {
     /// <p>A valid JSON object. There is no other schema imposed. The JSON object can contain fields and nested subobjects. This field is required.</p>
     #[serde(rename = "Detail")]
@@ -799,7 +826,7 @@ pub struct PutPartnerEventsRequestEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutPartnerEventsResponse {
     /// <p>The list of events from this operation that were successfully written to the partner event bus.</p>
     #[serde(rename = "Entries")]
@@ -813,7 +840,7 @@ pub struct PutPartnerEventsResponse {
 
 /// <p>Represents an event that a partner tried to generate but failed.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutPartnerEventsResultEntry {
     /// <p>The error code that indicates why the event submission failed.</p>
     #[serde(rename = "ErrorCode")]
@@ -830,6 +857,7 @@ pub struct PutPartnerEventsResultEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutPermissionRequest {
     /// <p>The action that you're enabling the other account to perform. Currently, this must be <code>events:PutEvents</code>.</p>
     #[serde(rename = "Action")]
@@ -851,6 +879,7 @@ pub struct PutPermissionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutRuleRequest {
     /// <p>A description of the rule.</p>
     #[serde(rename = "Description")]
@@ -886,7 +915,7 @@ pub struct PutRuleRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutRuleResponse {
     /// <p>The Amazon Resource Name (ARN) of the rule.</p>
     #[serde(rename = "RuleArn")]
@@ -895,6 +924,7 @@ pub struct PutRuleResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutTargetsRequest {
     /// <p>The name of the event bus associated with the rule. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -909,7 +939,7 @@ pub struct PutTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutTargetsResponse {
     /// <p>The failed target entries.</p>
     #[serde(rename = "FailedEntries")]
@@ -923,7 +953,7 @@ pub struct PutTargetsResponse {
 
 /// <p>Represents a target that failed to be added to a rule.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutTargetsResultEntry {
     /// <p>The error code that indicates why the target addition failed. If the value is <code>ConcurrentModificationException</code>, too many requests were made at the same time.</p>
     #[serde(rename = "ErrorCode")]
@@ -940,6 +970,7 @@ pub struct PutTargetsResultEntry {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemovePermissionRequest {
     /// <p>The name of the event bus to revoke permissions for. If you omit this, the default event bus is used.</p>
     #[serde(rename = "EventBusName")]
@@ -951,6 +982,7 @@ pub struct RemovePermissionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTargetsRequest {
     /// <p>The name of the event bus associated with the rule.</p>
     #[serde(rename = "EventBusName")]
@@ -969,7 +1001,7 @@ pub struct RemoveTargetsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveTargetsResponse {
     /// <p>The failed target entries.</p>
     #[serde(rename = "FailedEntries")]
@@ -983,7 +1015,7 @@ pub struct RemoveTargetsResponse {
 
 /// <p>Represents a target that failed to be removed from a rule.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveTargetsResultEntry {
     /// <p>The error code that indicates why the target removal failed. If the value is <code>ConcurrentModificationException</code>, too many requests were made at the same time.</p>
     #[serde(rename = "ErrorCode")]
@@ -1001,7 +1033,7 @@ pub struct RemoveTargetsResultEntry {
 
 /// <p>Contains information about a rule in Amazon EventBridge.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Rule {
     /// <p>The Amazon Resource Name (ARN) of the rule.</p>
     #[serde(rename = "Arn")]
@@ -1081,6 +1113,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the rule that you're adding tags to.</p>
     #[serde(rename = "ResourceARN")]
@@ -1091,7 +1124,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Targets are the resources to be invoked when a rule is triggered. For a complete list of services and resources that can be set as a target, see <a>PutTargets</a>.</p> <p>If you're setting the event bus of another account as the target and that account granted permission to your account through an organization instead of directly by the account ID, you must specify a <code>RoleArn</code> with proper permissions in the <code>Target</code> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending and Receiving Events Between AWS Accounts</a> in the <i>Amazon EventBridge User Guide</i>.</p>
@@ -1142,6 +1175,7 @@ pub struct Target {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TestEventPatternRequest {
     /// <p>The event, in JSON format, to test against the event pattern.</p>
     #[serde(rename = "Event")]
@@ -1152,7 +1186,7 @@ pub struct TestEventPatternRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TestEventPatternResponse {
     /// <p>Indicates whether the event matches the event pattern.</p>
     #[serde(rename = "Result")]
@@ -1161,6 +1195,7 @@ pub struct TestEventPatternResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ARN of the rule that you're removing tags from.</p>
     #[serde(rename = "ResourceARN")]
@@ -1171,7 +1206,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 /// Errors returned by ActivateEventSource
@@ -1208,19 +1243,16 @@ impl ActivateEventSourceError {
     }
 }
 impl fmt::Display for ActivateEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ActivateEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            ActivateEventSourceError::Internal(ref cause) => cause,
-            ActivateEventSourceError::InvalidState(ref cause) => cause,
-            ActivateEventSourceError::ResourceNotFound(ref cause) => cause,
+            ActivateEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
+            ActivateEventSourceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            ActivateEventSourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ActivateEventSourceError {}
 /// Errors returned by CreateEventBus
 #[derive(Debug, PartialEq)]
 pub enum CreateEventBusError {
@@ -1272,22 +1304,19 @@ impl CreateEventBusError {
     }
 }
 impl fmt::Display for CreateEventBusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateEventBusError {
-    fn description(&self) -> &str {
         match *self {
-            CreateEventBusError::ConcurrentModification(ref cause) => cause,
-            CreateEventBusError::Internal(ref cause) => cause,
-            CreateEventBusError::InvalidState(ref cause) => cause,
-            CreateEventBusError::LimitExceeded(ref cause) => cause,
-            CreateEventBusError::ResourceAlreadyExists(ref cause) => cause,
-            CreateEventBusError::ResourceNotFound(ref cause) => cause,
+            CreateEventBusError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateEventBusError::Internal(ref cause) => write!(f, "{}", cause),
+            CreateEventBusError::InvalidState(ref cause) => write!(f, "{}", cause),
+            CreateEventBusError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateEventBusError::ResourceAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateEventBusError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateEventBusError {}
 /// Errors returned by CreatePartnerEventSource
 #[derive(Debug, PartialEq)]
 pub enum CreatePartnerEventSourceError {
@@ -1331,20 +1360,21 @@ impl CreatePartnerEventSourceError {
     }
 }
 impl fmt::Display for CreatePartnerEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePartnerEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePartnerEventSourceError::ConcurrentModification(ref cause) => cause,
-            CreatePartnerEventSourceError::Internal(ref cause) => cause,
-            CreatePartnerEventSourceError::LimitExceeded(ref cause) => cause,
-            CreatePartnerEventSourceError::ResourceAlreadyExists(ref cause) => cause,
+            CreatePartnerEventSourceError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreatePartnerEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
+            CreatePartnerEventSourceError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreatePartnerEventSourceError::ResourceAlreadyExists(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreatePartnerEventSourceError {}
 /// Errors returned by DeactivateEventSource
 #[derive(Debug, PartialEq)]
 pub enum DeactivateEventSourceError {
@@ -1379,19 +1409,16 @@ impl DeactivateEventSourceError {
     }
 }
 impl fmt::Display for DeactivateEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeactivateEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            DeactivateEventSourceError::Internal(ref cause) => cause,
-            DeactivateEventSourceError::InvalidState(ref cause) => cause,
-            DeactivateEventSourceError::ResourceNotFound(ref cause) => cause,
+            DeactivateEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
+            DeactivateEventSourceError::InvalidState(ref cause) => write!(f, "{}", cause),
+            DeactivateEventSourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeactivateEventSourceError {}
 /// Errors returned by DeleteEventBus
 #[derive(Debug, PartialEq)]
 pub enum DeleteEventBusError {
@@ -1414,17 +1441,14 @@ impl DeleteEventBusError {
     }
 }
 impl fmt::Display for DeleteEventBusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteEventBusError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteEventBusError::Internal(ref cause) => cause,
+            DeleteEventBusError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteEventBusError {}
 /// Errors returned by DeletePartnerEventSource
 #[derive(Debug, PartialEq)]
 pub enum DeletePartnerEventSourceError {
@@ -1447,17 +1471,14 @@ impl DeletePartnerEventSourceError {
     }
 }
 impl fmt::Display for DeletePartnerEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeletePartnerEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            DeletePartnerEventSourceError::Internal(ref cause) => cause,
+            DeletePartnerEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeletePartnerEventSourceError {}
 /// Errors returned by DeleteRule
 #[derive(Debug, PartialEq)]
 pub enum DeleteRuleError {
@@ -1495,20 +1516,17 @@ impl DeleteRuleError {
     }
 }
 impl fmt::Display for DeleteRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRuleError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRuleError::ConcurrentModification(ref cause) => cause,
-            DeleteRuleError::Internal(ref cause) => cause,
-            DeleteRuleError::ManagedRule(ref cause) => cause,
-            DeleteRuleError::ResourceNotFound(ref cause) => cause,
+            DeleteRuleError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            DeleteRuleError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            DeleteRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRuleError {}
 /// Errors returned by DescribeEventBus
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventBusError {
@@ -1536,18 +1554,15 @@ impl DescribeEventBusError {
     }
 }
 impl fmt::Display for DescribeEventBusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventBusError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventBusError::Internal(ref cause) => cause,
-            DescribeEventBusError::ResourceNotFound(ref cause) => cause,
+            DescribeEventBusError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeEventBusError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventBusError {}
 /// Errors returned by DescribeEventSource
 #[derive(Debug, PartialEq)]
 pub enum DescribeEventSourceError {
@@ -1577,18 +1592,15 @@ impl DescribeEventSourceError {
     }
 }
 impl fmt::Display for DescribeEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEventSourceError::Internal(ref cause) => cause,
-            DescribeEventSourceError::ResourceNotFound(ref cause) => cause,
+            DescribeEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeEventSourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEventSourceError {}
 /// Errors returned by DescribePartnerEventSource
 #[derive(Debug, PartialEq)]
 pub enum DescribePartnerEventSourceError {
@@ -1620,18 +1632,15 @@ impl DescribePartnerEventSourceError {
     }
 }
 impl fmt::Display for DescribePartnerEventSourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePartnerEventSourceError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePartnerEventSourceError::Internal(ref cause) => cause,
-            DescribePartnerEventSourceError::ResourceNotFound(ref cause) => cause,
+            DescribePartnerEventSourceError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribePartnerEventSourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePartnerEventSourceError {}
 /// Errors returned by DescribeRule
 #[derive(Debug, PartialEq)]
 pub enum DescribeRuleError {
@@ -1659,18 +1668,15 @@ impl DescribeRuleError {
     }
 }
 impl fmt::Display for DescribeRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeRuleError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeRuleError::Internal(ref cause) => cause,
-            DescribeRuleError::ResourceNotFound(ref cause) => cause,
+            DescribeRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            DescribeRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeRuleError {}
 /// Errors returned by DisableRule
 #[derive(Debug, PartialEq)]
 pub enum DisableRuleError {
@@ -1708,20 +1714,17 @@ impl DisableRuleError {
     }
 }
 impl fmt::Display for DisableRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisableRuleError {
-    fn description(&self) -> &str {
         match *self {
-            DisableRuleError::ConcurrentModification(ref cause) => cause,
-            DisableRuleError::Internal(ref cause) => cause,
-            DisableRuleError::ManagedRule(ref cause) => cause,
-            DisableRuleError::ResourceNotFound(ref cause) => cause,
+            DisableRuleError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DisableRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            DisableRuleError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            DisableRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisableRuleError {}
 /// Errors returned by EnableRule
 #[derive(Debug, PartialEq)]
 pub enum EnableRuleError {
@@ -1759,20 +1762,17 @@ impl EnableRuleError {
     }
 }
 impl fmt::Display for EnableRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for EnableRuleError {
-    fn description(&self) -> &str {
         match *self {
-            EnableRuleError::ConcurrentModification(ref cause) => cause,
-            EnableRuleError::Internal(ref cause) => cause,
-            EnableRuleError::ManagedRule(ref cause) => cause,
-            EnableRuleError::ResourceNotFound(ref cause) => cause,
+            EnableRuleError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            EnableRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            EnableRuleError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            EnableRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for EnableRuleError {}
 /// Errors returned by ListEventBuses
 #[derive(Debug, PartialEq)]
 pub enum ListEventBusesError {
@@ -1795,17 +1795,14 @@ impl ListEventBusesError {
     }
 }
 impl fmt::Display for ListEventBusesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListEventBusesError {
-    fn description(&self) -> &str {
         match *self {
-            ListEventBusesError::Internal(ref cause) => cause,
+            ListEventBusesError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListEventBusesError {}
 /// Errors returned by ListEventSources
 #[derive(Debug, PartialEq)]
 pub enum ListEventSourcesError {
@@ -1828,17 +1825,14 @@ impl ListEventSourcesError {
     }
 }
 impl fmt::Display for ListEventSourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListEventSourcesError {
-    fn description(&self) -> &str {
         match *self {
-            ListEventSourcesError::Internal(ref cause) => cause,
+            ListEventSourcesError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListEventSourcesError {}
 /// Errors returned by ListPartnerEventSourceAccounts
 #[derive(Debug, PartialEq)]
 pub enum ListPartnerEventSourceAccountsError {
@@ -1872,18 +1866,17 @@ impl ListPartnerEventSourceAccountsError {
     }
 }
 impl fmt::Display for ListPartnerEventSourceAccountsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPartnerEventSourceAccountsError {
-    fn description(&self) -> &str {
         match *self {
-            ListPartnerEventSourceAccountsError::Internal(ref cause) => cause,
-            ListPartnerEventSourceAccountsError::ResourceNotFound(ref cause) => cause,
+            ListPartnerEventSourceAccountsError::Internal(ref cause) => write!(f, "{}", cause),
+            ListPartnerEventSourceAccountsError::ResourceNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for ListPartnerEventSourceAccountsError {}
 /// Errors returned by ListPartnerEventSources
 #[derive(Debug, PartialEq)]
 pub enum ListPartnerEventSourcesError {
@@ -1906,17 +1899,14 @@ impl ListPartnerEventSourcesError {
     }
 }
 impl fmt::Display for ListPartnerEventSourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPartnerEventSourcesError {
-    fn description(&self) -> &str {
         match *self {
-            ListPartnerEventSourcesError::Internal(ref cause) => cause,
+            ListPartnerEventSourcesError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPartnerEventSourcesError {}
 /// Errors returned by ListRuleNamesByTarget
 #[derive(Debug, PartialEq)]
 pub enum ListRuleNamesByTargetError {
@@ -1946,18 +1936,15 @@ impl ListRuleNamesByTargetError {
     }
 }
 impl fmt::Display for ListRuleNamesByTargetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRuleNamesByTargetError {
-    fn description(&self) -> &str {
         match *self {
-            ListRuleNamesByTargetError::Internal(ref cause) => cause,
-            ListRuleNamesByTargetError::ResourceNotFound(ref cause) => cause,
+            ListRuleNamesByTargetError::Internal(ref cause) => write!(f, "{}", cause),
+            ListRuleNamesByTargetError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRuleNamesByTargetError {}
 /// Errors returned by ListRules
 #[derive(Debug, PartialEq)]
 pub enum ListRulesError {
@@ -1985,18 +1972,15 @@ impl ListRulesError {
     }
 }
 impl fmt::Display for ListRulesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListRulesError {
-    fn description(&self) -> &str {
         match *self {
-            ListRulesError::Internal(ref cause) => cause,
-            ListRulesError::ResourceNotFound(ref cause) => cause,
+            ListRulesError::Internal(ref cause) => write!(f, "{}", cause),
+            ListRulesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListRulesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -2026,18 +2010,15 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::Internal(ref cause) => cause,
-            ListTagsForResourceError::ResourceNotFound(ref cause) => cause,
+            ListTagsForResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListTargetsByRule
 #[derive(Debug, PartialEq)]
 pub enum ListTargetsByRuleError {
@@ -2065,18 +2046,15 @@ impl ListTargetsByRuleError {
     }
 }
 impl fmt::Display for ListTargetsByRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTargetsByRuleError {
-    fn description(&self) -> &str {
         match *self {
-            ListTargetsByRuleError::Internal(ref cause) => cause,
-            ListTargetsByRuleError::ResourceNotFound(ref cause) => cause,
+            ListTargetsByRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            ListTargetsByRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTargetsByRuleError {}
 /// Errors returned by PutEvents
 #[derive(Debug, PartialEq)]
 pub enum PutEventsError {
@@ -2099,17 +2077,14 @@ impl PutEventsError {
     }
 }
 impl fmt::Display for PutEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutEventsError {
-    fn description(&self) -> &str {
         match *self {
-            PutEventsError::Internal(ref cause) => cause,
+            PutEventsError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutEventsError {}
 /// Errors returned by PutPartnerEvents
 #[derive(Debug, PartialEq)]
 pub enum PutPartnerEventsError {
@@ -2132,17 +2107,14 @@ impl PutPartnerEventsError {
     }
 }
 impl fmt::Display for PutPartnerEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutPartnerEventsError {
-    fn description(&self) -> &str {
         match *self {
-            PutPartnerEventsError::Internal(ref cause) => cause,
+            PutPartnerEventsError::Internal(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutPartnerEventsError {}
 /// Errors returned by PutPermission
 #[derive(Debug, PartialEq)]
 pub enum PutPermissionError {
@@ -2182,20 +2154,17 @@ impl PutPermissionError {
     }
 }
 impl fmt::Display for PutPermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutPermissionError {
-    fn description(&self) -> &str {
         match *self {
-            PutPermissionError::ConcurrentModification(ref cause) => cause,
-            PutPermissionError::Internal(ref cause) => cause,
-            PutPermissionError::PolicyLengthExceeded(ref cause) => cause,
-            PutPermissionError::ResourceNotFound(ref cause) => cause,
+            PutPermissionError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            PutPermissionError::Internal(ref cause) => write!(f, "{}", cause),
+            PutPermissionError::PolicyLengthExceeded(ref cause) => write!(f, "{}", cause),
+            PutPermissionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutPermissionError {}
 /// Errors returned by PutRule
 #[derive(Debug, PartialEq)]
 pub enum PutRuleError {
@@ -2243,22 +2212,19 @@ impl PutRuleError {
     }
 }
 impl fmt::Display for PutRuleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutRuleError {
-    fn description(&self) -> &str {
         match *self {
-            PutRuleError::ConcurrentModification(ref cause) => cause,
-            PutRuleError::Internal(ref cause) => cause,
-            PutRuleError::InvalidEventPattern(ref cause) => cause,
-            PutRuleError::LimitExceeded(ref cause) => cause,
-            PutRuleError::ManagedRule(ref cause) => cause,
-            PutRuleError::ResourceNotFound(ref cause) => cause,
+            PutRuleError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            PutRuleError::Internal(ref cause) => write!(f, "{}", cause),
+            PutRuleError::InvalidEventPattern(ref cause) => write!(f, "{}", cause),
+            PutRuleError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutRuleError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            PutRuleError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutRuleError {}
 /// Errors returned by PutTargets
 #[derive(Debug, PartialEq)]
 pub enum PutTargetsError {
@@ -2301,21 +2267,18 @@ impl PutTargetsError {
     }
 }
 impl fmt::Display for PutTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            PutTargetsError::ConcurrentModification(ref cause) => cause,
-            PutTargetsError::Internal(ref cause) => cause,
-            PutTargetsError::LimitExceeded(ref cause) => cause,
-            PutTargetsError::ManagedRule(ref cause) => cause,
-            PutTargetsError::ResourceNotFound(ref cause) => cause,
+            PutTargetsError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            PutTargetsError::Internal(ref cause) => write!(f, "{}", cause),
+            PutTargetsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutTargetsError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            PutTargetsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutTargetsError {}
 /// Errors returned by RemovePermission
 #[derive(Debug, PartialEq)]
 pub enum RemovePermissionError {
@@ -2350,19 +2313,16 @@ impl RemovePermissionError {
     }
 }
 impl fmt::Display for RemovePermissionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemovePermissionError {
-    fn description(&self) -> &str {
         match *self {
-            RemovePermissionError::ConcurrentModification(ref cause) => cause,
-            RemovePermissionError::Internal(ref cause) => cause,
-            RemovePermissionError::ResourceNotFound(ref cause) => cause,
+            RemovePermissionError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            RemovePermissionError::Internal(ref cause) => write!(f, "{}", cause),
+            RemovePermissionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemovePermissionError {}
 /// Errors returned by RemoveTargets
 #[derive(Debug, PartialEq)]
 pub enum RemoveTargetsError {
@@ -2402,20 +2362,17 @@ impl RemoveTargetsError {
     }
 }
 impl fmt::Display for RemoveTargetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTargetsError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTargetsError::ConcurrentModification(ref cause) => cause,
-            RemoveTargetsError::Internal(ref cause) => cause,
-            RemoveTargetsError::ManagedRule(ref cause) => cause,
-            RemoveTargetsError::ResourceNotFound(ref cause) => cause,
+            RemoveTargetsError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            RemoveTargetsError::Internal(ref cause) => write!(f, "{}", cause),
+            RemoveTargetsError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            RemoveTargetsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveTargetsError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -2453,20 +2410,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::ConcurrentModification(ref cause) => cause,
-            TagResourceError::Internal(ref cause) => cause,
-            TagResourceError::ManagedRule(ref cause) => cause,
-            TagResourceError::ResourceNotFound(ref cause) => cause,
+            TagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            TagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by TestEventPattern
 #[derive(Debug, PartialEq)]
 pub enum TestEventPatternError {
@@ -2496,18 +2450,15 @@ impl TestEventPatternError {
     }
 }
 impl fmt::Display for TestEventPatternError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TestEventPatternError {
-    fn description(&self) -> &str {
         match *self {
-            TestEventPatternError::Internal(ref cause) => cause,
-            TestEventPatternError::InvalidEventPattern(ref cause) => cause,
+            TestEventPatternError::Internal(ref cause) => write!(f, "{}", cause),
+            TestEventPatternError::InvalidEventPattern(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TestEventPatternError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -2547,20 +2498,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::ConcurrentModification(ref cause) => cause,
-            UntagResourceError::Internal(ref cause) => cause,
-            UntagResourceError::ManagedRule(ref cause) => cause,
-            UntagResourceError::ResourceNotFound(ref cause) => cause,
+            UntagResourceError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Internal(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ManagedRule(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Trait representing the capabilities of the Amazon EventBridge API. Amazon EventBridge clients implement this trait.
 #[async_trait]
 pub trait EventBridge {

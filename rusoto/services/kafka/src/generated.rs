@@ -23,6 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <pre><code>        &lt;p&gt;Specifies the EBS volume upgrade information. The broker identifier must be set to the keyword ALL. This means the changes apply to all the brokers in the cluster.&lt;/p&gt;
@@ -74,7 +75,7 @@ pub struct BrokerNodeGroupInfo {
 /// <pre><code>        &lt;p&gt;BrokerNodeInfo&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerNodeInfo {
     /// <pre><code>        &lt;p&gt;The attached elastic network interface of the broker.&lt;/p&gt;
     /// </code></pre>
@@ -111,7 +112,7 @@ pub struct BrokerNodeInfo {
 /// <pre><code>        &lt;p&gt;Information about the current software installed on the cluster.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerSoftwareInfo {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn&#39;t visible in this preview release.&lt;/p&gt;
     /// </code></pre>
@@ -144,7 +145,7 @@ pub struct ClientAuthentication {
 /// <pre><code>        &lt;p&gt;Returns information about a cluster.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterInfo {
     /// <pre><code>        &lt;p&gt;Arn of active cluster operation.&lt;/p&gt;
     /// </code></pre>
@@ -226,7 +227,7 @@ pub struct ClusterInfo {
 /// <pre><code>        &lt;p&gt;Returns information about a cluster operation.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterOperationInfo {
     /// <pre><code>        &lt;p&gt;The ID of the API request that triggered this operation.&lt;/p&gt;
     /// </code></pre>
@@ -283,7 +284,7 @@ pub struct ClusterOperationInfo {
 /// <pre><code>        &lt;p&gt;Represents an MSK Configuration.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Configuration {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
     /// </code></pre>
@@ -328,7 +329,7 @@ pub struct ConfigurationInfo {
 /// <pre><code>        &lt;p&gt;Describes a configuration revision.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConfigurationRevision {
     /// <pre><code>        &lt;p&gt;The time when the configuration revision was created.&lt;/p&gt;
     /// </code></pre>
@@ -346,6 +347,7 @@ pub struct ConfigurationRevision {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClusterRequest {
     /// <pre><code>        &lt;p&gt;Information about the broker nodes in the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -396,7 +398,7 @@ pub struct CreateClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClusterResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -416,6 +418,7 @@ pub struct CreateClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The description of the configuration.&lt;/p&gt;
     /// </code></pre>
@@ -443,7 +446,7 @@ pub struct CreateConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
     /// </code></pre>
@@ -468,6 +471,7 @@ pub struct CreateConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteClusterRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -481,7 +485,7 @@ pub struct DeleteClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteClusterResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -496,6 +500,7 @@ pub struct DeleteClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterOperationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the MSK cluster operation.&lt;/p&gt;
     /// </code></pre>
@@ -504,7 +509,7 @@ pub struct DescribeClusterOperationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterOperationResponse {
     /// <pre><code>        &lt;p&gt;Cluster operation information&lt;/p&gt;
     /// </code></pre>
@@ -514,6 +519,7 @@ pub struct DescribeClusterOperationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -522,7 +528,7 @@ pub struct DescribeClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterResponse {
     /// <pre><code>        &lt;p&gt;The cluster information.&lt;/p&gt;
     /// </code></pre>
@@ -532,6 +538,7 @@ pub struct DescribeClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
     /// </code></pre>
@@ -540,7 +547,7 @@ pub struct DescribeConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
     /// </code></pre>
@@ -575,6 +582,7 @@ pub struct DescribeConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRevisionRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
     /// </code></pre>
@@ -587,7 +595,7 @@ pub struct DescribeConfigurationRevisionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationRevisionResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
     /// </code></pre>
@@ -686,7 +694,7 @@ pub struct EncryptionInfo {
 /// <pre><code>        &lt;p&gt;Returns information about an error state of the cluster.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorInfo {
     /// <pre><code>        &lt;p&gt;A number describing the error programmatically.&lt;/p&gt;
     /// </code></pre>
@@ -701,6 +709,7 @@ pub struct ErrorInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBootstrapBrokersRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -709,7 +718,7 @@ pub struct GetBootstrapBrokersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBootstrapBrokersResponse {
     /// <pre><code>        &lt;p&gt;A string containing one or more hostname:port pairs.&lt;/p&gt;
     /// </code></pre>
@@ -726,7 +735,7 @@ pub struct GetBootstrapBrokersResponse {
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JmxExporter {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -737,6 +746,7 @@ pub struct JmxExporter {
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct JmxExporterInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -745,6 +755,7 @@ pub struct JmxExporterInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClusterOperationsRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -764,7 +775,7 @@ pub struct ListClusterOperationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClusterOperationsResponse {
     /// <pre><code>        &lt;p&gt;An array of cluster operation information objects.&lt;/p&gt;
     /// </code></pre>
@@ -779,6 +790,7 @@ pub struct ListClusterOperationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClustersRequest {
     /// <pre><code>        &lt;p&gt;Specify a prefix of the name of the clusters that you want to list. The service lists all the clusters whose names start with this prefix.&lt;/p&gt;
     /// </code></pre>
@@ -799,7 +811,7 @@ pub struct ListClustersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClustersResponse {
     /// <pre><code>        &lt;p&gt;Information on each of the MSK clusters in the response.&lt;/p&gt;
     /// </code></pre>
@@ -815,6 +827,7 @@ pub struct ListClustersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationRevisionsRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
     /// </code></pre>
@@ -834,7 +847,7 @@ pub struct ListConfigurationRevisionsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationRevisionsResponse {
     /// <pre><code>        &lt;p&gt;Paginated results marker.&lt;/p&gt;
     /// </code></pre>
@@ -849,6 +862,7 @@ pub struct ListConfigurationRevisionsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationsRequest {
     /// <pre><code>        &lt;p&gt;The maximum number of results to return in the response. If there are more results, the response includes a NextToken parameter.&lt;/p&gt;
     /// </code></pre>
@@ -864,7 +878,7 @@ pub struct ListConfigurationsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationsResponse {
     /// <pre><code>        &lt;p&gt;An array of MSK configurations.&lt;/p&gt;
     /// </code></pre>
@@ -880,6 +894,7 @@ pub struct ListConfigurationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListNodesRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -899,7 +914,7 @@ pub struct ListNodesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListNodesResponse {
     /// <pre><code>        &lt;p&gt;The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response.
     /// To get another batch of nodes, provide this token in your next request.&lt;/p&gt;
@@ -915,6 +930,7 @@ pub struct ListNodesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
     /// </code></pre>
@@ -923,7 +939,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <pre><code>        &lt;p&gt;The key-value pair for the resource tag.&lt;/p&gt;
     /// </code></pre>
@@ -935,7 +951,7 @@ pub struct ListTagsForResourceResponse {
 /// <pre><code>        &lt;p&gt;Information about cluster attributes that can be updated via update APIs.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MutableClusterInfo {
     /// <pre><code>        &lt;p&gt;Specifies the size of the EBS volume and the ID of the associated broker.&lt;/p&gt;
     /// </code></pre>
@@ -967,7 +983,7 @@ pub struct MutableClusterInfo {
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeExporter {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -978,6 +994,7 @@ pub struct NodeExporter {
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NodeExporterInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -988,7 +1005,7 @@ pub struct NodeExporterInfo {
 /// <pre><code>        &lt;p&gt;The node information object.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeInfo {
     /// <pre><code>        &lt;p&gt;The start time.&lt;/p&gt;
     /// </code></pre>
@@ -1025,7 +1042,7 @@ pub struct NodeInfo {
 /// <pre><code>        &lt;p&gt;JMX and Node monitoring for the MSK cluster.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpenMonitoring {
     /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
     /// </code></pre>
@@ -1036,6 +1053,7 @@ pub struct OpenMonitoring {
 /// <pre><code>        &lt;p&gt;JMX and Node monitoring for the MSK cluster.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpenMonitoringInfo {
     /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
     /// </code></pre>
@@ -1046,7 +1064,7 @@ pub struct OpenMonitoringInfo {
 /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Prometheus {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -1063,6 +1081,7 @@ pub struct Prometheus {
 /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PrometheusInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
     /// </code></pre>
@@ -1088,6 +1107,7 @@ pub struct StorageInfo {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
     /// </code></pre>
@@ -1111,6 +1131,7 @@ pub struct Tls {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
     /// </code></pre>
@@ -1142,6 +1163,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBrokerCountRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1158,7 +1180,7 @@ pub struct UpdateBrokerCountRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBrokerCountResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1173,6 +1195,7 @@ pub struct UpdateBrokerCountResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBrokerStorageRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1189,7 +1212,7 @@ pub struct UpdateBrokerStorageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBrokerStorageResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1204,6 +1227,7 @@ pub struct UpdateBrokerStorageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClusterConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1220,7 +1244,7 @@ pub struct UpdateClusterConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClusterConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1236,6 +1260,7 @@ pub struct UpdateClusterConfigurationResponse {
 
 /// <p>Request body for UpdateMonitoring.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMonitoringRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1258,7 +1283,7 @@ pub struct UpdateMonitoringRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMonitoringResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
     /// </code></pre>
@@ -1275,7 +1300,7 @@ pub struct UpdateMonitoringResponse {
 /// <pre><code>        &lt;p&gt;Zookeeper node information.&lt;/p&gt;
 /// </code></pre>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ZookeeperNodeInfo {
     /// <pre><code>        &lt;p&gt;The attached elastic network interface of the broker.&lt;/p&gt;
     /// </code></pre>
@@ -1363,23 +1388,20 @@ impl CreateClusterError {
     }
 }
 impl fmt::Display for CreateClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateClusterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateClusterError::BadRequest(ref cause) => cause,
-            CreateClusterError::Conflict(ref cause) => cause,
-            CreateClusterError::Forbidden(ref cause) => cause,
-            CreateClusterError::InternalServerError(ref cause) => cause,
-            CreateClusterError::ServiceUnavailable(ref cause) => cause,
-            CreateClusterError::TooManyRequests(ref cause) => cause,
-            CreateClusterError::Unauthorized(ref cause) => cause,
+            CreateClusterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateClusterError {}
 /// Errors returned by CreateConfiguration
 #[derive(Debug, PartialEq)]
 pub enum CreateConfigurationError {
@@ -1443,23 +1465,20 @@ impl CreateConfigurationError {
     }
 }
 impl fmt::Display for CreateConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateConfigurationError::BadRequest(ref cause) => cause,
-            CreateConfigurationError::Conflict(ref cause) => cause,
-            CreateConfigurationError::Forbidden(ref cause) => cause,
-            CreateConfigurationError::InternalServerError(ref cause) => cause,
-            CreateConfigurationError::ServiceUnavailable(ref cause) => cause,
-            CreateConfigurationError::TooManyRequests(ref cause) => cause,
-            CreateConfigurationError::Unauthorized(ref cause) => cause,
+            CreateConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateConfigurationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateConfigurationError {}
 /// Errors returned by DeleteCluster
 #[derive(Debug, PartialEq)]
 pub enum DeleteClusterError {
@@ -1501,20 +1520,17 @@ impl DeleteClusterError {
     }
 }
 impl fmt::Display for DeleteClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteClusterError::BadRequest(ref cause) => cause,
-            DeleteClusterError::Forbidden(ref cause) => cause,
-            DeleteClusterError::InternalServerError(ref cause) => cause,
-            DeleteClusterError::NotFound(ref cause) => cause,
+            DeleteClusterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteClusterError {}
 /// Errors returned by DescribeCluster
 #[derive(Debug, PartialEq)]
 pub enum DescribeClusterError {
@@ -1562,21 +1578,18 @@ impl DescribeClusterError {
     }
 }
 impl fmt::Display for DescribeClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeClusterError::BadRequest(ref cause) => cause,
-            DescribeClusterError::Forbidden(ref cause) => cause,
-            DescribeClusterError::InternalServerError(ref cause) => cause,
-            DescribeClusterError::NotFound(ref cause) => cause,
-            DescribeClusterError::Unauthorized(ref cause) => cause,
+            DescribeClusterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeClusterError {}
 /// Errors returned by DescribeClusterOperation
 #[derive(Debug, PartialEq)]
 pub enum DescribeClusterOperationError {
@@ -1628,21 +1641,18 @@ impl DescribeClusterOperationError {
     }
 }
 impl fmt::Display for DescribeClusterOperationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeClusterOperationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeClusterOperationError::BadRequest(ref cause) => cause,
-            DescribeClusterOperationError::Forbidden(ref cause) => cause,
-            DescribeClusterOperationError::InternalServerError(ref cause) => cause,
-            DescribeClusterOperationError::NotFound(ref cause) => cause,
-            DescribeClusterOperationError::Unauthorized(ref cause) => cause,
+            DescribeClusterOperationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeClusterOperationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeClusterOperationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeClusterOperationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeClusterOperationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeClusterOperationError {}
 /// Errors returned by DescribeConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DescribeConfigurationError {
@@ -1700,22 +1710,19 @@ impl DescribeConfigurationError {
     }
 }
 impl fmt::Display for DescribeConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConfigurationError::BadRequest(ref cause) => cause,
-            DescribeConfigurationError::Forbidden(ref cause) => cause,
-            DescribeConfigurationError::InternalServerError(ref cause) => cause,
-            DescribeConfigurationError::NotFound(ref cause) => cause,
-            DescribeConfigurationError::ServiceUnavailable(ref cause) => cause,
-            DescribeConfigurationError::Unauthorized(ref cause) => cause,
+            DescribeConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeConfigurationError {}
 /// Errors returned by DescribeConfigurationRevision
 #[derive(Debug, PartialEq)]
 pub enum DescribeConfigurationRevisionError {
@@ -1783,22 +1790,23 @@ impl DescribeConfigurationRevisionError {
     }
 }
 impl fmt::Display for DescribeConfigurationRevisionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeConfigurationRevisionError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeConfigurationRevisionError::BadRequest(ref cause) => cause,
-            DescribeConfigurationRevisionError::Forbidden(ref cause) => cause,
-            DescribeConfigurationRevisionError::InternalServerError(ref cause) => cause,
-            DescribeConfigurationRevisionError::NotFound(ref cause) => cause,
-            DescribeConfigurationRevisionError::ServiceUnavailable(ref cause) => cause,
-            DescribeConfigurationRevisionError::Unauthorized(ref cause) => cause,
+            DescribeConfigurationRevisionError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationRevisionError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationRevisionError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConfigurationRevisionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeConfigurationRevisionError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeConfigurationRevisionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeConfigurationRevisionError {}
 /// Errors returned by GetBootstrapBrokers
 #[derive(Debug, PartialEq)]
 pub enum GetBootstrapBrokersError {
@@ -1848,21 +1856,18 @@ impl GetBootstrapBrokersError {
     }
 }
 impl fmt::Display for GetBootstrapBrokersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetBootstrapBrokersError {
-    fn description(&self) -> &str {
         match *self {
-            GetBootstrapBrokersError::BadRequest(ref cause) => cause,
-            GetBootstrapBrokersError::Conflict(ref cause) => cause,
-            GetBootstrapBrokersError::Forbidden(ref cause) => cause,
-            GetBootstrapBrokersError::InternalServerError(ref cause) => cause,
-            GetBootstrapBrokersError::Unauthorized(ref cause) => cause,
+            GetBootstrapBrokersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetBootstrapBrokersError::Conflict(ref cause) => write!(f, "{}", cause),
+            GetBootstrapBrokersError::Forbidden(ref cause) => write!(f, "{}", cause),
+            GetBootstrapBrokersError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            GetBootstrapBrokersError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetBootstrapBrokersError {}
 /// Errors returned by ListClusterOperations
 #[derive(Debug, PartialEq)]
 pub enum ListClusterOperationsError {
@@ -1906,20 +1911,17 @@ impl ListClusterOperationsError {
     }
 }
 impl fmt::Display for ListClusterOperationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListClusterOperationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListClusterOperationsError::BadRequest(ref cause) => cause,
-            ListClusterOperationsError::Forbidden(ref cause) => cause,
-            ListClusterOperationsError::InternalServerError(ref cause) => cause,
-            ListClusterOperationsError::Unauthorized(ref cause) => cause,
+            ListClusterOperationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListClusterOperationsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListClusterOperationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListClusterOperationsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListClusterOperationsError {}
 /// Errors returned by ListClusters
 #[derive(Debug, PartialEq)]
 pub enum ListClustersError {
@@ -1961,20 +1963,17 @@ impl ListClustersError {
     }
 }
 impl fmt::Display for ListClustersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListClustersError {
-    fn description(&self) -> &str {
         match *self {
-            ListClustersError::BadRequest(ref cause) => cause,
-            ListClustersError::Forbidden(ref cause) => cause,
-            ListClustersError::InternalServerError(ref cause) => cause,
-            ListClustersError::Unauthorized(ref cause) => cause,
+            ListClustersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListClustersError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListClustersError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListClustersError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListClustersError {}
 /// Errors returned by ListConfigurationRevisions
 #[derive(Debug, PartialEq)]
 pub enum ListConfigurationRevisionsError {
@@ -2040,22 +2039,23 @@ impl ListConfigurationRevisionsError {
     }
 }
 impl fmt::Display for ListConfigurationRevisionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConfigurationRevisionsError {
-    fn description(&self) -> &str {
         match *self {
-            ListConfigurationRevisionsError::BadRequest(ref cause) => cause,
-            ListConfigurationRevisionsError::Forbidden(ref cause) => cause,
-            ListConfigurationRevisionsError::InternalServerError(ref cause) => cause,
-            ListConfigurationRevisionsError::NotFound(ref cause) => cause,
-            ListConfigurationRevisionsError::ServiceUnavailable(ref cause) => cause,
-            ListConfigurationRevisionsError::Unauthorized(ref cause) => cause,
+            ListConfigurationRevisionsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListConfigurationRevisionsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListConfigurationRevisionsError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListConfigurationRevisionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListConfigurationRevisionsError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            ListConfigurationRevisionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConfigurationRevisionsError {}
 /// Errors returned by ListConfigurations
 #[derive(Debug, PartialEq)]
 pub enum ListConfigurationsError {
@@ -2107,21 +2107,18 @@ impl ListConfigurationsError {
     }
 }
 impl fmt::Display for ListConfigurationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListConfigurationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListConfigurationsError::BadRequest(ref cause) => cause,
-            ListConfigurationsError::Forbidden(ref cause) => cause,
-            ListConfigurationsError::InternalServerError(ref cause) => cause,
-            ListConfigurationsError::ServiceUnavailable(ref cause) => cause,
-            ListConfigurationsError::Unauthorized(ref cause) => cause,
+            ListConfigurationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            ListConfigurationsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListConfigurationsError {}
 /// Errors returned by ListNodes
 #[derive(Debug, PartialEq)]
 pub enum ListNodesError {
@@ -2163,20 +2160,17 @@ impl ListNodesError {
     }
 }
 impl fmt::Display for ListNodesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListNodesError {
-    fn description(&self) -> &str {
         match *self {
-            ListNodesError::BadRequest(ref cause) => cause,
-            ListNodesError::Forbidden(ref cause) => cause,
-            ListNodesError::InternalServerError(ref cause) => cause,
-            ListNodesError::NotFound(ref cause) => cause,
+            ListNodesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListNodesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListNodesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListNodesError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListNodesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -2214,19 +2208,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -2262,19 +2253,16 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::InternalServerError(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -2310,19 +2298,16 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::InternalServerError(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateBrokerCount
 #[derive(Debug, PartialEq)]
 pub enum UpdateBrokerCountError {
@@ -2374,21 +2359,18 @@ impl UpdateBrokerCountError {
     }
 }
 impl fmt::Display for UpdateBrokerCountError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateBrokerCountError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateBrokerCountError::BadRequest(ref cause) => cause,
-            UpdateBrokerCountError::Forbidden(ref cause) => cause,
-            UpdateBrokerCountError::InternalServerError(ref cause) => cause,
-            UpdateBrokerCountError::ServiceUnavailable(ref cause) => cause,
-            UpdateBrokerCountError::Unauthorized(ref cause) => cause,
+            UpdateBrokerCountError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerCountError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerCountError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerCountError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerCountError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateBrokerCountError {}
 /// Errors returned by UpdateBrokerStorage
 #[derive(Debug, PartialEq)]
 pub enum UpdateBrokerStorageError {
@@ -2440,21 +2422,18 @@ impl UpdateBrokerStorageError {
     }
 }
 impl fmt::Display for UpdateBrokerStorageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateBrokerStorageError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateBrokerStorageError::BadRequest(ref cause) => cause,
-            UpdateBrokerStorageError::Forbidden(ref cause) => cause,
-            UpdateBrokerStorageError::InternalServerError(ref cause) => cause,
-            UpdateBrokerStorageError::ServiceUnavailable(ref cause) => cause,
-            UpdateBrokerStorageError::Unauthorized(ref cause) => cause,
+            UpdateBrokerStorageError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerStorageError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerStorageError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerStorageError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateBrokerStorageError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateBrokerStorageError {}
 /// Errors returned by UpdateClusterConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateClusterConfigurationError {
@@ -2520,22 +2499,23 @@ impl UpdateClusterConfigurationError {
     }
 }
 impl fmt::Display for UpdateClusterConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateClusterConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateClusterConfigurationError::BadRequest(ref cause) => cause,
-            UpdateClusterConfigurationError::Forbidden(ref cause) => cause,
-            UpdateClusterConfigurationError::InternalServerError(ref cause) => cause,
-            UpdateClusterConfigurationError::NotFound(ref cause) => cause,
-            UpdateClusterConfigurationError::ServiceUnavailable(ref cause) => cause,
-            UpdateClusterConfigurationError::Unauthorized(ref cause) => cause,
+            UpdateClusterConfigurationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigurationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigurationError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateClusterConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigurationError::ServiceUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateClusterConfigurationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateClusterConfigurationError {}
 /// Errors returned by UpdateMonitoring
 #[derive(Debug, PartialEq)]
 pub enum UpdateMonitoringError {
@@ -2585,21 +2565,18 @@ impl UpdateMonitoringError {
     }
 }
 impl fmt::Display for UpdateMonitoringError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMonitoringError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMonitoringError::BadRequest(ref cause) => cause,
-            UpdateMonitoringError::Forbidden(ref cause) => cause,
-            UpdateMonitoringError::InternalServerError(ref cause) => cause,
-            UpdateMonitoringError::ServiceUnavailable(ref cause) => cause,
-            UpdateMonitoringError::Unauthorized(ref cause) => cause,
+            UpdateMonitoringError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateMonitoringError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateMonitoringError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateMonitoringError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            UpdateMonitoringError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateMonitoringError {}
 /// Trait representing the capabilities of the Kafka API. Kafka clients implement this trait.
 #[async_trait]
 pub trait Kafka {

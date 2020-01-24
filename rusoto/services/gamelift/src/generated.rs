@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptMatchInput {
     /// <p>Player response to the proposed match.</p>
     #[serde(rename = "AcceptanceType")]
@@ -39,12 +41,12 @@ pub struct AcceptMatchInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptMatchOutput {}
 
 /// <p><p>Properties that describe an alias resource.</p> <ul> <li> <p> <a>CreateAlias</a> </p> </li> <li> <p> <a>ListAliases</a> </p> </li> <li> <p> <a>DescribeAlias</a> </p> </li> <li> <p> <a>UpdateAlias</a> </p> </li> <li> <p> <a>DeleteAlias</a> </p> </li> <li> <p> <a>ResolveAlias</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Alias {
     /// <p>Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) that is assigned to a GameLift alias resource and uniquely identifies it. ARNs are unique across all Regions.. In a GameLift alias ARN, the resource ID matches the alias ID value.</p>
     #[serde(rename = "AliasArn")]
@@ -99,7 +101,7 @@ pub struct AttributeValue {
 
 /// <p>Temporary access credentials used for uploading game build files to Amazon GameLift. They are valid for a limited time. If they expire before you upload your game build, get a new set by calling <a>RequestUploadCredentials</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AwsCredentials {
     /// <p>Temporary key allowing access to the Amazon GameLift S3 account.</p>
     #[serde(rename = "AccessKeyId")]
@@ -117,7 +119,7 @@ pub struct AwsCredentials {
 
 /// <p><p>Properties describing a custom game build.</p> <p> <b>Related operations</b> </p> <ul> <li> <p> <a>CreateBuild</a> </p> </li> <li> <p> <a>ListBuilds</a> </p> </li> <li> <p> <a>DescribeBuild</a> </p> </li> <li> <p> <a>UpdateBuild</a> </p> </li> <li> <p> <a>DeleteBuild</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Build {
     /// <p>Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) that is assigned to a GameLift build resource and uniquely identifies it. ARNs are unique across all Regions. In a GameLift build ARN, the resource ID matches the <i>BuildId</i> value.</p>
     #[serde(rename = "BuildArn")]
@@ -163,6 +165,7 @@ pub struct CertificateConfiguration {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAliasInput {
     /// <p>A human-readable description of the alias.</p>
     #[serde(rename = "Description")]
@@ -182,7 +185,7 @@ pub struct CreateAliasInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAliasOutput {
     /// <p>The newly created alias resource.</p>
     #[serde(rename = "Alias")]
@@ -192,6 +195,7 @@ pub struct CreateAliasOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBuildInput {
     /// <p>A descriptive label that is associated with a build. Build names do not need to be unique. You can use <a>UpdateBuild</a> to change this value later. </p>
     #[serde(rename = "Name")]
@@ -217,7 +221,7 @@ pub struct CreateBuildInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBuildOutput {
     /// <p>The newly created build record, including a unique build IDs and status. </p>
     #[serde(rename = "Build")]
@@ -235,6 +239,7 @@ pub struct CreateBuildOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFleetInput {
     /// <p>A unique identifier for a build to be deployed on the new fleet. You can use either the build ID or ARN value. The custom game server build must have been successfully uploaded to Amazon GameLift and be in a <code>READY</code> status. This fleet setting cannot be changed once the fleet is created. </p>
     #[serde(rename = "BuildId")]
@@ -314,7 +319,7 @@ pub struct CreateFleetInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFleetOutput {
     /// <p>Properties for the newly created fleet.</p>
     #[serde(rename = "FleetAttributes")]
@@ -324,6 +329,7 @@ pub struct CreateFleetOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGameSessionInput {
     /// <p>A unique identifier for an alias associated with the fleet to create a game session in. You can use either the alias ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.</p>
     #[serde(rename = "AliasId")]
@@ -364,7 +370,7 @@ pub struct CreateGameSessionInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGameSessionOutput {
     /// <p>Object that describes the newly created game session record.</p>
     #[serde(rename = "GameSession")]
@@ -374,6 +380,7 @@ pub struct CreateGameSessionOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateGameSessionQueueInput {
     /// <p>A list of fleets that can be used to fulfill game session placement requests in the queue. Fleets are identified by either a fleet ARN or a fleet alias ARN. Destinations are listed in default preference order.</p>
     #[serde(rename = "Destinations")]
@@ -398,7 +405,7 @@ pub struct CreateGameSessionQueueInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateGameSessionQueueOutput {
     /// <p>An object that describes the newly created game session queue.</p>
     #[serde(rename = "GameSessionQueue")]
@@ -408,6 +415,7 @@ pub struct CreateGameSessionQueueOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMatchmakingConfigurationInput {
     /// <p>A flag that determines whether a match that was created with this configuration must be accepted by the matched players. To require acceptance, set to <code>TRUE</code>.</p>
     #[serde(rename = "AcceptanceRequired")]
@@ -464,7 +472,7 @@ pub struct CreateMatchmakingConfigurationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMatchmakingConfigurationOutput {
     /// <p>Object that describes the newly created matchmaking configuration.</p>
     #[serde(rename = "Configuration")]
@@ -474,6 +482,7 @@ pub struct CreateMatchmakingConfigurationOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMatchmakingRuleSetInput {
     /// <p>A unique identifier for a matchmaking rule set. A matchmaking configuration identifies the rule set it uses by this name value. Note that the rule set name is different from the optional <code>name</code> field in the rule set body.</p>
     #[serde(rename = "Name")]
@@ -489,7 +498,7 @@ pub struct CreateMatchmakingRuleSetInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMatchmakingRuleSetOutput {
     /// <p>The newly created matchmaking rule set.</p>
     #[serde(rename = "RuleSet")]
@@ -498,6 +507,7 @@ pub struct CreateMatchmakingRuleSetOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePlayerSessionInput {
     /// <p>A unique identifier for the game session to add a player to.</p>
     #[serde(rename = "GameSessionId")]
@@ -513,7 +523,7 @@ pub struct CreatePlayerSessionInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePlayerSessionOutput {
     /// <p>Object that describes the newly created player session record.</p>
     #[serde(rename = "PlayerSession")]
@@ -523,6 +533,7 @@ pub struct CreatePlayerSessionOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePlayerSessionsInput {
     /// <p>A unique identifier for the game session to add players to.</p>
     #[serde(rename = "GameSessionId")]
@@ -538,7 +549,7 @@ pub struct CreatePlayerSessionsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePlayerSessionsOutput {
     /// <p>A collection of player session objects created for the added players.</p>
     #[serde(rename = "PlayerSessions")]
@@ -547,6 +558,7 @@ pub struct CreatePlayerSessionsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateScriptInput {
     /// <p>A descriptive label that is associated with a script. Script names do not need to be unique. You can use <a>UpdateScript</a> to change this value later. </p>
     #[serde(rename = "Name")]
@@ -576,7 +588,7 @@ pub struct CreateScriptInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateScriptOutput {
     /// <p>The newly created script record with a unique script ID and ARN. The new script's storage location reflects an Amazon S3 location: (1) If the script was uploaded from an S3 bucket under your account, the storage location reflects the information that was provided in the <i>CreateScript</i> request; (2) If the script file was uploaded from a local zip file, the storage location reflects an S3 location controls by the Amazon GameLift service.</p>
     #[serde(rename = "Script")]
@@ -586,6 +598,7 @@ pub struct CreateScriptOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVpcPeeringAuthorizationInput {
     /// <p>A unique identifier for the AWS account that you use to manage your Amazon GameLift fleet. You can find your Account ID in the AWS Management Console under account settings.</p>
     #[serde(rename = "GameLiftAwsAccountId")]
@@ -597,7 +610,7 @@ pub struct CreateVpcPeeringAuthorizationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVpcPeeringAuthorizationOutput {
     /// <p>Details on the requested VPC peering authorization, including expiration.</p>
     #[serde(rename = "VpcPeeringAuthorization")]
@@ -607,6 +620,7 @@ pub struct CreateVpcPeeringAuthorizationOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVpcPeeringConnectionInput {
     /// <p>A unique identifier for a fleet. You can use either the fleet ID or ARN value. This tells Amazon GameLift which GameLift VPC to peer with. </p>
     #[serde(rename = "FleetId")]
@@ -620,11 +634,12 @@ pub struct CreateVpcPeeringConnectionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVpcPeeringConnectionOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAliasInput {
     /// <p>A unique identifier of the alias that you want to delete. You can use either the alias ID or ARN value.</p>
     #[serde(rename = "AliasId")]
@@ -633,6 +648,7 @@ pub struct DeleteAliasInput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBuildInput {
     /// <p>A unique identifier for a build to delete. You can use either the build ID or ARN value. </p>
     #[serde(rename = "BuildId")]
@@ -641,6 +657,7 @@ pub struct DeleteBuildInput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFleetInput {
     /// <p>A unique identifier for a fleet to be deleted. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -649,6 +666,7 @@ pub struct DeleteFleetInput {
 
 /// <p>Represents the input for a request action. </p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteGameSessionQueueInput {
     /// <p>A descriptive label that is associated with game session queue. Queue names must be unique within each Region. You can use either the queue ID or ARN value. </p>
     #[serde(rename = "Name")]
@@ -656,11 +674,12 @@ pub struct DeleteGameSessionQueueInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteGameSessionQueueOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMatchmakingConfigurationInput {
     /// <p>A unique identifier for a matchmaking configuration. You can use either the configuration name or ARN value.</p>
     #[serde(rename = "Name")]
@@ -668,11 +687,12 @@ pub struct DeleteMatchmakingConfigurationInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMatchmakingConfigurationOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMatchmakingRuleSetInput {
     /// <p>A unique identifier for a matchmaking rule set to be deleted. (Note: The rule set name is different from the optional "name" field in the rule set body.) You can use either the rule set name or ARN value.</p>
     #[serde(rename = "Name")]
@@ -681,11 +701,12 @@ pub struct DeleteMatchmakingRuleSetInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMatchmakingRuleSetOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteScalingPolicyInput {
     /// <p>A unique identifier for a fleet to be deleted. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -696,6 +717,7 @@ pub struct DeleteScalingPolicyInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteScriptInput {
     /// <p>A unique identifier for a Realtime script to delete. You can use either the script ID or ARN value.</p>
     #[serde(rename = "ScriptId")]
@@ -704,6 +726,7 @@ pub struct DeleteScriptInput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVpcPeeringAuthorizationInput {
     /// <p>A unique identifier for the AWS account that you use to manage your Amazon GameLift fleet. You can find your Account ID in the AWS Management Console under account settings.</p>
     #[serde(rename = "GameLiftAwsAccountId")]
@@ -714,11 +737,12 @@ pub struct DeleteVpcPeeringAuthorizationInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteVpcPeeringAuthorizationOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVpcPeeringConnectionInput {
     /// <p>A unique identifier for a fleet. This fleet specified must match the fleet referenced in the VPC peering connection record. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -729,11 +753,12 @@ pub struct DeleteVpcPeeringConnectionInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteVpcPeeringConnectionOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAliasInput {
     /// <p>The unique identifier for the fleet alias that you want to retrieve. You can use either the alias ID or ARN value. </p>
     #[serde(rename = "AliasId")]
@@ -742,7 +767,7 @@ pub struct DescribeAliasInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAliasOutput {
     /// <p>The requested alias resource.</p>
     #[serde(rename = "Alias")]
@@ -752,6 +777,7 @@ pub struct DescribeAliasOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBuildInput {
     /// <p>A unique identifier for a build to retrieve properties for. You can use either the build ID or ARN value. </p>
     #[serde(rename = "BuildId")]
@@ -760,7 +786,7 @@ pub struct DescribeBuildInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBuildOutput {
     /// <p>Set of properties describing the requested build.</p>
     #[serde(rename = "Build")]
@@ -770,6 +796,7 @@ pub struct DescribeBuildOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEC2InstanceLimitsInput {
     /// <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Amazon GameLift supports the following EC2 instance types. See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a> for detailed descriptions. Leave this parameter blank to retrieve limits for all types.</p>
     #[serde(rename = "EC2InstanceType")]
@@ -779,7 +806,7 @@ pub struct DescribeEC2InstanceLimitsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEC2InstanceLimitsOutput {
     /// <p>The maximum number of instances for the specified instance type.</p>
     #[serde(rename = "EC2InstanceLimits")]
@@ -789,6 +816,7 @@ pub struct DescribeEC2InstanceLimitsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetAttributesInput {
     /// <p>A unique identifier for a fleet(s) to retrieve attributes for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetIds")]
@@ -806,7 +834,7 @@ pub struct DescribeFleetAttributesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetAttributesOutput {
     /// <p>A collection of objects containing attribute metadata for each requested fleet ID.</p>
     #[serde(rename = "FleetAttributes")]
@@ -820,6 +848,7 @@ pub struct DescribeFleetAttributesOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetCapacityInput {
     /// <p>A unique identifier for a fleet(s) to retrieve capacity information for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetIds")]
@@ -837,7 +866,7 @@ pub struct DescribeFleetCapacityInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetCapacityOutput {
     /// <p>A collection of objects containing capacity information for each requested fleet ID. Leave this parameter empty to retrieve capacity information for all fleets.</p>
     #[serde(rename = "FleetCapacity")]
@@ -851,6 +880,7 @@ pub struct DescribeFleetCapacityOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetEventsInput {
     /// <p>Most recent date to retrieve event logs for. If no end time is specified, this call returns entries from the specified start time up to the present. Format is a number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
     #[serde(rename = "EndTime")]
@@ -875,7 +905,7 @@ pub struct DescribeFleetEventsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetEventsOutput {
     /// <p>A collection of objects containing event log entries for the specified fleet.</p>
     #[serde(rename = "Events")]
@@ -889,6 +919,7 @@ pub struct DescribeFleetEventsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetPortSettingsInput {
     /// <p>A unique identifier for a fleet to retrieve port settings for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -897,7 +928,7 @@ pub struct DescribeFleetPortSettingsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetPortSettingsOutput {
     /// <p>The port settings for the requested fleet ID.</p>
     #[serde(rename = "InboundPermissions")]
@@ -907,6 +938,7 @@ pub struct DescribeFleetPortSettingsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFleetUtilizationInput {
     /// <p>A unique identifier for a fleet(s) to retrieve utilization data for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetIds")]
@@ -924,7 +956,7 @@ pub struct DescribeFleetUtilizationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFleetUtilizationOutput {
     /// <p>A collection of objects containing utilization information for each requested fleet ID.</p>
     #[serde(rename = "FleetUtilization")]
@@ -938,6 +970,7 @@ pub struct DescribeFleetUtilizationOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGameSessionDetailsInput {
     /// <p>A unique identifier for an alias associated with the fleet to retrieve all game sessions for. You can use either the alias ID or ARN value.</p>
     #[serde(rename = "AliasId")]
@@ -967,7 +1000,7 @@ pub struct DescribeGameSessionDetailsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGameSessionDetailsOutput {
     /// <p>A collection of objects containing game session properties and the protection policy currently in force for each session matching the request.</p>
     #[serde(rename = "GameSessionDetails")]
@@ -981,6 +1014,7 @@ pub struct DescribeGameSessionDetailsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGameSessionPlacementInput {
     /// <p>A unique identifier for a game session placement to retrieve.</p>
     #[serde(rename = "PlacementId")]
@@ -989,7 +1023,7 @@ pub struct DescribeGameSessionPlacementInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGameSessionPlacementOutput {
     /// <p>Object that describes the requested game session placement.</p>
     #[serde(rename = "GameSessionPlacement")]
@@ -999,6 +1033,7 @@ pub struct DescribeGameSessionPlacementOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGameSessionQueuesInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages.</p>
     #[serde(rename = "Limit")]
@@ -1016,7 +1051,7 @@ pub struct DescribeGameSessionQueuesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGameSessionQueuesOutput {
     /// <p>A collection of objects that describe the requested game session queues.</p>
     #[serde(rename = "GameSessionQueues")]
@@ -1030,6 +1065,7 @@ pub struct DescribeGameSessionQueuesOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeGameSessionsInput {
     /// <p>A unique identifier for an alias associated with the fleet to retrieve all game sessions for. You can use either the alias ID or ARN value.</p>
     #[serde(rename = "AliasId")]
@@ -1059,7 +1095,7 @@ pub struct DescribeGameSessionsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeGameSessionsOutput {
     /// <p>A collection of objects containing game session properties for each session matching the request.</p>
     #[serde(rename = "GameSessions")]
@@ -1073,6 +1109,7 @@ pub struct DescribeGameSessionsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstancesInput {
     /// <p>A unique identifier for a fleet to retrieve instance information for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -1093,7 +1130,7 @@ pub struct DescribeInstancesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInstancesOutput {
     /// <p>A collection of objects containing properties for each instance returned.</p>
     #[serde(rename = "Instances")]
@@ -1107,6 +1144,7 @@ pub struct DescribeInstancesOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMatchmakingConfigurationsInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages. This parameter is limited to 10.</p>
     #[serde(rename = "Limit")]
@@ -1128,7 +1166,7 @@ pub struct DescribeMatchmakingConfigurationsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMatchmakingConfigurationsOutput {
     /// <p>A collection of requested matchmaking configurations.</p>
     #[serde(rename = "Configurations")]
@@ -1142,6 +1180,7 @@ pub struct DescribeMatchmakingConfigurationsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMatchmakingInput {
     /// <p>A unique identifier for a matchmaking ticket. You can include up to 10 ID values. </p>
     #[serde(rename = "TicketIds")]
@@ -1150,7 +1189,7 @@ pub struct DescribeMatchmakingInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMatchmakingOutput {
     /// <p>A collection of existing matchmaking ticket objects matching the request.</p>
     #[serde(rename = "TicketList")]
@@ -1160,6 +1199,7 @@ pub struct DescribeMatchmakingOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMatchmakingRuleSetsInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages.</p>
     #[serde(rename = "Limit")]
@@ -1177,7 +1217,7 @@ pub struct DescribeMatchmakingRuleSetsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMatchmakingRuleSetsOutput {
     /// <p>A token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.</p>
     #[serde(rename = "NextToken")]
@@ -1190,6 +1230,7 @@ pub struct DescribeMatchmakingRuleSetsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePlayerSessionsInput {
     /// <p>A unique identifier for the game session to retrieve player sessions for.</p>
     #[serde(rename = "GameSessionId")]
@@ -1219,7 +1260,7 @@ pub struct DescribePlayerSessionsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePlayerSessionsOutput {
     /// <p>Token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.</p>
     #[serde(rename = "NextToken")]
@@ -1233,6 +1274,7 @@ pub struct DescribePlayerSessionsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRuntimeConfigurationInput {
     /// <p>A unique identifier for a fleet to get the runtime configuration for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -1241,7 +1283,7 @@ pub struct DescribeRuntimeConfigurationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRuntimeConfigurationOutput {
     /// <p>Instructions describing how server processes should be launched and maintained on each instance in the fleet.</p>
     #[serde(rename = "RuntimeConfiguration")]
@@ -1251,6 +1293,7 @@ pub struct DescribeRuntimeConfigurationOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeScalingPoliciesInput {
     /// <p>A unique identifier for a fleet to retrieve scaling policies for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -1271,7 +1314,7 @@ pub struct DescribeScalingPoliciesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeScalingPoliciesOutput {
     /// <p>Token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.</p>
     #[serde(rename = "NextToken")]
@@ -1284,6 +1327,7 @@ pub struct DescribeScalingPoliciesOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeScriptInput {
     /// <p>A unique identifier for a Realtime script to retrieve properties for. You can use either the script ID or ARN value.</p>
     #[serde(rename = "ScriptId")]
@@ -1291,7 +1335,7 @@ pub struct DescribeScriptInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeScriptOutput {
     /// <p>A set of properties describing the requested script.</p>
     #[serde(rename = "Script")]
@@ -1300,10 +1344,11 @@ pub struct DescribeScriptOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeVpcPeeringAuthorizationsInput {}
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeVpcPeeringAuthorizationsOutput {
     /// <p>A collection of objects that describe all valid VPC peering operations for the current AWS account.</p>
     #[serde(rename = "VpcPeeringAuthorizations")]
@@ -1313,6 +1358,7 @@ pub struct DescribeVpcPeeringAuthorizationsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeVpcPeeringConnectionsInput {
     /// <p>A unique identifier for a fleet. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -1322,7 +1368,7 @@ pub struct DescribeVpcPeeringConnectionsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeVpcPeeringConnectionsOutput {
     /// <p>A collection of VPC peering connection records that match the request.</p>
     #[serde(rename = "VpcPeeringConnections")]
@@ -1332,6 +1378,7 @@ pub struct DescribeVpcPeeringConnectionsOutput {
 
 /// <p>Player information for use when creating player sessions using a game session placement request with <a>StartGameSessionPlacement</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DesiredPlayerSession {
     /// <p>Developer-defined information related to a player. Amazon GameLift does not use this data, so it can be formatted as needed for use in the game.</p>
     #[serde(rename = "PlayerData")]
@@ -1345,7 +1392,7 @@ pub struct DesiredPlayerSession {
 
 /// <p><p>Current status of fleet capacity. The number of active instances should match or be in the process of matching the number of desired instances. Pending and terminating counts are non-zero only if fleet capacity is adjusting to an <a>UpdateFleetCapacity</a> request, or if access to resources is temporarily affected.</p> <ul> <li> <p> <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li> <p> <a>DeleteFleet</a> </p> </li> <li> <p> <a>DescribeFleetAttributes</a> </p> </li> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EC2InstanceCounts {
     /// <p>Actual number of active instances in the fleet.</p>
     #[serde(rename = "ACTIVE")]
@@ -1379,7 +1426,7 @@ pub struct EC2InstanceCounts {
 
 /// <p>The maximum number of instances allowed based on the Amazon Elastic Compute Cloud (Amazon EC2) instance type. Instance limits can be retrieved by calling <a>DescribeEC2InstanceLimits</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EC2InstanceLimit {
     /// <p>Number of instances of the specified type that are currently in use by this AWS account.</p>
     #[serde(rename = "CurrentInstances")]
@@ -1397,7 +1444,7 @@ pub struct EC2InstanceLimit {
 
 /// <p>Log entry describing an event that involves Amazon GameLift resources (such as a fleet). In addition to tracking activity, event codes and messages can provide additional information for troubleshooting and debugging problems.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Event {
     /// <p><p>The type of event being logged. </p> <p> <b>Fleet creation events (ordered by fleet creation activity):</b> </p> <ul> <li> <p>FLEET<em>CREATED -- A fleet record was successfully created with a status of <code>NEW</code>. Event messaging includes the fleet ID.</p> </li> <li> <p>FLEET</em>STATE<em>DOWNLOADING -- Fleet status changed from <code>NEW</code> to <code>DOWNLOADING</code>. The compressed build has started downloading to a fleet instance for installation.</p> </li> <li> <p> FLEET</em>BINARY<em>DOWNLOAD</em>FAILED -- The build failed to download to the fleet instance.</p> </li> <li> <p>FLEET<em>CREATION</em>EXTRACTING<em>BUILD – The game server build was successfully downloaded to an instance, and the build files are now being extracted from the uploaded build and saved to an instance. Failure at this stage prevents a fleet from moving to <code>ACTIVE</code> status. Logs for this stage display a list of the files that are extracted and saved on the instance. Access the logs by using the URL in <i>PreSignedLogUrl</i>.</p> </li> <li> <p>FLEET</em>CREATION<em>RUNNING</em>INSTALLER – The game server build files were successfully extracted, and the Amazon GameLift is now running the build&#39;s install script (if one is included). Failure in this stage prevents a fleet from moving to <code>ACTIVE</code> status. Logs for this stage list the installation steps and whether or not the install completed successfully. Access the logs by using the URL in <i>PreSignedLogUrl</i>. </p> </li> <li> <p>FLEET<em>CREATION</em>VALIDATING<em>RUNTIME</em>CONFIG -- The build process was successful, and the Amazon GameLift is now verifying that the game server launch paths, which are specified in the fleet&#39;s runtime configuration, exist. If any listed launch path exists, Amazon GameLift tries to launch a game server process and waits for the process to report ready. Failures in this stage prevent a fleet from moving to <code>ACTIVE</code> status. Logs for this stage list the launch paths in the runtime configuration and indicate whether each is found. Access the logs by using the URL in <i>PreSignedLogUrl</i>. </p> </li> <li> <p>FLEET<em>STATE</em>VALIDATING -- Fleet status changed from <code>DOWNLOADING</code> to <code>VALIDATING</code>.</p> </li> <li> <p> FLEET<em>VALIDATION</em>LAUNCH<em>PATH</em>NOT<em>FOUND -- Validation of the runtime configuration failed because the executable specified in a launch path does not exist on the instance.</p> </li> <li> <p>FLEET</em>STATE<em>BUILDING -- Fleet status changed from <code>VALIDATING</code> to <code>BUILDING</code>.</p> </li> <li> <p>FLEET</em>VALIDATION<em>EXECUTABLE</em>RUNTIME<em>FAILURE -- Validation of the runtime configuration failed because the executable specified in a launch path failed to run on the fleet instance.</p> </li> <li> <p>FLEET</em>STATE<em>ACTIVATING -- Fleet status changed from <code>BUILDING</code> to <code>ACTIVATING</code>. </p> </li> <li> <p> FLEET</em>ACTIVATION<em>FAILED - The fleet failed to successfully complete one of the steps in the fleet activation process. This event code indicates that the game build was successfully downloaded to a fleet instance, built, and validated, but was not able to start a server process. Learn more at <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html#fleets-creating-debug-creation"> Debug Fleet Creation Issues</a> </p> </li> <li> <p>FLEET</em>STATE<em>ACTIVE -- The fleet&#39;s status changed from <code>ACTIVATING</code> to <code>ACTIVE</code>. The fleet is now ready to host game sessions.</p> </li> </ul> <p> <b>VPC peering events:</b> </p> <ul> <li> <p>FLEET</em>VPC<em>PEERING</em>SUCCEEDED -- A VPC peering connection has been established between the VPC for an Amazon GameLift fleet and a VPC in your AWS account.</p> </li> <li> <p>FLEET<em>VPC</em>PEERING<em>FAILED -- A requested VPC peering connection has failed. Event details and status information (see <a>DescribeVpcPeeringConnections</a>) provide additional detail. A common reason for peering failure is that the two VPCs have overlapping CIDR blocks of IPv4 addresses. To resolve this, change the CIDR block for the VPC in your AWS account. For more information on VPC peering failures, see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/invalid-peering-configurations.html">https://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/invalid-peering-configurations.html</a> </p> </li> <li> <p>FLEET</em>VPC<em>PEERING</em>DELETED -- A VPC peering connection has been successfully deleted.</p> </li> </ul> <p> <b>Spot instance events:</b> </p> <ul> <li> <p> INSTANCE<em>INTERRUPTED -- A spot instance was interrupted by EC2 with a two-minute notification.</p> </li> </ul> <p> <b>Other fleet events:</b> </p> <ul> <li> <p>FLEET</em>SCALING<em>EVENT -- A change was made to the fleet&#39;s capacity settings (desired instances, minimum/maximum scaling limits). Event messaging includes the new capacity settings.</p> </li> <li> <p>FLEET</em>NEW<em>GAME</em>SESSION<em>PROTECTION</em>POLICY<em>UPDATED -- A change was made to the fleet&#39;s game session protection policy setting. Event messaging includes both the old and new policy setting. </p> </li> <li> <p>FLEET</em>DELETED -- A request to delete a fleet was initiated.</p> </li> <li> <p> GENERIC_EVENT -- An unspecified event has occurred.</p> </li> </ul></p>
     #[serde(rename = "EventCode")]
@@ -1427,7 +1474,7 @@ pub struct Event {
 
 /// <p><p>General properties describing a fleet.</p> <ul> <li> <p> <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li> <p> <a>DeleteFleet</a> </p> </li> <li> <p> <a>DescribeFleetAttributes</a> </p> </li> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FleetAttributes {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) associated with the GameLift build resource that is deployed on instances in this fleet. In a GameLift build ARN, the resource ID matches the <i>BuildId</i> value.</p>
     #[serde(rename = "BuildArn")]
@@ -1525,7 +1572,7 @@ pub struct FleetAttributes {
 
 /// <p><p>Information about the fleet&#39;s capacity. Fleet capacity is measured in EC2 instances. By default, new fleets have a capacity of one instance, but can be updated as needed. The maximum number of instances for a fleet is determined by the fleet&#39;s instance type.</p> <ul> <li> <p> <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li> <p> <a>DeleteFleet</a> </p> </li> <li> <p> <a>DescribeFleetAttributes</a> </p> </li> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FleetCapacity {
     /// <p>A unique identifier for a fleet.</p>
     #[serde(rename = "FleetId")]
@@ -1543,7 +1590,7 @@ pub struct FleetCapacity {
 
 /// <p><p>Current status of fleet utilization, including the number of game and player sessions being hosted.</p> <ul> <li> <p> <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li> <p> <a>DeleteFleet</a> </p> </li> <li> <p> <a>DescribeFleetAttributes</a> </p> </li> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FleetUtilization {
     /// <p>Number of active game sessions currently being hosted on all instances in the fleet.</p>
     #[serde(rename = "ActiveGameSessionCount")]
@@ -1580,7 +1627,7 @@ pub struct GameProperty {
 
 /// <p><p>Properties describing a game session.</p> <p>A game session in ACTIVE status can host players. When a game session ends, its status is set to <code>TERMINATED</code>. </p> <p>Once the session ends, the game session object is retained for 30 days. This means you can reuse idempotency token values after this time. Game session logs are retained for 14 days.</p> <ul> <li> <p> <a>CreateGameSession</a> </p> </li> <li> <p> <a>DescribeGameSessions</a> </p> </li> <li> <p> <a>DescribeGameSessionDetails</a> </p> </li> <li> <p> <a>SearchGameSessions</a> </p> </li> <li> <p> <a>UpdateGameSession</a> </p> </li> <li> <p> <a>GetGameSessionLogUrl</a> </p> </li> <li> <p>Game session placements</p> <ul> <li> <p> <a>StartGameSessionPlacement</a> </p> </li> <li> <p> <a>DescribeGameSessionPlacement</a> </p> </li> <li> <p> <a>StopGameSessionPlacement</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GameSession {
     /// <p>Time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -1658,7 +1705,7 @@ pub struct GameSession {
 
 /// <p>Connection information for the new game session that is created with matchmaking. (with <a>StartMatchmaking</a>). Once a match is set, the FlexMatch engine places the match and creates a new game session for it. This information, including the game session endpoint and player sessions for each player in the original matchmaking request, is added to the <a>MatchmakingTicket</a>, which can be retrieved by calling <a>DescribeMatchmaking</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GameSessionConnectionInfo {
     /// <p>DNS identifier assigned to the instance that is running the game session. Values have the following format:</p> <ul> <li> <p>TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.</p> </li> <li> <p>Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>. (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon EC2 Instance IP Addressing</a>.)</p> </li> </ul> <p>When connecting to a game session that is running on a TLS-enabled fleet, you must use the DNS name, not the IP address.</p>
     #[serde(rename = "DnsName")]
@@ -1684,7 +1731,7 @@ pub struct GameSessionConnectionInfo {
 
 /// <p>A game session's properties plus the protection policy currently in force.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GameSessionDetail {
     /// <p>Object that describes a game session.</p>
     #[serde(rename = "GameSession")]
@@ -1698,7 +1745,7 @@ pub struct GameSessionDetail {
 
 /// <p><p>Object that describes a <a>StartGameSessionPlacement</a> request. This object includes the full details of the original request plus the current status and start/end time stamps.</p> <p>Game session placement-related operations include:</p> <ul> <li> <p> <a>StartGameSessionPlacement</a> </p> </li> <li> <p> <a>DescribeGameSessionPlacement</a> </p> </li> <li> <p> <a>StopGameSessionPlacement</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GameSessionPlacement {
     /// <p>DNS identifier assigned to the instance that is running the game session. Values have the following format:</p> <ul> <li> <p>TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.</p> </li> <li> <p>Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>. (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon EC2 Instance IP Addressing</a>.)</p> </li> </ul> <p>When connecting to a game session that is running on a TLS-enabled fleet, you must use the DNS name, not the IP address.</p>
     #[serde(rename = "DnsName")]
@@ -1776,7 +1823,7 @@ pub struct GameSessionPlacement {
 
 /// <p><p>Configuration of a queue that is used to process game session placement requests. The queue configuration identifies several game features:</p> <ul> <li> <p>The destinations where a new game session can potentially be hosted. Amazon GameLift tries these destinations in an order based on either the queue&#39;s default order or player latency information, if provided in a placement request. With latency information, Amazon GameLift can place game sessions where the majority of players are reporting the lowest possible latency. </p> </li> <li> <p>The length of time that placement requests can wait in the queue before timing out. </p> </li> <li> <p>A set of optional latency policies that protect individual players from high latencies, preventing game sessions from being placed where any individual player is reporting latency higher than a policy&#39;s maximum.</p> </li> </ul> <ul> <li> <p> <a>CreateGameSessionQueue</a> </p> </li> <li> <p> <a>DescribeGameSessionQueues</a> </p> </li> <li> <p> <a>UpdateGameSessionQueue</a> </p> </li> <li> <p> <a>DeleteGameSessionQueue</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GameSessionQueue {
     /// <p>A list of fleets that can be used to fulfill game session placement requests in the queue. Fleets are identified by either a fleet ARN or a fleet alias ARN. Destinations are listed in default preference order.</p>
     #[serde(rename = "Destinations")]
@@ -1811,6 +1858,7 @@ pub struct GameSessionQueueDestination {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetGameSessionLogUrlInput {
     /// <p>A unique identifier for the game session to get logs for. </p>
     #[serde(rename = "GameSessionId")]
@@ -1819,7 +1867,7 @@ pub struct GetGameSessionLogUrlInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGameSessionLogUrlOutput {
     /// <p>Location of the requested game session logs, available for download. This URL is valid for 15 minutes, after which S3 will reject any download request using this URL. You can request a new URL any time within the 14-day period that the logs are retained.</p>
     #[serde(rename = "PreSignedUrl")]
@@ -1829,6 +1877,7 @@ pub struct GetGameSessionLogUrlOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInstanceAccessInput {
     /// <p>A unique identifier for a fleet that contains the instance you want access to. You can use either the fleet ID or ARN value. The fleet can be in any of the following statuses: <code>ACTIVATING</code>, <code>ACTIVE</code>, or <code>ERROR</code>. Fleets with an <code>ERROR</code> status may be accessible for a short time before they are deleted.</p>
     #[serde(rename = "FleetId")]
@@ -1840,7 +1889,7 @@ pub struct GetInstanceAccessInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInstanceAccessOutput {
     /// <p>The connection information for a fleet instance, including IP address and access credentials.</p>
     #[serde(rename = "InstanceAccess")]
@@ -1850,7 +1899,7 @@ pub struct GetInstanceAccessOutput {
 
 /// <p>Properties that describe an instance of a virtual computing resource that hosts one or more game servers. A fleet may contain zero or more instances.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Instance {
     /// <p>Time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -1888,7 +1937,7 @@ pub struct Instance {
 
 /// <p>Information required to remotely connect to a fleet instance. Access is requested by calling <a>GetInstanceAccess</a>. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceAccess {
     /// <p>Credentials required to access the instance.</p>
     #[serde(rename = "Credentials")]
@@ -1914,7 +1963,7 @@ pub struct InstanceAccess {
 
 /// <p>Set of credentials required to remotely access a fleet instance. Access credentials are requested by calling <a>GetInstanceAccess</a> and returned in an <a>InstanceAccess</a> object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceCredentials {
     /// <p>Secret string. For Windows instances, the secret is a password for use with Windows Remote Desktop. For Linux instances, it is a private key (which must be saved as a <code>.pem</code> file) for use with SSH.</p>
     #[serde(rename = "Secret")]
@@ -1945,6 +1994,7 @@ pub struct IpPermission {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAliasesInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages.</p>
     #[serde(rename = "Limit")]
@@ -1966,7 +2016,7 @@ pub struct ListAliasesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAliasesOutput {
     /// <p>A collection of alias resources that match the request parameters.</p>
     #[serde(rename = "Aliases")]
@@ -1980,6 +2030,7 @@ pub struct ListAliasesOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBuildsInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages.</p>
     #[serde(rename = "Limit")]
@@ -1997,7 +2048,7 @@ pub struct ListBuildsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBuildsOutput {
     /// <p>A collection of build records that match the request.</p>
     #[serde(rename = "Builds")]
@@ -2011,6 +2062,7 @@ pub struct ListBuildsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFleetsInput {
     /// <p>A unique identifier for a build to return fleets for. Use this parameter to return only fleets using the specified build. Use either the build ID or ARN value.To retrieve all fleets, leave this parameter empty.</p>
     #[serde(rename = "BuildId")]
@@ -2032,7 +2084,7 @@ pub struct ListFleetsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFleetsOutput {
     /// <p>Set of fleet IDs matching the list request. You can retrieve additional information about all returned fleets by passing this result set to a call to <a>DescribeFleetAttributes</a>, <a>DescribeFleetCapacity</a>, or <a>DescribeFleetUtilization</a>.</p>
     #[serde(rename = "FleetIds")]
@@ -2045,6 +2097,7 @@ pub struct ListFleetsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListScriptsInput {
     /// <p>The maximum number of results to return. Use this parameter with <code>NextToken</code> to get results as a set of sequential pages.</p>
     #[serde(rename = "Limit")]
@@ -2057,7 +2110,7 @@ pub struct ListScriptsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListScriptsOutput {
     /// <p>A token that indicates where to resume retrieving results on the next call to this action. If no token is returned, these results represent the end of the list.</p>
     #[serde(rename = "NextToken")]
@@ -2070,6 +2123,7 @@ pub struct ListScriptsOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>) that is assigned to and uniquely identifies the GameLift resource that you want to retrieve tags for. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe action for the resource type. </p>
     #[serde(rename = "ResourceARN")]
@@ -2077,7 +2131,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p> The collection of tags that have been assigned to the specified resource. </p>
     #[serde(rename = "Tags")]
@@ -2087,7 +2141,7 @@ pub struct ListTagsForResourceResponse {
 
 /// <p>Represents a new player session that is created as a result of a successful FlexMatch match. A successful match automatically creates new player sessions for every player ID in the original matchmaking request. </p> <p>When players connect to the match's game session, they must include both player ID and player session ID in order to claim their assigned player slot.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MatchedPlayerSession {
     /// <p>A unique identifier for a player </p>
     #[serde(rename = "PlayerId")]
@@ -2101,7 +2155,7 @@ pub struct MatchedPlayerSession {
 
 /// <p>Guidelines for use with FlexMatch to match players into games. All matchmaking requests must specify a matchmaking configuration.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MatchmakingConfiguration {
     /// <p>A flag that indicates whether a match that was created with this configuration must be accepted by the matched players. To require acceptance, set to TRUE.</p>
     #[serde(rename = "AcceptanceRequired")]
@@ -2171,7 +2225,7 @@ pub struct MatchmakingConfiguration {
 
 /// <p><p>Set of rule statements, used with FlexMatch, that determine how to build your player matches. Each rule set describes a type of group to be created and defines the parameters for acceptable player matches. Rule sets are used in <a>MatchmakingConfiguration</a> objects.</p> <p>A rule set may define the following elements for a match. For detailed information and examples showing how to construct a rule set, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html">Build a FlexMatch Rule Set</a>. </p> <ul> <li> <p>Teams -- Required. A rule set must define one or multiple teams for the match and set minimum and maximum team sizes. For example, a rule set might describe a 4x4 match that requires all eight slots to be filled. </p> </li> <li> <p>Player attributes -- Optional. These attributes specify a set of player characteristics to evaluate when looking for a match. Matchmaking requests that use a rule set with player attributes must provide the corresponding attribute values. For example, an attribute might specify a player&#39;s skill or level.</p> </li> <li> <p>Rules -- Optional. Rules define how to evaluate potential players for a match based on player attributes. A rule might specify minimum requirements for individual players, teams, or entire matches. For example, a rule might require each player to meet a certain skill level, each team to have at least one player in a certain role, or the match to have a minimum average skill level. or may describe an entire group--such as all teams must be evenly matched or have at least one player in a certain role. </p> </li> <li> <p>Expansions -- Optional. Expansions allow you to relax the rules after a period of time when no acceptable matches are found. This feature lets you balance getting players into games in a reasonable amount of time instead of making them wait indefinitely for the best possible match. For example, you might use an expansion to increase the maximum skill variance between players after 30 seconds.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MatchmakingRuleSet {
     /// <p>The time stamp indicating when this data object was created. The format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -2192,7 +2246,7 @@ pub struct MatchmakingRuleSet {
 
 /// <p>Ticket generated to track the progress of a matchmaking request. Each ticket is uniquely identified by a ticket ID, supplied by the requester, when creating a matchmaking request with <a>StartMatchmaking</a>. Tickets can be retrieved by calling <a>DescribeMatchmaking</a> with the ticket ID.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MatchmakingTicket {
     /// <p>The Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) associated with the GameLift matchmaking configuration resource that is used with this ticket.</p>
     #[serde(rename = "ConfigurationArn")]
@@ -2242,7 +2296,7 @@ pub struct MatchmakingTicket {
 
 /// <p><p>Information about a player session that was created as part of a <a>StartGameSessionPlacement</a> request. This object contains only the player ID and player session ID. To retrieve full details on a player session, call <a>DescribePlayerSessions</a> with the player session ID.</p> <ul> <li> <p> <a>CreatePlayerSession</a> </p> </li> <li> <p> <a>CreatePlayerSessions</a> </p> </li> <li> <p> <a>DescribePlayerSessions</a> </p> </li> <li> <p>Game session placements</p> <ul> <li> <p> <a>StartGameSessionPlacement</a> </p> </li> <li> <p> <a>DescribeGameSessionPlacement</a> </p> </li> <li> <p> <a>StopGameSessionPlacement</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PlacedPlayerSession {
     /// <p>A unique identifier for a player that is associated with this player session.</p>
     #[serde(rename = "PlayerId")]
@@ -2307,7 +2361,7 @@ pub struct PlayerLatencyPolicy {
 
 /// <p><p>Properties describing a player session. Player session objects are created either by creating a player session for a specific game session, or as part of a game session placement. A player session represents either a player reservation for a game session (status <code>RESERVED</code>) or actual player activity in a game session (status <code>ACTIVE</code>). A player session object (including player data) is automatically passed to a game session when the player connects to the game session and is validated.</p> <p>When a player disconnects, the player session status changes to <code>COMPLETED</code>. Once the session ends, the player session object is retained for 30 days and then removed.</p> <ul> <li> <p> <a>CreatePlayerSession</a> </p> </li> <li> <p> <a>CreatePlayerSessions</a> </p> </li> <li> <p> <a>DescribePlayerSessions</a> </p> </li> <li> <p>Game session placements</p> <ul> <li> <p> <a>StartGameSessionPlacement</a> </p> </li> <li> <p> <a>DescribeGameSessionPlacement</a> </p> </li> <li> <p> <a>StopGameSessionPlacement</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PlayerSession {
     /// <p>Time stamp indicating when this data object was created. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -2361,6 +2415,7 @@ pub struct PlayerSession {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutScalingPolicyInput {
     /// <p>Comparison operator to use when measuring the metric against the threshold value.</p>
     #[serde(rename = "ComparisonOperator")]
@@ -2403,7 +2458,7 @@ pub struct PutScalingPolicyInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutScalingPolicyOutput {
     /// <p>A descriptive label that is associated with a scaling policy. Policy names do not need to be unique.</p>
     #[serde(rename = "Name")]
@@ -2413,6 +2468,7 @@ pub struct PutScalingPolicyOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RequestUploadCredentialsInput {
     /// <p>A unique identifier for a build to get credentials for. You can use either the build ID or ARN value. </p>
     #[serde(rename = "BuildId")]
@@ -2421,7 +2477,7 @@ pub struct RequestUploadCredentialsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RequestUploadCredentialsOutput {
     /// <p>Amazon S3 path and key, identifying where the game build files are stored.</p>
     #[serde(rename = "StorageLocation")]
@@ -2435,6 +2491,7 @@ pub struct RequestUploadCredentialsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResolveAliasInput {
     /// <p>The unique identifier of the alias that you want to retrieve a fleet ID for. You can use either the alias ID or ARN value.</p>
     #[serde(rename = "AliasId")]
@@ -2443,7 +2500,7 @@ pub struct ResolveAliasInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResolveAliasOutput {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) associated with the GameLift fleet resource that this alias points to. </p>
     #[serde(rename = "FleetArn")]
@@ -2525,7 +2582,7 @@ pub struct S3Location {
 
 /// <p><p>Rule that controls how a fleet is scaled. Scaling policies are uniquely identified by the combination of name and fleet ID.</p> <ul> <li> <p> <a>DescribeFleetCapacity</a> </p> </li> <li> <p> <a>UpdateFleetCapacity</a> </p> </li> <li> <p> <a>DescribeEC2InstanceLimits</a> </p> </li> <li> <p>Manage scaling policies:</p> <ul> <li> <p> <a>PutScalingPolicy</a> (auto-scaling)</p> </li> <li> <p> <a>DescribeScalingPolicies</a> (auto-scaling)</p> </li> <li> <p> <a>DeleteScalingPolicy</a> (auto-scaling)</p> </li> </ul> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScalingPolicy {
     /// <p>Comparison operator to use when measuring a metric against the threshold value.</p>
     #[serde(rename = "ComparisonOperator")]
@@ -2575,7 +2632,7 @@ pub struct ScalingPolicy {
 
 /// <p><p>Properties describing a Realtime script.</p> <p> <b>Related operations</b> </p> <ul> <li> <p> <a>CreateScript</a> </p> </li> <li> <p> <a>ListScripts</a> </p> </li> <li> <p> <a>DescribeScript</a> </p> </li> <li> <p> <a>UpdateScript</a> </p> </li> <li> <p> <a>DeleteScript</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Script {
     /// <p>A time stamp indicating when this data object was created. The format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -2608,6 +2665,7 @@ pub struct Script {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchGameSessionsInput {
     /// <p>A unique identifier for an alias associated with the fleet to search for active game sessions. You can use either the alias ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.</p>
     #[serde(rename = "AliasId")]
@@ -2637,7 +2695,7 @@ pub struct SearchGameSessionsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchGameSessionsOutput {
     /// <p>A collection of objects containing game session properties for each session matching the request.</p>
     #[serde(rename = "GameSessions")]
@@ -2665,6 +2723,7 @@ pub struct ServerProcess {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartFleetActionsInput {
     /// <p>List of actions to restart on the fleet.</p>
     #[serde(rename = "Actions")]
@@ -2675,11 +2734,12 @@ pub struct StartFleetActionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartFleetActionsOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartGameSessionPlacementInput {
     /// <p>Set of information on each player to create a player session for.</p>
     #[serde(rename = "DesiredPlayerSessions")]
@@ -2714,7 +2774,7 @@ pub struct StartGameSessionPlacementInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartGameSessionPlacementOutput {
     /// <p>Object that describes the newly created game session placement. This object includes all the information provided in the request, as well as start/end time stamps and placement status. </p>
     #[serde(rename = "GameSessionPlacement")]
@@ -2724,6 +2784,7 @@ pub struct StartGameSessionPlacementOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMatchBackfillInput {
     /// <p>Name of the matchmaker to use for this request. You can use either the configuration name or ARN value. The ARN of the matchmaker that was used with the original game session is listed in the <a>GameSession</a> object, <code>MatchmakerData</code> property.</p>
     #[serde(rename = "ConfigurationName")]
@@ -2742,7 +2803,7 @@ pub struct StartMatchBackfillInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMatchBackfillOutput {
     /// <p>Ticket representing the backfill matchmaking request. This object includes the information in the request, ticket status, and match results as generated during the matchmaking process.</p>
     #[serde(rename = "MatchmakingTicket")]
@@ -2752,6 +2813,7 @@ pub struct StartMatchBackfillOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMatchmakingInput {
     /// <p>Name of the matchmaking configuration to use for this request. Matchmaking configurations must exist in the same Region as this request. You can use either the configuration name or ARN value.</p>
     #[serde(rename = "ConfigurationName")]
@@ -2767,7 +2829,7 @@ pub struct StartMatchmakingInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMatchmakingOutput {
     /// <p>Ticket representing the matchmaking request. This object include the information included in the request, ticket status, and match results as generated during the matchmaking process.</p>
     #[serde(rename = "MatchmakingTicket")]
@@ -2776,6 +2838,7 @@ pub struct StartMatchmakingOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopFleetActionsInput {
     /// <p>List of actions to suspend on the fleet. </p>
     #[serde(rename = "Actions")]
@@ -2786,11 +2849,12 @@ pub struct StopFleetActionsInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopFleetActionsOutput {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopGameSessionPlacementInput {
     /// <p>A unique identifier for a game session placement to cancel.</p>
     #[serde(rename = "PlacementId")]
@@ -2799,7 +2863,7 @@ pub struct StopGameSessionPlacementInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopGameSessionPlacementOutput {
     /// <p>Object that describes the canceled game session placement, with <code>CANCELLED</code> status and an end time stamp. </p>
     #[serde(rename = "GameSessionPlacement")]
@@ -2809,6 +2873,7 @@ pub struct StopGameSessionPlacementOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopMatchmakingInput {
     /// <p>A unique identifier for a matchmaking ticket.</p>
     #[serde(rename = "TicketId")]
@@ -2816,7 +2881,7 @@ pub struct StopMatchmakingInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopMatchmakingOutput {}
 
 /// <p><p> A label that can be assigned to a GameLift resource. </p> <p> <b>Learn more</b> </p> <p> <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging AWS Resources</a> in the <i>AWS General Reference</i> </p> <p> <a href="http://aws.amazon.com/answers/account-management/aws-tagging-strategies/"> AWS Tagging Strategies</a> </p> <p> <b>Related operations</b> </p> <ul> <li> <p> <a>TagResource</a> </p> </li> <li> <p> <a>UntagResource</a> </p> </li> <li> <p> <a>ListTagsForResource</a> </p> </li> </ul></p>
@@ -2831,6 +2896,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>) that is assigned to and uniquely identifies the GameLift resource that you want to assign tags to. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe action for the resource type. </p>
     #[serde(rename = "ResourceARN")]
@@ -2841,7 +2907,7 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p><p>Settings for a target-based scaling policy (see <a>ScalingPolicy</a>. A target-based policy tracks a particular fleet metric specifies a target value for the metric. As player usage changes, the policy triggers Amazon GameLift to adjust capacity so that the metric returns to the target value. The target configuration specifies settings as needed for the target based policy, including the target value. </p> <ul> <li> <p> <a>DescribeFleetCapacity</a> </p> </li> <li> <p> <a>UpdateFleetCapacity</a> </p> </li> <li> <p> <a>DescribeEC2InstanceLimits</a> </p> </li> <li> <p>Manage scaling policies:</p> <ul> <li> <p> <a>PutScalingPolicy</a> (auto-scaling)</p> </li> <li> <p> <a>DescribeScalingPolicies</a> (auto-scaling)</p> </li> <li> <p> <a>DeleteScalingPolicy</a> (auto-scaling)</p> </li> </ul> </li> <li> <p>Manage fleet actions:</p> <ul> <li> <p> <a>StartFleetActions</a> </p> </li> <li> <p> <a>StopFleetActions</a> </p> </li> </ul> </li> </ul></p>
@@ -2853,6 +2919,7 @@ pub struct TargetConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>) that is assigned to and uniquely identifies the GameLift resource that you want to remove tags from. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe action for the resource type. </p>
     #[serde(rename = "ResourceARN")]
@@ -2863,11 +2930,12 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAliasInput {
     /// <p>A unique identifier for the alias that you want to update. You can use either the alias ID or ARN value.</p>
     #[serde(rename = "AliasId")]
@@ -2888,7 +2956,7 @@ pub struct UpdateAliasInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAliasOutput {
     /// <p>The updated alias resource.</p>
     #[serde(rename = "Alias")]
@@ -2898,6 +2966,7 @@ pub struct UpdateAliasOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBuildInput {
     /// <p>A unique identifier for a build to update. You can use either the build ID or ARN value. </p>
     #[serde(rename = "BuildId")]
@@ -2914,7 +2983,7 @@ pub struct UpdateBuildInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBuildOutput {
     /// <p>The updated build record.</p>
     #[serde(rename = "Build")]
@@ -2924,6 +2993,7 @@ pub struct UpdateBuildOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFleetAttributesInput {
     /// <p>Human-readable description of a fleet.</p>
     #[serde(rename = "Description")]
@@ -2952,7 +3022,7 @@ pub struct UpdateFleetAttributesInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFleetAttributesOutput {
     /// <p>A unique identifier for a fleet that was updated. Use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -2962,6 +3032,7 @@ pub struct UpdateFleetAttributesOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFleetCapacityInput {
     /// <p>Number of EC2 instances you want this fleet to host.</p>
     #[serde(rename = "DesiredInstances")]
@@ -2982,7 +3053,7 @@ pub struct UpdateFleetCapacityInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFleetCapacityOutput {
     /// <p>A unique identifier for a fleet that was updated.</p>
     #[serde(rename = "FleetId")]
@@ -2992,6 +3063,7 @@ pub struct UpdateFleetCapacityOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateFleetPortSettingsInput {
     /// <p>A unique identifier for a fleet to update port settings for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -3008,7 +3080,7 @@ pub struct UpdateFleetPortSettingsInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateFleetPortSettingsOutput {
     /// <p>A unique identifier for a fleet that was updated.</p>
     #[serde(rename = "FleetId")]
@@ -3018,6 +3090,7 @@ pub struct UpdateFleetPortSettingsOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGameSessionInput {
     /// <p>A unique identifier for the game session to update. </p>
     #[serde(rename = "GameSessionId")]
@@ -3042,7 +3115,7 @@ pub struct UpdateGameSessionInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGameSessionOutput {
     /// <p>The updated game session metadata.</p>
     #[serde(rename = "GameSession")]
@@ -3052,6 +3125,7 @@ pub struct UpdateGameSessionOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGameSessionQueueInput {
     /// <p>A list of fleets that can be used to fulfill game session placement requests in the queue. Fleets are identified by either a fleet ARN or a fleet alias ARN. Destinations are listed in default preference order. When updating this list, provide a complete list of destinations.</p>
     #[serde(rename = "Destinations")]
@@ -3072,7 +3146,7 @@ pub struct UpdateGameSessionQueueInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateGameSessionQueueOutput {
     /// <p>An object that describes the newly updated game session queue.</p>
     #[serde(rename = "GameSessionQueue")]
@@ -3082,6 +3156,7 @@ pub struct UpdateGameSessionQueueOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMatchmakingConfigurationInput {
     /// <p>A flag that indicates whether a match that was created with this configuration must be accepted by the matched players. To require acceptance, set to TRUE.</p>
     #[serde(rename = "AcceptanceRequired")]
@@ -3138,7 +3213,7 @@ pub struct UpdateMatchmakingConfigurationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMatchmakingConfigurationOutput {
     /// <p>The updated matchmaking configuration.</p>
     #[serde(rename = "Configuration")]
@@ -3148,6 +3223,7 @@ pub struct UpdateMatchmakingConfigurationOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRuntimeConfigurationInput {
     /// <p>A unique identifier for a fleet to update runtime configuration for. You can use either the fleet ID or ARN value.</p>
     #[serde(rename = "FleetId")]
@@ -3159,7 +3235,7 @@ pub struct UpdateRuntimeConfigurationInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRuntimeConfigurationOutput {
     /// <p>The runtime configuration currently in force. If the update was successful, this object matches the one in the request.</p>
     #[serde(rename = "RuntimeConfiguration")]
@@ -3168,6 +3244,7 @@ pub struct UpdateRuntimeConfigurationOutput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateScriptInput {
     /// <p>A descriptive label that is associated with a script. Script names do not need to be unique.</p>
     #[serde(rename = "Name")]
@@ -3196,7 +3273,7 @@ pub struct UpdateScriptInput {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateScriptOutput {
     /// <p>The newly created script record with a unique script ID. The new script's storage location reflects an Amazon S3 location: (1) If the script was uploaded from an S3 bucket under your account, the storage location reflects the information that was provided in the <i>CreateScript</i> request; (2) If the script file was uploaded from a local zip file, the storage location reflects an S3 location controls by the Amazon GameLift service.</p>
     #[serde(rename = "Script")]
@@ -3206,6 +3283,7 @@ pub struct UpdateScriptOutput {
 
 /// <p>Represents the input for a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ValidateMatchmakingRuleSetInput {
     /// <p>A collection of matchmaking rules to validate, formatted as a JSON string.</p>
     #[serde(rename = "RuleSetBody")]
@@ -3214,7 +3292,7 @@ pub struct ValidateMatchmakingRuleSetInput {
 
 /// <p>Represents the returned data in response to a request action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ValidateMatchmakingRuleSetOutput {
     /// <p>A response indicating whether the rule set is valid.</p>
     #[serde(rename = "Valid")]
@@ -3224,7 +3302,7 @@ pub struct ValidateMatchmakingRuleSetOutput {
 
 /// <p><p>Represents an authorization for a VPC peering connection between the VPC for an Amazon GameLift fleet and another VPC on an account you have access to. This authorization must exist and be valid for the peering connection to be established. Authorizations are valid for 24 hours after they are issued.</p> <ul> <li> <p> <a>CreateVpcPeeringAuthorization</a> </p> </li> <li> <p> <a>DescribeVpcPeeringAuthorizations</a> </p> </li> <li> <p> <a>DeleteVpcPeeringAuthorization</a> </p> </li> <li> <p> <a>CreateVpcPeeringConnection</a> </p> </li> <li> <p> <a>DescribeVpcPeeringConnections</a> </p> </li> <li> <p> <a>DeleteVpcPeeringConnection</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VpcPeeringAuthorization {
     /// <p>Time stamp indicating when this authorization was issued. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").</p>
     #[serde(rename = "CreationTime")]
@@ -3250,7 +3328,7 @@ pub struct VpcPeeringAuthorization {
 
 /// <p><p>Represents a peering connection between a VPC on one of your AWS accounts and the VPC for your Amazon GameLift fleets. This record may be for an active peering connection or a pending connection that has not yet been established.</p> <ul> <li> <p> <a>CreateVpcPeeringAuthorization</a> </p> </li> <li> <p> <a>DescribeVpcPeeringAuthorizations</a> </p> </li> <li> <p> <a>DeleteVpcPeeringAuthorization</a> </p> </li> <li> <p> <a>CreateVpcPeeringConnection</a> </p> </li> <li> <p> <a>DescribeVpcPeeringConnections</a> </p> </li> <li> <p> <a>DeleteVpcPeeringConnection</a> </p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VpcPeeringConnection {
     /// <p> The Amazon Resource Name (<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>) associated with the GameLift fleet resource for this connection. </p>
     #[serde(rename = "FleetArn")]
@@ -3284,7 +3362,7 @@ pub struct VpcPeeringConnection {
 
 /// <p>Represents status information for a VPC peering connection. Status is associated with a <a>VpcPeeringConnection</a> object. Status codes and messages are provided from EC2 (see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpcPeeringConnectionStateReason.html">VpcPeeringConnectionStateReason</a>). Connection status information is also communicated as a fleet <a>Event</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VpcPeeringConnectionStatus {
     /// <p>Code indicating the status of a VPC peering connection.</p>
     #[serde(rename = "Code")]
@@ -3333,20 +3411,17 @@ impl AcceptMatchError {
     }
 }
 impl fmt::Display for AcceptMatchError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AcceptMatchError {
-    fn description(&self) -> &str {
         match *self {
-            AcceptMatchError::InternalService(ref cause) => cause,
-            AcceptMatchError::InvalidRequest(ref cause) => cause,
-            AcceptMatchError::NotFound(ref cause) => cause,
-            AcceptMatchError::UnsupportedRegion(ref cause) => cause,
+            AcceptMatchError::InternalService(ref cause) => write!(f, "{}", cause),
+            AcceptMatchError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            AcceptMatchError::NotFound(ref cause) => write!(f, "{}", cause),
+            AcceptMatchError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AcceptMatchError {}
 /// Errors returned by CreateAlias
 #[derive(Debug, PartialEq)]
 pub enum CreateAliasError {
@@ -3394,22 +3469,19 @@ impl CreateAliasError {
     }
 }
 impl fmt::Display for CreateAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateAliasError {
-    fn description(&self) -> &str {
         match *self {
-            CreateAliasError::Conflict(ref cause) => cause,
-            CreateAliasError::InternalService(ref cause) => cause,
-            CreateAliasError::InvalidRequest(ref cause) => cause,
-            CreateAliasError::LimitExceeded(ref cause) => cause,
-            CreateAliasError::TaggingFailed(ref cause) => cause,
-            CreateAliasError::Unauthorized(ref cause) => cause,
+            CreateAliasError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateAliasError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateAliasError {}
 /// Errors returned by CreateBuild
 #[derive(Debug, PartialEq)]
 pub enum CreateBuildError {
@@ -3452,21 +3524,18 @@ impl CreateBuildError {
     }
 }
 impl fmt::Display for CreateBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateBuildError {
-    fn description(&self) -> &str {
         match *self {
-            CreateBuildError::Conflict(ref cause) => cause,
-            CreateBuildError::InternalService(ref cause) => cause,
-            CreateBuildError::InvalidRequest(ref cause) => cause,
-            CreateBuildError::TaggingFailed(ref cause) => cause,
-            CreateBuildError::Unauthorized(ref cause) => cause,
+            CreateBuildError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateBuildError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateBuildError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateBuildError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateBuildError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateBuildError {}
 /// Errors returned by CreateFleet
 #[derive(Debug, PartialEq)]
 pub enum CreateFleetError {
@@ -3519,23 +3588,20 @@ impl CreateFleetError {
     }
 }
 impl fmt::Display for CreateFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFleetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFleetError::Conflict(ref cause) => cause,
-            CreateFleetError::InternalService(ref cause) => cause,
-            CreateFleetError::InvalidRequest(ref cause) => cause,
-            CreateFleetError::LimitExceeded(ref cause) => cause,
-            CreateFleetError::NotFound(ref cause) => cause,
-            CreateFleetError::TaggingFailed(ref cause) => cause,
-            CreateFleetError::Unauthorized(ref cause) => cause,
+            CreateFleetError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateFleetError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateFleetError {}
 /// Errors returned by CreateGameSession
 #[derive(Debug, PartialEq)]
 pub enum CreateGameSessionError {
@@ -3611,26 +3677,25 @@ impl CreateGameSessionError {
     }
 }
 impl fmt::Display for CreateGameSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGameSessionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGameSessionError::Conflict(ref cause) => cause,
-            CreateGameSessionError::FleetCapacityExceeded(ref cause) => cause,
-            CreateGameSessionError::IdempotentParameterMismatch(ref cause) => cause,
-            CreateGameSessionError::InternalService(ref cause) => cause,
-            CreateGameSessionError::InvalidFleetStatus(ref cause) => cause,
-            CreateGameSessionError::InvalidRequest(ref cause) => cause,
-            CreateGameSessionError::LimitExceeded(ref cause) => cause,
-            CreateGameSessionError::NotFound(ref cause) => cause,
-            CreateGameSessionError::TerminalRoutingStrategy(ref cause) => cause,
-            CreateGameSessionError::Unauthorized(ref cause) => cause,
+            CreateGameSessionError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::FleetCapacityExceeded(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::IdempotentParameterMismatch(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateGameSessionError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::InvalidFleetStatus(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGameSessionError {}
 /// Errors returned by CreateGameSessionQueue
 #[derive(Debug, PartialEq)]
 pub enum CreateGameSessionQueueError {
@@ -3681,21 +3746,18 @@ impl CreateGameSessionQueueError {
     }
 }
 impl fmt::Display for CreateGameSessionQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateGameSessionQueueError {
-    fn description(&self) -> &str {
         match *self {
-            CreateGameSessionQueueError::InternalService(ref cause) => cause,
-            CreateGameSessionQueueError::InvalidRequest(ref cause) => cause,
-            CreateGameSessionQueueError::LimitExceeded(ref cause) => cause,
-            CreateGameSessionQueueError::TaggingFailed(ref cause) => cause,
-            CreateGameSessionQueueError::Unauthorized(ref cause) => cause,
+            CreateGameSessionQueueError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionQueueError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionQueueError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionQueueError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateGameSessionQueueError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateGameSessionQueueError {}
 /// Errors returned by CreateMatchmakingConfiguration
 #[derive(Debug, PartialEq)]
 pub enum CreateMatchmakingConfigurationError {
@@ -3757,22 +3819,25 @@ impl CreateMatchmakingConfigurationError {
     }
 }
 impl fmt::Display for CreateMatchmakingConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMatchmakingConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMatchmakingConfigurationError::InternalService(ref cause) => cause,
-            CreateMatchmakingConfigurationError::InvalidRequest(ref cause) => cause,
-            CreateMatchmakingConfigurationError::LimitExceeded(ref cause) => cause,
-            CreateMatchmakingConfigurationError::NotFound(ref cause) => cause,
-            CreateMatchmakingConfigurationError::TaggingFailed(ref cause) => cause,
-            CreateMatchmakingConfigurationError::UnsupportedRegion(ref cause) => cause,
+            CreateMatchmakingConfigurationError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMatchmakingConfigurationError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateMatchmakingConfigurationError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingConfigurationError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingConfigurationError::UnsupportedRegion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateMatchmakingConfigurationError {}
 /// Errors returned by CreateMatchmakingRuleSet
 #[derive(Debug, PartialEq)]
 pub enum CreateMatchmakingRuleSetError {
@@ -3818,20 +3883,17 @@ impl CreateMatchmakingRuleSetError {
     }
 }
 impl fmt::Display for CreateMatchmakingRuleSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMatchmakingRuleSetError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMatchmakingRuleSetError::InternalService(ref cause) => cause,
-            CreateMatchmakingRuleSetError::InvalidRequest(ref cause) => cause,
-            CreateMatchmakingRuleSetError::TaggingFailed(ref cause) => cause,
-            CreateMatchmakingRuleSetError::UnsupportedRegion(ref cause) => cause,
+            CreateMatchmakingRuleSetError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingRuleSetError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingRuleSetError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateMatchmakingRuleSetError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMatchmakingRuleSetError {}
 /// Errors returned by CreatePlayerSession
 #[derive(Debug, PartialEq)]
 pub enum CreatePlayerSessionError {
@@ -3888,23 +3950,20 @@ impl CreatePlayerSessionError {
     }
 }
 impl fmt::Display for CreatePlayerSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePlayerSessionError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePlayerSessionError::GameSessionFull(ref cause) => cause,
-            CreatePlayerSessionError::InternalService(ref cause) => cause,
-            CreatePlayerSessionError::InvalidGameSessionStatus(ref cause) => cause,
-            CreatePlayerSessionError::InvalidRequest(ref cause) => cause,
-            CreatePlayerSessionError::NotFound(ref cause) => cause,
-            CreatePlayerSessionError::TerminalRoutingStrategy(ref cause) => cause,
-            CreatePlayerSessionError::Unauthorized(ref cause) => cause,
+            CreatePlayerSessionError::GameSessionFull(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::InvalidGameSessionStatus(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePlayerSessionError {}
 /// Errors returned by CreatePlayerSessions
 #[derive(Debug, PartialEq)]
 pub enum CreatePlayerSessionsError {
@@ -3965,23 +4024,22 @@ impl CreatePlayerSessionsError {
     }
 }
 impl fmt::Display for CreatePlayerSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreatePlayerSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            CreatePlayerSessionsError::GameSessionFull(ref cause) => cause,
-            CreatePlayerSessionsError::InternalService(ref cause) => cause,
-            CreatePlayerSessionsError::InvalidGameSessionStatus(ref cause) => cause,
-            CreatePlayerSessionsError::InvalidRequest(ref cause) => cause,
-            CreatePlayerSessionsError::NotFound(ref cause) => cause,
-            CreatePlayerSessionsError::TerminalRoutingStrategy(ref cause) => cause,
-            CreatePlayerSessionsError::Unauthorized(ref cause) => cause,
+            CreatePlayerSessionsError::GameSessionFull(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionsError::InvalidGameSessionStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreatePlayerSessionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionsError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            CreatePlayerSessionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreatePlayerSessionsError {}
 /// Errors returned by CreateScript
 #[derive(Debug, PartialEq)]
 pub enum CreateScriptError {
@@ -4024,21 +4082,18 @@ impl CreateScriptError {
     }
 }
 impl fmt::Display for CreateScriptError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateScriptError {
-    fn description(&self) -> &str {
         match *self {
-            CreateScriptError::Conflict(ref cause) => cause,
-            CreateScriptError::InternalService(ref cause) => cause,
-            CreateScriptError::InvalidRequest(ref cause) => cause,
-            CreateScriptError::TaggingFailed(ref cause) => cause,
-            CreateScriptError::Unauthorized(ref cause) => cause,
+            CreateScriptError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            CreateScriptError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateScriptError {}
 /// Errors returned by CreateVpcPeeringAuthorization
 #[derive(Debug, PartialEq)]
 pub enum CreateVpcPeeringAuthorizationError {
@@ -4086,20 +4141,19 @@ impl CreateVpcPeeringAuthorizationError {
     }
 }
 impl fmt::Display for CreateVpcPeeringAuthorizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVpcPeeringAuthorizationError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVpcPeeringAuthorizationError::InternalService(ref cause) => cause,
-            CreateVpcPeeringAuthorizationError::InvalidRequest(ref cause) => cause,
-            CreateVpcPeeringAuthorizationError::NotFound(ref cause) => cause,
-            CreateVpcPeeringAuthorizationError::Unauthorized(ref cause) => cause,
+            CreateVpcPeeringAuthorizationError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateVpcPeeringAuthorizationError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateVpcPeeringAuthorizationError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateVpcPeeringAuthorizationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVpcPeeringAuthorizationError {}
 /// Errors returned by CreateVpcPeeringConnection
 #[derive(Debug, PartialEq)]
 pub enum CreateVpcPeeringConnectionError {
@@ -4145,20 +4199,17 @@ impl CreateVpcPeeringConnectionError {
     }
 }
 impl fmt::Display for CreateVpcPeeringConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVpcPeeringConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVpcPeeringConnectionError::InternalService(ref cause) => cause,
-            CreateVpcPeeringConnectionError::InvalidRequest(ref cause) => cause,
-            CreateVpcPeeringConnectionError::NotFound(ref cause) => cause,
-            CreateVpcPeeringConnectionError::Unauthorized(ref cause) => cause,
+            CreateVpcPeeringConnectionError::InternalService(ref cause) => write!(f, "{}", cause),
+            CreateVpcPeeringConnectionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateVpcPeeringConnectionError::NotFound(ref cause) => write!(f, "{}", cause),
+            CreateVpcPeeringConnectionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVpcPeeringConnectionError {}
 /// Errors returned by DeleteAlias
 #[derive(Debug, PartialEq)]
 pub enum DeleteAliasError {
@@ -4201,21 +4252,18 @@ impl DeleteAliasError {
     }
 }
 impl fmt::Display for DeleteAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteAliasError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteAliasError::InternalService(ref cause) => cause,
-            DeleteAliasError::InvalidRequest(ref cause) => cause,
-            DeleteAliasError::NotFound(ref cause) => cause,
-            DeleteAliasError::TaggingFailed(ref cause) => cause,
-            DeleteAliasError::Unauthorized(ref cause) => cause,
+            DeleteAliasError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteAliasError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteAliasError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteAliasError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteAliasError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteAliasError {}
 /// Errors returned by DeleteBuild
 #[derive(Debug, PartialEq)]
 pub enum DeleteBuildError {
@@ -4258,21 +4306,18 @@ impl DeleteBuildError {
     }
 }
 impl fmt::Display for DeleteBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBuildError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBuildError::InternalService(ref cause) => cause,
-            DeleteBuildError::InvalidRequest(ref cause) => cause,
-            DeleteBuildError::NotFound(ref cause) => cause,
-            DeleteBuildError::TaggingFailed(ref cause) => cause,
-            DeleteBuildError::Unauthorized(ref cause) => cause,
+            DeleteBuildError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteBuildError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBuildError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBuildError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteBuildError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBuildError {}
 /// Errors returned by DeleteFleet
 #[derive(Debug, PartialEq)]
 pub enum DeleteFleetError {
@@ -4320,22 +4365,19 @@ impl DeleteFleetError {
     }
 }
 impl fmt::Display for DeleteFleetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFleetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFleetError::InternalService(ref cause) => cause,
-            DeleteFleetError::InvalidFleetStatus(ref cause) => cause,
-            DeleteFleetError::InvalidRequest(ref cause) => cause,
-            DeleteFleetError::NotFound(ref cause) => cause,
-            DeleteFleetError::TaggingFailed(ref cause) => cause,
-            DeleteFleetError::Unauthorized(ref cause) => cause,
+            DeleteFleetError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::InvalidFleetStatus(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteFleetError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFleetError {}
 /// Errors returned by DeleteGameSessionQueue
 #[derive(Debug, PartialEq)]
 pub enum DeleteGameSessionQueueError {
@@ -4384,21 +4426,18 @@ impl DeleteGameSessionQueueError {
     }
 }
 impl fmt::Display for DeleteGameSessionQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteGameSessionQueueError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteGameSessionQueueError::InternalService(ref cause) => cause,
-            DeleteGameSessionQueueError::InvalidRequest(ref cause) => cause,
-            DeleteGameSessionQueueError::NotFound(ref cause) => cause,
-            DeleteGameSessionQueueError::TaggingFailed(ref cause) => cause,
-            DeleteGameSessionQueueError::Unauthorized(ref cause) => cause,
+            DeleteGameSessionQueueError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteGameSessionQueueError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteGameSessionQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteGameSessionQueueError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteGameSessionQueueError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteGameSessionQueueError {}
 /// Errors returned by DeleteMatchmakingConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DeleteMatchmakingConfigurationError {
@@ -4453,21 +4492,24 @@ impl DeleteMatchmakingConfigurationError {
     }
 }
 impl fmt::Display for DeleteMatchmakingConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMatchmakingConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMatchmakingConfigurationError::InternalService(ref cause) => cause,
-            DeleteMatchmakingConfigurationError::InvalidRequest(ref cause) => cause,
-            DeleteMatchmakingConfigurationError::NotFound(ref cause) => cause,
-            DeleteMatchmakingConfigurationError::TaggingFailed(ref cause) => cause,
-            DeleteMatchmakingConfigurationError::UnsupportedRegion(ref cause) => cause,
+            DeleteMatchmakingConfigurationError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteMatchmakingConfigurationError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteMatchmakingConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingConfigurationError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingConfigurationError::UnsupportedRegion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DeleteMatchmakingConfigurationError {}
 /// Errors returned by DeleteMatchmakingRuleSet
 #[derive(Debug, PartialEq)]
 pub enum DeleteMatchmakingRuleSetError {
@@ -4518,21 +4560,18 @@ impl DeleteMatchmakingRuleSetError {
     }
 }
 impl fmt::Display for DeleteMatchmakingRuleSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMatchmakingRuleSetError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMatchmakingRuleSetError::InternalService(ref cause) => cause,
-            DeleteMatchmakingRuleSetError::InvalidRequest(ref cause) => cause,
-            DeleteMatchmakingRuleSetError::NotFound(ref cause) => cause,
-            DeleteMatchmakingRuleSetError::TaggingFailed(ref cause) => cause,
-            DeleteMatchmakingRuleSetError::UnsupportedRegion(ref cause) => cause,
+            DeleteMatchmakingRuleSetError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingRuleSetError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingRuleSetError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingRuleSetError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteMatchmakingRuleSetError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMatchmakingRuleSetError {}
 /// Errors returned by DeleteScalingPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteScalingPolicyError {
@@ -4570,20 +4609,17 @@ impl DeleteScalingPolicyError {
     }
 }
 impl fmt::Display for DeleteScalingPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteScalingPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteScalingPolicyError::InternalService(ref cause) => cause,
-            DeleteScalingPolicyError::InvalidRequest(ref cause) => cause,
-            DeleteScalingPolicyError::NotFound(ref cause) => cause,
-            DeleteScalingPolicyError::Unauthorized(ref cause) => cause,
+            DeleteScalingPolicyError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteScalingPolicyError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteScalingPolicyError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteScalingPolicyError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteScalingPolicyError {}
 /// Errors returned by DeleteScript
 #[derive(Debug, PartialEq)]
 pub enum DeleteScriptError {
@@ -4626,21 +4662,18 @@ impl DeleteScriptError {
     }
 }
 impl fmt::Display for DeleteScriptError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteScriptError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteScriptError::InternalService(ref cause) => cause,
-            DeleteScriptError::InvalidRequest(ref cause) => cause,
-            DeleteScriptError::NotFound(ref cause) => cause,
-            DeleteScriptError::TaggingFailed(ref cause) => cause,
-            DeleteScriptError::Unauthorized(ref cause) => cause,
+            DeleteScriptError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteScriptError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteScriptError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteScriptError::TaggingFailed(ref cause) => write!(f, "{}", cause),
+            DeleteScriptError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteScriptError {}
 /// Errors returned by DeleteVpcPeeringAuthorization
 #[derive(Debug, PartialEq)]
 pub enum DeleteVpcPeeringAuthorizationError {
@@ -4688,20 +4721,19 @@ impl DeleteVpcPeeringAuthorizationError {
     }
 }
 impl fmt::Display for DeleteVpcPeeringAuthorizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVpcPeeringAuthorizationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVpcPeeringAuthorizationError::InternalService(ref cause) => cause,
-            DeleteVpcPeeringAuthorizationError::InvalidRequest(ref cause) => cause,
-            DeleteVpcPeeringAuthorizationError::NotFound(ref cause) => cause,
-            DeleteVpcPeeringAuthorizationError::Unauthorized(ref cause) => cause,
+            DeleteVpcPeeringAuthorizationError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteVpcPeeringAuthorizationError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteVpcPeeringAuthorizationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVpcPeeringAuthorizationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVpcPeeringAuthorizationError {}
 /// Errors returned by DeleteVpcPeeringConnection
 #[derive(Debug, PartialEq)]
 pub enum DeleteVpcPeeringConnectionError {
@@ -4747,20 +4779,17 @@ impl DeleteVpcPeeringConnectionError {
     }
 }
 impl fmt::Display for DeleteVpcPeeringConnectionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVpcPeeringConnectionError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVpcPeeringConnectionError::InternalService(ref cause) => cause,
-            DeleteVpcPeeringConnectionError::InvalidRequest(ref cause) => cause,
-            DeleteVpcPeeringConnectionError::NotFound(ref cause) => cause,
-            DeleteVpcPeeringConnectionError::Unauthorized(ref cause) => cause,
+            DeleteVpcPeeringConnectionError::InternalService(ref cause) => write!(f, "{}", cause),
+            DeleteVpcPeeringConnectionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteVpcPeeringConnectionError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteVpcPeeringConnectionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVpcPeeringConnectionError {}
 /// Errors returned by DescribeAlias
 #[derive(Debug, PartialEq)]
 pub enum DescribeAliasError {
@@ -4798,20 +4827,17 @@ impl DescribeAliasError {
     }
 }
 impl fmt::Display for DescribeAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAliasError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAliasError::InternalService(ref cause) => cause,
-            DescribeAliasError::InvalidRequest(ref cause) => cause,
-            DescribeAliasError::NotFound(ref cause) => cause,
-            DescribeAliasError::Unauthorized(ref cause) => cause,
+            DescribeAliasError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeAliasError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeAliasError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeAliasError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAliasError {}
 /// Errors returned by DescribeBuild
 #[derive(Debug, PartialEq)]
 pub enum DescribeBuildError {
@@ -4849,20 +4875,17 @@ impl DescribeBuildError {
     }
 }
 impl fmt::Display for DescribeBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBuildError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBuildError::InternalService(ref cause) => cause,
-            DescribeBuildError::InvalidRequest(ref cause) => cause,
-            DescribeBuildError::NotFound(ref cause) => cause,
-            DescribeBuildError::Unauthorized(ref cause) => cause,
+            DescribeBuildError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeBuildError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBuildError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeBuildError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBuildError {}
 /// Errors returned by DescribeEC2InstanceLimits
 #[derive(Debug, PartialEq)]
 pub enum DescribeEC2InstanceLimitsError {
@@ -4901,19 +4924,16 @@ impl DescribeEC2InstanceLimitsError {
     }
 }
 impl fmt::Display for DescribeEC2InstanceLimitsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeEC2InstanceLimitsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeEC2InstanceLimitsError::InternalService(ref cause) => cause,
-            DescribeEC2InstanceLimitsError::InvalidRequest(ref cause) => cause,
-            DescribeEC2InstanceLimitsError::Unauthorized(ref cause) => cause,
+            DescribeEC2InstanceLimitsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeEC2InstanceLimitsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeEC2InstanceLimitsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeEC2InstanceLimitsError {}
 /// Errors returned by DescribeFleetAttributes
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetAttributesError {
@@ -4957,20 +4977,17 @@ impl DescribeFleetAttributesError {
     }
 }
 impl fmt::Display for DescribeFleetAttributesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetAttributesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetAttributesError::InternalService(ref cause) => cause,
-            DescribeFleetAttributesError::InvalidRequest(ref cause) => cause,
-            DescribeFleetAttributesError::NotFound(ref cause) => cause,
-            DescribeFleetAttributesError::Unauthorized(ref cause) => cause,
+            DescribeFleetAttributesError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeFleetAttributesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFleetAttributesError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFleetAttributesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetAttributesError {}
 /// Errors returned by DescribeFleetCapacity
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetCapacityError {
@@ -5012,20 +5029,17 @@ impl DescribeFleetCapacityError {
     }
 }
 impl fmt::Display for DescribeFleetCapacityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetCapacityError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetCapacityError::InternalService(ref cause) => cause,
-            DescribeFleetCapacityError::InvalidRequest(ref cause) => cause,
-            DescribeFleetCapacityError::NotFound(ref cause) => cause,
-            DescribeFleetCapacityError::Unauthorized(ref cause) => cause,
+            DescribeFleetCapacityError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeFleetCapacityError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFleetCapacityError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFleetCapacityError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetCapacityError {}
 /// Errors returned by DescribeFleetEvents
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetEventsError {
@@ -5063,20 +5077,17 @@ impl DescribeFleetEventsError {
     }
 }
 impl fmt::Display for DescribeFleetEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetEventsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetEventsError::InternalService(ref cause) => cause,
-            DescribeFleetEventsError::InvalidRequest(ref cause) => cause,
-            DescribeFleetEventsError::NotFound(ref cause) => cause,
-            DescribeFleetEventsError::Unauthorized(ref cause) => cause,
+            DescribeFleetEventsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeFleetEventsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFleetEventsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFleetEventsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetEventsError {}
 /// Errors returned by DescribeFleetPortSettings
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetPortSettingsError {
@@ -5120,20 +5131,17 @@ impl DescribeFleetPortSettingsError {
     }
 }
 impl fmt::Display for DescribeFleetPortSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetPortSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetPortSettingsError::InternalService(ref cause) => cause,
-            DescribeFleetPortSettingsError::InvalidRequest(ref cause) => cause,
-            DescribeFleetPortSettingsError::NotFound(ref cause) => cause,
-            DescribeFleetPortSettingsError::Unauthorized(ref cause) => cause,
+            DescribeFleetPortSettingsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeFleetPortSettingsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFleetPortSettingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFleetPortSettingsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetPortSettingsError {}
 /// Errors returned by DescribeFleetUtilization
 #[derive(Debug, PartialEq)]
 pub enum DescribeFleetUtilizationError {
@@ -5177,20 +5185,17 @@ impl DescribeFleetUtilizationError {
     }
 }
 impl fmt::Display for DescribeFleetUtilizationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFleetUtilizationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFleetUtilizationError::InternalService(ref cause) => cause,
-            DescribeFleetUtilizationError::InvalidRequest(ref cause) => cause,
-            DescribeFleetUtilizationError::NotFound(ref cause) => cause,
-            DescribeFleetUtilizationError::Unauthorized(ref cause) => cause,
+            DescribeFleetUtilizationError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeFleetUtilizationError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeFleetUtilizationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFleetUtilizationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFleetUtilizationError {}
 /// Errors returned by DescribeGameSessionDetails
 #[derive(Debug, PartialEq)]
 pub enum DescribeGameSessionDetailsError {
@@ -5243,21 +5248,20 @@ impl DescribeGameSessionDetailsError {
     }
 }
 impl fmt::Display for DescribeGameSessionDetailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGameSessionDetailsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGameSessionDetailsError::InternalService(ref cause) => cause,
-            DescribeGameSessionDetailsError::InvalidRequest(ref cause) => cause,
-            DescribeGameSessionDetailsError::NotFound(ref cause) => cause,
-            DescribeGameSessionDetailsError::TerminalRoutingStrategy(ref cause) => cause,
-            DescribeGameSessionDetailsError::Unauthorized(ref cause) => cause,
+            DescribeGameSessionDetailsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionDetailsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionDetailsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionDetailsError::TerminalRoutingStrategy(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeGameSessionDetailsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeGameSessionDetailsError {}
 /// Errors returned by DescribeGameSessionPlacement
 #[derive(Debug, PartialEq)]
 pub enum DescribeGameSessionPlacementError {
@@ -5305,20 +5309,17 @@ impl DescribeGameSessionPlacementError {
     }
 }
 impl fmt::Display for DescribeGameSessionPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGameSessionPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGameSessionPlacementError::InternalService(ref cause) => cause,
-            DescribeGameSessionPlacementError::InvalidRequest(ref cause) => cause,
-            DescribeGameSessionPlacementError::NotFound(ref cause) => cause,
-            DescribeGameSessionPlacementError::Unauthorized(ref cause) => cause,
+            DescribeGameSessionPlacementError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionPlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionPlacementError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionPlacementError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeGameSessionPlacementError {}
 /// Errors returned by DescribeGameSessionQueues
 #[derive(Debug, PartialEq)]
 pub enum DescribeGameSessionQueuesError {
@@ -5362,20 +5363,17 @@ impl DescribeGameSessionQueuesError {
     }
 }
 impl fmt::Display for DescribeGameSessionQueuesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGameSessionQueuesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGameSessionQueuesError::InternalService(ref cause) => cause,
-            DescribeGameSessionQueuesError::InvalidRequest(ref cause) => cause,
-            DescribeGameSessionQueuesError::NotFound(ref cause) => cause,
-            DescribeGameSessionQueuesError::Unauthorized(ref cause) => cause,
+            DescribeGameSessionQueuesError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionQueuesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionQueuesError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionQueuesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeGameSessionQueuesError {}
 /// Errors returned by DescribeGameSessions
 #[derive(Debug, PartialEq)]
 pub enum DescribeGameSessionsError {
@@ -5422,21 +5420,18 @@ impl DescribeGameSessionsError {
     }
 }
 impl fmt::Display for DescribeGameSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeGameSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeGameSessionsError::InternalService(ref cause) => cause,
-            DescribeGameSessionsError::InvalidRequest(ref cause) => cause,
-            DescribeGameSessionsError::NotFound(ref cause) => cause,
-            DescribeGameSessionsError::TerminalRoutingStrategy(ref cause) => cause,
-            DescribeGameSessionsError::Unauthorized(ref cause) => cause,
+            DescribeGameSessionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionsError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            DescribeGameSessionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeGameSessionsError {}
 /// Errors returned by DescribeInstances
 #[derive(Debug, PartialEq)]
 pub enum DescribeInstancesError {
@@ -5474,20 +5469,17 @@ impl DescribeInstancesError {
     }
 }
 impl fmt::Display for DescribeInstancesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInstancesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInstancesError::InternalService(ref cause) => cause,
-            DescribeInstancesError::InvalidRequest(ref cause) => cause,
-            DescribeInstancesError::NotFound(ref cause) => cause,
-            DescribeInstancesError::Unauthorized(ref cause) => cause,
+            DescribeInstancesError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeInstancesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeInstancesError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeInstancesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInstancesError {}
 /// Errors returned by DescribeMatchmaking
 #[derive(Debug, PartialEq)]
 pub enum DescribeMatchmakingError {
@@ -5522,19 +5514,16 @@ impl DescribeMatchmakingError {
     }
 }
 impl fmt::Display for DescribeMatchmakingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMatchmakingError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMatchmakingError::InternalService(ref cause) => cause,
-            DescribeMatchmakingError::InvalidRequest(ref cause) => cause,
-            DescribeMatchmakingError::UnsupportedRegion(ref cause) => cause,
+            DescribeMatchmakingError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeMatchmakingError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMatchmakingError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMatchmakingError {}
 /// Errors returned by DescribeMatchmakingConfigurations
 #[derive(Debug, PartialEq)]
 pub enum DescribeMatchmakingConfigurationsError {
@@ -5575,19 +5564,22 @@ impl DescribeMatchmakingConfigurationsError {
     }
 }
 impl fmt::Display for DescribeMatchmakingConfigurationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMatchmakingConfigurationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMatchmakingConfigurationsError::InternalService(ref cause) => cause,
-            DescribeMatchmakingConfigurationsError::InvalidRequest(ref cause) => cause,
-            DescribeMatchmakingConfigurationsError::UnsupportedRegion(ref cause) => cause,
+            DescribeMatchmakingConfigurationsError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMatchmakingConfigurationsError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeMatchmakingConfigurationsError::UnsupportedRegion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMatchmakingConfigurationsError {}
 /// Errors returned by DescribeMatchmakingRuleSets
 #[derive(Debug, PartialEq)]
 pub enum DescribeMatchmakingRuleSetsError {
@@ -5635,20 +5627,19 @@ impl DescribeMatchmakingRuleSetsError {
     }
 }
 impl fmt::Display for DescribeMatchmakingRuleSetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMatchmakingRuleSetsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMatchmakingRuleSetsError::InternalService(ref cause) => cause,
-            DescribeMatchmakingRuleSetsError::InvalidRequest(ref cause) => cause,
-            DescribeMatchmakingRuleSetsError::NotFound(ref cause) => cause,
-            DescribeMatchmakingRuleSetsError::UnsupportedRegion(ref cause) => cause,
+            DescribeMatchmakingRuleSetsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeMatchmakingRuleSetsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMatchmakingRuleSetsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMatchmakingRuleSetsError::UnsupportedRegion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeMatchmakingRuleSetsError {}
 /// Errors returned by DescribePlayerSessions
 #[derive(Debug, PartialEq)]
 pub enum DescribePlayerSessionsError {
@@ -5690,20 +5681,17 @@ impl DescribePlayerSessionsError {
     }
 }
 impl fmt::Display for DescribePlayerSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribePlayerSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribePlayerSessionsError::InternalService(ref cause) => cause,
-            DescribePlayerSessionsError::InvalidRequest(ref cause) => cause,
-            DescribePlayerSessionsError::NotFound(ref cause) => cause,
-            DescribePlayerSessionsError::Unauthorized(ref cause) => cause,
+            DescribePlayerSessionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribePlayerSessionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribePlayerSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribePlayerSessionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribePlayerSessionsError {}
 /// Errors returned by DescribeRuntimeConfiguration
 #[derive(Debug, PartialEq)]
 pub enum DescribeRuntimeConfigurationError {
@@ -5751,20 +5739,17 @@ impl DescribeRuntimeConfigurationError {
     }
 }
 impl fmt::Display for DescribeRuntimeConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeRuntimeConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeRuntimeConfigurationError::InternalService(ref cause) => cause,
-            DescribeRuntimeConfigurationError::InvalidRequest(ref cause) => cause,
-            DescribeRuntimeConfigurationError::NotFound(ref cause) => cause,
-            DescribeRuntimeConfigurationError::Unauthorized(ref cause) => cause,
+            DescribeRuntimeConfigurationError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeRuntimeConfigurationError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeRuntimeConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeRuntimeConfigurationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeRuntimeConfigurationError {}
 /// Errors returned by DescribeScalingPolicies
 #[derive(Debug, PartialEq)]
 pub enum DescribeScalingPoliciesError {
@@ -5808,20 +5793,17 @@ impl DescribeScalingPoliciesError {
     }
 }
 impl fmt::Display for DescribeScalingPoliciesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeScalingPoliciesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeScalingPoliciesError::InternalService(ref cause) => cause,
-            DescribeScalingPoliciesError::InvalidRequest(ref cause) => cause,
-            DescribeScalingPoliciesError::NotFound(ref cause) => cause,
-            DescribeScalingPoliciesError::Unauthorized(ref cause) => cause,
+            DescribeScalingPoliciesError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPoliciesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPoliciesError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeScalingPoliciesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeScalingPoliciesError {}
 /// Errors returned by DescribeScript
 #[derive(Debug, PartialEq)]
 pub enum DescribeScriptError {
@@ -5859,20 +5841,17 @@ impl DescribeScriptError {
     }
 }
 impl fmt::Display for DescribeScriptError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeScriptError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeScriptError::InternalService(ref cause) => cause,
-            DescribeScriptError::InvalidRequest(ref cause) => cause,
-            DescribeScriptError::NotFound(ref cause) => cause,
-            DescribeScriptError::Unauthorized(ref cause) => cause,
+            DescribeScriptError::InternalService(ref cause) => write!(f, "{}", cause),
+            DescribeScriptError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeScriptError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeScriptError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeScriptError {}
 /// Errors returned by DescribeVpcPeeringAuthorizations
 #[derive(Debug, PartialEq)]
 pub enum DescribeVpcPeeringAuthorizationsError {
@@ -5913,19 +5892,22 @@ impl DescribeVpcPeeringAuthorizationsError {
     }
 }
 impl fmt::Display for DescribeVpcPeeringAuthorizationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeVpcPeeringAuthorizationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeVpcPeeringAuthorizationsError::InternalService(ref cause) => cause,
-            DescribeVpcPeeringAuthorizationsError::InvalidRequest(ref cause) => cause,
-            DescribeVpcPeeringAuthorizationsError::Unauthorized(ref cause) => cause,
+            DescribeVpcPeeringAuthorizationsError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeVpcPeeringAuthorizationsError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeVpcPeeringAuthorizationsError::Unauthorized(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeVpcPeeringAuthorizationsError {}
 /// Errors returned by DescribeVpcPeeringConnections
 #[derive(Debug, PartialEq)]
 pub enum DescribeVpcPeeringConnectionsError {
@@ -5973,20 +5955,19 @@ impl DescribeVpcPeeringConnectionsError {
     }
 }
 impl fmt::Display for DescribeVpcPeeringConnectionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeVpcPeeringConnectionsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeVpcPeeringConnectionsError::InternalService(ref cause) => cause,
-            DescribeVpcPeeringConnectionsError::InvalidRequest(ref cause) => cause,
-            DescribeVpcPeeringConnectionsError::NotFound(ref cause) => cause,
-            DescribeVpcPeeringConnectionsError::Unauthorized(ref cause) => cause,
+            DescribeVpcPeeringConnectionsError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeVpcPeeringConnectionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeVpcPeeringConnectionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeVpcPeeringConnectionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeVpcPeeringConnectionsError {}
 /// Errors returned by GetGameSessionLogUrl
 #[derive(Debug, PartialEq)]
 pub enum GetGameSessionLogUrlError {
@@ -6026,20 +6007,17 @@ impl GetGameSessionLogUrlError {
     }
 }
 impl fmt::Display for GetGameSessionLogUrlError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetGameSessionLogUrlError {
-    fn description(&self) -> &str {
         match *self {
-            GetGameSessionLogUrlError::InternalService(ref cause) => cause,
-            GetGameSessionLogUrlError::InvalidRequest(ref cause) => cause,
-            GetGameSessionLogUrlError::NotFound(ref cause) => cause,
-            GetGameSessionLogUrlError::Unauthorized(ref cause) => cause,
+            GetGameSessionLogUrlError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetGameSessionLogUrlError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetGameSessionLogUrlError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetGameSessionLogUrlError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetGameSessionLogUrlError {}
 /// Errors returned by GetInstanceAccess
 #[derive(Debug, PartialEq)]
 pub enum GetInstanceAccessError {
@@ -6077,20 +6055,17 @@ impl GetInstanceAccessError {
     }
 }
 impl fmt::Display for GetInstanceAccessError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInstanceAccessError {
-    fn description(&self) -> &str {
         match *self {
-            GetInstanceAccessError::InternalService(ref cause) => cause,
-            GetInstanceAccessError::InvalidRequest(ref cause) => cause,
-            GetInstanceAccessError::NotFound(ref cause) => cause,
-            GetInstanceAccessError::Unauthorized(ref cause) => cause,
+            GetInstanceAccessError::InternalService(ref cause) => write!(f, "{}", cause),
+            GetInstanceAccessError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            GetInstanceAccessError::NotFound(ref cause) => write!(f, "{}", cause),
+            GetInstanceAccessError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInstanceAccessError {}
 /// Errors returned by ListAliases
 #[derive(Debug, PartialEq)]
 pub enum ListAliasesError {
@@ -6123,19 +6098,16 @@ impl ListAliasesError {
     }
 }
 impl fmt::Display for ListAliasesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListAliasesError {
-    fn description(&self) -> &str {
         match *self {
-            ListAliasesError::InternalService(ref cause) => cause,
-            ListAliasesError::InvalidRequest(ref cause) => cause,
-            ListAliasesError::Unauthorized(ref cause) => cause,
+            ListAliasesError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListAliasesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListAliasesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListAliasesError {}
 /// Errors returned by ListBuilds
 #[derive(Debug, PartialEq)]
 pub enum ListBuildsError {
@@ -6168,19 +6140,16 @@ impl ListBuildsError {
     }
 }
 impl fmt::Display for ListBuildsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListBuildsError {
-    fn description(&self) -> &str {
         match *self {
-            ListBuildsError::InternalService(ref cause) => cause,
-            ListBuildsError::InvalidRequest(ref cause) => cause,
-            ListBuildsError::Unauthorized(ref cause) => cause,
+            ListBuildsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListBuildsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListBuildsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListBuildsError {}
 /// Errors returned by ListFleets
 #[derive(Debug, PartialEq)]
 pub enum ListFleetsError {
@@ -6218,20 +6187,17 @@ impl ListFleetsError {
     }
 }
 impl fmt::Display for ListFleetsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFleetsError {
-    fn description(&self) -> &str {
         match *self {
-            ListFleetsError::InternalService(ref cause) => cause,
-            ListFleetsError::InvalidRequest(ref cause) => cause,
-            ListFleetsError::NotFound(ref cause) => cause,
-            ListFleetsError::Unauthorized(ref cause) => cause,
+            ListFleetsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListFleetsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListFleetsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListFleetsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFleetsError {}
 /// Errors returned by ListScripts
 #[derive(Debug, PartialEq)]
 pub enum ListScriptsError {
@@ -6264,19 +6230,16 @@ impl ListScriptsError {
     }
 }
 impl fmt::Display for ListScriptsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListScriptsError {
-    fn description(&self) -> &str {
         match *self {
-            ListScriptsError::InternalService(ref cause) => cause,
-            ListScriptsError::InvalidRequest(ref cause) => cause,
-            ListScriptsError::Unauthorized(ref cause) => cause,
+            ListScriptsError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListScriptsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListScriptsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListScriptsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -6314,20 +6277,17 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InternalService(ref cause) => cause,
-            ListTagsForResourceError::InvalidRequest(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
-            ListTagsForResourceError::TaggingFailed(ref cause) => cause,
+            ListTagsForResourceError::InternalService(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::TaggingFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PutScalingPolicy
 #[derive(Debug, PartialEq)]
 pub enum PutScalingPolicyError {
@@ -6365,20 +6325,17 @@ impl PutScalingPolicyError {
     }
 }
 impl fmt::Display for PutScalingPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutScalingPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutScalingPolicyError::InternalService(ref cause) => cause,
-            PutScalingPolicyError::InvalidRequest(ref cause) => cause,
-            PutScalingPolicyError::NotFound(ref cause) => cause,
-            PutScalingPolicyError::Unauthorized(ref cause) => cause,
+            PutScalingPolicyError::InternalService(ref cause) => write!(f, "{}", cause),
+            PutScalingPolicyError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            PutScalingPolicyError::NotFound(ref cause) => write!(f, "{}", cause),
+            PutScalingPolicyError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutScalingPolicyError {}
 /// Errors returned by RequestUploadCredentials
 #[derive(Debug, PartialEq)]
 pub enum RequestUploadCredentialsError {
@@ -6422,20 +6379,17 @@ impl RequestUploadCredentialsError {
     }
 }
 impl fmt::Display for RequestUploadCredentialsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RequestUploadCredentialsError {
-    fn description(&self) -> &str {
         match *self {
-            RequestUploadCredentialsError::InternalService(ref cause) => cause,
-            RequestUploadCredentialsError::InvalidRequest(ref cause) => cause,
-            RequestUploadCredentialsError::NotFound(ref cause) => cause,
-            RequestUploadCredentialsError::Unauthorized(ref cause) => cause,
+            RequestUploadCredentialsError::InternalService(ref cause) => write!(f, "{}", cause),
+            RequestUploadCredentialsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            RequestUploadCredentialsError::NotFound(ref cause) => write!(f, "{}", cause),
+            RequestUploadCredentialsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RequestUploadCredentialsError {}
 /// Errors returned by ResolveAlias
 #[derive(Debug, PartialEq)]
 pub enum ResolveAliasError {
@@ -6480,21 +6434,18 @@ impl ResolveAliasError {
     }
 }
 impl fmt::Display for ResolveAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResolveAliasError {
-    fn description(&self) -> &str {
         match *self {
-            ResolveAliasError::InternalService(ref cause) => cause,
-            ResolveAliasError::InvalidRequest(ref cause) => cause,
-            ResolveAliasError::NotFound(ref cause) => cause,
-            ResolveAliasError::TerminalRoutingStrategy(ref cause) => cause,
-            ResolveAliasError::Unauthorized(ref cause) => cause,
+            ResolveAliasError::InternalService(ref cause) => write!(f, "{}", cause),
+            ResolveAliasError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ResolveAliasError::NotFound(ref cause) => write!(f, "{}", cause),
+            ResolveAliasError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            ResolveAliasError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResolveAliasError {}
 /// Errors returned by SearchGameSessions
 #[derive(Debug, PartialEq)]
 pub enum SearchGameSessionsError {
@@ -6539,21 +6490,18 @@ impl SearchGameSessionsError {
     }
 }
 impl fmt::Display for SearchGameSessionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SearchGameSessionsError {
-    fn description(&self) -> &str {
         match *self {
-            SearchGameSessionsError::InternalService(ref cause) => cause,
-            SearchGameSessionsError::InvalidRequest(ref cause) => cause,
-            SearchGameSessionsError::NotFound(ref cause) => cause,
-            SearchGameSessionsError::TerminalRoutingStrategy(ref cause) => cause,
-            SearchGameSessionsError::Unauthorized(ref cause) => cause,
+            SearchGameSessionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            SearchGameSessionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            SearchGameSessionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            SearchGameSessionsError::TerminalRoutingStrategy(ref cause) => write!(f, "{}", cause),
+            SearchGameSessionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SearchGameSessionsError {}
 /// Errors returned by StartFleetActions
 #[derive(Debug, PartialEq)]
 pub enum StartFleetActionsError {
@@ -6591,20 +6539,17 @@ impl StartFleetActionsError {
     }
 }
 impl fmt::Display for StartFleetActionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartFleetActionsError {
-    fn description(&self) -> &str {
         match *self {
-            StartFleetActionsError::InternalService(ref cause) => cause,
-            StartFleetActionsError::InvalidRequest(ref cause) => cause,
-            StartFleetActionsError::NotFound(ref cause) => cause,
-            StartFleetActionsError::Unauthorized(ref cause) => cause,
+            StartFleetActionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartFleetActionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartFleetActionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartFleetActionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartFleetActionsError {}
 /// Errors returned by StartGameSessionPlacement
 #[derive(Debug, PartialEq)]
 pub enum StartGameSessionPlacementError {
@@ -6648,20 +6593,17 @@ impl StartGameSessionPlacementError {
     }
 }
 impl fmt::Display for StartGameSessionPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartGameSessionPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            StartGameSessionPlacementError::InternalService(ref cause) => cause,
-            StartGameSessionPlacementError::InvalidRequest(ref cause) => cause,
-            StartGameSessionPlacementError::NotFound(ref cause) => cause,
-            StartGameSessionPlacementError::Unauthorized(ref cause) => cause,
+            StartGameSessionPlacementError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartGameSessionPlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartGameSessionPlacementError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartGameSessionPlacementError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartGameSessionPlacementError {}
 /// Errors returned by StartMatchBackfill
 #[derive(Debug, PartialEq)]
 pub enum StartMatchBackfillError {
@@ -6701,20 +6643,17 @@ impl StartMatchBackfillError {
     }
 }
 impl fmt::Display for StartMatchBackfillError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMatchBackfillError {
-    fn description(&self) -> &str {
         match *self {
-            StartMatchBackfillError::InternalService(ref cause) => cause,
-            StartMatchBackfillError::InvalidRequest(ref cause) => cause,
-            StartMatchBackfillError::NotFound(ref cause) => cause,
-            StartMatchBackfillError::UnsupportedRegion(ref cause) => cause,
+            StartMatchBackfillError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartMatchBackfillError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartMatchBackfillError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartMatchBackfillError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMatchBackfillError {}
 /// Errors returned by StartMatchmaking
 #[derive(Debug, PartialEq)]
 pub enum StartMatchmakingError {
@@ -6752,20 +6691,17 @@ impl StartMatchmakingError {
     }
 }
 impl fmt::Display for StartMatchmakingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMatchmakingError {
-    fn description(&self) -> &str {
         match *self {
-            StartMatchmakingError::InternalService(ref cause) => cause,
-            StartMatchmakingError::InvalidRequest(ref cause) => cause,
-            StartMatchmakingError::NotFound(ref cause) => cause,
-            StartMatchmakingError::UnsupportedRegion(ref cause) => cause,
+            StartMatchmakingError::InternalService(ref cause) => write!(f, "{}", cause),
+            StartMatchmakingError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StartMatchmakingError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartMatchmakingError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMatchmakingError {}
 /// Errors returned by StopFleetActions
 #[derive(Debug, PartialEq)]
 pub enum StopFleetActionsError {
@@ -6803,20 +6739,17 @@ impl StopFleetActionsError {
     }
 }
 impl fmt::Display for StopFleetActionsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopFleetActionsError {
-    fn description(&self) -> &str {
         match *self {
-            StopFleetActionsError::InternalService(ref cause) => cause,
-            StopFleetActionsError::InvalidRequest(ref cause) => cause,
-            StopFleetActionsError::NotFound(ref cause) => cause,
-            StopFleetActionsError::Unauthorized(ref cause) => cause,
+            StopFleetActionsError::InternalService(ref cause) => write!(f, "{}", cause),
+            StopFleetActionsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StopFleetActionsError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopFleetActionsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopFleetActionsError {}
 /// Errors returned by StopGameSessionPlacement
 #[derive(Debug, PartialEq)]
 pub enum StopGameSessionPlacementError {
@@ -6860,20 +6793,17 @@ impl StopGameSessionPlacementError {
     }
 }
 impl fmt::Display for StopGameSessionPlacementError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopGameSessionPlacementError {
-    fn description(&self) -> &str {
         match *self {
-            StopGameSessionPlacementError::InternalService(ref cause) => cause,
-            StopGameSessionPlacementError::InvalidRequest(ref cause) => cause,
-            StopGameSessionPlacementError::NotFound(ref cause) => cause,
-            StopGameSessionPlacementError::Unauthorized(ref cause) => cause,
+            StopGameSessionPlacementError::InternalService(ref cause) => write!(f, "{}", cause),
+            StopGameSessionPlacementError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StopGameSessionPlacementError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopGameSessionPlacementError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopGameSessionPlacementError {}
 /// Errors returned by StopMatchmaking
 #[derive(Debug, PartialEq)]
 pub enum StopMatchmakingError {
@@ -6911,20 +6841,17 @@ impl StopMatchmakingError {
     }
 }
 impl fmt::Display for StopMatchmakingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopMatchmakingError {
-    fn description(&self) -> &str {
         match *self {
-            StopMatchmakingError::InternalService(ref cause) => cause,
-            StopMatchmakingError::InvalidRequest(ref cause) => cause,
-            StopMatchmakingError::NotFound(ref cause) => cause,
-            StopMatchmakingError::UnsupportedRegion(ref cause) => cause,
+            StopMatchmakingError::InternalService(ref cause) => write!(f, "{}", cause),
+            StopMatchmakingError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            StopMatchmakingError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopMatchmakingError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopMatchmakingError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -6962,20 +6889,17 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InternalService(ref cause) => cause,
-            TagResourceError::InvalidRequest(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
-            TagResourceError::TaggingFailed(ref cause) => cause,
+            TagResourceError::InternalService(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TaggingFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -7013,20 +6937,17 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InternalService(ref cause) => cause,
-            UntagResourceError::InvalidRequest(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
-            UntagResourceError::TaggingFailed(ref cause) => cause,
+            UntagResourceError::InternalService(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TaggingFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateAlias
 #[derive(Debug, PartialEq)]
 pub enum UpdateAliasError {
@@ -7064,20 +6985,17 @@ impl UpdateAliasError {
     }
 }
 impl fmt::Display for UpdateAliasError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateAliasError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateAliasError::InternalService(ref cause) => cause,
-            UpdateAliasError::InvalidRequest(ref cause) => cause,
-            UpdateAliasError::NotFound(ref cause) => cause,
-            UpdateAliasError::Unauthorized(ref cause) => cause,
+            UpdateAliasError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateAliasError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateAliasError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateAliasError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateAliasError {}
 /// Errors returned by UpdateBuild
 #[derive(Debug, PartialEq)]
 pub enum UpdateBuildError {
@@ -7115,20 +7033,17 @@ impl UpdateBuildError {
     }
 }
 impl fmt::Display for UpdateBuildError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateBuildError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateBuildError::InternalService(ref cause) => cause,
-            UpdateBuildError::InvalidRequest(ref cause) => cause,
-            UpdateBuildError::NotFound(ref cause) => cause,
-            UpdateBuildError::Unauthorized(ref cause) => cause,
+            UpdateBuildError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateBuildError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateBuildError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateBuildError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateBuildError {}
 /// Errors returned by UpdateFleetAttributes
 #[derive(Debug, PartialEq)]
 pub enum UpdateFleetAttributesError {
@@ -7187,23 +7102,20 @@ impl UpdateFleetAttributesError {
     }
 }
 impl fmt::Display for UpdateFleetAttributesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFleetAttributesError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFleetAttributesError::Conflict(ref cause) => cause,
-            UpdateFleetAttributesError::InternalService(ref cause) => cause,
-            UpdateFleetAttributesError::InvalidFleetStatus(ref cause) => cause,
-            UpdateFleetAttributesError::InvalidRequest(ref cause) => cause,
-            UpdateFleetAttributesError::LimitExceeded(ref cause) => cause,
-            UpdateFleetAttributesError::NotFound(ref cause) => cause,
-            UpdateFleetAttributesError::Unauthorized(ref cause) => cause,
+            UpdateFleetAttributesError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::InvalidFleetStatus(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateFleetAttributesError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFleetAttributesError {}
 /// Errors returned by UpdateFleetCapacity
 #[derive(Debug, PartialEq)]
 pub enum UpdateFleetCapacityError {
@@ -7258,23 +7170,20 @@ impl UpdateFleetCapacityError {
     }
 }
 impl fmt::Display for UpdateFleetCapacityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFleetCapacityError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFleetCapacityError::Conflict(ref cause) => cause,
-            UpdateFleetCapacityError::InternalService(ref cause) => cause,
-            UpdateFleetCapacityError::InvalidFleetStatus(ref cause) => cause,
-            UpdateFleetCapacityError::InvalidRequest(ref cause) => cause,
-            UpdateFleetCapacityError::LimitExceeded(ref cause) => cause,
-            UpdateFleetCapacityError::NotFound(ref cause) => cause,
-            UpdateFleetCapacityError::Unauthorized(ref cause) => cause,
+            UpdateFleetCapacityError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::InvalidFleetStatus(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateFleetCapacityError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFleetCapacityError {}
 /// Errors returned by UpdateFleetPortSettings
 #[derive(Debug, PartialEq)]
 pub enum UpdateFleetPortSettingsError {
@@ -7337,23 +7246,20 @@ impl UpdateFleetPortSettingsError {
     }
 }
 impl fmt::Display for UpdateFleetPortSettingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateFleetPortSettingsError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateFleetPortSettingsError::Conflict(ref cause) => cause,
-            UpdateFleetPortSettingsError::InternalService(ref cause) => cause,
-            UpdateFleetPortSettingsError::InvalidFleetStatus(ref cause) => cause,
-            UpdateFleetPortSettingsError::InvalidRequest(ref cause) => cause,
-            UpdateFleetPortSettingsError::LimitExceeded(ref cause) => cause,
-            UpdateFleetPortSettingsError::NotFound(ref cause) => cause,
-            UpdateFleetPortSettingsError::Unauthorized(ref cause) => cause,
+            UpdateFleetPortSettingsError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::InvalidFleetStatus(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateFleetPortSettingsError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateFleetPortSettingsError {}
 /// Errors returned by UpdateGameSession
 #[derive(Debug, PartialEq)]
 pub enum UpdateGameSessionError {
@@ -7403,22 +7309,19 @@ impl UpdateGameSessionError {
     }
 }
 impl fmt::Display for UpdateGameSessionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGameSessionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGameSessionError::Conflict(ref cause) => cause,
-            UpdateGameSessionError::InternalService(ref cause) => cause,
-            UpdateGameSessionError::InvalidGameSessionStatus(ref cause) => cause,
-            UpdateGameSessionError::InvalidRequest(ref cause) => cause,
-            UpdateGameSessionError::NotFound(ref cause) => cause,
-            UpdateGameSessionError::Unauthorized(ref cause) => cause,
+            UpdateGameSessionError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionError::InvalidGameSessionStatus(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGameSessionError {}
 /// Errors returned by UpdateGameSessionQueue
 #[derive(Debug, PartialEq)]
 pub enum UpdateGameSessionQueueError {
@@ -7460,20 +7363,17 @@ impl UpdateGameSessionQueueError {
     }
 }
 impl fmt::Display for UpdateGameSessionQueueError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateGameSessionQueueError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateGameSessionQueueError::InternalService(ref cause) => cause,
-            UpdateGameSessionQueueError::InvalidRequest(ref cause) => cause,
-            UpdateGameSessionQueueError::NotFound(ref cause) => cause,
-            UpdateGameSessionQueueError::Unauthorized(ref cause) => cause,
+            UpdateGameSessionQueueError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionQueueError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionQueueError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateGameSessionQueueError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateGameSessionQueueError {}
 /// Errors returned by UpdateMatchmakingConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateMatchmakingConfigurationError {
@@ -7521,20 +7421,23 @@ impl UpdateMatchmakingConfigurationError {
     }
 }
 impl fmt::Display for UpdateMatchmakingConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMatchmakingConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMatchmakingConfigurationError::InternalService(ref cause) => cause,
-            UpdateMatchmakingConfigurationError::InvalidRequest(ref cause) => cause,
-            UpdateMatchmakingConfigurationError::NotFound(ref cause) => cause,
-            UpdateMatchmakingConfigurationError::UnsupportedRegion(ref cause) => cause,
+            UpdateMatchmakingConfigurationError::InternalService(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateMatchmakingConfigurationError::InvalidRequest(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateMatchmakingConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateMatchmakingConfigurationError::UnsupportedRegion(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for UpdateMatchmakingConfigurationError {}
 /// Errors returned by UpdateRuntimeConfiguration
 #[derive(Debug, PartialEq)]
 pub enum UpdateRuntimeConfigurationError {
@@ -7587,21 +7490,20 @@ impl UpdateRuntimeConfigurationError {
     }
 }
 impl fmt::Display for UpdateRuntimeConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateRuntimeConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateRuntimeConfigurationError::InternalService(ref cause) => cause,
-            UpdateRuntimeConfigurationError::InvalidFleetStatus(ref cause) => cause,
-            UpdateRuntimeConfigurationError::InvalidRequest(ref cause) => cause,
-            UpdateRuntimeConfigurationError::NotFound(ref cause) => cause,
-            UpdateRuntimeConfigurationError::Unauthorized(ref cause) => cause,
+            UpdateRuntimeConfigurationError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateRuntimeConfigurationError::InvalidFleetStatus(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateRuntimeConfigurationError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateRuntimeConfigurationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateRuntimeConfigurationError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateRuntimeConfigurationError {}
 /// Errors returned by UpdateScript
 #[derive(Debug, PartialEq)]
 pub enum UpdateScriptError {
@@ -7639,20 +7541,17 @@ impl UpdateScriptError {
     }
 }
 impl fmt::Display for UpdateScriptError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateScriptError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateScriptError::InternalService(ref cause) => cause,
-            UpdateScriptError::InvalidRequest(ref cause) => cause,
-            UpdateScriptError::NotFound(ref cause) => cause,
-            UpdateScriptError::Unauthorized(ref cause) => cause,
+            UpdateScriptError::InternalService(ref cause) => write!(f, "{}", cause),
+            UpdateScriptError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateScriptError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateScriptError::Unauthorized(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateScriptError {}
 /// Errors returned by ValidateMatchmakingRuleSet
 #[derive(Debug, PartialEq)]
 pub enum ValidateMatchmakingRuleSetError {
@@ -7693,19 +7592,16 @@ impl ValidateMatchmakingRuleSetError {
     }
 }
 impl fmt::Display for ValidateMatchmakingRuleSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ValidateMatchmakingRuleSetError {
-    fn description(&self) -> &str {
         match *self {
-            ValidateMatchmakingRuleSetError::InternalService(ref cause) => cause,
-            ValidateMatchmakingRuleSetError::InvalidRequest(ref cause) => cause,
-            ValidateMatchmakingRuleSetError::UnsupportedRegion(ref cause) => cause,
+            ValidateMatchmakingRuleSetError::InternalService(ref cause) => write!(f, "{}", cause),
+            ValidateMatchmakingRuleSetError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            ValidateMatchmakingRuleSetError::UnsupportedRegion(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ValidateMatchmakingRuleSetError {}
 /// Trait representing the capabilities of the Amazon GameLift API. Amazon GameLift clients implement this trait.
 #[async_trait]
 pub trait GameLift {

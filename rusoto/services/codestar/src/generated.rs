@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateTeamMemberRequest {
     /// <p>A user- or system-generated token that identifies the entity that requested the team member association to the project. This token can be used to repeat the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -46,7 +48,7 @@ pub struct AssociateTeamMemberRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateTeamMemberResult {
     /// <p>The user- or system-generated token from the initial request that can be used to repeat the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -56,6 +58,7 @@ pub struct AssociateTeamMemberResult {
 
 /// <p>Location and destination information about the source code files provided with the project request. The source code is uploaded to the new project source repository after project creation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Code {
     /// <p>The repository to be created in AWS CodeStar. Valid values are AWS CodeCommit or GitHub. After AWS CodeStar provisions the new repository, the source code files provided with the project request are placed in the repository.</p>
     #[serde(rename = "destination")]
@@ -67,6 +70,7 @@ pub struct Code {
 
 /// <p>Information about the AWS CodeCommit repository to be created in AWS CodeStar. This is where the source code files provided with the project request will be uploaded after project creation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CodeCommitCodeDestination {
     /// <p>The name of the AWS CodeCommit repository to be created in AWS CodeStar.</p>
     #[serde(rename = "name")]
@@ -75,6 +79,7 @@ pub struct CodeCommitCodeDestination {
 
 /// <p>The repository to be created in AWS CodeStar. Valid values are AWS CodeCommit or GitHub. After AWS CodeStar provisions the new repository, the source code files provided with the project request are placed in the repository.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CodeDestination {
     /// <p>Information about the AWS CodeCommit repository to be created in AWS CodeStar. This is where the source code files provided with the project request will be uploaded after project creation.</p>
     #[serde(rename = "codeCommit")]
@@ -88,6 +93,7 @@ pub struct CodeDestination {
 
 /// <p>The location where the source code files provided with the project request are stored. AWS CodeStar retrieves the files during project creation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CodeSource {
     /// <p>Information about the Amazon S3 location where the source code files provided with the project request are stored. </p>
     #[serde(rename = "s3")]
@@ -95,6 +101,7 @@ pub struct CodeSource {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProjectRequest {
     /// <p>A user- or system-generated token that identifies the entity that requested project creation. This token can be used to repeat the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -125,7 +132,7 @@ pub struct CreateProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProjectResult {
     /// <p>The Amazon Resource Name (ARN) of the created project.</p>
     #[serde(rename = "arn")]
@@ -144,6 +151,7 @@ pub struct CreateProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUserProfileRequest {
     /// <p>The name that will be displayed as the friendly name for the user in AWS CodeStar. </p>
     #[serde(rename = "displayName")]
@@ -161,7 +169,7 @@ pub struct CreateUserProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUserProfileResult {
     /// <p>The date the user profile was created, in timestamp format.</p>
     #[serde(rename = "createdTimestamp")]
@@ -189,6 +197,7 @@ pub struct CreateUserProfileResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProjectRequest {
     /// <p>A user- or system-generated token that identifies the entity that requested project deletion. This token can be used to repeat the request. </p>
     #[serde(rename = "clientRequestToken")]
@@ -204,7 +213,7 @@ pub struct DeleteProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProjectResult {
     /// <p>The Amazon Resource Name (ARN) of the deleted project.</p>
     #[serde(rename = "projectArn")]
@@ -217,6 +226,7 @@ pub struct DeleteProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteUserProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of the user to delete from AWS CodeStar.</p>
     #[serde(rename = "userArn")]
@@ -224,7 +234,7 @@ pub struct DeleteUserProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteUserProfileResult {
     /// <p>The Amazon Resource Name (ARN) of the user deleted from AWS CodeStar.</p>
     #[serde(rename = "userArn")]
@@ -232,6 +242,7 @@ pub struct DeleteUserProfileResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProjectRequest {
     /// <p>The ID of the project.</p>
     #[serde(rename = "id")]
@@ -239,7 +250,7 @@ pub struct DescribeProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProjectResult {
     /// <p>The Amazon Resource Name (ARN) for the project.</p>
     #[serde(rename = "arn")]
@@ -280,6 +291,7 @@ pub struct DescribeProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUserProfileRequest {
     /// <p>The Amazon Resource Name (ARN) of the user.</p>
     #[serde(rename = "userArn")]
@@ -287,7 +299,7 @@ pub struct DescribeUserProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUserProfileResult {
     /// <p>The date and time when the user profile was created in AWS CodeStar, in timestamp format.</p>
     #[serde(rename = "createdTimestamp")]
@@ -313,6 +325,7 @@ pub struct DescribeUserProfileResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateTeamMemberRequest {
     /// <p>The ID of the AWS CodeStar project from which you want to remove a team member.</p>
     #[serde(rename = "projectId")]
@@ -323,11 +336,12 @@ pub struct DisassociateTeamMemberRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateTeamMemberResult {}
 
 /// <p>Information about the GitHub repository to be created in AWS CodeStar. This is where the source code files provided with the project request will be uploaded after project creation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GitHubCodeDestination {
     /// <p>Description for the GitHub repository to be created in AWS CodeStar. This description displays in GitHub after the repository is created.</p>
     #[serde(rename = "description")]
@@ -354,6 +368,7 @@ pub struct GitHubCodeDestination {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProjectsRequest {
     /// <p>The maximum amount of data that can be contained in a single set of results.</p>
     #[serde(rename = "maxResults")]
@@ -366,7 +381,7 @@ pub struct ListProjectsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProjectsResult {
     /// <p>The continuation token to use when requesting the next set of results, if there are more results to be returned.</p>
     #[serde(rename = "nextToken")]
@@ -378,6 +393,7 @@ pub struct ListProjectsResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourcesRequest {
     /// <p>The maximum amount of data that can be contained in a single set of results.</p>
     #[serde(rename = "maxResults")]
@@ -393,7 +409,7 @@ pub struct ListResourcesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourcesResult {
     /// <p>The continuation token to use when requesting the next set of results, if there are more results to be returned.</p>
     #[serde(rename = "nextToken")]
@@ -406,6 +422,7 @@ pub struct ListResourcesResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForProjectRequest {
     /// <p>The ID of the project to get tags for.</p>
     #[serde(rename = "id")]
@@ -421,7 +438,7 @@ pub struct ListTagsForProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForProjectResult {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "nextToken")]
@@ -434,6 +451,7 @@ pub struct ListTagsForProjectResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTeamMembersRequest {
     /// <p>The maximum number of team members you want returned in a response.</p>
     #[serde(rename = "maxResults")]
@@ -449,7 +467,7 @@ pub struct ListTeamMembersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTeamMembersResult {
     /// <p>The continuation token to use when requesting the next set of results, if there are more results to be returned.</p>
     #[serde(rename = "nextToken")]
@@ -461,6 +479,7 @@ pub struct ListTeamMembersResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUserProfilesRequest {
     /// <p>The maximum number of results to return in a response.</p>
     #[serde(rename = "maxResults")]
@@ -473,7 +492,7 @@ pub struct ListUserProfilesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUserProfilesResult {
     /// <p>The continuation token to use when requesting the next set of results, if there are more results to be returned.</p>
     #[serde(rename = "nextToken")]
@@ -486,7 +505,7 @@ pub struct ListUserProfilesResult {
 
 /// <p>An indication of whether a project creation or deletion is failed or successful.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectStatus {
     /// <p>In the case of a project creation or deletion failure, a reason for the failure.</p>
     #[serde(rename = "reason")]
@@ -499,7 +518,7 @@ pub struct ProjectStatus {
 
 /// <p>Information about the metadata for a project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProjectSummary {
     /// <p>The Amazon Resource Name (ARN) of the project.</p>
     #[serde(rename = "projectArn")]
@@ -513,7 +532,7 @@ pub struct ProjectSummary {
 
 /// <p>Information about a resource for a project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Resource {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
     #[serde(rename = "id")]
@@ -522,6 +541,7 @@ pub struct Resource {
 
 /// <p>The Amazon S3 location where the source code files provided with the project request are stored.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct S3Location {
     /// <p>The Amazon S3 object key where the source code files provided with the project request are stored.</p>
     #[serde(rename = "bucketKey")]
@@ -534,6 +554,7 @@ pub struct S3Location {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagProjectRequest {
     /// <p>The ID of the project you want to add a tag to.</p>
     #[serde(rename = "id")]
@@ -544,7 +565,7 @@ pub struct TagProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagProjectResult {
     /// <p>The tags for the project.</p>
     #[serde(rename = "tags")]
@@ -554,7 +575,7 @@ pub struct TagProjectResult {
 
 /// <p>Information about a team member in a project.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TeamMember {
     /// <p>The role assigned to the user in the project. Project roles have different levels of access. For more information, see <a href="http://docs.aws.amazon.com/codestar/latest/userguide/working-with-teams.html">Working with Teams</a> in the <i>AWS CodeStar User Guide</i>. </p>
     #[serde(rename = "projectRole")]
@@ -570,6 +591,7 @@ pub struct TeamMember {
 
 /// <p>The toolchain template file provided with the project request. AWS CodeStar uses the template to provision the toolchain stack in AWS CloudFormation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Toolchain {
     /// <p>The service role ARN for AWS CodeStar to use for the toolchain template during stack provisioning.</p>
     #[serde(rename = "roleArn")]
@@ -586,6 +608,7 @@ pub struct Toolchain {
 
 /// <p>The Amazon S3 location where the toolchain template file provided with the project request is stored. AWS CodeStar retrieves the file during project creation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ToolchainSource {
     /// <p>The Amazon S3 bucket where the toolchain template file provided with the project request is stored.</p>
     #[serde(rename = "s3")]
@@ -593,6 +616,7 @@ pub struct ToolchainSource {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagProjectRequest {
     /// <p>The ID of the project to remove tags from.</p>
     #[serde(rename = "id")]
@@ -603,10 +627,11 @@ pub struct UntagProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagProjectResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProjectRequest {
     /// <p>The description of the project, if any.</p>
     #[serde(rename = "description")]
@@ -622,10 +647,11 @@ pub struct UpdateProjectRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProjectResult {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTeamMemberRequest {
     /// <p>The ID of the project.</p>
     #[serde(rename = "projectId")]
@@ -644,7 +670,7 @@ pub struct UpdateTeamMemberRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTeamMemberResult {
     /// <p>The project role granted to the user.</p>
     #[serde(rename = "projectRole")]
@@ -661,6 +687,7 @@ pub struct UpdateTeamMemberResult {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserProfileRequest {
     /// <p>The name that is displayed as the friendly name for the user in AWS CodeStar.</p>
     #[serde(rename = "displayName")]
@@ -680,7 +707,7 @@ pub struct UpdateUserProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateUserProfileResult {
     /// <p>The date the user profile was created, in timestamp format.</p>
     #[serde(rename = "createdTimestamp")]
@@ -709,7 +736,7 @@ pub struct UpdateUserProfileResult {
 
 /// <p>Information about a user's profile in AWS CodeStar.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserProfileSummary {
     /// <p>The display name of a user in AWS CodeStar. For example, this could be set to both first and last name ("Mary Major") or a single name ("Mary"). The display name is also used to generate the initial icon associated with the user in AWS CodeStar projects. If spaces are included in the display name, the first character that appears after the space will be used as the second character in the user initial icon. The initial icon displays a maximum of two characters, so a display name with more than one space (for example "Mary Jane Major") would generate an initial icon using the first character and the first character after the space ("MJ", not "MM").</p>
     #[serde(rename = "displayName")]
@@ -784,22 +811,21 @@ impl AssociateTeamMemberError {
     }
 }
 impl fmt::Display for AssociateTeamMemberError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AssociateTeamMemberError {
-    fn description(&self) -> &str {
         match *self {
-            AssociateTeamMemberError::ConcurrentModification(ref cause) => cause,
-            AssociateTeamMemberError::InvalidServiceRole(ref cause) => cause,
-            AssociateTeamMemberError::LimitExceeded(ref cause) => cause,
-            AssociateTeamMemberError::ProjectConfiguration(ref cause) => cause,
-            AssociateTeamMemberError::ProjectNotFound(ref cause) => cause,
-            AssociateTeamMemberError::TeamMemberAlreadyAssociated(ref cause) => cause,
+            AssociateTeamMemberError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            AssociateTeamMemberError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
+            AssociateTeamMemberError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            AssociateTeamMemberError::ProjectConfiguration(ref cause) => write!(f, "{}", cause),
+            AssociateTeamMemberError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
+            AssociateTeamMemberError::TeamMemberAlreadyAssociated(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for AssociateTeamMemberError {}
 /// Errors returned by CreateProject
 #[derive(Debug, PartialEq)]
 pub enum CreateProjectError {
@@ -849,22 +875,19 @@ impl CreateProjectError {
     }
 }
 impl fmt::Display for CreateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            CreateProjectError::ConcurrentModification(ref cause) => cause,
-            CreateProjectError::InvalidServiceRole(ref cause) => cause,
-            CreateProjectError::LimitExceeded(ref cause) => cause,
-            CreateProjectError::ProjectAlreadyExists(ref cause) => cause,
-            CreateProjectError::ProjectConfiguration(ref cause) => cause,
-            CreateProjectError::ProjectCreationFailed(ref cause) => cause,
+            CreateProjectError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ProjectAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ProjectConfiguration(ref cause) => write!(f, "{}", cause),
+            CreateProjectError::ProjectCreationFailed(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateProjectError {}
 /// Errors returned by CreateUserProfile
 #[derive(Debug, PartialEq)]
 pub enum CreateUserProfileError {
@@ -889,17 +912,14 @@ impl CreateUserProfileError {
     }
 }
 impl fmt::Display for CreateUserProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateUserProfileError {
-    fn description(&self) -> &str {
         match *self {
-            CreateUserProfileError::UserProfileAlreadyExists(ref cause) => cause,
+            CreateUserProfileError::UserProfileAlreadyExists(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateUserProfileError {}
 /// Errors returned by DeleteProject
 #[derive(Debug, PartialEq)]
 pub enum DeleteProjectError {
@@ -929,18 +949,15 @@ impl DeleteProjectError {
     }
 }
 impl fmt::Display for DeleteProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteProjectError::ConcurrentModification(ref cause) => cause,
-            DeleteProjectError::InvalidServiceRole(ref cause) => cause,
+            DeleteProjectError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DeleteProjectError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteProjectError {}
 /// Errors returned by DeleteUserProfile
 #[derive(Debug, PartialEq)]
 pub enum DeleteUserProfileError {}
@@ -957,15 +974,12 @@ impl DeleteUserProfileError {
     }
 }
 impl fmt::Display for DeleteUserProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteUserProfileError {
-    fn description(&self) -> &str {
         match *self {}
     }
 }
+impl Error for DeleteUserProfileError {}
 /// Errors returned by DescribeProject
 #[derive(Debug, PartialEq)]
 pub enum DescribeProjectError {
@@ -1007,20 +1021,17 @@ impl DescribeProjectError {
     }
 }
 impl fmt::Display for DescribeProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeProjectError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeProjectError::ConcurrentModification(ref cause) => cause,
-            DescribeProjectError::InvalidServiceRole(ref cause) => cause,
-            DescribeProjectError::ProjectConfiguration(ref cause) => cause,
-            DescribeProjectError::ProjectNotFound(ref cause) => cause,
+            DescribeProjectError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::ProjectConfiguration(ref cause) => write!(f, "{}", cause),
+            DescribeProjectError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeProjectError {}
 /// Errors returned by DescribeUserProfile
 #[derive(Debug, PartialEq)]
 pub enum DescribeUserProfileError {
@@ -1045,17 +1056,14 @@ impl DescribeUserProfileError {
     }
 }
 impl fmt::Display for DescribeUserProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUserProfileError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUserProfileError::UserProfileNotFound(ref cause) => cause,
+            DescribeUserProfileError::UserProfileNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeUserProfileError {}
 /// Errors returned by DisassociateTeamMember
 #[derive(Debug, PartialEq)]
 pub enum DisassociateTeamMemberError {
@@ -1094,19 +1102,18 @@ impl DisassociateTeamMemberError {
     }
 }
 impl fmt::Display for DisassociateTeamMemberError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DisassociateTeamMemberError {
-    fn description(&self) -> &str {
         match *self {
-            DisassociateTeamMemberError::ConcurrentModification(ref cause) => cause,
-            DisassociateTeamMemberError::InvalidServiceRole(ref cause) => cause,
-            DisassociateTeamMemberError::ProjectNotFound(ref cause) => cause,
+            DisassociateTeamMemberError::ConcurrentModification(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DisassociateTeamMemberError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
+            DisassociateTeamMemberError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DisassociateTeamMemberError {}
 /// Errors returned by ListProjects
 #[derive(Debug, PartialEq)]
 pub enum ListProjectsError {
@@ -1129,17 +1136,14 @@ impl ListProjectsError {
     }
 }
 impl fmt::Display for ListProjectsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListProjectsError {
-    fn description(&self) -> &str {
         match *self {
-            ListProjectsError::InvalidNextToken(ref cause) => cause,
+            ListProjectsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListProjectsError {}
 /// Errors returned by ListResources
 #[derive(Debug, PartialEq)]
 pub enum ListResourcesError {
@@ -1167,18 +1171,15 @@ impl ListResourcesError {
     }
 }
 impl fmt::Display for ListResourcesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListResourcesError {
-    fn description(&self) -> &str {
         match *self {
-            ListResourcesError::InvalidNextToken(ref cause) => cause,
-            ListResourcesError::ProjectNotFound(ref cause) => cause,
+            ListResourcesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListResourcesError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListResourcesError {}
 /// Errors returned by ListTagsForProject
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForProjectError {
@@ -1206,18 +1207,15 @@ impl ListTagsForProjectError {
     }
 }
 impl fmt::Display for ListTagsForProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForProjectError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForProjectError::InvalidNextToken(ref cause) => cause,
-            ListTagsForProjectError::ProjectNotFound(ref cause) => cause,
+            ListTagsForProjectError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListTagsForProjectError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForProjectError {}
 /// Errors returned by ListTeamMembers
 #[derive(Debug, PartialEq)]
 pub enum ListTeamMembersError {
@@ -1245,18 +1243,15 @@ impl ListTeamMembersError {
     }
 }
 impl fmt::Display for ListTeamMembersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTeamMembersError {
-    fn description(&self) -> &str {
         match *self {
-            ListTeamMembersError::InvalidNextToken(ref cause) => cause,
-            ListTeamMembersError::ProjectNotFound(ref cause) => cause,
+            ListTeamMembersError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            ListTeamMembersError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTeamMembersError {}
 /// Errors returned by ListUserProfiles
 #[derive(Debug, PartialEq)]
 pub enum ListUserProfilesError {
@@ -1279,17 +1274,14 @@ impl ListUserProfilesError {
     }
 }
 impl fmt::Display for ListUserProfilesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListUserProfilesError {
-    fn description(&self) -> &str {
         match *self {
-            ListUserProfilesError::InvalidNextToken(ref cause) => cause,
+            ListUserProfilesError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListUserProfilesError {}
 /// Errors returned by TagProject
 #[derive(Debug, PartialEq)]
 pub enum TagProjectError {
@@ -1322,19 +1314,16 @@ impl TagProjectError {
     }
 }
 impl fmt::Display for TagProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagProjectError {
-    fn description(&self) -> &str {
         match *self {
-            TagProjectError::ConcurrentModification(ref cause) => cause,
-            TagProjectError::LimitExceeded(ref cause) => cause,
-            TagProjectError::ProjectNotFound(ref cause) => cause,
+            TagProjectError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            TagProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            TagProjectError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagProjectError {}
 /// Errors returned by UntagProject
 #[derive(Debug, PartialEq)]
 pub enum UntagProjectError {
@@ -1367,19 +1356,16 @@ impl UntagProjectError {
     }
 }
 impl fmt::Display for UntagProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UntagProjectError::ConcurrentModification(ref cause) => cause,
-            UntagProjectError::LimitExceeded(ref cause) => cause,
-            UntagProjectError::ProjectNotFound(ref cause) => cause,
+            UntagProjectError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UntagProjectError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UntagProjectError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagProjectError {}
 /// Errors returned by UpdateProject
 #[derive(Debug, PartialEq)]
 pub enum UpdateProjectError {
@@ -1402,17 +1388,14 @@ impl UpdateProjectError {
     }
 }
 impl fmt::Display for UpdateProjectError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateProjectError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateProjectError::ProjectNotFound(ref cause) => cause,
+            UpdateProjectError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateProjectError {}
 /// Errors returned by UpdateTeamMember
 #[derive(Debug, PartialEq)]
 pub enum UpdateTeamMemberError {
@@ -1464,22 +1447,19 @@ impl UpdateTeamMemberError {
     }
 }
 impl fmt::Display for UpdateTeamMemberError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTeamMemberError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTeamMemberError::ConcurrentModification(ref cause) => cause,
-            UpdateTeamMemberError::InvalidServiceRole(ref cause) => cause,
-            UpdateTeamMemberError::LimitExceeded(ref cause) => cause,
-            UpdateTeamMemberError::ProjectConfiguration(ref cause) => cause,
-            UpdateTeamMemberError::ProjectNotFound(ref cause) => cause,
-            UpdateTeamMemberError::TeamMemberNotFound(ref cause) => cause,
+            UpdateTeamMemberError::ConcurrentModification(ref cause) => write!(f, "{}", cause),
+            UpdateTeamMemberError::InvalidServiceRole(ref cause) => write!(f, "{}", cause),
+            UpdateTeamMemberError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateTeamMemberError::ProjectConfiguration(ref cause) => write!(f, "{}", cause),
+            UpdateTeamMemberError::ProjectNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTeamMemberError::TeamMemberNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTeamMemberError {}
 /// Errors returned by UpdateUserProfile
 #[derive(Debug, PartialEq)]
 pub enum UpdateUserProfileError {
@@ -1504,17 +1484,14 @@ impl UpdateUserProfileError {
     }
 }
 impl fmt::Display for UpdateUserProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateUserProfileError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateUserProfileError::UserProfileNotFound(ref cause) => cause,
+            UpdateUserProfileError::UserProfileNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateUserProfileError {}
 /// Trait representing the capabilities of the CodeStar API. CodeStar clients implement this trait.
 #[async_trait]
 pub trait CodeStar {

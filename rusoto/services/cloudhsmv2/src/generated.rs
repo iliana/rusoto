@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains information about a backup of an AWS CloudHSM cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Backup {
     /// <p>The identifier (ID) of the backup.</p>
     #[serde(rename = "BackupId")]
@@ -63,7 +64,7 @@ pub struct Backup {
 
 /// <p>Contains one or more certificates or a certificate signing request (CSR).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Certificates {
     /// <p>The HSM hardware certificate issued (signed) by AWS CloudHSM.</p>
     #[serde(rename = "AwsHardwareCertificate")]
@@ -89,7 +90,7 @@ pub struct Certificates {
 
 /// <p>Contains information about an AWS CloudHSM cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Cluster {
     /// <p>The cluster's backup policy.</p>
     #[serde(rename = "BackupPolicy")]
@@ -146,6 +147,7 @@ pub struct Cluster {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CopyBackupToRegionRequest {
     /// <p>The ID of the backup that will be copied to the destination region. </p>
     #[serde(rename = "BackupId")]
@@ -156,7 +158,7 @@ pub struct CopyBackupToRegionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CopyBackupToRegionResponse {
     /// <p>Information on the backup that will be copied to the destination region, including CreateTimestamp, SourceBackup, SourceCluster, and Source Region. CreateTimestamp of the destination backup will be the same as that of the source backup.</p> <p>You will need to use the <code>sourceBackupID</code> returned in this operation to use the <a>DescribeBackups</a> operation on the backup that will be copied to the destination region.</p>
     #[serde(rename = "DestinationBackup")]
@@ -165,6 +167,7 @@ pub struct CopyBackupToRegionResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClusterRequest {
     /// <p>The type of HSM to use in the cluster. Currently the only allowed value is <code>hsm1.medium</code>.</p>
     #[serde(rename = "HsmType")]
@@ -179,7 +182,7 @@ pub struct CreateClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClusterResponse {
     /// <p>Information about the cluster that was created.</p>
     #[serde(rename = "Cluster")]
@@ -188,6 +191,7 @@ pub struct CreateClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateHsmRequest {
     /// <p>The Availability Zone where you are creating the HSM. To find the cluster's Availability Zones, use <a>DescribeClusters</a>.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -202,7 +206,7 @@ pub struct CreateHsmRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateHsmResponse {
     /// <p>Information about the HSM that was created.</p>
     #[serde(rename = "Hsm")]
@@ -211,6 +215,7 @@ pub struct CreateHsmResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupRequest {
     /// <p>The ID of the backup to be deleted. To find the ID of a backup, use the <a>DescribeBackups</a> operation.</p>
     #[serde(rename = "BackupId")]
@@ -218,7 +223,7 @@ pub struct DeleteBackupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteBackupResponse {
     /// <p>Information on the <code>Backup</code> object deleted.</p>
     #[serde(rename = "Backup")]
@@ -227,6 +232,7 @@ pub struct DeleteBackupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteClusterRequest {
     /// <p>The identifier (ID) of the cluster that you are deleting. To find the cluster ID, use <a>DescribeClusters</a>.</p>
     #[serde(rename = "ClusterId")]
@@ -234,7 +240,7 @@ pub struct DeleteClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteClusterResponse {
     /// <p>Information about the cluster that was deleted.</p>
     #[serde(rename = "Cluster")]
@@ -243,6 +249,7 @@ pub struct DeleteClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteHsmRequest {
     /// <p>The identifier (ID) of the cluster that contains the HSM that you are deleting.</p>
     #[serde(rename = "ClusterId")]
@@ -262,7 +269,7 @@ pub struct DeleteHsmRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteHsmResponse {
     /// <p>The identifier (ID) of the HSM that was deleted.</p>
     #[serde(rename = "HsmId")]
@@ -271,6 +278,7 @@ pub struct DeleteHsmResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBackupsRequest {
     /// <p>One or more filters to limit the items returned in the response.</p> <p>Use the <code>backupIds</code> filter to return only the specified backups. Specify backups by their backup identifier (ID).</p> <p>Use the <code>sourceBackupIds</code> filter to return only the backups created from a source backup. The <code>sourceBackupID</code> of a source backup is returned by the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code> filter to return only the backups for the specified clusters. Specify clusters by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to return only backups that match the specified state.</p>
     #[serde(rename = "Filters")]
@@ -290,7 +298,7 @@ pub struct DescribeBackupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBackupsResponse {
     /// <p>A list of backups.</p>
     #[serde(rename = "Backups")]
@@ -303,6 +311,7 @@ pub struct DescribeBackupsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClustersRequest {
     /// <p>One or more filters to limit the items returned in the response.</p> <p>Use the <code>clusterIds</code> filter to return only the specified clusters. Specify clusters by their cluster identifier (ID).</p> <p>Use the <code>vpcIds</code> filter to return only the clusters in the specified virtual private clouds (VPCs). Specify VPCs by their VPC identifier (ID).</p> <p>Use the <code>states</code> filter to return only clusters that match the specified state.</p>
     #[serde(rename = "Filters")]
@@ -319,7 +328,7 @@ pub struct DescribeClustersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClustersResponse {
     /// <p>A list of clusters.</p>
     #[serde(rename = "Clusters")]
@@ -332,7 +341,7 @@ pub struct DescribeClustersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DestinationBackup {
     #[serde(rename = "CreateTimestamp")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -350,7 +359,7 @@ pub struct DestinationBackup {
 
 /// <p>Contains information about a hardware security module (HSM) in an AWS CloudHSM cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Hsm {
     /// <p>The Availability Zone that contains the HSM.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -386,6 +395,7 @@ pub struct Hsm {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitializeClusterRequest {
     /// <p>The identifier (ID) of the cluster that you are claiming. To find the cluster ID, use <a>DescribeClusters</a>.</p>
     #[serde(rename = "ClusterId")]
@@ -399,7 +409,7 @@ pub struct InitializeClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitializeClusterResponse {
     /// <p>The cluster's state.</p>
     #[serde(rename = "State")]
@@ -412,6 +422,7 @@ pub struct InitializeClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsRequest {
     /// <p>The maximum number of tags to return in the response. When there are more tags than the number you specify, the response contains a <code>NextToken</code> value.</p>
     #[serde(rename = "MaxResults")]
@@ -427,7 +438,7 @@ pub struct ListTagsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsResponse {
     /// <p>An opaque string that indicates that the response contains only a subset of tags. Use this value in a subsequent <code>ListTags</code> request to get more tags.</p>
     #[serde(rename = "NextToken")]
@@ -439,6 +450,7 @@ pub struct ListTagsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestoreBackupRequest {
     /// <p>The ID of the backup to be restored. To find the ID of a backup, use the <a>DescribeBackups</a> operation.</p>
     #[serde(rename = "BackupId")]
@@ -446,7 +458,7 @@ pub struct RestoreBackupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreBackupResponse {
     /// <p>Information on the <code>Backup</code> object created.</p>
     #[serde(rename = "Backup")]
@@ -466,6 +478,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The cluster identifier (ID) for the cluster that you are tagging. To find the cluster ID, use <a>DescribeClusters</a>.</p>
     #[serde(rename = "ResourceId")]
@@ -476,10 +489,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The cluster identifier (ID) for the cluster whose tags you are removing. To find the cluster ID, use <a>DescribeClusters</a>.</p>
     #[serde(rename = "ResourceId")]
@@ -490,7 +504,7 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 /// Errors returned by CopyBackupToRegion
@@ -543,21 +557,18 @@ impl CopyBackupToRegionError {
     }
 }
 impl fmt::Display for CopyBackupToRegionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CopyBackupToRegionError {
-    fn description(&self) -> &str {
         match *self {
-            CopyBackupToRegionError::CloudHsmAccessDenied(ref cause) => cause,
-            CopyBackupToRegionError::CloudHsmInternalFailure(ref cause) => cause,
-            CopyBackupToRegionError::CloudHsmInvalidRequest(ref cause) => cause,
-            CopyBackupToRegionError::CloudHsmResourceNotFound(ref cause) => cause,
-            CopyBackupToRegionError::CloudHsmService(ref cause) => cause,
+            CopyBackupToRegionError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            CopyBackupToRegionError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            CopyBackupToRegionError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            CopyBackupToRegionError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CopyBackupToRegionError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CopyBackupToRegionError {}
 /// Errors returned by CreateCluster
 #[derive(Debug, PartialEq)]
 pub enum CreateClusterError {
@@ -606,21 +617,18 @@ impl CreateClusterError {
     }
 }
 impl fmt::Display for CreateClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateClusterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateClusterError::CloudHsmAccessDenied(ref cause) => cause,
-            CreateClusterError::CloudHsmInternalFailure(ref cause) => cause,
-            CreateClusterError::CloudHsmInvalidRequest(ref cause) => cause,
-            CreateClusterError::CloudHsmResourceNotFound(ref cause) => cause,
-            CreateClusterError::CloudHsmService(ref cause) => cause,
+            CreateClusterError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateClusterError {}
 /// Errors returned by CreateHsm
 #[derive(Debug, PartialEq)]
 pub enum CreateHsmError {
@@ -663,21 +671,18 @@ impl CreateHsmError {
     }
 }
 impl fmt::Display for CreateHsmError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateHsmError {
-    fn description(&self) -> &str {
         match *self {
-            CreateHsmError::CloudHsmAccessDenied(ref cause) => cause,
-            CreateHsmError::CloudHsmInternalFailure(ref cause) => cause,
-            CreateHsmError::CloudHsmInvalidRequest(ref cause) => cause,
-            CreateHsmError::CloudHsmResourceNotFound(ref cause) => cause,
-            CreateHsmError::CloudHsmService(ref cause) => cause,
+            CreateHsmError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            CreateHsmError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateHsmError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateHsmError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            CreateHsmError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateHsmError {}
 /// Errors returned by DeleteBackup
 #[derive(Debug, PartialEq)]
 pub enum DeleteBackupError {
@@ -724,21 +729,18 @@ impl DeleteBackupError {
     }
 }
 impl fmt::Display for DeleteBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteBackupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteBackupError::CloudHsmAccessDenied(ref cause) => cause,
-            DeleteBackupError::CloudHsmInternalFailure(ref cause) => cause,
-            DeleteBackupError::CloudHsmInvalidRequest(ref cause) => cause,
-            DeleteBackupError::CloudHsmResourceNotFound(ref cause) => cause,
-            DeleteBackupError::CloudHsmService(ref cause) => cause,
+            DeleteBackupError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteBackupError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteBackupError {}
 /// Errors returned by DeleteCluster
 #[derive(Debug, PartialEq)]
 pub enum DeleteClusterError {
@@ -787,21 +789,18 @@ impl DeleteClusterError {
     }
 }
 impl fmt::Display for DeleteClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteClusterError::CloudHsmAccessDenied(ref cause) => cause,
-            DeleteClusterError::CloudHsmInternalFailure(ref cause) => cause,
-            DeleteClusterError::CloudHsmInvalidRequest(ref cause) => cause,
-            DeleteClusterError::CloudHsmResourceNotFound(ref cause) => cause,
-            DeleteClusterError::CloudHsmService(ref cause) => cause,
+            DeleteClusterError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteClusterError {}
 /// Errors returned by DeleteHsm
 #[derive(Debug, PartialEq)]
 pub enum DeleteHsmError {
@@ -844,21 +843,18 @@ impl DeleteHsmError {
     }
 }
 impl fmt::Display for DeleteHsmError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteHsmError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteHsmError::CloudHsmAccessDenied(ref cause) => cause,
-            DeleteHsmError::CloudHsmInternalFailure(ref cause) => cause,
-            DeleteHsmError::CloudHsmInvalidRequest(ref cause) => cause,
-            DeleteHsmError::CloudHsmResourceNotFound(ref cause) => cause,
-            DeleteHsmError::CloudHsmService(ref cause) => cause,
+            DeleteHsmError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            DeleteHsmError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteHsmError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            DeleteHsmError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteHsmError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteHsmError {}
 /// Errors returned by DescribeBackups
 #[derive(Debug, PartialEq)]
 pub enum DescribeBackupsError {
@@ -909,21 +905,18 @@ impl DescribeBackupsError {
     }
 }
 impl fmt::Display for DescribeBackupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeBackupsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeBackupsError::CloudHsmAccessDenied(ref cause) => cause,
-            DescribeBackupsError::CloudHsmInternalFailure(ref cause) => cause,
-            DescribeBackupsError::CloudHsmInvalidRequest(ref cause) => cause,
-            DescribeBackupsError::CloudHsmResourceNotFound(ref cause) => cause,
-            DescribeBackupsError::CloudHsmService(ref cause) => cause,
+            DescribeBackupsError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeBackupsError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeBackupsError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeBackupsError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeBackupsError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeBackupsError {}
 /// Errors returned by DescribeClusters
 #[derive(Debug, PartialEq)]
 pub enum DescribeClustersError {
@@ -967,20 +960,17 @@ impl DescribeClustersError {
     }
 }
 impl fmt::Display for DescribeClustersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeClustersError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeClustersError::CloudHsmAccessDenied(ref cause) => cause,
-            DescribeClustersError::CloudHsmInternalFailure(ref cause) => cause,
-            DescribeClustersError::CloudHsmInvalidRequest(ref cause) => cause,
-            DescribeClustersError::CloudHsmService(ref cause) => cause,
+            DescribeClustersError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            DescribeClustersError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            DescribeClustersError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            DescribeClustersError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeClustersError {}
 /// Errors returned by InitializeCluster
 #[derive(Debug, PartialEq)]
 pub enum InitializeClusterError {
@@ -1031,21 +1021,18 @@ impl InitializeClusterError {
     }
 }
 impl fmt::Display for InitializeClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitializeClusterError {
-    fn description(&self) -> &str {
         match *self {
-            InitializeClusterError::CloudHsmAccessDenied(ref cause) => cause,
-            InitializeClusterError::CloudHsmInternalFailure(ref cause) => cause,
-            InitializeClusterError::CloudHsmInvalidRequest(ref cause) => cause,
-            InitializeClusterError::CloudHsmResourceNotFound(ref cause) => cause,
-            InitializeClusterError::CloudHsmService(ref cause) => cause,
+            InitializeClusterError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            InitializeClusterError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            InitializeClusterError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            InitializeClusterError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            InitializeClusterError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitializeClusterError {}
 /// Errors returned by ListTags
 #[derive(Debug, PartialEq)]
 pub enum ListTagsError {
@@ -1088,21 +1075,18 @@ impl ListTagsError {
     }
 }
 impl fmt::Display for ListTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsError::CloudHsmAccessDenied(ref cause) => cause,
-            ListTagsError::CloudHsmInternalFailure(ref cause) => cause,
-            ListTagsError::CloudHsmInvalidRequest(ref cause) => cause,
-            ListTagsError::CloudHsmResourceNotFound(ref cause) => cause,
-            ListTagsError::CloudHsmService(ref cause) => cause,
+            ListTagsError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            ListTagsError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            ListTagsError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsError {}
 /// Errors returned by RestoreBackup
 #[derive(Debug, PartialEq)]
 pub enum RestoreBackupError {
@@ -1151,21 +1135,18 @@ impl RestoreBackupError {
     }
 }
 impl fmt::Display for RestoreBackupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RestoreBackupError {
-    fn description(&self) -> &str {
         match *self {
-            RestoreBackupError::CloudHsmAccessDenied(ref cause) => cause,
-            RestoreBackupError::CloudHsmInternalFailure(ref cause) => cause,
-            RestoreBackupError::CloudHsmInvalidRequest(ref cause) => cause,
-            RestoreBackupError::CloudHsmResourceNotFound(ref cause) => cause,
-            RestoreBackupError::CloudHsmService(ref cause) => cause,
+            RestoreBackupError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            RestoreBackupError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            RestoreBackupError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            RestoreBackupError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            RestoreBackupError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RestoreBackupError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1210,21 +1191,18 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::CloudHsmAccessDenied(ref cause) => cause,
-            TagResourceError::CloudHsmInternalFailure(ref cause) => cause,
-            TagResourceError::CloudHsmInvalidRequest(ref cause) => cause,
-            TagResourceError::CloudHsmResourceNotFound(ref cause) => cause,
-            TagResourceError::CloudHsmService(ref cause) => cause,
+            TagResourceError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            TagResourceError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            TagResourceError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1273,21 +1251,18 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::CloudHsmAccessDenied(ref cause) => cause,
-            UntagResourceError::CloudHsmInternalFailure(ref cause) => cause,
-            UntagResourceError::CloudHsmInvalidRequest(ref cause) => cause,
-            UntagResourceError::CloudHsmResourceNotFound(ref cause) => cause,
-            UntagResourceError::CloudHsmService(ref cause) => cause,
+            UntagResourceError::CloudHsmAccessDenied(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::CloudHsmInternalFailure(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::CloudHsmInvalidRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::CloudHsmResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::CloudHsmService(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Trait representing the capabilities of the CloudHSM V2 API. CloudHSM V2 clients implement this trait.
 #[async_trait]
 pub trait CloudHsmv2 {

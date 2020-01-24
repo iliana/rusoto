@@ -22,11 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>This data type is used in the <a>ImageScanFinding</a> data type.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Attribute {
     /// <p>The attribute key.</p>
     #[serde(rename = "key")]
@@ -39,7 +40,7 @@ pub struct Attribute {
 
 /// <p>An object representing authorization data for an Amazon ECR registry.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AuthorizationData {
     /// <p>A base64-encoded string that contains authorization data for the specified Amazon ECR registry. When the string is decoded, it is presented in the format <code>user:password</code> for private registry authentication using <code>docker login</code>.</p>
     #[serde(rename = "authorizationToken")]
@@ -56,6 +57,7 @@ pub struct AuthorizationData {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchCheckLayerAvailabilityRequest {
     /// <p>The digests of the image layers to check.</p>
     #[serde(rename = "layerDigests")]
@@ -70,7 +72,7 @@ pub struct BatchCheckLayerAvailabilityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchCheckLayerAvailabilityResponse {
     /// <p>Any failures associated with the call.</p>
     #[serde(rename = "failures")]
@@ -84,6 +86,7 @@ pub struct BatchCheckLayerAvailabilityResponse {
 
 /// <p>Deletes specified images within a specified repository. Images are specified with either the <code>imageTag</code> or <code>imageDigest</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeleteImageRequest {
     /// <p>A list of image ID references that correspond to images to delete. The format of the <code>imageIds</code> reference is <code>imageTag=tag</code> or <code>imageDigest=digest</code>.</p>
     #[serde(rename = "imageIds")]
@@ -98,7 +101,7 @@ pub struct BatchDeleteImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeleteImageResponse {
     /// <p>Any failures associated with the call.</p>
     #[serde(rename = "failures")]
@@ -111,6 +114,7 @@ pub struct BatchDeleteImageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchGetImageRequest {
     /// <p>The accepted media types for the request.</p> <p>Valid values: <code>application/vnd.docker.distribution.manifest.v1+json</code> | <code>application/vnd.docker.distribution.manifest.v2+json</code> | <code>application/vnd.oci.image.manifest.v1+json</code> </p>
     #[serde(rename = "acceptedMediaTypes")]
@@ -129,7 +133,7 @@ pub struct BatchGetImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchGetImageResponse {
     /// <p>Any failures associated with the call.</p>
     #[serde(rename = "failures")]
@@ -142,6 +146,7 @@ pub struct BatchGetImageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CompleteLayerUploadRequest {
     /// <p>The <code>sha256</code> digest of the image layer.</p>
     #[serde(rename = "layerDigests")]
@@ -159,7 +164,7 @@ pub struct CompleteLayerUploadRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompleteLayerUploadResponse {
     /// <p>The <code>sha256</code> digest of the image layer.</p>
     #[serde(rename = "layerDigest")]
@@ -180,6 +185,7 @@ pub struct CompleteLayerUploadResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRepositoryRequest {
     /// <p>The image scanning configuration for the repository. This setting determines whether images are scanned for known vulnerabilities after being pushed to the repository.</p>
     #[serde(rename = "imageScanningConfiguration")]
@@ -199,7 +205,7 @@ pub struct CreateRepositoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRepositoryResponse {
     /// <p>The repository that was created.</p>
     #[serde(rename = "repository")]
@@ -208,6 +214,7 @@ pub struct CreateRepositoryResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLifecyclePolicyRequest {
     /// <p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryId")]
@@ -219,7 +226,7 @@ pub struct DeleteLifecyclePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLifecyclePolicyResponse {
     /// <p>The time stamp of the last time that the lifecycle policy was run.</p>
     #[serde(rename = "lastEvaluatedAt")]
@@ -240,6 +247,7 @@ pub struct DeleteLifecyclePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRepositoryPolicyRequest {
     /// <p>The AWS account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryId")]
@@ -251,7 +259,7 @@ pub struct DeleteRepositoryPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteRepositoryPolicyResponse {
     /// <p>The JSON repository policy that was deleted from the repository.</p>
     #[serde(rename = "policyText")]
@@ -268,6 +276,7 @@ pub struct DeleteRepositoryPolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRepositoryRequest {
     /// <p> If a repository contains images, forces the deletion.</p>
     #[serde(rename = "force")]
@@ -283,7 +292,7 @@ pub struct DeleteRepositoryRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteRepositoryResponse {
     /// <p>The repository that was deleted.</p>
     #[serde(rename = "repository")]
@@ -292,6 +301,7 @@ pub struct DeleteRepositoryResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImageScanFindingsRequest {
     #[serde(rename = "imageId")]
     pub image_id: ImageIdentifier,
@@ -313,7 +323,7 @@ pub struct DescribeImageScanFindingsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeImageScanFindingsResponse {
     #[serde(rename = "imageId")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -342,6 +352,7 @@ pub struct DescribeImageScanFindingsResponse {
 
 /// <p>An object representing a filter on a <a>DescribeImages</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImagesFilter {
     /// <p>The tag status with which to filter your <a>DescribeImages</a> results. You can filter results based on whether they are <code>TAGGED</code> or <code>UNTAGGED</code>.</p>
     #[serde(rename = "tagStatus")]
@@ -350,6 +361,7 @@ pub struct DescribeImagesFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeImagesRequest {
     /// <p>The filter key and value with which to filter your <code>DescribeImages</code> results.</p>
     #[serde(rename = "filter")]
@@ -377,7 +389,7 @@ pub struct DescribeImagesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeImagesResponse {
     /// <p>A list of <a>ImageDetail</a> objects that contain data about the image.</p>
     #[serde(rename = "imageDetails")]
@@ -390,6 +402,7 @@ pub struct DescribeImagesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRepositoriesRequest {
     /// <p>The maximum number of repository results returned by <code>DescribeRepositories</code> in paginated output. When this parameter is used, <code>DescribeRepositories</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeRepositories</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeRepositories</code> returns up to 100 results and a <code>nextToken</code> value, if applicable. This option cannot be used when you specify repositories with <code>repositoryNames</code>.</p>
     #[serde(rename = "maxResults")]
@@ -410,7 +423,7 @@ pub struct DescribeRepositoriesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRepositoriesResponse {
     /// <p>The <code>nextToken</code> value to include in a future <code>DescribeRepositories</code> request. When the results of a <code>DescribeRepositories</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
     #[serde(rename = "nextToken")]
@@ -423,6 +436,7 @@ pub struct DescribeRepositoriesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAuthorizationTokenRequest {
     /// <p>A list of AWS account IDs that are associated with the registries for which to get authorization tokens. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryIds")]
@@ -431,7 +445,7 @@ pub struct GetAuthorizationTokenRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAuthorizationTokenResponse {
     /// <p>A list of authorization token data objects that correspond to the <code>registryIds</code> values in the request.</p>
     #[serde(rename = "authorizationData")]
@@ -440,6 +454,7 @@ pub struct GetAuthorizationTokenResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDownloadUrlForLayerRequest {
     /// <p>The digest of the image layer to download.</p>
     #[serde(rename = "layerDigest")]
@@ -454,7 +469,7 @@ pub struct GetDownloadUrlForLayerRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDownloadUrlForLayerResponse {
     /// <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
     #[serde(rename = "downloadUrl")]
@@ -467,6 +482,7 @@ pub struct GetDownloadUrlForLayerResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLifecyclePolicyPreviewRequest {
     /// <p>An optional parameter that filters results based on image tag status and all tags, if tagged.</p>
     #[serde(rename = "filter")]
@@ -494,7 +510,7 @@ pub struct GetLifecyclePolicyPreviewRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLifecyclePolicyPreviewResponse {
     /// <p>The JSON lifecycle policy text.</p>
     #[serde(rename = "lifecyclePolicyText")]
@@ -527,6 +543,7 @@ pub struct GetLifecyclePolicyPreviewResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLifecyclePolicyRequest {
     /// <p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryId")]
@@ -538,7 +555,7 @@ pub struct GetLifecyclePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLifecyclePolicyResponse {
     /// <p>The time stamp of the last time that the lifecycle policy was run.</p>
     #[serde(rename = "lastEvaluatedAt")]
@@ -559,6 +576,7 @@ pub struct GetLifecyclePolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRepositoryPolicyRequest {
     /// <p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryId")]
@@ -570,7 +588,7 @@ pub struct GetRepositoryPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRepositoryPolicyResponse {
     /// <p>The JSON repository policy text associated with the repository.</p>
     #[serde(rename = "policyText")]
@@ -588,7 +606,7 @@ pub struct GetRepositoryPolicyResponse {
 
 /// <p>An object representing an Amazon ECR image.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Image {
     /// <p>An object containing the image tag and image digest associated with an image.</p>
     #[serde(rename = "imageId")]
@@ -610,7 +628,7 @@ pub struct Image {
 
 /// <p>An object that describes an image returned by a <a>DescribeImages</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageDetail {
     /// <p>The <code>sha256</code> digest of the image manifest.</p>
     #[serde(rename = "imageDigest")]
@@ -648,7 +666,7 @@ pub struct ImageDetail {
 
 /// <p>An object representing an Amazon ECR image failure.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageFailure {
     /// <p>The code associated with the failure.</p>
     #[serde(rename = "failureCode")]
@@ -679,7 +697,7 @@ pub struct ImageIdentifier {
 
 /// <p>Contains information about an image scan finding.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageScanFinding {
     /// <p>A collection of attributes of the host from which the finding is generated.</p>
     #[serde(rename = "attributes")]
@@ -705,7 +723,7 @@ pub struct ImageScanFinding {
 
 /// <p>The details of an image scan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageScanFindings {
     /// <p>The image vulnerability counts, sorted by severity.</p>
     #[serde(rename = "findingSeverityCounts")]
@@ -727,7 +745,7 @@ pub struct ImageScanFindings {
 
 /// <p>A summary of the last completed image scan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageScanFindingsSummary {
     /// <p>The image vulnerability counts, sorted by severity.</p>
     #[serde(rename = "findingSeverityCounts")]
@@ -745,7 +763,7 @@ pub struct ImageScanFindingsSummary {
 
 /// <p>The current status of an image scan.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImageScanStatus {
     /// <p>The description of the image scan status.</p>
     #[serde(rename = "description")]
@@ -767,6 +785,7 @@ pub struct ImageScanningConfiguration {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InitiateLayerUploadRequest {
     /// <p>The AWS account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.</p>
     #[serde(rename = "registryId")]
@@ -778,7 +797,7 @@ pub struct InitiateLayerUploadRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InitiateLayerUploadResponse {
     /// <p>The size, in bytes, that Amazon ECR expects future layer part uploads to be.</p>
     #[serde(rename = "partSize")]
@@ -792,7 +811,7 @@ pub struct InitiateLayerUploadResponse {
 
 /// <p>An object representing an Amazon ECR image layer.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Layer {
     /// <p>The availability status of the image layer.</p>
     #[serde(rename = "layerAvailability")]
@@ -814,7 +833,7 @@ pub struct Layer {
 
 /// <p>An object representing an Amazon ECR image layer failure.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LayerFailure {
     /// <p>The failure code associated with the failure.</p>
     #[serde(rename = "failureCode")]
@@ -832,6 +851,7 @@ pub struct LayerFailure {
 
 /// <p>The filter for the lifecycle policy preview.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LifecyclePolicyPreviewFilter {
     /// <p>The tag status of the image.</p>
     #[serde(rename = "tagStatus")]
@@ -841,7 +861,7 @@ pub struct LifecyclePolicyPreviewFilter {
 
 /// <p>The result of the lifecycle policy preview.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LifecyclePolicyPreviewResult {
     /// <p>The type of action to be taken.</p>
     #[serde(rename = "action")]
@@ -867,7 +887,7 @@ pub struct LifecyclePolicyPreviewResult {
 
 /// <p>The summary of the lifecycle policy preview request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LifecyclePolicyPreviewSummary {
     /// <p>The number of expiring images.</p>
     #[serde(rename = "expiringImageTotalCount")]
@@ -877,7 +897,7 @@ pub struct LifecyclePolicyPreviewSummary {
 
 /// <p>The type of action to be taken.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LifecyclePolicyRuleAction {
     /// <p>The type of action to be taken.</p>
     #[serde(rename = "type")]
@@ -887,6 +907,7 @@ pub struct LifecyclePolicyRuleAction {
 
 /// <p>An object representing a filter on a <a>ListImages</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListImagesFilter {
     /// <p>The tag status with which to filter your <a>ListImages</a> results. You can filter results based on whether they are <code>TAGGED</code> or <code>UNTAGGED</code>.</p>
     #[serde(rename = "tagStatus")]
@@ -895,6 +916,7 @@ pub struct ListImagesFilter {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListImagesRequest {
     /// <p>The filter key and value with which to filter your <code>ListImages</code> results.</p>
     #[serde(rename = "filter")]
@@ -918,7 +940,7 @@ pub struct ListImagesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListImagesResponse {
     /// <p>The list of image IDs for the requested repository.</p>
     #[serde(rename = "imageIds")]
@@ -931,6 +953,7 @@ pub struct ListImagesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository.</p>
     #[serde(rename = "resourceArn")]
@@ -938,7 +961,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags for the resource.</p>
     #[serde(rename = "tags")]
@@ -947,6 +970,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutImageRequest {
     /// <p>The image manifest corresponding to the image to be uploaded.</p>
     #[serde(rename = "imageManifest")]
@@ -965,7 +989,7 @@ pub struct PutImageRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutImageResponse {
     /// <p>Details of the image uploaded.</p>
     #[serde(rename = "image")]
@@ -974,6 +998,7 @@ pub struct PutImageResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutImageScanningConfigurationRequest {
     /// <p>The image scanning configuration for the repository. This setting determines whether images are scanned for known vulnerabilities after being pushed to the repository.</p>
     #[serde(rename = "imageScanningConfiguration")]
@@ -988,7 +1013,7 @@ pub struct PutImageScanningConfigurationRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutImageScanningConfigurationResponse {
     /// <p>The image scanning configuration setting for the repository.</p>
     #[serde(rename = "imageScanningConfiguration")]
@@ -1005,6 +1030,7 @@ pub struct PutImageScanningConfigurationResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutImageTagMutabilityRequest {
     /// <p>The tag mutability setting for the repository. If <code>MUTABLE</code> is specified, image tags can be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>
     #[serde(rename = "imageTagMutability")]
@@ -1019,7 +1045,7 @@ pub struct PutImageTagMutabilityRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutImageTagMutabilityResponse {
     /// <p>The image tag mutability setting for the repository.</p>
     #[serde(rename = "imageTagMutability")]
@@ -1036,6 +1062,7 @@ pub struct PutImageTagMutabilityResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLifecyclePolicyRequest {
     /// <p>The JSON repository policy text to apply to the repository.</p>
     #[serde(rename = "lifecyclePolicyText")]
@@ -1050,7 +1077,7 @@ pub struct PutLifecyclePolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLifecyclePolicyResponse {
     /// <p>The JSON repository policy text.</p>
     #[serde(rename = "lifecyclePolicyText")]
@@ -1068,7 +1095,7 @@ pub struct PutLifecyclePolicyResponse {
 
 /// <p>An object representing a repository.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Repository {
     /// <p>The date and time, in JavaScript date format, when the repository was created.</p>
     #[serde(rename = "createdAt")]
@@ -1100,6 +1127,7 @@ pub struct Repository {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetRepositoryPolicyRequest {
     /// <p>If the policy you are attempting to set on a repository policy would prevent you from setting another policy in the future, you must force the <a>SetRepositoryPolicy</a> operation. This is intended to prevent accidental repository lock outs.</p>
     #[serde(rename = "force")]
@@ -1118,7 +1146,7 @@ pub struct SetRepositoryPolicyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SetRepositoryPolicyResponse {
     /// <p>The JSON repository policy text applied to the repository.</p>
     #[serde(rename = "policyText")]
@@ -1135,6 +1163,7 @@ pub struct SetRepositoryPolicyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartImageScanRequest {
     #[serde(rename = "imageId")]
     pub image_id: ImageIdentifier,
@@ -1148,7 +1177,7 @@ pub struct StartImageScanRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartImageScanResponse {
     #[serde(rename = "imageId")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1168,6 +1197,7 @@ pub struct StartImageScanResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartLifecyclePolicyPreviewRequest {
     /// <p>The policy to be evaluated against. If you do not specify a policy, the current policy for the repository is used.</p>
     #[serde(rename = "lifecyclePolicyText")]
@@ -1183,7 +1213,7 @@ pub struct StartLifecyclePolicyPreviewRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartLifecyclePolicyPreviewResponse {
     /// <p>The JSON repository policy text.</p>
     #[serde(rename = "lifecyclePolicyText")]
@@ -1217,6 +1247,7 @@ pub struct Tag {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the the resource to which to add tags. Currently, the only supported resource is an Amazon ECR repository.</p>
     #[serde(rename = "resourceArn")]
@@ -1227,10 +1258,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource from which to remove tags. Currently, the only supported resource is an Amazon ECR repository.</p>
     #[serde(rename = "resourceArn")]
@@ -1241,10 +1273,11 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UploadLayerPartRequest {
     /// <p>The base64-encoded layer part payload.</p>
     #[serde(rename = "layerPartBlob")]
@@ -1273,7 +1306,7 @@ pub struct UploadLayerPartRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UploadLayerPartResponse {
     /// <p>The integer value of the last byte received in the request.</p>
     #[serde(rename = "lastByteReceived")]
@@ -1331,19 +1364,18 @@ impl BatchCheckLayerAvailabilityError {
     }
 }
 impl fmt::Display for BatchCheckLayerAvailabilityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchCheckLayerAvailabilityError {
-    fn description(&self) -> &str {
         match *self {
-            BatchCheckLayerAvailabilityError::InvalidParameter(ref cause) => cause,
-            BatchCheckLayerAvailabilityError::RepositoryNotFound(ref cause) => cause,
-            BatchCheckLayerAvailabilityError::Server(ref cause) => cause,
+            BatchCheckLayerAvailabilityError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            BatchCheckLayerAvailabilityError::RepositoryNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            BatchCheckLayerAvailabilityError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchCheckLayerAvailabilityError {}
 /// Errors returned by BatchDeleteImage
 #[derive(Debug, PartialEq)]
 pub enum BatchDeleteImageError {
@@ -1376,19 +1408,16 @@ impl BatchDeleteImageError {
     }
 }
 impl fmt::Display for BatchDeleteImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchDeleteImageError {
-    fn description(&self) -> &str {
         match *self {
-            BatchDeleteImageError::InvalidParameter(ref cause) => cause,
-            BatchDeleteImageError::RepositoryNotFound(ref cause) => cause,
-            BatchDeleteImageError::Server(ref cause) => cause,
+            BatchDeleteImageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            BatchDeleteImageError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            BatchDeleteImageError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchDeleteImageError {}
 /// Errors returned by BatchGetImage
 #[derive(Debug, PartialEq)]
 pub enum BatchGetImageError {
@@ -1421,19 +1450,16 @@ impl BatchGetImageError {
     }
 }
 impl fmt::Display for BatchGetImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchGetImageError {
-    fn description(&self) -> &str {
         match *self {
-            BatchGetImageError::InvalidParameter(ref cause) => cause,
-            BatchGetImageError::RepositoryNotFound(ref cause) => cause,
-            BatchGetImageError::Server(ref cause) => cause,
+            BatchGetImageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            BatchGetImageError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            BatchGetImageError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchGetImageError {}
 /// Errors returned by CompleteLayerUpload
 #[derive(Debug, PartialEq)]
 pub enum CompleteLayerUploadError {
@@ -1499,24 +1525,21 @@ impl CompleteLayerUploadError {
     }
 }
 impl fmt::Display for CompleteLayerUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CompleteLayerUploadError {
-    fn description(&self) -> &str {
         match *self {
-            CompleteLayerUploadError::EmptyUpload(ref cause) => cause,
-            CompleteLayerUploadError::InvalidLayer(ref cause) => cause,
-            CompleteLayerUploadError::InvalidParameter(ref cause) => cause,
-            CompleteLayerUploadError::LayerAlreadyExists(ref cause) => cause,
-            CompleteLayerUploadError::LayerPartTooSmall(ref cause) => cause,
-            CompleteLayerUploadError::RepositoryNotFound(ref cause) => cause,
-            CompleteLayerUploadError::Server(ref cause) => cause,
-            CompleteLayerUploadError::UploadNotFound(ref cause) => cause,
+            CompleteLayerUploadError::EmptyUpload(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::InvalidLayer(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::LayerAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::LayerPartTooSmall(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::Server(ref cause) => write!(f, "{}", cause),
+            CompleteLayerUploadError::UploadNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CompleteLayerUploadError {}
 /// Errors returned by CreateRepository
 #[derive(Debug, PartialEq)]
 pub enum CreateRepositoryError {
@@ -1568,22 +1591,19 @@ impl CreateRepositoryError {
     }
 }
 impl fmt::Display for CreateRepositoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateRepositoryError {
-    fn description(&self) -> &str {
         match *self {
-            CreateRepositoryError::InvalidParameter(ref cause) => cause,
-            CreateRepositoryError::InvalidTagParameter(ref cause) => cause,
-            CreateRepositoryError::LimitExceeded(ref cause) => cause,
-            CreateRepositoryError::RepositoryAlreadyExists(ref cause) => cause,
-            CreateRepositoryError::Server(ref cause) => cause,
-            CreateRepositoryError::TooManyTags(ref cause) => cause,
+            CreateRepositoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateRepositoryError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            CreateRepositoryError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateRepositoryError::RepositoryAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateRepositoryError::Server(ref cause) => write!(f, "{}", cause),
+            CreateRepositoryError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateRepositoryError {}
 /// Errors returned by DeleteLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteLifecyclePolicyError {
@@ -1627,20 +1647,19 @@ impl DeleteLifecyclePolicyError {
     }
 }
 impl fmt::Display for DeleteLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteLifecyclePolicyError::InvalidParameter(ref cause) => cause,
-            DeleteLifecyclePolicyError::LifecyclePolicyNotFound(ref cause) => cause,
-            DeleteLifecyclePolicyError::RepositoryNotFound(ref cause) => cause,
-            DeleteLifecyclePolicyError::Server(ref cause) => cause,
+            DeleteLifecyclePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteLifecyclePolicyError::LifecyclePolicyNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteLifecyclePolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteLifecyclePolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteLifecyclePolicyError {}
 /// Errors returned by DeleteRepository
 #[derive(Debug, PartialEq)]
 pub enum DeleteRepositoryError {
@@ -1678,20 +1697,17 @@ impl DeleteRepositoryError {
     }
 }
 impl fmt::Display for DeleteRepositoryError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRepositoryError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRepositoryError::InvalidParameter(ref cause) => cause,
-            DeleteRepositoryError::RepositoryNotEmpty(ref cause) => cause,
-            DeleteRepositoryError::RepositoryNotFound(ref cause) => cause,
-            DeleteRepositoryError::Server(ref cause) => cause,
+            DeleteRepositoryError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteRepositoryError::RepositoryNotEmpty(ref cause) => write!(f, "{}", cause),
+            DeleteRepositoryError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRepositoryError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRepositoryError {}
 /// Errors returned by DeleteRepositoryPolicy
 #[derive(Debug, PartialEq)]
 pub enum DeleteRepositoryPolicyError {
@@ -1735,20 +1751,19 @@ impl DeleteRepositoryPolicyError {
     }
 }
 impl fmt::Display for DeleteRepositoryPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteRepositoryPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteRepositoryPolicyError::InvalidParameter(ref cause) => cause,
-            DeleteRepositoryPolicyError::RepositoryNotFound(ref cause) => cause,
-            DeleteRepositoryPolicyError::RepositoryPolicyNotFound(ref cause) => cause,
-            DeleteRepositoryPolicyError::Server(ref cause) => cause,
+            DeleteRepositoryPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteRepositoryPolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteRepositoryPolicyError::RepositoryPolicyNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteRepositoryPolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteRepositoryPolicyError {}
 /// Errors returned by DescribeImageScanFindings
 #[derive(Debug, PartialEq)]
 pub enum DescribeImageScanFindingsError {
@@ -1799,21 +1814,18 @@ impl DescribeImageScanFindingsError {
     }
 }
 impl fmt::Display for DescribeImageScanFindingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeImageScanFindingsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeImageScanFindingsError::ImageNotFound(ref cause) => cause,
-            DescribeImageScanFindingsError::InvalidParameter(ref cause) => cause,
-            DescribeImageScanFindingsError::RepositoryNotFound(ref cause) => cause,
-            DescribeImageScanFindingsError::ScanNotFound(ref cause) => cause,
-            DescribeImageScanFindingsError::Server(ref cause) => cause,
+            DescribeImageScanFindingsError::ImageNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeImageScanFindingsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeImageScanFindingsError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeImageScanFindingsError::ScanNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeImageScanFindingsError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeImageScanFindingsError {}
 /// Errors returned by DescribeImages
 #[derive(Debug, PartialEq)]
 pub enum DescribeImagesError {
@@ -1851,20 +1863,17 @@ impl DescribeImagesError {
     }
 }
 impl fmt::Display for DescribeImagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeImagesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeImagesError::ImageNotFound(ref cause) => cause,
-            DescribeImagesError::InvalidParameter(ref cause) => cause,
-            DescribeImagesError::RepositoryNotFound(ref cause) => cause,
-            DescribeImagesError::Server(ref cause) => cause,
+            DescribeImagesError::ImageNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeImagesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeImagesError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeImagesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeImagesError {}
 /// Errors returned by DescribeRepositories
 #[derive(Debug, PartialEq)]
 pub enum DescribeRepositoriesError {
@@ -1901,19 +1910,16 @@ impl DescribeRepositoriesError {
     }
 }
 impl fmt::Display for DescribeRepositoriesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeRepositoriesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeRepositoriesError::InvalidParameter(ref cause) => cause,
-            DescribeRepositoriesError::RepositoryNotFound(ref cause) => cause,
-            DescribeRepositoriesError::Server(ref cause) => cause,
+            DescribeRepositoriesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeRepositoriesError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeRepositoriesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeRepositoriesError {}
 /// Errors returned by GetAuthorizationToken
 #[derive(Debug, PartialEq)]
 pub enum GetAuthorizationTokenError {
@@ -1943,18 +1949,15 @@ impl GetAuthorizationTokenError {
     }
 }
 impl fmt::Display for GetAuthorizationTokenError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetAuthorizationTokenError {
-    fn description(&self) -> &str {
         match *self {
-            GetAuthorizationTokenError::InvalidParameter(ref cause) => cause,
-            GetAuthorizationTokenError::Server(ref cause) => cause,
+            GetAuthorizationTokenError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetAuthorizationTokenError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetAuthorizationTokenError {}
 /// Errors returned by GetDownloadUrlForLayer
 #[derive(Debug, PartialEq)]
 pub enum GetDownloadUrlForLayerError {
@@ -2005,21 +2008,18 @@ impl GetDownloadUrlForLayerError {
     }
 }
 impl fmt::Display for GetDownloadUrlForLayerError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetDownloadUrlForLayerError {
-    fn description(&self) -> &str {
         match *self {
-            GetDownloadUrlForLayerError::InvalidParameter(ref cause) => cause,
-            GetDownloadUrlForLayerError::LayerInaccessible(ref cause) => cause,
-            GetDownloadUrlForLayerError::LayersNotFound(ref cause) => cause,
-            GetDownloadUrlForLayerError::RepositoryNotFound(ref cause) => cause,
-            GetDownloadUrlForLayerError::Server(ref cause) => cause,
+            GetDownloadUrlForLayerError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetDownloadUrlForLayerError::LayerInaccessible(ref cause) => write!(f, "{}", cause),
+            GetDownloadUrlForLayerError::LayersNotFound(ref cause) => write!(f, "{}", cause),
+            GetDownloadUrlForLayerError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            GetDownloadUrlForLayerError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetDownloadUrlForLayerError {}
 /// Errors returned by GetLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum GetLifecyclePolicyError {
@@ -2061,20 +2061,17 @@ impl GetLifecyclePolicyError {
     }
 }
 impl fmt::Display for GetLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetLifecyclePolicyError::InvalidParameter(ref cause) => cause,
-            GetLifecyclePolicyError::LifecyclePolicyNotFound(ref cause) => cause,
-            GetLifecyclePolicyError::RepositoryNotFound(ref cause) => cause,
-            GetLifecyclePolicyError::Server(ref cause) => cause,
+            GetLifecyclePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::LifecyclePolicyNotFound(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLifecyclePolicyError {}
 /// Errors returned by GetLifecyclePolicyPreview
 #[derive(Debug, PartialEq)]
 pub enum GetLifecyclePolicyPreviewError {
@@ -2118,20 +2115,19 @@ impl GetLifecyclePolicyPreviewError {
     }
 }
 impl fmt::Display for GetLifecyclePolicyPreviewError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetLifecyclePolicyPreviewError {
-    fn description(&self) -> &str {
         match *self {
-            GetLifecyclePolicyPreviewError::InvalidParameter(ref cause) => cause,
-            GetLifecyclePolicyPreviewError::LifecyclePolicyPreviewNotFound(ref cause) => cause,
-            GetLifecyclePolicyPreviewError::RepositoryNotFound(ref cause) => cause,
-            GetLifecyclePolicyPreviewError::Server(ref cause) => cause,
+            GetLifecyclePolicyPreviewError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyPreviewError::LifecyclePolicyPreviewNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            GetLifecyclePolicyPreviewError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            GetLifecyclePolicyPreviewError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetLifecyclePolicyPreviewError {}
 /// Errors returned by GetRepositoryPolicy
 #[derive(Debug, PartialEq)]
 pub enum GetRepositoryPolicyError {
@@ -2175,20 +2171,17 @@ impl GetRepositoryPolicyError {
     }
 }
 impl fmt::Display for GetRepositoryPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetRepositoryPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            GetRepositoryPolicyError::InvalidParameter(ref cause) => cause,
-            GetRepositoryPolicyError::RepositoryNotFound(ref cause) => cause,
-            GetRepositoryPolicyError::RepositoryPolicyNotFound(ref cause) => cause,
-            GetRepositoryPolicyError::Server(ref cause) => cause,
+            GetRepositoryPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            GetRepositoryPolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            GetRepositoryPolicyError::RepositoryPolicyNotFound(ref cause) => write!(f, "{}", cause),
+            GetRepositoryPolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetRepositoryPolicyError {}
 /// Errors returned by InitiateLayerUpload
 #[derive(Debug, PartialEq)]
 pub enum InitiateLayerUploadError {
@@ -2225,19 +2218,16 @@ impl InitiateLayerUploadError {
     }
 }
 impl fmt::Display for InitiateLayerUploadError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InitiateLayerUploadError {
-    fn description(&self) -> &str {
         match *self {
-            InitiateLayerUploadError::InvalidParameter(ref cause) => cause,
-            InitiateLayerUploadError::RepositoryNotFound(ref cause) => cause,
-            InitiateLayerUploadError::Server(ref cause) => cause,
+            InitiateLayerUploadError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            InitiateLayerUploadError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            InitiateLayerUploadError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InitiateLayerUploadError {}
 /// Errors returned by ListImages
 #[derive(Debug, PartialEq)]
 pub enum ListImagesError {
@@ -2268,19 +2258,16 @@ impl ListImagesError {
     }
 }
 impl fmt::Display for ListImagesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListImagesError {
-    fn description(&self) -> &str {
         match *self {
-            ListImagesError::InvalidParameter(ref cause) => cause,
-            ListImagesError::RepositoryNotFound(ref cause) => cause,
-            ListImagesError::Server(ref cause) => cause,
+            ListImagesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListImagesError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            ListImagesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListImagesError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -2317,19 +2304,16 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::InvalidParameter(ref cause) => cause,
-            ListTagsForResourceError::RepositoryNotFound(ref cause) => cause,
-            ListTagsForResourceError::Server(ref cause) => cause,
+            ListTagsForResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PutImage
 #[derive(Debug, PartialEq)]
 pub enum PutImageError {
@@ -2380,23 +2364,20 @@ impl PutImageError {
     }
 }
 impl fmt::Display for PutImageError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutImageError {
-    fn description(&self) -> &str {
         match *self {
-            PutImageError::ImageAlreadyExists(ref cause) => cause,
-            PutImageError::ImageTagAlreadyExists(ref cause) => cause,
-            PutImageError::InvalidParameter(ref cause) => cause,
-            PutImageError::LayersNotFound(ref cause) => cause,
-            PutImageError::LimitExceeded(ref cause) => cause,
-            PutImageError::RepositoryNotFound(ref cause) => cause,
-            PutImageError::Server(ref cause) => cause,
+            PutImageError::ImageAlreadyExists(ref cause) => write!(f, "{}", cause),
+            PutImageError::ImageTagAlreadyExists(ref cause) => write!(f, "{}", cause),
+            PutImageError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutImageError::LayersNotFound(ref cause) => write!(f, "{}", cause),
+            PutImageError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            PutImageError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            PutImageError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutImageError {}
 /// Errors returned by PutImageScanningConfiguration
 #[derive(Debug, PartialEq)]
 pub enum PutImageScanningConfigurationError {
@@ -2437,19 +2418,20 @@ impl PutImageScanningConfigurationError {
     }
 }
 impl fmt::Display for PutImageScanningConfigurationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutImageScanningConfigurationError {
-    fn description(&self) -> &str {
         match *self {
-            PutImageScanningConfigurationError::InvalidParameter(ref cause) => cause,
-            PutImageScanningConfigurationError::RepositoryNotFound(ref cause) => cause,
-            PutImageScanningConfigurationError::Server(ref cause) => cause,
+            PutImageScanningConfigurationError::InvalidParameter(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutImageScanningConfigurationError::RepositoryNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutImageScanningConfigurationError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutImageScanningConfigurationError {}
 /// Errors returned by PutImageTagMutability
 #[derive(Debug, PartialEq)]
 pub enum PutImageTagMutabilityError {
@@ -2486,19 +2468,16 @@ impl PutImageTagMutabilityError {
     }
 }
 impl fmt::Display for PutImageTagMutabilityError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutImageTagMutabilityError {
-    fn description(&self) -> &str {
         match *self {
-            PutImageTagMutabilityError::InvalidParameter(ref cause) => cause,
-            PutImageTagMutabilityError::RepositoryNotFound(ref cause) => cause,
-            PutImageTagMutabilityError::Server(ref cause) => cause,
+            PutImageTagMutabilityError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutImageTagMutabilityError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            PutImageTagMutabilityError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutImageTagMutabilityError {}
 /// Errors returned by PutLifecyclePolicy
 #[derive(Debug, PartialEq)]
 pub enum PutLifecyclePolicyError {
@@ -2533,19 +2512,16 @@ impl PutLifecyclePolicyError {
     }
 }
 impl fmt::Display for PutLifecyclePolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutLifecyclePolicyError {
-    fn description(&self) -> &str {
         match *self {
-            PutLifecyclePolicyError::InvalidParameter(ref cause) => cause,
-            PutLifecyclePolicyError::RepositoryNotFound(ref cause) => cause,
-            PutLifecyclePolicyError::Server(ref cause) => cause,
+            PutLifecyclePolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            PutLifecyclePolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            PutLifecyclePolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutLifecyclePolicyError {}
 /// Errors returned by SetRepositoryPolicy
 #[derive(Debug, PartialEq)]
 pub enum SetRepositoryPolicyError {
@@ -2582,19 +2558,16 @@ impl SetRepositoryPolicyError {
     }
 }
 impl fmt::Display for SetRepositoryPolicyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for SetRepositoryPolicyError {
-    fn description(&self) -> &str {
         match *self {
-            SetRepositoryPolicyError::InvalidParameter(ref cause) => cause,
-            SetRepositoryPolicyError::RepositoryNotFound(ref cause) => cause,
-            SetRepositoryPolicyError::Server(ref cause) => cause,
+            SetRepositoryPolicyError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            SetRepositoryPolicyError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            SetRepositoryPolicyError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for SetRepositoryPolicyError {}
 /// Errors returned by StartImageScan
 #[derive(Debug, PartialEq)]
 pub enum StartImageScanError {
@@ -2632,20 +2605,17 @@ impl StartImageScanError {
     }
 }
 impl fmt::Display for StartImageScanError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartImageScanError {
-    fn description(&self) -> &str {
         match *self {
-            StartImageScanError::ImageNotFound(ref cause) => cause,
-            StartImageScanError::InvalidParameter(ref cause) => cause,
-            StartImageScanError::RepositoryNotFound(ref cause) => cause,
-            StartImageScanError::Server(ref cause) => cause,
+            StartImageScanError::ImageNotFound(ref cause) => write!(f, "{}", cause),
+            StartImageScanError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartImageScanError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            StartImageScanError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartImageScanError {}
 /// Errors returned by StartLifecyclePolicyPreview
 #[derive(Debug, PartialEq)]
 pub enum StartLifecyclePolicyPreviewError {
@@ -2698,21 +2668,24 @@ impl StartLifecyclePolicyPreviewError {
     }
 }
 impl fmt::Display for StartLifecyclePolicyPreviewError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartLifecyclePolicyPreviewError {
-    fn description(&self) -> &str {
         match *self {
-            StartLifecyclePolicyPreviewError::InvalidParameter(ref cause) => cause,
-            StartLifecyclePolicyPreviewError::LifecyclePolicyNotFound(ref cause) => cause,
-            StartLifecyclePolicyPreviewError::LifecyclePolicyPreviewInProgress(ref cause) => cause,
-            StartLifecyclePolicyPreviewError::RepositoryNotFound(ref cause) => cause,
-            StartLifecyclePolicyPreviewError::Server(ref cause) => cause,
+            StartLifecyclePolicyPreviewError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            StartLifecyclePolicyPreviewError::LifecyclePolicyNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLifecyclePolicyPreviewError::LifecyclePolicyPreviewInProgress(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLifecyclePolicyPreviewError::RepositoryNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLifecyclePolicyPreviewError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartLifecyclePolicyPreviewError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -2755,21 +2728,18 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::InvalidParameter(ref cause) => cause,
-            TagResourceError::InvalidTagParameter(ref cause) => cause,
-            TagResourceError::RepositoryNotFound(ref cause) => cause,
-            TagResourceError::Server(ref cause) => cause,
-            TagResourceError::TooManyTags(ref cause) => cause,
+            TagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            TagResourceError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            TagResourceError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            TagResourceError::Server(ref cause) => write!(f, "{}", cause),
+            TagResourceError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -2812,21 +2782,18 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::InvalidParameter(ref cause) => cause,
-            UntagResourceError::InvalidTagParameter(ref cause) => cause,
-            UntagResourceError::RepositoryNotFound(ref cause) => cause,
-            UntagResourceError::Server(ref cause) => cause,
-            UntagResourceError::TooManyTags(ref cause) => cause,
+            UntagResourceError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::Server(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::TooManyTags(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UploadLayerPart
 #[derive(Debug, PartialEq)]
 pub enum UploadLayerPartError {
@@ -2874,22 +2841,19 @@ impl UploadLayerPartError {
     }
 }
 impl fmt::Display for UploadLayerPartError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UploadLayerPartError {
-    fn description(&self) -> &str {
         match *self {
-            UploadLayerPartError::InvalidLayerPart(ref cause) => cause,
-            UploadLayerPartError::InvalidParameter(ref cause) => cause,
-            UploadLayerPartError::LimitExceeded(ref cause) => cause,
-            UploadLayerPartError::RepositoryNotFound(ref cause) => cause,
-            UploadLayerPartError::Server(ref cause) => cause,
-            UploadLayerPartError::UploadNotFound(ref cause) => cause,
+            UploadLayerPartError::InvalidLayerPart(ref cause) => write!(f, "{}", cause),
+            UploadLayerPartError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UploadLayerPartError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UploadLayerPartError::RepositoryNotFound(ref cause) => write!(f, "{}", cause),
+            UploadLayerPartError::Server(ref cause) => write!(f, "{}", cause),
+            UploadLayerPartError::UploadNotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UploadLayerPartError {}
 /// Trait representing the capabilities of the Amazon ECR API. Amazon ECR clients implement this trait.
 #[async_trait]
 pub trait Ecr {

@@ -23,11 +23,12 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An Auto Scaling group that is associated with an Amazon EKS managed node group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AutoScalingGroup {
     /// <p>The name of the Auto Scaling group associated with an Amazon EKS managed node group.</p>
     #[serde(rename = "name")]
@@ -37,7 +38,7 @@ pub struct AutoScalingGroup {
 
 /// <p>An object representing the <code>certificate-authority-data</code> for your cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Certificate {
     /// <p>The Base64-encoded certificate data required to communicate with your cluster. Add this to the <code>certificate-authority-data</code> section of the <code>kubeconfig</code> file for your cluster.</p>
     #[serde(rename = "data")]
@@ -47,7 +48,7 @@ pub struct Certificate {
 
 /// <p>An object representing an Amazon EKS cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Cluster {
     /// <p>The Amazon Resource Name (ARN) of the cluster.</p>
     #[serde(rename = "arn")]
@@ -108,6 +109,7 @@ pub struct Cluster {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClusterRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -137,7 +139,7 @@ pub struct CreateClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClusterResponse {
     /// <p>The full description of your new cluster.</p>
     #[serde(rename = "cluster")]
@@ -146,6 +148,7 @@ pub struct CreateClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateFargateProfileRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -175,7 +178,7 @@ pub struct CreateFargateProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateFargateProfileResponse {
     /// <p>The full description of your new Fargate profile.</p>
     #[serde(rename = "fargateProfile")]
@@ -184,6 +187,7 @@ pub struct CreateFargateProfileResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateNodegroupRequest {
     /// <p>The AMI type for your node group. GPU instance types should use the <code>AL2_x86_64_GPU</code> AMI type, which uses the Amazon EKS-optimized Linux AMI with GPU support. Non-GPU instances should use the <code>AL2_x86_64</code> AMI type, which uses the Amazon EKS-optimized Linux AMI.</p>
     #[serde(rename = "amiType")]
@@ -240,7 +244,7 @@ pub struct CreateNodegroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateNodegroupResponse {
     /// <p>The full description of your new node group.</p>
     #[serde(rename = "nodegroup")]
@@ -249,6 +253,7 @@ pub struct CreateNodegroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteClusterRequest {
     /// <p>The name of the cluster to delete.</p>
     #[serde(rename = "name")]
@@ -256,7 +261,7 @@ pub struct DeleteClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteClusterResponse {
     /// <p>The full description of the cluster to delete.</p>
     #[serde(rename = "cluster")]
@@ -265,6 +270,7 @@ pub struct DeleteClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteFargateProfileRequest {
     /// <p>The name of the Amazon EKS cluster associated with the Fargate profile to delete.</p>
     #[serde(rename = "clusterName")]
@@ -275,7 +281,7 @@ pub struct DeleteFargateProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteFargateProfileResponse {
     /// <p>The deleted Fargate profile.</p>
     #[serde(rename = "fargateProfile")]
@@ -284,6 +290,7 @@ pub struct DeleteFargateProfileResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteNodegroupRequest {
     /// <p>The name of the Amazon EKS cluster that is associated with your node group.</p>
     #[serde(rename = "clusterName")]
@@ -294,7 +301,7 @@ pub struct DeleteNodegroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteNodegroupResponse {
     /// <p>The full description of your deleted node group.</p>
     #[serde(rename = "nodegroup")]
@@ -303,6 +310,7 @@ pub struct DeleteNodegroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterRequest {
     /// <p>The name of the cluster to describe.</p>
     #[serde(rename = "name")]
@@ -310,7 +318,7 @@ pub struct DescribeClusterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterResponse {
     /// <p>The full description of your specified cluster.</p>
     #[serde(rename = "cluster")]
@@ -319,6 +327,7 @@ pub struct DescribeClusterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeFargateProfileRequest {
     /// <p>The name of the Amazon EKS cluster associated with the Fargate profile.</p>
     #[serde(rename = "clusterName")]
@@ -329,7 +338,7 @@ pub struct DescribeFargateProfileRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeFargateProfileResponse {
     /// <p>The full description of your Fargate profile.</p>
     #[serde(rename = "fargateProfile")]
@@ -338,6 +347,7 @@ pub struct DescribeFargateProfileResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeNodegroupRequest {
     /// <p>The name of the Amazon EKS cluster associated with the node group.</p>
     #[serde(rename = "clusterName")]
@@ -348,7 +358,7 @@ pub struct DescribeNodegroupRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeNodegroupResponse {
     /// <p>The full description of your node group.</p>
     #[serde(rename = "nodegroup")]
@@ -357,6 +367,7 @@ pub struct DescribeNodegroupResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUpdateRequest {
     /// <p>The name of the Amazon EKS cluster associated with the update.</p>
     #[serde(rename = "name")]
@@ -371,7 +382,7 @@ pub struct DescribeUpdateRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeUpdateResponse {
     /// <p>The full description of the specified update.</p>
     #[serde(rename = "update")]
@@ -381,7 +392,7 @@ pub struct DescribeUpdateResponse {
 
 /// <p>An object representing an error when an asynchronous operation fails.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorDetail {
     /// <p><p>A brief description of the error. </p> <ul> <li> <p> <b>SubnetNotFound</b>: We couldn&#39;t find one of the subnets associated with the cluster.</p> </li> <li> <p> <b>SecurityGroupNotFound</b>: We couldn&#39;t find one of the security groups associated with the cluster.</p> </li> <li> <p> <b>EniLimitReached</b>: You have reached the elastic network interface limit for your account.</p> </li> <li> <p> <b>IpNotAvailable</b>: A subnet associated with the cluster doesn&#39;t have any free IP addresses.</p> </li> <li> <p> <b>AccessDenied</b>: You don&#39;t have permissions to perform the specified operation.</p> </li> <li> <p> <b>OperationNotPermitted</b>: The service role associated with the cluster doesn&#39;t have the required access permissions for Amazon EKS.</p> </li> <li> <p> <b>VpcIdNotFound</b>: We couldn&#39;t find the VPC associated with the cluster.</p> </li> </ul></p>
     #[serde(rename = "errorCode")]
@@ -399,7 +410,7 @@ pub struct ErrorDetail {
 
 /// <p>An object representing an AWS Fargate profile.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FargateProfile {
     /// <p>The name of the Amazon EKS cluster that the Fargate profile belongs to.</p>
     #[serde(rename = "clusterName")]
@@ -454,7 +465,7 @@ pub struct FargateProfileSelector {
 
 /// <p>An object representing an identity provider for authentication credentials.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Identity {
     /// <p>The <a href="https://openid.net/connect/">OpenID Connect</a> identity provider information for the cluster.</p>
     #[serde(rename = "oidc")]
@@ -464,7 +475,7 @@ pub struct Identity {
 
 /// <p>An object representing an issue with an Amazon EKS resource.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Issue {
     /// <p><p>A brief description of the error.</p> <ul> <li> <p> <b>AutoScalingGroupNotFound</b>: We couldn&#39;t find the Auto Scaling group associated with the managed node group. You may be able to recreate an Auto Scaling group with the same settings to recover.</p> </li> <li> <p> <b>Ec2SecurityGroupNotFound</b>: We couldn&#39;t find the cluster security group for the cluster. You must recreate your cluster.</p> </li> <li> <p> <b>Ec2SecurityGroupDeletionFailure</b>: We could not delete the remote access security group for your managed node group. Remove any dependencies from the security group.</p> </li> <li> <p> <b>Ec2LaunchTemplateNotFound</b>: We couldn&#39;t find the Amazon EC2 launch template for your managed node group. You may be able to recreate a launch template with the same settings to recover.</p> </li> <li> <p> <b>Ec2LaunchTemplateVersionMismatch</b>: The Amazon EC2 launch template version for your managed node group does not match the version that Amazon EKS created. You may be able to revert to the version that Amazon EKS created to recover.</p> </li> <li> <p> <b>IamInstanceProfileNotFound</b>: We couldn&#39;t find the IAM instance profile for your managed node group. You may be able to recreate an instance profile with the same settings to recover.</p> </li> <li> <p> <b>IamNodeRoleNotFound</b>: We couldn&#39;t find the IAM role for your managed node group. You may be able to recreate an IAM role with the same settings to recover.</p> </li> <li> <p> <b>AsgInstanceLaunchFailures</b>: Your Auto Scaling group is experiencing failures while attempting to launch instances.</p> </li> <li> <p> <b>NodeCreationFailure</b>: Your launched instances are unable to register with your Amazon EKS cluster. Common causes of this failure are insufficient <a href="https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html">worker node IAM role</a> permissions or lack of outbound internet access for the nodes. </p> </li> <li> <p> <b>InstanceLimitExceeded</b>: Your AWS account is unable to launch any more instances of the specified instance type. You may be able to request an Amazon EC2 instance limit increase to recover.</p> </li> <li> <p> <b>InsufficientFreeAddresses</b>: One or more of the subnets associated with your managed node group does not have enough available IP addresses for new nodes.</p> </li> <li> <p> <b>AccessDenied</b>: Amazon EKS or one or more of your managed nodes is unable to communicate with your cluster API server.</p> </li> <li> <p> <b>InternalFailure</b>: These errors are usually caused by an Amazon EKS server-side issue.</p> </li> </ul></p>
     #[serde(rename = "code")]
@@ -481,6 +492,7 @@ pub struct Issue {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClustersRequest {
     /// <p>The maximum number of cluster results returned by <code>ListClusters</code> in paginated output. When you use this parameter, <code>ListClusters</code> returns only <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. You can see the remaining results of the initial request by sending another <code>ListClusters</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If you don't use this parameter, <code>ListClusters</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>
     #[serde(rename = "maxResults")]
@@ -493,7 +505,7 @@ pub struct ListClustersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClustersResponse {
     /// <p>A list of all of the clusters for your account in the specified Region.</p>
     #[serde(rename = "clusters")]
@@ -506,6 +518,7 @@ pub struct ListClustersResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListFargateProfilesRequest {
     /// <p>The name of the Amazon EKS cluster that you would like to listFargate profiles in.</p>
     #[serde(rename = "clusterName")]
@@ -521,7 +534,7 @@ pub struct ListFargateProfilesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListFargateProfilesResponse {
     /// <p>A list of all of the Fargate profiles associated with the specified cluster.</p>
     #[serde(rename = "fargateProfileNames")]
@@ -534,6 +547,7 @@ pub struct ListFargateProfilesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListNodegroupsRequest {
     /// <p>The name of the Amazon EKS cluster that you would like to list node groups in.</p>
     #[serde(rename = "clusterName")]
@@ -549,7 +563,7 @@ pub struct ListNodegroupsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListNodegroupsResponse {
     /// <p>The <code>nextToken</code> value to include in a future <code>ListNodegroups</code> request. When the results of a <code>ListNodegroups</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
     #[serde(rename = "nextToken")]
@@ -562,6 +576,7 @@ pub struct ListNodegroupsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are Amazon EKS clusters and managed node groups.</p>
     #[serde(rename = "resourceArn")]
@@ -569,7 +584,7 @@ pub struct ListTagsForResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The tags for the resource.</p>
     #[serde(rename = "tags")]
@@ -578,6 +593,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUpdatesRequest {
     /// <p>The maximum number of update results returned by <code>ListUpdates</code> in paginated output. When you use this parameter, <code>ListUpdates</code> returns only <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. You can see the remaining results of the initial request by sending another <code>ListUpdates</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If you don't use this parameter, <code>ListUpdates</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>
     #[serde(rename = "maxResults")]
@@ -597,7 +613,7 @@ pub struct ListUpdatesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUpdatesResponse {
     /// <p>The <code>nextToken</code> value to include in a future <code>ListUpdates</code> request. When the results of a <code>ListUpdates</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>
     #[serde(rename = "nextToken")]
@@ -633,7 +649,7 @@ pub struct Logging {
 
 /// <p>An object representing an Amazon EKS managed node group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Nodegroup {
     /// <p>The AMI type associated with your node group. GPU instance types should use the <code>AL2_x86_64_GPU</code> AMI type, which uses the Amazon EKS-optimized Linux AMI with GPU support. Non-GPU instances should use the <code>AL2_x86_64</code> AMI type, which uses the Amazon EKS-optimized Linux AMI.</p>
     #[serde(rename = "amiType")]
@@ -715,7 +731,7 @@ pub struct Nodegroup {
 
 /// <p>An object representing the health status of the node group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodegroupHealth {
     /// <p>Any issues that are associated with the node group. </p>
     #[serde(rename = "issues")]
@@ -725,7 +741,7 @@ pub struct NodegroupHealth {
 
 /// <p>An object representing the resources associated with the node group, such as Auto Scaling groups and security groups for remote access.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodegroupResources {
     /// <p>The Auto Scaling groups associated with the node group.</p>
     #[serde(rename = "autoScalingGroups")]
@@ -756,7 +772,7 @@ pub struct NodegroupScalingConfig {
 
 /// <p>An object representing the <a href="https://openid.net/connect/">OpenID Connect</a> identity provider information for the cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OIDC {
     /// <p>The issuer URL for the OpenID Connect identity provider.</p>
     #[serde(rename = "issuer")]
@@ -778,6 +794,7 @@ pub struct RemoteAccessConfig {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource to which to add tags. Currently, the supported resources are Amazon EKS clusters and managed node groups.</p>
     #[serde(rename = "resourceArn")]
@@ -788,10 +805,11 @@ pub struct TagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource from which to delete tags. Currently, the supported resources are Amazon EKS clusters and managed node groups.</p>
     #[serde(rename = "resourceArn")]
@@ -802,12 +820,12 @@ pub struct UntagResourceRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
 /// <p>An object representing an asynchronous update.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Update {
     /// <p>The Unix epoch timestamp in seconds for when the update was created.</p>
     #[serde(rename = "createdAt")]
@@ -836,6 +854,7 @@ pub struct Update {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClusterConfigRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -854,7 +873,7 @@ pub struct UpdateClusterConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClusterConfigResponse {
     #[serde(rename = "update")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -862,6 +881,7 @@ pub struct UpdateClusterConfigResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClusterVersionRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -876,7 +896,7 @@ pub struct UpdateClusterVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClusterVersionResponse {
     /// <p>The full description of the specified update</p>
     #[serde(rename = "update")]
@@ -886,6 +906,7 @@ pub struct UpdateClusterVersionResponse {
 
 /// <p>An object representing a Kubernetes label change for a managed node group.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateLabelsPayload {
     /// <p>Kubernetes labels to be added or updated.</p>
     #[serde(rename = "addOrUpdateLabels")]
@@ -898,6 +919,7 @@ pub struct UpdateLabelsPayload {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateNodegroupConfigRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -920,7 +942,7 @@ pub struct UpdateNodegroupConfigRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateNodegroupConfigResponse {
     #[serde(rename = "update")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -928,6 +950,7 @@ pub struct UpdateNodegroupConfigResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateNodegroupVersionRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
     #[serde(rename = "clientRequestToken")]
@@ -954,7 +977,7 @@ pub struct UpdateNodegroupVersionRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateNodegroupVersionResponse {
     #[serde(rename = "update")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -963,7 +986,7 @@ pub struct UpdateNodegroupVersionResponse {
 
 /// <p>An object representing the details of an update request.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateParam {
     /// <p>The keys associated with an update request.</p>
     #[serde(rename = "type")]
@@ -977,6 +1000,7 @@ pub struct UpdateParam {
 
 /// <p>An object representing the VPC configuration to use for an Amazon EKS cluster.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct VpcConfigRequest {
     /// <p>Set this value to <code>true</code> to enable private access for your cluster's Kubernetes API server endpoint. If you enable private access, Kubernetes API requests from within your cluster's VPC use the private VPC endpoint. The default value for this parameter is <code>false</code>, which disables private access for your Kubernetes API server. If you disable private access and you have worker nodes or AWS Fargate pods in the cluster, then ensure that <code>publicAccessCidrs</code> includes the necessary CIDR blocks for communication with the worker nodes or Fargate pods. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p>
     #[serde(rename = "endpointPrivateAccess")]
@@ -1002,7 +1026,7 @@ pub struct VpcConfigRequest {
 
 /// <p>An object representing an Amazon EKS cluster VPC configuration response.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VpcConfigResponse {
     /// <p>The cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control-plane-to-data-plane communication.</p>
     #[serde(rename = "clusterSecurityGroupId")]
@@ -1088,23 +1112,20 @@ impl CreateClusterError {
     }
 }
 impl fmt::Display for CreateClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateClusterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateClusterError::Client(ref cause) => cause,
-            CreateClusterError::InvalidParameter(ref cause) => cause,
-            CreateClusterError::ResourceInUse(ref cause) => cause,
-            CreateClusterError::ResourceLimitExceeded(ref cause) => cause,
-            CreateClusterError::Server(ref cause) => cause,
-            CreateClusterError::ServiceUnavailable(ref cause) => cause,
-            CreateClusterError::UnsupportedAvailabilityZone(ref cause) => cause,
+            CreateClusterError::Client(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::ResourceLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::Server(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            CreateClusterError::UnsupportedAvailabilityZone(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateClusterError {}
 /// Errors returned by CreateFargateProfile
 #[derive(Debug, PartialEq)]
 pub enum CreateFargateProfileError {
@@ -1158,22 +1179,21 @@ impl CreateFargateProfileError {
     }
 }
 impl fmt::Display for CreateFargateProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateFargateProfileError {
-    fn description(&self) -> &str {
         match *self {
-            CreateFargateProfileError::Client(ref cause) => cause,
-            CreateFargateProfileError::InvalidParameter(ref cause) => cause,
-            CreateFargateProfileError::InvalidRequest(ref cause) => cause,
-            CreateFargateProfileError::ResourceLimitExceeded(ref cause) => cause,
-            CreateFargateProfileError::Server(ref cause) => cause,
-            CreateFargateProfileError::UnsupportedAvailabilityZone(ref cause) => cause,
+            CreateFargateProfileError::Client(ref cause) => write!(f, "{}", cause),
+            CreateFargateProfileError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateFargateProfileError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateFargateProfileError::ResourceLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateFargateProfileError::Server(ref cause) => write!(f, "{}", cause),
+            CreateFargateProfileError::UnsupportedAvailabilityZone(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for CreateFargateProfileError {}
 /// Errors returned by CreateNodegroup
 #[derive(Debug, PartialEq)]
 pub enum CreateNodegroupError {
@@ -1228,23 +1248,20 @@ impl CreateNodegroupError {
     }
 }
 impl fmt::Display for CreateNodegroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateNodegroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateNodegroupError::Client(ref cause) => cause,
-            CreateNodegroupError::InvalidParameter(ref cause) => cause,
-            CreateNodegroupError::InvalidRequest(ref cause) => cause,
-            CreateNodegroupError::ResourceInUse(ref cause) => cause,
-            CreateNodegroupError::ResourceLimitExceeded(ref cause) => cause,
-            CreateNodegroupError::Server(ref cause) => cause,
-            CreateNodegroupError::ServiceUnavailable(ref cause) => cause,
+            CreateNodegroupError::Client(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::ResourceLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::Server(ref cause) => write!(f, "{}", cause),
+            CreateNodegroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateNodegroupError {}
 /// Errors returned by DeleteCluster
 #[derive(Debug, PartialEq)]
 pub enum DeleteClusterError {
@@ -1287,21 +1304,18 @@ impl DeleteClusterError {
     }
 }
 impl fmt::Display for DeleteClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteClusterError::Client(ref cause) => cause,
-            DeleteClusterError::ResourceInUse(ref cause) => cause,
-            DeleteClusterError::ResourceNotFound(ref cause) => cause,
-            DeleteClusterError::Server(ref cause) => cause,
-            DeleteClusterError::ServiceUnavailable(ref cause) => cause,
+            DeleteClusterError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::Server(ref cause) => write!(f, "{}", cause),
+            DeleteClusterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteClusterError {}
 /// Errors returned by DeleteFargateProfile
 #[derive(Debug, PartialEq)]
 pub enum DeleteFargateProfileError {
@@ -1343,20 +1357,17 @@ impl DeleteFargateProfileError {
     }
 }
 impl fmt::Display for DeleteFargateProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteFargateProfileError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteFargateProfileError::Client(ref cause) => cause,
-            DeleteFargateProfileError::InvalidParameter(ref cause) => cause,
-            DeleteFargateProfileError::ResourceNotFound(ref cause) => cause,
-            DeleteFargateProfileError::Server(ref cause) => cause,
+            DeleteFargateProfileError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteFargateProfileError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteFargateProfileError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteFargateProfileError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteFargateProfileError {}
 /// Errors returned by DeleteNodegroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteNodegroupError {
@@ -1404,22 +1415,19 @@ impl DeleteNodegroupError {
     }
 }
 impl fmt::Display for DeleteNodegroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteNodegroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteNodegroupError::Client(ref cause) => cause,
-            DeleteNodegroupError::InvalidParameter(ref cause) => cause,
-            DeleteNodegroupError::ResourceInUse(ref cause) => cause,
-            DeleteNodegroupError::ResourceNotFound(ref cause) => cause,
-            DeleteNodegroupError::Server(ref cause) => cause,
-            DeleteNodegroupError::ServiceUnavailable(ref cause) => cause,
+            DeleteNodegroupError::Client(ref cause) => write!(f, "{}", cause),
+            DeleteNodegroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DeleteNodegroupError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            DeleteNodegroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteNodegroupError::Server(ref cause) => write!(f, "{}", cause),
+            DeleteNodegroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteNodegroupError {}
 /// Errors returned by DescribeCluster
 #[derive(Debug, PartialEq)]
 pub enum DescribeClusterError {
@@ -1457,20 +1465,17 @@ impl DescribeClusterError {
     }
 }
 impl fmt::Display for DescribeClusterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeClusterError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeClusterError::Client(ref cause) => cause,
-            DescribeClusterError::ResourceNotFound(ref cause) => cause,
-            DescribeClusterError::Server(ref cause) => cause,
-            DescribeClusterError::ServiceUnavailable(ref cause) => cause,
+            DescribeClusterError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::Server(ref cause) => write!(f, "{}", cause),
+            DescribeClusterError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeClusterError {}
 /// Errors returned by DescribeFargateProfile
 #[derive(Debug, PartialEq)]
 pub enum DescribeFargateProfileError {
@@ -1512,20 +1517,17 @@ impl DescribeFargateProfileError {
     }
 }
 impl fmt::Display for DescribeFargateProfileError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeFargateProfileError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeFargateProfileError::Client(ref cause) => cause,
-            DescribeFargateProfileError::InvalidParameter(ref cause) => cause,
-            DescribeFargateProfileError::ResourceNotFound(ref cause) => cause,
-            DescribeFargateProfileError::Server(ref cause) => cause,
+            DescribeFargateProfileError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeFargateProfileError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeFargateProfileError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeFargateProfileError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeFargateProfileError {}
 /// Errors returned by DescribeNodegroup
 #[derive(Debug, PartialEq)]
 pub enum DescribeNodegroupError {
@@ -1570,21 +1572,18 @@ impl DescribeNodegroupError {
     }
 }
 impl fmt::Display for DescribeNodegroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeNodegroupError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeNodegroupError::Client(ref cause) => cause,
-            DescribeNodegroupError::InvalidParameter(ref cause) => cause,
-            DescribeNodegroupError::ResourceNotFound(ref cause) => cause,
-            DescribeNodegroupError::Server(ref cause) => cause,
-            DescribeNodegroupError::ServiceUnavailable(ref cause) => cause,
+            DescribeNodegroupError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeNodegroupError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeNodegroupError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeNodegroupError::Server(ref cause) => write!(f, "{}", cause),
+            DescribeNodegroupError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeNodegroupError {}
 /// Errors returned by DescribeUpdate
 #[derive(Debug, PartialEq)]
 pub enum DescribeUpdateError {
@@ -1622,20 +1621,17 @@ impl DescribeUpdateError {
     }
 }
 impl fmt::Display for DescribeUpdateError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeUpdateError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeUpdateError::Client(ref cause) => cause,
-            DescribeUpdateError::InvalidParameter(ref cause) => cause,
-            DescribeUpdateError::ResourceNotFound(ref cause) => cause,
-            DescribeUpdateError::Server(ref cause) => cause,
+            DescribeUpdateError::Client(ref cause) => write!(f, "{}", cause),
+            DescribeUpdateError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            DescribeUpdateError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeUpdateError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeUpdateError {}
 /// Errors returned by ListClusters
 #[derive(Debug, PartialEq)]
 pub enum ListClustersError {
@@ -1673,20 +1669,17 @@ impl ListClustersError {
     }
 }
 impl fmt::Display for ListClustersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListClustersError {
-    fn description(&self) -> &str {
         match *self {
-            ListClustersError::Client(ref cause) => cause,
-            ListClustersError::InvalidParameter(ref cause) => cause,
-            ListClustersError::Server(ref cause) => cause,
-            ListClustersError::ServiceUnavailable(ref cause) => cause,
+            ListClustersError::Client(ref cause) => write!(f, "{}", cause),
+            ListClustersError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListClustersError::Server(ref cause) => write!(f, "{}", cause),
+            ListClustersError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListClustersError {}
 /// Errors returned by ListFargateProfiles
 #[derive(Debug, PartialEq)]
 pub enum ListFargateProfilesError {
@@ -1728,20 +1721,17 @@ impl ListFargateProfilesError {
     }
 }
 impl fmt::Display for ListFargateProfilesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListFargateProfilesError {
-    fn description(&self) -> &str {
         match *self {
-            ListFargateProfilesError::Client(ref cause) => cause,
-            ListFargateProfilesError::InvalidParameter(ref cause) => cause,
-            ListFargateProfilesError::ResourceNotFound(ref cause) => cause,
-            ListFargateProfilesError::Server(ref cause) => cause,
+            ListFargateProfilesError::Client(ref cause) => write!(f, "{}", cause),
+            ListFargateProfilesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListFargateProfilesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListFargateProfilesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListFargateProfilesError {}
 /// Errors returned by ListNodegroups
 #[derive(Debug, PartialEq)]
 pub enum ListNodegroupsError {
@@ -1784,21 +1774,18 @@ impl ListNodegroupsError {
     }
 }
 impl fmt::Display for ListNodegroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListNodegroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListNodegroupsError::Client(ref cause) => cause,
-            ListNodegroupsError::InvalidParameter(ref cause) => cause,
-            ListNodegroupsError::ResourceNotFound(ref cause) => cause,
-            ListNodegroupsError::Server(ref cause) => cause,
-            ListNodegroupsError::ServiceUnavailable(ref cause) => cause,
+            ListNodegroupsError::Client(ref cause) => write!(f, "{}", cause),
+            ListNodegroupsError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListNodegroupsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListNodegroupsError::Server(ref cause) => write!(f, "{}", cause),
+            ListNodegroupsError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListNodegroupsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -1826,18 +1813,15 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by ListUpdates
 #[derive(Debug, PartialEq)]
 pub enum ListUpdatesError {
@@ -1875,20 +1859,17 @@ impl ListUpdatesError {
     }
 }
 impl fmt::Display for ListUpdatesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListUpdatesError {
-    fn description(&self) -> &str {
         match *self {
-            ListUpdatesError::Client(ref cause) => cause,
-            ListUpdatesError::InvalidParameter(ref cause) => cause,
-            ListUpdatesError::ResourceNotFound(ref cause) => cause,
-            ListUpdatesError::Server(ref cause) => cause,
+            ListUpdatesError::Client(ref cause) => write!(f, "{}", cause),
+            ListUpdatesError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            ListUpdatesError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListUpdatesError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListUpdatesError {}
 /// Errors returned by TagResource
 #[derive(Debug, PartialEq)]
 pub enum TagResourceError {
@@ -1916,18 +1897,15 @@ impl TagResourceError {
     }
 }
 impl fmt::Display for TagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for TagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            TagResourceError::BadRequest(ref cause) => cause,
-            TagResourceError::NotFound(ref cause) => cause,
+            TagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            TagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for TagResourceError {}
 /// Errors returned by UntagResource
 #[derive(Debug, PartialEq)]
 pub enum UntagResourceError {
@@ -1955,18 +1933,15 @@ impl UntagResourceError {
     }
 }
 impl fmt::Display for UntagResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UntagResourceError {
-    fn description(&self) -> &str {
         match *self {
-            UntagResourceError::BadRequest(ref cause) => cause,
-            UntagResourceError::NotFound(ref cause) => cause,
+            UntagResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UntagResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UntagResourceError {}
 /// Errors returned by UpdateClusterConfig
 #[derive(Debug, PartialEq)]
 pub enum UpdateClusterConfigError {
@@ -2018,22 +1993,19 @@ impl UpdateClusterConfigError {
     }
 }
 impl fmt::Display for UpdateClusterConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateClusterConfigError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateClusterConfigError::Client(ref cause) => cause,
-            UpdateClusterConfigError::InvalidParameter(ref cause) => cause,
-            UpdateClusterConfigError::InvalidRequest(ref cause) => cause,
-            UpdateClusterConfigError::ResourceInUse(ref cause) => cause,
-            UpdateClusterConfigError::ResourceNotFound(ref cause) => cause,
-            UpdateClusterConfigError::Server(ref cause) => cause,
+            UpdateClusterConfigError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateClusterConfigError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateClusterConfigError {}
 /// Errors returned by UpdateClusterVersion
 #[derive(Debug, PartialEq)]
 pub enum UpdateClusterVersionError {
@@ -2085,22 +2057,19 @@ impl UpdateClusterVersionError {
     }
 }
 impl fmt::Display for UpdateClusterVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateClusterVersionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateClusterVersionError::Client(ref cause) => cause,
-            UpdateClusterVersionError::InvalidParameter(ref cause) => cause,
-            UpdateClusterVersionError::InvalidRequest(ref cause) => cause,
-            UpdateClusterVersionError::ResourceInUse(ref cause) => cause,
-            UpdateClusterVersionError::ResourceNotFound(ref cause) => cause,
-            UpdateClusterVersionError::Server(ref cause) => cause,
+            UpdateClusterVersionError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateClusterVersionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateClusterVersionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateClusterVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateClusterVersionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateClusterVersionError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateClusterVersionError {}
 /// Errors returned by UpdateNodegroupConfig
 #[derive(Debug, PartialEq)]
 pub enum UpdateNodegroupConfigError {
@@ -2154,22 +2123,19 @@ impl UpdateNodegroupConfigError {
     }
 }
 impl fmt::Display for UpdateNodegroupConfigError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateNodegroupConfigError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateNodegroupConfigError::Client(ref cause) => cause,
-            UpdateNodegroupConfigError::InvalidParameter(ref cause) => cause,
-            UpdateNodegroupConfigError::InvalidRequest(ref cause) => cause,
-            UpdateNodegroupConfigError::ResourceInUse(ref cause) => cause,
-            UpdateNodegroupConfigError::ResourceNotFound(ref cause) => cause,
-            UpdateNodegroupConfigError::Server(ref cause) => cause,
+            UpdateNodegroupConfigError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupConfigError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupConfigError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupConfigError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupConfigError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupConfigError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateNodegroupConfigError {}
 /// Errors returned by UpdateNodegroupVersion
 #[derive(Debug, PartialEq)]
 pub enum UpdateNodegroupVersionError {
@@ -2225,22 +2191,19 @@ impl UpdateNodegroupVersionError {
     }
 }
 impl fmt::Display for UpdateNodegroupVersionError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateNodegroupVersionError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateNodegroupVersionError::Client(ref cause) => cause,
-            UpdateNodegroupVersionError::InvalidParameter(ref cause) => cause,
-            UpdateNodegroupVersionError::InvalidRequest(ref cause) => cause,
-            UpdateNodegroupVersionError::ResourceInUse(ref cause) => cause,
-            UpdateNodegroupVersionError::ResourceNotFound(ref cause) => cause,
-            UpdateNodegroupVersionError::Server(ref cause) => cause,
+            UpdateNodegroupVersionError::Client(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupVersionError::InvalidParameter(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupVersionError::InvalidRequest(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupVersionError::ResourceInUse(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupVersionError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateNodegroupVersionError::Server(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateNodegroupVersionError {}
 /// Trait representing the capabilities of the Amazon EKS API. Amazon EKS clients implement this trait.
 #[async_trait]
 pub trait Eks {

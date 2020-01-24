@@ -22,9 +22,11 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVocabularyFilterRequest {
     /// <p>The language code of the words in the vocabulary filter. All words in the filter must be in the same language. The vocabulary filter can only be used with transcription jobs in the specified language.</p>
     #[serde(rename = "LanguageCode")]
@@ -43,7 +45,7 @@ pub struct CreateVocabularyFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVocabularyFilterResponse {
     /// <p>The language code of the words in the collection.</p>
     #[serde(rename = "LanguageCode")]
@@ -60,6 +62,7 @@ pub struct CreateVocabularyFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVocabularyRequest {
     /// <p>The language code of the vocabulary entries.</p>
     #[serde(rename = "LanguageCode")]
@@ -78,7 +81,7 @@ pub struct CreateVocabularyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVocabularyResponse {
     /// <p>If the <code>VocabularyState</code> field is <code>FAILED</code>, this field contains information about why the job failed.</p>
     #[serde(rename = "FailureReason")]
@@ -103,6 +106,7 @@ pub struct CreateVocabularyResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTranscriptionJobRequest {
     /// <p>The name of the transcription job to be deleted.</p>
     #[serde(rename = "TranscriptionJobName")]
@@ -110,6 +114,7 @@ pub struct DeleteTranscriptionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVocabularyFilterRequest {
     /// <p>The name of the vocabulary filter to remove.</p>
     #[serde(rename = "VocabularyFilterName")]
@@ -117,6 +122,7 @@ pub struct DeleteVocabularyFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVocabularyRequest {
     /// <p>The name of the vocabulary to delete. </p>
     #[serde(rename = "VocabularyName")]
@@ -124,6 +130,7 @@ pub struct DeleteVocabularyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTranscriptionJobRequest {
     /// <p>The name of the job.</p>
     #[serde(rename = "TranscriptionJobName")]
@@ -131,7 +138,7 @@ pub struct GetTranscriptionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTranscriptionJobResponse {
     /// <p>An object that contains the results of the transcription job.</p>
     #[serde(rename = "TranscriptionJob")]
@@ -140,6 +147,7 @@ pub struct GetTranscriptionJobResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVocabularyFilterRequest {
     /// <p>The name of the vocabulary filter for which to return information.</p>
     #[serde(rename = "VocabularyFilterName")]
@@ -147,7 +155,7 @@ pub struct GetVocabularyFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVocabularyFilterResponse {
     /// <p>The URI of the list of words in the vocabulary filter. You can use this URI to get the list of words.</p>
     #[serde(rename = "DownloadUri")]
@@ -168,6 +176,7 @@ pub struct GetVocabularyFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVocabularyRequest {
     /// <p>The name of the vocabulary to return information about. The name is case-sensitive.</p>
     #[serde(rename = "VocabularyName")]
@@ -175,7 +184,7 @@ pub struct GetVocabularyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVocabularyResponse {
     /// <p>The S3 location where the vocabulary is stored. Use this URI to get the contents of the vocabulary. The URI is available for a limited time.</p>
     #[serde(rename = "DownloadUri")]
@@ -217,6 +226,7 @@ pub struct JobExecutionSettings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTranscriptionJobsRequest {
     /// <p>When specified, the jobs returned in the list are limited to jobs whose name contains the specified string.</p>
     #[serde(rename = "JobNameContains")]
@@ -237,7 +247,7 @@ pub struct ListTranscriptionJobsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTranscriptionJobsResponse {
     /// <p>The <code>ListTranscriptionJobs</code> operation returns a page of jobs at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListTranscriptionJobs</code> operation to return in the next page of jobs.</p>
     #[serde(rename = "NextToken")]
@@ -254,6 +264,7 @@ pub struct ListTranscriptionJobsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVocabulariesRequest {
     /// <p>The maximum number of vocabularies to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>
     #[serde(rename = "MaxResults")]
@@ -274,7 +285,7 @@ pub struct ListVocabulariesRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVocabulariesResponse {
     /// <p>The <code>ListVocabularies</code> operation returns a page of vocabularies at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularies</code> operation to return in the next page of jobs.</p>
     #[serde(rename = "NextToken")]
@@ -291,6 +302,7 @@ pub struct ListVocabulariesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVocabularyFiltersRequest {
     /// <p>The maximum number of filters to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>
     #[serde(rename = "MaxResults")]
@@ -307,7 +319,7 @@ pub struct ListVocabularyFiltersRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVocabularyFiltersResponse {
     /// <p>The <code>ListVocabularyFilters</code> operation returns a page of collections at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularyFilters</code> operation to return in the next page of jobs.</p>
     #[serde(rename = "NextToken")]
@@ -366,6 +378,7 @@ pub struct Settings {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartTranscriptionJobRequest {
     /// <p>Provides information about how a transcription job is executed. Use this field to indicate that the job can be queued for deferred execution if the concurrency limit is reached and there are no slots available to immediately run the job.</p>
     #[serde(rename = "JobExecutionSettings")]
@@ -403,7 +416,7 @@ pub struct StartTranscriptionJobRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartTranscriptionJobResponse {
     /// <p>An object containing details of the asynchronous transcription job.</p>
     #[serde(rename = "TranscriptionJob")]
@@ -413,7 +426,7 @@ pub struct StartTranscriptionJobResponse {
 
 /// <p>Identifies the location of a transcription.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Transcript {
     /// <p>The location where the transcription is stored.</p> <p>Use this URI to access the transcription. If you specified an S3 bucket in the <code>OutputBucketName</code> field when you created the job, this is the URI of that bucket. If you chose to store the transcription in Amazon Transcribe, this is a shareable URL that provides secure access to that location.</p>
     #[serde(rename = "TranscriptFileUri")]
@@ -423,7 +436,7 @@ pub struct Transcript {
 
 /// <p>Describes an asynchronous transcription job that was created with the <code>StartTranscriptionJob</code> operation. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TranscriptionJob {
     /// <p>A timestamp that shows when the job was completed.</p>
     #[serde(rename = "CompletionTime")]
@@ -481,7 +494,7 @@ pub struct TranscriptionJob {
 
 /// <p>Provides a summary of information about a transcription job.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TranscriptionJobSummary {
     /// <p>A timestamp that shows when the job was completed.</p>
     #[serde(rename = "CompletionTime")]
@@ -518,6 +531,7 @@ pub struct TranscriptionJobSummary {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVocabularyFilterRequest {
     /// <p>The Amazon S3 location of a text file used as input to create the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets">Character Sets for Custom Vocabularies</a>.</p> <p>The specified file must be less than 50 KB of UTF-8 characters.</p> <p>If you provide the location of a list of words in the <code>VocabularyFilterFileUri</code> parameter, you can't use the <code>Words</code> parameter.</p>
     #[serde(rename = "VocabularyFilterFileUri")]
@@ -533,7 +547,7 @@ pub struct UpdateVocabularyFilterRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVocabularyFilterResponse {
     /// <p>The language code of the words in the vocabulary filter.</p>
     #[serde(rename = "LanguageCode")]
@@ -550,6 +564,7 @@ pub struct UpdateVocabularyFilterResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVocabularyRequest {
     /// <p>The language code of the vocabulary entries.</p>
     #[serde(rename = "LanguageCode")]
@@ -568,7 +583,7 @@ pub struct UpdateVocabularyRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVocabularyResponse {
     /// <p>The language code of the vocabulary entries.</p>
     #[serde(rename = "LanguageCode")]
@@ -590,7 +605,7 @@ pub struct UpdateVocabularyResponse {
 
 /// <p>Provides information about a vocabulary filter.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VocabularyFilterInfo {
     /// <p>The language code of the words in the vocabulary filter.</p>
     #[serde(rename = "LanguageCode")]
@@ -608,7 +623,7 @@ pub struct VocabularyFilterInfo {
 
 /// <p>Provides information about a custom vocabulary. </p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VocabularyInfo {
     /// <p>The language code of the vocabulary entries.</p>
     #[serde(rename = "LanguageCode")]
@@ -665,20 +680,17 @@ impl CreateVocabularyError {
     }
 }
 impl fmt::Display for CreateVocabularyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVocabularyError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVocabularyError::BadRequest(ref cause) => cause,
-            CreateVocabularyError::Conflict(ref cause) => cause,
-            CreateVocabularyError::InternalFailure(ref cause) => cause,
-            CreateVocabularyError::LimitExceeded(ref cause) => cause,
+            CreateVocabularyError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVocabularyError {}
 /// Errors returned by CreateVocabularyFilter
 #[derive(Debug, PartialEq)]
 pub enum CreateVocabularyFilterError {
@@ -720,20 +732,17 @@ impl CreateVocabularyFilterError {
     }
 }
 impl fmt::Display for CreateVocabularyFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateVocabularyFilterError {
-    fn description(&self) -> &str {
         match *self {
-            CreateVocabularyFilterError::BadRequest(ref cause) => cause,
-            CreateVocabularyFilterError::Conflict(ref cause) => cause,
-            CreateVocabularyFilterError::InternalFailure(ref cause) => cause,
-            CreateVocabularyFilterError::LimitExceeded(ref cause) => cause,
+            CreateVocabularyFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyFilterError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyFilterError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            CreateVocabularyFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateVocabularyFilterError {}
 /// Errors returned by DeleteTranscriptionJob
 #[derive(Debug, PartialEq)]
 pub enum DeleteTranscriptionJobError {
@@ -770,19 +779,16 @@ impl DeleteTranscriptionJobError {
     }
 }
 impl fmt::Display for DeleteTranscriptionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTranscriptionJobError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTranscriptionJobError::BadRequest(ref cause) => cause,
-            DeleteTranscriptionJobError::InternalFailure(ref cause) => cause,
-            DeleteTranscriptionJobError::LimitExceeded(ref cause) => cause,
+            DeleteTranscriptionJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteTranscriptionJobError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteTranscriptionJobError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTranscriptionJobError {}
 /// Errors returned by DeleteVocabulary
 #[derive(Debug, PartialEq)]
 pub enum DeleteVocabularyError {
@@ -820,20 +826,17 @@ impl DeleteVocabularyError {
     }
 }
 impl fmt::Display for DeleteVocabularyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVocabularyError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVocabularyError::BadRequest(ref cause) => cause,
-            DeleteVocabularyError::InternalFailure(ref cause) => cause,
-            DeleteVocabularyError::LimitExceeded(ref cause) => cause,
-            DeleteVocabularyError::NotFound(ref cause) => cause,
+            DeleteVocabularyError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVocabularyError {}
 /// Errors returned by DeleteVocabularyFilter
 #[derive(Debug, PartialEq)]
 pub enum DeleteVocabularyFilterError {
@@ -875,20 +878,17 @@ impl DeleteVocabularyFilterError {
     }
 }
 impl fmt::Display for DeleteVocabularyFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteVocabularyFilterError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteVocabularyFilterError::BadRequest(ref cause) => cause,
-            DeleteVocabularyFilterError::InternalFailure(ref cause) => cause,
-            DeleteVocabularyFilterError::LimitExceeded(ref cause) => cause,
-            DeleteVocabularyFilterError::NotFound(ref cause) => cause,
+            DeleteVocabularyFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyFilterError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            DeleteVocabularyFilterError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteVocabularyFilterError {}
 /// Errors returned by GetTranscriptionJob
 #[derive(Debug, PartialEq)]
 pub enum GetTranscriptionJobError {
@@ -926,20 +926,17 @@ impl GetTranscriptionJobError {
     }
 }
 impl fmt::Display for GetTranscriptionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTranscriptionJobError {
-    fn description(&self) -> &str {
         match *self {
-            GetTranscriptionJobError::BadRequest(ref cause) => cause,
-            GetTranscriptionJobError::InternalFailure(ref cause) => cause,
-            GetTranscriptionJobError::LimitExceeded(ref cause) => cause,
-            GetTranscriptionJobError::NotFound(ref cause) => cause,
+            GetTranscriptionJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetTranscriptionJobError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetTranscriptionJobError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetTranscriptionJobError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTranscriptionJobError {}
 /// Errors returned by GetVocabulary
 #[derive(Debug, PartialEq)]
 pub enum GetVocabularyError {
@@ -977,20 +974,17 @@ impl GetVocabularyError {
     }
 }
 impl fmt::Display for GetVocabularyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVocabularyError {
-    fn description(&self) -> &str {
         match *self {
-            GetVocabularyError::BadRequest(ref cause) => cause,
-            GetVocabularyError::InternalFailure(ref cause) => cause,
-            GetVocabularyError::LimitExceeded(ref cause) => cause,
-            GetVocabularyError::NotFound(ref cause) => cause,
+            GetVocabularyError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetVocabularyError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetVocabularyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetVocabularyError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVocabularyError {}
 /// Errors returned by GetVocabularyFilter
 #[derive(Debug, PartialEq)]
 pub enum GetVocabularyFilterError {
@@ -1028,20 +1022,17 @@ impl GetVocabularyFilterError {
     }
 }
 impl fmt::Display for GetVocabularyFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetVocabularyFilterError {
-    fn description(&self) -> &str {
         match *self {
-            GetVocabularyFilterError::BadRequest(ref cause) => cause,
-            GetVocabularyFilterError::InternalFailure(ref cause) => cause,
-            GetVocabularyFilterError::LimitExceeded(ref cause) => cause,
-            GetVocabularyFilterError::NotFound(ref cause) => cause,
+            GetVocabularyFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            GetVocabularyFilterError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            GetVocabularyFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            GetVocabularyFilterError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetVocabularyFilterError {}
 /// Errors returned by ListTranscriptionJobs
 #[derive(Debug, PartialEq)]
 pub enum ListTranscriptionJobsError {
@@ -1076,19 +1067,16 @@ impl ListTranscriptionJobsError {
     }
 }
 impl fmt::Display for ListTranscriptionJobsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTranscriptionJobsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTranscriptionJobsError::BadRequest(ref cause) => cause,
-            ListTranscriptionJobsError::InternalFailure(ref cause) => cause,
-            ListTranscriptionJobsError::LimitExceeded(ref cause) => cause,
+            ListTranscriptionJobsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTranscriptionJobsError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListTranscriptionJobsError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTranscriptionJobsError {}
 /// Errors returned by ListVocabularies
 #[derive(Debug, PartialEq)]
 pub enum ListVocabulariesError {
@@ -1121,19 +1109,16 @@ impl ListVocabulariesError {
     }
 }
 impl fmt::Display for ListVocabulariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListVocabulariesError {
-    fn description(&self) -> &str {
         match *self {
-            ListVocabulariesError::BadRequest(ref cause) => cause,
-            ListVocabulariesError::InternalFailure(ref cause) => cause,
-            ListVocabulariesError::LimitExceeded(ref cause) => cause,
+            ListVocabulariesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListVocabulariesError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListVocabulariesError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListVocabulariesError {}
 /// Errors returned by ListVocabularyFilters
 #[derive(Debug, PartialEq)]
 pub enum ListVocabularyFiltersError {
@@ -1168,19 +1153,16 @@ impl ListVocabularyFiltersError {
     }
 }
 impl fmt::Display for ListVocabularyFiltersError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListVocabularyFiltersError {
-    fn description(&self) -> &str {
         match *self {
-            ListVocabularyFiltersError::BadRequest(ref cause) => cause,
-            ListVocabularyFiltersError::InternalFailure(ref cause) => cause,
-            ListVocabularyFiltersError::LimitExceeded(ref cause) => cause,
+            ListVocabularyFiltersError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListVocabularyFiltersError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            ListVocabularyFiltersError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListVocabularyFiltersError {}
 /// Errors returned by StartTranscriptionJob
 #[derive(Debug, PartialEq)]
 pub enum StartTranscriptionJobError {
@@ -1220,20 +1202,17 @@ impl StartTranscriptionJobError {
     }
 }
 impl fmt::Display for StartTranscriptionJobError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartTranscriptionJobError {
-    fn description(&self) -> &str {
         match *self {
-            StartTranscriptionJobError::BadRequest(ref cause) => cause,
-            StartTranscriptionJobError::Conflict(ref cause) => cause,
-            StartTranscriptionJobError::InternalFailure(ref cause) => cause,
-            StartTranscriptionJobError::LimitExceeded(ref cause) => cause,
+            StartTranscriptionJobError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StartTranscriptionJobError::Conflict(ref cause) => write!(f, "{}", cause),
+            StartTranscriptionJobError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            StartTranscriptionJobError::LimitExceeded(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartTranscriptionJobError {}
 /// Errors returned by UpdateVocabulary
 #[derive(Debug, PartialEq)]
 pub enum UpdateVocabularyError {
@@ -1276,21 +1255,18 @@ impl UpdateVocabularyError {
     }
 }
 impl fmt::Display for UpdateVocabularyError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateVocabularyError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateVocabularyError::BadRequest(ref cause) => cause,
-            UpdateVocabularyError::Conflict(ref cause) => cause,
-            UpdateVocabularyError::InternalFailure(ref cause) => cause,
-            UpdateVocabularyError::LimitExceeded(ref cause) => cause,
-            UpdateVocabularyError::NotFound(ref cause) => cause,
+            UpdateVocabularyError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateVocabularyError {}
 /// Errors returned by UpdateVocabularyFilter
 #[derive(Debug, PartialEq)]
 pub enum UpdateVocabularyFilterError {
@@ -1332,20 +1308,17 @@ impl UpdateVocabularyFilterError {
     }
 }
 impl fmt::Display for UpdateVocabularyFilterError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateVocabularyFilterError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateVocabularyFilterError::BadRequest(ref cause) => cause,
-            UpdateVocabularyFilterError::InternalFailure(ref cause) => cause,
-            UpdateVocabularyFilterError::LimitExceeded(ref cause) => cause,
-            UpdateVocabularyFilterError::NotFound(ref cause) => cause,
+            UpdateVocabularyFilterError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyFilterError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyFilterError::LimitExceeded(ref cause) => write!(f, "{}", cause),
+            UpdateVocabularyFilterError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateVocabularyFilterError {}
 /// Trait representing the capabilities of the Amazon Transcribe Service API. Amazon Transcribe Service clients implement this trait.
 #[async_trait]
 pub trait Transcribe {

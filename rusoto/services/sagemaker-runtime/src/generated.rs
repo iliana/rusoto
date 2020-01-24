@@ -22,8 +22,10 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InvokeEndpointInput {
     /// <p>The desired MIME type of the inference in the response.</p>
     #[serde(rename = "Accept")]
@@ -103,20 +105,17 @@ impl InvokeEndpointError {
     }
 }
 impl fmt::Display for InvokeEndpointError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for InvokeEndpointError {
-    fn description(&self) -> &str {
         match *self {
-            InvokeEndpointError::InternalFailure(ref cause) => cause,
-            InvokeEndpointError::ModelError(ref cause) => cause,
-            InvokeEndpointError::ServiceUnavailable(ref cause) => cause,
-            InvokeEndpointError::ValidationError(ref cause) => cause,
+            InvokeEndpointError::InternalFailure(ref cause) => write!(f, "{}", cause),
+            InvokeEndpointError::ModelError(ref cause) => write!(f, "{}", cause),
+            InvokeEndpointError::ServiceUnavailable(ref cause) => write!(f, "{}", cause),
+            InvokeEndpointError::ValidationError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for InvokeEndpointError {}
 /// Trait representing the capabilities of the Amazon SageMaker Runtime API. Amazon SageMaker Runtime clients implement this trait.
 #[async_trait]
 pub trait SageMakerRuntime {

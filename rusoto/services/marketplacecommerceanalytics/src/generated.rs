@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Container for the parameters to the GenerateDataSet operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GenerateDataSetRequest {
     /// <p>(Optional) Key-value pairs which will be returned, unmodified, in the Amazon SNS notification message and the data set metadata file. These key-value pairs can be used to correlated responses with tracking information from other systems.</p>
     #[serde(rename = "customerDefinedValues")]
@@ -54,7 +56,7 @@ pub struct GenerateDataSetRequest {
 
 /// <p>Container for the result of the GenerateDataSet operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GenerateDataSetResult {
     /// <p>A unique identifier representing a specific request to the GenerateDataSet operation. This identifier can be used to correlate a request with notifications from the SNS topic.</p>
     #[serde(rename = "dataSetRequestId")]
@@ -64,6 +66,7 @@ pub struct GenerateDataSetResult {
 
 /// <p>Container for the parameters to the StartSupportDataExport operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartSupportDataExportRequest {
     /// <p>(Optional) Key-value pairs which will be returned, unmodified, in the Amazon SNS notification message and the data set metadata file.</p>
     #[serde(rename = "customerDefinedValues")]
@@ -92,7 +95,7 @@ pub struct StartSupportDataExportRequest {
 
 /// <p>Container for the result of the StartSupportDataExport operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartSupportDataExportResult {
     /// <p>A unique identifier representing a specific request to the StartSupportDataExport operation. This identifier can be used to correlate a request with notifications from the SNS topic.</p>
     #[serde(rename = "dataSetRequestId")]
@@ -124,17 +127,14 @@ impl GenerateDataSetError {
     }
 }
 impl fmt::Display for GenerateDataSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GenerateDataSetError {
-    fn description(&self) -> &str {
         match *self {
-            GenerateDataSetError::MarketplaceCommerceAnalytics(ref cause) => cause,
+            GenerateDataSetError::MarketplaceCommerceAnalytics(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GenerateDataSetError {}
 /// Errors returned by StartSupportDataExport
 #[derive(Debug, PartialEq)]
 pub enum StartSupportDataExportError {
@@ -159,17 +159,16 @@ impl StartSupportDataExportError {
     }
 }
 impl fmt::Display for StartSupportDataExportError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartSupportDataExportError {
-    fn description(&self) -> &str {
         match *self {
-            StartSupportDataExportError::MarketplaceCommerceAnalytics(ref cause) => cause,
+            StartSupportDataExportError::MarketplaceCommerceAnalytics(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for StartSupportDataExportError {}
 /// Trait representing the capabilities of the AWS Marketplace Commerce Analytics API. AWS Marketplace Commerce Analytics clients implement this trait.
 #[async_trait]
 pub trait MarketplaceCommerceAnalytics {

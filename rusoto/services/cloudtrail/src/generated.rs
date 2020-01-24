@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Specifies the tags to add to a trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsRequest {
     /// <p>Specifies the ARN of the trail to which one or more tags will be added. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "ResourceId")]
@@ -38,11 +40,12 @@ pub struct AddTagsRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddTagsResponse {}
 
 /// <p>Specifies the settings for each trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTrailRequest {
     /// <p>Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.</p>
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
@@ -93,7 +96,7 @@ pub struct CreateTrailRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTrailResponse {
     /// <p>Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail logs will be delivered.</p>
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
@@ -160,6 +163,7 @@ pub struct DataResource {
 
 /// <p>The request that specifies the name of a trail to delete.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTrailRequest {
     /// <p>Specifies the name or the CloudTrail ARN of the trail to be deleted. The format of a trail ARN is: <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "Name")]
@@ -168,11 +172,12 @@ pub struct DeleteTrailRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTrailResponse {}
 
 /// <p>Returns information about the trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrailsRequest {
     /// <p>Specifies whether to include shadow trails in the response. A shadow trail is the replication in a region of a trail that was created in a different region, or in the case of an organization trail, the replication of an organization trail in member accounts. If you do not include shadow trails, organization trails in a member account and region replication trails will not be returned. The default is true.</p>
     #[serde(rename = "includeShadowTrails")]
@@ -186,7 +191,7 @@ pub struct DescribeTrailsRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrailsResponse {
     /// <p>The list of trail objects. Trail objects with string values are only returned if values for the objects exist in a trail's configuration. For example, <code>SNSTopicName</code> and <code>SNSTopicARN</code> are only returned in results if a trail is configured to send SNS notifications. Similarly, <code>KMSKeyId</code> only appears in results if a trail's log files are encrypted with AWS KMS-managed keys.</p>
     #[serde(rename = "trailList")]
@@ -196,7 +201,7 @@ pub struct DescribeTrailsResponse {
 
 /// <p>Contains information about an event that was returned by a lookup request. The result includes a representation of a CloudTrail event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Event {
     /// <p>The AWS access key ID that was used to sign the request. If the request was made with temporary security credentials, this is the access key ID of the temporary credentials.</p>
     #[serde(rename = "AccessKeyId")]
@@ -258,6 +263,7 @@ pub struct EventSelector {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetEventSelectorsRequest {
     /// <p>Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:</p> <ul> <li> <p>Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)</p> </li> <li> <p>Start with a letter or number, and end with a letter or number</p> </li> <li> <p>Be between 3 and 128 characters</p> </li> <li> <p>Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code> and <code>my--namespace</code> are not valid.</p> </li> <li> <p>Not be in IP address format (for example, 192.168.5.4)</p> </li> </ul> <p>If you specify a trail ARN, it must be in the format:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "TrailName")]
@@ -265,7 +271,7 @@ pub struct GetEventSelectorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetEventSelectorsResponse {
     /// <p>The event selectors that are configured for the trail.</p>
     #[serde(rename = "EventSelectors")]
@@ -278,6 +284,7 @@ pub struct GetEventSelectorsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInsightSelectorsRequest {
     /// <p>Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:</p> <ul> <li> <p>Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)</p> </li> <li> <p>Start with a letter or number, and end with a letter or number</p> </li> <li> <p>Be between 3 and 128 characters</p> </li> <li> <p>Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code> and <code>my--namespace</code> are not valid.</p> </li> <li> <p>Not be in IP address format (for example, 192.168.5.4)</p> </li> </ul> <p>If you specify a trail ARN, it must be in the format:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "TrailName")]
@@ -285,7 +292,7 @@ pub struct GetInsightSelectorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetInsightSelectorsResponse {
     /// <p>A JSON string that contains the insight types you want to log on a trail. In this release, only <code>ApiCallRateInsight</code> is supported as an insight type.</p>
     #[serde(rename = "InsightSelectors")]
@@ -298,6 +305,7 @@ pub struct GetInsightSelectorsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTrailRequest {
     /// <p>The name or the Amazon Resource Name (ARN) of the trail for which you want to retrieve settings information.</p>
     #[serde(rename = "Name")]
@@ -305,7 +313,7 @@ pub struct GetTrailRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTrailResponse {
     #[serde(rename = "Trail")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -314,6 +322,7 @@ pub struct GetTrailResponse {
 
 /// <p>The name of a trail about which you want the current status.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTrailStatusRequest {
     /// <p>Specifies the name or the CloudTrail ARN of the trail for which you are requesting status. To get the status of a shadow trail (a replication of the trail in another region), you must specify its ARN. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "Name")]
@@ -322,7 +331,7 @@ pub struct GetTrailStatusRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTrailStatusResponse {
     /// <p>Whether the CloudTrail is currently logging AWS API calls.</p>
     #[serde(rename = "IsLogging")]
@@ -405,6 +414,7 @@ pub struct InsightSelector {
 
 /// <p>Requests the public keys for a specified time range.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPublicKeysRequest {
     /// <p>Optionally specifies, in UTC, the end of the time range to look up public keys for CloudTrail digest files. If not specified, the current time is used.</p>
     #[serde(rename = "EndTime")]
@@ -422,7 +432,7 @@ pub struct ListPublicKeysRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPublicKeysResponse {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "NextToken")]
@@ -436,6 +446,7 @@ pub struct ListPublicKeysResponse {
 
 /// <p>Specifies a list of trail tags to return.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsRequest {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "NextToken")]
@@ -448,7 +459,7 @@ pub struct ListTagsRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsResponse {
     /// <p>Reserved for future use.</p>
     #[serde(rename = "NextToken")]
@@ -461,6 +472,7 @@ pub struct ListTagsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTrailsRequest {
     /// <p>The token to use to get the next page of results after a previous API call. This token must be passed in with the same parameters that were specified in the the original call. For example, if the original call specified an AttributeKey of 'Username' with a value of 'root', the call with NextToken should include those same parameters.</p>
     #[serde(rename = "NextToken")]
@@ -469,7 +481,7 @@ pub struct ListTrailsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTrailsResponse {
     /// <p>The token to use to get the next page of results after a previous API call. If the token does not appear, there are no more results to return. The token must be passed in with the same parameters as the previous call. For example, if the original call specified an AttributeKey of 'Username' with a value of 'root', the call with NextToken should include those same parameters.</p>
     #[serde(rename = "NextToken")]
@@ -483,6 +495,7 @@ pub struct ListTrailsResponse {
 
 /// <p>Specifies an attribute and value that filter the events returned.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LookupAttribute {
     /// <p>Specifies an attribute on which to filter the events returned.</p>
     #[serde(rename = "AttributeKey")]
@@ -494,6 +507,7 @@ pub struct LookupAttribute {
 
 /// <p>Contains a request for LookupEvents.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LookupEventsRequest {
     /// <p>Specifies that only events that occur before or at the specified time are returned. If the specified end time is before the specified start time, an error is returned.</p>
     #[serde(rename = "EndTime")]
@@ -523,7 +537,7 @@ pub struct LookupEventsRequest {
 
 /// <p>Contains a response to a LookupEvents action.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LookupEventsResponse {
     /// <p>A list of events returned based on the lookup attributes specified and the CloudTrail event. The events list is sorted by time. The most recent event is listed first.</p>
     #[serde(rename = "Events")]
@@ -537,7 +551,7 @@ pub struct LookupEventsResponse {
 
 /// <p>Contains information about a returned public key.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PublicKey {
     /// <p>The fingerprint of the public key.</p>
     #[serde(rename = "Fingerprint")]
@@ -563,6 +577,7 @@ pub struct PublicKey {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutEventSelectorsRequest {
     /// <p>Specifies the settings for your event selectors. You can configure up to five event selectors for a trail.</p>
     #[serde(rename = "EventSelectors")]
@@ -573,7 +588,7 @@ pub struct PutEventSelectorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutEventSelectorsResponse {
     /// <p>Specifies the event selectors configured for your trail.</p>
     #[serde(rename = "EventSelectors")]
@@ -586,6 +601,7 @@ pub struct PutEventSelectorsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutInsightSelectorsRequest {
     /// <p>A JSON string that contains the insight types you want to log on a trail. In this release, only <code>ApiCallRateInsight</code> is supported as an insight type.</p>
     #[serde(rename = "InsightSelectors")]
@@ -596,7 +612,7 @@ pub struct PutInsightSelectorsRequest {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutInsightSelectorsResponse {
     /// <p>A JSON string that contains the insight types you want to log on a trail. In this release, only <code>ApiCallRateInsight</code> is supported as an insight type.</p>
     #[serde(rename = "InsightSelectors")]
@@ -610,6 +626,7 @@ pub struct PutInsightSelectorsResponse {
 
 /// <p>Specifies the tags to remove from a trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsRequest {
     /// <p>Specifies the ARN of the trail from which tags should be removed. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "ResourceId")]
@@ -622,12 +639,12 @@ pub struct RemoveTagsRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RemoveTagsResponse {}
 
 /// <p>Specifies the type and name of a resource referenced by an event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Resource {
     /// <p>The name of the resource referenced by the event returned. These are user-created names whose values will depend on the environment. For example, the resource name might be "auto-scaling-test-group" for an Auto Scaling Group or "i-1234567" for an EC2 Instance.</p>
     #[serde(rename = "ResourceName")]
@@ -641,7 +658,7 @@ pub struct Resource {
 
 /// <p>A resource tag.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceTag {
     /// <p>Specifies the ARN of the resource.</p>
     #[serde(rename = "ResourceId")]
@@ -655,6 +672,7 @@ pub struct ResourceTag {
 
 /// <p>The request to CloudTrail to start logging AWS API calls for an account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartLoggingRequest {
     /// <p>Specifies the name or the CloudTrail ARN of the trail for which CloudTrail logs AWS API calls. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "Name")]
@@ -663,11 +681,12 @@ pub struct StartLoggingRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartLoggingResponse {}
 
 /// <p>Passes the request to CloudTrail to stop logging AWS API calls for the specified account.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopLoggingRequest {
     /// <p>Specifies the name or the CloudTrail ARN of the trail for which CloudTrail will stop logging AWS API calls. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>
     #[serde(rename = "Name")]
@@ -676,7 +695,7 @@ pub struct StopLoggingRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopLoggingResponse {}
 
 /// <p>A custom key-value pair associated with a resource such as a CloudTrail trail.</p>
@@ -693,7 +712,7 @@ pub struct Tag {
 
 /// <p>The settings for a trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Trail {
     /// <p>Specifies an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered.</p>
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
@@ -759,7 +778,7 @@ pub struct Trail {
 
 /// <p>Information about a CloudTrail trail, including the trail's name, home region, and Amazon Resource Name (ARN).</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrailInfo {
     /// <p>The AWS region in which a trail was created.</p>
     #[serde(rename = "HomeRegion")]
@@ -777,6 +796,7 @@ pub struct TrailInfo {
 
 /// <p>Specifies settings to update for the trail.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTrailRequest {
     /// <p>Specifies a log group name using an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered. Not required unless you specify CloudWatchLogsRoleArn.</p>
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
@@ -825,7 +845,7 @@ pub struct UpdateTrailRequest {
 
 /// <p>Returns the objects or data listed below if successful. Otherwise, returns an error.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTrailResponse {
     /// <p>Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail logs will be delivered.</p>
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
@@ -941,25 +961,22 @@ impl AddTagsError {
     }
 }
 impl fmt::Display for AddTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddTagsError {
-    fn description(&self) -> &str {
         match *self {
-            AddTagsError::CloudTrailARNInvalid(ref cause) => cause,
-            AddTagsError::InvalidTagParameter(ref cause) => cause,
-            AddTagsError::InvalidTrailName(ref cause) => cause,
-            AddTagsError::NotOrganizationMasterAccount(ref cause) => cause,
-            AddTagsError::OperationNotPermitted(ref cause) => cause,
-            AddTagsError::ResourceNotFound(ref cause) => cause,
-            AddTagsError::ResourceTypeNotSupported(ref cause) => cause,
-            AddTagsError::TagsLimitExceeded(ref cause) => cause,
-            AddTagsError::UnsupportedOperation(ref cause) => cause,
+            AddTagsError::CloudTrailARNInvalid(ref cause) => write!(f, "{}", cause),
+            AddTagsError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            AddTagsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            AddTagsError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            AddTagsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            AddTagsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            AddTagsError::ResourceTypeNotSupported(ref cause) => write!(f, "{}", cause),
+            AddTagsError::TagsLimitExceeded(ref cause) => write!(f, "{}", cause),
+            AddTagsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddTagsError {}
 /// Errors returned by CreateTrail
 #[derive(Debug, PartialEq)]
 pub enum CreateTrailError {
@@ -1134,43 +1151,44 @@ impl CreateTrailError {
     }
 }
 impl fmt::Display for CreateTrailError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTrailError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTrailError::CloudTrailAccessNotEnabled(ref cause) => cause,
-            CreateTrailError::CloudWatchLogsDeliveryUnavailable(ref cause) => cause,
-            CreateTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => cause,
-            CreateTrailError::InsufficientEncryptionPolicy(ref cause) => cause,
-            CreateTrailError::InsufficientS3BucketPolicy(ref cause) => cause,
-            CreateTrailError::InsufficientSnsTopicPolicy(ref cause) => cause,
-            CreateTrailError::InvalidCloudWatchLogsLogGroupArn(ref cause) => cause,
-            CreateTrailError::InvalidCloudWatchLogsRoleArn(ref cause) => cause,
-            CreateTrailError::InvalidKmsKeyId(ref cause) => cause,
-            CreateTrailError::InvalidParameterCombination(ref cause) => cause,
-            CreateTrailError::InvalidS3BucketName(ref cause) => cause,
-            CreateTrailError::InvalidS3Prefix(ref cause) => cause,
-            CreateTrailError::InvalidSnsTopicName(ref cause) => cause,
-            CreateTrailError::InvalidTagParameter(ref cause) => cause,
-            CreateTrailError::InvalidTrailName(ref cause) => cause,
-            CreateTrailError::Kms(ref cause) => cause,
-            CreateTrailError::KmsKeyDisabled(ref cause) => cause,
-            CreateTrailError::KmsKeyNotFound(ref cause) => cause,
-            CreateTrailError::MaximumNumberOfTrailsExceeded(ref cause) => cause,
-            CreateTrailError::NotOrganizationMasterAccount(ref cause) => cause,
-            CreateTrailError::OperationNotPermitted(ref cause) => cause,
-            CreateTrailError::OrganizationNotInAllFeaturesMode(ref cause) => cause,
-            CreateTrailError::OrganizationsNotInUse(ref cause) => cause,
-            CreateTrailError::S3BucketDoesNotExist(ref cause) => cause,
-            CreateTrailError::TrailAlreadyExists(ref cause) => cause,
-            CreateTrailError::TrailNotProvided(ref cause) => cause,
-            CreateTrailError::UnsupportedOperation(ref cause) => cause,
+            CreateTrailError::CloudTrailAccessNotEnabled(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::CloudWatchLogsDeliveryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            CreateTrailError::InsufficientEncryptionPolicy(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InsufficientS3BucketPolicy(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InsufficientSnsTopicPolicy(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidCloudWatchLogsLogGroupArn(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidCloudWatchLogsRoleArn(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidKmsKeyId(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidS3BucketName(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidS3Prefix(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidSnsTopicName(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::Kms(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::KmsKeyDisabled(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::KmsKeyNotFound(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::MaximumNumberOfTrailsExceeded(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::OrganizationNotInAllFeaturesMode(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::OrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::S3BucketDoesNotExist(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::TrailAlreadyExists(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::TrailNotProvided(ref cause) => write!(f, "{}", cause),
+            CreateTrailError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTrailError {}
 /// Errors returned by DeleteTrail
 #[derive(Debug, PartialEq)]
 pub enum DeleteTrailError {
@@ -1227,23 +1245,22 @@ impl DeleteTrailError {
     }
 }
 impl fmt::Display for DeleteTrailError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTrailError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => cause,
-            DeleteTrailError::InvalidHomeRegion(ref cause) => cause,
-            DeleteTrailError::InvalidTrailName(ref cause) => cause,
-            DeleteTrailError::NotOrganizationMasterAccount(ref cause) => cause,
-            DeleteTrailError::OperationNotPermitted(ref cause) => cause,
-            DeleteTrailError::TrailNotFound(ref cause) => cause,
-            DeleteTrailError::UnsupportedOperation(ref cause) => cause,
+            DeleteTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DeleteTrailError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            DeleteTrailError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            DeleteTrailError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            DeleteTrailError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            DeleteTrailError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            DeleteTrailError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTrailError {}
 /// Errors returned by DescribeTrails
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrailsError {
@@ -1278,19 +1295,16 @@ impl DescribeTrailsError {
     }
 }
 impl fmt::Display for DescribeTrailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrailsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTrailsError::InvalidTrailName(ref cause) => cause,
-            DescribeTrailsError::OperationNotPermitted(ref cause) => cause,
-            DescribeTrailsError::UnsupportedOperation(ref cause) => cause,
+            DescribeTrailsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            DescribeTrailsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            DescribeTrailsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeTrailsError {}
 /// Errors returned by GetEventSelectors
 #[derive(Debug, PartialEq)]
 pub enum GetEventSelectorsError {
@@ -1332,20 +1346,17 @@ impl GetEventSelectorsError {
     }
 }
 impl fmt::Display for GetEventSelectorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetEventSelectorsError {
-    fn description(&self) -> &str {
         match *self {
-            GetEventSelectorsError::InvalidTrailName(ref cause) => cause,
-            GetEventSelectorsError::OperationNotPermitted(ref cause) => cause,
-            GetEventSelectorsError::TrailNotFound(ref cause) => cause,
-            GetEventSelectorsError::UnsupportedOperation(ref cause) => cause,
+            GetEventSelectorsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            GetEventSelectorsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            GetEventSelectorsError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            GetEventSelectorsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetEventSelectorsError {}
 /// Errors returned by GetInsightSelectors
 #[derive(Debug, PartialEq)]
 pub enum GetInsightSelectorsError {
@@ -1396,21 +1407,18 @@ impl GetInsightSelectorsError {
     }
 }
 impl fmt::Display for GetInsightSelectorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetInsightSelectorsError {
-    fn description(&self) -> &str {
         match *self {
-            GetInsightSelectorsError::InsightNotEnabled(ref cause) => cause,
-            GetInsightSelectorsError::InvalidTrailName(ref cause) => cause,
-            GetInsightSelectorsError::OperationNotPermitted(ref cause) => cause,
-            GetInsightSelectorsError::TrailNotFound(ref cause) => cause,
-            GetInsightSelectorsError::UnsupportedOperation(ref cause) => cause,
+            GetInsightSelectorsError::InsightNotEnabled(ref cause) => write!(f, "{}", cause),
+            GetInsightSelectorsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            GetInsightSelectorsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            GetInsightSelectorsError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            GetInsightSelectorsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetInsightSelectorsError {}
 /// Errors returned by GetTrail
 #[derive(Debug, PartialEq)]
 pub enum GetTrailError {
@@ -1448,20 +1456,17 @@ impl GetTrailError {
     }
 }
 impl fmt::Display for GetTrailError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTrailError {
-    fn description(&self) -> &str {
         match *self {
-            GetTrailError::InvalidTrailName(ref cause) => cause,
-            GetTrailError::OperationNotPermitted(ref cause) => cause,
-            GetTrailError::TrailNotFound(ref cause) => cause,
-            GetTrailError::UnsupportedOperation(ref cause) => cause,
+            GetTrailError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            GetTrailError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            GetTrailError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            GetTrailError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTrailError {}
 /// Errors returned by GetTrailStatus
 #[derive(Debug, PartialEq)]
 pub enum GetTrailStatusError {
@@ -1501,20 +1506,17 @@ impl GetTrailStatusError {
     }
 }
 impl fmt::Display for GetTrailStatusError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for GetTrailStatusError {
-    fn description(&self) -> &str {
         match *self {
-            GetTrailStatusError::InvalidTrailName(ref cause) => cause,
-            GetTrailStatusError::OperationNotPermitted(ref cause) => cause,
-            GetTrailStatusError::TrailNotFound(ref cause) => cause,
-            GetTrailStatusError::UnsupportedOperation(ref cause) => cause,
+            GetTrailStatusError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            GetTrailStatusError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            GetTrailStatusError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            GetTrailStatusError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for GetTrailStatusError {}
 /// Errors returned by ListPublicKeys
 #[derive(Debug, PartialEq)]
 pub enum ListPublicKeysError {
@@ -1554,20 +1556,17 @@ impl ListPublicKeysError {
     }
 }
 impl fmt::Display for ListPublicKeysError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListPublicKeysError {
-    fn description(&self) -> &str {
         match *self {
-            ListPublicKeysError::InvalidTimeRange(ref cause) => cause,
-            ListPublicKeysError::InvalidToken(ref cause) => cause,
-            ListPublicKeysError::OperationNotPermitted(ref cause) => cause,
-            ListPublicKeysError::UnsupportedOperation(ref cause) => cause,
+            ListPublicKeysError::InvalidTimeRange(ref cause) => write!(f, "{}", cause),
+            ListPublicKeysError::InvalidToken(ref cause) => write!(f, "{}", cause),
+            ListPublicKeysError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            ListPublicKeysError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListPublicKeysError {}
 /// Errors returned by ListTags
 #[derive(Debug, PartialEq)]
 pub enum ListTagsError {
@@ -1620,23 +1619,20 @@ impl ListTagsError {
     }
 }
 impl fmt::Display for ListTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsError::CloudTrailARNInvalid(ref cause) => cause,
-            ListTagsError::InvalidToken(ref cause) => cause,
-            ListTagsError::InvalidTrailName(ref cause) => cause,
-            ListTagsError::OperationNotPermitted(ref cause) => cause,
-            ListTagsError::ResourceNotFound(ref cause) => cause,
-            ListTagsError::ResourceTypeNotSupported(ref cause) => cause,
-            ListTagsError::UnsupportedOperation(ref cause) => cause,
+            ListTagsError::CloudTrailARNInvalid(ref cause) => write!(f, "{}", cause),
+            ListTagsError::InvalidToken(ref cause) => write!(f, "{}", cause),
+            ListTagsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            ListTagsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            ListTagsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            ListTagsError::ResourceTypeNotSupported(ref cause) => write!(f, "{}", cause),
+            ListTagsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsError {}
 /// Errors returned by ListTrails
 #[derive(Debug, PartialEq)]
 pub enum ListTrailsError {
@@ -1664,18 +1660,15 @@ impl ListTrailsError {
     }
 }
 impl fmt::Display for ListTrailsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTrailsError {
-    fn description(&self) -> &str {
         match *self {
-            ListTrailsError::OperationNotPermitted(ref cause) => cause,
-            ListTrailsError::UnsupportedOperation(ref cause) => cause,
+            ListTrailsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            ListTrailsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTrailsError {}
 /// Errors returned by LookupEvents
 #[derive(Debug, PartialEq)]
 pub enum LookupEventsError {
@@ -1730,23 +1723,20 @@ impl LookupEventsError {
     }
 }
 impl fmt::Display for LookupEventsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for LookupEventsError {
-    fn description(&self) -> &str {
         match *self {
-            LookupEventsError::InvalidEventCategory(ref cause) => cause,
-            LookupEventsError::InvalidLookupAttributes(ref cause) => cause,
-            LookupEventsError::InvalidMaxResults(ref cause) => cause,
-            LookupEventsError::InvalidNextToken(ref cause) => cause,
-            LookupEventsError::InvalidTimeRange(ref cause) => cause,
-            LookupEventsError::OperationNotPermitted(ref cause) => cause,
-            LookupEventsError::UnsupportedOperation(ref cause) => cause,
+            LookupEventsError::InvalidEventCategory(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::InvalidLookupAttributes(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::InvalidMaxResults(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::InvalidNextToken(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::InvalidTimeRange(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            LookupEventsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for LookupEventsError {}
 /// Errors returned by PutEventSelectors
 #[derive(Debug, PartialEq)]
 pub enum PutEventSelectorsError {
@@ -1816,26 +1806,25 @@ impl PutEventSelectorsError {
     }
 }
 impl fmt::Display for PutEventSelectorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutEventSelectorsError {
-    fn description(&self) -> &str {
         match *self {
             PutEventSelectorsError::InsufficientDependencyServiceAccessPermission(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
-            PutEventSelectorsError::InvalidEventSelectors(ref cause) => cause,
-            PutEventSelectorsError::InvalidHomeRegion(ref cause) => cause,
-            PutEventSelectorsError::InvalidTrailName(ref cause) => cause,
-            PutEventSelectorsError::NotOrganizationMasterAccount(ref cause) => cause,
-            PutEventSelectorsError::OperationNotPermitted(ref cause) => cause,
-            PutEventSelectorsError::TrailNotFound(ref cause) => cause,
-            PutEventSelectorsError::UnsupportedOperation(ref cause) => cause,
+            PutEventSelectorsError::InvalidEventSelectors(ref cause) => write!(f, "{}", cause),
+            PutEventSelectorsError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            PutEventSelectorsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            PutEventSelectorsError::NotOrganizationMasterAccount(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutEventSelectorsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            PutEventSelectorsError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            PutEventSelectorsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutEventSelectorsError {}
 /// Errors returned by PutInsightSelectors
 #[derive(Debug, PartialEq)]
 pub enum PutInsightSelectorsError {
@@ -1914,25 +1903,28 @@ impl PutInsightSelectorsError {
     }
 }
 impl fmt::Display for PutInsightSelectorsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PutInsightSelectorsError {
-    fn description(&self) -> &str {
         match *self {
-            PutInsightSelectorsError::InsufficientEncryptionPolicy(ref cause) => cause,
-            PutInsightSelectorsError::InsufficientS3BucketPolicy(ref cause) => cause,
-            PutInsightSelectorsError::InvalidHomeRegion(ref cause) => cause,
-            PutInsightSelectorsError::InvalidInsightSelectors(ref cause) => cause,
-            PutInsightSelectorsError::InvalidTrailName(ref cause) => cause,
-            PutInsightSelectorsError::NotOrganizationMasterAccount(ref cause) => cause,
-            PutInsightSelectorsError::OperationNotPermitted(ref cause) => cause,
-            PutInsightSelectorsError::TrailNotFound(ref cause) => cause,
-            PutInsightSelectorsError::UnsupportedOperation(ref cause) => cause,
+            PutInsightSelectorsError::InsufficientEncryptionPolicy(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutInsightSelectorsError::InsufficientS3BucketPolicy(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutInsightSelectorsError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            PutInsightSelectorsError::InvalidInsightSelectors(ref cause) => write!(f, "{}", cause),
+            PutInsightSelectorsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            PutInsightSelectorsError::NotOrganizationMasterAccount(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            PutInsightSelectorsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            PutInsightSelectorsError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            PutInsightSelectorsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PutInsightSelectorsError {}
 /// Errors returned by RemoveTags
 #[derive(Debug, PartialEq)]
 pub enum RemoveTagsError {
@@ -1992,24 +1984,21 @@ impl RemoveTagsError {
     }
 }
 impl fmt::Display for RemoveTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RemoveTagsError {
-    fn description(&self) -> &str {
         match *self {
-            RemoveTagsError::CloudTrailARNInvalid(ref cause) => cause,
-            RemoveTagsError::InvalidTagParameter(ref cause) => cause,
-            RemoveTagsError::InvalidTrailName(ref cause) => cause,
-            RemoveTagsError::NotOrganizationMasterAccount(ref cause) => cause,
-            RemoveTagsError::OperationNotPermitted(ref cause) => cause,
-            RemoveTagsError::ResourceNotFound(ref cause) => cause,
-            RemoveTagsError::ResourceTypeNotSupported(ref cause) => cause,
-            RemoveTagsError::UnsupportedOperation(ref cause) => cause,
+            RemoveTagsError::CloudTrailARNInvalid(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::InvalidTagParameter(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::ResourceNotFound(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::ResourceTypeNotSupported(ref cause) => write!(f, "{}", cause),
+            RemoveTagsError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for RemoveTagsError {}
 /// Errors returned by StartLogging
 #[derive(Debug, PartialEq)]
 pub enum StartLoggingError {
@@ -2066,23 +2055,22 @@ impl StartLoggingError {
     }
 }
 impl fmt::Display for StartLoggingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartLoggingError {
-    fn description(&self) -> &str {
         match *self {
-            StartLoggingError::InsufficientDependencyServiceAccessPermission(ref cause) => cause,
-            StartLoggingError::InvalidHomeRegion(ref cause) => cause,
-            StartLoggingError::InvalidTrailName(ref cause) => cause,
-            StartLoggingError::NotOrganizationMasterAccount(ref cause) => cause,
-            StartLoggingError::OperationNotPermitted(ref cause) => cause,
-            StartLoggingError::TrailNotFound(ref cause) => cause,
-            StartLoggingError::UnsupportedOperation(ref cause) => cause,
+            StartLoggingError::InsufficientDependencyServiceAccessPermission(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StartLoggingError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            StartLoggingError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            StartLoggingError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            StartLoggingError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            StartLoggingError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            StartLoggingError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartLoggingError {}
 /// Errors returned by StopLogging
 #[derive(Debug, PartialEq)]
 pub enum StopLoggingError {
@@ -2139,23 +2127,22 @@ impl StopLoggingError {
     }
 }
 impl fmt::Display for StopLoggingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopLoggingError {
-    fn description(&self) -> &str {
         match *self {
-            StopLoggingError::InsufficientDependencyServiceAccessPermission(ref cause) => cause,
-            StopLoggingError::InvalidHomeRegion(ref cause) => cause,
-            StopLoggingError::InvalidTrailName(ref cause) => cause,
-            StopLoggingError::NotOrganizationMasterAccount(ref cause) => cause,
-            StopLoggingError::OperationNotPermitted(ref cause) => cause,
-            StopLoggingError::TrailNotFound(ref cause) => cause,
-            StopLoggingError::UnsupportedOperation(ref cause) => cause,
+            StopLoggingError::InsufficientDependencyServiceAccessPermission(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            StopLoggingError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            StopLoggingError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            StopLoggingError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            StopLoggingError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            StopLoggingError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            StopLoggingError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopLoggingError {}
 /// Errors returned by UpdateTrail
 #[derive(Debug, PartialEq)]
 pub enum UpdateTrailError {
@@ -2328,43 +2315,44 @@ impl UpdateTrailError {
     }
 }
 impl fmt::Display for UpdateTrailError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateTrailError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateTrailError::CloudTrailAccessNotEnabled(ref cause) => cause,
-            UpdateTrailError::CloudWatchLogsDeliveryUnavailable(ref cause) => cause,
-            UpdateTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => cause,
-            UpdateTrailError::InsufficientEncryptionPolicy(ref cause) => cause,
-            UpdateTrailError::InsufficientS3BucketPolicy(ref cause) => cause,
-            UpdateTrailError::InsufficientSnsTopicPolicy(ref cause) => cause,
-            UpdateTrailError::InvalidCloudWatchLogsLogGroupArn(ref cause) => cause,
-            UpdateTrailError::InvalidCloudWatchLogsRoleArn(ref cause) => cause,
-            UpdateTrailError::InvalidEventSelectors(ref cause) => cause,
-            UpdateTrailError::InvalidHomeRegion(ref cause) => cause,
-            UpdateTrailError::InvalidKmsKeyId(ref cause) => cause,
-            UpdateTrailError::InvalidParameterCombination(ref cause) => cause,
-            UpdateTrailError::InvalidS3BucketName(ref cause) => cause,
-            UpdateTrailError::InvalidS3Prefix(ref cause) => cause,
-            UpdateTrailError::InvalidSnsTopicName(ref cause) => cause,
-            UpdateTrailError::InvalidTrailName(ref cause) => cause,
-            UpdateTrailError::Kms(ref cause) => cause,
-            UpdateTrailError::KmsKeyDisabled(ref cause) => cause,
-            UpdateTrailError::KmsKeyNotFound(ref cause) => cause,
-            UpdateTrailError::NotOrganizationMasterAccount(ref cause) => cause,
-            UpdateTrailError::OperationNotPermitted(ref cause) => cause,
-            UpdateTrailError::OrganizationNotInAllFeaturesMode(ref cause) => cause,
-            UpdateTrailError::OrganizationsNotInUse(ref cause) => cause,
-            UpdateTrailError::S3BucketDoesNotExist(ref cause) => cause,
-            UpdateTrailError::TrailNotFound(ref cause) => cause,
-            UpdateTrailError::TrailNotProvided(ref cause) => cause,
-            UpdateTrailError::UnsupportedOperation(ref cause) => cause,
+            UpdateTrailError::CloudTrailAccessNotEnabled(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::CloudWatchLogsDeliveryUnavailable(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateTrailError::InsufficientDependencyServiceAccessPermission(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            UpdateTrailError::InsufficientEncryptionPolicy(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InsufficientS3BucketPolicy(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InsufficientSnsTopicPolicy(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidCloudWatchLogsLogGroupArn(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidCloudWatchLogsRoleArn(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidEventSelectors(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidHomeRegion(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidKmsKeyId(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidParameterCombination(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidS3BucketName(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidS3Prefix(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidSnsTopicName(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::InvalidTrailName(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::Kms(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::KmsKeyDisabled(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::KmsKeyNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::NotOrganizationMasterAccount(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::OperationNotPermitted(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::OrganizationNotInAllFeaturesMode(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::OrganizationsNotInUse(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::S3BucketDoesNotExist(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::TrailNotFound(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::TrailNotProvided(ref cause) => write!(f, "{}", cause),
+            UpdateTrailError::UnsupportedOperation(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateTrailError {}
 /// Trait representing the capabilities of the CloudTrail API. CloudTrail clients implement this trait.
 #[async_trait]
 pub trait CloudTrail {

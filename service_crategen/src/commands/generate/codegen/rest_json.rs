@@ -117,6 +117,7 @@ impl GenerateProtocol for RestJsonGenerator {
             writer,
             "use rusoto_core::signature::SignedRequest;
                   use rusoto_core::proto;
+                  #[allow(unused_imports)]
                   use serde::{{Deserialize, Serialize}};"
         );
         if service.needs_serde_json_crate() {

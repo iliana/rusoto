@@ -22,10 +22,12 @@ use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddAttachmentsToSetRequest {
     /// <p>The ID of the attachment set. If an <code>attachmentSetId</code> is not specified, a new attachment set is created, and the ID of the set is returned in the response. If an <code>attachmentSetId</code> is specified, the attachments are added to the specified set, if it exists.</p>
     #[serde(rename = "attachmentSetId")]
@@ -38,7 +40,7 @@ pub struct AddAttachmentsToSetRequest {
 
 /// <p>The ID and expiry time of the attachment set returned by the <a>AddAttachmentsToSet</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddAttachmentsToSetResponse {
     /// <p>The ID of the attachment set. If an <code>attachmentSetId</code> was not specified, a new attachment set is created, and the ID of the set is returned in the response. If an <code>attachmentSetId</code> was specified, the attachments are added to the specified set, if it exists.</p>
     #[serde(rename = "attachmentSetId")]
@@ -52,6 +54,7 @@ pub struct AddAttachmentsToSetResponse {
 
 /// <p>To be written.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddCommunicationToCaseRequest {
     /// <p>The ID of a set of one or more attachments for the communication to add to the case. Create the set by calling <a>AddAttachmentsToSet</a> </p>
     #[serde(rename = "attachmentSetId")]
@@ -72,7 +75,7 @@ pub struct AddCommunicationToCaseRequest {
 
 /// <p>The result of the <a>AddCommunicationToCase</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AddCommunicationToCaseResponse {
     /// <p>True if <a>AddCommunicationToCase</a> succeeds. Otherwise, returns an error.</p>
     #[serde(rename = "result")]
@@ -100,7 +103,7 @@ pub struct Attachment {
 
 /// <p>The file name and ID of an attachment to a case communication. You can use the ID to retrieve the attachment with the <a>DescribeAttachment</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AttachmentDetails {
     /// <p>The ID of the attachment.</p>
     #[serde(rename = "attachmentId")]
@@ -114,7 +117,7 @@ pub struct AttachmentDetails {
 
 /// <p><p>A JSON-formatted object that contains the metadata for a support case. It is contained the response from a <a>DescribeCases</a> request. <b>CaseDetails</b> contains the following fields:</p> <ul> <li> <p> <b>caseId.</b> The AWS Support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>.</p> </li> <li> <p> <b>categoryCode.</b> The category of problem for the AWS Support case. Corresponds to the CategoryCode values returned by a call to <a>DescribeServices</a>.</p> </li> <li> <p> <b>displayId.</b> The identifier for the case on pages in the AWS Support Center.</p> </li> <li> <p> <b>language.</b> The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English (&quot;en&quot;) and Japanese (&quot;ja&quot;). Language parameters must be passed explicitly for operations that take them.</p> </li> <li> <p> <b>recentCommunications.</b> One or more <a>Communication</a> objects. Fields of these objects are <code>attachments</code>, <code>body</code>, <code>caseId</code>, <code>submittedBy</code>, and <code>timeCreated</code>.</p> </li> <li> <p> <b>nextToken.</b> A resumption point for pagination.</p> </li> <li> <p> <b>serviceCode.</b> The identifier for the AWS service that corresponds to the service code defined in the call to <a>DescribeServices</a>.</p> </li> <li> <p> <b>severityCode.</b> The severity code assigned to the case. Contains one of the values returned by the call to <a>DescribeSeverityLevels</a>. The possible values are: <code>low</code>, <code>normal</code>, <code>high</code>, <code>urgent</code>, and <code>critical</code>.</p> </li> <li> <p> <b>status.</b> The status of the case in the AWS Support Center. The possible values are: <code>resolved</code>, <code>pending-customer-action</code>, <code>opened</code>, <code>unassigned</code>, and <code>work-in-progress</code>.</p> </li> <li> <p> <b>subject.</b> The subject line of the case.</p> </li> <li> <p> <b>submittedBy.</b> The email address of the account that submitted the case.</p> </li> <li> <p> <b>timeCreated.</b> The time the case was created, in ISO-8601 format.</p> </li> </ul></p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CaseDetails {
     /// <p>The AWS Support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>
     #[serde(rename = "caseId")]
@@ -168,7 +171,7 @@ pub struct CaseDetails {
 
 /// <p>A JSON-formatted name/value pair that represents the category name and category code of the problem, selected from the <a>DescribeServices</a> response for each AWS service.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Category {
     /// <p>The category code for the support case.</p>
     #[serde(rename = "code")]
@@ -182,7 +185,7 @@ pub struct Category {
 
 /// <p>A communication associated with an AWS Support case. The communication consists of the case ID, the message body, attachment information, the submitter of the communication, and the date and time of the communication.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Communication {
     /// <p>Information about the attachments to the case communication.</p>
     #[serde(rename = "attachmentSet")]
@@ -207,6 +210,7 @@ pub struct Communication {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCaseRequest {
     /// <p>The ID of a set of one or more attachments for the case. Create the set by using <a>AddAttachmentsToSet</a>.</p>
     #[serde(rename = "attachmentSetId")]
@@ -246,7 +250,7 @@ pub struct CreateCaseRequest {
 
 /// <p>The AWS Support case ID returned by a successful completion of the <a>CreateCase</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateCaseResponse {
     /// <p>The AWS Support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>
     #[serde(rename = "caseId")]
@@ -255,6 +259,7 @@ pub struct CreateCaseResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAttachmentRequest {
     /// <p>The ID of the attachment to return. Attachment IDs are returned by the <a>DescribeCommunications</a> operation.</p>
     #[serde(rename = "attachmentId")]
@@ -263,7 +268,7 @@ pub struct DescribeAttachmentRequest {
 
 /// <p>The content and file name of the attachment returned by the <a>DescribeAttachment</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAttachmentResponse {
     /// <p>The attachment content and file name.</p>
     #[serde(rename = "attachment")]
@@ -272,6 +277,7 @@ pub struct DescribeAttachmentResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCasesRequest {
     /// <p>The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.</p>
     #[serde(rename = "afterTime")]
@@ -313,7 +319,7 @@ pub struct DescribeCasesRequest {
 
 /// <p>Returns an array of <a>CaseDetails</a> objects and a <code>nextToken</code> that defines a point for pagination in the result set.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCasesResponse {
     /// <p>The details for the cases that match the request.</p>
     #[serde(rename = "cases")]
@@ -326,6 +332,7 @@ pub struct DescribeCasesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCommunicationsRequest {
     /// <p>The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.</p>
     #[serde(rename = "afterTime")]
@@ -350,7 +357,7 @@ pub struct DescribeCommunicationsRequest {
 
 /// <p>The communications returned by the <a>DescribeCommunications</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCommunicationsResponse {
     /// <p>The communications for the case.</p>
     #[serde(rename = "communications")]
@@ -363,6 +370,7 @@ pub struct DescribeCommunicationsResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServicesRequest {
     /// <p>The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.</p>
     #[serde(rename = "language")]
@@ -376,7 +384,7 @@ pub struct DescribeServicesRequest {
 
 /// <p>The list of AWS services returned by the <a>DescribeServices</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServicesResponse {
     /// <p>A JSON-formatted list of AWS services.</p>
     #[serde(rename = "services")]
@@ -385,6 +393,7 @@ pub struct DescribeServicesResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSeverityLevelsRequest {
     /// <p>The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.</p>
     #[serde(rename = "language")]
@@ -394,7 +403,7 @@ pub struct DescribeSeverityLevelsRequest {
 
 /// <p>The list of severity levels returned by the <a>DescribeSeverityLevels</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeSeverityLevelsResponse {
     /// <p>The available severity levels for the support case. Available severity levels are defined by your service level agreement with AWS.</p>
     #[serde(rename = "severityLevels")]
@@ -404,6 +413,7 @@ pub struct DescribeSeverityLevelsResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrustedAdvisorCheckRefreshStatusesRequest {
     /// <p>The IDs of the Trusted Advisor checks to get the status of. <b>Note:</b> Specifying the check ID of a check that is automatically refreshed causes an <code>InvalidParameterValue</code> error.</p>
     #[serde(rename = "checkIds")]
@@ -412,7 +422,7 @@ pub struct DescribeTrustedAdvisorCheckRefreshStatusesRequest {
 
 /// <p>The statuses of the Trusted Advisor checks returned by the <a>DescribeTrustedAdvisorCheckRefreshStatuses</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrustedAdvisorCheckRefreshStatusesResponse {
     /// <p>The refresh status of the specified Trusted Advisor checks.</p>
     #[serde(rename = "statuses")]
@@ -421,6 +431,7 @@ pub struct DescribeTrustedAdvisorCheckRefreshStatusesResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrustedAdvisorCheckResultRequest {
     /// <p>The unique identifier for the Trusted Advisor check.</p>
     #[serde(rename = "checkId")]
@@ -433,7 +444,7 @@ pub struct DescribeTrustedAdvisorCheckResultRequest {
 
 /// <p>The result of the Trusted Advisor check returned by the <a>DescribeTrustedAdvisorCheckResult</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrustedAdvisorCheckResultResponse {
     /// <p>The detailed results of the Trusted Advisor check.</p>
     #[serde(rename = "result")]
@@ -442,6 +453,7 @@ pub struct DescribeTrustedAdvisorCheckResultResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrustedAdvisorCheckSummariesRequest {
     /// <p>The IDs of the Trusted Advisor checks.</p>
     #[serde(rename = "checkIds")]
@@ -450,7 +462,7 @@ pub struct DescribeTrustedAdvisorCheckSummariesRequest {
 
 /// <p>The summaries of the Trusted Advisor checks returned by the <a>DescribeTrustedAdvisorCheckSummaries</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrustedAdvisorCheckSummariesResponse {
     /// <p>The summary information for the requested Trusted Advisor checks.</p>
     #[serde(rename = "summaries")]
@@ -459,6 +471,7 @@ pub struct DescribeTrustedAdvisorCheckSummariesResponse {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTrustedAdvisorChecksRequest {
     /// <p>The ISO 639-1 code for the language in which AWS provides support. AWS Support currently supports English ("en") and Japanese ("ja"). Language parameters must be passed explicitly for operations that take them.</p>
     #[serde(rename = "language")]
@@ -467,7 +480,7 @@ pub struct DescribeTrustedAdvisorChecksRequest {
 
 /// <p>Information about the Trusted Advisor checks returned by the <a>DescribeTrustedAdvisorChecks</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTrustedAdvisorChecksResponse {
     /// <p>Information about all available Trusted Advisor checks.</p>
     #[serde(rename = "checks")]
@@ -476,7 +489,7 @@ pub struct DescribeTrustedAdvisorChecksResponse {
 
 /// <p>The five most recent communications associated with the case.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecentCaseCommunications {
     /// <p>The five most recent communications associated with the case.</p>
     #[serde(rename = "communications")]
@@ -490,6 +503,7 @@ pub struct RecentCaseCommunications {
 
 /// <p><p/></p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RefreshTrustedAdvisorCheckRequest {
     /// <p>The unique identifier for the Trusted Advisor check to refresh. <b>Note:</b> Specifying the check ID of a check that is automatically refreshed causes an <code>InvalidParameterValue</code> error.</p>
     #[serde(rename = "checkId")]
@@ -498,7 +512,7 @@ pub struct RefreshTrustedAdvisorCheckRequest {
 
 /// <p>The current refresh status of a Trusted Advisor check.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RefreshTrustedAdvisorCheckResponse {
     /// <p>The current refresh status for a check, including the amount of time until the check is eligible for refresh.</p>
     #[serde(rename = "status")]
@@ -506,6 +520,7 @@ pub struct RefreshTrustedAdvisorCheckResponse {
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResolveCaseRequest {
     /// <p>The AWS Support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>
     #[serde(rename = "caseId")]
@@ -515,7 +530,7 @@ pub struct ResolveCaseRequest {
 
 /// <p>The status of the case returned by the <a>ResolveCase</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResolveCaseResponse {
     /// <p>The status of the case after the <a>ResolveCase</a> request was processed.</p>
     #[serde(rename = "finalCaseStatus")]
@@ -529,7 +544,7 @@ pub struct ResolveCaseResponse {
 
 /// <p>Information about an AWS service returned by the <a>DescribeServices</a> operation.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Service {
     /// <p>A list of categories that describe the type of support issue a case describes. Categories consist of a category name and a category code. Category names and codes are passed to AWS Support when you call <a>CreateCase</a>.</p>
     #[serde(rename = "categories")]
@@ -547,7 +562,7 @@ pub struct Service {
 
 /// <p>A code and name pair that represents the severity level of a support case. The available values depend on the support plan for the account. For more information, see <a href="https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity">Choosing a Severity</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SeverityLevel {
     /// <p>The code for case severity level.</p> <p>Valid values: <code>low</code> | <code>normal</code> | <code>high</code> | <code>urgent</code> | <code>critical</code> </p>
     #[serde(rename = "code")]
@@ -561,7 +576,7 @@ pub struct SeverityLevel {
 
 /// <p>The container for summary information that relates to the category of the Trusted Advisor check.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCategorySpecificSummary {
     /// <p>The summary information about cost savings for a Trusted Advisor check that is in the Cost Optimizing category.</p>
     #[serde(rename = "costOptimizing")]
@@ -571,7 +586,7 @@ pub struct TrustedAdvisorCategorySpecificSummary {
 
 /// <p>The description and metadata for a Trusted Advisor check.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCheckDescription {
     /// <p>The category of the Trusted Advisor check.</p>
     #[serde(rename = "category")]
@@ -592,7 +607,7 @@ pub struct TrustedAdvisorCheckDescription {
 
 /// <p>The refresh status of a Trusted Advisor check.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCheckRefreshStatus {
     /// <p>The unique identifier for the Trusted Advisor check.</p>
     #[serde(rename = "checkId")]
@@ -607,7 +622,7 @@ pub struct TrustedAdvisorCheckRefreshStatus {
 
 /// <p>The results of a Trusted Advisor check returned by <a>DescribeTrustedAdvisorCheckResult</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCheckResult {
     /// <p>Summary information that relates to the category of the check. Cost Optimizing is the only category that is currently supported.</p>
     #[serde(rename = "categorySpecificSummary")]
@@ -630,7 +645,7 @@ pub struct TrustedAdvisorCheckResult {
 
 /// <p>A summary of a Trusted Advisor check result, including the alert status, last refresh, and number of resources examined.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCheckSummary {
     /// <p>Summary information that relates to the category of the check. Cost Optimizing is the only category that is currently supported.</p>
     #[serde(rename = "categorySpecificSummary")]
@@ -654,7 +669,7 @@ pub struct TrustedAdvisorCheckSummary {
 
 /// <p>The estimated cost savings that might be realized if the recommended actions are taken.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorCostOptimizingSummary {
     /// <p>The estimated monthly savings that might be realized if the recommended actions are taken.</p>
     #[serde(rename = "estimatedMonthlySavings")]
@@ -666,7 +681,7 @@ pub struct TrustedAdvisorCostOptimizingSummary {
 
 /// <p>Contains information about a resource identified by a Trusted Advisor check.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorResourceDetail {
     /// <p>Specifies whether the AWS resource was ignored by Trusted Advisor because it was marked as suppressed by the user.</p>
     #[serde(rename = "isSuppressed")]
@@ -689,7 +704,7 @@ pub struct TrustedAdvisorResourceDetail {
 
 /// <p>Details about AWS resources that were analyzed in a call to Trusted Advisor <a>DescribeTrustedAdvisorCheckSummaries</a>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TrustedAdvisorResourcesSummary {
     /// <p>The number of AWS resources that were flagged (listed) by the Trusted Advisor check.</p>
     #[serde(rename = "resourcesFlagged")]
@@ -757,21 +772,20 @@ impl AddAttachmentsToSetError {
     }
 }
 impl fmt::Display for AddAttachmentsToSetError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddAttachmentsToSetError {
-    fn description(&self) -> &str {
         match *self {
-            AddAttachmentsToSetError::AttachmentLimitExceeded(ref cause) => cause,
-            AddAttachmentsToSetError::AttachmentSetExpired(ref cause) => cause,
-            AddAttachmentsToSetError::AttachmentSetIdNotFound(ref cause) => cause,
-            AddAttachmentsToSetError::AttachmentSetSizeLimitExceeded(ref cause) => cause,
-            AddAttachmentsToSetError::InternalServerError(ref cause) => cause,
+            AddAttachmentsToSetError::AttachmentLimitExceeded(ref cause) => write!(f, "{}", cause),
+            AddAttachmentsToSetError::AttachmentSetExpired(ref cause) => write!(f, "{}", cause),
+            AddAttachmentsToSetError::AttachmentSetIdNotFound(ref cause) => write!(f, "{}", cause),
+            AddAttachmentsToSetError::AttachmentSetSizeLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddAttachmentsToSetError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddAttachmentsToSetError {}
 /// Errors returned by AddCommunicationToCase
 #[derive(Debug, PartialEq)]
 pub enum AddCommunicationToCaseError {
@@ -817,20 +831,19 @@ impl AddCommunicationToCaseError {
     }
 }
 impl fmt::Display for AddCommunicationToCaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for AddCommunicationToCaseError {
-    fn description(&self) -> &str {
         match *self {
-            AddCommunicationToCaseError::AttachmentSetExpired(ref cause) => cause,
-            AddCommunicationToCaseError::AttachmentSetIdNotFound(ref cause) => cause,
-            AddCommunicationToCaseError::CaseIdNotFound(ref cause) => cause,
-            AddCommunicationToCaseError::InternalServerError(ref cause) => cause,
+            AddCommunicationToCaseError::AttachmentSetExpired(ref cause) => write!(f, "{}", cause),
+            AddCommunicationToCaseError::AttachmentSetIdNotFound(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            AddCommunicationToCaseError::CaseIdNotFound(ref cause) => write!(f, "{}", cause),
+            AddCommunicationToCaseError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for AddCommunicationToCaseError {}
 /// Errors returned by CreateCase
 #[derive(Debug, PartialEq)]
 pub enum CreateCaseError {
@@ -870,20 +883,17 @@ impl CreateCaseError {
     }
 }
 impl fmt::Display for CreateCaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateCaseError {
-    fn description(&self) -> &str {
         match *self {
-            CreateCaseError::AttachmentSetExpired(ref cause) => cause,
-            CreateCaseError::AttachmentSetIdNotFound(ref cause) => cause,
-            CreateCaseError::CaseCreationLimitExceeded(ref cause) => cause,
-            CreateCaseError::InternalServerError(ref cause) => cause,
+            CreateCaseError::AttachmentSetExpired(ref cause) => write!(f, "{}", cause),
+            CreateCaseError::AttachmentSetIdNotFound(ref cause) => write!(f, "{}", cause),
+            CreateCaseError::CaseCreationLimitExceeded(ref cause) => write!(f, "{}", cause),
+            CreateCaseError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateCaseError {}
 /// Errors returned by DescribeAttachment
 #[derive(Debug, PartialEq)]
 pub enum DescribeAttachmentError {
@@ -922,19 +932,18 @@ impl DescribeAttachmentError {
     }
 }
 impl fmt::Display for DescribeAttachmentError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeAttachmentError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeAttachmentError::AttachmentIdNotFound(ref cause) => cause,
-            DescribeAttachmentError::DescribeAttachmentLimitExceeded(ref cause) => cause,
-            DescribeAttachmentError::InternalServerError(ref cause) => cause,
+            DescribeAttachmentError::AttachmentIdNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeAttachmentError::DescribeAttachmentLimitExceeded(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeAttachmentError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeAttachmentError {}
 /// Errors returned by DescribeCases
 #[derive(Debug, PartialEq)]
 pub enum DescribeCasesError {
@@ -962,18 +971,15 @@ impl DescribeCasesError {
     }
 }
 impl fmt::Display for DescribeCasesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCasesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCasesError::CaseIdNotFound(ref cause) => cause,
-            DescribeCasesError::InternalServerError(ref cause) => cause,
+            DescribeCasesError::CaseIdNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeCasesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeCasesError {}
 /// Errors returned by DescribeCommunications
 #[derive(Debug, PartialEq)]
 pub enum DescribeCommunicationsError {
@@ -1005,18 +1011,15 @@ impl DescribeCommunicationsError {
     }
 }
 impl fmt::Display for DescribeCommunicationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeCommunicationsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeCommunicationsError::CaseIdNotFound(ref cause) => cause,
-            DescribeCommunicationsError::InternalServerError(ref cause) => cause,
+            DescribeCommunicationsError::CaseIdNotFound(ref cause) => write!(f, "{}", cause),
+            DescribeCommunicationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeCommunicationsError {}
 /// Errors returned by DescribeServices
 #[derive(Debug, PartialEq)]
 pub enum DescribeServicesError {
@@ -1041,17 +1044,14 @@ impl DescribeServicesError {
     }
 }
 impl fmt::Display for DescribeServicesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeServicesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeServicesError::InternalServerError(ref cause) => cause,
+            DescribeServicesError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeServicesError {}
 /// Errors returned by DescribeSeverityLevels
 #[derive(Debug, PartialEq)]
 pub enum DescribeSeverityLevelsError {
@@ -1076,17 +1076,14 @@ impl DescribeSeverityLevelsError {
     }
 }
 impl fmt::Display for DescribeSeverityLevelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeSeverityLevelsError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeSeverityLevelsError::InternalServerError(ref cause) => cause,
+            DescribeSeverityLevelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeSeverityLevelsError {}
 /// Errors returned by DescribeTrustedAdvisorCheckRefreshStatuses
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrustedAdvisorCheckRefreshStatusesError {
@@ -1115,19 +1112,16 @@ impl DescribeTrustedAdvisorCheckRefreshStatusesError {
     }
 }
 impl fmt::Display for DescribeTrustedAdvisorCheckRefreshStatusesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrustedAdvisorCheckRefreshStatusesError {
-    fn description(&self) -> &str {
         match *self {
             DescribeTrustedAdvisorCheckRefreshStatusesError::InternalServerError(ref cause) => {
-                cause
+                write!(f, "{}", cause)
             }
         }
     }
 }
+impl Error for DescribeTrustedAdvisorCheckRefreshStatusesError {}
 /// Errors returned by DescribeTrustedAdvisorCheckResult
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrustedAdvisorCheckResultError {
@@ -1154,17 +1148,16 @@ impl DescribeTrustedAdvisorCheckResultError {
     }
 }
 impl fmt::Display for DescribeTrustedAdvisorCheckResultError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrustedAdvisorCheckResultError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTrustedAdvisorCheckResultError::InternalServerError(ref cause) => cause,
+            DescribeTrustedAdvisorCheckResultError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeTrustedAdvisorCheckResultError {}
 /// Errors returned by DescribeTrustedAdvisorCheckSummaries
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrustedAdvisorCheckSummariesError {
@@ -1191,17 +1184,16 @@ impl DescribeTrustedAdvisorCheckSummariesError {
     }
 }
 impl fmt::Display for DescribeTrustedAdvisorCheckSummariesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrustedAdvisorCheckSummariesError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTrustedAdvisorCheckSummariesError::InternalServerError(ref cause) => cause,
+            DescribeTrustedAdvisorCheckSummariesError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeTrustedAdvisorCheckSummariesError {}
 /// Errors returned by DescribeTrustedAdvisorChecks
 #[derive(Debug, PartialEq)]
 pub enum DescribeTrustedAdvisorChecksError {
@@ -1228,17 +1220,16 @@ impl DescribeTrustedAdvisorChecksError {
     }
 }
 impl fmt::Display for DescribeTrustedAdvisorChecksError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeTrustedAdvisorChecksError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeTrustedAdvisorChecksError::InternalServerError(ref cause) => cause,
+            DescribeTrustedAdvisorChecksError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for DescribeTrustedAdvisorChecksError {}
 /// Errors returned by RefreshTrustedAdvisorCheck
 #[derive(Debug, PartialEq)]
 pub enum RefreshTrustedAdvisorCheckError {
@@ -1265,17 +1256,16 @@ impl RefreshTrustedAdvisorCheckError {
     }
 }
 impl fmt::Display for RefreshTrustedAdvisorCheckError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for RefreshTrustedAdvisorCheckError {
-    fn description(&self) -> &str {
         match *self {
-            RefreshTrustedAdvisorCheckError::InternalServerError(ref cause) => cause,
+            RefreshTrustedAdvisorCheckError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
         }
     }
 }
+impl Error for RefreshTrustedAdvisorCheckError {}
 /// Errors returned by ResolveCase
 #[derive(Debug, PartialEq)]
 pub enum ResolveCaseError {
@@ -1303,18 +1293,15 @@ impl ResolveCaseError {
     }
 }
 impl fmt::Display for ResolveCaseError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ResolveCaseError {
-    fn description(&self) -> &str {
         match *self {
-            ResolveCaseError::CaseIdNotFound(ref cause) => cause,
-            ResolveCaseError::InternalServerError(ref cause) => cause,
+            ResolveCaseError::CaseIdNotFound(ref cause) => write!(f, "{}", cause),
+            ResolveCaseError::InternalServerError(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ResolveCaseError {}
 /// Trait representing the capabilities of the AWS Support API. AWS Support clients implement this trait.
 #[async_trait]
 pub trait AWSSupport {

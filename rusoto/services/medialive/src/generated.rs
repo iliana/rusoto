@@ -23,6 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::param::{Params, ServiceParams};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Aac Settings</p>
@@ -352,6 +353,7 @@ pub struct AvailSettings {
 
 /// <p>A list of schedule actions to create (in a request) or that have been created (in a response).</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchScheduleActionCreateRequest {
     /// <p>A list of schedule actions to create.</p>
     #[serde(rename = "ScheduleActions")]
@@ -360,7 +362,7 @@ pub struct BatchScheduleActionCreateRequest {
 
 /// <p>List of actions that have been created in the schedule.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchScheduleActionCreateResult {
     /// <p>List of actions that have been created in the schedule.</p>
     #[serde(rename = "ScheduleActions")]
@@ -369,6 +371,7 @@ pub struct BatchScheduleActionCreateResult {
 
 /// <p>A list of schedule actions to delete.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchScheduleActionDeleteRequest {
     /// <p>A list of schedule actions to delete.</p>
     #[serde(rename = "ActionNames")]
@@ -377,7 +380,7 @@ pub struct BatchScheduleActionDeleteRequest {
 
 /// <p>List of actions that have been deleted from the schedule.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchScheduleActionDeleteResult {
     /// <p>List of actions that have been deleted from the schedule.</p>
     #[serde(rename = "ScheduleActions")]
@@ -386,6 +389,7 @@ pub struct BatchScheduleActionDeleteResult {
 
 /// <p>List of actions to create and list of actions to delete.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchUpdateScheduleRequest {
     /// <p>Id of the channel whose schedule is being updated.</p>
     #[serde(rename = "ChannelId")]
@@ -402,7 +406,7 @@ pub struct BatchUpdateScheduleRequest {
 
 /// <p>Placeholder documentation for BatchUpdateScheduleResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchUpdateScheduleResponse {
     /// <p>Schedule actions created in the schedule.</p>
     #[serde(rename = "Creates")]
@@ -631,7 +635,7 @@ pub struct CaptionSelectorSettings {
 
 /// <p>Placeholder documentation for Channel</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Channel {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -696,7 +700,7 @@ pub struct Channel {
 
 /// <p>Placeholder documentation for ChannelEgressEndpoint</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ChannelEgressEndpoint {
     /// <p>Public IP of where a channel&#39;s output comes from</p>
     #[serde(rename = "SourceIp")]
@@ -706,7 +710,7 @@ pub struct ChannelEgressEndpoint {
 
 /// <p>Placeholder documentation for ChannelSummary</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ChannelSummary {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -768,6 +772,7 @@ pub struct ColorSpacePassthroughSettings {}
 
 /// <p>A request to create a channel</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateChannelRequest {
     /// <p>The class for this channel. STANDARD for a channel with two pipelines or SINGLE_PIPELINE for a channel with one pipeline.</p>
     #[serde(rename = "ChannelClass")]
@@ -812,7 +817,7 @@ pub struct CreateChannelRequest {
 
 /// <p>Placeholder documentation for CreateChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateChannelResponse {
     #[serde(rename = "Channel")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -821,6 +826,7 @@ pub struct CreateChannelResponse {
 
 /// <p>The name of the input</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateInputRequest {
     /// <p>Destination settings for PUSH type inputs.</p>
     #[serde(rename = "Destinations")]
@@ -869,7 +875,7 @@ pub struct CreateInputRequest {
 
 /// <p>Placeholder documentation for CreateInputResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateInputResponse {
     #[serde(rename = "Input")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -878,6 +884,7 @@ pub struct CreateInputResponse {
 
 /// <p>The IPv4 CIDRs to whitelist for this Input Security Group</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateInputSecurityGroupRequest {
     /// <p>A collection of key-value pairs.</p>
     #[serde(rename = "Tags")]
@@ -891,7 +898,7 @@ pub struct CreateInputSecurityGroupRequest {
 
 /// <p>Placeholder documentation for CreateInputSecurityGroupResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateInputSecurityGroupResponse {
     #[serde(rename = "SecurityGroup")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -900,6 +907,7 @@ pub struct CreateInputSecurityGroupResponse {
 
 /// <p>A request to create a program in a multiplex.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMultiplexProgramRequest {
     /// <p>ID of the multiplex where the program is to be created.</p>
     #[serde(rename = "MultiplexId")]
@@ -918,7 +926,7 @@ pub struct CreateMultiplexProgramRequest {
 
 /// <p>Placeholder documentation for CreateMultiplexProgramResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMultiplexProgramResponse {
     /// <p>The newly created multiplex program.</p>
     #[serde(rename = "MultiplexProgram")]
@@ -928,6 +936,7 @@ pub struct CreateMultiplexProgramResponse {
 
 /// <p>A request to create a multiplex.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMultiplexRequest {
     /// <p>A list of availability zones for the multiplex. You must specify exactly two.</p>
     #[serde(rename = "AvailabilityZones")]
@@ -950,7 +959,7 @@ pub struct CreateMultiplexRequest {
 
 /// <p>Placeholder documentation for CreateMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMultiplexResponse {
     /// <p>The newly created multiplex.</p>
     #[serde(rename = "Multiplex")]
@@ -960,6 +969,7 @@ pub struct CreateMultiplexResponse {
 
 /// <p>Placeholder documentation for CreateTagsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTagsRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
@@ -970,6 +980,7 @@ pub struct CreateTagsRequest {
 
 /// <p>Placeholder documentation for DeleteChannelRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteChannelRequest {
     /// <p>Unique ID of the channel.</p>
     #[serde(rename = "ChannelId")]
@@ -978,7 +989,7 @@ pub struct DeleteChannelRequest {
 
 /// <p>Placeholder documentation for DeleteChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteChannelResponse {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -1043,6 +1054,7 @@ pub struct DeleteChannelResponse {
 
 /// <p>Placeholder documentation for DeleteInputRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInputRequest {
     /// <p>Unique ID of the input</p>
     #[serde(rename = "InputId")]
@@ -1051,11 +1063,12 @@ pub struct DeleteInputRequest {
 
 /// <p>Placeholder documentation for DeleteInputResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInputResponse {}
 
 /// <p>Placeholder documentation for DeleteInputSecurityGroupRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInputSecurityGroupRequest {
     /// <p>The Input Security Group to delete</p>
     #[serde(rename = "InputSecurityGroupId")]
@@ -1064,11 +1077,12 @@ pub struct DeleteInputSecurityGroupRequest {
 
 /// <p>Placeholder documentation for DeleteInputSecurityGroupResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInputSecurityGroupResponse {}
 
 /// <p>Placeholder documentation for DeleteMultiplexProgramRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMultiplexProgramRequest {
     /// <p>The ID of the multiplex that the program belongs to.</p>
     #[serde(rename = "MultiplexId")]
@@ -1080,7 +1094,7 @@ pub struct DeleteMultiplexProgramRequest {
 
 /// <p>Placeholder documentation for DeleteMultiplexProgramResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMultiplexProgramResponse {
     /// <p>The MediaLive channel associated with the program.</p>
     #[serde(rename = "ChannelId")]
@@ -1102,6 +1116,7 @@ pub struct DeleteMultiplexProgramResponse {
 
 /// <p>Placeholder documentation for DeleteMultiplexRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMultiplexRequest {
     /// <p>The ID of the multiplex.</p>
     #[serde(rename = "MultiplexId")]
@@ -1110,7 +1125,7 @@ pub struct DeleteMultiplexRequest {
 
 /// <p>Placeholder documentation for DeleteMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteMultiplexResponse {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -1156,6 +1171,7 @@ pub struct DeleteMultiplexResponse {
 
 /// <p>Placeholder documentation for DeleteReservationRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReservationRequest {
     /// <p>Unique reservation ID, e.g. &#39;1234567&#39;</p>
     #[serde(rename = "ReservationId")]
@@ -1164,7 +1180,7 @@ pub struct DeleteReservationRequest {
 
 /// <p>Placeholder documentation for DeleteReservationResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteReservationResponse {
     /// <p>Unique reservation ARN, e.g. &#39;arn:aws:medialive:us-west-2:123456789012:reservation:1234567&#39;</p>
     #[serde(rename = "Arn")]
@@ -1242,6 +1258,7 @@ pub struct DeleteReservationResponse {
 
 /// <p>Placeholder documentation for DeleteScheduleRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteScheduleRequest {
     /// <p>Id of the channel whose schedule is being deleted.</p>
     #[serde(rename = "ChannelId")]
@@ -1250,11 +1267,12 @@ pub struct DeleteScheduleRequest {
 
 /// <p>Placeholder documentation for DeleteScheduleResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteScheduleResponse {}
 
 /// <p>Placeholder documentation for DeleteTagsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagsRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
@@ -1265,6 +1283,7 @@ pub struct DeleteTagsRequest {
 
 /// <p>Placeholder documentation for DescribeChannelRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeChannelRequest {
     /// <p>channel ID</p>
     #[serde(rename = "ChannelId")]
@@ -1273,7 +1292,7 @@ pub struct DescribeChannelRequest {
 
 /// <p>Placeholder documentation for DescribeChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeChannelResponse {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -1338,6 +1357,7 @@ pub struct DescribeChannelResponse {
 
 /// <p>Placeholder documentation for DescribeInputRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInputRequest {
     /// <p>Unique ID of the input</p>
     #[serde(rename = "InputId")]
@@ -1346,7 +1366,7 @@ pub struct DescribeInputRequest {
 
 /// <p>Placeholder documentation for DescribeInputResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInputResponse {
     /// <p>The Unique ARN of the input (generated, immutable).</p>
     #[serde(rename = "Arn")]
@@ -1408,6 +1428,7 @@ pub struct DescribeInputResponse {
 
 /// <p>Placeholder documentation for DescribeInputSecurityGroupRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInputSecurityGroupRequest {
     /// <p>The id of the Input Security Group to describe</p>
     #[serde(rename = "InputSecurityGroupId")]
@@ -1416,7 +1437,7 @@ pub struct DescribeInputSecurityGroupRequest {
 
 /// <p>Placeholder documentation for DescribeInputSecurityGroupResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInputSecurityGroupResponse {
     /// <p>Unique ARN of Input Security Group</p>
     #[serde(rename = "Arn")]
@@ -1446,6 +1467,7 @@ pub struct DescribeInputSecurityGroupResponse {
 
 /// <p>Placeholder documentation for DescribeMultiplexProgramRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMultiplexProgramRequest {
     /// <p>The ID of the multiplex that the program belongs to.</p>
     #[serde(rename = "MultiplexId")]
@@ -1457,7 +1479,7 @@ pub struct DescribeMultiplexProgramRequest {
 
 /// <p>Placeholder documentation for DescribeMultiplexProgramResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMultiplexProgramResponse {
     /// <p>The MediaLive channel associated with the program.</p>
     #[serde(rename = "ChannelId")]
@@ -1479,6 +1501,7 @@ pub struct DescribeMultiplexProgramResponse {
 
 /// <p>Placeholder documentation for DescribeMultiplexRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeMultiplexRequest {
     /// <p>The ID of the multiplex.</p>
     #[serde(rename = "MultiplexId")]
@@ -1487,7 +1510,7 @@ pub struct DescribeMultiplexRequest {
 
 /// <p>Placeholder documentation for DescribeMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeMultiplexResponse {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -1533,6 +1556,7 @@ pub struct DescribeMultiplexResponse {
 
 /// <p>Placeholder documentation for DescribeOfferingRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeOfferingRequest {
     /// <p>Unique offering ID, e.g. &#39;87654321&#39;</p>
     #[serde(rename = "OfferingId")]
@@ -1541,7 +1565,7 @@ pub struct DescribeOfferingRequest {
 
 /// <p>Placeholder documentation for DescribeOfferingResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeOfferingResponse {
     /// <p>Unique offering ARN, e.g. &#39;arn:aws:medialive:us-west-2:123456789012:offering:87654321&#39;</p>
     #[serde(rename = "Arn")]
@@ -1591,6 +1615,7 @@ pub struct DescribeOfferingResponse {
 
 /// <p>Placeholder documentation for DescribeReservationRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReservationRequest {
     /// <p>Unique reservation ID, e.g. &#39;1234567&#39;</p>
     #[serde(rename = "ReservationId")]
@@ -1599,7 +1624,7 @@ pub struct DescribeReservationRequest {
 
 /// <p>Placeholder documentation for DescribeReservationResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeReservationResponse {
     /// <p>Unique reservation ARN, e.g. &#39;arn:aws:medialive:us-west-2:123456789012:reservation:1234567&#39;</p>
     #[serde(rename = "Arn")]
@@ -1677,6 +1702,7 @@ pub struct DescribeReservationResponse {
 
 /// <p>Placeholder documentation for DescribeScheduleRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeScheduleRequest {
     /// <p>Id of the channel whose schedule is being updated.</p>
     #[serde(rename = "ChannelId")]
@@ -1691,7 +1717,7 @@ pub struct DescribeScheduleRequest {
 
 /// <p>Placeholder documentation for DescribeScheduleResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeScheduleResponse {
     /// <p>The next token; for use in pagination.</p>
     #[serde(rename = "NextToken")]
@@ -2832,7 +2858,7 @@ pub struct ImmediateModeScheduleActionStartSettings {}
 
 /// <p>Placeholder documentation for Input</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Input {
     /// <p>The Unique ARN of the input (generated, immutable).</p>
     #[serde(rename = "Arn")]
@@ -2938,7 +2964,7 @@ pub struct InputClippingSettings {
 
 /// <p>The settings for a PUSH type input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputDestination {
     /// <p>The system-generated static IP address of endpoint.
     /// It remains fixed for the lifetime of the input.</p>
@@ -2961,6 +2987,7 @@ pub struct InputDestination {
 
 /// <p>Endpoint settings for a PUSH type input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InputDestinationRequest {
     /// <p>A unique name for the location the RTMP stream is being pushed
     /// to.</p>
@@ -2971,7 +2998,7 @@ pub struct InputDestinationRequest {
 
 /// <p>The properties for a VPC type input destination.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputDestinationVpc {
     /// <p>The availability zone of the Input destination.</p>
     #[serde(rename = "AvailabilityZone")]
@@ -3026,7 +3053,7 @@ pub struct InputLossBehavior {
 
 /// <p>An Input Security Group</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputSecurityGroup {
     /// <p>Unique ARN of Input Security Group</p>
     #[serde(rename = "Arn")]
@@ -3100,7 +3127,7 @@ pub struct InputSettings {
 
 /// <p>The settings for a PULL type input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputSource {
     /// <p>The key used to extract the password from EC2 Parameter store.</p>
     #[serde(rename = "PasswordParam")]
@@ -3119,6 +3146,7 @@ pub struct InputSource {
 
 /// <p>Settings for for a PULL type input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InputSourceRequest {
     /// <p>The key used to extract the password from EC2 Parameter store.</p>
     #[serde(rename = "PasswordParam")]
@@ -3173,6 +3201,7 @@ pub struct InputSwitchScheduleActionSettings {
 /// This property requires setting the roleArn property on Input creation.
 /// Not compatible with the inputSecurityGroups property.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InputVpcRequest {
     /// <p>A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.
     /// Requires subnetIds. If none are specified then the VPC default security group will be used.</p>
@@ -3187,7 +3216,7 @@ pub struct InputVpcRequest {
 
 /// <p>Whitelist rule</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputWhitelistRule {
     /// <p>The IPv4 CIDR that&#39;s whitelisted.</p>
     #[serde(rename = "Cidr")]
@@ -3197,6 +3226,7 @@ pub struct InputWhitelistRule {
 
 /// <p>An IPv4 CIDR to whitelist.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InputWhitelistRuleCidr {
     /// <p>The IPv4 CIDR to whitelist.</p>
     #[serde(rename = "Cidr")]
@@ -3214,6 +3244,7 @@ pub struct KeyProviderSettings {
 
 /// <p>Placeholder documentation for ListChannelsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListChannelsRequest {
     #[serde(rename = "MaxResults")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3225,7 +3256,7 @@ pub struct ListChannelsRequest {
 
 /// <p>Placeholder documentation for ListChannelsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListChannelsResponse {
     #[serde(rename = "Channels")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3237,6 +3268,7 @@ pub struct ListChannelsResponse {
 
 /// <p>Placeholder documentation for ListInputSecurityGroupsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInputSecurityGroupsRequest {
     #[serde(rename = "MaxResults")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3248,7 +3280,7 @@ pub struct ListInputSecurityGroupsRequest {
 
 /// <p>Placeholder documentation for ListInputSecurityGroupsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInputSecurityGroupsResponse {
     /// <p>List of input security groups</p>
     #[serde(rename = "InputSecurityGroups")]
@@ -3261,6 +3293,7 @@ pub struct ListInputSecurityGroupsResponse {
 
 /// <p>Placeholder documentation for ListInputsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInputsRequest {
     #[serde(rename = "MaxResults")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3272,7 +3305,7 @@ pub struct ListInputsRequest {
 
 /// <p>Placeholder documentation for ListInputsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInputsResponse {
     #[serde(rename = "Inputs")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3284,6 +3317,7 @@ pub struct ListInputsResponse {
 
 /// <p>Placeholder documentation for ListMultiplexProgramsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMultiplexProgramsRequest {
     /// <p>The maximum number of items to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3300,7 +3334,7 @@ pub struct ListMultiplexProgramsRequest {
 
 /// <p>Placeholder documentation for ListMultiplexProgramsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMultiplexProgramsResponse {
     /// <p>List of multiplex programs.</p>
     #[serde(rename = "MultiplexPrograms")]
@@ -3314,6 +3348,7 @@ pub struct ListMultiplexProgramsResponse {
 
 /// <p>Placeholder documentation for ListMultiplexesRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMultiplexesRequest {
     /// <p>The maximum number of items to return.</p>
     #[serde(rename = "MaxResults")]
@@ -3327,7 +3362,7 @@ pub struct ListMultiplexesRequest {
 
 /// <p>Placeholder documentation for ListMultiplexesResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMultiplexesResponse {
     /// <p>List of multiplexes.</p>
     #[serde(rename = "Multiplexes")]
@@ -3341,6 +3376,7 @@ pub struct ListMultiplexesResponse {
 
 /// <p>Placeholder documentation for ListOfferingsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOfferingsRequest {
     /// <p>Filter by channel class, &#39;STANDARD&#39; or &#39;SINGLE_PIPELINE&#39;</p>
     #[serde(rename = "ChannelClass")]
@@ -3392,7 +3428,7 @@ pub struct ListOfferingsRequest {
 
 /// <p>Placeholder documentation for ListOfferingsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOfferingsResponse {
     /// <p>Token to retrieve the next page of results</p>
     #[serde(rename = "NextToken")]
@@ -3406,6 +3442,7 @@ pub struct ListOfferingsResponse {
 
 /// <p>Placeholder documentation for ListReservationsRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListReservationsRequest {
     /// <p>Filter by channel class, &#39;STANDARD&#39; or &#39;SINGLE_PIPELINE&#39;</p>
     #[serde(rename = "ChannelClass")]
@@ -3449,7 +3486,7 @@ pub struct ListReservationsRequest {
 
 /// <p>Placeholder documentation for ListReservationsResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListReservationsResponse {
     /// <p>Token to retrieve the next page of results</p>
     #[serde(rename = "NextToken")]
@@ -3463,6 +3500,7 @@ pub struct ListReservationsResponse {
 
 /// <p>Placeholder documentation for ListTagsForResourceRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     #[serde(rename = "ResourceArn")]
     pub resource_arn: String,
@@ -3470,7 +3508,7 @@ pub struct ListTagsForResourceRequest {
 
 /// <p>Placeholder documentation for ListTagsForResourceResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     #[serde(rename = "Tags")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3749,7 +3787,7 @@ pub struct M3u8Settings {
 
 /// <p>The settings for a MediaConnect Flow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MediaConnectFlow {
     /// <p>The unique ARN of the MediaConnect Flow being used as a source.</p>
     #[serde(rename = "FlowArn")]
@@ -3759,6 +3797,7 @@ pub struct MediaConnectFlow {
 
 /// <p>The settings for a MediaConnect Flow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MediaConnectFlowRequest {
     /// <p>The ARN of the MediaConnect Flow that you want to use as a source.</p>
     #[serde(rename = "FlowArn")]
@@ -3909,7 +3948,7 @@ pub struct MsSmoothOutputSettings {
 
 /// <p>The multiplex object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Multiplex {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -3959,7 +3998,7 @@ pub struct MultiplexGroupSettings {}
 
 /// <p>Multiplex MediaConnect output destination settings.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexMediaConnectOutputDestinationSettings {
     /// <p>The MediaConnect entitlement ARN available as a Flow source.</p>
     #[serde(rename = "EntitlementArn")]
@@ -3969,7 +4008,7 @@ pub struct MultiplexMediaConnectOutputDestinationSettings {
 
 /// <p>Multiplex output destination settings</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexOutputDestination {
     /// <p>Multiplex MediaConnect output destination settings.</p>
     #[serde(rename = "MediaConnectSettings")]
@@ -3987,7 +4026,7 @@ pub struct MultiplexOutputSettings {
 
 /// <p>The multiplex program object.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexProgram {
     /// <p>The MediaLive channel associated with the program.</p>
     #[serde(rename = "ChannelId")]
@@ -4023,7 +4062,7 @@ pub struct MultiplexProgramChannelDestinationSettings {
 
 /// <p>Packet identifiers map for a given Multiplex program.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexProgramPacketIdentifiersMap {
     #[serde(rename = "AudioPids")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4095,7 +4134,7 @@ pub struct MultiplexProgramSettings {
 
 /// <p>Placeholder documentation for MultiplexProgramSummary</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexProgramSummary {
     /// <p>The MediaLive Channel associated with the program.</p>
     #[serde(rename = "ChannelId")]
@@ -4128,7 +4167,7 @@ pub struct MultiplexSettings {
 
 /// <p>Contains summary configuration for a Multiplex event.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexSettingsSummary {
     /// <p>Transport stream bit rate.</p>
     #[serde(rename = "TransportStreamBitrate")]
@@ -4151,7 +4190,7 @@ pub struct MultiplexStatmuxVideoSettings {
 
 /// <p>Placeholder documentation for MultiplexSummary</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MultiplexSummary {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -4234,7 +4273,7 @@ pub struct NielsenConfiguration {
 
 /// <p>Reserved resources available for purchase</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Offering {
     /// <p>Unique offering ARN, e.g. &#39;arn:aws:medialive:us-west-2:123456789012:offering:87654321&#39;</p>
     #[serde(rename = "Arn")]
@@ -4442,7 +4481,7 @@ pub struct PauseStateScheduleActionSettings {
 
 /// <p>Runtime details of a pipeline when a channel is running.</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PipelineDetail {
     /// <p>The name of the active input attachment currently being ingested by this pipeline.</p>
     #[serde(rename = "ActiveInputAttachmentName")]
@@ -4468,6 +4507,7 @@ pub struct PipelinePauseStateSettings {
 
 /// <p>Placeholder documentation for PurchaseOfferingRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PurchaseOfferingRequest {
     /// <p>Number of resources</p>
     #[serde(rename = "Count")]
@@ -4495,7 +4535,7 @@ pub struct PurchaseOfferingRequest {
 
 /// <p>Placeholder documentation for PurchaseOfferingResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PurchaseOfferingResponse {
     #[serde(rename = "Reservation")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4529,7 +4569,7 @@ pub struct RemixSettings {
 
 /// <p>Reserved resources available to use</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Reservation {
     /// <p>Unique reservation ARN, e.g. &#39;arn:aws:medialive:us-west-2:123456789012:reservation:1234567&#39;</p>
     #[serde(rename = "Arn")]
@@ -4607,7 +4647,7 @@ pub struct Reservation {
 
 /// <p>Resource configuration (codec, resolution, bitrate, ...)</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReservationResourceSpecification {
     /// <p>Channel class, e.g. &#39;STANDARD&#39;</p>
     #[serde(rename = "ChannelClass")]
@@ -4967,6 +5007,7 @@ pub struct StandardHlsSettings {
 
 /// <p>Placeholder documentation for StartChannelRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartChannelRequest {
     /// <p>A request to start a channel</p>
     #[serde(rename = "ChannelId")]
@@ -4975,7 +5016,7 @@ pub struct StartChannelRequest {
 
 /// <p>Placeholder documentation for StartChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartChannelResponse {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -5040,6 +5081,7 @@ pub struct StartChannelResponse {
 
 /// <p>Placeholder documentation for StartMultiplexRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMultiplexRequest {
     /// <p>The ID of the multiplex.</p>
     #[serde(rename = "MultiplexId")]
@@ -5048,7 +5090,7 @@ pub struct StartMultiplexRequest {
 
 /// <p>Placeholder documentation for StartMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartMultiplexResponse {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -5172,6 +5214,7 @@ pub struct StaticKeySettings {
 
 /// <p>Placeholder documentation for StopChannelRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopChannelRequest {
     /// <p>A request to stop a running channel</p>
     #[serde(rename = "ChannelId")]
@@ -5180,7 +5223,7 @@ pub struct StopChannelRequest {
 
 /// <p>Placeholder documentation for StopChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopChannelResponse {
     /// <p>The unique arn of the channel.</p>
     #[serde(rename = "Arn")]
@@ -5245,6 +5288,7 @@ pub struct StopChannelResponse {
 
 /// <p>Placeholder documentation for StopMultiplexRequest</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopMultiplexRequest {
     /// <p>The ID of the multiplex.</p>
     #[serde(rename = "MultiplexId")]
@@ -5253,7 +5297,7 @@ pub struct StopMultiplexRequest {
 
 /// <p>Placeholder documentation for StopMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopMultiplexResponse {
     /// <p>The unique arn of the multiplex.</p>
     #[serde(rename = "Arn")]
@@ -5392,6 +5436,7 @@ pub struct UdpOutputSettings {
 
 /// <p>Channel class that the channel should be updated to.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateChannelClassRequest {
     /// <p>The channel class that you wish to update this channel to use.</p>
     #[serde(rename = "ChannelClass")]
@@ -5407,7 +5452,7 @@ pub struct UpdateChannelClassRequest {
 
 /// <p>Placeholder documentation for UpdateChannelClassResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateChannelClassResponse {
     #[serde(rename = "Channel")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5416,6 +5461,7 @@ pub struct UpdateChannelClassResponse {
 
 /// <p>A request to update a channel.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateChannelRequest {
     /// <p>channel ID</p>
     #[serde(rename = "ChannelId")]
@@ -5451,7 +5497,7 @@ pub struct UpdateChannelRequest {
 
 /// <p>Placeholder documentation for UpdateChannelResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateChannelResponse {
     #[serde(rename = "Channel")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5460,6 +5506,7 @@ pub struct UpdateChannelResponse {
 
 /// <p>A request to update an input.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateInputRequest {
     /// <p>Destination settings for PUSH type inputs.</p>
     #[serde(rename = "Destinations")]
@@ -5496,7 +5543,7 @@ pub struct UpdateInputRequest {
 
 /// <p>Placeholder documentation for UpdateInputResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateInputResponse {
     #[serde(rename = "Input")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5505,6 +5552,7 @@ pub struct UpdateInputResponse {
 
 /// <p>The request to update some combination of the Input Security Group name and the IPv4 CIDRs the Input Security Group should allow.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateInputSecurityGroupRequest {
     /// <p>The id of the Input Security Group to update.</p>
     #[serde(rename = "InputSecurityGroupId")]
@@ -5521,7 +5569,7 @@ pub struct UpdateInputSecurityGroupRequest {
 
 /// <p>Placeholder documentation for UpdateInputSecurityGroupResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateInputSecurityGroupResponse {
     #[serde(rename = "SecurityGroup")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5530,6 +5578,7 @@ pub struct UpdateInputSecurityGroupResponse {
 
 /// <p>A request to update a program in a multiplex.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMultiplexProgramRequest {
     /// <p>The ID of the multiplex of the program to update.</p>
     #[serde(rename = "MultiplexId")]
@@ -5545,7 +5594,7 @@ pub struct UpdateMultiplexProgramRequest {
 
 /// <p>Placeholder documentation for UpdateMultiplexProgramResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMultiplexProgramResponse {
     /// <p>The updated multiplex program.</p>
     #[serde(rename = "MultiplexProgram")]
@@ -5555,6 +5604,7 @@ pub struct UpdateMultiplexProgramResponse {
 
 /// <p>A request to update a multiplex.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMultiplexRequest {
     /// <p>ID of the multiplex to update.</p>
     #[serde(rename = "MultiplexId")]
@@ -5571,7 +5621,7 @@ pub struct UpdateMultiplexRequest {
 
 /// <p>Placeholder documentation for UpdateMultiplexResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMultiplexResponse {
     /// <p>The updated multiplex.</p>
     #[serde(rename = "Multiplex")]
@@ -5581,6 +5631,7 @@ pub struct UpdateMultiplexResponse {
 
 /// <p>Request to update a reservation</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateReservationRequest {
     /// <p>Name of the reservation</p>
     #[serde(rename = "Name")]
@@ -5593,7 +5644,7 @@ pub struct UpdateReservationRequest {
 
 /// <p>Placeholder documentation for UpdateReservationResponse</p>
 #[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(test, derive(Serialize))]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateReservationResponse {
     #[serde(rename = "Reservation")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5764,24 +5815,21 @@ impl BatchUpdateScheduleError {
     }
 }
 impl fmt::Display for BatchUpdateScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for BatchUpdateScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            BatchUpdateScheduleError::BadGateway(ref cause) => cause,
-            BatchUpdateScheduleError::BadRequest(ref cause) => cause,
-            BatchUpdateScheduleError::Forbidden(ref cause) => cause,
-            BatchUpdateScheduleError::GatewayTimeout(ref cause) => cause,
-            BatchUpdateScheduleError::InternalServerError(ref cause) => cause,
-            BatchUpdateScheduleError::NotFound(ref cause) => cause,
-            BatchUpdateScheduleError::TooManyRequests(ref cause) => cause,
-            BatchUpdateScheduleError::UnprocessableEntity(ref cause) => cause,
+            BatchUpdateScheduleError::BadGateway(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::Forbidden(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::NotFound(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            BatchUpdateScheduleError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for BatchUpdateScheduleError {}
 /// Errors returned by CreateChannel
 #[derive(Debug, PartialEq)]
 pub enum CreateChannelError {
@@ -5839,24 +5887,21 @@ impl CreateChannelError {
     }
 }
 impl fmt::Display for CreateChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateChannelError {
-    fn description(&self) -> &str {
         match *self {
-            CreateChannelError::BadGateway(ref cause) => cause,
-            CreateChannelError::BadRequest(ref cause) => cause,
-            CreateChannelError::Conflict(ref cause) => cause,
-            CreateChannelError::Forbidden(ref cause) => cause,
-            CreateChannelError::GatewayTimeout(ref cause) => cause,
-            CreateChannelError::InternalServerError(ref cause) => cause,
-            CreateChannelError::TooManyRequests(ref cause) => cause,
-            CreateChannelError::UnprocessableEntity(ref cause) => cause,
+            CreateChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateChannelError {}
 /// Errors returned by CreateInput
 #[derive(Debug, PartialEq)]
 pub enum CreateInputError {
@@ -5904,22 +5949,19 @@ impl CreateInputError {
     }
 }
 impl fmt::Display for CreateInputError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateInputError {
-    fn description(&self) -> &str {
         match *self {
-            CreateInputError::BadGateway(ref cause) => cause,
-            CreateInputError::BadRequest(ref cause) => cause,
-            CreateInputError::Forbidden(ref cause) => cause,
-            CreateInputError::GatewayTimeout(ref cause) => cause,
-            CreateInputError::InternalServerError(ref cause) => cause,
-            CreateInputError::TooManyRequests(ref cause) => cause,
+            CreateInputError::BadGateway(ref cause) => write!(f, "{}", cause),
+            CreateInputError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateInputError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateInputError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            CreateInputError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateInputError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateInputError {}
 /// Errors returned by CreateInputSecurityGroup
 #[derive(Debug, PartialEq)]
 pub enum CreateInputSecurityGroupError {
@@ -5973,22 +6015,19 @@ impl CreateInputSecurityGroupError {
     }
 }
 impl fmt::Display for CreateInputSecurityGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateInputSecurityGroupError {
-    fn description(&self) -> &str {
         match *self {
-            CreateInputSecurityGroupError::BadGateway(ref cause) => cause,
-            CreateInputSecurityGroupError::BadRequest(ref cause) => cause,
-            CreateInputSecurityGroupError::Forbidden(ref cause) => cause,
-            CreateInputSecurityGroupError::GatewayTimeout(ref cause) => cause,
-            CreateInputSecurityGroupError::InternalServerError(ref cause) => cause,
-            CreateInputSecurityGroupError::TooManyRequests(ref cause) => cause,
+            CreateInputSecurityGroupError::BadGateway(ref cause) => write!(f, "{}", cause),
+            CreateInputSecurityGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateInputSecurityGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateInputSecurityGroupError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            CreateInputSecurityGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateInputSecurityGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateInputSecurityGroupError {}
 /// Errors returned by CreateMultiplex
 #[derive(Debug, PartialEq)]
 pub enum CreateMultiplexError {
@@ -6046,24 +6085,21 @@ impl CreateMultiplexError {
     }
 }
 impl fmt::Display for CreateMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMultiplexError::BadGateway(ref cause) => cause,
-            CreateMultiplexError::BadRequest(ref cause) => cause,
-            CreateMultiplexError::Conflict(ref cause) => cause,
-            CreateMultiplexError::Forbidden(ref cause) => cause,
-            CreateMultiplexError::GatewayTimeout(ref cause) => cause,
-            CreateMultiplexError::InternalServerError(ref cause) => cause,
-            CreateMultiplexError::TooManyRequests(ref cause) => cause,
-            CreateMultiplexError::UnprocessableEntity(ref cause) => cause,
+            CreateMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMultiplexError {}
 /// Errors returned by CreateMultiplexProgram
 #[derive(Debug, PartialEq)]
 pub enum CreateMultiplexProgramError {
@@ -6129,24 +6165,21 @@ impl CreateMultiplexProgramError {
     }
 }
 impl fmt::Display for CreateMultiplexProgramError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateMultiplexProgramError {
-    fn description(&self) -> &str {
         match *self {
-            CreateMultiplexProgramError::BadGateway(ref cause) => cause,
-            CreateMultiplexProgramError::BadRequest(ref cause) => cause,
-            CreateMultiplexProgramError::Conflict(ref cause) => cause,
-            CreateMultiplexProgramError::Forbidden(ref cause) => cause,
-            CreateMultiplexProgramError::GatewayTimeout(ref cause) => cause,
-            CreateMultiplexProgramError::InternalServerError(ref cause) => cause,
-            CreateMultiplexProgramError::TooManyRequests(ref cause) => cause,
-            CreateMultiplexProgramError::UnprocessableEntity(ref cause) => cause,
+            CreateMultiplexProgramError::BadGateway(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::Conflict(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            CreateMultiplexProgramError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateMultiplexProgramError {}
 /// Errors returned by CreateTags
 #[derive(Debug, PartialEq)]
 pub enum CreateTagsError {
@@ -6184,20 +6217,17 @@ impl CreateTagsError {
     }
 }
 impl fmt::Display for CreateTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for CreateTagsError {
-    fn description(&self) -> &str {
         match *self {
-            CreateTagsError::BadRequest(ref cause) => cause,
-            CreateTagsError::Forbidden(ref cause) => cause,
-            CreateTagsError::InternalServerError(ref cause) => cause,
-            CreateTagsError::NotFound(ref cause) => cause,
+            CreateTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            CreateTagsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for CreateTagsError {}
 /// Errors returned by DeleteChannel
 #[derive(Debug, PartialEq)]
 pub enum DeleteChannelError {
@@ -6255,24 +6285,21 @@ impl DeleteChannelError {
     }
 }
 impl fmt::Display for DeleteChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteChannelError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteChannelError::BadGateway(ref cause) => cause,
-            DeleteChannelError::BadRequest(ref cause) => cause,
-            DeleteChannelError::Conflict(ref cause) => cause,
-            DeleteChannelError::Forbidden(ref cause) => cause,
-            DeleteChannelError::GatewayTimeout(ref cause) => cause,
-            DeleteChannelError::InternalServerError(ref cause) => cause,
-            DeleteChannelError::NotFound(ref cause) => cause,
-            DeleteChannelError::TooManyRequests(ref cause) => cause,
+            DeleteChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteChannelError {}
 /// Errors returned by DeleteInput
 #[derive(Debug, PartialEq)]
 pub enum DeleteInputError {
@@ -6330,24 +6357,21 @@ impl DeleteInputError {
     }
 }
 impl fmt::Display for DeleteInputError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInputError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInputError::BadGateway(ref cause) => cause,
-            DeleteInputError::BadRequest(ref cause) => cause,
-            DeleteInputError::Conflict(ref cause) => cause,
-            DeleteInputError::Forbidden(ref cause) => cause,
-            DeleteInputError::GatewayTimeout(ref cause) => cause,
-            DeleteInputError::InternalServerError(ref cause) => cause,
-            DeleteInputError::NotFound(ref cause) => cause,
-            DeleteInputError::TooManyRequests(ref cause) => cause,
+            DeleteInputError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteInputError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInputError {}
 /// Errors returned by DeleteInputSecurityGroup
 #[derive(Debug, PartialEq)]
 pub enum DeleteInputSecurityGroupError {
@@ -6406,23 +6430,20 @@ impl DeleteInputSecurityGroupError {
     }
 }
 impl fmt::Display for DeleteInputSecurityGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteInputSecurityGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteInputSecurityGroupError::BadGateway(ref cause) => cause,
-            DeleteInputSecurityGroupError::BadRequest(ref cause) => cause,
-            DeleteInputSecurityGroupError::Forbidden(ref cause) => cause,
-            DeleteInputSecurityGroupError::GatewayTimeout(ref cause) => cause,
-            DeleteInputSecurityGroupError::InternalServerError(ref cause) => cause,
-            DeleteInputSecurityGroupError::NotFound(ref cause) => cause,
-            DeleteInputSecurityGroupError::TooManyRequests(ref cause) => cause,
+            DeleteInputSecurityGroupError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteInputSecurityGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteInputSecurityGroupError {}
 /// Errors returned by DeleteMultiplex
 #[derive(Debug, PartialEq)]
 pub enum DeleteMultiplexError {
@@ -6480,24 +6501,21 @@ impl DeleteMultiplexError {
     }
 }
 impl fmt::Display for DeleteMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMultiplexError::BadGateway(ref cause) => cause,
-            DeleteMultiplexError::BadRequest(ref cause) => cause,
-            DeleteMultiplexError::Conflict(ref cause) => cause,
-            DeleteMultiplexError::Forbidden(ref cause) => cause,
-            DeleteMultiplexError::GatewayTimeout(ref cause) => cause,
-            DeleteMultiplexError::InternalServerError(ref cause) => cause,
-            DeleteMultiplexError::NotFound(ref cause) => cause,
-            DeleteMultiplexError::TooManyRequests(ref cause) => cause,
+            DeleteMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMultiplexError {}
 /// Errors returned by DeleteMultiplexProgram
 #[derive(Debug, PartialEq)]
 pub enum DeleteMultiplexProgramError {
@@ -6561,24 +6579,21 @@ impl DeleteMultiplexProgramError {
     }
 }
 impl fmt::Display for DeleteMultiplexProgramError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteMultiplexProgramError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteMultiplexProgramError::BadGateway(ref cause) => cause,
-            DeleteMultiplexProgramError::BadRequest(ref cause) => cause,
-            DeleteMultiplexProgramError::Conflict(ref cause) => cause,
-            DeleteMultiplexProgramError::Forbidden(ref cause) => cause,
-            DeleteMultiplexProgramError::GatewayTimeout(ref cause) => cause,
-            DeleteMultiplexProgramError::InternalServerError(ref cause) => cause,
-            DeleteMultiplexProgramError::NotFound(ref cause) => cause,
-            DeleteMultiplexProgramError::TooManyRequests(ref cause) => cause,
+            DeleteMultiplexProgramError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteMultiplexProgramError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteMultiplexProgramError {}
 /// Errors returned by DeleteReservation
 #[derive(Debug, PartialEq)]
 pub enum DeleteReservationError {
@@ -6638,24 +6653,21 @@ impl DeleteReservationError {
     }
 }
 impl fmt::Display for DeleteReservationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteReservationError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteReservationError::BadGateway(ref cause) => cause,
-            DeleteReservationError::BadRequest(ref cause) => cause,
-            DeleteReservationError::Conflict(ref cause) => cause,
-            DeleteReservationError::Forbidden(ref cause) => cause,
-            DeleteReservationError::GatewayTimeout(ref cause) => cause,
-            DeleteReservationError::InternalServerError(ref cause) => cause,
-            DeleteReservationError::NotFound(ref cause) => cause,
-            DeleteReservationError::TooManyRequests(ref cause) => cause,
+            DeleteReservationError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::Conflict(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteReservationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteReservationError {}
 /// Errors returned by DeleteSchedule
 #[derive(Debug, PartialEq)]
 pub enum DeleteScheduleError {
@@ -6708,23 +6720,20 @@ impl DeleteScheduleError {
     }
 }
 impl fmt::Display for DeleteScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteScheduleError::BadGateway(ref cause) => cause,
-            DeleteScheduleError::BadRequest(ref cause) => cause,
-            DeleteScheduleError::Forbidden(ref cause) => cause,
-            DeleteScheduleError::GatewayTimeout(ref cause) => cause,
-            DeleteScheduleError::InternalServerError(ref cause) => cause,
-            DeleteScheduleError::NotFound(ref cause) => cause,
-            DeleteScheduleError::TooManyRequests(ref cause) => cause,
+            DeleteScheduleError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::NotFound(ref cause) => write!(f, "{}", cause),
+            DeleteScheduleError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteScheduleError {}
 /// Errors returned by DeleteTags
 #[derive(Debug, PartialEq)]
 pub enum DeleteTagsError {
@@ -6762,20 +6771,17 @@ impl DeleteTagsError {
     }
 }
 impl fmt::Display for DeleteTagsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DeleteTagsError {
-    fn description(&self) -> &str {
         match *self {
-            DeleteTagsError::BadRequest(ref cause) => cause,
-            DeleteTagsError::Forbidden(ref cause) => cause,
-            DeleteTagsError::InternalServerError(ref cause) => cause,
-            DeleteTagsError::NotFound(ref cause) => cause,
+            DeleteTagsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DeleteTagsError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DeleteTagsError {}
 /// Errors returned by DescribeChannel
 #[derive(Debug, PartialEq)]
 pub enum DescribeChannelError {
@@ -6828,23 +6834,20 @@ impl DescribeChannelError {
     }
 }
 impl fmt::Display for DescribeChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeChannelError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeChannelError::BadGateway(ref cause) => cause,
-            DescribeChannelError::BadRequest(ref cause) => cause,
-            DescribeChannelError::Forbidden(ref cause) => cause,
-            DescribeChannelError::GatewayTimeout(ref cause) => cause,
-            DescribeChannelError::InternalServerError(ref cause) => cause,
-            DescribeChannelError::NotFound(ref cause) => cause,
-            DescribeChannelError::TooManyRequests(ref cause) => cause,
+            DescribeChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeChannelError {}
 /// Errors returned by DescribeInput
 #[derive(Debug, PartialEq)]
 pub enum DescribeInputError {
@@ -6897,23 +6900,20 @@ impl DescribeInputError {
     }
 }
 impl fmt::Display for DescribeInputError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInputError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInputError::BadGateway(ref cause) => cause,
-            DescribeInputError::BadRequest(ref cause) => cause,
-            DescribeInputError::Forbidden(ref cause) => cause,
-            DescribeInputError::GatewayTimeout(ref cause) => cause,
-            DescribeInputError::InternalServerError(ref cause) => cause,
-            DescribeInputError::NotFound(ref cause) => cause,
-            DescribeInputError::TooManyRequests(ref cause) => cause,
+            DescribeInputError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeInputError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInputError {}
 /// Errors returned by DescribeInputSecurityGroup
 #[derive(Debug, PartialEq)]
 pub enum DescribeInputSecurityGroupError {
@@ -6980,23 +6980,22 @@ impl DescribeInputSecurityGroupError {
     }
 }
 impl fmt::Display for DescribeInputSecurityGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeInputSecurityGroupError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeInputSecurityGroupError::BadGateway(ref cause) => cause,
-            DescribeInputSecurityGroupError::BadRequest(ref cause) => cause,
-            DescribeInputSecurityGroupError::Forbidden(ref cause) => cause,
-            DescribeInputSecurityGroupError::GatewayTimeout(ref cause) => cause,
-            DescribeInputSecurityGroupError::InternalServerError(ref cause) => cause,
-            DescribeInputSecurityGroupError::NotFound(ref cause) => cause,
-            DescribeInputSecurityGroupError::TooManyRequests(ref cause) => cause,
+            DescribeInputSecurityGroupError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeInputSecurityGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeInputSecurityGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeInputSecurityGroupError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeInputSecurityGroupError::InternalServerError(ref cause) => {
+                write!(f, "{}", cause)
+            }
+            DescribeInputSecurityGroupError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeInputSecurityGroupError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeInputSecurityGroupError {}
 /// Errors returned by DescribeMultiplex
 #[derive(Debug, PartialEq)]
 pub enum DescribeMultiplexError {
@@ -7051,23 +7050,20 @@ impl DescribeMultiplexError {
     }
 }
 impl fmt::Display for DescribeMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMultiplexError::BadGateway(ref cause) => cause,
-            DescribeMultiplexError::BadRequest(ref cause) => cause,
-            DescribeMultiplexError::Forbidden(ref cause) => cause,
-            DescribeMultiplexError::GatewayTimeout(ref cause) => cause,
-            DescribeMultiplexError::InternalServerError(ref cause) => cause,
-            DescribeMultiplexError::NotFound(ref cause) => cause,
-            DescribeMultiplexError::TooManyRequests(ref cause) => cause,
+            DescribeMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMultiplexError {}
 /// Errors returned by DescribeMultiplexProgram
 #[derive(Debug, PartialEq)]
 pub enum DescribeMultiplexProgramError {
@@ -7126,23 +7122,20 @@ impl DescribeMultiplexProgramError {
     }
 }
 impl fmt::Display for DescribeMultiplexProgramError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeMultiplexProgramError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeMultiplexProgramError::BadGateway(ref cause) => cause,
-            DescribeMultiplexProgramError::BadRequest(ref cause) => cause,
-            DescribeMultiplexProgramError::Forbidden(ref cause) => cause,
-            DescribeMultiplexProgramError::GatewayTimeout(ref cause) => cause,
-            DescribeMultiplexProgramError::InternalServerError(ref cause) => cause,
-            DescribeMultiplexProgramError::NotFound(ref cause) => cause,
-            DescribeMultiplexProgramError::TooManyRequests(ref cause) => cause,
+            DescribeMultiplexProgramError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeMultiplexProgramError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeMultiplexProgramError {}
 /// Errors returned by DescribeOffering
 #[derive(Debug, PartialEq)]
 pub enum DescribeOfferingError {
@@ -7197,23 +7190,20 @@ impl DescribeOfferingError {
     }
 }
 impl fmt::Display for DescribeOfferingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeOfferingError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeOfferingError::BadGateway(ref cause) => cause,
-            DescribeOfferingError::BadRequest(ref cause) => cause,
-            DescribeOfferingError::Forbidden(ref cause) => cause,
-            DescribeOfferingError::GatewayTimeout(ref cause) => cause,
-            DescribeOfferingError::InternalServerError(ref cause) => cause,
-            DescribeOfferingError::NotFound(ref cause) => cause,
-            DescribeOfferingError::TooManyRequests(ref cause) => cause,
+            DescribeOfferingError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeOfferingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeOfferingError {}
 /// Errors returned by DescribeReservation
 #[derive(Debug, PartialEq)]
 pub enum DescribeReservationError {
@@ -7268,23 +7258,20 @@ impl DescribeReservationError {
     }
 }
 impl fmt::Display for DescribeReservationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeReservationError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeReservationError::BadGateway(ref cause) => cause,
-            DescribeReservationError::BadRequest(ref cause) => cause,
-            DescribeReservationError::Forbidden(ref cause) => cause,
-            DescribeReservationError::GatewayTimeout(ref cause) => cause,
-            DescribeReservationError::InternalServerError(ref cause) => cause,
-            DescribeReservationError::NotFound(ref cause) => cause,
-            DescribeReservationError::TooManyRequests(ref cause) => cause,
+            DescribeReservationError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeReservationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeReservationError {}
 /// Errors returned by DescribeSchedule
 #[derive(Debug, PartialEq)]
 pub enum DescribeScheduleError {
@@ -7339,23 +7326,20 @@ impl DescribeScheduleError {
     }
 }
 impl fmt::Display for DescribeScheduleError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for DescribeScheduleError {
-    fn description(&self) -> &str {
         match *self {
-            DescribeScheduleError::BadGateway(ref cause) => cause,
-            DescribeScheduleError::BadRequest(ref cause) => cause,
-            DescribeScheduleError::Forbidden(ref cause) => cause,
-            DescribeScheduleError::GatewayTimeout(ref cause) => cause,
-            DescribeScheduleError::InternalServerError(ref cause) => cause,
-            DescribeScheduleError::NotFound(ref cause) => cause,
-            DescribeScheduleError::TooManyRequests(ref cause) => cause,
+            DescribeScheduleError::BadGateway(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::BadRequest(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::Forbidden(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::NotFound(ref cause) => write!(f, "{}", cause),
+            DescribeScheduleError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for DescribeScheduleError {}
 /// Errors returned by ListChannels
 #[derive(Debug, PartialEq)]
 pub enum ListChannelsError {
@@ -7403,22 +7387,19 @@ impl ListChannelsError {
     }
 }
 impl fmt::Display for ListChannelsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListChannelsError {
-    fn description(&self) -> &str {
         match *self {
-            ListChannelsError::BadGateway(ref cause) => cause,
-            ListChannelsError::BadRequest(ref cause) => cause,
-            ListChannelsError::Forbidden(ref cause) => cause,
-            ListChannelsError::GatewayTimeout(ref cause) => cause,
-            ListChannelsError::InternalServerError(ref cause) => cause,
-            ListChannelsError::TooManyRequests(ref cause) => cause,
+            ListChannelsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListChannelsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListChannelsError {}
 /// Errors returned by ListInputSecurityGroups
 #[derive(Debug, PartialEq)]
 pub enum ListInputSecurityGroupsError {
@@ -7472,22 +7453,19 @@ impl ListInputSecurityGroupsError {
     }
 }
 impl fmt::Display for ListInputSecurityGroupsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInputSecurityGroupsError {
-    fn description(&self) -> &str {
         match *self {
-            ListInputSecurityGroupsError::BadGateway(ref cause) => cause,
-            ListInputSecurityGroupsError::BadRequest(ref cause) => cause,
-            ListInputSecurityGroupsError::Forbidden(ref cause) => cause,
-            ListInputSecurityGroupsError::GatewayTimeout(ref cause) => cause,
-            ListInputSecurityGroupsError::InternalServerError(ref cause) => cause,
-            ListInputSecurityGroupsError::TooManyRequests(ref cause) => cause,
+            ListInputSecurityGroupsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListInputSecurityGroupsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListInputSecurityGroupsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListInputSecurityGroupsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListInputSecurityGroupsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListInputSecurityGroupsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInputSecurityGroupsError {}
 /// Errors returned by ListInputs
 #[derive(Debug, PartialEq)]
 pub enum ListInputsError {
@@ -7535,22 +7513,19 @@ impl ListInputsError {
     }
 }
 impl fmt::Display for ListInputsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListInputsError {
-    fn description(&self) -> &str {
         match *self {
-            ListInputsError::BadGateway(ref cause) => cause,
-            ListInputsError::BadRequest(ref cause) => cause,
-            ListInputsError::Forbidden(ref cause) => cause,
-            ListInputsError::GatewayTimeout(ref cause) => cause,
-            ListInputsError::InternalServerError(ref cause) => cause,
-            ListInputsError::TooManyRequests(ref cause) => cause,
+            ListInputsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListInputsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListInputsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListInputsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListInputsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListInputsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListInputsError {}
 /// Errors returned by ListMultiplexPrograms
 #[derive(Debug, PartialEq)]
 pub enum ListMultiplexProgramsError {
@@ -7609,23 +7584,20 @@ impl ListMultiplexProgramsError {
     }
 }
 impl fmt::Display for ListMultiplexProgramsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMultiplexProgramsError {
-    fn description(&self) -> &str {
         match *self {
-            ListMultiplexProgramsError::BadGateway(ref cause) => cause,
-            ListMultiplexProgramsError::BadRequest(ref cause) => cause,
-            ListMultiplexProgramsError::Forbidden(ref cause) => cause,
-            ListMultiplexProgramsError::GatewayTimeout(ref cause) => cause,
-            ListMultiplexProgramsError::InternalServerError(ref cause) => cause,
-            ListMultiplexProgramsError::NotFound(ref cause) => cause,
-            ListMultiplexProgramsError::TooManyRequests(ref cause) => cause,
+            ListMultiplexProgramsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::NotFound(ref cause) => write!(f, "{}", cause),
+            ListMultiplexProgramsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMultiplexProgramsError {}
 /// Errors returned by ListMultiplexes
 #[derive(Debug, PartialEq)]
 pub enum ListMultiplexesError {
@@ -7673,22 +7645,19 @@ impl ListMultiplexesError {
     }
 }
 impl fmt::Display for ListMultiplexesError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListMultiplexesError {
-    fn description(&self) -> &str {
         match *self {
-            ListMultiplexesError::BadGateway(ref cause) => cause,
-            ListMultiplexesError::BadRequest(ref cause) => cause,
-            ListMultiplexesError::Forbidden(ref cause) => cause,
-            ListMultiplexesError::GatewayTimeout(ref cause) => cause,
-            ListMultiplexesError::InternalServerError(ref cause) => cause,
-            ListMultiplexesError::TooManyRequests(ref cause) => cause,
+            ListMultiplexesError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListMultiplexesError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListMultiplexesError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListMultiplexesError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListMultiplexesError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListMultiplexesError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListMultiplexesError {}
 /// Errors returned by ListOfferings
 #[derive(Debug, PartialEq)]
 pub enum ListOfferingsError {
@@ -7736,22 +7705,19 @@ impl ListOfferingsError {
     }
 }
 impl fmt::Display for ListOfferingsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListOfferingsError {
-    fn description(&self) -> &str {
         match *self {
-            ListOfferingsError::BadGateway(ref cause) => cause,
-            ListOfferingsError::BadRequest(ref cause) => cause,
-            ListOfferingsError::Forbidden(ref cause) => cause,
-            ListOfferingsError::GatewayTimeout(ref cause) => cause,
-            ListOfferingsError::InternalServerError(ref cause) => cause,
-            ListOfferingsError::TooManyRequests(ref cause) => cause,
+            ListOfferingsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListOfferingsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListOfferingsError {}
 /// Errors returned by ListReservations
 #[derive(Debug, PartialEq)]
 pub enum ListReservationsError {
@@ -7801,22 +7767,19 @@ impl ListReservationsError {
     }
 }
 impl fmt::Display for ListReservationsError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListReservationsError {
-    fn description(&self) -> &str {
         match *self {
-            ListReservationsError::BadGateway(ref cause) => cause,
-            ListReservationsError::BadRequest(ref cause) => cause,
-            ListReservationsError::Forbidden(ref cause) => cause,
-            ListReservationsError::GatewayTimeout(ref cause) => cause,
-            ListReservationsError::InternalServerError(ref cause) => cause,
-            ListReservationsError::TooManyRequests(ref cause) => cause,
+            ListReservationsError::BadGateway(ref cause) => write!(f, "{}", cause),
+            ListReservationsError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListReservationsError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListReservationsError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            ListReservationsError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListReservationsError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListReservationsError {}
 /// Errors returned by ListTagsForResource
 #[derive(Debug, PartialEq)]
 pub enum ListTagsForResourceError {
@@ -7856,20 +7819,17 @@ impl ListTagsForResourceError {
     }
 }
 impl fmt::Display for ListTagsForResourceError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for ListTagsForResourceError {
-    fn description(&self) -> &str {
         match *self {
-            ListTagsForResourceError::BadRequest(ref cause) => cause,
-            ListTagsForResourceError::Forbidden(ref cause) => cause,
-            ListTagsForResourceError::InternalServerError(ref cause) => cause,
-            ListTagsForResourceError::NotFound(ref cause) => cause,
+            ListTagsForResourceError::BadRequest(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::Forbidden(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            ListTagsForResourceError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for ListTagsForResourceError {}
 /// Errors returned by PurchaseOffering
 #[derive(Debug, PartialEq)]
 pub enum PurchaseOfferingError {
@@ -7929,24 +7889,21 @@ impl PurchaseOfferingError {
     }
 }
 impl fmt::Display for PurchaseOfferingError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for PurchaseOfferingError {
-    fn description(&self) -> &str {
         match *self {
-            PurchaseOfferingError::BadGateway(ref cause) => cause,
-            PurchaseOfferingError::BadRequest(ref cause) => cause,
-            PurchaseOfferingError::Conflict(ref cause) => cause,
-            PurchaseOfferingError::Forbidden(ref cause) => cause,
-            PurchaseOfferingError::GatewayTimeout(ref cause) => cause,
-            PurchaseOfferingError::InternalServerError(ref cause) => cause,
-            PurchaseOfferingError::NotFound(ref cause) => cause,
-            PurchaseOfferingError::TooManyRequests(ref cause) => cause,
+            PurchaseOfferingError::BadGateway(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::BadRequest(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::Conflict(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::Forbidden(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::NotFound(ref cause) => write!(f, "{}", cause),
+            PurchaseOfferingError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for PurchaseOfferingError {}
 /// Errors returned by StartChannel
 #[derive(Debug, PartialEq)]
 pub enum StartChannelError {
@@ -8004,24 +7961,21 @@ impl StartChannelError {
     }
 }
 impl fmt::Display for StartChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartChannelError {
-    fn description(&self) -> &str {
         match *self {
-            StartChannelError::BadGateway(ref cause) => cause,
-            StartChannelError::BadRequest(ref cause) => cause,
-            StartChannelError::Conflict(ref cause) => cause,
-            StartChannelError::Forbidden(ref cause) => cause,
-            StartChannelError::GatewayTimeout(ref cause) => cause,
-            StartChannelError::InternalServerError(ref cause) => cause,
-            StartChannelError::NotFound(ref cause) => cause,
-            StartChannelError::TooManyRequests(ref cause) => cause,
+            StartChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            StartChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StartChannelError::Conflict(ref cause) => write!(f, "{}", cause),
+            StartChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            StartChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            StartChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartChannelError {}
 /// Errors returned by StartMultiplex
 #[derive(Debug, PartialEq)]
 pub enum StartMultiplexError {
@@ -8079,24 +8033,21 @@ impl StartMultiplexError {
     }
 }
 impl fmt::Display for StartMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StartMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            StartMultiplexError::BadGateway(ref cause) => cause,
-            StartMultiplexError::BadRequest(ref cause) => cause,
-            StartMultiplexError::Conflict(ref cause) => cause,
-            StartMultiplexError::Forbidden(ref cause) => cause,
-            StartMultiplexError::GatewayTimeout(ref cause) => cause,
-            StartMultiplexError::InternalServerError(ref cause) => cause,
-            StartMultiplexError::NotFound(ref cause) => cause,
-            StartMultiplexError::TooManyRequests(ref cause) => cause,
+            StartMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::Conflict(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::NotFound(ref cause) => write!(f, "{}", cause),
+            StartMultiplexError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StartMultiplexError {}
 /// Errors returned by StopChannel
 #[derive(Debug, PartialEq)]
 pub enum StopChannelError {
@@ -8154,24 +8105,21 @@ impl StopChannelError {
     }
 }
 impl fmt::Display for StopChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopChannelError {
-    fn description(&self) -> &str {
         match *self {
-            StopChannelError::BadGateway(ref cause) => cause,
-            StopChannelError::BadRequest(ref cause) => cause,
-            StopChannelError::Conflict(ref cause) => cause,
-            StopChannelError::Forbidden(ref cause) => cause,
-            StopChannelError::GatewayTimeout(ref cause) => cause,
-            StopChannelError::InternalServerError(ref cause) => cause,
-            StopChannelError::NotFound(ref cause) => cause,
-            StopChannelError::TooManyRequests(ref cause) => cause,
+            StopChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            StopChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StopChannelError::Conflict(ref cause) => write!(f, "{}", cause),
+            StopChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            StopChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            StopChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StopChannelError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopChannelError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopChannelError {}
 /// Errors returned by StopMultiplex
 #[derive(Debug, PartialEq)]
 pub enum StopMultiplexError {
@@ -8229,24 +8177,21 @@ impl StopMultiplexError {
     }
 }
 impl fmt::Display for StopMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for StopMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            StopMultiplexError::BadGateway(ref cause) => cause,
-            StopMultiplexError::BadRequest(ref cause) => cause,
-            StopMultiplexError::Conflict(ref cause) => cause,
-            StopMultiplexError::Forbidden(ref cause) => cause,
-            StopMultiplexError::GatewayTimeout(ref cause) => cause,
-            StopMultiplexError::InternalServerError(ref cause) => cause,
-            StopMultiplexError::NotFound(ref cause) => cause,
-            StopMultiplexError::TooManyRequests(ref cause) => cause,
+            StopMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::Conflict(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::NotFound(ref cause) => write!(f, "{}", cause),
+            StopMultiplexError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for StopMultiplexError {}
 /// Errors returned by UpdateChannel
 #[derive(Debug, PartialEq)]
 pub enum UpdateChannelError {
@@ -8299,23 +8244,20 @@ impl UpdateChannelError {
     }
 }
 impl fmt::Display for UpdateChannelError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateChannelError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateChannelError::BadGateway(ref cause) => cause,
-            UpdateChannelError::BadRequest(ref cause) => cause,
-            UpdateChannelError::Conflict(ref cause) => cause,
-            UpdateChannelError::Forbidden(ref cause) => cause,
-            UpdateChannelError::GatewayTimeout(ref cause) => cause,
-            UpdateChannelError::InternalServerError(ref cause) => cause,
-            UpdateChannelError::UnprocessableEntity(ref cause) => cause,
+            UpdateChannelError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateChannelError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateChannelError {}
 /// Errors returned by UpdateChannelClass
 #[derive(Debug, PartialEq)]
 pub enum UpdateChannelClassError {
@@ -8382,25 +8324,22 @@ impl UpdateChannelClassError {
     }
 }
 impl fmt::Display for UpdateChannelClassError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateChannelClassError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateChannelClassError::BadGateway(ref cause) => cause,
-            UpdateChannelClassError::BadRequest(ref cause) => cause,
-            UpdateChannelClassError::Conflict(ref cause) => cause,
-            UpdateChannelClassError::Forbidden(ref cause) => cause,
-            UpdateChannelClassError::GatewayTimeout(ref cause) => cause,
-            UpdateChannelClassError::InternalServerError(ref cause) => cause,
-            UpdateChannelClassError::NotFound(ref cause) => cause,
-            UpdateChannelClassError::TooManyRequests(ref cause) => cause,
-            UpdateChannelClassError::UnprocessableEntity(ref cause) => cause,
+            UpdateChannelClassError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::TooManyRequests(ref cause) => write!(f, "{}", cause),
+            UpdateChannelClassError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateChannelClassError {}
 /// Errors returned by UpdateInput
 #[derive(Debug, PartialEq)]
 pub enum UpdateInputError {
@@ -8453,23 +8392,20 @@ impl UpdateInputError {
     }
 }
 impl fmt::Display for UpdateInputError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateInputError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateInputError::BadGateway(ref cause) => cause,
-            UpdateInputError::BadRequest(ref cause) => cause,
-            UpdateInputError::Conflict(ref cause) => cause,
-            UpdateInputError::Forbidden(ref cause) => cause,
-            UpdateInputError::GatewayTimeout(ref cause) => cause,
-            UpdateInputError::InternalServerError(ref cause) => cause,
-            UpdateInputError::NotFound(ref cause) => cause,
+            UpdateInputError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateInputError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateInputError {}
 /// Errors returned by UpdateInputSecurityGroup
 #[derive(Debug, PartialEq)]
 pub enum UpdateInputSecurityGroupError {
@@ -8526,23 +8462,20 @@ impl UpdateInputSecurityGroupError {
     }
 }
 impl fmt::Display for UpdateInputSecurityGroupError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateInputSecurityGroupError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateInputSecurityGroupError::BadGateway(ref cause) => cause,
-            UpdateInputSecurityGroupError::BadRequest(ref cause) => cause,
-            UpdateInputSecurityGroupError::Conflict(ref cause) => cause,
-            UpdateInputSecurityGroupError::Forbidden(ref cause) => cause,
-            UpdateInputSecurityGroupError::GatewayTimeout(ref cause) => cause,
-            UpdateInputSecurityGroupError::InternalServerError(ref cause) => cause,
-            UpdateInputSecurityGroupError::NotFound(ref cause) => cause,
+            UpdateInputSecurityGroupError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateInputSecurityGroupError::NotFound(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateInputSecurityGroupError {}
 /// Errors returned by UpdateMultiplex
 #[derive(Debug, PartialEq)]
 pub enum UpdateMultiplexError {
@@ -8600,24 +8533,21 @@ impl UpdateMultiplexError {
     }
 }
 impl fmt::Display for UpdateMultiplexError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMultiplexError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMultiplexError::BadGateway(ref cause) => cause,
-            UpdateMultiplexError::BadRequest(ref cause) => cause,
-            UpdateMultiplexError::Conflict(ref cause) => cause,
-            UpdateMultiplexError::Forbidden(ref cause) => cause,
-            UpdateMultiplexError::GatewayTimeout(ref cause) => cause,
-            UpdateMultiplexError::InternalServerError(ref cause) => cause,
-            UpdateMultiplexError::NotFound(ref cause) => cause,
-            UpdateMultiplexError::UnprocessableEntity(ref cause) => cause,
+            UpdateMultiplexError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateMultiplexError {}
 /// Errors returned by UpdateMultiplexProgram
 #[derive(Debug, PartialEq)]
 pub enum UpdateMultiplexProgramError {
@@ -8681,24 +8611,21 @@ impl UpdateMultiplexProgramError {
     }
 }
 impl fmt::Display for UpdateMultiplexProgramError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateMultiplexProgramError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateMultiplexProgramError::BadGateway(ref cause) => cause,
-            UpdateMultiplexProgramError::BadRequest(ref cause) => cause,
-            UpdateMultiplexProgramError::Conflict(ref cause) => cause,
-            UpdateMultiplexProgramError::Forbidden(ref cause) => cause,
-            UpdateMultiplexProgramError::GatewayTimeout(ref cause) => cause,
-            UpdateMultiplexProgramError::InternalServerError(ref cause) => cause,
-            UpdateMultiplexProgramError::NotFound(ref cause) => cause,
-            UpdateMultiplexProgramError::UnprocessableEntity(ref cause) => cause,
+            UpdateMultiplexProgramError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateMultiplexProgramError::UnprocessableEntity(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateMultiplexProgramError {}
 /// Errors returned by UpdateReservation
 #[derive(Debug, PartialEq)]
 pub enum UpdateReservationError {
@@ -8758,24 +8685,21 @@ impl UpdateReservationError {
     }
 }
 impl fmt::Display for UpdateReservationError {
+    #[allow(unused_variables)]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.to_string())
-    }
-}
-impl Error for UpdateReservationError {
-    fn description(&self) -> &str {
         match *self {
-            UpdateReservationError::BadGateway(ref cause) => cause,
-            UpdateReservationError::BadRequest(ref cause) => cause,
-            UpdateReservationError::Conflict(ref cause) => cause,
-            UpdateReservationError::Forbidden(ref cause) => cause,
-            UpdateReservationError::GatewayTimeout(ref cause) => cause,
-            UpdateReservationError::InternalServerError(ref cause) => cause,
-            UpdateReservationError::NotFound(ref cause) => cause,
-            UpdateReservationError::TooManyRequests(ref cause) => cause,
+            UpdateReservationError::BadGateway(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::BadRequest(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::Conflict(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::Forbidden(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::GatewayTimeout(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::InternalServerError(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::NotFound(ref cause) => write!(f, "{}", cause),
+            UpdateReservationError::TooManyRequests(ref cause) => write!(f, "{}", cause),
         }
     }
 }
+impl Error for UpdateReservationError {}
 /// Trait representing the capabilities of the MediaLive API. MediaLive clients implement this trait.
 #[async_trait]
 pub trait MediaLive {
